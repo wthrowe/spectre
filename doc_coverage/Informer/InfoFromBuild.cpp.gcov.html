@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 561eb0801334df588a32bf09d95c144932b7d977 - Informer/InfoFromBuild.cpp</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">Informer</a> - InfoFromBuild.cpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/561eb0801334df588a32bf09d95c144932b7d977">561eb0801334df588a32bf09d95c144932b7d977</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">5</td>
+            <td class="headerCovTableEntry">5</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2017-05-20 10:31:45</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : 
+<span class="lineNum">       2 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       3 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       4 </span>            : 
+<span class="lineNum">       5 </span>            : #include &quot;@CMAKE_SOURCE_DIR@/src/Informer/InfoFromBuild.hpp&quot;
+<span class="lineNum">       6 </span>            : 
+<span class="lineNum">       7 </span>            : #include &lt;boost/preprocessor.hpp&gt;
+<span class="lineNum">       8 </span>            : #include &lt;sstream&gt;
+<span class="lineNum">       9 </span>            : 
+<span class="lineNum">      10 </span>            : namespace {
+<span class="lineNum">      11 </span>            : std::string link_date() { return std::string(__TIMESTAMP__); }
+<span class="lineNum">      12 </span>            : 
+<span class="lineNum">      13 </span>            : std::string git_commit_hash() {
+<span class="lineNum">      14 </span>            :   return std::string(BOOST_PP_STRINGIZE(GIT_COMMIT_HASH));
+<span class="lineNum">      15 </span>            : }
+<span class="lineNum">      16 </span>            : 
+<span class="lineNum">      17 </span>            : std::string git_branch() { return std::string(BOOST_PP_STRINGIZE(GIT_BRANCH)); }
+<span class="lineNum">      18 </span>            : }  // namespace
+<span class="lineNum">      19 </span>            : 
+<span class="lineNum">      20 </span><span class="lineCov">          1 : std::string spectre_version() { return std::string(&quot;@SpECTRE_VERSION@&quot;); }</span>
+<span class="lineNum">      21 </span>            : 
+<span class="lineNum">      22 </span><span class="lineCov">          1 : int spectre_major_version() { return @SpECTRE_VERSION_MAJOR@; }</span>
+<span class="lineNum">      23 </span>            : 
+<span class="lineNum">      24 </span><span class="lineCov">          1 : int spectre_minor_version() { return @SpECTRE_VERSION_MINOR@; }</span>
+<span class="lineNum">      25 </span>            : 
+<span class="lineNum">      26 </span><span class="lineCov">          1 : int spectre_patch_version() { return @SpECTRE_VERSION_PATCH@; }</span>
+<span class="lineNum">      27 </span>            : 
+<span class="lineNum">      28 </span><span class="lineCov">          1 : std::string info_from_build() {</span>
+<span class="lineNum">      29 </span>            :   static const std::string info = [] {
+<span class="lineNum">      30 </span>            :     std::ostringstream os;
+<span class="lineNum">      31 </span>            :     os &lt;&lt; &quot;SpECTRE Build Information:\n&quot;;
+<span class="lineNum">      32 </span>            :     os &lt;&lt; &quot;Version:                      &quot; &lt;&lt; spectre_version() &lt;&lt; &quot;\n&quot;;
+<span class="lineNum">      33 </span>            :     os &lt;&lt; &quot;Compiled on host:             @HOSTNAME@\n&quot;;
+<span class="lineNum">      34 </span>            :     os &lt;&lt; &quot;Compiled in directory:        @CMAKE_BINARY_DIR@\n&quot;;
+<span class="lineNum">      35 </span>            :     os &lt;&lt; &quot;Source directory is:          @CMAKE_SOURCE_DIR@\n&quot;;
+<span class="lineNum">      36 </span>            :     os &lt;&lt; &quot;Compiled on git branch:       &quot; &lt;&lt; git_branch() &lt;&lt; &quot;\n&quot;;
+<span class="lineNum">      37 </span>            :     os &lt;&lt; &quot;Compiled with git hash:       &quot; &lt;&lt; git_commit_hash() &lt;&lt; &quot;\n&quot;;
+<span class="lineNum">      38 </span>            :     os &lt;&lt; &quot;Linked on:                    &quot; &lt;&lt; link_date() &lt;&lt; &quot;\n&quot;;
+<span class="lineNum">      39 </span>            :     return os.str();
+<span class="lineNum">      40 </span>            :   }();
+<span class="lineNum">      41 </span>            :   return info;
+<span class="lineNum">      42 </span>            : }
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

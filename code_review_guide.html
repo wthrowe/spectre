@@ -1,0 +1,203 @@
+<!-- HTML header for doxygen 1.8.10-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="SXS Collaboration">
+    <meta name="generator" content="Doxygen 1.8.13"/>
+    <style>
+        /*!
+         * IE10 viewport hack for Surface/desktop Windows 8 bug
+         * Copyright 2014-2015 Twitter, Inc.
+         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+         */
+        @-webkit-viewport { width: device-width; }
+        @-moz-viewport    { width: device-width; }
+        @-ms-viewport     { width: device-width; }
+        @-o-viewport      { width: device-width; }
+        @viewport         { width: device-width; }
+      </style>
+  <title>SpECTRE: Code Review Guide</title>
+  <link href="tabs.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="dynsections.js"></script>
+  <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
+  <link href="octicons.css" rel="stylesheet">
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="doxygen.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="bootstrap.min.js"></script>
+  <script type="text/javascript" src="spectre.js"></script>
+  </head>
+  <body>
+  <div id="top" class="navbar-fixed-top"><!-- do not remove this div, it is closed by doxygen! -->
+  <!-- BEGIN TITLEAREA -->
+  <div id="titlearea">
+  <script type="text/javascript">
+  var searchBox = new SearchBox("searchBox", "search",false,'Search');
+  </script>
+  <div id="main-nav">
+    <ul class="sm sm-dox" id="main-menu">
+      <li>
+      <a href="https://github.com/sxs-collaboration/spectre" target="_blank">
+      SpECTRE &#160;
+        <span id="projectnumber">v0.0.0</span>
+      </a>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-book"></i><span>Documentation</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 135px;">
+            <a href="index.html">
+            <i class="octicon octicon-book"></i><span>Documentation</span></a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="tutorials.html">
+              <i class="octicon octicon-mortar-board"></i><span>Tutorials</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="dev_guide.html">
+              <i class="octicon octicon-gist-secret"></i><span>Dev Guide</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown" style="min-width: 150px;">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 130px;">
+            <a href="modules.html">
+              <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+            </a>
+          </li>
+          <li style="min-width: 130px;">
+            <a href="namespaces.html">
+              <i class="octicon octicon-gist"></i>
+              <span>Namespaces</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="files.html">
+          <i class="octicon octicon-file-directory"></i><span>Files</span>
+        </a>
+      </li>
+      <!--The Search <li> is added by doxygen later-->
+    </ul>
+  </div><!-- main-nav -->
+  </div><!-- titlearea -->
+  <!-- window showing the filter options -->
+  <div id="MSearchSelectWindow"  style="position: fixed;"
+       onmouseover="return searchBox.OnSearchSelectShow()"
+       onmouseout="return searchBox.OnSearchSelectHide()"
+       onkeydown="return searchBox.OnSearchSelectKey(event)">
+  </div>
+  <!-- iframe showing the search results (closed by default) -->
+  <div id="MSearchResultsWindow"  style="position: fixed;">
+  <iframe src="javascript:void(0)" frameborder="0"
+          name="MSearchResults" id="MSearchResults">
+  </iframe>
+  </div><!-- Generated by Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">Code Review Guide </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p>Code must follow the <a href="https://github.com/isocpp/CppCoreGuidelines/blob/master/CppCoreGuidelines.md">C++ Core Guidelines</a> and the <a href="https://google.github.io/styleguide/cppguide.html">Google style guide</a>. If the Google style guide disagrees with the Core Guidelines, follow the Core Guidelines.</p>
+<p>Here we summarize what we view as the more important portions of the guides.</p>
+<p>Stylistic Items:</p>
+<ul>
+<li>Adhere to <a href="http://clang.llvm.org/docs/ClangFormat.html">Google style</a>. Can use <code>clang-format -style=google</code>.</li>
+<li>CamelCase: class names, type names, namespaces, template parameters, file names, and directory names.</li>
+<li>snake_case: (meta)function and (meta)variables names.</li>
+<li>SCREAMING_SNAKE_CASE: macros.</li>
+<li>Member variables of classes (not structs!) have a trailing underscore. See <a href="https://google.github.io/styleguide/cppguide.html#Variable_Names">Google</a>.</li>
+<li>Types NOT specified in the name (e.g. <code>double* pd_blah</code> is bad)</li>
+<li>Header order: hpp corresponding to cpp, blank line, STL and externals, blank line, SpECTRE includes</li>
+<li>Header order is alphabetical</li>
+<li>Template definitions in header files are separated from the declaration of the class by the following line, which contains exactly 70 equal signs</li>
+</ul>
+<div class="fragment"><div class="line">// ======================================================================</div></div><!-- fragment --><ul>
+<li>No blank lines surrounding Doxygen group comments (<code>//\@{</code> and <code>//\@}</code>).</li>
+<li>Use <a href="http://en.cppreference.com/w/cpp/language/operator_alternative">alternative tokens</a> whenever possible. E.g. <code>or</code> and <code>and</code> keywords instead of <code>||</code> and <code>&amp;&amp;</code>, respectively.</li>
+<li>Use C-style Doxygen comments except for documenting the file <code>/*! ... */</code></li>
+</ul>
+<p>Code Quality Items:</p>
+<ul>
+<li>All code passes Clang and CppCheck static analyzers. For help with these tools see [[here]].</li>
+<li>Almost always <code>auto</code></li>
+<li>All loops and if statements use braces.</li>
+<li>Order of declaration in classes is <code>public</code> before <code>private</code> and member functions before data. See <a href="https://google.github.io/styleguide/cppguide.html#Declaration_Order">Google</a>.</li>
+<li>Use a functional style unless pass-by-mutable-reference provides superior performance.</li>
+<li>All commits for performance changes provide quantitative evidence and the tests used to obtain said evidence.</li>
+<li>Never include <code>&lt;iostream&gt;</code></li>
+<li>Do not add anything to <a href="http://en.cppreference.com/w/cpp/language/extending_std">the <code>std</code> namespace</a>.</li>
+<li>Virtual functions are explicitly overridden using the <code>override</code> keyword.</li>
+<li><code>pragma once</code> is to be used for header guards</li>
+<li>Use <code>size_t</code> for positive integers rather than <code>int</code>, specifically when looping over containers. This is in compliance with what the STL uses.</li>
+<li>Error messages are helpful. An example of a poor error message is "Size mismatch" which should read "The number of grid points in the matrix 'F'
+is not the same as the number of grid points in the determinant." </li>
+</ul>
+</div></div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.10-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+&copy; Copyright 2017
+<a href="https://black-holes.org">SXS Collaboration</a>,
+<a href="LICENSE.txt" target="_blank">
+<span class="hidden-xs">Distributed under the</span>
+MIT License</a>
+</small></address>
+</body>
+</html>
