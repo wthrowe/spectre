@@ -1,0 +1,6 @@
+organization=sxs-collaboration
+projectKey=spectre:/feature/travis-ci
+serverUrl=https://sonarqube.com
+dashboardUrl=https://sonarqube.com/dashboard/index/spectre:%2Ffeature%2Ftravis-ci
+ceTaskId=AVxQRMwlL39IUl0Z1HnH
+ceTaskUrl=https://sonarqube.com/api/ce/task?id=AVxQRMwlL39IUl0Z1HnH
