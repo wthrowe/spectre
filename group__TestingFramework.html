@@ -173,7 +173,8 @@ $(function() {
 <td>ErrorRegex  </td><td>When testing failure modes the exact error message must be tested, not just that the test failed. Since the string passed is a regular expression you must escape any regex tokens. For example, to match "some (word) and" you must specify the string "some \(word\) and".   </td></tr>
 </table>
 <h3>Example</h3>
-<div class="fragment"></div><!-- fragment --> <h3>Debugging Tests in GDB or LLDB</h3>
+<p>snippet Test_H5.cpp willfail_example_for_dev_doc</p>
+<h3>Debugging Tests in GDB or LLDB</h3>
 <p>Several tests fail intentionally at the executable level to test error handling like ASSERT statements in the code. CTest is aware of which should fail and passes them. If you want to debug an individual test in a debugger you need to run a single test using the RunTests executable (in dg-charm-build/bin/RunTests) you must specify the name of the test as the first argument. For example, if you want to run just the "Unit.Gradient" test you can run <code>./bin/RunTests Unit.Gradient</code>. If you are using a debugger launch the debugger, for example if you're using LLDB then run <code>lldb ./bin/RunTests</code> and then to run the executable inside the debugger use <code>run Unit.Gradient</code> inside the debugger. </p>
 </div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.10-->

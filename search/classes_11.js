@@ -49,5 +49,6 @@ var searchData=
   ['result_5fof',['result_of',['http://en.cppreference.com/w/cpp/types/result_of.html',1,'std']]],
   ['result_5fof_5ft',['result_of_t',['http://en.cppreference.com/w/cpp/types/result_of.html',1,'std']]],
   ['reverse_5fiterator',['reverse_iterator',['http://en.cppreference.com/w/cpp/iterator/reverse_iterator.html',1,'std']]],
+  ['runtests',['RunTests',['../classRunTests.html',1,'']]],
   ['runtime_5ferror',['runtime_error',['http://en.cppreference.com/w/cpp/error/runtime_error.html',1,'std']]]
 ];

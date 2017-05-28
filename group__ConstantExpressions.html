@@ -150,6 +150,8 @@ $(function() {
 </div>
 
 <div class="header">
+  <div class="summary">
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">Constant Expressions</div>  </div>
 </div><!--header-->
@@ -157,9 +159,48 @@ $(function() {
 
 <p>Contains an assortment of constexpr functions.  
 <a href="#details">More...</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ga6c01ded3973bb4b9973e5381c32c0807"><td class="memTemplParams" colspan="2">template&lt;typename T , typename  = typename std::enable_if&lt;std::is_integral&lt;T&gt;::value&gt;::type&gt; </td></tr>
+<tr class="memitem:ga6c01ded3973bb4b9973e5381c32c0807"><td class="memTemplItemLeft" align="right" valign="top">constexpr T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__ConstantExpressions.html#ga6c01ded3973bb4b9973e5381c32c0807">two_to_the</a> (T n)</td></tr>
+<tr class="memdesc:ga6c01ded3973bb4b9973e5381c32c0807"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute 2 to the n for integral types.  <a href="#ga6c01ded3973bb4b9973e5381c32c0807">More...</a><br /></td></tr>
+<tr class="separator:ga6c01ded3973bb4b9973e5381c32c0807"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>Contains an assortment of constexpr functions. </p>
 <h3>Description</h3>
 <p>Contains an assortment of constexpr functions that are useful for metaprogramming, or efficient mathematical computations, such as exponentiating to an integer power, where the power is known at compile time. </p>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="ga6c01ded3973bb4b9973e5381c32c0807"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga6c01ded3973bb4b9973e5381c32c0807">&#9670;&nbsp;</a></span>two_to_the()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename  = typename std::enable_if&lt;std::is_integral&lt;T&gt;::value&gt;::type&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr T two_to_the </td>
+          <td>(</td>
+          <td class="paramtype">T&#160;</td>
+          <td class="paramname"><em>n</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Compute 2 to the n for integral types. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">n</td><td>the power of two to compute. </td></tr>
+  </table>
+  </dd>
+</dl>
+<p><em>Returns:</em> 2^n </p>
+
+</div>
+</div>
 </div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->

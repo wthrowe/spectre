@@ -130,5 +130,8 @@ var searchData=
   ['rotate_5fcopy',['rotate_copy',['http://en.cppreference.com/w/cpp/algorithm/rotate_copy.html',1,'std']]],
   ['round',['round',['http://en.cppreference.com/w/cpp/numeric/math/round.html',1,'std']]],
   ['round_5ferror',['round_error',['http://en.cppreference.com/w/cpp/types/numeric_limits/round_error.html',1,'std::numeric_limits']]],
+  ['runtests',['RunTests',['../classRunTests.html',1,'RunTests'],['../classRunTests.html#a58aef7973c605af178b7ebeae42bb2fa',1,'RunTests::RunTests()']]],
+  ['runtests_2ecpp',['RunTests.cpp',['../RunTests_8cpp.html',1,'']]],
+  ['runtests_2ehpp',['RunTests.hpp',['../RunTests_8hpp.html',1,'']]],
   ['runtime_5ferror',['runtime_error',['http://en.cppreference.com/w/cpp/error/runtime_error.html',1,'std::runtime_error'],['http://en.cppreference.com/w/cpp/error/runtime_error.html',1,'std::runtime_error::runtime_error()']]]
 ];
