@@ -163,7 +163,7 @@ $(function() {
  A reference cell embedded into a subset of the computational domain. Blocks are identified by unique integral values.</li>
 <li>Orientation:<br />
  The information of how the Logical Coordinates between Blocks are related.</li>
-<li>Block Neighbor:<br />
+<li>ref BlackNeighbor "Block Neighbor":<br />
  The identity and Orientation of a neighbor of a given Block.</li>
 <li>Direction:<br />
  A logical coordinate axis and a label "Upper" or "Lower" depending on whether the Direction is aligned with or anti-aligned with the logical coordinate axis, respectively.</li>
@@ -171,11 +171,11 @@ $(function() {
  The number of times a Block is split in half in a given dimension.</li>
 <li>Segment:<br />
  The specific subset of the interval \([-1, 1]\) defined by the Refinement Level and an integer label such that the Segment's interval is \([-1 + 2*(N/D), -1 + 2*(N+1)/D]\) where N is the integer label and D is \(2^{(\textrm{Refinement Level})}\).</li>
-<li>Segment Identifier:<br />
+<li>ref SegmentId "Segment Identifier":<br />
  The Refinement Level and an integer labeling a Segment.</li>
 <li>Element:<br />
  A refined subregion of a Block defined by its Segments in each logical coordinate. The properties of the Element are inherited from the block, i.e. it is self-similar to the Block.</li>
-<li>Element Identifier:<br />
+<li>ref ElementId "Element Identifier":<br />
  The Block Identifier containing the Element and a Segment Identifier in each logical coordinate axis.</li>
 <li>Mesh:<br />
  A regular set of grid points associated with an Element.</li>
@@ -183,7 +183,7 @@ $(function() {
  A face of a Block or Element that has no neighbor.</li>
 <li>Internal Boundary:<br />
  A boundary that is not an External Boundary.</li>
-<li>Face Neighbors (Rename C++ Neighbors class to FaceNeighbors):<br />
+<li>ref Neighbors "Face Neighbors" (Rename C++ Neighbors class to FaceNeighbors):<br />
  The identities and Orientation of the neighbors in a particular direction of a given Element.</li>
 <li>External Boundary Condition:<br />
  A prescription for updating the solution on an External Boundary. Each External Boundary of Block has exactly one External Boundary Condition associated with it. </li>
