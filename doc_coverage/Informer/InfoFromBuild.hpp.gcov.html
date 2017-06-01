@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - acdd4dd15d3dad359dc3d78d56b2b6c39b476169 - Informer/InfoFromBuild.hpp</title>
+  <title>LCOV - 3c01b8ae0f2fc2bcf2bf9a051ac3bcf8a0b2b378 - Informer/InfoFromBuild.hpp</title>
   <link rel="stylesheet" type="text/css" href="../gcov.css">
 </head>
 
@@ -28,7 +28,7 @@
           </tr>
           <tr>
              <td class="headerItem">Commit:</td>
-             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/acdd4dd15d3dad359dc3d78d56b2b6c39b476169">acdd4dd15d3dad359dc3d78d56b2b6c39b476169</a></td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/3c01b8ae0f2fc2bcf2bf9a051ac3bcf8a0b2b378">3c01b8ae0f2fc2bcf2bf9a051ac3bcf8a0b2b378</a></td>
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntry">5</td>
@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2017-05-25 20:26:38</td>
+            <td class="headerValue">2017-06-01 01:49:19</td>
             <td></td>
           </tr>
           <tr>
@@ -64,50 +64,49 @@
       <td>
 <pre class="sourceHeading">          Line data    Source code</pre>
 <pre class="source">
-<span class="lineNum">       1 </span>            : 
-<span class="lineNum">       2 </span>            : // Distributed under the MIT License.
-<span class="lineNum">       3 </span>            : // See LICENSE.txt for details.
-<span class="lineNum">       4 </span>            : 
-<span class="lineNum">       5 </span>            : /// \file
-<span class="lineNum">       6 </span>            : /// Declares function info_from_build.
-<span class="lineNum">       7 </span>            : 
-<span class="lineNum">       8 </span>            : #pragma once
-<span class="lineNum">       9 </span>            : 
-<span class="lineNum">      10 </span>            : #include &lt;iosfwd&gt;
-<span class="lineNum">      11 </span>            : 
-<span class="lineNum">      12 </span>            : /*!
-<span class="lineNum">      13 </span>            :  * \ingroup Utilities
-<span class="lineNum">      14 </span>            :  * \brief Information about the version, date, host, git commit, and link time
-<span class="lineNum">      15 </span>            :  *
-<span class="lineNum">      16 </span>            :  * The information returned by this function is invaluable for identifying
-<span class="lineNum">      17 </span>            :  * the version of the code used in a simulation, as well as which host, the
-<span class="lineNum">      18 </span>            :  * date the code was compiled, and the time of linkage.
-<span class="lineNum">      19 </span>            :  */
-<span class="lineNum">      20 </span><span class="lineCov">          2 : std::string info_from_build();</span>
-<span class="lineNum">      21 </span>            : 
-<span class="lineNum">      22 </span>            : /*!
-<span class="lineNum">      23 </span>            :  * \ingroup Utilities
-<span class="lineNum">      24 </span>            :  * \brief Retrieve a string containing the current version of SpECTRE
-<span class="lineNum">      25 </span>            :  */
-<span class="lineNum">      26 </span><span class="lineCov">          2 : std::string spectre_version();</span>
-<span class="lineNum">      27 </span>            : 
-<span class="lineNum">      28 </span>            : /*!
-<span class="lineNum">      29 </span>            :  * \ingroup Utilities
-<span class="lineNum">      30 </span>            :  * \brief Returns major version
-<span class="lineNum">      31 </span>            :  */
-<span class="lineNum">      32 </span><span class="lineCov">          2 : int spectre_major_version();</span>
-<span class="lineNum">      33 </span>            : 
-<span class="lineNum">      34 </span>            : /*!
-<span class="lineNum">      35 </span>            :  * \ingroup Utilities
-<span class="lineNum">      36 </span>            :  * \brief Returns minor version
-<span class="lineNum">      37 </span>            :  */
-<span class="lineNum">      38 </span><span class="lineCov">          2 : int spectre_minor_version();</span>
-<span class="lineNum">      39 </span>            : 
-<span class="lineNum">      40 </span>            : /*!
-<span class="lineNum">      41 </span>            :  * \ingroup Utilities
-<span class="lineNum">      42 </span>            :  * \brief Returns patch version
-<span class="lineNum">      43 </span>            :  */
-<span class="lineNum">      44 </span><span class="lineCov">          2 : int spectre_patch_version();</span>
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : /// \file
+<span class="lineNum">       5 </span>            : /// Declares function info_from_build.
+<span class="lineNum">       6 </span>            : 
+<span class="lineNum">       7 </span>            : #pragma once
+<span class="lineNum">       8 </span>            : 
+<span class="lineNum">       9 </span>            : #include &lt;iosfwd&gt;
+<span class="lineNum">      10 </span>            : 
+<span class="lineNum">      11 </span>            : /*!
+<span class="lineNum">      12 </span>            :  * \ingroup Utilities
+<span class="lineNum">      13 </span>            :  * \brief Information about the version, date, host, git commit, and link time
+<span class="lineNum">      14 </span>            :  *
+<span class="lineNum">      15 </span>            :  * The information returned by this function is invaluable for identifying
+<span class="lineNum">      16 </span>            :  * the version of the code used in a simulation, as well as which host, the
+<span class="lineNum">      17 </span>            :  * date the code was compiled, and the time of linkage.
+<span class="lineNum">      18 </span>            :  */
+<span class="lineNum">      19 </span><span class="lineCov">          2 : std::string info_from_build();</span>
+<span class="lineNum">      20 </span>            : 
+<span class="lineNum">      21 </span>            : /*!
+<span class="lineNum">      22 </span>            :  * \ingroup Utilities
+<span class="lineNum">      23 </span>            :  * \brief Retrieve a string containing the current version of SpECTRE
+<span class="lineNum">      24 </span>            :  */
+<span class="lineNum">      25 </span><span class="lineCov">          2 : std::string spectre_version();</span>
+<span class="lineNum">      26 </span>            : 
+<span class="lineNum">      27 </span>            : /*!
+<span class="lineNum">      28 </span>            :  * \ingroup Utilities
+<span class="lineNum">      29 </span>            :  * \brief Returns major version
+<span class="lineNum">      30 </span>            :  */
+<span class="lineNum">      31 </span><span class="lineCov">          2 : int spectre_major_version();</span>
+<span class="lineNum">      32 </span>            : 
+<span class="lineNum">      33 </span>            : /*!
+<span class="lineNum">      34 </span>            :  * \ingroup Utilities
+<span class="lineNum">      35 </span>            :  * \brief Returns minor version
+<span class="lineNum">      36 </span>            :  */
+<span class="lineNum">      37 </span><span class="lineCov">          2 : int spectre_minor_version();</span>
+<span class="lineNum">      38 </span>            : 
+<span class="lineNum">      39 </span>            : /*!
+<span class="lineNum">      40 </span>            :  * \ingroup Utilities
+<span class="lineNum">      41 </span>            :  * \brief Returns patch version
+<span class="lineNum">      42 </span>            :  */
+<span class="lineNum">      43 </span><span class="lineCov">          2 : int spectre_patch_version();</span>
 </pre>
       </td>
     </tr>
