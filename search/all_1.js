@@ -1,7 +1,8 @@
 var searchData=
 [
   ['a',['a',['http://en.cppreference.com/w/cpp/numeric/random/cauchy_distribution/params.html',1,'std::cauchy_distribution::a()'],['http://en.cppreference.com/w/cpp/numeric/random/extreme_value_distribution/params.html',1,'std::extreme_value_distribution::a()'],['http://en.cppreference.com/w/cpp/numeric/random/uniform_int_distribution/params.html',1,'std::uniform_int_distribution::a()'],['http://en.cppreference.com/w/cpp/numeric/random/uniform_real_distribution/params.html',1,'std::uniform_real_distribution::a()'],['http://en.cppreference.com/w/cpp/numeric/random/weibull_distribution/params.html',1,'std::weibull_distribution::a()']]],
-  ['abort',['abort',['http://en.cppreference.com/w/cpp/utility/program/abort.html',1,'std']]],
+  ['abort',['abort',['http://en.cppreference.com/w/cpp/utility/program/abort.html',1,'std::abort()'],['../group__Parallel.html#gaccc68e564135958d18110d2847dcc1b3',1,'Parallel::abort()']]],
+  ['abort_2ehpp',['Abort.hpp',['../Abort_8hpp.html',1,'']]],
   ['abs_28float_29',['abs(float)',['http://en.cppreference.com/w/cpp/numeric/math/fabs.html',1,'std']]],
   ['abs_28int_29',['abs(int)',['http://en.cppreference.com/w/cpp/numeric/math/abs.html',1,'std']]],
   ['absolute',['absolute',['http://en.cppreference.com/w/cpp/experimental/fs/absolute.html',1,'std::experimental::filesystem::absolute()'],['http://en.cppreference.com/w/cpp/filesystem/absolute.html',1,'std::filesystem::absolute()']]],

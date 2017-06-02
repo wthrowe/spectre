@@ -6,7 +6,7 @@ var searchData=
   ['parallel_5funsequenced_5fpolicy',['parallel_unsequenced_policy',['http://en.cppreference.com/w/cpp/algorithm/execution_policy_tag_t.html',1,'std::execution']]],
   ['path',['path',['http://en.cppreference.com/w/cpp/experimental/fs/path.html',1,'std::experimental::filesystem::path'],['http://en.cppreference.com/w/cpp/filesystem/path.html',1,'std::filesystem::path']]],
   ['pattern',['pattern',['http://en.cppreference.com/w/cpp/locale/money_base.html',1,'std::money_base::pattern'],['http://en.cppreference.com/w/cpp/locale/money_base.html',1,'std::money_get::pattern'],['http://en.cppreference.com/w/cpp/locale/money_base.html',1,'std::money_put::pattern'],['http://en.cppreference.com/w/cpp/locale/money_base.html',1,'std::moneypunct::pattern'],['http://en.cppreference.com/w/cpp/locale/money_base.html',1,'std::moneypunct_byname::pattern']]],
-  ['perms',['perms',['http://en.cppreference.com/w/cpp/experimental/fs/perms.html',1,'std::experimental::filesystem::perms'],['http://en.cppreference.com/w/cpp/filesystem/perms.html',1,'std::filesystem::perms']]],
+  ['perms',['perms',['http://en.cppreference.com/w/cpp/filesystem/perms.html',1,'std::filesystem::perms'],['http://en.cppreference.com/w/cpp/experimental/fs/perms.html',1,'std::experimental::filesystem::perms']]],
   ['peta',['peta',['http://en.cppreference.com/w/cpp/numeric/ratio/ratio.html',1,'std']]],
   ['pico',['pico',['http://en.cppreference.com/w/cpp/numeric/ratio/ratio.html',1,'std']]],
   ['piecewise_5fconstant_5fdistribution',['piecewise_constant_distribution',['http://en.cppreference.com/w/cpp/numeric/random/piecewise_constant_distribution.html',1,'std']]],
