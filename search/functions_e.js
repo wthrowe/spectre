@@ -21,6 +21,7 @@ var searchData=
   ['nextafter',['nextafter',['http://en.cppreference.com/w/cpp/numeric/math/nextafter.html',1,'std']]],
   ['nexttoward',['nexttoward',['http://en.cppreference.com/w/cpp/numeric/math/nextafter.html',1,'std']]],
   ['noboolalpha',['noboolalpha',['http://en.cppreference.com/w/cpp/io/manip/boolalpha.html',1,'std']]],
+  ['node_5fof',['node_of',['../group__Parallel.html#ga042f8935c6008898b980065058d0d8e2',1,'Parallel']]],
   ['none',['none',['http://en.cppreference.com/w/cpp/utility/bitset/all_any_none.html',1,'std::bitset']]],
   ['none_5fof',['none_of',['http://en.cppreference.com/w/cpp/algorithm/all_any_none_of.html',1,'std']]],
   ['normal_5fdistribution',['normal_distribution',['http://en.cppreference.com/w/cpp/numeric/random/normal_distribution/normal_distribution.html',1,'std::normal_distribution']]],
@@ -42,6 +43,8 @@ var searchData=
   ['null_5fmemory_5fresource',['null_memory_resource',['http://en.cppreference.com/w/cpp/memory/null_memory_resource.html',1,'std::pmr']]],
   ['num_5fget',['num_get',['http://en.cppreference.com/w/cpp/locale/num_get/num_get.html',1,'std::num_get']]],
   ['num_5fput',['num_put',['http://en.cppreference.com/w/cpp/locale/num_put/num_put.html',1,'std::num_put']]],
+  ['number_5fof_5fnodes',['number_of_nodes',['../group__Parallel.html#gaf999b9700ece84fca6cb82bb1ee9f3f2',1,'Parallel']]],
+  ['number_5fof_5fprocs',['number_of_procs',['../group__Parallel.html#ga537d2cc78336566826c93c49f82746a8',1,'Parallel']]],
   ['numpunct',['numpunct',['http://en.cppreference.com/w/cpp/locale/numpunct/numpunct.html',1,'std::numpunct']]],
   ['numpunct_5fbyname',['numpunct_byname',['http://en.cppreference.com/w/cpp/locale/numpunct_byname.html',1,'std::numpunct_byname']]]
 ];

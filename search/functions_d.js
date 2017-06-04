@@ -78,5 +78,8 @@ var searchData=
   ['mt19937_5f64',['mt19937_64',['http://en.cppreference.com/w/cpp/numeric/random/mersenne_twister_engine/mersenne_twister_engine.html',1,'std::mt19937_64']]],
   ['multimap',['multimap',['http://en.cppreference.com/w/cpp/container/multimap/multimap.html',1,'std::multimap::multimap()'],['http://en.cppreference.com/w/cpp/container/multimap/multimap.html',1,'std::pmr::multimap::multimap()']]],
   ['multiset',['multiset',['http://en.cppreference.com/w/cpp/container/multiset/multiset.html',1,'std::multiset::multiset()'],['http://en.cppreference.com/w/cpp/container/multiset/multiset.html',1,'std::pmr::multiset::multiset()']]],
-  ['mutex',['mutex',['http://en.cppreference.com/w/cpp/thread/mutex/mutex.html',1,'std::mutex::mutex()'],['http://en.cppreference.com/w/cpp/thread/shared_lock/mutex.html',1,'std::shared_lock::mutex()'],['http://en.cppreference.com/w/cpp/thread/unique_lock/mutex.html',1,'std::unique_lock::mutex()']]]
+  ['mutex',['mutex',['http://en.cppreference.com/w/cpp/thread/mutex/mutex.html',1,'std::mutex::mutex()'],['http://en.cppreference.com/w/cpp/thread/shared_lock/mutex.html',1,'std::shared_lock::mutex()'],['http://en.cppreference.com/w/cpp/thread/unique_lock/mutex.html',1,'std::unique_lock::mutex()']]],
+  ['my_5flocal_5frank',['my_local_rank',['../group__Parallel.html#ga0899b00614f1c47c6b32d1f83976a23b',1,'Parallel']]],
+  ['my_5fnode',['my_node',['../group__Parallel.html#ga9f24e1c6dfcfa4e9250a165973b1a524',1,'Parallel']]],
+  ['my_5fproc',['my_proc',['../group__Parallel.html#ga9537d2f88bafe61b07e0ceda735243ca',1,'Parallel']]]
 ];

@@ -168,6 +168,48 @@ Functions</h2></td></tr>
 <tr class="memitem:ga8ca2773484152df4d8897024a244b3c0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Parallel.html#ga8ca2773484152df4d8897024a244b3c0">Parallel::exit</a> ()</td></tr>
 <tr class="memdesc:ga8ca2773484152df4d8897024a244b3c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Exit the program normally. This should only be called once over all processors.  <a href="group__Parallel.html#ga8ca2773484152df4d8897024a244b3c0">More...</a><br /></td></tr>
 <tr class="separator:ga8ca2773484152df4d8897024a244b3c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga537d2cc78336566826c93c49f82746a8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Parallel.html#ga537d2cc78336566826c93c49f82746a8">Parallel::number_of_procs</a> ()</td></tr>
+<tr class="memdesc:ga537d2cc78336566826c93c49f82746a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of processing elements.  <a href="group__Parallel.html#ga537d2cc78336566826c93c49f82746a8">More...</a><br /></td></tr>
+<tr class="separator:ga537d2cc78336566826c93c49f82746a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9537d2f88bafe61b07e0ceda735243ca"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Parallel.html#ga9537d2f88bafe61b07e0ceda735243ca">Parallel::my_proc</a> ()</td></tr>
+<tr class="memdesc:ga9537d2f88bafe61b07e0ceda735243ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Index of my processing element.  <a href="group__Parallel.html#ga9537d2f88bafe61b07e0ceda735243ca">More...</a><br /></td></tr>
+<tr class="separator:ga9537d2f88bafe61b07e0ceda735243ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf999b9700ece84fca6cb82bb1ee9f3f2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Parallel.html#gaf999b9700ece84fca6cb82bb1ee9f3f2">Parallel::number_of_nodes</a> ()</td></tr>
+<tr class="memdesc:gaf999b9700ece84fca6cb82bb1ee9f3f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of nodes.  <a href="group__Parallel.html#gaf999b9700ece84fca6cb82bb1ee9f3f2">More...</a><br /></td></tr>
+<tr class="separator:gaf999b9700ece84fca6cb82bb1ee9f3f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9f24e1c6dfcfa4e9250a165973b1a524"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Parallel.html#ga9f24e1c6dfcfa4e9250a165973b1a524">Parallel::my_node</a> ()</td></tr>
+<tr class="memdesc:ga9f24e1c6dfcfa4e9250a165973b1a524"><td class="mdescLeft">&#160;</td><td class="mdescRight">Index of my node.  <a href="group__Parallel.html#ga9f24e1c6dfcfa4e9250a165973b1a524">More...</a><br /></td></tr>
+<tr class="separator:ga9f24e1c6dfcfa4e9250a165973b1a524"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab9459395dbb2a65f0d0b0439387067a1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Parallel.html#gab9459395dbb2a65f0d0b0439387067a1">Parallel::procs_on_node</a> (const int node_index)</td></tr>
+<tr class="memdesc:gab9459395dbb2a65f0d0b0439387067a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of processing elements on the given node.  <a href="group__Parallel.html#gab9459395dbb2a65f0d0b0439387067a1">More...</a><br /></td></tr>
+<tr class="separator:gab9459395dbb2a65f0d0b0439387067a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0899b00614f1c47c6b32d1f83976a23b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Parallel.html#ga0899b00614f1c47c6b32d1f83976a23b">Parallel::my_local_rank</a> ()</td></tr>
+<tr class="memdesc:ga0899b00614f1c47c6b32d1f83976a23b"><td class="mdescLeft">&#160;</td><td class="mdescRight">The local index of my processing element on my node. This is in the interval 0, ..., procs_on_node(my_node()) - 1.  <a href="group__Parallel.html#ga0899b00614f1c47c6b32d1f83976a23b">More...</a><br /></td></tr>
+<tr class="separator:ga0899b00614f1c47c6b32d1f83976a23b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6f2f2d9db4aca7b4f11370e1556b43a5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Parallel.html#ga6f2f2d9db4aca7b4f11370e1556b43a5">Parallel::first_proc_on_node</a> (const int node_index)</td></tr>
+<tr class="memdesc:ga6f2f2d9db4aca7b4f11370e1556b43a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Index of first processing element on the given node.  <a href="group__Parallel.html#ga6f2f2d9db4aca7b4f11370e1556b43a5">More...</a><br /></td></tr>
+<tr class="separator:ga6f2f2d9db4aca7b4f11370e1556b43a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga042f8935c6008898b980065058d0d8e2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Parallel.html#ga042f8935c6008898b980065058d0d8e2">Parallel::node_of</a> (const int proc_index)</td></tr>
+<tr class="memdesc:ga042f8935c6008898b980065058d0d8e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Index of the node for the given processing element.  <a href="group__Parallel.html#ga042f8935c6008898b980065058d0d8e2">More...</a><br /></td></tr>
+<tr class="separator:ga042f8935c6008898b980065058d0d8e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab13a71393339d7f35a3f802df360429b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Parallel.html#gab13a71393339d7f35a3f802df360429b">Parallel::local_rank_of</a> (const int proc_index)</td></tr>
+<tr class="memdesc:gab13a71393339d7f35a3f802df360429b"><td class="mdescLeft">&#160;</td><td class="mdescRight">The local index for the given processing element on its node.  <a href="group__Parallel.html#gab13a71393339d7f35a3f802df360429b">More...</a><br /></td></tr>
+<tr class="separator:gab13a71393339d7f35a3f802df360429b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga62feba0b73433140761dad9a3127b998"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Parallel.html#ga62feba0b73433140761dad9a3127b998">Parallel::wall_time</a> ()</td></tr>
+<tr class="memdesc:ga62feba0b73433140761dad9a3127b998"><td class="mdescLeft">&#160;</td><td class="mdescRight">The current wall time in seconds.  <a href="group__Parallel.html#ga62feba0b73433140761dad9a3127b998">More...</a><br /></td></tr>
+<tr class="separator:ga62feba0b73433140761dad9a3127b998"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae21964b5d28608afd21ae090c1c4c073"><td class="memTemplParams" colspan="2">template&lt;typename... Args&gt; </td></tr>
+<tr class="memitem:gae21964b5d28608afd21ae090c1c4c073"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__Parallel.html#gae21964b5d28608afd21ae090c1c4c073">Parallel::printf</a> (const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> &amp;format, Args &amp;&amp;... args)</td></tr>
+<tr class="memdesc:gae21964b5d28608afd21ae090c1c4c073"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print an atomic message to stdout with C printf usage.  <a href="group__Parallel.html#gae21964b5d28608afd21ae090c1c4c073">More...</a><br /></td></tr>
+<tr class="separator:gae21964b5d28608afd21ae090c1c4c073"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf46b590510bd8fad34c7055079262707"><td class="memTemplParams" colspan="2">template&lt;typename T , typename U &gt; </td></tr>
+<tr class="memitem:gaf46b590510bd8fad34c7055079262707"><td class="memTemplItemLeft" align="right" valign="top"><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt; char &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__Parallel.html#gaf46b590510bd8fad34c7055079262707">serialize</a> (const U &amp;obj)</td></tr>
+<tr class="memdesc:gaf46b590510bd8fad34c7055079262707"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serialize an object using PUP.  <a href="#gaf46b590510bd8fad34c7055079262707">More...</a><br /></td></tr>
+<tr class="separator:gaf46b590510bd8fad34c7055079262707"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6fb3864413e851ea6dcd1ffa319f2f25"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:ga6fb3864413e851ea6dcd1ffa319f2f25"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__Parallel.html#ga6fb3864413e851ea6dcd1ffa319f2f25">deserialize</a> (const void *const data)</td></tr>
+<tr class="memdesc:ga6fb3864413e851ea6dcd1ffa319f2f25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deserialize an object using PUP.  <a href="#ga6fb3864413e851ea6dcd1ffa319f2f25">More...</a><br /></td></tr>
+<tr class="separator:ga6fb3864413e851ea6dcd1ffa319f2f25"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>Functions to get info about parallelization and printing in parallel. </p>
@@ -200,7 +242,35 @@ Functions</h2></td></tr>
 
 <p class="reference">References <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/error/terminate.html">std::terminate()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="classRunTests.html#a58aef7973c605af178b7ebeae42bb2fa">RunTests::RunTests()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="group__ErrorHandling.html#ga976ceeca531715395cf8b0cb9664fbc7">abort_with_error_message()</a>, and <a class="el" href="classRunTests.html#a58aef7973c605af178b7ebeae42bb2fa">RunTests::RunTests()</a>.</p>
+
+</div>
+</div>
+<a id="ga6fb3864413e851ea6dcd1ffa319f2f25"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga6fb3864413e851ea6dcd1ffa319f2f25">&#9670;&nbsp;</a></span>deserialize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">T deserialize </td>
+          <td>(</td>
+          <td class="paramtype">const void *const&#160;</td>
+          <td class="paramname"><em>data</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Deserialize an object using PUP. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>the type to deserialize to </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -232,6 +302,355 @@ Functions</h2></td></tr>
 <p class="reference">References <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/error/terminate.html">std::terminate()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="classRunTests.html#a58aef7973c605af178b7ebeae42bb2fa">RunTests::RunTests()</a>.</p>
+
+</div>
+</div>
+<a id="ga6f2f2d9db4aca7b4f11370e1556b43a5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga6f2f2d9db4aca7b4f11370e1556b43a5">&#9670;&nbsp;</a></span>first_proc_on_node()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Parallel::first_proc_on_node </td>
+          <td>(</td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>node_index</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Index of first processing element on the given node. </p>
+
+</div>
+</div>
+<a id="gab13a71393339d7f35a3f802df360429b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab13a71393339d7f35a3f802df360429b">&#9670;&nbsp;</a></span>local_rank_of()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Parallel::local_rank_of </td>
+          <td>(</td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>proc_index</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The local index for the given processing element on its node. </p>
+
+</div>
+</div>
+<a id="ga0899b00614f1c47c6b32d1f83976a23b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga0899b00614f1c47c6b32d1f83976a23b">&#9670;&nbsp;</a></span>my_local_rank()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Parallel::my_local_rank </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The local index of my processing element on my node. This is in the interval 0, ..., procs_on_node(my_node()) - 1. </p>
+
+</div>
+</div>
+<a id="ga9f24e1c6dfcfa4e9250a165973b1a524"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga9f24e1c6dfcfa4e9250a165973b1a524">&#9670;&nbsp;</a></span>my_node()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Parallel::my_node </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Index of my node. </p>
+
+<p class="reference">Referenced by <a class="el" href="group__ErrorHandling.html#ga976ceeca531715395cf8b0cb9664fbc7">abort_with_error_message()</a>.</p>
+
+</div>
+</div>
+<a id="ga9537d2f88bafe61b07e0ceda735243ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga9537d2f88bafe61b07e0ceda735243ca">&#9670;&nbsp;</a></span>my_proc()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Parallel::my_proc </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Index of my processing element. </p>
+
+<p class="reference">Referenced by <a class="el" href="group__ErrorHandling.html#ga976ceeca531715395cf8b0cb9664fbc7">abort_with_error_message()</a>.</p>
+
+</div>
+</div>
+<a id="ga042f8935c6008898b980065058d0d8e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga042f8935c6008898b980065058d0d8e2">&#9670;&nbsp;</a></span>node_of()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Parallel::node_of </td>
+          <td>(</td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>proc_index</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Index of the node for the given processing element. </p>
+
+</div>
+</div>
+<a id="gaf999b9700ece84fca6cb82bb1ee9f3f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf999b9700ece84fca6cb82bb1ee9f3f2">&#9670;&nbsp;</a></span>number_of_nodes()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Parallel::number_of_nodes </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Number of nodes. </p>
+
+</div>
+</div>
+<a id="ga537d2cc78336566826c93c49f82746a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga537d2cc78336566826c93c49f82746a8">&#9670;&nbsp;</a></span>number_of_procs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Parallel::number_of_procs </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Number of processing elements. </p>
+
+</div>
+</div>
+<a id="gae21964b5d28608afd21ae090c1c4c073"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae21964b5d28608afd21ae090c1c4c073">&#9670;&nbsp;</a></span>printf()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename... Args&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Parallel::printf </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> &amp;&#160;</td>
+          <td class="paramname"><em>format</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Args &amp;&amp;...&#160;</td>
+          <td class="paramname"><em>args</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Print an atomic message to stdout with C printf usage. </p>
+<p>Similar to Python, you can print any object that's streamable by passing it in as an argument and using the formatter "%s". For example, </p><div class="fragment"><div class="line"><a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;double&gt;</a> a{0.8, 73, 9.8};</div><div class="line"><a class="code" href="group__Parallel.html#gae21964b5d28608afd21ae090c1c4c073">Parallel::printf</a>(<span class="stringliteral">&quot;%s\n&quot;</span>, a);</div></div><!-- fragment --> 
+<p class="reference">Referenced by <a class="el" href="ParallelInfo_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main()</a>, and <a class="el" href="classRunTests.html#a58aef7973c605af178b7ebeae42bb2fa">RunTests::RunTests()</a>.</p>
+
+</div>
+</div>
+<a id="gab9459395dbb2a65f0d0b0439387067a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab9459395dbb2a65f0d0b0439387067a1">&#9670;&nbsp;</a></span>procs_on_node()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Parallel::procs_on_node </td>
+          <td>(</td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>node_index</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Number of processing elements on the given node. </p>
+
+</div>
+</div>
+<a id="gaf46b590510bd8fad34c7055079262707"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf46b590510bd8fad34c7055079262707">&#9670;&nbsp;</a></span>serialize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename U &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt;char&gt; serialize </td>
+          <td>(</td>
+          <td class="paramtype">const U &amp;&#160;</td>
+          <td class="paramname"><em>obj</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Serialize an object using PUP. </p>
+<p>The type to serialize as must be explicitly specified. We require this because a mismatch between the serialize and deserialize calls causes undefined behavior and we do not want this to depend on inferred types for safety.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>type to serialize </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga62feba0b73433140761dad9a3127b998"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga62feba0b73433140761dad9a3127b998">&#9670;&nbsp;</a></span>wall_time()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double Parallel::wall_time </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The current wall time in seconds. </p>
 
 </div>
 </div>

@@ -17,5 +17,6 @@ var searchData=
   ['try_5fto_5flock_5ft',['try_to_lock_t',['http://en.cppreference.com/w/cpp/thread/lock_tag_t.html',1,'std']]],
   ['tuple',['tuple',['http://en.cppreference.com/w/cpp/utility/tuple.html',1,'std']]],
   ['type_5findex',['type_index',['http://en.cppreference.com/w/cpp/types/type_index.html',1,'std']]],
-  ['type_5finfo',['type_info',['http://en.cppreference.com/w/cpp/types/type_info.html',1,'std']]]
+  ['type_5finfo',['type_info',['http://en.cppreference.com/w/cpp/types/type_info.html',1,'std']]],
+  ['typedisplayer',['TypeDisplayer',['../structTypeDisplayer.html',1,'']]]
 ];

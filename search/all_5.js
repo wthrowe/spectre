@@ -43,6 +43,8 @@ var searchData=
   ['erf',['erf',['http://en.cppreference.com/w/cpp/numeric/math/erf.html',1,'std']]],
   ['erfc',['erfc',['http://en.cppreference.com/w/cpp/numeric/math/erfc.html',1,'std']]],
   ['errc',['errc',['http://en.cppreference.com/w/cpp/error/errc.html',1,'std']]],
+  ['error',['ERROR',['../group__ErrorHandling.html#ga1d27028c1827976007fe9d29ad3a2f66',1,'Error.hpp']]],
+  ['error_2ehpp',['Error.hpp',['../Error_8hpp.html',1,'']]],
   ['error_5fcategory',['error_category',['http://en.cppreference.com/w/cpp/error/error_category.html',1,'std::error_category'],['http://en.cppreference.com/w/cpp/error/error_category/error_category.html',1,'std::error_category::error_category()']]],
   ['error_5fcode',['error_code',['http://en.cppreference.com/w/cpp/error/error_code.html',1,'std::error_code'],['http://en.cppreference.com/w/cpp/error/error_code/error_code.html',1,'std::error_code::error_code()']]],
   ['error_5fcondition',['error_condition',['http://en.cppreference.com/w/cpp/error/error_condition.html',1,'std::error_condition'],['http://en.cppreference.com/w/cpp/error/error_condition/error_condition.html',1,'std::error_condition::error_condition()']]],

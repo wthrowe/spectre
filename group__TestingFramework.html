@@ -150,6 +150,9 @@ $(function() {
 </div>
 
 <div class="header">
+  <div class="summary">
+<a href="#define-members">Macros</a> &#124;
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">Testing Framework</div>  </div>
 </div><!--header-->
@@ -157,6 +160,21 @@ $(function() {
 
 <p>Classes, functions, macros, and instructions for developing tests.  
 <a href="#details">More...</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:ga4439208ed8accb2887ff47388e91e58b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__TestingFramework.html#ga4439208ed8accb2887ff47388e91e58b">ASSERTION_TEST</a>()&#160;&#160;&#160;<a class="el" href="group__Parallel.html#gaccc68e564135958d18110d2847dcc1b3">Parallel::abort</a>(&quot;### No <a class="el" href="group__ErrorHandling.html#gaf170f3984e3d0f809b2558dbd981ca35">ASSERT</a> tests in release mode ###&quot;)</td></tr>
+<tr class="memdesc:ga4439208ed8accb2887ff47388e91e58b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mark a test to be checking an ASSERT.  <a href="#ga4439208ed8accb2887ff47388e91e58b">More...</a><br /></td></tr>
+<tr class="separator:ga4439208ed8accb2887ff47388e91e58b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ga2895e57f4cacd63d2549655bb29bba7b"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:ga2895e57f4cacd63d2549655bb29bba7b"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__TestingFramework.html#ga2895e57f4cacd63d2549655bb29bba7b">serialize_and_deserialize</a> (const T &amp;t)</td></tr>
+<tr class="memdesc:ga2895e57f4cacd63d2549655bb29bba7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serializes and deserializes an object <code>t</code> of type <code>T</code>  <a href="#ga2895e57f4cacd63d2549655bb29bba7b">More...</a><br /></td></tr>
+<tr class="separator:ga2895e57f4cacd63d2549655bb29bba7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>Classes, functions, macros, and instructions for developing tests. </p>
 <h3>Details</h3>
 <p>SpECTRE uses the testing framework <a href="https://github.com/philsquared/Catch">Catch</a>. Catch supports a variety of different styles of tests including BDD and fixture tests. The file <code>cmake/SpectreAddCatchTests.cmake</code> parses the source files and adds the found tests to ctest with the correct properties specified by tags and attributes.</p>
@@ -176,6 +194,58 @@ $(function() {
 <p>snippet Test_H5.cpp willfail_example_for_dev_doc</p>
 <h3>Debugging Tests in GDB or LLDB</h3>
 <p>Several tests fail intentionally at the executable level to test error handling like ASSERT statements in the code. CTest is aware of which should fail and passes them. If you want to debug an individual test in a debugger you need to run a single test using the RunTests executable (in dg-charm-build/bin/RunTests) you must specify the name of the test as the first argument. For example, if you want to run just the "Unit.Gradient" test you can run <code>./bin/RunTests Unit.Gradient</code>. If you are using a debugger launch the debugger, for example if you're using LLDB then run <code>lldb ./bin/RunTests</code> and then to run the executable inside the debugger use <code>run Unit.Gradient</code> inside the debugger. </p>
+<h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="ga4439208ed8accb2887ff47388e91e58b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga4439208ed8accb2887ff47388e91e58b">&#9670;&nbsp;</a></span>ASSERTION_TEST</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ASSERTION_TEST</td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td>&#160;&#160;&#160;<a class="el" href="group__Parallel.html#gaccc68e564135958d18110d2847dcc1b3">Parallel::abort</a>(&quot;### No <a class="el" href="group__ErrorHandling.html#gaf170f3984e3d0f809b2558dbd981ca35">ASSERT</a> tests in release mode ###&quot;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Mark a test to be checking an ASSERT. </p>
+<h3>Details</h3>
+<p>Testing error handling is just as important as testing functionality. Tests that are supposed to exit with an error must be annotated with the attribute </p><div class="fragment"><div class="line"><span class="comment">// [[OutputRegex, The regex that should be found in the output]]</span></div></div><!-- fragment --><p> Note that the regex only needs to be a sub-expression of the error message, that is, there are implicit wildcards before and after the string.</p>
+<p>In order to test ASSERT's properly the test must also fail for release builds. This is done by adding this macro at the beginning for the test.</p>
+<h3>Example</h3>
+<p>snippet Test_Time.cpp example_of_error_test </p>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="ga2895e57f4cacd63d2549655bb29bba7b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga2895e57f4cacd63d2549655bb29bba7b">&#9670;&nbsp;</a></span>serialize_and_deserialize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">T serialize_and_deserialize </td>
+          <td>(</td>
+          <td class="paramtype">const T &amp;&#160;</td>
+          <td class="paramname"><em>t</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Serializes and deserializes an object <code>t</code> of type <code>T</code> </p>
+<h3>Example</h3>
+<p>To test serialization of copyable types use:</p>
+<p>snippet Test_PupStlCpp11.cpp example_serialize_copyable</p>
+<p>and for non-copyable types use: snippet Test_PupStlCpp11.cpp example_serialize_non_copyable </p>
+
+</div>
+</div>
 </div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->

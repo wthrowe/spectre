@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - 705be8949a4bc275cfbc76d52ad284589bf49df8 - Parallel/Exit.hpp</title>
+  <title>LCOV - d66b94892e95e15cd718e45631b35c704f1578e6 - Parallel/Exit.hpp</title>
   <link rel="stylesheet" type="text/css" href="../gcov.css">
 </head>
 
@@ -28,7 +28,7 @@
           </tr>
           <tr>
             <td class="headerItem">Commit:</td>
-             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/705be8949a4bc275cfbc76d52ad284589bf49df8">705be8949a4bc275cfbc76d52ad284589bf49df8</a></td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/d66b94892e95e15cd718e45631b35c704f1578e6">d66b94892e95e15cd718e45631b35c704f1578e6</a></td>
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntry">2</td>
@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2017-06-03 01:49:04</td>
+            <td class="headerValue">2017-06-04 01:49:11</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">1</td>
@@ -49,16 +49,8 @@
             <td class="headerValueLeg">            Lines:
             <span class="coverLegendCov">hit</span>
             <span class="coverLegendNoCov">not hit</span>
-            | Branches:
-            <span class="coverLegendCov">+</span> taken
-            <span class="coverLegendNoCov">-</span> not taken
-            <span class="coverLegendNoCov">#</span> not executed
 </td>
             <td></td>
-            <td class="headerItem">Branches:</td>
-            <td class="headerCovTableEntry">0</td>
-            <td class="headerCovTableEntry">0</td>
-            <td class="headerCovTableEntryHi">-</td>
           </tr>
           <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
         </table>
@@ -74,33 +66,33 @@
     </tr>
     <tr>
       <td>
-<pre class="sourceHeading">           Branch data     Line data    Source code</pre>
+<pre class="sourceHeading">          Line data    Source code</pre>
 <pre class="source">
-<a name="1"><span class="lineNum">       1 </span>                :            : // Distributed under the MIT License.</a>
-<span class="lineNum">       2 </span>                :            : // See LICENSE.txt for details.
-<span class="lineNum">       3 </span>                :            : 
-<span class="lineNum">       4 </span>                :            : /// \file
-<span class="lineNum">       5 </span>                :            : /// Defines function Parallel::exit.
-<span class="lineNum">       6 </span>                :            : 
-<span class="lineNum">       7 </span>                :            : #pragma once
-<span class="lineNum">       8 </span>                :            : 
-<span class="lineNum">       9 </span>                :            : #include &lt;charm++.h&gt;
-<span class="lineNum">      10 </span>                :            : #include &lt;exception&gt;
-<span class="lineNum">      11 </span>                :            : 
-<span class="lineNum">      12 </span>                :            : /// Contains functions that forward to Charm++ parallel functions.
-<span class="lineNum">      13 </span>                :            : namespace Parallel {
-<span class="lineNum">      14 </span>                :            : 
-<span class="lineNum">      15 </span>                :            : /// \ingroup Parallel
-<a name="16"><span class="lineNum">      16 </span>                :            : /// \brief Exit the program normally.</a>
-<span class="lineNum">      17 </span>                :            : /// This should only be called once over all processors.
-<span class="lineNum">      18 </span>                :<span class="lineCov">          1 : [[noreturn]] inline void exit() {</span>
-<span class="lineNum">      19 </span>                :<span class="lineCov">          1 :   CkExit();</span>
-<span class="lineNum">      20 </span>                :            :   // the following call is never reached, but suppresses the warning that
-<span class="lineNum">      21 </span>                :            :   // a 'noreturn' function does return
-<span class="lineNum">      22 </span>                :            :   std::terminate();  // LCOV_EXCL_LINE
-<span class="lineNum">      23 </span>                :            : }
-<span class="lineNum">      24 </span>                :            : 
-<span class="lineNum">      25 </span>                :            : }  // namespace Parallel
+<a name="1"><span class="lineNum">       1 </span>            : // Distributed under the MIT License.</a>
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : /// \file
+<span class="lineNum">       5 </span>            : /// Defines function Parallel::exit.
+<span class="lineNum">       6 </span>            : 
+<span class="lineNum">       7 </span>            : #pragma once
+<span class="lineNum">       8 </span>            : 
+<span class="lineNum">       9 </span>            : #include &lt;charm++.h&gt;
+<span class="lineNum">      10 </span>            : #include &lt;exception&gt;
+<span class="lineNum">      11 </span>            : 
+<span class="lineNum">      12 </span>            : /// Contains functions that forward to Charm++ parallel functions.
+<span class="lineNum">      13 </span>            : namespace Parallel {
+<span class="lineNum">      14 </span>            : 
+<span class="lineNum">      15 </span>            : /// \ingroup Parallel
+<a name="16"><span class="lineNum">      16 </span>            : /// \brief Exit the program normally.</a>
+<span class="lineNum">      17 </span>            : /// This should only be called once over all processors.
+<span class="lineNum">      18 </span><span class="lineCov">          3 : [[noreturn]] inline void exit() {</span>
+<span class="lineNum">      19 </span><span class="lineCov">          3 :   CkExit();</span>
+<span class="lineNum">      20 </span>            :   // the following call is never reached, but suppresses the warning that
+<span class="lineNum">      21 </span>            :   // a 'noreturn' function does return
+<span class="lineNum">      22 </span>            :   std::terminate();  // LCOV_EXCL_LINE
+<span class="lineNum">      23 </span>            : }
+<span class="lineNum">      24 </span>            : 
+<span class="lineNum">      25 </span>            : }  // namespace Parallel
 </pre>
       </td>
     </tr>
