@@ -153,6 +153,7 @@ $(function() {
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#define-members">Macros</a> &#124;
+<a href="#typedef-members">Typedefs</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">Utilities</div>  </div>
@@ -174,6 +175,13 @@ Macros</h2></td></tr>
 <tr class="memdesc:ga9d571cd642604cb7bd87bb039ca3760f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Always inline a function. Only use this if you benchmarked the code.  <a href="#ga9d571cd642604cb7bd87bb039ca3760f">More...</a><br /></td></tr>
 <tr class="separator:ga9d571cd642604cb7bd87bb039ca3760f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:gaf20b9d9f0e5870cc74c49bdf971e2cc6"><td class="memTemplParams" colspan="2">template&lt;typename Sequence &gt; </td></tr>
+<tr class="memitem:gaf20b9d9f0e5870cc74c49bdf971e2cc6"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__Utilities.html#gaf20b9d9f0e5870cc74c49bdf971e2cc6">make_boost_variant_over</a> = typename detail::make_boost_variant_over_impl&lt; Sequence &gt;::type</td></tr>
+<tr class="memdesc:gaf20b9d9f0e5870cc74c49bdf971e2cc6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a boost::variant with all all the types inside the typelist Sequence.  <a href="#gaf20b9d9f0e5870cc74c49bdf971e2cc6">More...</a><br /></td></tr>
+<tr class="separator:gaf20b9d9f0e5870cc74c49bdf971e2cc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:gada33ac747e1720e8d6c7d89323663c3e"><td class="memItemLeft" align="right" valign="top"><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Utilities.html#gada33ac747e1720e8d6c7d89323663c3e">info_from_build</a> ()</td></tr>
@@ -194,6 +202,62 @@ Functions</h2></td></tr>
 <tr class="memitem:ga9c127d07f412267ea6548c8dab8b44c1"><td class="memItemLeft" align="right" valign="top">constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Utilities.html#ga9c127d07f412267ea6548c8dab8b44c1">operator&quot;&quot; _st</a> (const unsigned long long n)</td></tr>
 <tr class="memdesc:ga9c127d07f412267ea6548c8dab8b44c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines the _st size_t suffix.  <a href="#ga9c127d07f412267ea6548c8dab8b44c1">More...</a><br /></td></tr>
 <tr class="separator:ga9c127d07f412267ea6548c8dab8b44c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga18e7d6f15d7089f056a7d1a32ad1b536"><td class="memTemplParams" colspan="2">template&lt;std::size_t size, typename T &gt; </td></tr>
+<tr class="memitem:ga18e7d6f15d7089f056a7d1a32ad1b536"><td class="memTemplItemLeft" align="right" valign="top">constexpr <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/decay.html">std::decay_t</a>&lt; T &gt;, size &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__Utilities.html#ga18e7d6f15d7089f056a7d1a32ad1b536">make_array</a> (T &amp;&amp;value)</td></tr>
+<tr class="memdesc:ga18e7d6f15d7089f056a7d1a32ad1b536"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper class to initialize a <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>.  <a href="#ga18e7d6f15d7089f056a7d1a32ad1b536">More...</a><br /></td></tr>
+<tr class="separator:ga18e7d6f15d7089f056a7d1a32ad1b536"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga55b73f5c6d3e8963a3110b1b314fc463"><td class="memTemplParams" colspan="2">template&lt;typename T , typename... V, typename std::enable_if_t&lt;(sizeof...(V) &gt; 0&gt; </td></tr>
+<tr class="memitem:ga55b73f5c6d3e8963a3110b1b314fc463"><td class="memTemplItemLeft" align="right" valign="top">constexpr <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; typename <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/decay.html">std::decay_t</a>&lt; T &gt;, sizeof...(V)+1 &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__Utilities.html#ga55b73f5c6d3e8963a3110b1b314fc463">make_array</a> (T &amp;&amp;t, V &amp;&amp;... values)</td></tr>
+<tr class="memdesc:ga55b73f5c6d3e8963a3110b1b314fc463"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper function to initialize a <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a> with varying number of arguments.  <a href="#ga55b73f5c6d3e8963a3110b1b314fc463">More...</a><br /></td></tr>
+<tr class="separator:ga55b73f5c6d3e8963a3110b1b314fc463"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga49015243242c2caad5bdbd64ea7449a1"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:ga49015243242c2caad5bdbd64ea7449a1"><td class="memTemplItemLeft" align="right" valign="top"><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/io/basic_ostream.html">std::ostream</a> &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__Utilities.html#ga49015243242c2caad5bdbd64ea7449a1">operator&lt;&lt;</a> (<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/io/basic_ostream.html">std::ostream</a> &amp;os, const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/list.html">std::list</a>&lt; T &gt; &amp;v)</td></tr>
+<tr class="memdesc:ga49015243242c2caad5bdbd64ea7449a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Output the items of a <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/list.html">std::list</a>.  <a href="#ga49015243242c2caad5bdbd64ea7449a1">More...</a><br /></td></tr>
+<tr class="separator:ga49015243242c2caad5bdbd64ea7449a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4b8db62a17e01a839e499a4c59112df5"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:ga4b8db62a17e01a839e499a4c59112df5"><td class="memTemplItemLeft" align="right" valign="top"><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/io/basic_ostream.html">std::ostream</a> &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__Utilities.html#ga4b8db62a17e01a839e499a4c59112df5">operator&lt;&lt;</a> (<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/io/basic_ostream.html">std::ostream</a> &amp;os, const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt; T &gt; &amp;v)</td></tr>
+<tr class="memdesc:ga4b8db62a17e01a839e499a4c59112df5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Output the items of a <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>.  <a href="#ga4b8db62a17e01a839e499a4c59112df5">More...</a><br /></td></tr>
+<tr class="separator:ga4b8db62a17e01a839e499a4c59112df5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga85ca1c2d4ff05b9b2d683f207d58be92"><td class="memTemplParams" colspan="2">template&lt;typename T , size_t N&gt; </td></tr>
+<tr class="memitem:ga85ca1c2d4ff05b9b2d683f207d58be92"><td class="memTemplItemLeft" align="right" valign="top"><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/io/basic_ostream.html">std::ostream</a> &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__Utilities.html#ga85ca1c2d4ff05b9b2d683f207d58be92">operator&lt;&lt;</a> (<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/io/basic_ostream.html">std::ostream</a> &amp;os, const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; T, N &gt; &amp;a)</td></tr>
+<tr class="memdesc:ga85ca1c2d4ff05b9b2d683f207d58be92"><td class="mdescLeft">&#160;</td><td class="mdescRight">Output the items of a <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>.  <a href="#ga85ca1c2d4ff05b9b2d683f207d58be92">More...</a><br /></td></tr>
+<tr class="separator:ga85ca1c2d4ff05b9b2d683f207d58be92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga81330e34bc91cfbd33c4d5272d33c53b"><td class="memTemplParams" colspan="2">template&lt;typename... Args&gt; </td></tr>
+<tr class="memitem:ga81330e34bc91cfbd33c4d5272d33c53b"><td class="memTemplItemLeft" align="right" valign="top"><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/io/basic_ostream.html">std::ostream</a> &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__Utilities.html#ga81330e34bc91cfbd33c4d5272d33c53b">operator&lt;&lt;</a> (<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/io/basic_ostream.html">std::ostream</a> &amp;os, const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/utility/tuple.html">std::tuple</a>&lt; Args... &gt; &amp;t)</td></tr>
+<tr class="memdesc:ga81330e34bc91cfbd33c4d5272d33c53b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stream operator for tuples.  <a href="#ga81330e34bc91cfbd33c4d5272d33c53b">More...</a><br /></td></tr>
+<tr class="separator:ga81330e34bc91cfbd33c4d5272d33c53b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3d4166ba0e61c9267ef6f3fb1a5dfe8e"><td class="memTemplParams" colspan="2">template&lt;typename Map , typename std::enable_if_t&lt; tt::is_maplike&lt; Map &gt;::value &gt; * &gt; </td></tr>
+<tr class="memitem:ga3d4166ba0e61c9267ef6f3fb1a5dfe8e"><td class="memTemplItemLeft" align="right" valign="top"><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/io/basic_ostream.html">std::ostream</a> &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__Utilities.html#ga3d4166ba0e61c9267ef6f3fb1a5dfe8e">operator&lt;&lt;</a> (<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/io/basic_ostream.html">std::ostream</a> &amp;os, const Map &amp;m)</td></tr>
+<tr class="memdesc:ga3d4166ba0e61c9267ef6f3fb1a5dfe8e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Output all the key, value pairs of a map.  <a href="#ga3d4166ba0e61c9267ef6f3fb1a5dfe8e">More...</a><br /></td></tr>
+<tr class="separator:ga3d4166ba0e61c9267ef6f3fb1a5dfe8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf389850e8ebc7d8040dfb5a50036f0ee"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:gaf389850e8ebc7d8040dfb5a50036f0ee"><td class="memTemplItemLeft" align="right" valign="top"><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/io/basic_ostream.html">std::ostream</a> &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__Utilities.html#gaf389850e8ebc7d8040dfb5a50036f0ee">operator&lt;&lt;</a> (<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/io/basic_ostream.html">std::ostream</a> &amp;os, const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/unordered_set.html">std::unordered_set</a>&lt; T &gt; &amp;v)</td></tr>
+<tr class="memdesc:gaf389850e8ebc7d8040dfb5a50036f0ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Output the items of a <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/unordered_set.html">std::unordered_set</a>.  <a href="#gaf389850e8ebc7d8040dfb5a50036f0ee">More...</a><br /></td></tr>
+<tr class="separator:gaf389850e8ebc7d8040dfb5a50036f0ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4248026e7d2c0f6a4ea723b16668531e"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:ga4248026e7d2c0f6a4ea723b16668531e"><td class="memTemplItemLeft" align="right" valign="top"><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/io/basic_ostream.html">std::ostream</a> &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__Utilities.html#ga4248026e7d2c0f6a4ea723b16668531e">operator&lt;&lt;</a> (<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/io/basic_ostream.html">std::ostream</a> &amp;os, const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/set.html">std::set</a>&lt; T &gt; &amp;v)</td></tr>
+<tr class="memdesc:ga4248026e7d2c0f6a4ea723b16668531e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Output the items of a <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/unordered_set.html">std::unordered_set</a>.  <a href="#ga4248026e7d2c0f6a4ea723b16668531e">More...</a><br /></td></tr>
+<tr class="separator:ga4248026e7d2c0f6a4ea723b16668531e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5a4affaa7af20b9ab232a5cae60d1fd5"><td class="memTemplParams" colspan="2">template&lt;typename T , typename std::enable_if_t&lt; tt::is_streamable&lt; std::ostream, T &gt;::value &gt; * &gt; </td></tr>
+<tr class="memitem:ga5a4affaa7af20b9ab232a5cae60d1fd5"><td class="memTemplItemLeft" align="right" valign="top"><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/io/basic_ostream.html">std::ostream</a> &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__Utilities.html#ga5a4affaa7af20b9ab232a5cae60d1fd5">operator&lt;&lt;</a> (<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/io/basic_ostream.html">std::ostream</a> &amp;os, const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/memory/unique_ptr.html">std::unique_ptr</a>&lt; T &gt; &amp;t)</td></tr>
+<tr class="memdesc:ga5a4affaa7af20b9ab232a5cae60d1fd5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stream operator for <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/memory/unique_ptr.html">std::unique_ptr</a>.  <a href="#ga5a4affaa7af20b9ab232a5cae60d1fd5">More...</a><br /></td></tr>
+<tr class="separator:ga5a4affaa7af20b9ab232a5cae60d1fd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga78d6a6a95d4ebc4e5fca330a272a6182"><td class="memTemplParams" colspan="2">template&lt;typename T , typename std::enable_if_t&lt; tt::is_streamable&lt; std::ostream, T &gt;::value &gt; * &gt; </td></tr>
+<tr class="memitem:ga78d6a6a95d4ebc4e5fca330a272a6182"><td class="memTemplItemLeft" align="right" valign="top"><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/io/basic_ostream.html">std::ostream</a> &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__Utilities.html#ga78d6a6a95d4ebc4e5fca330a272a6182">operator&lt;&lt;</a> (<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/io/basic_ostream.html">std::ostream</a> &amp;os, const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">std::shared_ptr</a>&lt; T &gt; &amp;t)</td></tr>
+<tr class="memdesc:ga78d6a6a95d4ebc4e5fca330a272a6182"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stream operator for <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">std::shared_ptr</a>.  <a href="#ga78d6a6a95d4ebc4e5fca330a272a6182">More...</a><br /></td></tr>
+<tr class="separator:ga78d6a6a95d4ebc4e5fca330a272a6182"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gadcbd91b985044319a768092b12cd5045"><td class="memTemplParams" colspan="2">template&lt;typename T , typename U &gt; </td></tr>
+<tr class="memitem:gadcbd91b985044319a768092b12cd5045"><td class="memTemplItemLeft" align="right" valign="top"><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/io/basic_ostream.html">std::ostream</a> &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__Utilities.html#gadcbd91b985044319a768092b12cd5045">operator&lt;&lt;</a> (<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/io/basic_ostream.html">std::ostream</a> &amp;os, const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/utility/pair.html">std::pair</a>&lt; T, U &gt; &amp;t)</td></tr>
+<tr class="memdesc:gadcbd91b985044319a768092b12cd5045"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stream operator for <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/utility/pair.html">std::pair</a>.  <a href="#gadcbd91b985044319a768092b12cd5045">More...</a><br /></td></tr>
+<tr class="separator:gadcbd91b985044319a768092b12cd5045"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gacd896d9833d9ba62f62fa48457007f7e"><td class="memTemplParams" colspan="2">template&lt;typename Map , typename std::enable_if_t&lt; tt::is_maplike&lt; Map &gt;::value &gt; *  = nullptr&gt; </td></tr>
+<tr class="memitem:gacd896d9833d9ba62f62fa48457007f7e"><td class="memTemplItemLeft" align="right" valign="top"><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__Utilities.html#gacd896d9833d9ba62f62fa48457007f7e">keys_of</a> (const Map &amp;m)</td></tr>
+<tr class="memdesc:gacd896d9833d9ba62f62fa48457007f7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a string containing the keys of a map.  <a href="#gacd896d9833d9ba62f62fa48457007f7e">More...</a><br /></td></tr>
+<tr class="separator:gacd896d9833d9ba62f62fa48457007f7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9a7c7ee897f581360154a3676d5f7ab9"><td class="memTemplParams" colspan="2">template&lt;typename... Args&gt; </td></tr>
+<tr class="memitem:ga9a7c7ee897f581360154a3676d5f7ab9"><td class="memTemplItemLeft" align="right" valign="top"><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__Utilities.html#ga9a7c7ee897f581360154a3676d5f7ab9">formatted_string</a> (const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> &amp;fmt, Args... args)</td></tr>
+<tr class="memdesc:ga9a7c7ee897f581360154a3676d5f7ab9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Format a string like printf.  <a href="#ga9a7c7ee897f581360154a3676d5f7ab9">More...</a><br /></td></tr>
+<tr class="separator:ga9a7c7ee897f581360154a3676d5f7ab9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>A collection of useful classes, functions and metafunctions. </p>
@@ -212,9 +276,66 @@ Functions</h2></td></tr>
 
 <p>Always inline a function. Only use this if you benchmarked the code. </p>
 
+<p class="reference">Referenced by <a class="el" href="group__Utilities.html#ga18e7d6f15d7089f056a7d1a32ad1b536">make_array()</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Typedef Documentation</h2>
+<a id="gaf20b9d9f0e5870cc74c49bdf971e2cc6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf20b9d9f0e5870cc74c49bdf971e2cc6">&#9670;&nbsp;</a></span>make_boost_variant_over</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Sequence &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="group__Utilities.html#gaf20b9d9f0e5870cc74c49bdf971e2cc6">make_boost_variant_over</a> =  typename detail::make_boost_variant_over_impl&lt;Sequence&gt;::type</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Create a boost::variant with all all the types inside the typelist Sequence. </p>
+<p><em>Returns:</em> boost::variant of all types inside <code>Sequence</code> </p>
+
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="ga9a7c7ee897f581360154a3676d5f7ab9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga9a7c7ee897f581360154a3676d5f7ab9">&#9670;&nbsp;</a></span>formatted_string()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename... Args&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> formatted_string </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> &amp;&#160;</td>
+          <td class="paramname"><em>fmt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Args...&#160;</td>
+          <td class="paramname"><em>args</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Format a string like printf. </p>
+<p>Given a formatting string and arguments this returns the corresponding string. Similar to printf but using std::strings. </p>
+
+<p class="reference">References <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/io/c/fprintf.html">std::snprintf()</a>.</p>
+
+</div>
+</div>
 <a id="gada33ac747e1720e8d6c7d89323663c3e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#gada33ac747e1720e8d6c7d89323663c3e">&#9670;&nbsp;</a></span>info_from_build()</h2>
 
@@ -236,6 +357,100 @@ Functions</h2></td></tr>
 <p class="reference">References <a class="el" href="group__Utilities.html#ga440a175ca29c1e92a7147f210a860932">spectre_version()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="ParallelInfo_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main()</a>, and <a class="el" href="classRunTests.html#a58aef7973c605af178b7ebeae42bb2fa">RunTests::RunTests()</a>.</p>
+
+</div>
+</div>
+<a id="gacd896d9833d9ba62f62fa48457007f7e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gacd896d9833d9ba62f62fa48457007f7e">&#9670;&nbsp;</a></span>keys_of()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Map , typename std::enable_if_t&lt; tt::is_maplike&lt; Map &gt;::value &gt; *  = nullptr&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> keys_of </td>
+          <td>(</td>
+          <td class="paramtype">const Map &amp;&#160;</td>
+          <td class="paramname"><em>m</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Construct a string containing the keys of a map. </p>
+
+</div>
+</div>
+<a id="ga18e7d6f15d7089f056a7d1a32ad1b536"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga18e7d6f15d7089f056a7d1a32ad1b536">&#9670;&nbsp;</a></span>make_array() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;std::size_t size, typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt;<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/decay.html">std::decay_t</a>&lt;T&gt;, size&gt; make_array </td>
+          <td>(</td>
+          <td class="paramtype">T &amp;&amp;&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Helper class to initialize a <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">size</td><td>the length of the array </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="reference">References <a class="el" href="MakeArray_8hpp.html#a14cf7ef8ab7f9f56d06762b195ce29c2">make_array()</a>, and <a class="el" href="group__Utilities.html#ga9d571cd642604cb7bd87bb039ca3760f">SPECTRE_ALWAYS_INLINE</a>.</p>
+
+</div>
+</div>
+<a id="ga55b73f5c6d3e8963a3110b1b314fc463"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga55b73f5c6d3e8963a3110b1b314fc463">&#9670;&nbsp;</a></span>make_array() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename... V, typename std::enable_if_t&lt;(sizeof...(V) &gt; 0&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt;typename <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/decay.html">std::decay_t</a>&lt;T&gt;, sizeof...(V) + 1&gt; make_array </td>
+          <td>(</td>
+          <td class="paramtype">T &amp;&amp;&#160;</td>
+          <td class="paramname"><em>t</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">V &amp;&amp;...&#160;</td>
+          <td class="paramname"><em>values</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Helper function to initialize a <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a> with varying number of arguments. </p>
+
+<p class="reference">References <a class="el" href="namespacecpp17.html#a958e5adb14431c4cf06fcc785985ac89">cpp17::conjunction_v</a>.</p>
 
 </div>
 </div>
@@ -264,6 +479,406 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Defines the _st size_t suffix. </p>
+
+</div>
+</div>
+<a id="ga49015243242c2caad5bdbd64ea7449a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga49015243242c2caad5bdbd64ea7449a1">&#9670;&nbsp;</a></span>operator<<() <span class="overload">[1/10]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/io/basic_ostream.html">std::ostream</a>&amp; operator&lt;&lt; </td>
+          <td>(</td>
+          <td class="paramtype"><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/io/basic_ostream.html">std::ostream</a> &amp;&#160;</td>
+          <td class="paramname"><em>os</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/list.html">std::list</a>&lt; T &gt; &amp;&#160;</td>
+          <td class="paramname"><em>v</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Output the items of a <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/list.html">std::list</a>. </p>
+
+</div>
+</div>
+<a id="ga4b8db62a17e01a839e499a4c59112df5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga4b8db62a17e01a839e499a4c59112df5">&#9670;&nbsp;</a></span>operator<<() <span class="overload">[2/10]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/io/basic_ostream.html">std::ostream</a>&amp; operator&lt;&lt; </td>
+          <td>(</td>
+          <td class="paramtype"><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/io/basic_ostream.html">std::ostream</a> &amp;&#160;</td>
+          <td class="paramname"><em>os</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt; T &gt; &amp;&#160;</td>
+          <td class="paramname"><em>v</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Output the items of a <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>. </p>
+
+</div>
+</div>
+<a id="ga85ca1c2d4ff05b9b2d683f207d58be92"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga85ca1c2d4ff05b9b2d683f207d58be92">&#9670;&nbsp;</a></span>operator<<() <span class="overload">[3/10]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , size_t N&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/io/basic_ostream.html">std::ostream</a>&amp; operator&lt;&lt; </td>
+          <td>(</td>
+          <td class="paramtype"><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/io/basic_ostream.html">std::ostream</a> &amp;&#160;</td>
+          <td class="paramname"><em>os</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; T, N &gt; &amp;&#160;</td>
+          <td class="paramname"><em>a</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Output the items of a <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>. </p>
+
+</div>
+</div>
+<a id="ga81330e34bc91cfbd33c4d5272d33c53b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga81330e34bc91cfbd33c4d5272d33c53b">&#9670;&nbsp;</a></span>operator<<() <span class="overload">[4/10]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename... Args&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/io/basic_ostream.html">std::ostream</a>&amp; operator&lt;&lt; </td>
+          <td>(</td>
+          <td class="paramtype"><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/io/basic_ostream.html">std::ostream</a> &amp;&#160;</td>
+          <td class="paramname"><em>os</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/utility/tuple.html">std::tuple</a>&lt; Args... &gt; &amp;&#160;</td>
+          <td class="paramname"><em>t</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Stream operator for tuples. </p>
+
+</div>
+</div>
+<a id="ga3d4166ba0e61c9267ef6f3fb1a5dfe8e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga3d4166ba0e61c9267ef6f3fb1a5dfe8e">&#9670;&nbsp;</a></span>operator<<() <span class="overload">[5/10]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Map , typename std::enable_if_t&lt; tt::is_maplike&lt; Map &gt;::value &gt; * &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/io/basic_ostream.html">std::ostream</a>&amp; operator&lt;&lt; </td>
+          <td>(</td>
+          <td class="paramtype"><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/io/basic_ostream.html">std::ostream</a> &amp;&#160;</td>
+          <td class="paramname"><em>os</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Map &amp;&#160;</td>
+          <td class="paramname"><em>m</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Output all the key, value pairs of a map. </p>
+
+</div>
+</div>
+<a id="gaf389850e8ebc7d8040dfb5a50036f0ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf389850e8ebc7d8040dfb5a50036f0ee">&#9670;&nbsp;</a></span>operator<<() <span class="overload">[6/10]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/io/basic_ostream.html">std::ostream</a>&amp; operator&lt;&lt; </td>
+          <td>(</td>
+          <td class="paramtype"><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/io/basic_ostream.html">std::ostream</a> &amp;&#160;</td>
+          <td class="paramname"><em>os</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/unordered_set.html">std::unordered_set</a>&lt; T &gt; &amp;&#160;</td>
+          <td class="paramname"><em>v</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Output the items of a <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/unordered_set.html">std::unordered_set</a>. </p>
+
+</div>
+</div>
+<a id="ga4248026e7d2c0f6a4ea723b16668531e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga4248026e7d2c0f6a4ea723b16668531e">&#9670;&nbsp;</a></span>operator<<() <span class="overload">[7/10]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/io/basic_ostream.html">std::ostream</a>&amp; operator&lt;&lt; </td>
+          <td>(</td>
+          <td class="paramtype"><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/io/basic_ostream.html">std::ostream</a> &amp;&#160;</td>
+          <td class="paramname"><em>os</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/set.html">std::set</a>&lt; T &gt; &amp;&#160;</td>
+          <td class="paramname"><em>v</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Output the items of a <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/unordered_set.html">std::unordered_set</a>. </p>
+
+</div>
+</div>
+<a id="ga5a4affaa7af20b9ab232a5cae60d1fd5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga5a4affaa7af20b9ab232a5cae60d1fd5">&#9670;&nbsp;</a></span>operator<<() <span class="overload">[8/10]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename std::enable_if_t&lt; tt::is_streamable&lt; std::ostream, T &gt;::value &gt; * &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/io/basic_ostream.html">std::ostream</a>&amp; operator&lt;&lt; </td>
+          <td>(</td>
+          <td class="paramtype"><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/io/basic_ostream.html">std::ostream</a> &amp;&#160;</td>
+          <td class="paramname"><em>os</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/memory/unique_ptr.html">std::unique_ptr</a>&lt; T &gt; &amp;&#160;</td>
+          <td class="paramname"><em>t</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Stream operator for <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/memory/unique_ptr.html">std::unique_ptr</a>. </p>
+
+</div>
+</div>
+<a id="ga78d6a6a95d4ebc4e5fca330a272a6182"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga78d6a6a95d4ebc4e5fca330a272a6182">&#9670;&nbsp;</a></span>operator<<() <span class="overload">[9/10]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename std::enable_if_t&lt; tt::is_streamable&lt; std::ostream, T &gt;::value &gt; * &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/io/basic_ostream.html">std::ostream</a>&amp; operator&lt;&lt; </td>
+          <td>(</td>
+          <td class="paramtype"><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/io/basic_ostream.html">std::ostream</a> &amp;&#160;</td>
+          <td class="paramname"><em>os</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">std::shared_ptr</a>&lt; T &gt; &amp;&#160;</td>
+          <td class="paramname"><em>t</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Stream operator for <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/memory/shared_ptr.html">std::shared_ptr</a>. </p>
+
+</div>
+</div>
+<a id="gadcbd91b985044319a768092b12cd5045"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gadcbd91b985044319a768092b12cd5045">&#9670;&nbsp;</a></span>operator<<() <span class="overload">[10/10]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename U &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/io/basic_ostream.html">std::ostream</a>&amp; operator&lt;&lt; </td>
+          <td>(</td>
+          <td class="paramtype"><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/io/basic_ostream.html">std::ostream</a> &amp;&#160;</td>
+          <td class="paramname"><em>os</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/utility/pair.html">std::pair</a>&lt; T, U &gt; &amp;&#160;</td>
+          <td class="paramname"><em>t</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Stream operator for <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/utility/pair.html">std::pair</a>. </p>
 
 </div>
 </div>

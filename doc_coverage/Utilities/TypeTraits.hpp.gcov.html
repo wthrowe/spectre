@@ -1,0 +1,1152 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 9889f118d0d01487ed60bff105041953c3600176 - Utilities/TypeTraits.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">Utilities</a> - TypeTraits.hpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/9889f118d0d01487ed60bff105041953c3600176">9889f118d0d01487ed60bff105041953c3600176</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">57</td>
+            <td class="headerCovTableEntry">57</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2017-06-08 01:50:52</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : /// \file
+<span class="lineNum">       5 </span>            : /// Defines type traits, some of which are future STL type_traits header
+<span class="lineNum">       6 </span>            : ///
+<span class="lineNum">       7 </span>            : /// Features present in C++17 are in the &quot;cpp17&quot; namespace.
+<span class="lineNum">       8 </span>            : 
+<span class="lineNum">       9 </span>            : #pragma once
+<span class="lineNum">      10 </span>            : 
+<span class="lineNum">      11 </span>            : #include &lt;array&gt;
+<span class="lineNum">      12 </span>            : #include &lt;cstddef&gt;
+<span class="lineNum">      13 </span>            : #include &lt;deque&gt;
+<span class="lineNum">      14 </span>            : #include &lt;forward_list&gt;
+<span class="lineNum">      15 </span>            : #include &lt;future&gt;
+<span class="lineNum">      16 </span>            : #include &lt;list&gt;
+<span class="lineNum">      17 </span>            : #include &lt;map&gt;
+<span class="lineNum">      18 </span>            : #include &lt;memory&gt;
+<span class="lineNum">      19 </span>            : #include &lt;ostream&gt;
+<span class="lineNum">      20 </span>            : #include &lt;queue&gt;
+<span class="lineNum">      21 </span>            : #include &lt;set&gt;
+<span class="lineNum">      22 </span>            : #include &lt;stack&gt;
+<span class="lineNum">      23 </span>            : #include &lt;type_traits&gt;
+<span class="lineNum">      24 </span>            : #include &lt;unordered_map&gt;
+<span class="lineNum">      25 </span>            : #include &lt;unordered_set&gt;
+<span class="lineNum">      26 </span>            : #include &lt;vector&gt;
+<span class="lineNum">      27 </span>            : 
+<span class="lineNum">      28 </span>            : #include &quot;Utilities/StlStreamDeclarations.hpp&quot;
+<span class="lineNum">      29 </span>            : 
+<span class="lineNum">      30 </span>            : // Forward declarations
+<span class="lineNum">      31 </span>            : namespace PUP {
+<span class="lineNum">      32 </span>            : class er;
+<span class="lineNum">      33 </span>            : }  // namespace PUP
+<span class="lineNum">      34 </span>            : // End Forward declarations
+<span class="lineNum">      35 </span>            : 
+<span class="lineNum">      36 </span>            : /// \ingroup TypeTraits
+<span class="lineNum">      37 </span>            : /// C++ STL code present in C++17
+<span class="lineNum">      38 </span>            : namespace cpp17 {
+<span class="lineNum">      39 </span>            : 
+<span class="lineNum">      40 </span>            : /// \ingroup TypeTraits
+<span class="lineNum">      41 </span>            : /// \brief A compile-time boolean
+<span class="lineNum">      42 </span>            : ///
+<span class="lineNum">      43 </span>            : /// \usage
+<span class="lineNum">      44 </span>            : /// For any bool `B`
+<span class="lineNum">      45 </span>            : /// \code
+<span class="lineNum">      46 </span>            : /// using result = cpp17::bool_constant&lt;B&gt;;
+<span class="lineNum">      47 </span>            : /// \endcode
+<span class="lineNum">      48 </span>            : ///
+<span class="lineNum">      49 </span>            : /// \see std::bool_constant std::integral_constant std::true_type
+<span class="lineNum">      50 </span>            : /// std::false_type
+<span class="lineNum">      51 </span>            : template &lt;bool B&gt;
+<span class="lineNum">      52 </span><span class="lineCov">          2 : using bool_constant = std::integral_constant&lt;bool, B&gt;;</span>
+<span class="lineNum">      53 </span>            : 
+<span class="lineNum">      54 </span>            : // @{
+<span class="lineNum">      55 </span>            : /// \ingroup TypeTraits
+<span class="lineNum">      56 </span>            : /// \brief A logical AND on the template parameters
+<span class="lineNum">      57 </span>            : ///
+<span class="lineNum">      58 </span>            : /// \details
+<span class="lineNum">      59 </span>            : /// Given a list of ::bool_constant template parameters computes their
+<span class="lineNum">      60 </span>            : /// logical AND. If the result is `true` then derive off of std::true_type,
+<span class="lineNum">      61 </span>            : /// otherwise derive from std::false_type. See the documentation for
+<span class="lineNum">      62 </span>            : /// std::conjunction for more details.
+<span class="lineNum">      63 </span>            : ///
+<span class="lineNum">      64 </span>            : /// \usage
+<span class="lineNum">      65 </span>            : /// For any set of types `Ti` that are ::bool_constant like
+<span class="lineNum">      66 </span>            : /// \code
+<span class="lineNum">      67 </span>            : /// using result = cpp17::conjunction&lt;T0, T1, T2&gt;;
+<span class="lineNum">      68 </span>            : /// \endcode
+<span class="lineNum">      69 </span>            : /// \pre For all types `Ti`, `Ti::value` is a `bool`
+<span class="lineNum">      70 </span>            : ///
+<span class="lineNum">      71 </span>            : /// \metareturns
+<span class="lineNum">      72 </span>            : /// ::bool_constant
+<span class="lineNum">      73 </span>            : ///
+<span class="lineNum">      74 </span>            : /// \semantics
+<span class="lineNum">      75 </span>            : /// If `T::value != false` for all `Ti`, then
+<span class="lineNum">      76 </span>            : /// \code
+<span class="lineNum">      77 </span>            : /// using result = cpp17::bool_constant&lt;true&gt;;
+<span class="lineNum">      78 </span>            : /// \endcode
+<span class="lineNum">      79 </span>            : /// otherwise
+<span class="lineNum">      80 </span>            : /// \code
+<span class="lineNum">      81 </span>            : /// using result = cpp17::bool_constant&lt;false&gt;;
+<span class="lineNum">      82 </span>            : /// \endcode
+<span class="lineNum">      83 </span>            : ///
+<span class="lineNum">      84 </span>            : /// \example
+<span class="lineNum">      85 </span>            : /// \snippet TypeTraits.cpp conjunction_example
+<span class="lineNum">      86 </span>            : /// \see std::conjunction, disjunction, std::disjunction
+<span class="lineNum">      87 </span>            : template &lt;class...&gt;
+<span class="lineNum">      88 </span><span class="lineCov">          1 : struct conjunction : std::true_type {};</span>
+<span class="lineNum">      89 </span>            : /// \cond HIDDEN_SYMBOLS
+<span class="lineNum">      90 </span>            : template &lt;class B1&gt;
+<span class="lineNum">      91 </span>            : struct conjunction&lt;B1&gt; : B1 {};
+<span class="lineNum">      92 </span>            : template &lt;class B1, class... Bn&gt;
+<span class="lineNum">      93 </span>            : struct conjunction&lt;B1, Bn...&gt;
+<span class="lineNum">      94 </span>            :     : std::conditional_t&lt;B1::value != false, conjunction&lt;Bn...&gt;, B1&gt; {};
+<span class="lineNum">      95 </span>            : /// \endcond
+<span class="lineNum">      96 </span>            : /// \see std::conjunction
+<span class="lineNum">      97 </span>            : template &lt;class... B&gt;
+<span class="lineNum">      98 </span><span class="lineCov">          1 : constexpr bool conjunction_v = conjunction&lt;B...&gt;::value;</span>
+<span class="lineNum">      99 </span>            : // @}
+<span class="lineNum">     100 </span>            : 
+<span class="lineNum">     101 </span>            : // @{
+<span class="lineNum">     102 </span>            : /// \ingroup TypeTraits
+<span class="lineNum">     103 </span>            : /// \brief A logical OR on the template parameters
+<span class="lineNum">     104 </span>            : ///
+<span class="lineNum">     105 </span>            : /// \details
+<span class="lineNum">     106 </span>            : /// Given a list of ::bool_constant template parameters computes their
+<span class="lineNum">     107 </span>            : /// logical OR. If the result is `true` then derive off of std::true_type,
+<span class="lineNum">     108 </span>            : /// otherwise derive from std::false_type. See the documentation for
+<span class="lineNum">     109 </span>            : /// std::conjunction for more details.
+<span class="lineNum">     110 </span>            : ///
+<span class="lineNum">     111 </span>            : /// \usage
+<span class="lineNum">     112 </span>            : /// For any set of types `Ti` that are ::bool_constant like
+<span class="lineNum">     113 </span>            : /// \code
+<span class="lineNum">     114 </span>            : /// using result = cpp17::disjunction&lt;T0, T1, T2&gt;;
+<span class="lineNum">     115 </span>            : /// \endcode
+<span class="lineNum">     116 </span>            : /// \pre For all types `Ti`, `Ti::value` is a `bool`
+<span class="lineNum">     117 </span>            : ///
+<span class="lineNum">     118 </span>            : /// \metareturns
+<span class="lineNum">     119 </span>            : /// ::bool_constant
+<span class="lineNum">     120 </span>            : ///
+<span class="lineNum">     121 </span>            : /// \semantics
+<span class="lineNum">     122 </span>            : /// If `T::value == true` for any `Ti`, then
+<span class="lineNum">     123 </span>            : /// \code
+<span class="lineNum">     124 </span>            : /// using result = cpp17::bool_constant&lt;true&gt;;
+<span class="lineNum">     125 </span>            : /// \endcode
+<span class="lineNum">     126 </span>            : /// otherwise
+<span class="lineNum">     127 </span>            : /// \code
+<span class="lineNum">     128 </span>            : /// using result = cpp17::bool_constant&lt;false&gt;;
+<span class="lineNum">     129 </span>            : /// \endcode
+<span class="lineNum">     130 </span>            : ///
+<span class="lineNum">     131 </span>            : /// \example
+<span class="lineNum">     132 </span>            : /// \snippet TypeTraits.cpp disjunction_example
+<span class="lineNum">     133 </span>            : /// \see std::disjunction, conjunction, std::conjunction
+<span class="lineNum">     134 </span>            : template &lt;class...&gt;
+<span class="lineNum">     135 </span><span class="lineCov">          1 : struct disjunction : std::false_type {};</span>
+<span class="lineNum">     136 </span>            : /// \cond HIDDEN_SYMBOLS
+<span class="lineNum">     137 </span>            : template &lt;class B1&gt;
+<span class="lineNum">     138 </span>            : struct disjunction&lt;B1&gt; : B1 {};
+<span class="lineNum">     139 </span>            : template &lt;class B1, class... Bn&gt;
+<span class="lineNum">     140 </span>            : struct disjunction&lt;B1, Bn...&gt;
+<span class="lineNum">     141 </span>            :     : std::conditional_t&lt;B1::value != false, B1, disjunction&lt;Bn...&gt;&gt; {};
+<span class="lineNum">     142 </span>            : /// \endcond
+<span class="lineNum">     143 </span>            : /// \see std::disjunction
+<span class="lineNum">     144 </span>            : template &lt;class... B&gt;
+<span class="lineNum">     145 </span><span class="lineCov">          1 : constexpr bool disjunction_v = disjunction&lt;B...&gt;::value;</span>
+<span class="lineNum">     146 </span>            : // @}
+<span class="lineNum">     147 </span>            : 
+<span class="lineNum">     148 </span>            : /// \ingroup TypeTraits
+<span class="lineNum">     149 </span>            : /// \brief Negate a ::bool_constant
+<span class="lineNum">     150 </span>            : ///
+<span class="lineNum">     151 </span>            : /// \details
+<span class="lineNum">     152 </span>            : /// Given a ::bool_constant returns the logical NOT of it.
+<span class="lineNum">     153 </span>            : ///
+<span class="lineNum">     154 </span>            : /// \usage
+<span class="lineNum">     155 </span>            : /// For a ::bool_constant `B`
+<span class="lineNum">     156 </span>            : /// \code
+<span class="lineNum">     157 </span>            : /// using result = cpp17::negate&lt;B&gt;;
+<span class="lineNum">     158 </span>            : /// \endcode
+<span class="lineNum">     159 </span>            : ///
+<span class="lineNum">     160 </span>            : /// \metareturns
+<span class="lineNum">     161 </span>            : /// ::bool_constant
+<span class="lineNum">     162 </span>            : ///
+<span class="lineNum">     163 </span>            : /// \semantics
+<span class="lineNum">     164 </span>            : /// If `B::value == true` then
+<span class="lineNum">     165 </span>            : /// \code
+<span class="lineNum">     166 </span>            : /// using result = cpp17::bool_constant&lt;false&gt;;
+<span class="lineNum">     167 </span>            : /// \endcode
+<span class="lineNum">     168 </span>            : ///
+<span class="lineNum">     169 </span>            : /// \example
+<span class="lineNum">     170 </span>            : /// \snippet TypeTraits.cpp negation_example
+<span class="lineNum">     171 </span>            : /// \see std::negation
+<span class="lineNum">     172 </span>            : /// \tparam B the ::bool_constant to negate
+<span class="lineNum">     173 </span>            : template &lt;class B&gt;
+<span class="lineNum">     174 </span><span class="lineCov">          1 : struct negation : bool_constant&lt;!B::value&gt; {};</span>
+<span class="lineNum">     175 </span>            : 
+<span class="lineNum">     176 </span>            : /// \ingroup TypeTraits
+<span class="lineNum">     177 </span>            : /// \brief Given a set of types, returns `void`
+<span class="lineNum">     178 </span>            : ///
+<span class="lineNum">     179 </span>            : /// \details
+<span class="lineNum">     180 </span>            : /// Given a list of types, returns `void`. This is very useful for controlling
+<span class="lineNum">     181 </span>            : /// name lookup resolution via partial template specialization.
+<span class="lineNum">     182 </span>            : ///
+<span class="lineNum">     183 </span>            : /// \usage
+<span class="lineNum">     184 </span>            : /// For any set of types `Ti`,
+<span class="lineNum">     185 </span>            : /// \code
+<span class="lineNum">     186 </span>            : /// using result = cpp17::void_t&lt;T0, T1, T2, T3&gt;;
+<span class="lineNum">     187 </span>            : /// \endcode
+<span class="lineNum">     188 </span>            : ///
+<span class="lineNum">     189 </span>            : /// \metareturns
+<span class="lineNum">     190 </span>            : /// void
+<span class="lineNum">     191 </span>            : ///
+<span class="lineNum">     192 </span>            : /// \semantics
+<span class="lineNum">     193 </span>            : /// For any set of types `Ti`,
+<span class="lineNum">     194 </span>            : /// \code
+<span class="lineNum">     195 </span>            : /// using result = void;
+<span class="lineNum">     196 </span>            : /// \endcode
+<span class="lineNum">     197 </span>            : ///
+<span class="lineNum">     198 </span>            : /// \example
+<span class="lineNum">     199 </span>            : /// \snippet TypeTraits.cpp void_t_example
+<span class="lineNum">     200 </span>            : /// \see std::void_t
+<span class="lineNum">     201 </span>            : /// \tparam Ts the set of types
+<span class="lineNum">     202 </span>            : template &lt;typename... Ts&gt;
+<span class="lineNum">     203 </span><span class="lineCov">          2 : using void_t = void;</span>
+<span class="lineNum">     204 </span>            : 
+<span class="lineNum">     205 </span>            : /*!
+<span class="lineNum">     206 </span>            :  * \ingroup TypeTraits
+<span class="lineNum">     207 </span>            :  * \brief Variable template for is_same
+<span class="lineNum">     208 </span>            :  */
+<span class="lineNum">     209 </span>            : template &lt;typename T, typename U&gt;
+<span class="lineNum">     210 </span><span class="lineCov">          2 : constexpr bool is_same_v = std::is_same&lt;T, U&gt;::value;</span>
+<span class="lineNum">     211 </span>            : 
+<span class="lineNum">     212 </span>            : }  // namespace cpp17
+<span class="lineNum">     213 </span>            : 
+<span class="lineNum">     214 </span>            : /// \ingroup TypeTraits
+<span class="lineNum">     215 </span>            : /// A collection of useful type traits
+<span class="lineNum">     216 </span>            : namespace tt {
+<span class="lineNum">     217 </span>            : // @{
+<span class="lineNum">     218 </span>            : /// \ingroup TypeTraits
+<span class="lineNum">     219 </span>            : /// \brief Check if type T is a std::array
+<span class="lineNum">     220 </span>            : ///
+<span class="lineNum">     221 </span>            : /// \details
+<span class="lineNum">     222 </span>            : /// Given a type `T` derives from std::true_type if `T` is a std::array and from
+<span class="lineNum">     223 </span>            : /// std::false_type if `T` is not a std::array.
+<span class="lineNum">     224 </span>            : ///
+<span class="lineNum">     225 </span>            : /// \usage
+<span class="lineNum">     226 </span>            : /// For any type `T`
+<span class="lineNum">     227 </span>            : /// \code
+<span class="lineNum">     228 </span>            : /// using result = tt::is_std_array&lt;T&gt;;
+<span class="lineNum">     229 </span>            : /// \endcode
+<span class="lineNum">     230 </span>            : ///
+<span class="lineNum">     231 </span>            : /// \metareturns
+<span class="lineNum">     232 </span>            : /// cpp17::bool_constant
+<span class="lineNum">     233 </span>            : ///
+<span class="lineNum">     234 </span>            : /// \semantics
+<span class="lineNum">     235 </span>            : /// If `T` is a std::array then
+<span class="lineNum">     236 </span>            : /// \code
+<span class="lineNum">     237 </span>            : /// typename result::type = cpp17::bool_constant&lt;true&gt;;
+<span class="lineNum">     238 </span>            : /// \endcode
+<span class="lineNum">     239 </span>            : /// otherwise
+<span class="lineNum">     240 </span>            : /// \code
+<span class="lineNum">     241 </span>            : /// typename result::type = cpp17::bool_constant&lt;false&gt;;
+<span class="lineNum">     242 </span>            : /// \endcode
+<span class="lineNum">     243 </span>            : ///
+<span class="lineNum">     244 </span>            : /// \example
+<span class="lineNum">     245 </span>            : /// \snippet TypeTraits.cpp is_std_array_example
+<span class="lineNum">     246 </span>            : /// \see is_a
+<span class="lineNum">     247 </span>            : /// \tparam T the type to check
+<span class="lineNum">     248 </span>            : template &lt;typename T&gt;
+<span class="lineNum">     249 </span><span class="lineCov">          1 : struct is_std_array : std::false_type {};</span>
+<span class="lineNum">     250 </span>            : /// \cond HIDDEN_SYMBOLS
+<span class="lineNum">     251 </span>            : template &lt;typename T, size_t N&gt;
+<span class="lineNum">     252 </span>            : struct is_std_array&lt;std::array&lt;T, N&gt;&gt; : std::true_type {};
+<span class="lineNum">     253 </span>            : /// \endcond
+<span class="lineNum">     254 </span>            : /// \see is_std_array
+<span class="lineNum">     255 </span>            : template &lt;typename T&gt;
+<span class="lineNum">     256 </span><span class="lineCov">          1 : constexpr bool is_std_array_v = is_std_array&lt;T&gt;::value;</span>
+<span class="lineNum">     257 </span>            : 
+<span class="lineNum">     258 </span>            : /// \see is_std_array
+<span class="lineNum">     259 </span>            : template &lt;typename T&gt;
+<span class="lineNum">     260 </span><span class="lineCov">          1 : using is_std_array_t = typename is_std_array&lt;T&gt;::type;</span>
+<span class="lineNum">     261 </span>            : // @}
+<span class="lineNum">     262 </span>            : 
+<span class="lineNum">     263 </span>            : // @{
+<span class="lineNum">     264 </span>            : /// \ingroup TypeTraits
+<span class="lineNum">     265 </span>            : /// \brief Check if type `T` is a template specialization of `U`
+<span class="lineNum">     266 </span>            : ///
+<span class="lineNum">     267 </span>            : /// \requires `U` is a class template
+<span class="lineNum">     268 </span>            : /// \effects If `T` is a template specialization of `U`, then inherits from
+<span class="lineNum">     269 </span>            : /// std::true_type, otherwise inherits from std::false_type
+<span class="lineNum">     270 </span>            : ///
+<span class="lineNum">     271 </span>            : /// \usage
+<span class="lineNum">     272 </span>            : /// For any type `T` and class template `U`
+<span class="lineNum">     273 </span>            : /// \code
+<span class="lineNum">     274 </span>            : /// using result = tt::is_a&lt;U, T&gt;;
+<span class="lineNum">     275 </span>            : /// \endcode
+<span class="lineNum">     276 </span>            : /// \metareturns
+<span class="lineNum">     277 </span>            : /// cpp17::bool_constant
+<span class="lineNum">     278 </span>            : ///
+<span class="lineNum">     279 </span>            : /// \semantics
+<span class="lineNum">     280 </span>            : /// If the type `T` is a template specialization of the type `U`, then
+<span class="lineNum">     281 </span>            : /// \code
+<span class="lineNum">     282 </span>            : /// typename result::type = std::true_type;
+<span class="lineNum">     283 </span>            : /// \endcode
+<span class="lineNum">     284 </span>            : /// otherwise
+<span class="lineNum">     285 </span>            : /// \code
+<span class="lineNum">     286 </span>            : /// typename result::type = std::false_type;
+<span class="lineNum">     287 </span>            : /// \endcode
+<span class="lineNum">     288 </span>            : ///
+<span class="lineNum">     289 </span>            : /// \example
+<span class="lineNum">     290 </span>            : /// \snippet TypeTraits.cpp is_a_example
+<span class="lineNum">     291 </span>            : /// \see is_std_array
+<span class="lineNum">     292 </span>            : /// \tparam T type to check
+<span class="lineNum">     293 </span>            : /// \tparam U the type that T might be a template specialization of
+<span class="lineNum">     294 </span>            : template &lt;template &lt;typename...&gt; class U, typename T&gt;
+<span class="lineNum">     295 </span><span class="lineCov">          1 : struct is_a : std::false_type {};</span>
+<span class="lineNum">     296 </span>            : /// \cond HIDDEN_SYMBOLS
+<span class="lineNum">     297 </span>            : template &lt;template &lt;typename...&gt; class U, typename... Args&gt;
+<span class="lineNum">     298 </span>            : struct is_a&lt;U, U&lt;Args...&gt;&gt; : std::true_type {};
+<span class="lineNum">     299 </span>            : /// \endcond
+<span class="lineNum">     300 </span>            : /// \see is_a
+<span class="lineNum">     301 </span>            : template &lt;template &lt;typename...&gt; class U, typename... Args&gt;
+<span class="lineNum">     302 </span><span class="lineCov">          1 : constexpr bool is_a_v = is_a&lt;U, Args...&gt;::value;</span>
+<span class="lineNum">     303 </span>            : 
+<span class="lineNum">     304 </span>            : /// \see is_a
+<span class="lineNum">     305 </span>            : template &lt;template &lt;typename...&gt; class U, typename... Args&gt;
+<span class="lineNum">     306 </span><span class="lineCov">          1 : using is_a_t = typename is_a&lt;U, Args...&gt;::type;</span>
+<span class="lineNum">     307 </span>            : // @}
+<span class="lineNum">     308 </span>            : 
+<span class="lineNum">     309 </span>            : // @{
+<span class="lineNum">     310 </span>            : /// \ingroup TypeTraits
+<span class="lineNum">     311 </span>            : /// \brief Check if type T has a begin() and end() function
+<span class="lineNum">     312 </span>            : ///
+<span class="lineNum">     313 </span>            : /// \details
+<span class="lineNum">     314 </span>            : /// Given a type `T` inherits from std::true_type if `T` has member functions
+<span class="lineNum">     315 </span>            : /// `begin()` and `end()`, otherwise inherits from std::false_type
+<span class="lineNum">     316 </span>            : ///
+<span class="lineNum">     317 </span>            : /// \usage
+<span class="lineNum">     318 </span>            : /// For any type `T`
+<span class="lineNum">     319 </span>            : /// \code
+<span class="lineNum">     320 </span>            : /// using result = tt::is_iterable&lt;T&gt;;
+<span class="lineNum">     321 </span>            : /// \endcode
+<span class="lineNum">     322 </span>            : ///
+<span class="lineNum">     323 </span>            : /// \metareturns
+<span class="lineNum">     324 </span>            : /// cpp17::bool_constant
+<span class="lineNum">     325 </span>            : ///
+<span class="lineNum">     326 </span>            : /// \semantics
+<span class="lineNum">     327 </span>            : /// If `T` has member function `begin()` and `end()` then
+<span class="lineNum">     328 </span>            : /// \code
+<span class="lineNum">     329 </span>            : /// typename result::type = std::true_type;
+<span class="lineNum">     330 </span>            : /// \endcode
+<span class="lineNum">     331 </span>            : /// otherwise
+<span class="lineNum">     332 </span>            : /// \code
+<span class="lineNum">     333 </span>            : /// typename result::type = std::false_type;
+<span class="lineNum">     334 </span>            : /// \endcode
+<span class="lineNum">     335 </span>            : ///
+<span class="lineNum">     336 </span>            : /// \example
+<span class="lineNum">     337 </span>            : /// \snippet TypeTraits.cpp is_iterable_example
+<span class="lineNum">     338 </span>            : /// \see has_size
+<span class="lineNum">     339 </span>            : /// \tparam T the type to check
+<span class="lineNum">     340 </span>            : template &lt;typename T, typename = cpp17::void_t&lt;&gt;&gt;
+<span class="lineNum">     341 </span><span class="lineCov">          1 : struct is_iterable : std::false_type {};</span>
+<span class="lineNum">     342 </span>            : /// \cond HIDDEN_SYMBOLS
+<span class="lineNum">     343 </span>            : template &lt;typename T&gt;
+<span class="lineNum">     344 </span>            : struct is_iterable&lt;T, cpp17::void_t&lt;decltype(std::declval&lt;T&gt;().begin(),
+<span class="lineNum">     345 </span>            :                                              std::declval&lt;T&gt;().end())&gt;&gt;
+<span class="lineNum">     346 </span>            :     : std::true_type {};
+<span class="lineNum">     347 </span>            : /// \endcond
+<span class="lineNum">     348 </span>            : /// \see is_iterable
+<span class="lineNum">     349 </span>            : template &lt;typename T&gt;
+<span class="lineNum">     350 </span><span class="lineCov">          1 : constexpr bool is_iterable_v = is_iterable&lt;T&gt;::value;</span>
+<span class="lineNum">     351 </span>            : 
+<span class="lineNum">     352 </span>            : /// \see is_iterable
+<span class="lineNum">     353 </span>            : template &lt;typename T&gt;
+<span class="lineNum">     354 </span><span class="lineCov">          1 : using is_iterable_t = typename is_iterable&lt;T&gt;::type;</span>
+<span class="lineNum">     355 </span>            : // @}
+<span class="lineNum">     356 </span>            : 
+<span class="lineNum">     357 </span>            : // @{
+<span class="lineNum">     358 </span>            : /// \ingroup TypeTraits
+<span class="lineNum">     359 </span>            : /// \brief Check if type T has &lt;, &lt;=, &gt;, &gt;=, ==, !=
+<span class="lineNum">     360 </span>            : ///
+<span class="lineNum">     361 </span>            : /// \details
+<span class="lineNum">     362 </span>            : /// Given a type `T` inherits from std::true_type if `T` has operators `&lt;`,
+<span class="lineNum">     363 </span>            : /// `&lt;=`, `&gt;`, `&gt;=`, `==`, and `!=` defined, otherwise inherits from
+<span class="lineNum">     364 </span>            : /// std::false_type.
+<span class="lineNum">     365 </span>            : ///
+<span class="lineNum">     366 </span>            : /// \usage
+<span class="lineNum">     367 </span>            : /// For any type `T`
+<span class="lineNum">     368 </span>            : /// \code
+<span class="lineNum">     369 </span>            : /// using result = tt::is_comparable&lt;T&gt;;
+<span class="lineNum">     370 </span>            : /// \endcode
+<span class="lineNum">     371 </span>            : ///
+<span class="lineNum">     372 </span>            : /// \metareturns
+<span class="lineNum">     373 </span>            : /// cpp17::bool_constant
+<span class="lineNum">     374 </span>            : ///
+<span class="lineNum">     375 </span>            : /// \semantics
+<span class="lineNum">     376 </span>            : /// If `T` has operators `&lt;`, `&lt;=`, `&gt;`, `&gt;=`, `==`, and `!=` defined, then
+<span class="lineNum">     377 </span>            : /// \code
+<span class="lineNum">     378 </span>            : /// typename result::type = std::true_type;
+<span class="lineNum">     379 </span>            : /// \endcode
+<span class="lineNum">     380 </span>            : /// otherwise
+<span class="lineNum">     381 </span>            : /// \code
+<span class="lineNum">     382 </span>            : /// typename result::type = std::false_type;
+<span class="lineNum">     383 </span>            : /// \endcode
+<span class="lineNum">     384 </span>            : ///
+<span class="lineNum">     385 </span>            : /// \example
+<span class="lineNum">     386 </span>            : /// \snippet TypeTraits.cpp is_comparable_example
+<span class="lineNum">     387 </span>            : /// \see has_equivalence has_inequivalence
+<span class="lineNum">     388 </span>            : /// \tparam T the type to check
+<span class="lineNum">     389 </span>            : template &lt;typename T, typename = cpp17::void_t&lt;&gt;&gt;
+<span class="lineNum">     390 </span><span class="lineCov">          1 : struct is_comparable : std::false_type {};</span>
+<span class="lineNum">     391 </span>            : /// \cond HIDDEN_SYMBOLS
+<span class="lineNum">     392 </span>            : template &lt;typename T&gt;
+<span class="lineNum">     393 </span>            : struct is_comparable&lt;
+<span class="lineNum">     394 </span>            :     T, cpp17::void_t&lt;decltype(std::declval&lt;T&gt;() &lt; std::declval&lt;T&gt;()),
+<span class="lineNum">     395 </span>            :                      decltype(std::declval&lt;T&gt;() &lt;= std::declval&lt;T&gt;()),
+<span class="lineNum">     396 </span>            :                      decltype(std::declval&lt;T&gt;() &gt; std::declval&lt;T&gt;()),
+<span class="lineNum">     397 </span>            :                      decltype(std::declval&lt;T&gt;() &gt;= std::declval&lt;T&gt;()),
+<span class="lineNum">     398 </span>            :                      decltype(std::declval&lt;T&gt;() == std::declval&lt;T&gt;()),
+<span class="lineNum">     399 </span>            :                      decltype(std::declval&lt;T&gt;() != std::declval&lt;T&gt;())&gt;&gt;
+<span class="lineNum">     400 </span>            :     : std::true_type {};
+<span class="lineNum">     401 </span>            : /// \endcond
+<span class="lineNum">     402 </span>            : /// \see is_comparable
+<span class="lineNum">     403 </span>            : template &lt;typename T&gt;
+<span class="lineNum">     404 </span><span class="lineCov">          1 : constexpr bool is_comparable_v = is_comparable&lt;T&gt;::value;</span>
+<span class="lineNum">     405 </span>            : 
+<span class="lineNum">     406 </span>            : /// \see is_comparable
+<span class="lineNum">     407 </span>            : template &lt;typename T&gt;
+<span class="lineNum">     408 </span><span class="lineCov">          1 : using is_comparable_t = typename is_comparable&lt;T&gt;::type;</span>
+<span class="lineNum">     409 </span>            : // @}
+<span class="lineNum">     410 </span>            : 
+<span class="lineNum">     411 </span>            : namespace TypeTraits_details {
+<span class="lineNum">     412 </span>            : template &lt;typename T, std::size_t N&gt;
+<span class="lineNum">     413 </span>            : std::integral_constant&lt;std::size_t, N&gt; array_size_impl(
+<span class="lineNum">     414 </span>            :     const std::array&lt;T, N&gt;&amp; /*array*/);
+<span class="lineNum">     415 </span>            : }  // namespace TypeTraits_details
+<span class="lineNum">     416 </span>            : 
+<span class="lineNum">     417 </span>            : // @{
+<span class="lineNum">     418 </span>            : /// \ingroup TypeTraits
+<span class="lineNum">     419 </span>            : /// \brief Get the size of a std::array as a std::integral_constant
+<span class="lineNum">     420 </span>            : ///
+<span class="lineNum">     421 </span>            : /// \details
+<span class="lineNum">     422 </span>            : /// Given a std::array, `Array`, returns a std::integral_constant that has the
+<span class="lineNum">     423 </span>            : /// size of the array as its value
+<span class="lineNum">     424 </span>            : ///
+<span class="lineNum">     425 </span>            : /// \usage
+<span class="lineNum">     426 </span>            : /// For a std::array `T`
+<span class="lineNum">     427 </span>            : /// \code
+<span class="lineNum">     428 </span>            : /// using result = tt::array_size&lt;T&gt;;
+<span class="lineNum">     429 </span>            : /// \endcode
+<span class="lineNum">     430 </span>            : ///
+<span class="lineNum">     431 </span>            : /// \metareturns
+<span class="lineNum">     432 </span>            : /// std::integral_constant&lt;std::size_t&gt;
+<span class="lineNum">     433 </span>            : ///
+<span class="lineNum">     434 </span>            : /// \semantics
+<span class="lineNum">     435 </span>            : /// For a type `T`,
+<span class="lineNum">     436 </span>            : /// \code
+<span class="lineNum">     437 </span>            : /// using tt::array_size&lt;std::array&lt;T, N&gt;&gt; = std::integral_constant&lt;std::size_t,
+<span class="lineNum">     438 </span>            : /// N&gt;;
+<span class="lineNum">     439 </span>            : /// \endcode
+<span class="lineNum">     440 </span>            : ///
+<span class="lineNum">     441 </span>            : /// \example
+<span class="lineNum">     442 </span>            : /// \snippet TypeTraits.cpp array_size_example
+<span class="lineNum">     443 </span>            : /// \tparam Array the whose size should be stored in value of array_size
+<span class="lineNum">     444 </span>            : template &lt;typename Array&gt;
+<span class="lineNum">     445 </span><span class="lineCov">          2 : using array_size =</span>
+<span class="lineNum">     446 </span>            :     decltype(TypeTraits_details::array_size_impl(std::declval&lt;const Array&amp;&gt;()));
+<span class="lineNum">     447 </span>            : // @}
+<span class="lineNum">     448 </span>            : 
+<span class="lineNum">     449 </span>            : // @{
+<span class="lineNum">     450 </span>            : /// \ingroup TypeTraits
+<span class="lineNum">     451 </span>            : /// \brief Check if type `T` has operator== defined.
+<span class="lineNum">     452 </span>            : ///
+<span class="lineNum">     453 </span>            : /// \details
+<span class="lineNum">     454 </span>            : /// Inherits from std::true_type if the type `T` has operator== defined,
+<span class="lineNum">     455 </span>            : /// otherwise inherits from std::false_type
+<span class="lineNum">     456 </span>            : ///
+<span class="lineNum">     457 </span>            : /// \usage
+<span class="lineNum">     458 </span>            : /// For any type `T`,
+<span class="lineNum">     459 </span>            : /// \code
+<span class="lineNum">     460 </span>            : /// using result = tt::has_equivalence&lt;T&gt;;
+<span class="lineNum">     461 </span>            : /// \endcode
+<span class="lineNum">     462 </span>            : ///
+<span class="lineNum">     463 </span>            : /// \metareturns
+<span class="lineNum">     464 </span>            : /// cpp17::bool_constant
+<span class="lineNum">     465 </span>            : ///
+<span class="lineNum">     466 </span>            : /// \semantics
+<span class="lineNum">     467 </span>            : /// If the type `T` has operator== defined, then
+<span class="lineNum">     468 </span>            : /// \code
+<span class="lineNum">     469 </span>            : /// typename result::type = std::true_type;
+<span class="lineNum">     470 </span>            : /// \endcode
+<span class="lineNum">     471 </span>            : /// otherwise
+<span class="lineNum">     472 </span>            : /// \code
+<span class="lineNum">     473 </span>            : /// typename result::type = std::false_type;
+<span class="lineNum">     474 </span>            : /// \endcode
+<span class="lineNum">     475 </span>            : ///
+<span class="lineNum">     476 </span>            : /// \example
+<span class="lineNum">     477 </span>            : /// \snippet TypeTraits.cpp has_equivalence_example
+<span class="lineNum">     478 </span>            : /// \see is_comparable has_inequivalence
+<span class="lineNum">     479 </span>            : /// \tparam T the type we want to know if it has operator==
+<span class="lineNum">     480 </span>            : template &lt;typename T, typename = cpp17::void_t&lt;&gt;&gt;
+<span class="lineNum">     481 </span><span class="lineCov">          1 : struct has_equivalence : std::false_type {};</span>
+<span class="lineNum">     482 </span>            : /// \cond HIDDEN_SYMBOLS
+<span class="lineNum">     483 </span>            : template &lt;typename T&gt;
+<span class="lineNum">     484 </span>            : struct has_equivalence&lt;
+<span class="lineNum">     485 </span>            :     T, cpp17::void_t&lt;decltype(std::declval&lt;T&gt;() == std::declval&lt;T&gt;())&gt;&gt;
+<span class="lineNum">     486 </span>            :     : std::true_type {};
+<span class="lineNum">     487 </span>            : /// \endcond
+<span class="lineNum">     488 </span>            : /// \see has_equivalence
+<span class="lineNum">     489 </span>            : template &lt;typename T&gt;
+<span class="lineNum">     490 </span><span class="lineCov">          1 : constexpr bool has_equivalence_v = has_equivalence&lt;T&gt;::value;</span>
+<span class="lineNum">     491 </span>            : 
+<span class="lineNum">     492 </span>            : /// \see has_equivalence
+<span class="lineNum">     493 </span>            : template &lt;typename T&gt;
+<span class="lineNum">     494 </span><span class="lineCov">          1 : using has_equivalence_t = typename has_equivalence&lt;T&gt;::type;</span>
+<span class="lineNum">     495 </span>            : // @}
+<span class="lineNum">     496 </span>            : 
+<span class="lineNum">     497 </span>            : // @{
+<span class="lineNum">     498 </span>            : /// \ingroup TypeTraits
+<span class="lineNum">     499 </span>            : /// \brief Check if type `T` has operator!= defined.
+<span class="lineNum">     500 </span>            : ///
+<span class="lineNum">     501 </span>            : /// \details
+<span class="lineNum">     502 </span>            : /// Inherits from std::true_type if the type `T` has operator!= defined,
+<span class="lineNum">     503 </span>            : /// otherwise inherits from std::false_type
+<span class="lineNum">     504 </span>            : ///
+<span class="lineNum">     505 </span>            : /// \usage
+<span class="lineNum">     506 </span>            : /// For any type `T`,
+<span class="lineNum">     507 </span>            : /// \code
+<span class="lineNum">     508 </span>            : /// using result = tt::has_inequivalence&lt;T&gt;;
+<span class="lineNum">     509 </span>            : /// \endcode
+<span class="lineNum">     510 </span>            : ///
+<span class="lineNum">     511 </span>            : /// \metareturns
+<span class="lineNum">     512 </span>            : /// cpp17::bool_constant
+<span class="lineNum">     513 </span>            : ///
+<span class="lineNum">     514 </span>            : /// \semantics
+<span class="lineNum">     515 </span>            : /// If the type `T` has operator!= defined, then
+<span class="lineNum">     516 </span>            : /// \code
+<span class="lineNum">     517 </span>            : /// typename result::type = std::true_type;
+<span class="lineNum">     518 </span>            : /// \endcode
+<span class="lineNum">     519 </span>            : /// otherwise
+<span class="lineNum">     520 </span>            : /// \code
+<span class="lineNum">     521 </span>            : /// typename result::type = std::false_type;
+<span class="lineNum">     522 </span>            : /// \endcode
+<span class="lineNum">     523 </span>            : ///
+<span class="lineNum">     524 </span>            : /// \example
+<span class="lineNum">     525 </span>            : /// \snippet TypeTraits.cpp has_equivalence_example
+<span class="lineNum">     526 </span>            : /// \see is_comparable has_equivalence
+<span class="lineNum">     527 </span>            : /// \tparam T the type we want to know if it has operator!=
+<span class="lineNum">     528 </span>            : template &lt;typename T, typename U = void&gt;
+<span class="lineNum">     529 </span><span class="lineCov">          1 : struct has_inequivalence : std::false_type {};</span>
+<span class="lineNum">     530 </span>            : /// \cond HIDDEN_SYMBOLS
+<span class="lineNum">     531 </span>            : template &lt;typename T&gt;
+<span class="lineNum">     532 </span>            : struct has_inequivalence&lt;
+<span class="lineNum">     533 </span>            :     T, cpp17::void_t&lt;decltype(std::declval&lt;T&gt;() != std::declval&lt;T&gt;())&gt;&gt;
+<span class="lineNum">     534 </span>            :     : std::true_type {};
+<span class="lineNum">     535 </span>            : /// \endcond
+<span class="lineNum">     536 </span>            : /// \see has_inequivalence
+<span class="lineNum">     537 </span>            : template &lt;typename T&gt;
+<span class="lineNum">     538 </span><span class="lineCov">          1 : constexpr bool has_inequivalence_v = has_inequivalence&lt;T&gt;::value;</span>
+<span class="lineNum">     539 </span>            : 
+<span class="lineNum">     540 </span>            : /// \see has_inequivalence
+<span class="lineNum">     541 </span>            : template &lt;typename T&gt;
+<span class="lineNum">     542 </span><span class="lineCov">          1 : using has_inequivalence_t = typename has_inequivalence&lt;T&gt;::type;</span>
+<span class="lineNum">     543 </span>            : // @}
+<span class="lineNum">     544 </span>            : 
+<span class="lineNum">     545 </span>            : // @{
+<span class="lineNum">     546 </span>            : /// \ingroup TypeTraits
+<span class="lineNum">     547 </span>            : /// \brief Check if a type `T` is callable, i.e. `T(Args...)` is evaluable.
+<span class="lineNum">     548 </span>            : ///
+<span class="lineNum">     549 </span>            : /// \details
+<span class="lineNum">     550 </span>            : /// Inherits from std::true_type if `TT` has the call operator, operator()
+<span class="lineNum">     551 </span>            : /// defined with arguments `TArgs...`, otherwise inherits from std::false_type.
+<span class="lineNum">     552 </span>            : ///
+<span class="lineNum">     553 </span>            : /// \usage
+<span class="lineNum">     554 </span>            : /// For any type `TT` and types `TArgs_i`,
+<span class="lineNum">     555 </span>            : /// \code
+<span class="lineNum">     556 </span>            : /// using result = tt::is_callable&lt;TT, TArgs_0, TArgs_1, TArgs_2&gt;;
+<span class="lineNum">     557 </span>            : /// \endcode
+<span class="lineNum">     558 </span>            : ///
+<span class="lineNum">     559 </span>            : /// \metareturns
+<span class="lineNum">     560 </span>            : /// cpp17::bool_constant
+<span class="lineNum">     561 </span>            : ///
+<span class="lineNum">     562 </span>            : /// \semantics
+<span class="lineNum">     563 </span>            : /// If the type `TT` defines operator() with arguments `TArgs...`, then
+<span class="lineNum">     564 </span>            : /// \code
+<span class="lineNum">     565 </span>            : /// typename result::type = std::true_type;
+<span class="lineNum">     566 </span>            : /// \endcode
+<span class="lineNum">     567 </span>            : /// otherwise
+<span class="lineNum">     568 </span>            : /// \code
+<span class="lineNum">     569 </span>            : /// typename result::type = std::false_type;
+<span class="lineNum">     570 </span>            : /// \endcode
+<span class="lineNum">     571 </span>            : ///
+<span class="lineNum">     572 </span>            : /// \example
+<span class="lineNum">     573 </span>            : /// \snippet TypeTraits.cpp is_callable_example
+<span class="lineNum">     574 </span>            : /// \see std::is_callable
+<span class="lineNum">     575 </span>            : /// \tparam TT the class to check
+<span class="lineNum">     576 </span>            : /// \tparam TArgs the args passed to operator()
+<span class="lineNum">     577 </span>            : template &lt;typename TT, typename... TArgs&gt;
+<span class="lineNum">     578 </span><span class="lineCov">          1 : class is_callable {</span>
+<span class="lineNum">     579 </span>            :   // The reason we have private before public here is that we have static member
+<span class="lineNum">     580 </span>            :   // functions and since this is meant to be a super lightweight helper class
+<span class="lineNum">     581 </span>            :   // it's better to break convention than increase code size.
+<span class="lineNum">     582 </span>            :  private:
+<span class="lineNum">     583 </span>            :   /// \cond
+<span class="lineNum">     584 </span>            :   // We pass an int here to disambiguate the two possible templates and have the
+<span class="lineNum">     585 </span>            :   // compiler prefer the first one. If it cannot be used because there's no
+<span class="lineNum">     586 </span>            :   // call operator, then it uses the second one.
+<span class="lineNum">     587 </span>            :   template &lt;typename T, typename... Args&gt;
+<span class="lineNum">     588 </span>            :   static auto test_callable(int)
+<span class="lineNum">     589 </span>            :       -&gt; decltype(std::declval&lt;T&gt;()(std::declval&lt;Args&gt;()...), std::true_type());
+<span class="lineNum">     590 </span>            : 
+<span class="lineNum">     591 </span>            :   template &lt;typename, typename...&gt;
+<span class="lineNum">     592 </span>            :   static auto test_callable(...) -&gt; std::false_type;
+<span class="lineNum">     593 </span>            :   /// \endcond
+<span class="lineNum">     594 </span>            : 
+<span class="lineNum">     595 </span>            :  public:
+<span class="lineNum">     596 </span>            :   /// `true` if callable, `false` otherwise
+<span class="lineNum">     597 </span><span class="lineCov">          1 :   static constexpr bool value = decltype(test_callable&lt;TT, TArgs...&gt;(0))::value;</span>
+<span class="lineNum">     598 </span>            :   /// `std::true_type` if callable, `std::false_type` otherwise
+<span class="lineNum">     599 </span><span class="lineCov">          1 :   using type = std::integral_constant&lt;bool, value&gt;;</span>
+<span class="lineNum">     600 </span>            : };
+<span class="lineNum">     601 </span>            : /// \see is_callable
+<span class="lineNum">     602 </span>            : template &lt;typename T, typename... Args&gt;
+<span class="lineNum">     603 </span><span class="lineCov">          1 : constexpr bool is_callable_v = is_callable&lt;T, Args...&gt;::value;</span>
+<span class="lineNum">     604 </span>            : 
+<span class="lineNum">     605 </span>            : /// \see is_callable
+<span class="lineNum">     606 </span>            : template &lt;typename T, typename... Args&gt;
+<span class="lineNum">     607 </span><span class="lineCov">          1 : using is_callable_t = typename is_callable&lt;T, Args...&gt;::type;</span>
+<span class="lineNum">     608 </span>            : // @}
+<span class="lineNum">     609 </span>            : 
+<span class="lineNum">     610 </span>            : // @{
+<span class="lineNum">     611 </span>            : /// \ingroup TypeTraits
+<span class="lineNum">     612 </span>            : /// \brief Check if std::hash and std::equal_to are defined for type T
+<span class="lineNum">     613 </span>            : ///
+<span class="lineNum">     614 </span>            : /// \details
+<span class="lineNum">     615 </span>            : /// Inherits from std::true_type if std::hash and std::equal_to are defined for
+<span class="lineNum">     616 </span>            : /// the type `T`, otherwise inherits from std::false_type.
+<span class="lineNum">     617 </span>            : ///
+<span class="lineNum">     618 </span>            : /// \usage
+<span class="lineNum">     619 </span>            : /// For any type `T`
+<span class="lineNum">     620 </span>            : /// \code
+<span class="lineNum">     621 </span>            : /// using result = tt::is_hashable&lt;T&gt;;
+<span class="lineNum">     622 </span>            : /// \endcode
+<span class="lineNum">     623 </span>            : ///
+<span class="lineNum">     624 </span>            : /// \metareturns
+<span class="lineNum">     625 </span>            : /// cpp17::bool_constant
+<span class="lineNum">     626 </span>            : ///
+<span class="lineNum">     627 </span>            : /// \semantics
+<span class="lineNum">     628 </span>            : /// If std::hash and std::equal_to are defined for the type `T`, then
+<span class="lineNum">     629 </span>            : /// \code
+<span class="lineNum">     630 </span>            : /// typename result::type = std::true_type;
+<span class="lineNum">     631 </span>            : /// \endcode
+<span class="lineNum">     632 </span>            : /// otherwise
+<span class="lineNum">     633 </span>            : /// \code
+<span class="lineNum">     634 </span>            : /// typename result::type = std::false_type;
+<span class="lineNum">     635 </span>            : /// \endcode
+<span class="lineNum">     636 </span>            : ///
+<span class="lineNum">     637 </span>            : /// \example
+<span class="lineNum">     638 </span>            : /// \snippet TypeTraits.cpp is_hashable_example
+<span class="lineNum">     639 </span>            : /// \see std::hash std::equal_to
+<span class="lineNum">     640 </span>            : /// \tparam T type to check
+<span class="lineNum">     641 </span>            : template &lt;typename T, typename = cpp17::void_t&lt;&gt;&gt;
+<span class="lineNum">     642 </span><span class="lineCov">          1 : struct is_hashable : std::false_type {};</span>
+<span class="lineNum">     643 </span>            : /// \cond HIDDEN_SYMBOLS
+<span class="lineNum">     644 </span>            : template &lt;typename T&gt;
+<span class="lineNum">     645 </span>            : struct is_hashable&lt;T,
+<span class="lineNum">     646 </span>            :                    cpp17::void_t&lt;decltype(std::hash&lt;T&gt;{}, std::equal_to&lt;T&gt;{})&gt;&gt;
+<span class="lineNum">     647 </span>            :     : std::true_type {};
+<span class="lineNum">     648 </span>            : /// \endcond
+<span class="lineNum">     649 </span>            : /// \see is_hashable
+<span class="lineNum">     650 </span>            : template &lt;typename T&gt;
+<span class="lineNum">     651 </span><span class="lineCov">          1 : constexpr bool is_hashable_v = is_hashable&lt;T&gt;::value;</span>
+<span class="lineNum">     652 </span>            : 
+<span class="lineNum">     653 </span>            : /// \see is_hashable
+<span class="lineNum">     654 </span>            : template &lt;typename T&gt;
+<span class="lineNum">     655 </span><span class="lineCov">          1 : using is_hashable_t = typename is_hashable&lt;T&gt;::type;</span>
+<span class="lineNum">     656 </span>            : // @}
+<span class="lineNum">     657 </span>            : 
+<span class="lineNum">     658 </span>            : // @{
+<span class="lineNum">     659 </span>            : /// \ingroup TypeTraits
+<span class="lineNum">     660 </span>            : /// \brief Check if type `T` is like a std::map or std::unordored_map
+<span class="lineNum">     661 </span>            : ///
+<span class="lineNum">     662 </span>            : /// \details
+<span class="lineNum">     663 </span>            : /// Inherits from std::true_type if the type `T` has a type alias `key_type`,
+<span class="lineNum">     664 </span>            : /// type alias `mapped_type`, and `operator[](const typename T::key_type&amp;)`
+<span class="lineNum">     665 </span>            : /// defined, otherwise inherits from std::false_type
+<span class="lineNum">     666 </span>            : ///
+<span class="lineNum">     667 </span>            : /// \usage
+<span class="lineNum">     668 </span>            : /// For any type `T`,
+<span class="lineNum">     669 </span>            : /// \code
+<span class="lineNum">     670 </span>            : /// using result = tt::is_maplike&lt;T&gt;;
+<span class="lineNum">     671 </span>            : /// \endcode
+<span class="lineNum">     672 </span>            : ///
+<span class="lineNum">     673 </span>            : /// \metareturns
+<span class="lineNum">     674 </span>            : /// cpp17::bool_constant
+<span class="lineNum">     675 </span>            : ///
+<span class="lineNum">     676 </span>            : /// \semantics
+<span class="lineNum">     677 </span>            : /// If the type `T` has a type alias `key_type`,
+<span class="lineNum">     678 </span>            : /// type alias `mapped_type`, and `operator[](const typename T::key_type&amp;)`
+<span class="lineNum">     679 </span>            : /// defined, then
+<span class="lineNum">     680 </span>            : /// \code
+<span class="lineNum">     681 </span>            : /// typename result::type = std::true_type;
+<span class="lineNum">     682 </span>            : /// \endcode
+<span class="lineNum">     683 </span>            : /// otherwise
+<span class="lineNum">     684 </span>            : /// \code
+<span class="lineNum">     685 </span>            : /// typename result::type = std::false_type;
+<span class="lineNum">     686 </span>            : /// \endcode
+<span class="lineNum">     687 </span>            : ///
+<span class="lineNum">     688 </span>            : /// \example
+<span class="lineNum">     689 </span>            : /// \snippet TypeTraits.cpp is_maplike_example
+<span class="lineNum">     690 </span>            : /// \see std::map std::unordered_map is_a
+<span class="lineNum">     691 </span>            : /// \tparam T the type to check
+<span class="lineNum">     692 </span>            : template &lt;typename T, typename = cpp17::void_t&lt;&gt;&gt;
+<span class="lineNum">     693 </span>            : struct is_maplike : std::false_type {};
+<span class="lineNum">     694 </span>            : /// \cond HIDDEN_SYMBOLS
+<span class="lineNum">     695 </span>            : template &lt;typename T&gt;
+<span class="lineNum">     696 </span>            : struct is_maplike&lt;T,
+<span class="lineNum">     697 </span>            :                   cpp17::void_t&lt;typename T::key_type, typename T::mapped_type,
+<span class="lineNum">     698 </span>            :                                 decltype(std::declval&lt;T&amp;&gt;()[std::declval&lt;
+<span class="lineNum">     699 </span>            :                                     const typename T::key_type&amp;&gt;()]),
+<span class="lineNum">     700 </span>            :                                 std::enable_if_t&lt;tt::is_iterable_v&lt;T&gt;&gt;&gt;&gt;
+<span class="lineNum">     701 </span>            :     : std::true_type {};
+<span class="lineNum">     702 </span>            : /// \endcond
+<span class="lineNum">     703 </span>            : /// \see is_maplike
+<span class="lineNum">     704 </span>            : template &lt;typename T&gt;
+<span class="lineNum">     705 </span><span class="lineCov">          1 : constexpr bool is_maplike_v = is_maplike&lt;T&gt;::value;</span>
+<span class="lineNum">     706 </span>            : 
+<span class="lineNum">     707 </span>            : /// \see is_maplike
+<span class="lineNum">     708 </span>            : template &lt;typename T&gt;
+<span class="lineNum">     709 </span><span class="lineCov">          1 : using is_maplike_t = typename is_maplike&lt;T&gt;::type;</span>
+<span class="lineNum">     710 </span>            : // @}
+<span class="lineNum">     711 </span>            : 
+<span class="lineNum">     712 </span>            : // @{
+<span class="lineNum">     713 </span>            : /// \ingroup TypeTraits
+<span class="lineNum">     714 </span>            : /// \brief Check if type `T` has operator&lt;&lt;(`S`, `T`) defined.
+<span class="lineNum">     715 </span>            : ///
+<span class="lineNum">     716 </span>            : /// \details
+<span class="lineNum">     717 </span>            : /// Inherits from std::true_type if the type `T` has operator&lt;&lt;(`S`, `T`)
+<span class="lineNum">     718 </span>            : /// defined for a stream `S`, otherwise inherits from std::false_type
+<span class="lineNum">     719 </span>            : ///
+<span class="lineNum">     720 </span>            : /// \usage
+<span class="lineNum">     721 </span>            : /// For any type `T` and stream type `S`,
+<span class="lineNum">     722 </span>            : /// \code
+<span class="lineNum">     723 </span>            : /// using result = tt::is_streamable&lt;S, T&gt;;
+<span class="lineNum">     724 </span>            : /// \endcode
+<span class="lineNum">     725 </span>            : ///
+<span class="lineNum">     726 </span>            : /// \metareturns
+<span class="lineNum">     727 </span>            : /// cpp17::bool_constant
+<span class="lineNum">     728 </span>            : ///
+<span class="lineNum">     729 </span>            : /// \semantics
+<span class="lineNum">     730 </span>            : /// If the type `T` has operator&lt;&lt;(`S`, `T`) defined for stream `S`, then
+<span class="lineNum">     731 </span>            : /// \code
+<span class="lineNum">     732 </span>            : /// typename result::type = std::true_type;
+<span class="lineNum">     733 </span>            : /// \endcode
+<span class="lineNum">     734 </span>            : /// otherwise
+<span class="lineNum">     735 </span>            : /// \code
+<span class="lineNum">     736 </span>            : /// typename result::type = std::false_type;
+<span class="lineNum">     737 </span>            : /// \endcode
+<span class="lineNum">     738 </span>            : ///
+<span class="lineNum">     739 </span>            : /// \example
+<span class="lineNum">     740 </span>            : /// \snippet TypeTraits.cpp is_streamable_example
+<span class="lineNum">     741 </span>            : /// \see std::cout std::ifstream std::sstream std::ostream
+<span class="lineNum">     742 </span>            : /// \tparam S the stream type, e.g. std::stringstream or std::ostream
+<span class="lineNum">     743 </span>            : /// \tparam T the type we want to know if it has operator&lt;&lt;
+<span class="lineNum">     744 </span>            : template &lt;typename S, typename T, typename = cpp17::void_t&lt;&gt;&gt;
+<span class="lineNum">     745 </span>            : struct is_streamable : std::false_type {};
+<span class="lineNum">     746 </span>            : /// \cond HIDDEN_SYMBOLS
+<span class="lineNum">     747 </span>            : template &lt;typename S, typename T&gt;
+<span class="lineNum">     748 </span>            : struct is_streamable&lt;
+<span class="lineNum">     749 </span>            :     S, T, cpp17::void_t&lt;decltype(std::declval&lt;std::add_lvalue_reference_t&lt;S&gt;&gt;()
+<span class="lineNum">     750 </span>            :                                  &lt;&lt; std::declval&lt;T&gt;()),
+<span class="lineNum">     751 </span>            :                         std::enable_if_t&lt;not std::is_same&lt;S, T&gt;::value&gt;&gt;&gt;
+<span class="lineNum">     752 </span>            :     : std::true_type {};
+<span class="lineNum">     753 </span>            : /// \endcond
+<span class="lineNum">     754 </span>            : /// \see is_streamable
+<span class="lineNum">     755 </span>            : template &lt;typename S, typename T&gt;
+<span class="lineNum">     756 </span><span class="lineCov">          1 : constexpr bool is_streamable_v = is_streamable&lt;S, T&gt;::value;</span>
+<span class="lineNum">     757 </span>            : 
+<span class="lineNum">     758 </span>            : /// \see is_streamable
+<span class="lineNum">     759 </span>            : template &lt;typename S, typename T&gt;
+<span class="lineNum">     760 </span><span class="lineCov">          1 : using is_streamable_t = typename is_streamable&lt;S, T&gt;::type;</span>
+<span class="lineNum">     761 </span>            : 
+<span class="lineNum">     762 </span>            : // @}
+<span class="lineNum">     763 </span>            : 
+<span class="lineNum">     764 </span>            : // @{
+<span class="lineNum">     765 </span>            : /// \ingroup TypeTraits
+<span class="lineNum">     766 </span>            : /// \brief Check if type `T` is a std::string, or a C-style string
+<span class="lineNum">     767 </span>            : ///
+<span class="lineNum">     768 </span>            : /// \details
+<span class="lineNum">     769 </span>            : /// Inherits from std::true_type if the type `T` has a is a std::string, or
+<span class="lineNum">     770 </span>            : /// a C-style string, otherwise inherits from std::false_type
+<span class="lineNum">     771 </span>            : ///
+<span class="lineNum">     772 </span>            : /// \usage
+<span class="lineNum">     773 </span>            : /// For any type `T`,
+<span class="lineNum">     774 </span>            : /// \code
+<span class="lineNum">     775 </span>            : /// using result = tt::is_string_like&lt;T&gt;;
+<span class="lineNum">     776 </span>            : /// \endcode
+<span class="lineNum">     777 </span>            : ///
+<span class="lineNum">     778 </span>            : /// \metareturns
+<span class="lineNum">     779 </span>            : /// cpp17::bool_constant
+<span class="lineNum">     780 </span>            : ///
+<span class="lineNum">     781 </span>            : /// \semantics
+<span class="lineNum">     782 </span>            : /// If the type `T` is a std::string, or a C-style string, then
+<span class="lineNum">     783 </span>            : /// \code
+<span class="lineNum">     784 </span>            : /// typename result::type = std::true_type;
+<span class="lineNum">     785 </span>            : /// \endcode
+<span class="lineNum">     786 </span>            : /// otherwise
+<span class="lineNum">     787 </span>            : /// \code
+<span class="lineNum">     788 </span>            : /// typename result::type = std::false_type;
+<span class="lineNum">     789 </span>            : /// \endcode
+<span class="lineNum">     790 </span>            : ///
+<span class="lineNum">     791 </span>            : /// \example
+<span class="lineNum">     792 </span>            : /// \snippet TypeTraits.cpp is_string_like_example
+<span class="lineNum">     793 </span>            : /// \see std::string std::is_same
+<span class="lineNum">     794 </span>            : /// \tparam T the type to check
+<span class="lineNum">     795 </span>            : template &lt;typename T, typename = cpp17::void_t&lt;&gt;&gt;
+<span class="lineNum">     796 </span><span class="lineCov">          1 : struct is_string_like : std::false_type {};</span>
+<span class="lineNum">     797 </span>            : /// \cond HIDDEN_SYMBOLS
+<span class="lineNum">     798 </span>            : template &lt;typename T&gt;
+<span class="lineNum">     799 </span>            : struct is_string_like&lt;
+<span class="lineNum">     800 </span>            :     T, std::enable_if_t&lt;
+<span class="lineNum">     801 </span>            :            std::is_same&lt;std::decay_t&lt;T&gt;, std::string&gt;::value or
+<span class="lineNum">     802 </span>            :            std::is_same&lt;std::decay_t&lt;std::remove_pointer_t&lt;std::decay_t&lt;T&gt;&gt;&gt;,
+<span class="lineNum">     803 </span>            :                         char&gt;::value&gt;&gt; : std::true_type {};
+<span class="lineNum">     804 </span>            : /// \endcond
+<span class="lineNum">     805 </span>            : /// \see is_string_like
+<span class="lineNum">     806 </span>            : template &lt;typename T&gt;
+<span class="lineNum">     807 </span><span class="lineCov">          1 : constexpr bool is_string_like_v = is_string_like&lt;T&gt;::value;</span>
+<span class="lineNum">     808 </span>            : 
+<span class="lineNum">     809 </span>            : /// \see is_string_like
+<span class="lineNum">     810 </span>            : template &lt;typename T&gt;
+<span class="lineNum">     811 </span><span class="lineCov">          1 : using is_string_like_t = typename is_string_like&lt;T&gt;::type;</span>
+<span class="lineNum">     812 </span>            : 
+<span class="lineNum">     813 </span>            : // @}
+<span class="lineNum">     814 </span>            : 
+<span class="lineNum">     815 </span>            : // @{
+<span class="lineNum">     816 </span>            : /// \ingroup TypeTraits
+<span class="lineNum">     817 </span>            : /// \brief Check if `T` has a `pup` member function
+<span class="lineNum">     818 </span>            : ///
+<span class="lineNum">     819 </span>            : /// \details
+<span class="lineNum">     820 </span>            : /// Inherits from std::true_type if the type `T` has a `pup(PUP::er&amp;)` member
+<span class="lineNum">     821 </span>            : /// function, otherwise inherits from std::false_type
+<span class="lineNum">     822 </span>            : ///
+<span class="lineNum">     823 </span>            : /// \usage
+<span class="lineNum">     824 </span>            : /// For any type `T`,
+<span class="lineNum">     825 </span>            : /// \code
+<span class="lineNum">     826 </span>            : /// using result = tt::has_pup_member&lt;T&gt;;
+<span class="lineNum">     827 </span>            : /// \endcode
+<span class="lineNum">     828 </span>            : ///
+<span class="lineNum">     829 </span>            : /// \metareturns
+<span class="lineNum">     830 </span>            : /// cpp17::bool_constant
+<span class="lineNum">     831 </span>            : ///
+<span class="lineNum">     832 </span>            : /// \semantics
+<span class="lineNum">     833 </span>            : /// If the type `T` has a `pup(PUP::er&amp;)` member function, then
+<span class="lineNum">     834 </span>            : /// \code
+<span class="lineNum">     835 </span>            : /// typename result::type = std::true_type;
+<span class="lineNum">     836 </span>            : /// \endcode
+<span class="lineNum">     837 </span>            : /// otherwise
+<span class="lineNum">     838 </span>            : /// \code
+<span class="lineNum">     839 </span>            : /// typename result::type = std::false_type;
+<span class="lineNum">     840 </span>            : /// \endcode
+<span class="lineNum">     841 </span>            : ///
+<span class="lineNum">     842 </span>            : /// \example
+<span class="lineNum">     843 </span>            : /// \snippet TypeTraits.cpp has_pup_member_example
+<span class="lineNum">     844 </span>            : /// \see is_pupable
+<span class="lineNum">     845 </span>            : /// \tparam T the type to check
+<span class="lineNum">     846 </span>            : template &lt;typename T, typename = cpp17::void_t&lt;&gt;&gt;
+<span class="lineNum">     847 </span><span class="lineCov">          1 : struct has_pup_member : std::false_type {};</span>
+<span class="lineNum">     848 </span>            : /// \cond HIDDEN_SYMBOLS
+<span class="lineNum">     849 </span>            : template &lt;typename T&gt;
+<span class="lineNum">     850 </span>            : struct has_pup_member&lt;
+<span class="lineNum">     851 </span>            :     T, cpp17::void_t&lt;decltype(std::declval&lt;T&gt;().pup(std::declval&lt;PUP::er&amp;&gt;()))&gt;&gt;
+<span class="lineNum">     852 </span>            :     : std::true_type {};
+<span class="lineNum">     853 </span>            : /// \endcond
+<span class="lineNum">     854 </span>            : /// \see has_pup_member
+<span class="lineNum">     855 </span>            : template &lt;typename T&gt;
+<span class="lineNum">     856 </span><span class="lineCov">          1 : constexpr bool has_pup_member_v = has_pup_member&lt;T&gt;::value;</span>
+<span class="lineNum">     857 </span>            : 
+<span class="lineNum">     858 </span>            : /// \see has_pup_member
+<span class="lineNum">     859 </span>            : template &lt;typename T&gt;
+<span class="lineNum">     860 </span><span class="lineCov">          1 : using has_pup_member_t = typename has_pup_member&lt;T&gt;::type;</span>
+<span class="lineNum">     861 </span>            : // @}
+<span class="lineNum">     862 </span>            : 
+<span class="lineNum">     863 </span>            : // @{
+<span class="lineNum">     864 </span>            : /// \ingroup TypeTraits
+<span class="lineNum">     865 </span>            : /// \brief Check if type `T` has operator| defined for Charm++ serialization
+<span class="lineNum">     866 </span>            : ///
+<span class="lineNum">     867 </span>            : /// \details
+<span class="lineNum">     868 </span>            : /// Inherits from std::true_type if the type `T` has operator| defined,
+<span class="lineNum">     869 </span>            : /// otherwise inherits from std::false_type
+<span class="lineNum">     870 </span>            : ///
+<span class="lineNum">     871 </span>            : /// \usage
+<span class="lineNum">     872 </span>            : /// For any type `T`,
+<span class="lineNum">     873 </span>            : /// \code
+<span class="lineNum">     874 </span>            : /// using result = tt::is_pupable&lt;T&gt;;
+<span class="lineNum">     875 </span>            : /// \endcode
+<span class="lineNum">     876 </span>            : ///
+<span class="lineNum">     877 </span>            : /// \metareturns
+<span class="lineNum">     878 </span>            : /// cpp17::bool_constant
+<span class="lineNum">     879 </span>            : ///
+<span class="lineNum">     880 </span>            : /// \semantics
+<span class="lineNum">     881 </span>            : /// If the type `T` has operator| defined, then
+<span class="lineNum">     882 </span>            : /// \code
+<span class="lineNum">     883 </span>            : /// typename result::type = std::true_type;
+<span class="lineNum">     884 </span>            : /// \endcode
+<span class="lineNum">     885 </span>            : /// otherwise
+<span class="lineNum">     886 </span>            : /// \code
+<span class="lineNum">     887 </span>            : /// typename result::type = std::false_type;
+<span class="lineNum">     888 </span>            : /// \endcode
+<span class="lineNum">     889 </span>            : ///
+<span class="lineNum">     890 </span>            : /// \example
+<span class="lineNum">     891 </span>            : /// \snippet TypeTraits.cpp is_pupable_example
+<span class="lineNum">     892 </span>            : /// \see has_pup_member
+<span class="lineNum">     893 </span>            : /// \tparam T the type to check
+<span class="lineNum">     894 </span>            : template &lt;typename T, typename U = void&gt;
+<span class="lineNum">     895 </span><span class="lineCov">          1 : struct is_pupable : std::false_type {};</span>
+<span class="lineNum">     896 </span>            : /// \cond HIDDEN_SYMBOLS
+<span class="lineNum">     897 </span>            : template &lt;typename T&gt;
+<span class="lineNum">     898 </span>            : struct is_pupable&lt;
+<span class="lineNum">     899 </span>            :     T, cpp17::void_t&lt;decltype(std::declval&lt;PUP::er&amp;&gt;() | std::declval&lt;T&amp;&gt;())&gt;&gt;
+<span class="lineNum">     900 </span>            :     : std::true_type {};
+<span class="lineNum">     901 </span>            : /// \endcond
+<span class="lineNum">     902 </span>            : /// \see is_pupable
+<span class="lineNum">     903 </span>            : template &lt;typename T&gt;
+<span class="lineNum">     904 </span><span class="lineCov">          1 : constexpr bool is_pupable_v = is_pupable&lt;T&gt;::value;</span>
+<span class="lineNum">     905 </span>            : 
+<span class="lineNum">     906 </span>            : /// \see is_pupable
+<span class="lineNum">     907 </span>            : template &lt;typename T&gt;
+<span class="lineNum">     908 </span><span class="lineCov">          1 : using is_pupable_t = typename is_pupable&lt;T&gt;::type;</span>
+<span class="lineNum">     909 </span>            : // @}
+<span class="lineNum">     910 </span>            : 
+<span class="lineNum">     911 </span>            : // @{
+<span class="lineNum">     912 </span>            : /// \ingroup TypeTraits
+<span class="lineNum">     913 </span>            : /// \brief Check if type `T` has a `get_clone()` member function
+<span class="lineNum">     914 </span>            : ///
+<span class="lineNum">     915 </span>            : /// \details
+<span class="lineNum">     916 </span>            : /// Inherits from std::true_type if the type `T` has a `get_clone()` member
+<span class="lineNum">     917 </span>            : /// function, otherwise inherits from std::false_type
+<span class="lineNum">     918 </span>            : ///
+<span class="lineNum">     919 </span>            : /// \usage
+<span class="lineNum">     920 </span>            : /// For any type `T`,
+<span class="lineNum">     921 </span>            : /// \code
+<span class="lineNum">     922 </span>            : /// using result = tt::has_get_clone&lt;T&gt;;
+<span class="lineNum">     923 </span>            : /// \endcode
+<span class="lineNum">     924 </span>            : ///
+<span class="lineNum">     925 </span>            : /// \metareturns
+<span class="lineNum">     926 </span>            : /// cpp17::bool_constant
+<span class="lineNum">     927 </span>            : ///
+<span class="lineNum">     928 </span>            : /// \semantics
+<span class="lineNum">     929 </span>            : /// If the type `T` has a `get_clone()` member function, then
+<span class="lineNum">     930 </span>            : /// \code
+<span class="lineNum">     931 </span>            : /// typename result::type = std::true_type;
+<span class="lineNum">     932 </span>            : /// \endcode
+<span class="lineNum">     933 </span>            : /// otherwise
+<span class="lineNum">     934 </span>            : /// \code
+<span class="lineNum">     935 </span>            : /// typename result::type = std::false_type;
+<span class="lineNum">     936 </span>            : /// \endcode
+<span class="lineNum">     937 </span>            : ///
+<span class="lineNum">     938 </span>            : /// \example
+<span class="lineNum">     939 </span>            : /// \snippet TypeTraits.cpp has_get_clone_example
+<span class="lineNum">     940 </span>            : /// \see has_clone
+<span class="lineNum">     941 </span>            : /// \tparam T the type to check
+<span class="lineNum">     942 </span>            : template &lt;typename T, typename = cpp17::void_t&lt;&gt;, typename = void&gt;
+<span class="lineNum">     943 </span><span class="lineCov">          1 : struct has_get_clone : std::false_type {};</span>
+<span class="lineNum">     944 </span>            : /// \cond HIDDEN_SYMBOLS
+<span class="lineNum">     945 </span>            : // The ugliness with two void template parameters is because clang does not
+<span class="lineNum">     946 </span>            : // recognize the two decltype'd specializations as being different
+<span class="lineNum">     947 </span>            : template &lt;typename T&gt;
+<span class="lineNum">     948 </span>            : struct has_get_clone&lt;
+<span class="lineNum">     949 </span>            :     T, cpp17::void_t&lt;decltype(
+<span class="lineNum">     950 </span>            :            std::declval&lt;std::remove_pointer_t&lt;std::decay_t&lt;T&gt;&gt;&gt;().get_clone())&gt;,
+<span class="lineNum">     951 </span>            :     std::enable_if_t&lt;not tt::is_a_v&lt;std::unique_ptr, std::decay_t&lt;T&gt;&gt; and
+<span class="lineNum">     952 </span>            :                      not tt::is_a_v&lt;std::shared_ptr, std::decay_t&lt;T&gt;&gt;&gt;&gt;
+<span class="lineNum">     953 </span>            :     : std::true_type {};
+<span class="lineNum">     954 </span>            : template &lt;typename T&gt;
+<span class="lineNum">     955 </span>            : struct has_get_clone&lt;
+<span class="lineNum">     956 </span>            :     T, cpp17::void_t&lt;std::enable_if_t&lt;tt::is_a_v&lt;std::unique_ptr, T&gt;&gt;,
+<span class="lineNum">     957 </span>            :                      decltype(std::declval&lt;T&gt;()-&gt;get_clone())&gt;,
+<span class="lineNum">     958 </span>            :     std::enable_if_t&lt;tt::is_a_v&lt;std::unique_ptr, std::decay_t&lt;T&gt;&gt; or
+<span class="lineNum">     959 </span>            :                      tt::is_a_v&lt;std::shared_ptr, std::decay_t&lt;T&gt;&gt;&gt;&gt;
+<span class="lineNum">     960 </span>            :     : std::true_type {};
+<span class="lineNum">     961 </span>            : /// \endcond
+<span class="lineNum">     962 </span>            : /// \see has_get_clone
+<span class="lineNum">     963 </span>            : template &lt;typename T&gt;
+<span class="lineNum">     964 </span><span class="lineCov">          1 : constexpr bool has_get_clone_v = has_get_clone&lt;T&gt;::value;</span>
+<span class="lineNum">     965 </span>            : 
+<span class="lineNum">     966 </span>            : /// \see has_get_clone
+<span class="lineNum">     967 </span>            : template &lt;typename T&gt;
+<span class="lineNum">     968 </span><span class="lineCov">          1 : using has_get_clone_t = typename has_get_clone&lt;T&gt;::type;</span>
+<span class="lineNum">     969 </span>            : // @}
+<span class="lineNum">     970 </span>            : 
+<span class="lineNum">     971 </span>            : // @{
+<span class="lineNum">     972 </span>            : /// \ingroup TypeTraits
+<span class="lineNum">     973 </span>            : /// \brief Check if type `T` has a `clone()` member function
+<span class="lineNum">     974 </span>            : ///
+<span class="lineNum">     975 </span>            : /// \details
+<span class="lineNum">     976 </span>            : /// Inherits from std::true_type if the type `T` has a `clone()` member
+<span class="lineNum">     977 </span>            : /// function, otherwise inherits from std::false_type
+<span class="lineNum">     978 </span>            : ///
+<span class="lineNum">     979 </span>            : /// \usage
+<span class="lineNum">     980 </span>            : /// For any type `T`,
+<span class="lineNum">     981 </span>            : /// \code
+<span class="lineNum">     982 </span>            : /// using result = tt::has_clone&lt;T&gt;;
+<span class="lineNum">     983 </span>            : /// \endcode
+<span class="lineNum">     984 </span>            : ///
+<span class="lineNum">     985 </span>            : /// \metareturns
+<span class="lineNum">     986 </span>            : /// cpp17::bool_constant
+<span class="lineNum">     987 </span>            : ///
+<span class="lineNum">     988 </span>            : /// \semantics
+<span class="lineNum">     989 </span>            : /// If the type `T` has a `clone()` member function, then
+<span class="lineNum">     990 </span>            : /// \code
+<span class="lineNum">     991 </span>            : /// typename result::type = std::true_type;
+<span class="lineNum">     992 </span>            : /// \endcode
+<span class="lineNum">     993 </span>            : /// otherwise
+<span class="lineNum">     994 </span>            : /// \code
+<span class="lineNum">     995 </span>            : /// typename result::type = std::false_type;
+<span class="lineNum">     996 </span>            : /// \endcode
+<span class="lineNum">     997 </span>            : ///
+<span class="lineNum">     998 </span>            : /// \example
+<span class="lineNum">     999 </span>            : /// \snippet TypeTraits.cpp has_clone_example
+<span class="lineNum">    1000 </span>            : /// \see has_get_clone
+<span class="lineNum">    1001 </span>            : /// \tparam T the type to check
+<span class="lineNum">    1002 </span>            : template &lt;typename T, typename = cpp17::void_t&lt;&gt;, typename = void&gt;
+<span class="lineNum">    1003 </span><span class="lineCov">          1 : struct has_clone : std::false_type {};</span>
+<span class="lineNum">    1004 </span>            : /// \cond HIDDEN_SYMBOLS
+<span class="lineNum">    1005 </span>            : template &lt;typename T&gt;
+<span class="lineNum">    1006 </span>            : struct has_clone&lt;
+<span class="lineNum">    1007 </span>            :     T, cpp17::void_t&lt;decltype(std::declval&lt;T&gt;().clone())&gt;,
+<span class="lineNum">    1008 </span>            :     std::enable_if_t&lt;not tt::is_a_v&lt;std::unique_ptr, std::decay_t&lt;T&gt;&gt; and
+<span class="lineNum">    1009 </span>            :                      not tt::is_a_v&lt;std::shared_ptr, std::decay_t&lt;T&gt;&gt;&gt;&gt;
+<span class="lineNum">    1010 </span>            :     : std::true_type {};
+<span class="lineNum">    1011 </span>            : template &lt;typename T&gt;
+<span class="lineNum">    1012 </span>            : struct has_clone&lt;
+<span class="lineNum">    1013 </span>            :     T, cpp17::void_t&lt;decltype(std::declval&lt;T&gt;()-&gt;clone())&gt;,
+<span class="lineNum">    1014 </span>            :     std::enable_if_t&lt;tt::is_a_v&lt;std::unique_ptr, std::decay_t&lt;T&gt;&gt; or
+<span class="lineNum">    1015 </span>            :                      tt::is_a_v&lt;std::shared_ptr, std::decay_t&lt;T&gt;&gt;&gt;&gt;
+<span class="lineNum">    1016 </span>            :     : std::true_type {};
+<span class="lineNum">    1017 </span>            : /// \endcond
+<span class="lineNum">    1018 </span>            : /// \see has_clone
+<span class="lineNum">    1019 </span>            : template &lt;typename T&gt;
+<span class="lineNum">    1020 </span><span class="lineCov">          1 : constexpr bool has_clone_v = has_clone&lt;T&gt;::value;</span>
+<span class="lineNum">    1021 </span>            : 
+<span class="lineNum">    1022 </span>            : /// \see has_clone
+<span class="lineNum">    1023 </span>            : template &lt;typename T&gt;
+<span class="lineNum">    1024 </span><span class="lineCov">          1 : using has_clone_t = typename has_clone&lt;T&gt;::type;</span>
+<span class="lineNum">    1025 </span>            : // @}
+<span class="lineNum">    1026 </span>            : 
+<span class="lineNum">    1027 </span>            : // @{
+<span class="lineNum">    1028 </span>            : /// \ingroup TypeTraits
+<span class="lineNum">    1029 </span>            : /// \brief Check if type `T` has a `size()` member function
+<span class="lineNum">    1030 </span>            : ///
+<span class="lineNum">    1031 </span>            : /// \details
+<span class="lineNum">    1032 </span>            : /// Inherits from std::true_type if the type `T` has a `size()` member
+<span class="lineNum">    1033 </span>            : /// function, otherwise inherits from std::false_type
+<span class="lineNum">    1034 </span>            : ///
+<span class="lineNum">    1035 </span>            : /// \usage
+<span class="lineNum">    1036 </span>            : /// For any type `T`,
+<span class="lineNum">    1037 </span>            : /// \code
+<span class="lineNum">    1038 </span>            : /// using result = tt::has_size&lt;T&gt;;
+<span class="lineNum">    1039 </span>            : /// \endcode
+<span class="lineNum">    1040 </span>            : /// \metareturns
+<span class="lineNum">    1041 </span>            : /// cpp17::bool_constant
+<span class="lineNum">    1042 </span>            : ///
+<span class="lineNum">    1043 </span>            : /// \semantics
+<span class="lineNum">    1044 </span>            : /// If the type `T` has a `size()` member function, then
+<span class="lineNum">    1045 </span>            : /// \code
+<span class="lineNum">    1046 </span>            : /// typename result::type = std::true_type;
+<span class="lineNum">    1047 </span>            : /// \endcode
+<span class="lineNum">    1048 </span>            : /// otherwise
+<span class="lineNum">    1049 </span>            : /// \code
+<span class="lineNum">    1050 </span>            : /// typename result::type = std::false_type;
+<span class="lineNum">    1051 </span>            : /// \endcode
+<span class="lineNum">    1052 </span>            : ///
+<span class="lineNum">    1053 </span>            : /// \example
+<span class="lineNum">    1054 </span>            : /// \snippet TypeTraits.cpp has_size_example
+<span class="lineNum">    1055 </span>            : /// \see is_iterable
+<span class="lineNum">    1056 </span>            : /// \tparam T the type to check
+<span class="lineNum">    1057 </span>            : template &lt;typename T, typename = cpp17::void_t&lt;&gt;&gt;
+<span class="lineNum">    1058 </span><span class="lineCov">          1 : struct has_size : std::false_type {};</span>
+<span class="lineNum">    1059 </span>            : /// \cond HIDDEN_SYMBOLS
+<span class="lineNum">    1060 </span>            : template &lt;typename T&gt;
+<span class="lineNum">    1061 </span>            : struct has_size&lt;T, cpp17::void_t&lt;decltype(std::declval&lt;T&gt;().size())&gt;&gt;
+<span class="lineNum">    1062 </span>            :     : std::true_type {};
+<span class="lineNum">    1063 </span>            : /// \endcond
+<span class="lineNum">    1064 </span>            : /// \see has_size
+<span class="lineNum">    1065 </span>            : template &lt;typename T&gt;
+<span class="lineNum">    1066 </span><span class="lineCov">          1 : constexpr bool has_size_v = has_size&lt;T&gt;::value;</span>
+<span class="lineNum">    1067 </span>            : 
+<span class="lineNum">    1068 </span>            : /// \see has_size
+<span class="lineNum">    1069 </span>            : template &lt;typename T&gt;
+<span class="lineNum">    1070 </span><span class="lineCov">          1 : using has_size_t = typename has_size&lt;T&gt;::type;</span>
+<span class="lineNum">    1071 </span>            : // @}
+<span class="lineNum">    1072 </span>            : }  // namespace tt
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

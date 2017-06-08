@@ -3,7 +3,7 @@ var searchData=
   ['m',['m',['http://en.cppreference.com/w/cpp/numeric/random/fisher_f_distribution/params.html',1,'std::fisher_f_distribution::m()'],['http://en.cppreference.com/w/cpp/numeric/random/lognormal_distribution/params.html',1,'std::lognormal_distribution::m()']]],
   ['main',['main',['../ParallelInfo_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'ParallelInfo.cpp']]],
   ['make_5fany',['make_any',['http://en.cppreference.com/w/cpp/utility/any/make_any.html',1,'std']]],
-  ['make_5farray',['make_array',['http://en.cppreference.com/w/cpp/experimental/make_array.html',1,'std::experimental']]],
+  ['make_5farray',['make_array',['http://en.cppreference.com/w/cpp/experimental/make_array.html',1,'std::experimental::make_array()'],['../MakeArray_8hpp.html#a14cf7ef8ab7f9f56d06762b195ce29c2',1,'make_array(std::integral_constant&lt; std::size_t, size &gt;, T &amp;&amp;value):&#160;MakeArray.hpp'],['../group__Utilities.html#ga18e7d6f15d7089f056a7d1a32ad1b536',1,'make_array(T &amp;&amp;value):&#160;MakeArray.hpp'],['../group__Utilities.html#ga55b73f5c6d3e8963a3110b1b314fc463',1,'make_array(T &amp;&amp;t, V &amp;&amp;... values):&#160;MakeArray.hpp']]],
   ['make_5fboyer_5fmoore_5fhorspool_5fsearcher',['make_boyer_moore_horspool_searcher',['http://en.cppreference.com/w/cpp/experimental/make_boyer_moore_horspool_searcher.html',1,'std::experimental']]],
   ['make_5fboyer_5fmoore_5fsearcher',['make_boyer_moore_searcher',['http://en.cppreference.com/w/cpp/experimental/make_boyer_moore_searcher.html',1,'std::experimental']]],
   ['make_5fdefault_5fsearcher',['make_default_searcher',['http://en.cppreference.com/w/cpp/experimental/make_default_searcher.html',1,'std::experimental']]],

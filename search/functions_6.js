@@ -61,6 +61,7 @@ var searchData=
   ['for_5feach',['for_each',['http://en.cppreference.com/w/cpp/algorithm/for_each.html',1,'std']]],
   ['for_5feach_5fn',['for_each_n',['http://en.cppreference.com/w/cpp/algorithm/for_each_n.html',1,'std']]],
   ['format',['format',['http://en.cppreference.com/w/cpp/regex/match_results/format.html',1,'std::cmatch::format()'],['http://en.cppreference.com/w/cpp/regex/match_results/format.html',1,'std::match_results::format()'],['http://en.cppreference.com/w/cpp/regex/match_results/format.html',1,'std::smatch::format()'],['http://en.cppreference.com/w/cpp/regex/match_results/format.html',1,'std::wcmatch::format()'],['http://en.cppreference.com/w/cpp/regex/match_results/format.html',1,'std::wsmatch::format()']]],
+  ['formatted_5fstring',['formatted_string',['../group__Utilities.html#ga9a7c7ee897f581360154a3676d5f7ab9',1,'StdHelpers.hpp']]],
   ['forward',['forward',['http://en.cppreference.com/w/cpp/utility/forward.html',1,'std']]],
   ['forward_5fas_5ftuple',['forward_as_tuple',['http://en.cppreference.com/w/cpp/utility/tuple/forward_as_tuple.html',1,'std']]],
   ['forward_5flist',['forward_list',['http://en.cppreference.com/w/cpp/container/forward_list/forward_list.html',1,'std::forward_list::forward_list()'],['http://en.cppreference.com/w/cpp/container/forward_list/forward_list.html',1,'std::pmr::forward_list::forward_list()']]],

@@ -1,0 +1,167 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 9889f118d0d01487ed60bff105041953c3600176 - Utilities/MakeArray.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">SpECTRE Unit Test Code Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">Utilities</a> - MakeArray.hpp<span style="font-size: 80%;"> (source / <a href="MakeArray.hpp.func-sort-c.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/9889f118d0d01487ed60bff105041953c3600176">9889f118d0d01487ed60bff105041953c3600176</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">4</td>
+            <td class="headerCovTableEntry">4</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2017-06-08 01:50:39</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntryHi">-</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>            : // Distributed under the MIT License.</a>
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : /// \file
+<span class="lineNum">       5 </span>            : /// Defines function make_array.
+<span class="lineNum">       6 </span>            : 
+<span class="lineNum">       7 </span>            : #pragma once
+<span class="lineNum">       8 </span>            : 
+<span class="lineNum">       9 </span>            : #include &lt;array&gt;
+<span class="lineNum">      10 </span>            : 
+<span class="lineNum">      11 </span>            : #include &quot;Utilities/ForceInline.hpp&quot;
+<span class="lineNum">      12 </span>            : #include &quot;Utilities/TypeTraits.hpp&quot;
+<span class="lineNum">      13 </span>            : 
+<span class="lineNum">      14 </span>            : // Much of this is taken from
+<span class="lineNum">      15 </span>            : // http://stackoverflow.com/questions/1065774/initialization-of
+<span class="lineNum">      16 </span>            : //     -a-normal-array-with-one-default-value
+<span class="lineNum">      17 </span>            : // with some modifications.
+<span class="lineNum">      18 </span>            : namespace MakeArray_detail {
+<span class="lineNum">      19 </span>            : /// We take integer_sequence&lt;indexes...&gt; as a parameter to overload the
+<span class="lineNum">      20 </span>            : /// function so that there is one for each type T, and one for each number of
+<span class="lineNum">      21 </span>            : /// indexes. To silence compiler warnings we do a static_cast&lt;void&gt;.
+<span class="lineNum">      22 </span>            : /// Use the comma operator to expand the parameter pack, then copy in value
+<span class="lineNum">      23 </span>            : /// (size-1) times. We use std::forward to try and move the last value into
+<span class="lineNum">      24 </span>            : /// place, rather than undergoing another copy.
+<span class="lineNum">      25 </span>            : /// Order of evaluation is well-defined for aggregate initialization, so there
+<span class="lineNum">      26 </span>            : /// is no risk of copy-after-move
+<span class="lineNum">      27 </span>            : template &lt;std::size_t size, typename T, std::size_t... indexes&gt;
+<span class="lineNum">      28 </span>            : SPECTRE_ALWAYS_INLINE constexpr std::array&lt;std::decay_t&lt;T&gt;, size&gt;
+<span class="lineNum">      29 </span>            : make_array_impl(T&amp;&amp; value,
+<span class="lineNum">      30 </span>            :                 std::integer_sequence&lt;size_t, indexes...&gt; /* unused */) {
+<span class="lineNum">      31 </span>            :   return std::array&lt;typename std::decay&lt;T&gt;::type, size&gt;{
+<span class="lineNum">      32 </span><span class="lineCov">          2 :       {(static_cast&lt;void&gt;(indexes), value)..., std::forward&lt;T&gt;(value)}};</span>
+<span class="lineNum">      33 </span>            : }
+<span class="lineNum">      34 </span>            : }  // namespace MakeArray_detail
+<span class="lineNum">      35 </span>            : 
+<span class="lineNum">      36 </span>            : /// \cond HIDDEN_SYMBOLS
+<span class="lineNum">      37 </span>            : /// Construct empty array specialization
+<span class="lineNum">      38 </span>            : template &lt;typename T&gt;
+<span class="lineNum">      39 </span>            : SPECTRE_ALWAYS_INLINE constexpr std::array&lt;std::decay_t&lt;T&gt;, 0&gt; make_array(
+<span class="lineNum">      40 </span>            :     std::integral_constant&lt;std::size_t, 0&gt; /* unused */, T&amp;&amp; /* unused */) {
+<span class="lineNum">      41 </span>            :   return std::array&lt;std::decay_t&lt;T&gt;, 0&gt;{{}};
+<span class="lineNum">      42 </span>            : }
+<span class="lineNum">      43 </span>            : /// \endcond
+<span class="lineNum">      44 </span>            : 
+<span class="lineNum">      45 </span>            : /// The std::integral_constant is used to overload the function so that we call
+<span class="lineNum">      46 </span>            : /// the one for the correct size of the array that we want. This is done as a
+<span class="lineNum">      47 </span>            : /// helper function to make make_array&lt;size_t&gt; a simple call for users.
+<span class="lineNum">      48 </span>            : template &lt;std::size_t size, typename T&gt;
+<span class="lineNum">      49 </span>            : SPECTRE_ALWAYS_INLINE constexpr std::array&lt;std::decay_t&lt;T&gt;, size&gt; make_array(
+<span class="lineNum">      50 </span>            :     std::integral_constant&lt;std::size_t, size&gt; /* unused */, T&amp;&amp; value) {
+<span class="lineNum">      51 </span><span class="lineCov">          4 :   return MakeArray_detail::make_array_impl&lt;size&gt;(</span>
+<span class="lineNum">      52 </span>            :       std::forward&lt;T&gt;(value), std::make_index_sequence&lt;size - 1&gt;{});
+<span class="lineNum">      53 </span>            : }
+<span class="lineNum">      54 </span>            : 
+<span class="lineNum">      55 </span>            : /*!
+<span class="lineNum">      56 </span>            :  * \ingroup Utilities
+<span class="lineNum">      57 </span>            :  * \brief Helper class to initialize a std::array.
+<span class="lineNum">      58 </span>            :  *
+<span class="lineNum">      59 </span>            :  * \tparam size the length of the array
+<span class="lineNum">      60 </span>            :  */
+<span class="lineNum">      61 </span>            : template &lt;std::size_t size, typename T&gt;
+<span class="lineNum">      62 </span>            : SPECTRE_ALWAYS_INLINE constexpr std::array&lt;std::decay_t&lt;T&gt;, size&gt; make_array(
+<span class="lineNum">      63 </span>            :     T&amp;&amp; value) {
+<span class="lineNum">      64 </span><span class="lineCov">          6 :   return make_array(std::integral_constant&lt;std::size_t, size&gt;{},</span>
+<span class="lineNum">      65 </span>            :                     std::forward&lt;T&gt;(value));
+<span class="lineNum">      66 </span>            : }
+<span class="lineNum">      67 </span>            : 
+<span class="lineNum">      68 </span>            : /*!
+<span class="lineNum">      69 </span>            :  * \ingroup Utilities
+<span class="lineNum">      70 </span>            :  * \brief Helper function to initialize a std::array with varying number of
+<span class="lineNum">      71 </span>            :  * arguments
+<span class="lineNum">      72 </span>            :  */
+<span class="lineNum">      73 </span>            : template &lt;typename T, typename... V,
+<span class="lineNum">      74 </span>            :           typename std::enable_if_t&lt;(sizeof...(V) &gt; 0)&gt;* = nullptr&gt;
+<span class="lineNum">      75 </span>            : SPECTRE_ALWAYS_INLINE constexpr std::array&lt;typename std::decay_t&lt;T&gt;,
+<span class="lineNum">      76 </span>            :                                            sizeof...(V) + 1&gt;
+<span class="lineNum">      77 </span>            : make_array(T&amp;&amp; t, V&amp;&amp;... values) {
+<span class="lineNum">      78 </span>            :   static_assert(
+<span class="lineNum">      79 </span>            :       cpp17::conjunction_v&lt;std::is_same&lt;std::decay_t&lt;T&gt;, std::decay_t&lt;V&gt;&gt;...&gt;,
+<span class="lineNum">      80 </span>            :       &quot;all types to make_array(...) must be the same&quot;);
+<span class="lineNum">      81 </span>            :   return std::array&lt;typename std::decay&lt;T&gt;::type, sizeof...(V) + 1&gt;{
+<span class="lineNum">      82 </span><span class="lineCov">          1 :       {std::forward&lt;T&gt;(t), std::forward&lt;V&gt;(values)...}};</span>
+<span class="lineNum">      83 </span>            : }
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

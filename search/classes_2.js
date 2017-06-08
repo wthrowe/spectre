@@ -26,7 +26,7 @@ var searchData=
   ['condition_5fvariable_5fany',['condition_variable_any',['http://en.cppreference.com/w/cpp/thread/condition_variable_any.html',1,'std']]],
   ['conditional',['conditional',['http://en.cppreference.com/w/cpp/types/conditional.html',1,'std']]],
   ['conditional_5ft',['conditional_t',['http://en.cppreference.com/w/cpp/types/conditional.html',1,'std']]],
-  ['conjunction',['conjunction',['http://en.cppreference.com/w/cpp/types/conjunction.html',1,'std']]],
+  ['conjunction',['conjunction',['http://en.cppreference.com/w/cpp/types/conjunction.html',1,'std::conjunction'],['../structcpp17_1_1conjunction.html',1,'cpp17::conjunction&lt;... &gt;']]],
   ['copy_5foptions',['copy_options',['http://en.cppreference.com/w/cpp/experimental/fs/copy_options.html',1,'std::experimental::filesystem::copy_options'],['http://en.cppreference.com/w/cpp/filesystem/copy_options.html',1,'std::filesystem::copy_options']]],
   ['cout',['cout',['http://en.cppreference.com/w/cpp/io/cout.html',1,'std']]],
   ['cregex_5fiterator',['cregex_iterator',['http://en.cppreference.com/w/cpp/regex/regex_iterator.html',1,'std']]],

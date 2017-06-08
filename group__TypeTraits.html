@@ -151,20 +151,210 @@ $(function() {
 
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a>  </div>
+<a href="#namespaces">Namespaces</a> &#124;
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#typedef-members">Typedefs</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">Type Traits</div>  </div>
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
+Namespaces</h2></td></tr>
+<tr class="memitem:namespacecpp17"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecpp17.html">cpp17</a></td></tr>
+<tr class="memdesc:namespacecpp17"><td class="mdescLeft">&#160;</td><td class="mdescRight">C++ STL code present in C++17. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:namespacett"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacett.html">tt</a></td></tr>
+<tr class="memdesc:namespacett"><td class="mdescLeft">&#160;</td><td class="mdescRight">A collection of useful type traits. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structTypeDisplayer.html">TypeDisplayer&lt;... &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get compiler error with type of template parameter.  <a href="structTypeDisplayer.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcpp17_1_1conjunction.html">cpp17::conjunction&lt;... &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A logical AND on the template parameters.  <a href="structcpp17_1_1conjunction.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcpp17_1_1disjunction.html">cpp17::disjunction&lt;... &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A logical OR on the template parameters.  <a href="structcpp17_1_1disjunction.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcpp17_1_1negation.html">cpp17::negation&lt; B &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Negate a <a class="el" href="group__TypeTraits.html#ga81cbbca00f78e3672f73f32ffbd0081e" title="A compile-time boolean. ">bool_constant</a>.  <a href="structcpp17_1_1negation.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtt_1_1is__std__array.html">tt::is_std_array&lt; T &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if type T is a <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>.  <a href="structtt_1_1is__std__array.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtt_1_1is__a.html">tt::is_a&lt; U, T &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if type <code>T</code> is a template specialization of <code>U</code>  <a href="structtt_1_1is__a.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtt_1_1is__iterable.html">tt::is_iterable&lt; T, typename &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if type T has a begin() and end() function.  <a href="structtt_1_1is__iterable.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtt_1_1is__comparable.html">tt::is_comparable&lt; T, typename &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if type T has &lt;, &lt;=, &gt;, &gt;=, ==, !=.  <a href="structtt_1_1is__comparable.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtt_1_1has__equivalence.html">tt::has_equivalence&lt; T, typename &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if type <code>T</code> has operator== defined.  <a href="structtt_1_1has__equivalence.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtt_1_1has__inequivalence.html">tt::has_inequivalence&lt; T, U &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if type <code>T</code> has operator!= defined.  <a href="structtt_1_1has__inequivalence.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtt_1_1is__callable.html">tt::is_callable&lt; TT, TArgs &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a type <code>T</code> is callable, i.e. <code>T(Args...)</code> is evaluable.  <a href="classtt_1_1is__callable.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtt_1_1is__hashable.html">tt::is_hashable&lt; T, typename &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/utility/hash.html">std::hash</a> and <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/utility/functional/equal_to.html">std::equal_to</a> are defined for type T.  <a href="structtt_1_1is__hashable.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtt_1_1is__maplike.html">tt::is_maplike&lt; T, typename &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if type <code>T</code> is like a <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/map.html">std::map</a> or std::unordored_map.  <a href="structtt_1_1is__maplike.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtt_1_1is__streamable.html">tt::is_streamable&lt; S, T, typename &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if type <code>T</code> has operator&lt;&lt;(<code>S</code>, <code>T</code>) defined.  <a href="structtt_1_1is__streamable.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtt_1_1is__string__like.html">tt::is_string_like&lt; T, typename &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if type <code>T</code> is a <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a>, or a C-style string.  <a href="structtt_1_1is__string__like.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtt_1_1has__pup__member.html">tt::has_pup_member&lt; T, typename &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if <code>T</code> has a <code>pup</code> member function.  <a href="structtt_1_1has__pup__member.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtt_1_1is__pupable.html">tt::is_pupable&lt; T, U &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if type <code>T</code> has operator| defined for Charm++ serialization.  <a href="structtt_1_1is__pupable.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtt_1_1has__get__clone.html">tt::has_get_clone&lt; T, typename, typename &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if type <code>T</code> has a <code>get_clone()</code> member function.  <a href="structtt_1_1has__get__clone.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtt_1_1has__clone.html">tt::has_clone&lt; T, typename, typename &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if type <code>T</code> has a <code>clone()</code> member function.  <a href="structtt_1_1has__clone.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtt_1_1has__size.html">tt::has_size&lt; T, typename &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if type <code>T</code> has a <code>size()</code> member function.  <a href="structtt_1_1has__size.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:ga81cbbca00f78e3672f73f32ffbd0081e"><td class="memTemplParams" colspan="2">template&lt;bool B&gt; </td></tr>
+<tr class="memitem:ga81cbbca00f78e3672f73f32ffbd0081e"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__TypeTraits.html#ga81cbbca00f78e3672f73f32ffbd0081e">cpp17::bool_constant</a> = <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/integral_constant.html">std::integral_constant</a>&lt; bool, B &gt;</td></tr>
+<tr class="memdesc:ga81cbbca00f78e3672f73f32ffbd0081e"><td class="mdescLeft">&#160;</td><td class="mdescRight">A compile-time boolean.  <a href="group__TypeTraits.html#ga81cbbca00f78e3672f73f32ffbd0081e">More...</a><br /></td></tr>
+<tr class="separator:ga81cbbca00f78e3672f73f32ffbd0081e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga51ed2c1868c90399f4df81cb76f9eb66"><td class="memTemplParams" colspan="2">template&lt;typename... Ts&gt; </td></tr>
+<tr class="memitem:ga51ed2c1868c90399f4df81cb76f9eb66"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__TypeTraits.html#ga51ed2c1868c90399f4df81cb76f9eb66">cpp17::void_t</a> = void</td></tr>
+<tr class="memdesc:ga51ed2c1868c90399f4df81cb76f9eb66"><td class="mdescLeft">&#160;</td><td class="mdescRight">Given a set of types, returns <code>void</code>  <a href="group__TypeTraits.html#ga51ed2c1868c90399f4df81cb76f9eb66">More...</a><br /></td></tr>
+<tr class="separator:ga51ed2c1868c90399f4df81cb76f9eb66"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:ga173105b805ff5fa637edb005f704feca"><td class="memTemplParams" colspan="2">template&lt;typename T , typename U &gt; </td></tr>
+<tr class="memitem:ga173105b805ff5fa637edb005f704feca"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__TypeTraits.html#ga173105b805ff5fa637edb005f704feca">cpp17::is_same_v</a> = <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/is_same.html">std::is_same</a>&lt;T, U&gt;::value</td></tr>
+<tr class="memdesc:ga173105b805ff5fa637edb005f704feca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Variable template for is_same.  <a href="group__TypeTraits.html#ga173105b805ff5fa637edb005f704feca">More...</a><br /></td></tr>
+<tr class="separator:ga173105b805ff5fa637edb005f704feca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gafb844f727c41f01d5f2f2b316b648c7a"><td class="memTemplParams" colspan="2">template&lt;typename Array &gt; </td></tr>
+<tr class="memitem:gafb844f727c41f01d5f2f2b316b648c7a"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__TypeTraits.html#gafb844f727c41f01d5f2f2b316b648c7a">tt::array_size</a> = decltype(TypeTraits_details::array_size_impl(<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/utility/declval.html">std::declval</a>&lt; const Array &amp; &gt;()))</td></tr>
+<tr class="memdesc:gafb844f727c41f01d5f2f2b316b648c7a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the size of a <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a> as a <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/integral_constant.html">std::integral_constant</a>.  <a href="group__TypeTraits.html#gafb844f727c41f01d5f2f2b316b648c7a">More...</a><br /></td></tr>
+<tr class="separator:gafb844f727c41f01d5f2f2b316b648c7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>A collection of useful type traits, including C++14 and C++17 additions to the standard library. </p>
+<h2 class="groupheader">Typedef Documentation</h2>
+<a id="gafb844f727c41f01d5f2f2b316b648c7a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gafb844f727c41f01d5f2f2b316b648c7a">&#9670;&nbsp;</a></span>array_size</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Array &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="group__TypeTraits.html#gafb844f727c41f01d5f2f2b316b648c7a">tt::array_size</a> = typedef decltype(TypeTraits_details::array_size_impl(<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/utility/declval.html">std::declval</a>&lt;const Array&amp;&gt;()))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the size of a <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a> as a <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/integral_constant.html">std::integral_constant</a>. </p>
+<h3>Details</h3>
+<p>Given a <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>, <code>Array</code>, returns a <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/integral_constant.html">std::integral_constant</a> that has the size of the array as its value</p>
+<h3>Usage</h3>
+<p>For a <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a> <code>T</code> </p><div class="fragment"><div class="line"><span class="keyword">using</span> result = <a class="code" href="group__TypeTraits.html#gafb844f727c41f01d5f2f2b316b648c7a">tt::array_size&lt;T&gt;</a>;</div></div><!-- fragment --><p><em>Returns:</em> std::integral_constant&lt;std::size_t&gt;</p>
+<p><em>Semantics:</em> For a type <code>T</code>, </p><div class="fragment"><div class="line"><span class="keyword">using</span> <a class="code" href="group__TypeTraits.html#gafb844f727c41f01d5f2f2b316b648c7a">tt::array_size&lt;std::array&lt;T, N&gt;</a>&gt; = <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/integral_constant.html">std::integral_constant</a>&lt;<a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/size_t.html">std::size_t</a>,</div><div class="line">N&gt;;</div></div><!-- fragment --><h3>Example</h3>
+<div class="fragment"><div class="line">static_assert(<a class="code" href="group__TypeTraits.html#gafb844f727c41f01d5f2f2b316b648c7a">tt::array_size</a>&lt;<a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array&lt;double, 3&gt;</a>&gt;::value == 3,</div><div class="line">              <span class="stringliteral">&quot;Failed testing type trait array_size&quot;</span>);</div><div class="line">static_assert(<a class="code" href="group__TypeTraits.html#gafb844f727c41f01d5f2f2b316b648c7a">tt::array_size</a>&lt;<a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array&lt;A, 4&gt;</a>&gt;::value == 4,</div><div class="line">              <span class="stringliteral">&quot;Failed testing type trait array_size&quot;</span>);</div></div><!-- fragment --><dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Array</td><td>the whose size should be stored in value of array_size </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga81cbbca00f78e3672f73f32ffbd0081e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga81cbbca00f78e3672f73f32ffbd0081e">&#9670;&nbsp;</a></span>bool_constant</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;bool B&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="group__TypeTraits.html#ga81cbbca00f78e3672f73f32ffbd0081e">cpp17::bool_constant</a> = typedef <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/integral_constant.html">std::integral_constant</a>&lt;bool, B&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>A compile-time boolean. </p>
+<h3>Usage</h3>
+<p>For any bool <code>B</code> </p><div class="fragment"><div class="line"><span class="keyword">using</span> result = <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/integral_constant.html">cpp17::bool_constant&lt;B&gt;</a>;</div></div><!-- fragment --><dl class="section see"><dt>See also</dt><dd><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/integral_constant.html">std::bool_constant</a> <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/integral_constant.html">std::integral_constant</a> <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/integral_constant.html">std::true_type</a> <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/integral_constant.html">std::false_type</a> </dd></dl>
+
+</div>
+</div>
+<a id="ga51ed2c1868c90399f4df81cb76f9eb66"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga51ed2c1868c90399f4df81cb76f9eb66">&#9670;&nbsp;</a></span>void_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename... Ts&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="group__TypeTraits.html#ga51ed2c1868c90399f4df81cb76f9eb66">cpp17::void_t</a> = typedef void</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Given a set of types, returns <code>void</code> </p>
+<h3>Details</h3>
+<p>Given a list of types, returns <code>void</code>. This is very useful for controlling name lookup resolution via partial template specialization.</p>
+<h3>Usage</h3>
+<p>For any set of types <code>Ti</code>, </p><div class="fragment"><div class="line"><span class="keyword">using</span> result = <a class="code" href="group__TypeTraits.html#ga51ed2c1868c90399f4df81cb76f9eb66">cpp17::void_t&lt;T0, T1, T2, T3&gt;</a>;</div></div><!-- fragment --><p><em>Returns:</em> void</p>
+<p><em>Semantics:</em> For any set of types <code>Ti</code>, </p><div class="fragment"><div class="line"><span class="keyword">using</span> result = void;</div></div><!-- fragment --><h3>Example</h3>
+<div class="fragment"><div class="line">static_assert(<a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/is_same.html">std::is_same</a>&lt;<a class="code" href="group__TypeTraits.html#ga51ed2c1868c90399f4df81cb76f9eb66">cpp17::void_t&lt;char, bool, double&gt;</a>, <span class="keywordtype">void</span>&gt;::value,</div><div class="line">              <span class="stringliteral">&quot;Failed testing type trait void_t&quot;</span>);</div></div><!-- fragment --><dl class="section see"><dt>See also</dt><dd><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/void_t.html">std::void_t</a> </dd></dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Ts</td><td>the set of types </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a id="ga173105b805ff5fa637edb005f704feca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga173105b805ff5fa637edb005f704feca">&#9670;&nbsp;</a></span>is_same_v</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename U &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr bool cpp17::is_same_v = <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/is_same.html">std::is_same</a>&lt;T, U&gt;::value</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Variable template for is_same. </p>
+
+</div>
+</div>
 </div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->

@@ -170,7 +170,7 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ga6c01ded3973bb4b9973e5381c32c0807"><td class="memTemplParams" colspan="2">template&lt;typename T , typename  = typename std::enable_if&lt;std::is_integral&lt;T&gt;::value&gt;::type&gt; </td></tr>
+<tr class="memitem:ga6c01ded3973bb4b9973e5381c32c0807"><td class="memTemplParams" colspan="2">template&lt;typename T , std::enable_if_t&lt; std::is_integral&lt; T &gt;::value and not std::is_same&lt; bool, T &gt;::value &gt; *  = nullptr&gt; </td></tr>
 <tr class="memitem:ga6c01ded3973bb4b9973e5381c32c0807"><td class="memTemplItemLeft" align="right" valign="top">constexpr T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__ConstantExpressions.html#ga6c01ded3973bb4b9973e5381c32c0807">two_to_the</a> (T n)</td></tr>
 <tr class="memdesc:ga6c01ded3973bb4b9973e5381c32c0807"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute 2 to the n for integral types.  <a href="group__ConstantExpressions.html#ga6c01ded3973bb4b9973e5381c32c0807">More...</a><br /></td></tr>
 <tr class="separator:ga6c01ded3973bb4b9973e5381c32c0807"><td class="memSeparator" colspan="2">&#160;</td></tr>
