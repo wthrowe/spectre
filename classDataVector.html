@@ -1,0 +1,3028 @@
+<!-- HTML header for doxygen 1.8.10-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="SXS Collaboration">
+    <meta name="generator" content="Doxygen 1.8.13"/>
+    <style>
+        /*!
+         * IE10 viewport hack for Surface/desktop Windows 8 bug
+         * Copyright 2014-2015 Twitter, Inc.
+         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+         */
+        @-webkit-viewport { width: device-width; }
+        @-moz-viewport    { width: device-width; }
+        @-ms-viewport     { width: device-width; }
+        @-o-viewport      { width: device-width; }
+        @viewport         { width: device-width; }
+      </style>
+  <title>SpECTRE: DataVector Class Reference</title>
+  <link href="tabs.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="dynsections.js"></script>
+  <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
+  <link href="octicons.css" rel="stylesheet">
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="doxygen.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="bootstrap.min.js"></script>
+  <script type="text/javascript" src="spectre.js"></script>
+  </head>
+  <body>
+  <div id="top" class="navbar-fixed-top"><!-- do not remove this div, it is closed by doxygen! -->
+  <!-- BEGIN TITLEAREA -->
+  <div id="titlearea">
+  <script type="text/javascript">
+  var searchBox = new SearchBox("searchBox", "search",false,'Search');
+  </script>
+  <div id="main-nav">
+    <ul class="sm sm-dox" id="main-menu">
+      <li>
+      <a href="https://github.com/sxs-collaboration/spectre" target="_blank">
+      SpECTRE &#160;
+        <span id="projectnumber">v0.0.0</span>
+      </a>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-book"></i><span>Documentation</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 135px;">
+            <a href="index.html">
+            <i class="octicon octicon-book"></i><span>Documentation</span></a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="tutorials.html">
+              <i class="octicon octicon-mortar-board"></i><span>Tutorials</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="dev_guide.html">
+              <i class="octicon octicon-gist-secret"></i><span>Dev Guide</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown" style="min-width: 150px;">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 130px;">
+            <a href="modules.html">
+              <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+            </a>
+          </li>
+          <li style="min-width: 130px;">
+            <a href="namespaces.html">
+              <i class="octicon octicon-gist"></i>
+              <span>Namespaces</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="files.html">
+          <i class="octicon octicon-file-directory"></i><span>Files</span>
+        </a>
+      </li>
+      <!--The Search <li> is added by doxygen later-->
+    </ul>
+  </div><!-- main-nav -->
+  </div><!-- titlearea -->
+  <!-- window showing the filter options -->
+  <div id="MSearchSelectWindow"  style="position: fixed;"
+       onmouseover="return searchBox.OnSearchSelectShow()"
+       onmouseout="return searchBox.OnSearchSelectHide()"
+       onkeydown="return searchBox.OnSearchSelectKey(event)">
+  </div>
+  <!-- iframe showing the search results (closed by default) -->
+  <div id="MSearchResultsWindow"  style="position: fixed;">
+  <iframe src="javascript:void(0)" frameborder="0"
+          name="MSearchResults" id="MSearchResults">
+  </iframe>
+  </div><!-- Generated by Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-types">Private Types</a> &#124;
+<a href="classDataVector-members.html">List of all members</a>  </div>
+  <div class="headertitle">
+<div class="title">DataVector Class Reference<div class="ingroups"><a class="el" href="group__DataStructures.html">Data Structures</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>A class for storing data on a mesh.  
+ <a href="classDataVector.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="DataVector_8hpp_source.html">DataVector.hpp</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a9f5c4e173087abe0ee20a41d45e4e3bc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#a9f5c4e173087abe0ee20a41d45e4e3bc">DataVector</a> (size_t <a class="el" href="classDataVector.html#a39a9ecdd962c142bee87c6c55be825a4">size</a>, double value=<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/numeric_limits.html">std::numeric_limits</a>&lt; double &gt;::signaling_NaN())</td></tr>
+<tr class="memdesc:a9f5c4e173087abe0ee20a41d45e4e3bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create with the given size and value.  <a href="#a9f5c4e173087abe0ee20a41d45e4e3bc">More...</a><br /></td></tr>
+<tr class="separator:a9f5c4e173087abe0ee20a41d45e4e3bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac7e51fc41511446910c5a1f30e758ef9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#ac7e51fc41511446910c5a1f30e758ef9">DataVector</a> (double *start, size_t <a class="el" href="classDataVector.html#a39a9ecdd962c142bee87c6c55be825a4">size</a>)</td></tr>
+<tr class="memdesc:ac7e51fc41511446910c5a1f30e758ef9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a non-owning <a class="el" href="classDataVector.html" title="A class for storing data on a mesh. ">DataVector</a> that points to <code>start</code>  <a href="#ac7e51fc41511446910c5a1f30e758ef9">More...</a><br /></td></tr>
+<tr class="separator:ac7e51fc41511446910c5a1f30e758ef9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a395b975410b42de7c6799994df5c4410"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#a395b975410b42de7c6799994df5c4410">DataVector</a> (<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/utility/initializer_list.html">std::initializer_list</a>&lt; double &gt; list)</td></tr>
+<tr class="memdesc:a395b975410b42de7c6799994df5c4410"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create from an initializer list.  <a href="#a395b975410b42de7c6799994df5c4410">More...</a><br /></td></tr>
+<tr class="separator:a395b975410b42de7c6799994df5c4410"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa3bafd656c01659f8496a1ab1ad2c91d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#aa3bafd656c01659f8496a1ab1ad2c91d">DataVector</a> ()=default</td></tr>
+<tr class="memdesc:aa3bafd656c01659f8496a1ab1ad2c91d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Empty <a class="el" href="classDataVector.html" title="A class for storing data on a mesh. ">DataVector</a>.  <a href="#aa3bafd656c01659f8496a1ab1ad2c91d">More...</a><br /></td></tr>
+<tr class="separator:aa3bafd656c01659f8496a1ab1ad2c91d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a39a9ecdd962c142bee87c6c55be825a4"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#a39a9ecdd962c142bee87c6c55be825a4">size</a> () const</td></tr>
+<tr class="memdesc:a39a9ecdd962c142bee87c6c55be825a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of values stored.  <a href="#a39a9ecdd962c142bee87c6c55be825a4">More...</a><br /></td></tr>
+<tr class="separator:a39a9ecdd962c142bee87c6c55be825a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a448991f366012c407d7f4d4c6219b445"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#a448991f366012c407d7f4d4c6219b445">is_owning</a> () const</td></tr>
+<tr class="memdesc:a448991f366012c407d7f4d4c6219b445"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if the class owns the data.  <a href="#a448991f366012c407d7f4d4c6219b445">More...</a><br /></td></tr>
+<tr class="separator:a448991f366012c407d7f4d4c6219b445"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a510e1a9921d28e95b3f22065f9e1587d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#a510e1a9921d28e95b3f22065f9e1587d">pup</a> (PUP::er &amp;p)</td></tr>
+<tr class="memdesc:a510e1a9921d28e95b3f22065f9e1587d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serialization for Charm++.  <a href="#a510e1a9921d28e95b3f22065f9e1587d">More...</a><br /></td></tr>
+<tr class="separator:a510e1a9921d28e95b3f22065f9e1587d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:a8d2ea684730c8a8089952d1cf1a73dae"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#a8d2ea684730c8a8089952d1cf1a73dae">set_data_ref</a> (<a class="el" href="classDataVector.html">DataVector</a> &amp;rhs)</td></tr>
+<tr class="memdesc:a8d2ea684730c8a8089952d1cf1a73dae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the <a class="el" href="classDataVector.html" title="A class for storing data on a mesh. ">DataVector</a> to be a reference to another <a class="el" href="classDataVector.html" title="A class for storing data on a mesh. ">DataVector</a> object.  <a href="#a8d2ea684730c8a8089952d1cf1a73dae">More...</a><br /></td></tr>
+<tr class="separator:a8d2ea684730c8a8089952d1cf1a73dae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1b4c75120323ced28edf7090959264a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#aa1b4c75120323ced28edf7090959264a">set_data_ref</a> (double *start, size_t <a class="el" href="classDataVector.html#a39a9ecdd962c142bee87c6c55be825a4">size</a>)</td></tr>
+<tr class="memdesc:aa1b4c75120323ced28edf7090959264a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the <a class="el" href="classDataVector.html" title="A class for storing data on a mesh. ">DataVector</a> to be a reference to another <a class="el" href="classDataVector.html" title="A class for storing data on a mesh. ">DataVector</a> object.  <a href="#aa1b4c75120323ced28edf7090959264a">More...</a><br /></td></tr>
+<tr class="separator:aa1b4c75120323ced28edf7090959264a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:a9deebf13e15056c91504ea9389786f9d"><td class="memItemLeft" align="right" valign="top">double &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#a9deebf13e15056c91504ea9389786f9d">operator[]</a> (const size_t i)</td></tr>
+<tr class="memdesc:a9deebf13e15056c91504ea9389786f9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Access ith element.  <a href="#a9deebf13e15056c91504ea9389786f9d">More...</a><br /></td></tr>
+<tr class="separator:a9deebf13e15056c91504ea9389786f9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac3210ca5a3ff54961d870c15f116831a"><td class="memItemLeft" align="right" valign="top">const double &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#ac3210ca5a3ff54961d870c15f116831a">operator[]</a> (const size_t i) const</td></tr>
+<tr class="memdesc:ac3210ca5a3ff54961d870c15f116831a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Access ith element.  <a href="#ac3210ca5a3ff54961d870c15f116831a">More...</a><br /></td></tr>
+<tr class="separator:ac3210ca5a3ff54961d870c15f116831a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:aa5d5ead2edfa3c66ad7ec38ee7a6fa7c"><td class="memItemLeft" align="right" valign="top">double *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#aa5d5ead2edfa3c66ad7ec38ee7a6fa7c">data</a> ()</td></tr>
+<tr class="memdesc:aa5d5ead2edfa3c66ad7ec38ee7a6fa7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Access to the pointer.  <a href="#aa5d5ead2edfa3c66ad7ec38ee7a6fa7c">More...</a><br /></td></tr>
+<tr class="separator:aa5d5ead2edfa3c66ad7ec38ee7a6fa7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9bfbac014dab93a172fbb7843a1a1c1c"><td class="memItemLeft" align="right" valign="top">const double *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#a9bfbac014dab93a172fbb7843a1a1c1c">data</a> () const</td></tr>
+<tr class="memdesc:a9bfbac014dab93a172fbb7843a1a1c1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Access to the pointer.  <a href="#a9bfbac014dab93a172fbb7843a1a1c1c">More...</a><br /></td></tr>
+<tr class="separator:a9bfbac014dab93a172fbb7843a1a1c1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:a9a351cbed57de973d80d50461ede3d02"><td class="memItemLeft" align="right" valign="top">decltype(auto)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#a9a351cbed57de973d80d50461ede3d02">begin</a> ()</td></tr>
+<tr class="memdesc:a9a351cbed57de973d80d50461ede3d02"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns iterator to beginning of data.  <a href="#a9a351cbed57de973d80d50461ede3d02">More...</a><br /></td></tr>
+<tr class="separator:a9a351cbed57de973d80d50461ede3d02"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a412e8396e07610dc557331294d3d4c10"><td class="memItemLeft" align="right" valign="top">decltype(auto)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#a412e8396e07610dc557331294d3d4c10">begin</a> () const</td></tr>
+<tr class="memdesc:a412e8396e07610dc557331294d3d4c10"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns iterator to beginning of data.  <a href="#a412e8396e07610dc557331294d3d4c10">More...</a><br /></td></tr>
+<tr class="separator:a412e8396e07610dc557331294d3d4c10"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:a18f8bb4858216e5b6c733995efd6c85b"><td class="memItemLeft" align="right" valign="top">decltype(auto)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#a18f8bb4858216e5b6c733995efd6c85b">end</a> ()</td></tr>
+<tr class="memdesc:a18f8bb4858216e5b6c733995efd6c85b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns iterator to end of data.  <a href="#a18f8bb4858216e5b6c733995efd6c85b">More...</a><br /></td></tr>
+<tr class="separator:a18f8bb4858216e5b6c733995efd6c85b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a08164cc0bce888e09acebcff1d1382c2"><td class="memItemLeft" align="right" valign="top">decltype(auto)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#a08164cc0bce888e09acebcff1d1382c2">end</a> () const</td></tr>
+<tr class="memdesc:a08164cc0bce888e09acebcff1d1382c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns iterator to end of data.  <a href="#a08164cc0bce888e09acebcff1d1382c2">More...</a><br /></td></tr>
+<tr class="separator:a08164cc0bce888e09acebcff1d1382c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:a4d01400af1d0d86065fe31479ae4283a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#a4d01400af1d0d86065fe31479ae4283a">operator=</a> (const double &amp;rhs)</td></tr>
+<tr class="memdesc:a4d01400af1d0d86065fe31479ae4283a"><td class="mdescLeft">&#160;</td><td class="mdescRight">See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>.  <a href="#a4d01400af1d0d86065fe31479ae4283a">More...</a><br /></td></tr>
+<tr class="separator:a4d01400af1d0d86065fe31479ae4283a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf34da76340a33f966190f5fb073facb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#abf34da76340a33f966190f5fb073facb">operator+=</a> (const <a class="el" href="classDataVector.html">DataVector</a> &amp;rhs)</td></tr>
+<tr class="memdesc:abf34da76340a33f966190f5fb073facb"><td class="mdescLeft">&#160;</td><td class="mdescRight">See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>.  <a href="#abf34da76340a33f966190f5fb073facb">More...</a><br /></td></tr>
+<tr class="separator:abf34da76340a33f966190f5fb073facb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ffe3c288c0514da4829636fbd8beb81"><td class="memTemplParams" colspan="2">template&lt;typename VT , bool VF&gt; </td></tr>
+<tr class="memitem:a1ffe3c288c0514da4829636fbd8beb81"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classDataVector.html#a1ffe3c288c0514da4829636fbd8beb81">operator+=</a> (const blaze::Vector&lt; VT, VF &gt; &amp;rhs)</td></tr>
+<tr class="memdesc:a1ffe3c288c0514da4829636fbd8beb81"><td class="mdescLeft">&#160;</td><td class="mdescRight">See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>.  <a href="#a1ffe3c288c0514da4829636fbd8beb81">More...</a><br /></td></tr>
+<tr class="separator:a1ffe3c288c0514da4829636fbd8beb81"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0398329f398eb0a3835562d481d2da20"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#a0398329f398eb0a3835562d481d2da20">operator+=</a> (const double &amp;rhs)</td></tr>
+<tr class="memdesc:a0398329f398eb0a3835562d481d2da20"><td class="mdescLeft">&#160;</td><td class="mdescRight">See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>.  <a href="#a0398329f398eb0a3835562d481d2da20">More...</a><br /></td></tr>
+<tr class="separator:a0398329f398eb0a3835562d481d2da20"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b15bc05e4cb3c28bcaea500b2521c57"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#a3b15bc05e4cb3c28bcaea500b2521c57">operator-=</a> (const <a class="el" href="classDataVector.html">DataVector</a> &amp;rhs)</td></tr>
+<tr class="memdesc:a3b15bc05e4cb3c28bcaea500b2521c57"><td class="mdescLeft">&#160;</td><td class="mdescRight">See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>.  <a href="#a3b15bc05e4cb3c28bcaea500b2521c57">More...</a><br /></td></tr>
+<tr class="separator:a3b15bc05e4cb3c28bcaea500b2521c57"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a25633028fc2b25cb93d34518169b78fb"><td class="memTemplParams" colspan="2">template&lt;typename VT , bool VF&gt; </td></tr>
+<tr class="memitem:a25633028fc2b25cb93d34518169b78fb"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classDataVector.html#a25633028fc2b25cb93d34518169b78fb">operator-=</a> (const blaze::Vector&lt; VT, VF &gt; &amp;rhs)</td></tr>
+<tr class="memdesc:a25633028fc2b25cb93d34518169b78fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>.  <a href="#a25633028fc2b25cb93d34518169b78fb">More...</a><br /></td></tr>
+<tr class="separator:a25633028fc2b25cb93d34518169b78fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a476f54dfc580d71735aa618f8fca51a4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#a476f54dfc580d71735aa618f8fca51a4">operator-=</a> (const double &amp;rhs)</td></tr>
+<tr class="memdesc:a476f54dfc580d71735aa618f8fca51a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>.  <a href="#a476f54dfc580d71735aa618f8fca51a4">More...</a><br /></td></tr>
+<tr class="separator:a476f54dfc580d71735aa618f8fca51a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8dd255dd30350db81b22ebb84dedad42"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#a8dd255dd30350db81b22ebb84dedad42">operator*=</a> (const <a class="el" href="classDataVector.html">DataVector</a> &amp;rhs)</td></tr>
+<tr class="memdesc:a8dd255dd30350db81b22ebb84dedad42"><td class="mdescLeft">&#160;</td><td class="mdescRight">See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>.  <a href="#a8dd255dd30350db81b22ebb84dedad42">More...</a><br /></td></tr>
+<tr class="separator:a8dd255dd30350db81b22ebb84dedad42"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a08ad7f3ac6317f6e9d3a2616cf9ef78e"><td class="memTemplParams" colspan="2">template&lt;typename VT , bool VF&gt; </td></tr>
+<tr class="memitem:a08ad7f3ac6317f6e9d3a2616cf9ef78e"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classDataVector.html#a08ad7f3ac6317f6e9d3a2616cf9ef78e">operator*=</a> (const blaze::Vector&lt; VT, VF &gt; &amp;rhs)</td></tr>
+<tr class="memdesc:a08ad7f3ac6317f6e9d3a2616cf9ef78e"><td class="mdescLeft">&#160;</td><td class="mdescRight">See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>.  <a href="#a08ad7f3ac6317f6e9d3a2616cf9ef78e">More...</a><br /></td></tr>
+<tr class="separator:a08ad7f3ac6317f6e9d3a2616cf9ef78e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a57ee29eb40423e35577e2fb931d0668f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#a57ee29eb40423e35577e2fb931d0668f">operator*=</a> (const double &amp;rhs)</td></tr>
+<tr class="memdesc:a57ee29eb40423e35577e2fb931d0668f"><td class="mdescLeft">&#160;</td><td class="mdescRight">See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>.  <a href="#a57ee29eb40423e35577e2fb931d0668f">More...</a><br /></td></tr>
+<tr class="separator:a57ee29eb40423e35577e2fb931d0668f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a151dfb4835ef08b82b13f9c98307fdc2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#a151dfb4835ef08b82b13f9c98307fdc2">operator/=</a> (const <a class="el" href="classDataVector.html">DataVector</a> &amp;rhs)</td></tr>
+<tr class="memdesc:a151dfb4835ef08b82b13f9c98307fdc2"><td class="mdescLeft">&#160;</td><td class="mdescRight">See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>.  <a href="#a151dfb4835ef08b82b13f9c98307fdc2">More...</a><br /></td></tr>
+<tr class="separator:a151dfb4835ef08b82b13f9c98307fdc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ed8663faa4e4a33eaac26741e6284e2"><td class="memTemplParams" colspan="2">template&lt;typename VT , bool VF&gt; </td></tr>
+<tr class="memitem:a8ed8663faa4e4a33eaac26741e6284e2"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classDataVector.html#a8ed8663faa4e4a33eaac26741e6284e2">operator/=</a> (const blaze::Vector&lt; VT, VF &gt; &amp;rhs)</td></tr>
+<tr class="memdesc:a8ed8663faa4e4a33eaac26741e6284e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>.  <a href="#a8ed8663faa4e4a33eaac26741e6284e2">More...</a><br /></td></tr>
+<tr class="separator:a8ed8663faa4e4a33eaac26741e6284e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6abdb9d3c1bbf631500b3b1f888ff92"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#ad6abdb9d3c1bbf631500b3b1f888ff92">operator/=</a> (const double &amp;rhs)</td></tr>
+<tr class="memdesc:ad6abdb9d3c1bbf631500b3b1f888ff92"><td class="mdescLeft">&#160;</td><td class="mdescRight">See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>.  <a href="#ad6abdb9d3c1bbf631500b3b1f888ff92">More...</a><br /></td></tr>
+<tr class="separator:ad6abdb9d3c1bbf631500b3b1f888ff92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2360a9ae4c6824c67886d4c43f5ba12f"><td class="memItemLeft" align="right" valign="top">decltype(auto) friend&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#a2360a9ae4c6824c67886d4c43f5ba12f">operator+</a> (const <a class="el" href="classDataVector.html">DataVector</a> &amp;lhs, const <a class="el" href="classDataVector.html">DataVector</a> &amp;rhs)</td></tr>
+<tr class="memdesc:a2360a9ae4c6824c67886d4c43f5ba12f"><td class="mdescLeft">&#160;</td><td class="mdescRight">See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>.  <a href="#a2360a9ae4c6824c67886d4c43f5ba12f">More...</a><br /></td></tr>
+<tr class="separator:a2360a9ae4c6824c67886d4c43f5ba12f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aebb285fe2872893c22d3259c42fb7c86"><td class="memTemplParams" colspan="2">template&lt;typename VT , bool VF&gt; </td></tr>
+<tr class="memitem:aebb285fe2872893c22d3259c42fb7c86"><td class="memTemplItemLeft" align="right" valign="top">decltype(auto) friend&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classDataVector.html#aebb285fe2872893c22d3259c42fb7c86">operator+</a> (const blaze::Vector&lt; VT, VF &gt; &amp;lhs, const <a class="el" href="classDataVector.html">DataVector</a> &amp;rhs)</td></tr>
+<tr class="memdesc:aebb285fe2872893c22d3259c42fb7c86"><td class="mdescLeft">&#160;</td><td class="mdescRight">See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>.  <a href="#aebb285fe2872893c22d3259c42fb7c86">More...</a><br /></td></tr>
+<tr class="separator:aebb285fe2872893c22d3259c42fb7c86"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a9be46f38c49d3d0e994b05b15fb915"><td class="memTemplParams" colspan="2">template&lt;typename VT , bool VF&gt; </td></tr>
+<tr class="memitem:a8a9be46f38c49d3d0e994b05b15fb915"><td class="memTemplItemLeft" align="right" valign="top">decltype(auto) friend&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classDataVector.html#a8a9be46f38c49d3d0e994b05b15fb915">operator+</a> (const <a class="el" href="classDataVector.html">DataVector</a> &amp;lhs, const blaze::Vector&lt; VT, VF &gt; &amp;rhs)</td></tr>
+<tr class="memdesc:a8a9be46f38c49d3d0e994b05b15fb915"><td class="mdescLeft">&#160;</td><td class="mdescRight">See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>.  <a href="#a8a9be46f38c49d3d0e994b05b15fb915">More...</a><br /></td></tr>
+<tr class="separator:a8a9be46f38c49d3d0e994b05b15fb915"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a873784ef73d54f9ce3d5a6b894be04bd"><td class="memItemLeft" align="right" valign="top">decltype(auto) friend&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#a873784ef73d54f9ce3d5a6b894be04bd">operator+</a> (const <a class="el" href="classDataVector.html">DataVector</a> &amp;lhs, const double &amp;rhs)</td></tr>
+<tr class="memdesc:a873784ef73d54f9ce3d5a6b894be04bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>.  <a href="#a873784ef73d54f9ce3d5a6b894be04bd">More...</a><br /></td></tr>
+<tr class="separator:a873784ef73d54f9ce3d5a6b894be04bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb8405cac316436348bb4fbafba79133"><td class="memItemLeft" align="right" valign="top">decltype(auto) friend&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#adb8405cac316436348bb4fbafba79133">operator+</a> (const double &amp;lhs, const <a class="el" href="classDataVector.html">DataVector</a> &amp;rhs)</td></tr>
+<tr class="memdesc:adb8405cac316436348bb4fbafba79133"><td class="mdescLeft">&#160;</td><td class="mdescRight">See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>.  <a href="#adb8405cac316436348bb4fbafba79133">More...</a><br /></td></tr>
+<tr class="separator:adb8405cac316436348bb4fbafba79133"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a542de600fdd570cc2a1c7ebe4d1a1c69"><td class="memItemLeft" align="right" valign="top">decltype(auto) friend&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#a542de600fdd570cc2a1c7ebe4d1a1c69">operator-</a> (const <a class="el" href="classDataVector.html">DataVector</a> &amp;lhs, const <a class="el" href="classDataVector.html">DataVector</a> &amp;rhs)</td></tr>
+<tr class="memdesc:a542de600fdd570cc2a1c7ebe4d1a1c69"><td class="mdescLeft">&#160;</td><td class="mdescRight">See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>.  <a href="#a542de600fdd570cc2a1c7ebe4d1a1c69">More...</a><br /></td></tr>
+<tr class="separator:a542de600fdd570cc2a1c7ebe4d1a1c69"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a68f160b104c912f5e81da5c445bb15fb"><td class="memTemplParams" colspan="2">template&lt;typename VT , bool VF&gt; </td></tr>
+<tr class="memitem:a68f160b104c912f5e81da5c445bb15fb"><td class="memTemplItemLeft" align="right" valign="top">decltype(auto) friend&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classDataVector.html#a68f160b104c912f5e81da5c445bb15fb">operator-</a> (const blaze::Vector&lt; VT, VF &gt; &amp;lhs, const <a class="el" href="classDataVector.html">DataVector</a> &amp;rhs)</td></tr>
+<tr class="memdesc:a68f160b104c912f5e81da5c445bb15fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>.  <a href="#a68f160b104c912f5e81da5c445bb15fb">More...</a><br /></td></tr>
+<tr class="separator:a68f160b104c912f5e81da5c445bb15fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c45562adf98680535d65d1f605fd229"><td class="memTemplParams" colspan="2">template&lt;typename VT , bool VF&gt; </td></tr>
+<tr class="memitem:a0c45562adf98680535d65d1f605fd229"><td class="memTemplItemLeft" align="right" valign="top">decltype(auto) friend&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classDataVector.html#a0c45562adf98680535d65d1f605fd229">operator-</a> (const <a class="el" href="classDataVector.html">DataVector</a> &amp;lhs, const blaze::Vector&lt; VT, VF &gt; &amp;rhs)</td></tr>
+<tr class="memdesc:a0c45562adf98680535d65d1f605fd229"><td class="mdescLeft">&#160;</td><td class="mdescRight">See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>.  <a href="#a0c45562adf98680535d65d1f605fd229">More...</a><br /></td></tr>
+<tr class="separator:a0c45562adf98680535d65d1f605fd229"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09f8208493623ff27b26eda6464313d2"><td class="memItemLeft" align="right" valign="top">decltype(auto) friend&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#a09f8208493623ff27b26eda6464313d2">operator-</a> (const <a class="el" href="classDataVector.html">DataVector</a> &amp;lhs, const double &amp;rhs)</td></tr>
+<tr class="memdesc:a09f8208493623ff27b26eda6464313d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>.  <a href="#a09f8208493623ff27b26eda6464313d2">More...</a><br /></td></tr>
+<tr class="separator:a09f8208493623ff27b26eda6464313d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afff9cace2c82f810fc072109a125155b"><td class="memItemLeft" align="right" valign="top">decltype(auto) friend&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#afff9cace2c82f810fc072109a125155b">operator-</a> (const double &amp;lhs, const <a class="el" href="classDataVector.html">DataVector</a> &amp;rhs)</td></tr>
+<tr class="memdesc:afff9cace2c82f810fc072109a125155b"><td class="mdescLeft">&#160;</td><td class="mdescRight">See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>.  <a href="#afff9cace2c82f810fc072109a125155b">More...</a><br /></td></tr>
+<tr class="separator:afff9cace2c82f810fc072109a125155b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6175bd30ea835f257001ba764694e371"><td class="memItemLeft" align="right" valign="top">decltype(auto) friend&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#a6175bd30ea835f257001ba764694e371">operator-</a> (const <a class="el" href="classDataVector.html">DataVector</a> &amp;rhs)</td></tr>
+<tr class="memdesc:a6175bd30ea835f257001ba764694e371"><td class="mdescLeft">&#160;</td><td class="mdescRight">See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>.  <a href="#a6175bd30ea835f257001ba764694e371">More...</a><br /></td></tr>
+<tr class="separator:a6175bd30ea835f257001ba764694e371"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1bd29f2cfcf0e25ab998b7a9722d6e7e"><td class="memItemLeft" align="right" valign="top">decltype(auto) friend&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#a1bd29f2cfcf0e25ab998b7a9722d6e7e">operator*</a> (const <a class="el" href="classDataVector.html">DataVector</a> &amp;lhs, const double &amp;rhs)</td></tr>
+<tr class="memdesc:a1bd29f2cfcf0e25ab998b7a9722d6e7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>.  <a href="#a1bd29f2cfcf0e25ab998b7a9722d6e7e">More...</a><br /></td></tr>
+<tr class="separator:a1bd29f2cfcf0e25ab998b7a9722d6e7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a69cc6c1d8578f9d305a60c63cfd4d352"><td class="memItemLeft" align="right" valign="top">decltype(auto) friend&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#a69cc6c1d8578f9d305a60c63cfd4d352">operator*</a> (const double &amp;lhs, const <a class="el" href="classDataVector.html">DataVector</a> &amp;rhs)</td></tr>
+<tr class="memdesc:a69cc6c1d8578f9d305a60c63cfd4d352"><td class="mdescLeft">&#160;</td><td class="mdescRight">See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>.  <a href="#a69cc6c1d8578f9d305a60c63cfd4d352">More...</a><br /></td></tr>
+<tr class="separator:a69cc6c1d8578f9d305a60c63cfd4d352"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a86270c6d064d6a4e86a8c2fee042d5ca"><td class="memItemLeft" align="right" valign="top">decltype(auto) friend&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#a86270c6d064d6a4e86a8c2fee042d5ca">operator*</a> (const <a class="el" href="classDataVector.html">DataVector</a> &amp;lhs, const <a class="el" href="classDataVector.html">DataVector</a> &amp;rhs)</td></tr>
+<tr class="memdesc:a86270c6d064d6a4e86a8c2fee042d5ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>.  <a href="#a86270c6d064d6a4e86a8c2fee042d5ca">More...</a><br /></td></tr>
+<tr class="separator:a86270c6d064d6a4e86a8c2fee042d5ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6af57a6de43218b14e4c34edb3a4a5ad"><td class="memTemplParams" colspan="2">template&lt;typename VT , bool VF&gt; </td></tr>
+<tr class="memitem:a6af57a6de43218b14e4c34edb3a4a5ad"><td class="memTemplItemLeft" align="right" valign="top">decltype(auto) friend&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classDataVector.html#a6af57a6de43218b14e4c34edb3a4a5ad">operator*</a> (const blaze::Vector&lt; VT, VF &gt; &amp;lhs, const <a class="el" href="classDataVector.html">DataVector</a> &amp;rhs)</td></tr>
+<tr class="memdesc:a6af57a6de43218b14e4c34edb3a4a5ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>.  <a href="#a6af57a6de43218b14e4c34edb3a4a5ad">More...</a><br /></td></tr>
+<tr class="separator:a6af57a6de43218b14e4c34edb3a4a5ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a060a2f9b2387cb4338b0acde3f8a3319"><td class="memTemplParams" colspan="2">template&lt;typename VT , bool VF&gt; </td></tr>
+<tr class="memitem:a060a2f9b2387cb4338b0acde3f8a3319"><td class="memTemplItemLeft" align="right" valign="top">decltype(auto) friend&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classDataVector.html#a060a2f9b2387cb4338b0acde3f8a3319">operator*</a> (const <a class="el" href="classDataVector.html">DataVector</a> &amp;lhs, const blaze::Vector&lt; VT, VF &gt; &amp;rhs)</td></tr>
+<tr class="memdesc:a060a2f9b2387cb4338b0acde3f8a3319"><td class="mdescLeft">&#160;</td><td class="mdescRight">See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>.  <a href="#a060a2f9b2387cb4338b0acde3f8a3319">More...</a><br /></td></tr>
+<tr class="separator:a060a2f9b2387cb4338b0acde3f8a3319"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d537b3ce27eedd05a2bf91798010ea4"><td class="memItemLeft" align="right" valign="top">decltype(auto) friend&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#a6d537b3ce27eedd05a2bf91798010ea4">operator/</a> (const <a class="el" href="classDataVector.html">DataVector</a> &amp;lhs, const double &amp;rhs)</td></tr>
+<tr class="memdesc:a6d537b3ce27eedd05a2bf91798010ea4"><td class="mdescLeft">&#160;</td><td class="mdescRight">See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>.  <a href="#a6d537b3ce27eedd05a2bf91798010ea4">More...</a><br /></td></tr>
+<tr class="separator:a6d537b3ce27eedd05a2bf91798010ea4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9180e1890551c99b5a506c737193bd05"><td class="memItemLeft" align="right" valign="top">decltype(auto) friend&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#a9180e1890551c99b5a506c737193bd05">operator/</a> (const <a class="el" href="classDataVector.html">DataVector</a> &amp;lhs, const <a class="el" href="classDataVector.html">DataVector</a> &amp;rhs)</td></tr>
+<tr class="memdesc:a9180e1890551c99b5a506c737193bd05"><td class="mdescLeft">&#160;</td><td class="mdescRight">See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>.  <a href="#a9180e1890551c99b5a506c737193bd05">More...</a><br /></td></tr>
+<tr class="separator:a9180e1890551c99b5a506c737193bd05"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed82b5e07adf30642548b6e04f1545b1"><td class="memTemplParams" colspan="2">template&lt;typename VT , bool VF&gt; </td></tr>
+<tr class="memitem:aed82b5e07adf30642548b6e04f1545b1"><td class="memTemplItemLeft" align="right" valign="top">decltype(auto) friend&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classDataVector.html#aed82b5e07adf30642548b6e04f1545b1">operator/</a> (const blaze::Vector&lt; VT, VF &gt; &amp;lhs, const <a class="el" href="classDataVector.html">DataVector</a> &amp;rhs)</td></tr>
+<tr class="memdesc:aed82b5e07adf30642548b6e04f1545b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>.  <a href="#aed82b5e07adf30642548b6e04f1545b1">More...</a><br /></td></tr>
+<tr class="separator:aed82b5e07adf30642548b6e04f1545b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ba8be74c8b87be2479f33a13dcb31c8"><td class="memTemplParams" colspan="2">template&lt;typename VT , bool VF&gt; </td></tr>
+<tr class="memitem:a8ba8be74c8b87be2479f33a13dcb31c8"><td class="memTemplItemLeft" align="right" valign="top">decltype(auto) friend&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classDataVector.html#a8ba8be74c8b87be2479f33a13dcb31c8">operator/</a> (const <a class="el" href="classDataVector.html">DataVector</a> &amp;lhs, const blaze::Vector&lt; VT, VF &gt; &amp;rhs)</td></tr>
+<tr class="memdesc:a8ba8be74c8b87be2479f33a13dcb31c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>.  <a href="#a8ba8be74c8b87be2479f33a13dcb31c8">More...</a><br /></td></tr>
+<tr class="separator:a8ba8be74c8b87be2479f33a13dcb31c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a584461d9b9b629954f3f985ff03da37b"><td class="memItemLeft" align="right" valign="top">decltype(auto) friend&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#a584461d9b9b629954f3f985ff03da37b">min</a> (const <a class="el" href="classDataVector.html">DataVector</a> &amp;t)</td></tr>
+<tr class="memdesc:a584461d9b9b629954f3f985ff03da37b"><td class="mdescLeft">&#160;</td><td class="mdescRight">See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>.  <a href="#a584461d9b9b629954f3f985ff03da37b">More...</a><br /></td></tr>
+<tr class="separator:a584461d9b9b629954f3f985ff03da37b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a531d024fcc40df4daf69644e6edaf66e"><td class="memItemLeft" align="right" valign="top">decltype(auto) friend&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#a531d024fcc40df4daf69644e6edaf66e">max</a> (const <a class="el" href="classDataVector.html">DataVector</a> &amp;t)</td></tr>
+<tr class="memdesc:a531d024fcc40df4daf69644e6edaf66e"><td class="mdescLeft">&#160;</td><td class="mdescRight">See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>.  <a href="#a531d024fcc40df4daf69644e6edaf66e">More...</a><br /></td></tr>
+<tr class="separator:a531d024fcc40df4daf69644e6edaf66e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae5a992a45f685ea4b9a6b72dac72fe08"><td class="memItemLeft" align="right" valign="top">decltype(auto) friend&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#ae5a992a45f685ea4b9a6b72dac72fe08">abs</a> (const <a class="el" href="classDataVector.html">DataVector</a> &amp;t)</td></tr>
+<tr class="memdesc:ae5a992a45f685ea4b9a6b72dac72fe08"><td class="mdescLeft">&#160;</td><td class="mdescRight">See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>.  <a href="#ae5a992a45f685ea4b9a6b72dac72fe08">More...</a><br /></td></tr>
+<tr class="separator:ae5a992a45f685ea4b9a6b72dac72fe08"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f93636447d388df284499ac1430646d"><td class="memItemLeft" align="right" valign="top">decltype(auto) friend&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#a9f93636447d388df284499ac1430646d">sqrt</a> (const <a class="el" href="classDataVector.html">DataVector</a> &amp;t)</td></tr>
+<tr class="memdesc:a9f93636447d388df284499ac1430646d"><td class="mdescLeft">&#160;</td><td class="mdescRight">See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>.  <a href="#a9f93636447d388df284499ac1430646d">More...</a><br /></td></tr>
+<tr class="separator:a9f93636447d388df284499ac1430646d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac834b3694e95f14ce04dc2285a81468d"><td class="memItemLeft" align="right" valign="top">decltype(auto) friend&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#ac834b3694e95f14ce04dc2285a81468d">invsqrt</a> (const <a class="el" href="classDataVector.html">DataVector</a> &amp;t)</td></tr>
+<tr class="memdesc:ac834b3694e95f14ce04dc2285a81468d"><td class="mdescLeft">&#160;</td><td class="mdescRight">See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>.  <a href="#ac834b3694e95f14ce04dc2285a81468d">More...</a><br /></td></tr>
+<tr class="separator:ac834b3694e95f14ce04dc2285a81468d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2433192ec7cb49bb9e22f3d9c6020c3d"><td class="memItemLeft" align="right" valign="top">decltype(auto) friend&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#a2433192ec7cb49bb9e22f3d9c6020c3d">cbrt</a> (const <a class="el" href="classDataVector.html">DataVector</a> &amp;t)</td></tr>
+<tr class="memdesc:a2433192ec7cb49bb9e22f3d9c6020c3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>.  <a href="#a2433192ec7cb49bb9e22f3d9c6020c3d">More...</a><br /></td></tr>
+<tr class="separator:a2433192ec7cb49bb9e22f3d9c6020c3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3fed1844e82841f35bcc9f41041ca6bc"><td class="memItemLeft" align="right" valign="top">decltype(auto) friend&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#a3fed1844e82841f35bcc9f41041ca6bc">invcbrt</a> (const <a class="el" href="classDataVector.html">DataVector</a> &amp;t)</td></tr>
+<tr class="memdesc:a3fed1844e82841f35bcc9f41041ca6bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>.  <a href="#a3fed1844e82841f35bcc9f41041ca6bc">More...</a><br /></td></tr>
+<tr class="separator:a3fed1844e82841f35bcc9f41041ca6bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9de5a8b7942b110fd5dd299857def6eb"><td class="memItemLeft" align="right" valign="top">decltype(auto) friend&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#a9de5a8b7942b110fd5dd299857def6eb">pow</a> (const <a class="el" href="classDataVector.html">DataVector</a> &amp;t, const double exponent)</td></tr>
+<tr class="memdesc:a9de5a8b7942b110fd5dd299857def6eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>.  <a href="#a9de5a8b7942b110fd5dd299857def6eb">More...</a><br /></td></tr>
+<tr class="separator:a9de5a8b7942b110fd5dd299857def6eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a585354af3c8feac6c6951529e8afc5"><td class="memItemLeft" align="right" valign="top">decltype(auto) friend&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#a5a585354af3c8feac6c6951529e8afc5">exp</a> (const <a class="el" href="classDataVector.html">DataVector</a> &amp;t)</td></tr>
+<tr class="memdesc:a5a585354af3c8feac6c6951529e8afc5"><td class="mdescLeft">&#160;</td><td class="mdescRight">See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>.  <a href="#a5a585354af3c8feac6c6951529e8afc5">More...</a><br /></td></tr>
+<tr class="separator:a5a585354af3c8feac6c6951529e8afc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad81821a6d8c98776841a1f59f1be4a13"><td class="memItemLeft" align="right" valign="top">decltype(auto) friend&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#ad81821a6d8c98776841a1f59f1be4a13">exp2</a> (const <a class="el" href="classDataVector.html">DataVector</a> &amp;t)</td></tr>
+<tr class="memdesc:ad81821a6d8c98776841a1f59f1be4a13"><td class="mdescLeft">&#160;</td><td class="mdescRight">See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>.  <a href="#ad81821a6d8c98776841a1f59f1be4a13">More...</a><br /></td></tr>
+<tr class="separator:ad81821a6d8c98776841a1f59f1be4a13"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad93ee4a31714e85bd1afb4a473634cec"><td class="memItemLeft" align="right" valign="top">decltype(auto) friend&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#ad93ee4a31714e85bd1afb4a473634cec">exp10</a> (const <a class="el" href="classDataVector.html">DataVector</a> &amp;t)</td></tr>
+<tr class="memdesc:ad93ee4a31714e85bd1afb4a473634cec"><td class="mdescLeft">&#160;</td><td class="mdescRight">See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>.  <a href="#ad93ee4a31714e85bd1afb4a473634cec">More...</a><br /></td></tr>
+<tr class="separator:ad93ee4a31714e85bd1afb4a473634cec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0f0df35147d6ae780dbd1853c775fa6"><td class="memItemLeft" align="right" valign="top">decltype(auto) friend&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#af0f0df35147d6ae780dbd1853c775fa6">log</a> (const <a class="el" href="classDataVector.html">DataVector</a> &amp;t)</td></tr>
+<tr class="memdesc:af0f0df35147d6ae780dbd1853c775fa6"><td class="mdescLeft">&#160;</td><td class="mdescRight">See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>.  <a href="#af0f0df35147d6ae780dbd1853c775fa6">More...</a><br /></td></tr>
+<tr class="separator:af0f0df35147d6ae780dbd1853c775fa6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb5bddb39b63905e2a161fb1e6f976f0"><td class="memItemLeft" align="right" valign="top">decltype(auto) friend&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#adb5bddb39b63905e2a161fb1e6f976f0">log2</a> (const <a class="el" href="classDataVector.html">DataVector</a> &amp;t)</td></tr>
+<tr class="memdesc:adb5bddb39b63905e2a161fb1e6f976f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>.  <a href="#adb5bddb39b63905e2a161fb1e6f976f0">More...</a><br /></td></tr>
+<tr class="separator:adb5bddb39b63905e2a161fb1e6f976f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ce36df2295c861d9cefe01f70e430c0"><td class="memItemLeft" align="right" valign="top">decltype(auto) friend&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#a1ce36df2295c861d9cefe01f70e430c0">log10</a> (const <a class="el" href="classDataVector.html">DataVector</a> &amp;t)</td></tr>
+<tr class="memdesc:a1ce36df2295c861d9cefe01f70e430c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>.  <a href="#a1ce36df2295c861d9cefe01f70e430c0">More...</a><br /></td></tr>
+<tr class="separator:a1ce36df2295c861d9cefe01f70e430c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9c91c9f5f1cfe39533166c1538a1d26"><td class="memItemLeft" align="right" valign="top">decltype(auto) friend&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#af9c91c9f5f1cfe39533166c1538a1d26">sin</a> (const <a class="el" href="classDataVector.html">DataVector</a> &amp;t)</td></tr>
+<tr class="memdesc:af9c91c9f5f1cfe39533166c1538a1d26"><td class="mdescLeft">&#160;</td><td class="mdescRight">See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>.  <a href="#af9c91c9f5f1cfe39533166c1538a1d26">More...</a><br /></td></tr>
+<tr class="separator:af9c91c9f5f1cfe39533166c1538a1d26"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adbff6cb6a05222bf016ae9ea85dafb34"><td class="memItemLeft" align="right" valign="top">decltype(auto) friend&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#adbff6cb6a05222bf016ae9ea85dafb34">cos</a> (const <a class="el" href="classDataVector.html">DataVector</a> &amp;t)</td></tr>
+<tr class="memdesc:adbff6cb6a05222bf016ae9ea85dafb34"><td class="mdescLeft">&#160;</td><td class="mdescRight">See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>.  <a href="#adbff6cb6a05222bf016ae9ea85dafb34">More...</a><br /></td></tr>
+<tr class="separator:adbff6cb6a05222bf016ae9ea85dafb34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a53c10d6818c99eac5ed6f7e90beb23e2"><td class="memItemLeft" align="right" valign="top">decltype(auto) friend&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#a53c10d6818c99eac5ed6f7e90beb23e2">tan</a> (const <a class="el" href="classDataVector.html">DataVector</a> &amp;t)</td></tr>
+<tr class="memdesc:a53c10d6818c99eac5ed6f7e90beb23e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>.  <a href="#a53c10d6818c99eac5ed6f7e90beb23e2">More...</a><br /></td></tr>
+<tr class="separator:a53c10d6818c99eac5ed6f7e90beb23e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a194cdac6bb014180c83fe6cc79a83557"><td class="memItemLeft" align="right" valign="top">decltype(auto) friend&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#a194cdac6bb014180c83fe6cc79a83557">asin</a> (const <a class="el" href="classDataVector.html">DataVector</a> &amp;t)</td></tr>
+<tr class="memdesc:a194cdac6bb014180c83fe6cc79a83557"><td class="mdescLeft">&#160;</td><td class="mdescRight">See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>.  <a href="#a194cdac6bb014180c83fe6cc79a83557">More...</a><br /></td></tr>
+<tr class="separator:a194cdac6bb014180c83fe6cc79a83557"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7727c397f756fbb4f6ffe6a2373dfe39"><td class="memItemLeft" align="right" valign="top">decltype(auto) friend&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#a7727c397f756fbb4f6ffe6a2373dfe39">acos</a> (const <a class="el" href="classDataVector.html">DataVector</a> &amp;t)</td></tr>
+<tr class="memdesc:a7727c397f756fbb4f6ffe6a2373dfe39"><td class="mdescLeft">&#160;</td><td class="mdescRight">See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>.  <a href="#a7727c397f756fbb4f6ffe6a2373dfe39">More...</a><br /></td></tr>
+<tr class="separator:a7727c397f756fbb4f6ffe6a2373dfe39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa45e6d51990390279eb229a2838c3b1"><td class="memItemLeft" align="right" valign="top">decltype(auto) friend&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#afa45e6d51990390279eb229a2838c3b1">atan</a> (const <a class="el" href="classDataVector.html">DataVector</a> &amp;t)</td></tr>
+<tr class="memdesc:afa45e6d51990390279eb229a2838c3b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>.  <a href="#afa45e6d51990390279eb229a2838c3b1">More...</a><br /></td></tr>
+<tr class="separator:afa45e6d51990390279eb229a2838c3b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8df02ae1750035ccb39753a6316d553e"><td class="memItemLeft" align="right" valign="top">decltype(auto) friend&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#a8df02ae1750035ccb39753a6316d553e">sinh</a> (const <a class="el" href="classDataVector.html">DataVector</a> &amp;t)</td></tr>
+<tr class="memdesc:a8df02ae1750035ccb39753a6316d553e"><td class="mdescLeft">&#160;</td><td class="mdescRight">See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>.  <a href="#a8df02ae1750035ccb39753a6316d553e">More...</a><br /></td></tr>
+<tr class="separator:a8df02ae1750035ccb39753a6316d553e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa700bec1fe4123ddd73f88fbe9fdcb94"><td class="memItemLeft" align="right" valign="top">decltype(auto) friend&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#aa700bec1fe4123ddd73f88fbe9fdcb94">cosh</a> (const <a class="el" href="classDataVector.html">DataVector</a> &amp;t)</td></tr>
+<tr class="memdesc:aa700bec1fe4123ddd73f88fbe9fdcb94"><td class="mdescLeft">&#160;</td><td class="mdescRight">See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>.  <a href="#aa700bec1fe4123ddd73f88fbe9fdcb94">More...</a><br /></td></tr>
+<tr class="separator:aa700bec1fe4123ddd73f88fbe9fdcb94"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a795920b7dc5e9a3235b09aa60570d9c0"><td class="memItemLeft" align="right" valign="top">decltype(auto) friend&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#a795920b7dc5e9a3235b09aa60570d9c0">tanh</a> (const <a class="el" href="classDataVector.html">DataVector</a> &amp;t)</td></tr>
+<tr class="memdesc:a795920b7dc5e9a3235b09aa60570d9c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>.  <a href="#a795920b7dc5e9a3235b09aa60570d9c0">More...</a><br /></td></tr>
+<tr class="separator:a795920b7dc5e9a3235b09aa60570d9c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec54dc36751b6ff3fad720158d9adef1"><td class="memItemLeft" align="right" valign="top">decltype(auto) friend&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#aec54dc36751b6ff3fad720158d9adef1">asinh</a> (const <a class="el" href="classDataVector.html">DataVector</a> &amp;t)</td></tr>
+<tr class="memdesc:aec54dc36751b6ff3fad720158d9adef1"><td class="mdescLeft">&#160;</td><td class="mdescRight">See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>.  <a href="#aec54dc36751b6ff3fad720158d9adef1">More...</a><br /></td></tr>
+<tr class="separator:aec54dc36751b6ff3fad720158d9adef1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab09d91be4b62b9719ffe1111ea536c20"><td class="memItemLeft" align="right" valign="top">decltype(auto) friend&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#ab09d91be4b62b9719ffe1111ea536c20">acosh</a> (const <a class="el" href="classDataVector.html">DataVector</a> &amp;t)</td></tr>
+<tr class="memdesc:ab09d91be4b62b9719ffe1111ea536c20"><td class="mdescLeft">&#160;</td><td class="mdescRight">See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>.  <a href="#ab09d91be4b62b9719ffe1111ea536c20">More...</a><br /></td></tr>
+<tr class="separator:ab09d91be4b62b9719ffe1111ea536c20"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7084fa2c280b5eccbfe3081184092fcd"><td class="memItemLeft" align="right" valign="top">decltype(auto) friend&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#a7084fa2c280b5eccbfe3081184092fcd">atanh</a> (const <a class="el" href="classDataVector.html">DataVector</a> &amp;t)</td></tr>
+<tr class="memdesc:a7084fa2c280b5eccbfe3081184092fcd"><td class="mdescLeft">&#160;</td><td class="mdescRight">See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>.  <a href="#a7084fa2c280b5eccbfe3081184092fcd">More...</a><br /></td></tr>
+<tr class="separator:a7084fa2c280b5eccbfe3081184092fcd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a45194b4170d85e5012db42da17164794"><td class="memItemLeft" align="right" valign="top">decltype(auto) friend&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#a45194b4170d85e5012db42da17164794">erf</a> (const <a class="el" href="classDataVector.html">DataVector</a> &amp;t)</td></tr>
+<tr class="memdesc:a45194b4170d85e5012db42da17164794"><td class="mdescLeft">&#160;</td><td class="mdescRight">See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>.  <a href="#a45194b4170d85e5012db42da17164794">More...</a><br /></td></tr>
+<tr class="separator:a45194b4170d85e5012db42da17164794"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a864ea5a64ff387cc62a49c147ade3e76"><td class="memItemLeft" align="right" valign="top">decltype(auto) friend&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#a864ea5a64ff387cc62a49c147ade3e76">erfc</a> (const <a class="el" href="classDataVector.html">DataVector</a> &amp;t)</td></tr>
+<tr class="memdesc:a864ea5a64ff387cc62a49c147ade3e76"><td class="mdescLeft">&#160;</td><td class="mdescRight">See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>.  <a href="#a864ea5a64ff387cc62a49c147ade3e76">More...</a><br /></td></tr>
+<tr class="separator:a864ea5a64ff387cc62a49c147ade3e76"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-types"></a>
+Private Types</h2></td></tr>
+<tr class="memitem:a38abae854b54bda612a535589e3c825e"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#a38abae854b54bda612a535589e3c825e">InternalDataVector_t</a> = <a class="el" href="structPointerVector.html">PointerVector</a>&lt; double &gt;</td></tr>
+<tr class="memdesc:a38abae854b54bda612a535589e3c825e"><td class="mdescLeft">&#160;</td><td class="mdescRight">The type of the "pointer" used internally.  <a href="#a38abae854b54bda612a535589e3c825e">More...</a><br /></td></tr>
+<tr class="separator:a38abae854b54bda612a535589e3c825e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d4f81b396ad003f984e61eb8cb1980b"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#a5d4f81b396ad003f984e61eb8cb1980b">InternalStorage_t</a> = <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt; double &gt;</td></tr>
+<tr class="memdesc:a5d4f81b396ad003f984e61eb8cb1980b"><td class="mdescLeft">&#160;</td><td class="mdescRight">The type used to store the data in.  <a href="#a5d4f81b396ad003f984e61eb8cb1980b">More...</a><br /></td></tr>
+<tr class="separator:a5d4f81b396ad003f984e61eb8cb1980b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>A class for storing data on a mesh. </p>
+<p>A Data holds an array of contiguous data and can be either owning (the array is deleted when the Data goes out of scope) or non-owning, meaning it just has a pointer to an array. </p>
+</div><h2 class="groupheader">Member Typedef Documentation</h2>
+<a id="a38abae854b54bda612a535589e3c825e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a38abae854b54bda612a535589e3c825e">&#9670;&nbsp;</a></span>InternalDataVector_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classDataVector.html#a38abae854b54bda612a535589e3c825e">DataVector::InternalDataVector_t</a> =  <a class="el" href="structPointerVector.html">PointerVector</a>&lt;double&gt;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The type of the "pointer" used internally. </p>
+
+</div>
+</div>
+<a id="a5d4f81b396ad003f984e61eb8cb1980b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5d4f81b396ad003f984e61eb8cb1980b">&#9670;&nbsp;</a></span>InternalStorage_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classDataVector.html#a5d4f81b396ad003f984e61eb8cb1980b">DataVector::InternalStorage_t</a> =  <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt;double&gt;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The type used to store the data in. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a9f5c4e173087abe0ee20a41d45e4e3bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9f5c4e173087abe0ee20a41d45e4e3bc">&#9670;&nbsp;</a></span>DataVector() <span class="overload">[1/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">DataVector::DataVector </td>
+          <td>(</td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>value</em> = <code><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/numeric_limits.html">std::numeric_limits</a>&lt;double&gt;::signaling_NaN()</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Create with the given size and value. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">size</td><td>number of values </td></tr>
+    <tr><td class="paramname">value</td><td>the value to initialize each element. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ac7e51fc41511446910c5a1f30e758ef9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac7e51fc41511446910c5a1f30e758ef9">&#9670;&nbsp;</a></span>DataVector() <span class="overload">[2/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">DataVector::DataVector </td>
+          <td>(</td>
+          <td class="paramtype">double *&#160;</td>
+          <td class="paramname"><em>start</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Create a non-owning <a class="el" href="classDataVector.html" title="A class for storing data on a mesh. ">DataVector</a> that points to <code>start</code> </p>
+
+<p class="reference">References <a class="el" href="group__ErrorHandling.html#gaf170f3984e3d0f809b2558dbd981ca35">ASSERT</a>, <a class="el" href="classDataVector.html#a9a351cbed57de973d80d50461ede3d02">begin()</a>, <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/algorithm/copy.html">std::copy()</a>, <a class="el" href="classDataVector.html#aa3bafd656c01659f8496a1ab1ad2c91d">DataVector()</a>, <a class="el" href="classDataVector.html#a18f8bb4858216e5b6c733995efd6c85b">end()</a>, <a class="el" href="classDataVector.html#a448991f366012c407d7f4d4c6219b445">is_owning()</a>, <a class="el" href="classDataVector.html#a4d01400af1d0d86065fe31479ae4283a">operator=()</a>, and <a class="el" href="classDataVector.html#a39a9ecdd962c142bee87c6c55be825a4">size()</a>.</p>
+
+</div>
+</div>
+<a id="a395b975410b42de7c6799994df5c4410"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a395b975410b42de7c6799994df5c4410">&#9670;&nbsp;</a></span>DataVector() <span class="overload">[3/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">DataVector::DataVector </td>
+          <td>(</td>
+          <td class="paramtype"><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/utility/initializer_list.html">std::initializer_list</a>&lt; double &gt;&#160;</td>
+          <td class="paramname"><em>list</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Create from an initializer list. </p>
+
+</div>
+</div>
+<a id="aa3bafd656c01659f8496a1ab1ad2c91d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa3bafd656c01659f8496a1ab1ad2c91d">&#9670;&nbsp;</a></span>DataVector() <span class="overload">[4/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">DataVector::DataVector </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Empty <a class="el" href="classDataVector.html" title="A class for storing data on a mesh. ">DataVector</a>. </p>
+
+<p class="reference">Referenced by <a class="el" href="classDataVector.html#ac7e51fc41511446910c5a1f30e758ef9">DataVector()</a>, and <a class="el" href="classDataVector.html#a864ea5a64ff387cc62a49c147ade3e76">erfc()</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="ae5a992a45f685ea4b9a6b72dac72fe08"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae5a992a45f685ea4b9a6b72dac72fe08">&#9670;&nbsp;</a></span>abs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">decltype(auto) friend DataVector::abs </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td>
+          <td class="paramname"><em>t</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>. </p>
+
+</div>
+</div>
+<a id="a7727c397f756fbb4f6ffe6a2373dfe39"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7727c397f756fbb4f6ffe6a2373dfe39">&#9670;&nbsp;</a></span>acos()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">decltype(auto) friend DataVector::acos </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td>
+          <td class="paramname"><em>t</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>. </p>
+
+<p class="reference">References <a class="el" href="classDataVector.html#a7727c397f756fbb4f6ffe6a2373dfe39">acos()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classDataVector.html#a7727c397f756fbb4f6ffe6a2373dfe39">acos()</a>.</p>
+
+</div>
+</div>
+<a id="ab09d91be4b62b9719ffe1111ea536c20"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab09d91be4b62b9719ffe1111ea536c20">&#9670;&nbsp;</a></span>acosh()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">decltype(auto) friend DataVector::acosh </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td>
+          <td class="paramname"><em>t</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>. </p>
+
+<p class="reference">References <a class="el" href="classDataVector.html#ab09d91be4b62b9719ffe1111ea536c20">acosh()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classDataVector.html#ab09d91be4b62b9719ffe1111ea536c20">acosh()</a>.</p>
+
+</div>
+</div>
+<a id="a194cdac6bb014180c83fe6cc79a83557"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a194cdac6bb014180c83fe6cc79a83557">&#9670;&nbsp;</a></span>asin()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">decltype(auto) friend DataVector::asin </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td>
+          <td class="paramname"><em>t</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>. </p>
+
+<p class="reference">References <a class="el" href="classDataVector.html#a194cdac6bb014180c83fe6cc79a83557">asin()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classDataVector.html#a194cdac6bb014180c83fe6cc79a83557">asin()</a>.</p>
+
+</div>
+</div>
+<a id="aec54dc36751b6ff3fad720158d9adef1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aec54dc36751b6ff3fad720158d9adef1">&#9670;&nbsp;</a></span>asinh()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">decltype(auto) friend DataVector::asinh </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td>
+          <td class="paramname"><em>t</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>. </p>
+
+<p class="reference">References <a class="el" href="classDataVector.html#aec54dc36751b6ff3fad720158d9adef1">asinh()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classDataVector.html#aec54dc36751b6ff3fad720158d9adef1">asinh()</a>.</p>
+
+</div>
+</div>
+<a id="afa45e6d51990390279eb229a2838c3b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afa45e6d51990390279eb229a2838c3b1">&#9670;&nbsp;</a></span>atan()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">decltype(auto) friend DataVector::atan </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td>
+          <td class="paramname"><em>t</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>. </p>
+
+<p class="reference">References <a class="el" href="classDataVector.html#afa45e6d51990390279eb229a2838c3b1">atan()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classDataVector.html#afa45e6d51990390279eb229a2838c3b1">atan()</a>.</p>
+
+</div>
+</div>
+<a id="a7084fa2c280b5eccbfe3081184092fcd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7084fa2c280b5eccbfe3081184092fcd">&#9670;&nbsp;</a></span>atanh()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">decltype(auto) friend DataVector::atanh </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td>
+          <td class="paramname"><em>t</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>. </p>
+
+<p class="reference">References <a class="el" href="classDataVector.html#a7084fa2c280b5eccbfe3081184092fcd">atanh()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classDataVector.html#a7084fa2c280b5eccbfe3081184092fcd">atanh()</a>.</p>
+
+</div>
+</div>
+<a id="a9a351cbed57de973d80d50461ede3d02"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a351cbed57de973d80d50461ede3d02">&#9670;&nbsp;</a></span>begin() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">decltype(auto) DataVector::begin </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns iterator to beginning of data. </p>
+
+<p class="reference">Referenced by <a class="el" href="classDataVector.html#ac7e51fc41511446910c5a1f30e758ef9">DataVector()</a>, and <a class="el" href="DataVector_8hpp.html#a6b818e491a272b8ac8e57e69299fd61f">operator==()</a>.</p>
+
+</div>
+</div>
+<a id="a412e8396e07610dc557331294d3d4c10"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a412e8396e07610dc557331294d3d4c10">&#9670;&nbsp;</a></span>begin() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">decltype(auto) DataVector::begin </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns iterator to beginning of data. </p>
+
+</div>
+</div>
+<a id="a2433192ec7cb49bb9e22f3d9c6020c3d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2433192ec7cb49bb9e22f3d9c6020c3d">&#9670;&nbsp;</a></span>cbrt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">decltype(auto) friend DataVector::cbrt </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td>
+          <td class="paramname"><em>t</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>. </p>
+
+<p class="reference">References <a class="el" href="classDataVector.html#a2433192ec7cb49bb9e22f3d9c6020c3d">cbrt()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classDataVector.html#a2433192ec7cb49bb9e22f3d9c6020c3d">cbrt()</a>.</p>
+
+</div>
+</div>
+<a id="adbff6cb6a05222bf016ae9ea85dafb34"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adbff6cb6a05222bf016ae9ea85dafb34">&#9670;&nbsp;</a></span>cos()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">decltype(auto) friend DataVector::cos </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td>
+          <td class="paramname"><em>t</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>. </p>
+
+<p class="reference">References <a class="el" href="classDataVector.html#adbff6cb6a05222bf016ae9ea85dafb34">cos()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classDataVector.html#adbff6cb6a05222bf016ae9ea85dafb34">cos()</a>.</p>
+
+</div>
+</div>
+<a id="aa700bec1fe4123ddd73f88fbe9fdcb94"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa700bec1fe4123ddd73f88fbe9fdcb94">&#9670;&nbsp;</a></span>cosh()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">decltype(auto) friend DataVector::cosh </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td>
+          <td class="paramname"><em>t</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>. </p>
+
+<p class="reference">References <a class="el" href="classDataVector.html#aa700bec1fe4123ddd73f88fbe9fdcb94">cosh()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classDataVector.html#aa700bec1fe4123ddd73f88fbe9fdcb94">cosh()</a>.</p>
+
+</div>
+</div>
+<a id="aa5d5ead2edfa3c66ad7ec38ee7a6fa7c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa5d5ead2edfa3c66ad7ec38ee7a6fa7c">&#9670;&nbsp;</a></span>data() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double* DataVector::data </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Access to the pointer. </p>
+
+<p class="reference">Referenced by <a class="el" href="classDataVector.html#a8d2ea684730c8a8089952d1cf1a73dae">set_data_ref()</a>.</p>
+
+</div>
+</div>
+<a id="a9bfbac014dab93a172fbb7843a1a1c1c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9bfbac014dab93a172fbb7843a1a1c1c">&#9670;&nbsp;</a></span>data() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const double* DataVector::data </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Access to the pointer. </p>
+
+</div>
+</div>
+<a id="a18f8bb4858216e5b6c733995efd6c85b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a18f8bb4858216e5b6c733995efd6c85b">&#9670;&nbsp;</a></span>end() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">decltype(auto) DataVector::end </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns iterator to end of data. </p>
+
+<p class="reference">Referenced by <a class="el" href="classDataVector.html#ac7e51fc41511446910c5a1f30e758ef9">DataVector()</a>, and <a class="el" href="DataVector_8hpp.html#a6b818e491a272b8ac8e57e69299fd61f">operator==()</a>.</p>
+
+</div>
+</div>
+<a id="a08164cc0bce888e09acebcff1d1382c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a08164cc0bce888e09acebcff1d1382c2">&#9670;&nbsp;</a></span>end() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">decltype(auto) DataVector::end </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns iterator to end of data. </p>
+
+</div>
+</div>
+<a id="a45194b4170d85e5012db42da17164794"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a45194b4170d85e5012db42da17164794">&#9670;&nbsp;</a></span>erf()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">decltype(auto) friend DataVector::erf </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td>
+          <td class="paramname"><em>t</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>. </p>
+
+<p class="reference">References <a class="el" href="classDataVector.html#a45194b4170d85e5012db42da17164794">erf()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classDataVector.html#a45194b4170d85e5012db42da17164794">erf()</a>.</p>
+
+</div>
+</div>
+<a id="a864ea5a64ff387cc62a49c147ade3e76"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a864ea5a64ff387cc62a49c147ade3e76">&#9670;&nbsp;</a></span>erfc()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">decltype(auto) friend DataVector::erfc </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td>
+          <td class="paramname"><em>t</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>. </p>
+
+<p class="reference">References <a class="el" href="group__ErrorHandling.html#gaf170f3984e3d0f809b2558dbd981ca35">ASSERT</a>, <a class="el" href="classDataVector.html#aa3bafd656c01659f8496a1ab1ad2c91d">DataVector()</a>, <a class="el" href="classDataVector.html#a864ea5a64ff387cc62a49c147ade3e76">erfc()</a>, <a class="el" href="DataVector_8hpp.html#ae682169a31ba101c7f21a8610951aa57">operator!=()</a>, <a class="el" href="DataVector_8hpp.html#ab56cbde3e22a293db2289db0a92a9764">operator&lt;&lt;()</a>, <a class="el" href="classDataVector.html#a4d01400af1d0d86065fe31479ae4283a">operator=()</a>, <a class="el" href="DataVector_8hpp.html#a6b818e491a272b8ac8e57e69299fd61f">operator==()</a>, <a class="el" href="group__ConstantExpressions.html#ga711d1085380b0f6e020ad98af636350b">pow()</a>, <a class="el" href="classDataVector.html#a39a9ecdd962c142bee87c6c55be825a4">size()</a>, and <a class="el" href="group__Utilities.html#ga9d571cd642604cb7bd87bb039ca3760f">SPECTRE_ALWAYS_INLINE</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classDataVector.html#a864ea5a64ff387cc62a49c147ade3e76">erfc()</a>.</p>
+
+</div>
+</div>
+<a id="a5a585354af3c8feac6c6951529e8afc5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a585354af3c8feac6c6951529e8afc5">&#9670;&nbsp;</a></span>exp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">decltype(auto) friend DataVector::exp </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td>
+          <td class="paramname"><em>t</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>. </p>
+
+<p class="reference">References <a class="el" href="classDataVector.html#a5a585354af3c8feac6c6951529e8afc5">exp()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classDataVector.html#a5a585354af3c8feac6c6951529e8afc5">exp()</a>.</p>
+
+</div>
+</div>
+<a id="ad93ee4a31714e85bd1afb4a473634cec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad93ee4a31714e85bd1afb4a473634cec">&#9670;&nbsp;</a></span>exp10()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">decltype(auto) friend DataVector::exp10 </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td>
+          <td class="paramname"><em>t</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>. </p>
+
+<p class="reference">References <a class="el" href="classDataVector.html#ad93ee4a31714e85bd1afb4a473634cec">exp10()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classDataVector.html#ad93ee4a31714e85bd1afb4a473634cec">exp10()</a>.</p>
+
+</div>
+</div>
+<a id="ad81821a6d8c98776841a1f59f1be4a13"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad81821a6d8c98776841a1f59f1be4a13">&#9670;&nbsp;</a></span>exp2()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">decltype(auto) friend DataVector::exp2 </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td>
+          <td class="paramname"><em>t</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>. </p>
+
+<p class="reference">References <a class="el" href="classDataVector.html#ad81821a6d8c98776841a1f59f1be4a13">exp2()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classDataVector.html#ad81821a6d8c98776841a1f59f1be4a13">exp2()</a>.</p>
+
+</div>
+</div>
+<a id="a3fed1844e82841f35bcc9f41041ca6bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3fed1844e82841f35bcc9f41041ca6bc">&#9670;&nbsp;</a></span>invcbrt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">decltype(auto) friend DataVector::invcbrt </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td>
+          <td class="paramname"><em>t</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>. </p>
+
+</div>
+</div>
+<a id="ac834b3694e95f14ce04dc2285a81468d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac834b3694e95f14ce04dc2285a81468d">&#9670;&nbsp;</a></span>invsqrt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">decltype(auto) friend DataVector::invsqrt </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td>
+          <td class="paramname"><em>t</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>. </p>
+
+</div>
+</div>
+<a id="a448991f366012c407d7f4d4c6219b445"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a448991f366012c407d7f4d4c6219b445">&#9670;&nbsp;</a></span>is_owning()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool DataVector::is_owning </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns true if the class owns the data. </p>
+
+<p class="reference">Referenced by <a class="el" href="classDataVector.html#ac7e51fc41511446910c5a1f30e758ef9">DataVector()</a>.</p>
+
+</div>
+</div>
+<a id="af0f0df35147d6ae780dbd1853c775fa6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af0f0df35147d6ae780dbd1853c775fa6">&#9670;&nbsp;</a></span>log()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">decltype(auto) friend DataVector::log </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td>
+          <td class="paramname"><em>t</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>. </p>
+
+<p class="reference">References <a class="el" href="classDataVector.html#af0f0df35147d6ae780dbd1853c775fa6">log()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classDataVector.html#af0f0df35147d6ae780dbd1853c775fa6">log()</a>.</p>
+
+</div>
+</div>
+<a id="a1ce36df2295c861d9cefe01f70e430c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ce36df2295c861d9cefe01f70e430c0">&#9670;&nbsp;</a></span>log10()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">decltype(auto) friend DataVector::log10 </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td>
+          <td class="paramname"><em>t</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>. </p>
+
+<p class="reference">References <a class="el" href="classDataVector.html#a1ce36df2295c861d9cefe01f70e430c0">log10()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classDataVector.html#a1ce36df2295c861d9cefe01f70e430c0">log10()</a>.</p>
+
+</div>
+</div>
+<a id="adb5bddb39b63905e2a161fb1e6f976f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adb5bddb39b63905e2a161fb1e6f976f0">&#9670;&nbsp;</a></span>log2()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">decltype(auto) friend DataVector::log2 </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td>
+          <td class="paramname"><em>t</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>. </p>
+
+<p class="reference">References <a class="el" href="classDataVector.html#adb5bddb39b63905e2a161fb1e6f976f0">log2()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classDataVector.html#adb5bddb39b63905e2a161fb1e6f976f0">log2()</a>.</p>
+
+</div>
+</div>
+<a id="a531d024fcc40df4daf69644e6edaf66e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a531d024fcc40df4daf69644e6edaf66e">&#9670;&nbsp;</a></span>max()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">decltype(auto) friend DataVector::max </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td>
+          <td class="paramname"><em>t</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>. </p>
+
+<p class="reference">References <a class="el" href="classDataVector.html#a531d024fcc40df4daf69644e6edaf66e">max()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classDataVector.html#a531d024fcc40df4daf69644e6edaf66e">max()</a>.</p>
+
+</div>
+</div>
+<a id="a584461d9b9b629954f3f985ff03da37b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a584461d9b9b629954f3f985ff03da37b">&#9670;&nbsp;</a></span>min()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">decltype(auto) friend DataVector::min </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td>
+          <td class="paramname"><em>t</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>. </p>
+
+<p class="reference">References <a class="el" href="classDataVector.html#a584461d9b9b629954f3f985ff03da37b">min()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classDataVector.html#a584461d9b9b629954f3f985ff03da37b">min()</a>.</p>
+
+</div>
+</div>
+<a id="a1bd29f2cfcf0e25ab998b7a9722d6e7e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1bd29f2cfcf0e25ab998b7a9722d6e7e">&#9670;&nbsp;</a></span>operator*() <span class="overload">[1/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">decltype(auto) friend DataVector::operator* </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td>
+          <td class="paramname"><em>lhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double &amp;&#160;</td>
+          <td class="paramname"><em>rhs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>. </p>
+
+</div>
+</div>
+<a id="a69cc6c1d8578f9d305a60c63cfd4d352"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a69cc6c1d8578f9d305a60c63cfd4d352">&#9670;&nbsp;</a></span>operator*() <span class="overload">[2/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">decltype(auto) friend DataVector::operator* </td>
+          <td>(</td>
+          <td class="paramtype">const double &amp;&#160;</td>
+          <td class="paramname"><em>lhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td>
+          <td class="paramname"><em>rhs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>. </p>
+
+</div>
+</div>
+<a id="a86270c6d064d6a4e86a8c2fee042d5ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a86270c6d064d6a4e86a8c2fee042d5ca">&#9670;&nbsp;</a></span>operator*() <span class="overload">[3/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">decltype(auto) friend DataVector::operator* </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td>
+          <td class="paramname"><em>lhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td>
+          <td class="paramname"><em>rhs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>. </p>
+
+</div>
+</div>
+<a id="a6af57a6de43218b14e4c34edb3a4a5ad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6af57a6de43218b14e4c34edb3a4a5ad">&#9670;&nbsp;</a></span>operator*() <span class="overload">[4/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename VT , bool VF&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">decltype(auto) friend DataVector::operator* </td>
+          <td>(</td>
+          <td class="paramtype">const blaze::Vector&lt; VT, VF &gt; &amp;&#160;</td>
+          <td class="paramname"><em>lhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td>
+          <td class="paramname"><em>rhs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>. </p>
+
+</div>
+</div>
+<a id="a060a2f9b2387cb4338b0acde3f8a3319"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a060a2f9b2387cb4338b0acde3f8a3319">&#9670;&nbsp;</a></span>operator*() <span class="overload">[5/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename VT , bool VF&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">decltype(auto) friend DataVector::operator* </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td>
+          <td class="paramname"><em>lhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const blaze::Vector&lt; VT, VF &gt; &amp;&#160;</td>
+          <td class="paramname"><em>rhs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>. </p>
+
+</div>
+</div>
+<a id="a8dd255dd30350db81b22ebb84dedad42"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8dd255dd30350db81b22ebb84dedad42">&#9670;&nbsp;</a></span>operator*=() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classDataVector.html">DataVector</a>&amp; DataVector::operator*= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td>
+          <td class="paramname"><em>rhs</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>. </p>
+
+</div>
+</div>
+<a id="a08ad7f3ac6317f6e9d3a2616cf9ef78e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a08ad7f3ac6317f6e9d3a2616cf9ef78e">&#9670;&nbsp;</a></span>operator*=() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename VT , bool VF&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classDataVector.html">DataVector</a>&amp; DataVector::operator*= </td>
+          <td>(</td>
+          <td class="paramtype">const blaze::Vector&lt; VT, VF &gt; &amp;&#160;</td>
+          <td class="paramname"><em>rhs</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>. </p>
+
+</div>
+</div>
+<a id="a57ee29eb40423e35577e2fb931d0668f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a57ee29eb40423e35577e2fb931d0668f">&#9670;&nbsp;</a></span>operator*=() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classDataVector.html">DataVector</a>&amp; DataVector::operator*= </td>
+          <td>(</td>
+          <td class="paramtype">const double &amp;&#160;</td>
+          <td class="paramname"><em>rhs</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>. </p>
+
+</div>
+</div>
+<a id="a2360a9ae4c6824c67886d4c43f5ba12f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2360a9ae4c6824c67886d4c43f5ba12f">&#9670;&nbsp;</a></span>operator+() <span class="overload">[1/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">decltype(auto) friend DataVector::operator+ </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td>
+          <td class="paramname"><em>lhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td>
+          <td class="paramname"><em>rhs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>. </p>
+
+</div>
+</div>
+<a id="aebb285fe2872893c22d3259c42fb7c86"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aebb285fe2872893c22d3259c42fb7c86">&#9670;&nbsp;</a></span>operator+() <span class="overload">[2/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename VT , bool VF&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">decltype(auto) friend DataVector::operator+ </td>
+          <td>(</td>
+          <td class="paramtype">const blaze::Vector&lt; VT, VF &gt; &amp;&#160;</td>
+          <td class="paramname"><em>lhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td>
+          <td class="paramname"><em>rhs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>. </p>
+
+</div>
+</div>
+<a id="a8a9be46f38c49d3d0e994b05b15fb915"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8a9be46f38c49d3d0e994b05b15fb915">&#9670;&nbsp;</a></span>operator+() <span class="overload">[3/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename VT , bool VF&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">decltype(auto) friend DataVector::operator+ </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td>
+          <td class="paramname"><em>lhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const blaze::Vector&lt; VT, VF &gt; &amp;&#160;</td>
+          <td class="paramname"><em>rhs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>. </p>
+
+</div>
+</div>
+<a id="a873784ef73d54f9ce3d5a6b894be04bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a873784ef73d54f9ce3d5a6b894be04bd">&#9670;&nbsp;</a></span>operator+() <span class="overload">[4/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">decltype(auto) friend DataVector::operator+ </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td>
+          <td class="paramname"><em>lhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double &amp;&#160;</td>
+          <td class="paramname"><em>rhs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>. </p>
+
+</div>
+</div>
+<a id="adb8405cac316436348bb4fbafba79133"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adb8405cac316436348bb4fbafba79133">&#9670;&nbsp;</a></span>operator+() <span class="overload">[5/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">decltype(auto) friend DataVector::operator+ </td>
+          <td>(</td>
+          <td class="paramtype">const double &amp;&#160;</td>
+          <td class="paramname"><em>lhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td>
+          <td class="paramname"><em>rhs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>. </p>
+
+</div>
+</div>
+<a id="abf34da76340a33f966190f5fb073facb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abf34da76340a33f966190f5fb073facb">&#9670;&nbsp;</a></span>operator+=() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classDataVector.html">DataVector</a>&amp; DataVector::operator+= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td>
+          <td class="paramname"><em>rhs</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>. </p>
+
+</div>
+</div>
+<a id="a1ffe3c288c0514da4829636fbd8beb81"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ffe3c288c0514da4829636fbd8beb81">&#9670;&nbsp;</a></span>operator+=() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename VT , bool VF&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classDataVector.html">DataVector</a>&amp; DataVector::operator+= </td>
+          <td>(</td>
+          <td class="paramtype">const blaze::Vector&lt; VT, VF &gt; &amp;&#160;</td>
+          <td class="paramname"><em>rhs</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>. </p>
+
+</div>
+</div>
+<a id="a0398329f398eb0a3835562d481d2da20"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0398329f398eb0a3835562d481d2da20">&#9670;&nbsp;</a></span>operator+=() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classDataVector.html">DataVector</a>&amp; DataVector::operator+= </td>
+          <td>(</td>
+          <td class="paramtype">const double &amp;&#160;</td>
+          <td class="paramname"><em>rhs</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>. </p>
+
+</div>
+</div>
+<a id="a542de600fdd570cc2a1c7ebe4d1a1c69"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a542de600fdd570cc2a1c7ebe4d1a1c69">&#9670;&nbsp;</a></span>operator-() <span class="overload">[1/6]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">decltype(auto) friend DataVector::operator- </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td>
+          <td class="paramname"><em>lhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td>
+          <td class="paramname"><em>rhs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>. </p>
+
+</div>
+</div>
+<a id="a68f160b104c912f5e81da5c445bb15fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a68f160b104c912f5e81da5c445bb15fb">&#9670;&nbsp;</a></span>operator-() <span class="overload">[2/6]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename VT , bool VF&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">decltype(auto) friend DataVector::operator- </td>
+          <td>(</td>
+          <td class="paramtype">const blaze::Vector&lt; VT, VF &gt; &amp;&#160;</td>
+          <td class="paramname"><em>lhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td>
+          <td class="paramname"><em>rhs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>. </p>
+
+</div>
+</div>
+<a id="a0c45562adf98680535d65d1f605fd229"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c45562adf98680535d65d1f605fd229">&#9670;&nbsp;</a></span>operator-() <span class="overload">[3/6]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename VT , bool VF&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">decltype(auto) friend DataVector::operator- </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td>
+          <td class="paramname"><em>lhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const blaze::Vector&lt; VT, VF &gt; &amp;&#160;</td>
+          <td class="paramname"><em>rhs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>. </p>
+
+</div>
+</div>
+<a id="a09f8208493623ff27b26eda6464313d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a09f8208493623ff27b26eda6464313d2">&#9670;&nbsp;</a></span>operator-() <span class="overload">[4/6]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">decltype(auto) friend DataVector::operator- </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td>
+          <td class="paramname"><em>lhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double &amp;&#160;</td>
+          <td class="paramname"><em>rhs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>. </p>
+
+</div>
+</div>
+<a id="afff9cace2c82f810fc072109a125155b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afff9cace2c82f810fc072109a125155b">&#9670;&nbsp;</a></span>operator-() <span class="overload">[5/6]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">decltype(auto) friend DataVector::operator- </td>
+          <td>(</td>
+          <td class="paramtype">const double &amp;&#160;</td>
+          <td class="paramname"><em>lhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td>
+          <td class="paramname"><em>rhs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>. </p>
+
+</div>
+</div>
+<a id="a6175bd30ea835f257001ba764694e371"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6175bd30ea835f257001ba764694e371">&#9670;&nbsp;</a></span>operator-() <span class="overload">[6/6]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">decltype(auto) friend DataVector::operator- </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td>
+          <td class="paramname"><em>rhs</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>. </p>
+
+</div>
+</div>
+<a id="a3b15bc05e4cb3c28bcaea500b2521c57"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b15bc05e4cb3c28bcaea500b2521c57">&#9670;&nbsp;</a></span>operator-=() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classDataVector.html">DataVector</a>&amp; DataVector::operator-= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td>
+          <td class="paramname"><em>rhs</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>. </p>
+
+</div>
+</div>
+<a id="a25633028fc2b25cb93d34518169b78fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a25633028fc2b25cb93d34518169b78fb">&#9670;&nbsp;</a></span>operator-=() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename VT , bool VF&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classDataVector.html">DataVector</a>&amp; DataVector::operator-= </td>
+          <td>(</td>
+          <td class="paramtype">const blaze::Vector&lt; VT, VF &gt; &amp;&#160;</td>
+          <td class="paramname"><em>rhs</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>. </p>
+
+</div>
+</div>
+<a id="a476f54dfc580d71735aa618f8fca51a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a476f54dfc580d71735aa618f8fca51a4">&#9670;&nbsp;</a></span>operator-=() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classDataVector.html">DataVector</a>&amp; DataVector::operator-= </td>
+          <td>(</td>
+          <td class="paramtype">const double &amp;&#160;</td>
+          <td class="paramname"><em>rhs</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>. </p>
+
+</div>
+</div>
+<a id="a6d537b3ce27eedd05a2bf91798010ea4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d537b3ce27eedd05a2bf91798010ea4">&#9670;&nbsp;</a></span>operator/() <span class="overload">[1/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">decltype(auto) friend DataVector::operator/ </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td>
+          <td class="paramname"><em>lhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double &amp;&#160;</td>
+          <td class="paramname"><em>rhs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>. </p>
+
+</div>
+</div>
+<a id="a9180e1890551c99b5a506c737193bd05"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9180e1890551c99b5a506c737193bd05">&#9670;&nbsp;</a></span>operator/() <span class="overload">[2/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">decltype(auto) friend DataVector::operator/ </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td>
+          <td class="paramname"><em>lhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td>
+          <td class="paramname"><em>rhs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>. </p>
+
+</div>
+</div>
+<a id="aed82b5e07adf30642548b6e04f1545b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aed82b5e07adf30642548b6e04f1545b1">&#9670;&nbsp;</a></span>operator/() <span class="overload">[3/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename VT , bool VF&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">decltype(auto) friend DataVector::operator/ </td>
+          <td>(</td>
+          <td class="paramtype">const blaze::Vector&lt; VT, VF &gt; &amp;&#160;</td>
+          <td class="paramname"><em>lhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td>
+          <td class="paramname"><em>rhs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>. </p>
+
+</div>
+</div>
+<a id="a8ba8be74c8b87be2479f33a13dcb31c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ba8be74c8b87be2479f33a13dcb31c8">&#9670;&nbsp;</a></span>operator/() <span class="overload">[4/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename VT , bool VF&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">decltype(auto) friend DataVector::operator/ </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td>
+          <td class="paramname"><em>lhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const blaze::Vector&lt; VT, VF &gt; &amp;&#160;</td>
+          <td class="paramname"><em>rhs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>. </p>
+
+</div>
+</div>
+<a id="a151dfb4835ef08b82b13f9c98307fdc2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a151dfb4835ef08b82b13f9c98307fdc2">&#9670;&nbsp;</a></span>operator/=() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classDataVector.html">DataVector</a>&amp; DataVector::operator/= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td>
+          <td class="paramname"><em>rhs</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>. </p>
+
+</div>
+</div>
+<a id="a8ed8663faa4e4a33eaac26741e6284e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ed8663faa4e4a33eaac26741e6284e2">&#9670;&nbsp;</a></span>operator/=() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename VT , bool VF&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classDataVector.html">DataVector</a>&amp; DataVector::operator/= </td>
+          <td>(</td>
+          <td class="paramtype">const blaze::Vector&lt; VT, VF &gt; &amp;&#160;</td>
+          <td class="paramname"><em>rhs</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>. </p>
+
+</div>
+</div>
+<a id="ad6abdb9d3c1bbf631500b3b1f888ff92"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad6abdb9d3c1bbf631500b3b1f888ff92">&#9670;&nbsp;</a></span>operator/=() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classDataVector.html">DataVector</a>&amp; DataVector::operator/= </td>
+          <td>(</td>
+          <td class="paramtype">const double &amp;&#160;</td>
+          <td class="paramname"><em>rhs</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>. </p>
+
+</div>
+</div>
+<a id="a4d01400af1d0d86065fe31479ae4283a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d01400af1d0d86065fe31479ae4283a">&#9670;&nbsp;</a></span>operator=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classDataVector.html">DataVector</a>&amp; DataVector::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const double &amp;&#160;</td>
+          <td class="paramname"><em>rhs</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>. </p>
+
+<p class="reference">Referenced by <a class="el" href="classDataVector.html#ac7e51fc41511446910c5a1f30e758ef9">DataVector()</a>, and <a class="el" href="classDataVector.html#a864ea5a64ff387cc62a49c147ade3e76">erfc()</a>.</p>
+
+</div>
+</div>
+<a id="a9deebf13e15056c91504ea9389786f9d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9deebf13e15056c91504ea9389786f9d">&#9670;&nbsp;</a></span>operator[]() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double&amp; DataVector::operator[] </td>
+          <td>(</td>
+          <td class="paramtype">const size_t&#160;</td>
+          <td class="paramname"><em>i</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Access ith element. </p>
+
+<p class="reference">References <a class="el" href="group__ErrorHandling.html#gaf170f3984e3d0f809b2558dbd981ca35">ASSERT</a>.</p>
+
+</div>
+</div>
+<a id="ac3210ca5a3ff54961d870c15f116831a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac3210ca5a3ff54961d870c15f116831a">&#9670;&nbsp;</a></span>operator[]() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const double&amp; DataVector::operator[] </td>
+          <td>(</td>
+          <td class="paramtype">const size_t&#160;</td>
+          <td class="paramname"><em>i</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Access ith element. </p>
+
+<p class="reference">References <a class="el" href="group__ErrorHandling.html#gaf170f3984e3d0f809b2558dbd981ca35">ASSERT</a>.</p>
+
+</div>
+</div>
+<a id="a9de5a8b7942b110fd5dd299857def6eb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9de5a8b7942b110fd5dd299857def6eb">&#9670;&nbsp;</a></span>pow()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">decltype(auto) friend DataVector::pow </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td>
+          <td class="paramname"><em>t</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double&#160;</td>
+          <td class="paramname"><em>exponent</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>. </p>
+
+<p class="reference">References <a class="el" href="group__ConstantExpressions.html#ga711d1085380b0f6e020ad98af636350b">pow()</a>.</p>
+
+</div>
+</div>
+<a id="a510e1a9921d28e95b3f22065f9e1587d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a510e1a9921d28e95b3f22065f9e1587d">&#9670;&nbsp;</a></span>pup()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DataVector::pup </td>
+          <td>(</td>
+          <td class="paramtype">PUP::er &amp;&#160;</td>
+          <td class="paramname"><em>p</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Serialization for Charm++. </p>
+
+</div>
+</div>
+<a id="a8d2ea684730c8a8089952d1cf1a73dae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d2ea684730c8a8089952d1cf1a73dae">&#9670;&nbsp;</a></span>set_data_ref() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DataVector::set_data_ref </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td>
+          <td class="paramname"><em>rhs</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set the <a class="el" href="classDataVector.html" title="A class for storing data on a mesh. ">DataVector</a> to be a reference to another <a class="el" href="classDataVector.html" title="A class for storing data on a mesh. ">DataVector</a> object. </p>
+
+<p class="reference">References <a class="el" href="classDataVector.html#aa5d5ead2edfa3c66ad7ec38ee7a6fa7c">data()</a>, and <a class="el" href="classDataVector.html#a8d2ea684730c8a8089952d1cf1a73dae">set_data_ref()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classDataVector.html#a8d2ea684730c8a8089952d1cf1a73dae">set_data_ref()</a>.</p>
+
+</div>
+</div>
+<a id="aa1b4c75120323ced28edf7090959264a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa1b4c75120323ced28edf7090959264a">&#9670;&nbsp;</a></span>set_data_ref() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DataVector::set_data_ref </td>
+          <td>(</td>
+          <td class="paramtype">double *&#160;</td>
+          <td class="paramname"><em>start</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set the <a class="el" href="classDataVector.html" title="A class for storing data on a mesh. ">DataVector</a> to be a reference to another <a class="el" href="classDataVector.html" title="A class for storing data on a mesh. ">DataVector</a> object. </p>
+
+<p class="reference">References <a class="el" href="classDataVector.html#a39a9ecdd962c142bee87c6c55be825a4">size()</a>.</p>
+
+</div>
+</div>
+<a id="af9c91c9f5f1cfe39533166c1538a1d26"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9c91c9f5f1cfe39533166c1538a1d26">&#9670;&nbsp;</a></span>sin()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">decltype(auto) friend DataVector::sin </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td>
+          <td class="paramname"><em>t</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>. </p>
+
+<p class="reference">References <a class="el" href="classDataVector.html#af9c91c9f5f1cfe39533166c1538a1d26">sin()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classDataVector.html#af9c91c9f5f1cfe39533166c1538a1d26">sin()</a>.</p>
+
+</div>
+</div>
+<a id="a8df02ae1750035ccb39753a6316d553e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8df02ae1750035ccb39753a6316d553e">&#9670;&nbsp;</a></span>sinh()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">decltype(auto) friend DataVector::sinh </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td>
+          <td class="paramname"><em>t</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>. </p>
+
+<p class="reference">References <a class="el" href="classDataVector.html#a8df02ae1750035ccb39753a6316d553e">sinh()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classDataVector.html#a8df02ae1750035ccb39753a6316d553e">sinh()</a>.</p>
+
+</div>
+</div>
+<a id="a39a9ecdd962c142bee87c6c55be825a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a39a9ecdd962c142bee87c6c55be825a4">&#9670;&nbsp;</a></span>size()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t DataVector::size </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Number of values stored. </p>
+
+<p class="reference">Referenced by <a class="el" href="classDataVector.html#ac7e51fc41511446910c5a1f30e758ef9">DataVector()</a>, <a class="el" href="classDataVector.html#a864ea5a64ff387cc62a49c147ade3e76">erfc()</a>, <a class="el" href="DataVector_8hpp.html#a6b818e491a272b8ac8e57e69299fd61f">operator==()</a>, and <a class="el" href="classDataVector.html#aa1b4c75120323ced28edf7090959264a">set_data_ref()</a>.</p>
+
+</div>
+</div>
+<a id="a9f93636447d388df284499ac1430646d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9f93636447d388df284499ac1430646d">&#9670;&nbsp;</a></span>sqrt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">decltype(auto) friend DataVector::sqrt </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td>
+          <td class="paramname"><em>t</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>. </p>
+
+<p class="reference">References <a class="el" href="classDataVector.html#a9f93636447d388df284499ac1430646d">sqrt()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classDataVector.html#a9f93636447d388df284499ac1430646d">sqrt()</a>.</p>
+
+</div>
+</div>
+<a id="a53c10d6818c99eac5ed6f7e90beb23e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a53c10d6818c99eac5ed6f7e90beb23e2">&#9670;&nbsp;</a></span>tan()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">decltype(auto) friend DataVector::tan </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td>
+          <td class="paramname"><em>t</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>. </p>
+
+<p class="reference">References <a class="el" href="classDataVector.html#a53c10d6818c99eac5ed6f7e90beb23e2">tan()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classDataVector.html#a53c10d6818c99eac5ed6f7e90beb23e2">tan()</a>.</p>
+
+</div>
+</div>
+<a id="a795920b7dc5e9a3235b09aa60570d9c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a795920b7dc5e9a3235b09aa60570d9c0">&#9670;&nbsp;</a></span>tanh()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">decltype(auto) friend DataVector::tanh </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classDataVector.html">DataVector</a> &amp;&#160;</td>
+          <td class="paramname"><em>t</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>. </p>
+
+<p class="reference">References <a class="el" href="classDataVector.html#a795920b7dc5e9a3235b09aa60570d9c0">tanh()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classDataVector.html#a795920b7dc5e9a3235b09aa60570d9c0">tanh()</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>src/DataStructures/<a class="el" href="DataVector_8hpp_source.html">DataVector.hpp</a></li>
+<li>src/DataStructures/<a class="el" href="src_2DataStructures_2DataVector_8cpp.html">DataVector.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.10-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+&copy; Copyright 2017
+<a href="https://black-holes.org">SXS Collaboration</a>,
+<a href="LICENSE.txt" target="_blank">
+<span class="hidden-xs">Distributed under the</span>
+MIT License</a>
+</small></address>
+</body>
+</html>

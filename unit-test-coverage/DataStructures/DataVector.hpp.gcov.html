@@ -1,0 +1,488 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - e573dead46052fecc751905e6328701677698fc2 - DataStructures/DataVector.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">SpECTRE Unit Test Code Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">DataStructures</a> - DataVector.hpp<span style="font-size: 80%;"> (source / <a href="DataVector.hpp.func-sort-c.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/e573dead46052fecc751905e6328701677698fc2">e573dead46052fecc751905e6328701677698fc2</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">142</td>
+            <td class="headerCovTableEntry">142</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2017-06-14 01:54:26</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">79</td>
+            <td class="headerCovTableEntry">79</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>            : // Distributed under the MIT License.</a>
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : /// \file
+<span class="lineNum">       5 </span>            : /// Defines class Data.
+<span class="lineNum">       6 </span>            : 
+<span class="lineNum">       7 </span>            : #pragma once
+<span class="lineNum">       8 </span>            : 
+<span class="lineNum">       9 </span>            : #include &lt;cstddef&gt;
+<span class="lineNum">      10 </span>            : #include &lt;initializer_list&gt;
+<span class="lineNum">      11 </span>            : #include &lt;iosfwd&gt;
+<span class="lineNum">      12 </span>            : #include &lt;limits&gt;
+<span class="lineNum">      13 </span>            : #include &lt;memory&gt;
+<span class="lineNum">      14 </span>            : #include &lt;vector&gt;
+<span class="lineNum">      15 </span>            : 
+<span class="lineNum">      16 </span>            : #include &quot;ErrorHandling/Assert.hpp&quot;
+<span class="lineNum">      17 </span>            : #include &quot;Utilities/ConstantExpressions.hpp&quot;
+<span class="lineNum">      18 </span>            : #include &quot;Utilities/PointerVector.hpp&quot;
+<span class="lineNum">      19 </span>            : 
+<span class="lineNum">      20 </span>            : /// \cond HIDDEN_SYMBOLS
+<span class="lineNum">      21 </span>            : namespace PUP {
+<span class="lineNum">      22 </span>            : class er;
+<span class="lineNum">      23 </span>            : }  // namespace PUP
+<span class="lineNum">      24 </span>            : /// \endcond
+<span class="lineNum">      25 </span>            : 
+<span class="lineNum">      26 </span>            : /*!
+<span class="lineNum">      27 </span>            :  * \ingroup DataStructures
+<span class="lineNum">      28 </span>            :  * \brief A class for storing data on a mesh.
+<span class="lineNum">      29 </span>            :  *
+<span class="lineNum">      30 </span>            :  * A Data holds an array of contiguous data and can be either owning (the array
+<span class="lineNum">      31 </span>            :  * is deleted when the Data goes out of scope) or non-owning, meaning it just
+<span class="lineNum">      32 </span>            :  * has a pointer to an array.
+<span class="lineNum">      33 </span>            :  */
+<span class="lineNum">      34 </span>            : class DataVector {
+<span class="lineNum">      35 </span>            :   /// \cond HIDDEN_SYMBOLS
+<span class="lineNum">      36 </span>            :   static constexpr int private_asserts() {
+<span class="lineNum">      37 </span>            :     static_assert(std::is_nothrow_move_constructible&lt;DataVector&gt;::value,
+<span class="lineNum">      38 </span>            :                   &quot;Missing move semantics&quot;);
+<span class="lineNum">      39 </span>            :     return 0;
+<span class="lineNum">      40 </span>            :   }
+<span class="lineNum">      41 </span>            :   /// \endcond
+<span class="lineNum">      42 </span>            : 
+<span class="lineNum">      43 </span>            :   /// The type of the &quot;pointer&quot; used internally
+<span class="lineNum">      44 </span>            :   using InternalDataVector_t = PointerVector&lt;double&gt;;
+<span class="lineNum">      45 </span>            :   /// The type used to store the data in
+<span class="lineNum">      46 </span>            :   using InternalStorage_t = std::vector&lt;double&gt;;
+<span class="lineNum">      47 </span>            : 
+<span class="lineNum">      48 </span>            :  public:
+<span class="lineNum">      49 </span>            :   /// Create with the given size and value.
+<span class="lineNum">      50 </span>            :   ///
+<span class="lineNum">      51 </span>            :   /// \param size number of values
+<span class="lineNum">      52 </span>            :   /// \param value the value to initialize each element.
+<span class="lineNum">      53 </span>            :   explicit DataVector(
+<span class="lineNum">      54 </span>            :       size_t size, double value = std::numeric_limits&lt;double&gt;::signaling_NaN());
+<span class="lineNum">      55 </span>            : 
+<span class="lineNum">      56 </span>            :   /// Create a non-owning DataVector that points to `start`
+<span class="lineNum">      57 </span>            :   DataVector(double* start, size_t size);
+<span class="lineNum">      58 </span>            : 
+<span class="lineNum">      59 </span>            :   /// Create from an initializer list
+<span class="lineNum">      60 </span>            :   DataVector(std::initializer_list&lt;double&gt; list);
+<a name="61"><span class="lineNum">      61 </span>            : </a>
+<span class="lineNum">      62 </span>            :   /// Empty DataVector
+<a name="63"><span class="lineNum">      63 </span><span class="lineCov">         12 :   DataVector() = default;</span></a>
+<span class="lineNum">      64 </span>            :   /// \cond HIDDEN_SYMBOLS
+<span class="lineNum">      65 </span><span class="lineCov">        117 :   ~DataVector() = default;</span>
+<a name="66"><span class="lineNum">      66 </span>            : </a>
+<span class="lineNum">      67 </span>            :   DataVector(const DataVector&amp; rhs);
+<span class="lineNum">      68 </span><span class="lineCov">          6 :   DataVector(DataVector&amp;&amp; rhs) noexcept = default;  // NOLINT</span>
+<span class="lineNum">      69 </span>            :   DataVector&amp; operator=(const DataVector&amp; rhs);
+<span class="lineNum">      70 </span>            :   DataVector&amp; operator=(DataVector&amp;&amp; rhs) noexcept;  // NOLINT
+<span class="lineNum">      71 </span>            : 
+<span class="lineNum">      72 </span>            :   template &lt;typename VT, bool VF&gt;
+<span class="lineNum">      73 </span>            :   DataVector(const blaze::Vector&lt;VT, VF&gt;&amp; expression);
+<span class="lineNum">      74 </span>            : 
+<span class="lineNum">      75 </span>            :   template &lt;typename VT, bool VF&gt;
+<span class="lineNum">      76 </span>            :   DataVector&amp; operator=(const blaze::Vector&lt;VT, VF&gt;&amp; expression);
+<span class="lineNum">      77 </span>            :   /// \endcond
+<a name="78"><span class="lineNum">      78 </span>            : </a>
+<span class="lineNum">      79 </span>            :   /// Number of values stored
+<span class="lineNum">      80 </span><span class="lineCov">       1285 :   size_t size() const { return size_; }</span>
+<span class="lineNum">      81 </span>            : 
+<a name="82"><span class="lineNum">      82 </span>            :   // @{</a>
+<span class="lineNum">      83 </span>            :   /// Set the DataVector to be a reference to another DataVector object
+<span class="lineNum">      84 </span><span class="lineCov">          8 :   void set_data_ref(DataVector&amp; rhs) { set_data_ref(rhs.data(), rhs.size_); }</span>
+<span class="lineNum">      85 </span>            :   void set_data_ref(double* start, size_t size);
+<span class="lineNum">      86 </span>            :   // @}
+<a name="87"><span class="lineNum">      87 </span>            : </a>
+<span class="lineNum">      88 </span>            :   /// Returns true if the class owns the data
+<span class="lineNum">      89 </span><span class="lineCov">         23 :   bool is_owning() const { return owning_; }</span>
+<span class="lineNum">      90 </span>            : 
+<a name="91"><span class="lineNum">      91 </span>            :   // @{</a>
+<span class="lineNum">      92 </span>            :   /// Access ith element
+<span class="lineNum">      93 </span><span class="lineCov">         25 :   double&amp; operator[](const size_t i) {</span>
+<span class="lineNum">      94 </span><span class="lineCov">         25 :     ASSERT(i &lt; size_, &quot;i = &quot; &lt;&lt; i &lt;&lt; &quot;, size = &quot; &lt;&lt; size_);</span>
+<a name="95"><span class="lineNum">      95 </span><span class="lineCov">         25 :     return data_[i];  // NOLINT</span></a>
+<span class="lineNum">      96 </span>            :   }
+<span class="lineNum">      97 </span><span class="lineCov">       1831 :   const double&amp; operator[](const size_t i) const {</span>
+<span class="lineNum">      98 </span><span class="lineCov">       1831 :     ASSERT(i &lt; size_, &quot;i = &quot; &lt;&lt; i &lt;&lt; &quot;, size = &quot; &lt;&lt; size_);</span>
+<span class="lineNum">      99 </span><span class="lineCov">       1831 :     return data_[i];  // NOLINT</span>
+<span class="lineNum">     100 </span>            :   }
+<span class="lineNum">     101 </span>            :   // @}
+<span class="lineNum">     102 </span>            : 
+<a name="103"><span class="lineNum">     103 </span>            :   // @{</a>
+<span class="lineNum">     104 </span>            :   /// Access to the pointer
+<span class="lineNum">     105 </span><span class="lineCov">         12 :   double* data() { return data_.data(); }</span>
+<span class="lineNum">     106 </span>            :   const double* data() const { return data_.data(); }
+<span class="lineNum">     107 </span>            :   // @}
+<span class="lineNum">     108 </span>            : 
+<a name="109"><span class="lineNum">     109 </span>            :   // @{</a>
+<a name="110"><span class="lineNum">     110 </span>            :   /// Returns iterator to beginning of data</a>
+<span class="lineNum">     111 </span><span class="lineCov">         10 :   decltype(auto) begin() { return data_.begin(); }</span>
+<span class="lineNum">     112 </span><span class="lineCov">         60 :   decltype(auto) begin() const { return data_.begin(); }</span>
+<span class="lineNum">     113 </span>            :   // @}
+<a name="114"><span class="lineNum">     114 </span>            :   // @{</a>
+<a name="115"><span class="lineNum">     115 </span>            :   /// Returns iterator to end of data</a>
+<span class="lineNum">     116 </span><span class="lineCov">          7 :   decltype(auto) end() { return data_.end(); }</span>
+<span class="lineNum">     117 </span><span class="lineCov">         45 :   decltype(auto) end() const { return data_.end(); }</span>
+<span class="lineNum">     118 </span>            :   // @}
+<span class="lineNum">     119 </span>            : 
+<span class="lineNum">     120 </span>            :   /// Serialization for Charm++
+<span class="lineNum">     121 </span>            :   void pup(PUP::er&amp; p);  // NOLINT
+<span class="lineNum">     122 </span>            : 
+<span class="lineNum">     123 </span>            :   // @{
+<span class="lineNum">     124 </span>            :   /// See the Blaze library documentation for details on these functions since
+<a name="125"><span class="lineNum">     125 </span>            :   /// they merely forward to Blaze.</a>
+<span class="lineNum">     126 </span>            :   /// https://bitbucket.org/blaze-lib/blaze/overview
+<span class="lineNum">     127 </span><span class="lineCov">         11 :   DataVector&amp; operator=(const double&amp; rhs) {</span>
+<span class="lineNum">     128 </span><span class="lineCov">         11 :     data_ = rhs;</span>
+<span class="lineNum">     129 </span><span class="lineCov">         11 :     return *this;</span>
+<a name="130"><span class="lineNum">     130 </span>            :   }</a>
+<span class="lineNum">     131 </span>            : 
+<span class="lineNum">     132 </span><span class="lineCov">          1 :   DataVector&amp; operator+=(const DataVector&amp; rhs) {</span>
+<span class="lineNum">     133 </span><span class="lineCov">          1 :     data_ += rhs.data_;</span>
+<span class="lineNum">     134 </span><span class="lineCov">          1 :     return *this;</span>
+<a name="135"><span class="lineNum">     135 </span>            :   }</a>
+<span class="lineNum">     136 </span>            :   template &lt;typename VT, bool VF&gt;
+<span class="lineNum">     137 </span><span class="lineCov">          1 :   DataVector&amp; operator+=(const blaze::Vector&lt;VT, VF&gt;&amp; rhs) {</span>
+<span class="lineNum">     138 </span><span class="lineCov">          1 :     data_ += rhs;</span>
+<a name="139"><span class="lineNum">     139 </span><span class="lineCov">          1 :     return *this;</span></a>
+<span class="lineNum">     140 </span>            :   }
+<span class="lineNum">     141 </span><span class="lineCov">          1 :   DataVector&amp; operator+=(const double&amp; rhs) {</span>
+<span class="lineNum">     142 </span><span class="lineCov">          1 :     data_ += rhs;</span>
+<span class="lineNum">     143 </span><span class="lineCov">          1 :     return *this;</span>
+<a name="144"><span class="lineNum">     144 </span>            :   }</a>
+<span class="lineNum">     145 </span>            : 
+<span class="lineNum">     146 </span><span class="lineCov">          1 :   DataVector&amp; operator-=(const DataVector&amp; rhs) {</span>
+<span class="lineNum">     147 </span><span class="lineCov">          1 :     data_ -= rhs.data_;</span>
+<span class="lineNum">     148 </span><span class="lineCov">          1 :     return *this;</span>
+<a name="149"><span class="lineNum">     149 </span>            :   }</a>
+<span class="lineNum">     150 </span>            :   template &lt;typename VT, bool VF&gt;
+<span class="lineNum">     151 </span><span class="lineCov">          1 :   DataVector&amp; operator-=(const blaze::Vector&lt;VT, VF&gt;&amp; rhs) {</span>
+<span class="lineNum">     152 </span><span class="lineCov">          1 :     data_ -= rhs;</span>
+<a name="153"><span class="lineNum">     153 </span><span class="lineCov">          1 :     return *this;</span></a>
+<span class="lineNum">     154 </span>            :   }
+<span class="lineNum">     155 </span><span class="lineCov">          1 :   DataVector&amp; operator-=(const double&amp; rhs) {</span>
+<span class="lineNum">     156 </span><span class="lineCov">          1 :     data_ -= rhs;</span>
+<span class="lineNum">     157 </span><span class="lineCov">          1 :     return *this;</span>
+<a name="158"><span class="lineNum">     158 </span>            :   }</a>
+<span class="lineNum">     159 </span>            : 
+<span class="lineNum">     160 </span><span class="lineCov">          1 :   DataVector&amp; operator*=(const DataVector&amp; rhs) {</span>
+<span class="lineNum">     161 </span><span class="lineCov">          1 :     data_ *= rhs.data_;</span>
+<span class="lineNum">     162 </span><span class="lineCov">          1 :     return *this;</span>
+<a name="163"><span class="lineNum">     163 </span>            :   }</a>
+<span class="lineNum">     164 </span>            :   template &lt;typename VT, bool VF&gt;
+<span class="lineNum">     165 </span><span class="lineCov">          1 :   DataVector&amp; operator*=(const blaze::Vector&lt;VT, VF&gt;&amp; rhs) {</span>
+<span class="lineNum">     166 </span><span class="lineCov">          1 :     data_ *= rhs;</span>
+<a name="167"><span class="lineNum">     167 </span><span class="lineCov">          1 :     return *this;</span></a>
+<span class="lineNum">     168 </span>            :   }
+<span class="lineNum">     169 </span><span class="lineCov">          1 :   DataVector&amp; operator*=(const double&amp; rhs) {</span>
+<span class="lineNum">     170 </span><span class="lineCov">          1 :     data_ *= rhs;</span>
+<span class="lineNum">     171 </span><span class="lineCov">          1 :     return *this;</span>
+<a name="172"><span class="lineNum">     172 </span>            :   }</a>
+<span class="lineNum">     173 </span>            : 
+<span class="lineNum">     174 </span><span class="lineCov">          1 :   DataVector&amp; operator/=(const DataVector&amp; rhs) {</span>
+<span class="lineNum">     175 </span><span class="lineCov">          1 :     data_ /= rhs.data_;</span>
+<span class="lineNum">     176 </span><span class="lineCov">          1 :     return *this;</span>
+<a name="177"><span class="lineNum">     177 </span>            :   }</a>
+<span class="lineNum">     178 </span>            :   template &lt;typename VT, bool VF&gt;
+<span class="lineNum">     179 </span><span class="lineCov">          1 :   DataVector&amp; operator/=(const blaze::Vector&lt;VT, VF&gt;&amp; rhs) {</span>
+<span class="lineNum">     180 </span><span class="lineCov">          1 :     data_ /= rhs;</span>
+<a name="181"><span class="lineNum">     181 </span><span class="lineCov">          1 :     return *this;</span></a>
+<span class="lineNum">     182 </span>            :   }
+<span class="lineNum">     183 </span><span class="lineCov">          1 :   DataVector&amp; operator/=(const double&amp; rhs) {</span>
+<span class="lineNum">     184 </span><span class="lineCov">          1 :     data_ /= rhs;</span>
+<span class="lineNum">     185 </span><span class="lineCov">          1 :     return *this;</span>
+<a name="186"><span class="lineNum">     186 </span>            :   }</a>
+<span class="lineNum">     187 </span>            : 
+<span class="lineNum">     188 </span><span class="lineCov">          1 :   friend decltype(auto) operator+(const DataVector&amp; lhs,</span>
+<span class="lineNum">     189 </span>            :                                   const DataVector&amp; rhs) {
+<span class="lineNum">     190 </span><span class="lineCov">          1 :     return lhs.data_ + rhs.data_;</span>
+<span class="lineNum">     191 </span>            :   }
+<span class="lineNum">     192 </span>            :   template &lt;typename VT, bool VF&gt;
+<span class="lineNum">     193 </span><span class="lineCov">          1 :   friend decltype(auto) operator+(const blaze::Vector&lt;VT, VF&gt;&amp; lhs,</span>
+<span class="lineNum">     194 </span>            :                                   const DataVector&amp; rhs) {
+<span class="lineNum">     195 </span><span class="lineCov">          2 :     return ~lhs + rhs.data_;</span>
+<span class="lineNum">     196 </span>            :   }
+<span class="lineNum">     197 </span>            :   template &lt;typename VT, bool VF&gt;
+<span class="lineNum">     198 </span><span class="lineCov">          1 :   friend decltype(auto) operator+(const DataVector&amp; lhs,</span>
+<span class="lineNum">     199 </span>            :                                   const blaze::Vector&lt;VT, VF&gt;&amp; rhs) {
+<a name="200"><span class="lineNum">     200 </span><span class="lineCov">          1 :     return lhs.data_ + ~rhs;</span></a>
+<span class="lineNum">     201 </span>            :   }
+<span class="lineNum">     202 </span><span class="lineCov">          1 :   friend decltype(auto) operator+(const DataVector&amp; lhs, const double&amp; rhs) {</span>
+<a name="203"><span class="lineNum">     203 </span><span class="lineCov">          1 :     return lhs.data_ + rhs;</span></a>
+<span class="lineNum">     204 </span>            :   }
+<span class="lineNum">     205 </span><span class="lineCov">          1 :   friend decltype(auto) operator+(const double&amp; lhs, const DataVector&amp; rhs) {</span>
+<span class="lineNum">     206 </span><span class="lineCov">          1 :     return lhs + rhs.data_;</span>
+<a name="207"><span class="lineNum">     207 </span>            :   }</a>
+<span class="lineNum">     208 </span>            : 
+<span class="lineNum">     209 </span><span class="lineCov">          1 :   friend decltype(auto) operator-(const DataVector&amp; lhs,</span>
+<span class="lineNum">     210 </span>            :                                   const DataVector&amp; rhs) {
+<span class="lineNum">     211 </span><span class="lineCov">          1 :     return lhs.data_ - rhs.data_;</span>
+<span class="lineNum">     212 </span>            :   }
+<span class="lineNum">     213 </span>            :   template &lt;typename VT, bool VF&gt;
+<span class="lineNum">     214 </span><span class="lineCov">          1 :   friend decltype(auto) operator-(const blaze::Vector&lt;VT, VF&gt;&amp; lhs,</span>
+<span class="lineNum">     215 </span>            :                                   const DataVector&amp; rhs) {
+<span class="lineNum">     216 </span><span class="lineCov">          2 :     return ~lhs - rhs.data_;</span>
+<span class="lineNum">     217 </span>            :   }
+<span class="lineNum">     218 </span>            :   template &lt;typename VT, bool VF&gt;
+<span class="lineNum">     219 </span><span class="lineCov">          1 :   friend decltype(auto) operator-(const DataVector&amp; lhs,</span>
+<span class="lineNum">     220 </span>            :                                   const blaze::Vector&lt;VT, VF&gt;&amp; rhs) {
+<a name="221"><span class="lineNum">     221 </span><span class="lineCov">          1 :     return lhs.data_ - ~rhs;</span></a>
+<span class="lineNum">     222 </span>            :   }
+<span class="lineNum">     223 </span><span class="lineCov">          1 :   friend decltype(auto) operator-(const DataVector&amp; lhs, const double&amp; rhs) {</span>
+<a name="224"><span class="lineNum">     224 </span><span class="lineCov">          1 :     return lhs.data_ - rhs;</span></a>
+<span class="lineNum">     225 </span>            :   }
+<span class="lineNum">     226 </span><span class="lineCov">          1 :   friend decltype(auto) operator-(const double&amp; lhs, const DataVector&amp; rhs) {</span>
+<a name="227"><span class="lineNum">     227 </span><span class="lineCov">          1 :     return lhs - rhs.data_;</span></a>
+<span class="lineNum">     228 </span>            :   }
+<a name="229"><span class="lineNum">     229 </span><span class="lineCov">          1 :   friend decltype(auto) operator-(const DataVector&amp; rhs) { return -rhs.data_; };</span></a>
+<span class="lineNum">     230 </span>            : 
+<span class="lineNum">     231 </span><span class="lineCov">          4 :   friend decltype(auto) operator*(const DataVector&amp; lhs, const double&amp; rhs) {</span>
+<a name="232"><span class="lineNum">     232 </span><span class="lineCov">          4 :     return lhs.data_ * rhs;</span></a>
+<span class="lineNum">     233 </span>            :   }
+<span class="lineNum">     234 </span><span class="lineCov">          1 :   friend decltype(auto) operator*(const double&amp; lhs, const DataVector&amp; rhs) {</span>
+<a name="235"><span class="lineNum">     235 </span><span class="lineCov">          1 :     return lhs * rhs.data_;</span></a>
+<span class="lineNum">     236 </span>            :   }
+<span class="lineNum">     237 </span><span class="lineCov">         18 :   friend decltype(auto) operator*(const DataVector&amp; lhs,</span>
+<span class="lineNum">     238 </span>            :                                   const DataVector&amp; rhs) {
+<span class="lineNum">     239 </span><span class="lineCov">         18 :     return lhs.data_ * rhs.data_;</span>
+<span class="lineNum">     240 </span>            :   }
+<span class="lineNum">     241 </span>            :   template &lt;typename VT, bool VF&gt;
+<span class="lineNum">     242 </span><span class="lineCov">          1 :   friend decltype(auto) operator*(const blaze::Vector&lt;VT, VF&gt;&amp; lhs,</span>
+<span class="lineNum">     243 </span>            :                                   const DataVector&amp; rhs) {
+<span class="lineNum">     244 </span><span class="lineCov">          2 :     return ~lhs * rhs.data_;</span>
+<span class="lineNum">     245 </span>            :   }
+<span class="lineNum">     246 </span>            :   template &lt;typename VT, bool VF&gt;
+<span class="lineNum">     247 </span><span class="lineCov">          3 :   friend decltype(auto) operator*(const DataVector&amp; lhs,</span>
+<span class="lineNum">     248 </span>            :                                   const blaze::Vector&lt;VT, VF&gt;&amp; rhs) {
+<span class="lineNum">     249 </span><span class="lineCov">          3 :     return lhs.data_ * ~rhs;</span>
+<a name="250"><span class="lineNum">     250 </span>            :   }</a>
+<span class="lineNum">     251 </span>            : 
+<span class="lineNum">     252 </span><span class="lineCov">          1 :   friend decltype(auto) operator/(const DataVector&amp; lhs, const double&amp; rhs) {</span>
+<span class="lineNum">     253 </span><span class="lineCov">          1 :     return lhs.data_ / rhs;</span>
+<span class="lineNum">     254 </span>            :   }
+<span class="lineNum">     255 </span>            :   friend decltype(auto) operator/(const DataVector&amp; lhs,
+<span class="lineNum">     256 </span>            :                                   const DataVector&amp; rhs) {
+<span class="lineNum">     257 </span>            :     return lhs.data_ / rhs.data_;
+<span class="lineNum">     258 </span>            :   }
+<span class="lineNum">     259 </span>            :   template &lt;typename VT, bool VF&gt;
+<span class="lineNum">     260 </span><span class="lineCov">          1 :   friend decltype(auto) operator/(const blaze::Vector&lt;VT, VF&gt;&amp; lhs,</span>
+<span class="lineNum">     261 </span>            :                                   const DataVector&amp; rhs) {
+<span class="lineNum">     262 </span><span class="lineCov">          2 :     return ~lhs / rhs.data_;</span>
+<span class="lineNum">     263 </span>            :   }
+<span class="lineNum">     264 </span>            :   template &lt;typename VT, bool VF&gt;
+<span class="lineNum">     265 </span><span class="lineCov">          2 :   friend decltype(auto) operator/(const DataVector&amp; lhs,</span>
+<span class="lineNum">     266 </span>            :                                   const blaze::Vector&lt;VT, VF&gt;&amp; rhs) {
+<span class="lineNum">     267 </span><span class="lineCov">          2 :     return lhs.data_ / ~rhs;</span>
+<a name="268"><span class="lineNum">     268 </span>            :   }</a>
+<span class="lineNum">     269 </span>            : 
+<a name="270"><span class="lineNum">     270 </span><span class="lineCov">          1 :   friend decltype(auto) min(const DataVector&amp; t) { return min(t.data_); }</span></a>
+<span class="lineNum">     271 </span>            : 
+<a name="272"><span class="lineNum">     272 </span><span class="lineCov">          1 :   friend decltype(auto) max(const DataVector&amp; t) { return max(t.data_); }</span></a>
+<span class="lineNum">     273 </span>            : 
+<a name="274"><span class="lineNum">     274 </span><span class="lineCov">          1 :   friend decltype(auto) abs(const DataVector&amp; t) { return abs(t.data_); }</span></a>
+<span class="lineNum">     275 </span>            : 
+<a name="276"><span class="lineNum">     276 </span><span class="lineCov">          1 :   friend decltype(auto) sqrt(const DataVector&amp; t) { return sqrt(t.data_); }</span></a>
+<span class="lineNum">     277 </span>            : 
+<span class="lineNum">     278 </span><span class="lineCov">          1 :   friend decltype(auto) invsqrt(const DataVector&amp; t) {</span>
+<span class="lineNum">     279 </span><span class="lineCov">          1 :     return invsqrt(t.data_);</span>
+<a name="280"><span class="lineNum">     280 </span>            :   }</a>
+<span class="lineNum">     281 </span>            : 
+<a name="282"><span class="lineNum">     282 </span><span class="lineCov">          1 :   friend decltype(auto) cbrt(const DataVector&amp; t) { return cbrt(t.data_); }</span></a>
+<span class="lineNum">     283 </span>            : 
+<span class="lineNum">     284 </span><span class="lineCov">          1 :   friend decltype(auto) invcbrt(const DataVector&amp; t) {</span>
+<span class="lineNum">     285 </span><span class="lineCov">          1 :     return invcbrt(t.data_);</span>
+<a name="286"><span class="lineNum">     286 </span>            :   }</a>
+<span class="lineNum">     287 </span>            : 
+<span class="lineNum">     288 </span><span class="lineCov">          1 :   friend decltype(auto) pow(const DataVector&amp; t, const double exponent) {</span>
+<span class="lineNum">     289 </span><span class="lineCov">          1 :     return pow(t.data_, exponent);</span>
+<a name="290"><span class="lineNum">     290 </span>            :   }</a>
+<span class="lineNum">     291 </span>            : 
+<a name="292"><span class="lineNum">     292 </span><span class="lineCov">          1 :   friend decltype(auto) exp(const DataVector&amp; t) { return exp(t.data_); }</span></a>
+<span class="lineNum">     293 </span>            : 
+<a name="294"><span class="lineNum">     294 </span><span class="lineCov">          1 :   friend decltype(auto) exp2(const DataVector&amp; t) { return exp2(t.data_); }</span></a>
+<span class="lineNum">     295 </span>            : 
+<a name="296"><span class="lineNum">     296 </span><span class="lineCov">          1 :   friend decltype(auto) exp10(const DataVector&amp; t) { return exp10(t.data_); }</span></a>
+<span class="lineNum">     297 </span>            : 
+<a name="298"><span class="lineNum">     298 </span><span class="lineCov">          1 :   friend decltype(auto) log(const DataVector&amp; t) { return log(t.data_); }</span></a>
+<span class="lineNum">     299 </span>            : 
+<a name="300"><span class="lineNum">     300 </span><span class="lineCov">          1 :   friend decltype(auto) log2(const DataVector&amp; t) { return log2(t.data_); }</span></a>
+<span class="lineNum">     301 </span>            : 
+<a name="302"><span class="lineNum">     302 </span><span class="lineCov">          1 :   friend decltype(auto) log10(const DataVector&amp; t) { return log10(t.data_); }</span></a>
+<span class="lineNum">     303 </span>            : 
+<a name="304"><span class="lineNum">     304 </span><span class="lineCov">          1 :   friend decltype(auto) sin(const DataVector&amp; t) { return sin(t.data_); }</span></a>
+<span class="lineNum">     305 </span>            : 
+<a name="306"><span class="lineNum">     306 </span><span class="lineCov">          1 :   friend decltype(auto) cos(const DataVector&amp; t) { return cos(t.data_); }</span></a>
+<span class="lineNum">     307 </span>            : 
+<a name="308"><span class="lineNum">     308 </span><span class="lineCov">          1 :   friend decltype(auto) tan(const DataVector&amp; t) { return tan(t.data_); }</span></a>
+<span class="lineNum">     309 </span>            : 
+<a name="310"><span class="lineNum">     310 </span><span class="lineCov">          1 :   friend decltype(auto) asin(const DataVector&amp; t) { return asin(t.data_); }</span></a>
+<span class="lineNum">     311 </span>            : 
+<a name="312"><span class="lineNum">     312 </span><span class="lineCov">          1 :   friend decltype(auto) acos(const DataVector&amp; t) { return acos(t.data_); }</span></a>
+<span class="lineNum">     313 </span>            : 
+<a name="314"><span class="lineNum">     314 </span><span class="lineCov">          1 :   friend decltype(auto) atan(const DataVector&amp; t) { return atan(t.data_); }</span></a>
+<span class="lineNum">     315 </span>            : 
+<a name="316"><span class="lineNum">     316 </span><span class="lineCov">          1 :   friend decltype(auto) sinh(const DataVector&amp; t) { return sinh(t.data_); }</span></a>
+<span class="lineNum">     317 </span>            : 
+<a name="318"><span class="lineNum">     318 </span><span class="lineCov">          1 :   friend decltype(auto) cosh(const DataVector&amp; t) { return cosh(t.data_); }</span></a>
+<span class="lineNum">     319 </span>            : 
+<a name="320"><span class="lineNum">     320 </span><span class="lineCov">          1 :   friend decltype(auto) tanh(const DataVector&amp; t) { return tanh(t.data_); }</span></a>
+<span class="lineNum">     321 </span>            : 
+<a name="322"><span class="lineNum">     322 </span><span class="lineCov">          1 :   friend decltype(auto) asinh(const DataVector&amp; t) { return asinh(t.data_); }</span></a>
+<span class="lineNum">     323 </span>            : 
+<a name="324"><span class="lineNum">     324 </span><span class="lineCov">          1 :   friend decltype(auto) acosh(const DataVector&amp; t) { return acosh(t.data_); }</span></a>
+<span class="lineNum">     325 </span>            : 
+<a name="326"><span class="lineNum">     326 </span><span class="lineCov">          1 :   friend decltype(auto) atanh(const DataVector&amp; t) { return atanh(t.data_); }</span></a>
+<span class="lineNum">     327 </span>            : 
+<a name="328"><span class="lineNum">     328 </span><span class="lineCov">          1 :   friend decltype(auto) erf(const DataVector&amp; t) { return erf(t.data_); }</span></a>
+<span class="lineNum">     329 </span>            : 
+<span class="lineNum">     330 </span><span class="lineCov">          1 :   friend decltype(auto) erfc(const DataVector&amp; t) { return erfc(t.data_); }</span>
+<span class="lineNum">     331 </span>            :   // @}
+<span class="lineNum">     332 </span>            : 
+<span class="lineNum">     333 </span>            :  private:
+<span class="lineNum">     334 </span>            :   /// \cond HIDDEN_SYMBOLS
+<span class="lineNum">     335 </span>            :   size_t size_ = 0;
+<span class="lineNum">     336 </span>            :   InternalStorage_t owned_data_;
+<span class="lineNum">     337 </span>            :   InternalDataVector_t data_;
+<span class="lineNum">     338 </span>            :   bool owning_{true};
+<span class="lineNum">     339 </span>            :   /// \endcond
+<span class="lineNum">     340 </span>            : };
+<span class="lineNum">     341 </span>            : 
+<span class="lineNum">     342 </span>            : /// Output operator for DataVector
+<span class="lineNum">     343 </span>            : std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os, const DataVector&amp; d);
+<span class="lineNum">     344 </span>            : 
+<span class="lineNum">     345 </span>            : /// Equivalence operator for DataVector
+<span class="lineNum">     346 </span>            : bool operator==(const DataVector&amp; lhs, const DataVector&amp; rhs);
+<span class="lineNum">     347 </span>            : 
+<span class="lineNum">     348 </span>            : /// Inequivalence operator for DataVector
+<span class="lineNum">     349 </span>            : bool operator!=(const DataVector&amp; lhs, const DataVector&amp; rhs);
+<span class="lineNum">     350 </span>            : 
+<span class="lineNum">     351 </span>            : /// \cond HIDDEN_SYMBOLS
+<span class="lineNum">     352 </span>            : template &lt;typename VT, bool VF&gt;
+<span class="lineNum">     353 </span><span class="lineCov">          3 : DataVector::DataVector(const blaze::Vector&lt;VT, VF&gt;&amp; expression)</span>
+<span class="lineNum">     354 </span><span class="lineCov">          3 :     : size_((~expression).size()),</span>
+<span class="lineNum">     355 </span><span class="lineCov">          3 :       owned_data_((~expression).size()),</span>
+<span class="lineNum">     356 </span><span class="lineCov">          3 :       data_(owned_data_.data(), (~expression).size()),</span>
+<span class="lineNum">     357 </span><span class="lineCov">          9 :       owning_(true) {</span>
+<span class="lineNum">     358 </span><span class="lineCov">          3 :   data_ = expression;</span>
+<span class="lineNum">     359 </span><span class="lineCov">          3 : }</span>
+<span class="lineNum">     360 </span>            : 
+<span class="lineNum">     361 </span>            : template &lt;typename VT, bool VF&gt;
+<span class="lineNum">     362 </span><span class="lineCov">          3 : DataVector&amp; DataVector::operator=(const blaze::Vector&lt;VT, VF&gt;&amp; expression) {</span>
+<span class="lineNum">     363 </span><span class="lineCov">          3 :   if (owning_) {</span>
+<span class="lineNum">     364 </span><span class="lineCov">          1 :     size_ = (~expression).size();</span>
+<span class="lineNum">     365 </span><span class="lineCov">          1 :     owned_data_ = InternalStorage_t(size_);</span>
+<span class="lineNum">     366 </span><span class="lineCov">          1 :     data_ = decltype(data_){owned_data_.data(), size_};</span>
+<span class="lineNum">     367 </span><span class="lineCov">          1 :     data_ = expression;</span>
+<span class="lineNum">     368 </span>            :   } else {
+<span class="lineNum">     369 </span><span class="lineCov">          2 :     ASSERT((~expression).size() == size(), &quot;Must copy into same size&quot;);</span>
+<span class="lineNum">     370 </span><span class="lineCov">          1 :     data_ = expression;</span>
+<span class="lineNum">     371 </span>            :   }
+<span class="lineNum">     372 </span><span class="lineCov">          2 :   return *this;</span>
+<span class="lineNum">     373 </span>            : }
+<span class="lineNum">     374 </span>            : /// \endcond
+<span class="lineNum">     375 </span>            : 
+<span class="lineNum">     376 </span>            : namespace ConstantExpressions_details {
+<span class="lineNum">     377 </span>            : template &lt;&gt;
+<span class="lineNum">     378 </span>            : struct pow&lt;DataVector, 0, void&gt; {
+<span class="lineNum">     379 </span>            :   SPECTRE_ALWAYS_INLINE static constexpr double apply(const DataVector&amp; /*t*/) {
+<span class="lineNum">     380 </span><span class="lineCov">          2 :     return 1.0;</span>
+<span class="lineNum">     381 </span>            :   }
+<span class="lineNum">     382 </span>            : };
+<span class="lineNum">     383 </span>            : template &lt;typename BlazeVector&gt;
+<span class="lineNum">     384 </span>            : struct pow&lt;
+<span class="lineNum">     385 </span>            :     BlazeVector, 0,
+<span class="lineNum">     386 </span>            :     std::enable_if_t&lt;std::is_base_of&lt;blaze::Expression, BlazeVector&gt;::value&gt;&gt; {
+<span class="lineNum">     387 </span>            :   SPECTRE_ALWAYS_INLINE static constexpr double apply(
+<span class="lineNum">     388 </span>            :       const BlazeVector&amp; /*t*/) {
+<span class="lineNum">     389 </span><span class="lineCov">          1 :     return 1.0;</span>
+<span class="lineNum">     390 </span>            :   }
+<span class="lineNum">     391 </span>            : };
+<span class="lineNum">     392 </span>            : 
+<span class="lineNum">     393 </span>            : template &lt;int N&gt;
+<span class="lineNum">     394 </span>            : struct pow&lt;DataVector, N, typename std::enable_if&lt;(N &lt; 0)&gt;::type&gt; {
+<span class="lineNum">     395 </span>            :   static_assert(N &gt; 0,
+<span class="lineNum">     396 </span>            :                 &quot;Cannot use pow on DataVectorStructures with a negative &quot;
+<span class="lineNum">     397 </span>            :                 &quot;exponent. You must &quot;
+<span class="lineNum">     398 </span>            :                 &quot;divide by a positive exponent instead.&quot;);
+<span class="lineNum">     399 </span>            :   SPECTRE_ALWAYS_INLINE static constexpr decltype(auto) apply(
+<span class="lineNum">     400 </span>            :       const DataVector&amp; t) {
+<span class="lineNum">     401 </span>            :     return DataVector(t.size(), 1.0) / (t * pow&lt;DataVector, -N - 1&gt;::apply(t));
+<span class="lineNum">     402 </span>            :   }
+<span class="lineNum">     403 </span>            : };
+<span class="lineNum">     404 </span>            : }  // namespace ConstantExpressions_details
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

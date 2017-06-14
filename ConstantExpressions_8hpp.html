@@ -164,7 +164,10 @@ $(function() {
 <p>Define simple functions for constant expressions.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/header/type_traits.html">type_traits</a>&gt;</code><br />
+<code>#include &quot;<a class="el" href="Blaze_8hpp_source.html">Utilities/Blaze.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="ForceInline_8hpp_source.html">Utilities/ForceInline.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="TMPL_8hpp_source.html">Utilities/TMPL.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="TypeTraits_8hpp_source.html">Utilities/TypeTraits.hpp</a>&quot;</code><br />
 </div>
 <p><a href="ConstantExpressions_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -174,10 +177,84 @@ Functions</h2></td></tr>
 <tr class="memitem:ga6c01ded3973bb4b9973e5381c32c0807"><td class="memTemplItemLeft" align="right" valign="top">constexpr T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__ConstantExpressions.html#ga6c01ded3973bb4b9973e5381c32c0807">two_to_the</a> (T n)</td></tr>
 <tr class="memdesc:ga6c01ded3973bb4b9973e5381c32c0807"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute 2 to the n for integral types.  <a href="group__ConstantExpressions.html#ga6c01ded3973bb4b9973e5381c32c0807">More...</a><br /></td></tr>
 <tr class="separator:ga6c01ded3973bb4b9973e5381c32c0807"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6081cdd84b199ef868569b149f3e7256"><td class="memItemLeft" align="right" valign="top">constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ConstantExpressions.html#ga6081cdd84b199ef868569b149f3e7256">get_nth_bit</a> (const size_t i, const size_t N)</td></tr>
+<tr class="memdesc:ga6081cdd84b199ef868569b149f3e7256"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the nth bit from the right, counting from zero.  <a href="group__ConstantExpressions.html#ga6081cdd84b199ef868569b149f3e7256">More...</a><br /></td></tr>
+<tr class="separator:ga6081cdd84b199ef868569b149f3e7256"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4acefaccfb2d2ff1d491ac107f8bb2a8"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:ga4acefaccfb2d2ff1d491ac107f8bb2a8"><td class="memTemplItemLeft" align="right" valign="top">constexpr T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__ConstantExpressions.html#ga4acefaccfb2d2ff1d491ac107f8bb2a8">square</a> (const T &amp;x)</td></tr>
+<tr class="memdesc:ga4acefaccfb2d2ff1d491ac107f8bb2a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the square of <code>x</code>  <a href="group__ConstantExpressions.html#ga4acefaccfb2d2ff1d491ac107f8bb2a8">More...</a><br /></td></tr>
+<tr class="separator:ga4acefaccfb2d2ff1d491ac107f8bb2a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3c6936b9ba2439538c9ec4f8c16e36d6"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:ga3c6936b9ba2439538c9ec4f8c16e36d6"><td class="memTemplItemLeft" align="right" valign="top">constexpr T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__ConstantExpressions.html#ga3c6936b9ba2439538c9ec4f8c16e36d6">cube</a> (const T &amp;x)</td></tr>
+<tr class="memdesc:ga3c6936b9ba2439538c9ec4f8c16e36d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the cube of <code>x</code>  <a href="group__ConstantExpressions.html#ga3c6936b9ba2439538c9ec4f8c16e36d6">More...</a><br /></td></tr>
+<tr class="separator:ga3c6936b9ba2439538c9ec4f8c16e36d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga711d1085380b0f6e020ad98af636350b"><td class="memTemplParams" colspan="2">template&lt;int N, typename T &gt; </td></tr>
+<tr class="memitem:ga711d1085380b0f6e020ad98af636350b"><td class="memTemplItemLeft" align="right" valign="top">decltype(auto) constexpr&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__ConstantExpressions.html#ga711d1085380b0f6e020ad98af636350b">pow</a> (const T &amp;t)</td></tr>
+<tr class="memdesc:ga711d1085380b0f6e020ad98af636350b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute t^N where N is an integer (positive or negative)  <a href="group__ConstantExpressions.html#ga711d1085380b0f6e020ad98af636350b">More...</a><br /></td></tr>
+<tr class="separator:ga711d1085380b0f6e020ad98af636350b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga09be92d0bb8581e96be39b82b18871df"><td class="memTemplParams" colspan="2">template&lt;typename Ls , std::enable_if_t&lt; not tt::is_a_v&lt; tmpl::list, tmpl::front&lt; Ls &gt;&gt;&gt; *  = nullptr&gt; </td></tr>
+<tr class="memitem:ga09be92d0bb8581e96be39b82b18871df"><td class="memTemplItemLeft" align="right" valign="top">constexpr <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/decay.html">std::decay_t</a>&lt; decltype(tmpl::front&lt; Ls &gt;::value)&gt;, tmpl::size&lt; Ls &gt;::value &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__ConstantExpressions.html#ga09be92d0bb8581e96be39b82b18871df">make_array_from_list</a> ()</td></tr>
+<tr class="memdesc:ga09be92d0bb8581e96be39b82b18871df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Make an array from a typelist that holds <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/integral_constant.html">std::integral_constant</a>'s all of which have the same <code>value_type</code>  <a href="group__ConstantExpressions.html#ga09be92d0bb8581e96be39b82b18871df">More...</a><br /></td></tr>
+<tr class="separator:ga09be92d0bb8581e96be39b82b18871df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga09be92d0bb8581e96be39b82b18871df"><td class="memTemplParams" colspan="2">template&lt;typename Ls , std::enable_if_t&lt; tt::is_a_v&lt; tmpl::list, tmpl::front&lt; Ls &gt;&gt;&gt; *  = nullptr&gt; </td></tr>
+<tr class="memitem:ga09be92d0bb8581e96be39b82b18871df"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="ConstantExpressions_8hpp.html#ga09be92d0bb8581e96be39b82b18871df">make_array_from_list</a> ()</td></tr>
+<tr class="memdesc:ga09be92d0bb8581e96be39b82b18871df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Make an array of arrays from a typelist that holds typelists of <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/integral_constant.html">std::integral_constant</a>'s all of which have the same <code>value_type</code>  <a href="#ga09be92d0bb8581e96be39b82b18871df">More...</a><br /></td></tr>
+<tr class="separator:ga09be92d0bb8581e96be39b82b18871df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga22d722db24272fd3f3990e6b66b3867f"><td class="memItemLeft" align="right" valign="top">constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ConstantExpressions.html#ga22d722db24272fd3f3990e6b66b3867f">cstring_length</a> (const char *str)</td></tr>
+<tr class="memdesc:ga22d722db24272fd3f3990e6b66b3867f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the length of a const char* at compile time.  <a href="group__ConstantExpressions.html#ga22d722db24272fd3f3990e6b66b3867f">More...</a><br /></td></tr>
+<tr class="separator:ga22d722db24272fd3f3990e6b66b3867f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf311bd0981ec7e61d7faf84ddf81c757"><td class="memItemLeft" align="right" valign="top">constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ConstantExpressions.html#gaf311bd0981ec7e61d7faf84ddf81c757">cstring_hash</a> (const char *str)</td></tr>
+<tr class="memdesc:gaf311bd0981ec7e61d7faf84ddf81c757"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute a hash of a const char* at compile time.  <a href="group__ConstantExpressions.html#gaf311bd0981ec7e61d7faf84ddf81c757">More...</a><br /></td></tr>
+<tr class="separator:gaf311bd0981ec7e61d7faf84ddf81c757"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga67df32bbc36ce9e80f16019b14345ba8"><td class="memTemplParams" colspan="2">template&lt;size_t I, typename T , size_t Size&gt; </td></tr>
+<tr class="memitem:ga67df32bbc36ce9e80f16019b14345ba8"><td class="memTemplItemLeft" align="right" valign="top">constexpr <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/decay.html">std::decay_t</a>&lt; T &gt;, Size &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__ConstantExpressions.html#ga67df32bbc36ce9e80f16019b14345ba8">replace_at</a> (const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; T, Size &gt; &amp;arr, T value)</td></tr>
+<tr class="memdesc:ga67df32bbc36ce9e80f16019b14345ba8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Replace at compile time the <code>I</code>th entry in the array with <code>value</code>  <a href="group__ConstantExpressions.html#ga67df32bbc36ce9e80f16019b14345ba8">More...</a><br /></td></tr>
+<tr class="separator:ga67df32bbc36ce9e80f16019b14345ba8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4ba185e114b03850b947f1482bf73d5f"><td class="memTemplParams" colspan="2">template&lt;typename T , typename S , size_t size&gt; </td></tr>
+<tr class="memitem:ga4ba185e114b03850b947f1482bf73d5f"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__ConstantExpressions.html#ga4ba185e114b03850b947f1482bf73d5f">array_equal</a> (const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; T, size &gt; &amp;lhs, const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; S, size &gt; &amp;rhs, const size_t i=0)</td></tr>
+<tr class="memdesc:ga4ba185e114b03850b947f1482bf73d5f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check at compile time if two <code><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a></code>s are equal.  <a href="group__ConstantExpressions.html#ga4ba185e114b03850b947f1482bf73d5f">More...</a><br /></td></tr>
+<tr class="separator:ga4ba185e114b03850b947f1482bf73d5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Define simple functions for constant expressions. </p>
-</div></div><!-- contents -->
+</div><h2 class="groupheader">Function Documentation</h2>
+<a id="ga09be92d0bb8581e96be39b82b18871df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga09be92d0bb8581e96be39b82b18871df">&#9670;&nbsp;</a></span>make_array_from_list()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Ls , std::enable_if_t&lt; tt::is_a_v&lt; tmpl::list, tmpl::front&lt; Ls &gt;&gt;&gt; *  = nullptr&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr auto make_array_from_list </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Make an array of arrays from a typelist that holds typelists of <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/integral_constant.html">std::integral_constant</a>'s all of which have the same <code>value_type</code> </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Ls</td><td>the typelist of typelists of <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/integral_constant.html">std::integral_constant</a>'s </td></tr>
+  </table>
+  </dd>
+</dl>
+<p><em>Returns:</em> array of arrays of integral values from the typelists </p>
+
+</div>
+</div>
+</div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

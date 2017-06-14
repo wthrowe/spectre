@@ -1,5 +1,7 @@
 var searchData=
 [
+  ['internaldatavector_5ft',['InternalDataVector_t',['../classDataVector.html#a38abae854b54bda612a535589e3c825e',1,'DataVector']]],
+  ['internalstorage_5ft',['InternalStorage_t',['../classDataVector.html#a5d4f81b396ad003f984e61eb8cb1980b',1,'DataVector']]],
   ['is_5fa_5ft',['is_a_t',['../namespacett.html#a9515d6a1524e46364e37baa1903a0cce',1,'tt']]],
   ['is_5fcallable_5ft',['is_callable_t',['../namespacett.html#a6e7f5dce91a40ecabd6ee0b0b3f1444e',1,'tt']]],
   ['is_5fcomparable_5ft',['is_comparable_t',['../namespacett.html#a104916252792d1fa9ce65f73447b7941',1,'tt']]],

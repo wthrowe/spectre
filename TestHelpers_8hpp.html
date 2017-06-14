@@ -167,8 +167,10 @@ $(function() {
 <div class="textblock"><code>#include &lt;catch.hpp&gt;</code><br />
 <code>#include &lt;charm++.h&gt;</code><br />
 <code>#include &lt;pup.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="Error_8hpp_source.html">ErrorHandling/Error.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="Abort_8hpp_source.html">Parallel/Abort.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="Serialize_8hpp_source.html">Parallel/Serialize.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="TypeTraits_8hpp_source.html">Utilities/TypeTraits.hpp</a>&quot;</code><br />
 </div>
 <p><a href="TestHelpers_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -184,10 +186,75 @@ Functions</h2></td></tr>
 <tr class="memitem:ga2895e57f4cacd63d2549655bb29bba7b"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__TestingFramework.html#ga2895e57f4cacd63d2549655bb29bba7b">serialize_and_deserialize</a> (const T &amp;t)</td></tr>
 <tr class="memdesc:ga2895e57f4cacd63d2549655bb29bba7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serializes and deserializes an object <code>t</code> of type <code>T</code>  <a href="group__TestingFramework.html#ga2895e57f4cacd63d2549655bb29bba7b">More...</a><br /></td></tr>
 <tr class="separator:ga2895e57f4cacd63d2549655bb29bba7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a606665331765067f231cf230f7b1ca"><td class="memTemplParams" colspan="2">template&lt;typename T , typename std::enable_if&lt; tt::has_equivalence&lt; T &gt;::value, int &gt;::type  = 0&gt; </td></tr>
+<tr class="memitem:a6a606665331765067f231cf230f7b1ca"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="TestHelpers_8hpp.html#a6a606665331765067f231cf230f7b1ca">test_copy_semantics</a> (const T &amp;a)</td></tr>
+<tr class="memdesc:a6a606665331765067f231cf230f7b1ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Test for copy semantics assuming operator== is implement correctly.  <a href="#a6a606665331765067f231cf230f7b1ca">More...</a><br /></td></tr>
+<tr class="separator:a6a606665331765067f231cf230f7b1ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a12746aa7e93ebd5782817d71a61ffb54"><td class="memTemplParams" colspan="2">template&lt;typename T , typename std::enable_if&lt; tt::has_equivalence&lt; T &gt;::value, int &gt;::type  = 0&gt; </td></tr>
+<tr class="memitem:a12746aa7e93ebd5782817d71a61ffb54"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="TestHelpers_8hpp.html#a12746aa7e93ebd5782817d71a61ffb54">test_move_semantics</a> (T &amp;a, const T &amp;comparison)</td></tr>
+<tr class="memdesc:a12746aa7e93ebd5782817d71a61ffb54"><td class="mdescLeft">&#160;</td><td class="mdescRight">Test for move semantics assuming operator== is implement correctly.  <a href="#a12746aa7e93ebd5782817d71a61ffb54">More...</a><br /></td></tr>
+<tr class="separator:a12746aa7e93ebd5782817d71a61ffb54"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Commonly used routines, functions and definitions shared amongst unit tests. </p>
-</div></div><!-- contents -->
+</div><h2 class="groupheader">Function Documentation</h2>
+<a id="a6a606665331765067f231cf230f7b1ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a606665331765067f231cf230f7b1ca">&#9670;&nbsp;</a></span>test_copy_semantics()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename std::enable_if&lt; tt::has_equivalence&lt; T &gt;::value, int &gt;::type  = 0&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void test_copy_semantics </td>
+          <td>(</td>
+          <td class="paramtype">const T &amp;&#160;</td>
+          <td class="paramname"><em>a</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Test for copy semantics assuming operator== is implement correctly. </p>
+
+</div>
+</div>
+<a id="a12746aa7e93ebd5782817d71a61ffb54"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a12746aa7e93ebd5782817d71a61ffb54">&#9670;&nbsp;</a></span>test_move_semantics()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename std::enable_if&lt; tt::has_equivalence&lt; T &gt;::value, int &gt;::type  = 0&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void test_move_semantics </td>
+          <td>(</td>
+          <td class="paramtype">T &amp;&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const T &amp;&#160;</td>
+          <td class="paramname"><em>comparison</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Test for move semantics assuming operator== is implement correctly. </p>
+
+<p class="reference">References <a class="el" href="group__ErrorHandling.html#ga1d27028c1827976007fe9d29ad3a2f66">ERROR</a>.</p>
+
+</div>
+</div>
+</div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

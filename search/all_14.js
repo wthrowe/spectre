@@ -1,8 +1,8 @@
 var searchData=
 [
   ['t',['t',['http://en.cppreference.com/w/cpp/numeric/random/binomial_distribution/params.html',1,'std::binomial_distribution']]],
-  ['tan',['tan',['http://en.cppreference.com/w/cpp/numeric/math/tan.html',1,'std']]],
-  ['tanh',['tanh',['http://en.cppreference.com/w/cpp/numeric/math/tanh.html',1,'std']]],
+  ['tan',['tan',['../classDataVector.html#a53c10d6818c99eac5ed6f7e90beb23e2',1,'DataVector::tan()'],['http://en.cppreference.com/w/cpp/numeric/math/tan.html',1,'std::tan()']]],
+  ['tanh',['tanh',['../classDataVector.html#a795920b7dc5e9a3235b09aa60570d9c0',1,'DataVector::tanh()'],['http://en.cppreference.com/w/cpp/numeric/math/tanh.html',1,'std::tanh()']]],
   ['target',['target',['http://en.cppreference.com/w/cpp/utility/functional/function/target.html',1,'std::function']]],
   ['target_5ftype',['target_type',['http://en.cppreference.com/w/cpp/utility/functional/function/target_type.html',1,'std::function']]],
   ['tellg',['tellg',['http://en.cppreference.com/w/cpp/io/basic_istream/tellg.html',1,'std::basic_fstream::tellg()'],['http://en.cppreference.com/w/cpp/io/basic_istream/tellg.html',1,'std::basic_ifstream::tellg()'],['http://en.cppreference.com/w/cpp/io/basic_istream/tellg.html',1,'std::basic_iostream::tellg()'],['http://en.cppreference.com/w/cpp/io/basic_istream/tellg.html',1,'std::basic_istream::tellg()'],['http://en.cppreference.com/w/cpp/io/basic_istream/tellg.html',1,'std::basic_istringstream::tellg()'],['http://en.cppreference.com/w/cpp/io/basic_istream/tellg.html',1,'std::basic_stringstream::tellg()'],['http://en.cppreference.com/w/cpp/io/basic_istream/tellg.html',1,'std::fstream::tellg()'],['http://en.cppreference.com/w/cpp/io/basic_istream/tellg.html',1,'std::ifstream::tellg()'],['http://en.cppreference.com/w/cpp/io/basic_istream/tellg.html',1,'std::iostream::tellg()'],['http://en.cppreference.com/w/cpp/io/basic_istream/tellg.html',1,'std::istream::tellg()'],['http://en.cppreference.com/w/cpp/io/basic_istream/tellg.html',1,'std::istringstream::tellg()'],['http://en.cppreference.com/w/cpp/io/basic_istream/tellg.html',1,'std::istrstream::tellg()'],['http://en.cppreference.com/w/cpp/io/basic_istream/tellg.html',1,'std::stringstream::tellg()'],['http://en.cppreference.com/w/cpp/io/basic_istream/tellg.html',1,'std::strstream::tellg()'],['http://en.cppreference.com/w/cpp/io/basic_istream/tellg.html',1,'std::wfstream::tellg()'],['http://en.cppreference.com/w/cpp/io/basic_istream/tellg.html',1,'std::wifstream::tellg()'],['http://en.cppreference.com/w/cpp/io/basic_istream/tellg.html',1,'std::wiostream::tellg()'],['http://en.cppreference.com/w/cpp/io/basic_istream/tellg.html',1,'std::wistream::tellg()'],['http://en.cppreference.com/w/cpp/io/basic_istream/tellg.html',1,'std::wistringstream::tellg()'],['http://en.cppreference.com/w/cpp/io/basic_istream/tellg.html',1,'std::wstringstream::tellg()']]],
@@ -17,6 +17,8 @@ var searchData=
   ['terminate_5fhandler',['terminate_handler',['http://en.cppreference.com/w/cpp/error/terminate_handler.html',1,'std']]],
   ['test',['test',['http://en.cppreference.com/w/cpp/utility/bitset/test.html',1,'std::bitset']]],
   ['test_5fand_5fset',['test_and_set',['http://en.cppreference.com/w/cpp/atomic/atomic_flag/test_and_set.html',1,'std::atomic_flag']]],
+  ['test_5fcopy_5fsemantics',['test_copy_semantics',['../TestHelpers_8hpp.html#a6a606665331765067f231cf230f7b1ca',1,'TestHelpers.hpp']]],
+  ['test_5fmove_5fsemantics',['test_move_semantics',['../TestHelpers_8hpp.html#a12746aa7e93ebd5782817d71a61ffb54',1,'TestHelpers.hpp']]],
   ['testframework_2ecpp',['TestFramework.cpp',['../TestFramework_8cpp.html',1,'']]],
   ['testhelpers_2ehpp',['TestHelpers.hpp',['../TestHelpers_8hpp.html',1,'']]],
   ['testing_20framework',['Testing Framework',['../group__TestingFramework.html',1,'']]],
@@ -42,6 +44,7 @@ var searchData=
   ['tm',['tm',['http://en.cppreference.com/w/cpp/chrono/c/tm.html',1,'std']]],
   ['tmp_2emd',['Tmp.md',['../Tmp_8md.html',1,'']]],
   ['tmpfile',['tmpfile',['http://en.cppreference.com/w/cpp/io/c/tmpfile.html',1,'std']]],
+  ['tmpl_2ehpp',['TMPL.hpp',['../TMPL_8hpp.html',1,'']]],
   ['tmpnam',['tmpnam',['http://en.cppreference.com/w/cpp/io/c/tmpnam.html',1,'std']]],
   ['to_5farray',['to_array',['http://en.cppreference.com/w/cpp/experimental/to_array.html',1,'std::experimental']]],
   ['to_5fbytes',['to_bytes',['http://en.cppreference.com/w/cpp/locale/wstring_convert/to_bytes.html',1,'std::wstring_convert']]],
@@ -97,6 +100,7 @@ var searchData=
   ['typedisplayer_2ehpp',['TypeDisplayer.hpp',['../TypeDisplayer_8hpp.html',1,'']]],
   ['typeindex',['typeindex',['http://en.cppreference.com/w/cpp/header/typeindex.html',1,'']]],
   ['typeinfo',['typeinfo',['http://en.cppreference.com/w/cpp/header/typeinfo.html',1,'']]],
+  ['typelist',['typelist',['../group__Utilities.html#ga4dabf6319ff36d72095831fba701afc1',1,'TMPL.hpp']]],
   ['type_20traits',['Type Traits',['../group__TypeTraits.html',1,'']]],
   ['typetraits_2ecpp',['TypeTraits.cpp',['../TypeTraits_8cpp.html',1,'']]],
   ['typetraits_2ehpp',['TypeTraits.hpp',['../TypeTraits_8hpp.html',1,'']]]

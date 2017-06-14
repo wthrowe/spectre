@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - 9889f118d0d01487ed60bff105041953c3600176 - Utilities/StdHelpers.hpp</title>
+  <title>LCOV - e573dead46052fecc751905e6328701677698fc2 - Utilities/StdHelpers.hpp</title>
   <link rel="stylesheet" type="text/css" href="../gcov.css">
 </head>
 
@@ -28,7 +28,7 @@
           </tr>
           <tr>
             <td class="headerItem">Commit:</td>
-             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/9889f118d0d01487ed60bff105041953c3600176">9889f118d0d01487ed60bff105041953c3600176</a></td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/e573dead46052fecc751905e6328701677698fc2">e573dead46052fecc751905e6328701677698fc2</a></td>
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntry">69</td>
@@ -37,12 +37,12 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2017-06-13 01:53:16</td>
+            <td class="headerValue">2017-06-14 01:54:26</td>
             <td></td>
             <td class="headerItem">Functions:</td>
-            <td class="headerCovTableEntry">38</td>
-            <td class="headerCovTableEntry">45</td>
-            <td class="headerCovTableEntryMed">84.4 %</td>
+            <td class="headerCovTableEntry">41</td>
+            <td class="headerCovTableEntry">49</td>
+            <td class="headerCovTableEntryMed">83.7 %</td>
           </tr>
           <tr>
             <td class="headerItem">Legend:</td>
@@ -98,29 +98,29 @@
 <span class="lineNum">      28 </span>            : // applies the function f(out, it) to each item from begin to end, separated
 <a name="29"><span class="lineNum">      29 </span>            : // by commas and surrounded by parens</a>
 <span class="lineNum">      30 </span>            : template &lt;typename ForwardIt, typename Func&gt;
-<span class="lineNum">      31 </span><span class="lineCov">         17 : inline void print_helper(std::ostream&amp; out, ForwardIt&amp;&amp; begin, ForwardIt&amp;&amp; end,</span>
+<span class="lineNum">      31 </span><span class="lineCov">         43 : inline void print_helper(std::ostream&amp; out, ForwardIt&amp;&amp; begin, ForwardIt&amp;&amp; end,</span>
 <span class="lineNum">      32 </span>            :                          Func f) {
-<span class="lineNum">      33 </span><span class="lineCov">         17 :   out &lt;&lt; &quot;(&quot;;</span>
-<span class="lineNum">      34 </span><span class="lineCov">         17 :   if (begin != end) {</span>
+<span class="lineNum">      33 </span><span class="lineCov">         43 :   out &lt;&lt; &quot;(&quot;;</span>
+<span class="lineNum">      34 </span><span class="lineCov">         43 :   if (begin != end) {</span>
 <span class="lineNum">      35 </span>            :     while (true) {
-<span class="lineNum">      36 </span><span class="lineCov">         64 :       f(out, begin++);</span>
-<span class="lineNum">      37 </span><span class="lineCov">         38 :       if (begin == end) {</span>
-<span class="lineNum">      38 </span><span class="lineCov">         12 :         break;</span>
+<span class="lineNum">      36 </span><span class="lineCov">        314 :       f(out, begin++);</span>
+<span class="lineNum">      37 </span><span class="lineCov">        176 :       if (begin == end) {</span>
+<span class="lineNum">      38 </span><span class="lineCov">         38 :         break;</span>
 <span class="lineNum">      39 </span>            :       }
-<span class="lineNum">      40 </span><span class="lineCov">         26 :       out &lt;&lt; &quot;,&quot;;</span>
+<span class="lineNum">      40 </span><span class="lineCov">        138 :       out &lt;&lt; &quot;,&quot;;</span>
 <span class="lineNum">      41 </span>            :     }
 <span class="lineNum">      42 </span>            :   }
-<span class="lineNum">      43 </span><span class="lineCov">         17 :   out &lt;&lt; &quot;)&quot;;</span>
-<span class="lineNum">      44 </span><span class="lineCov">         17 : }</span>
+<span class="lineNum">      43 </span><span class="lineCov">         43 :   out &lt;&lt; &quot;)&quot;;</span>
+<span class="lineNum">      44 </span><span class="lineCov">         43 : }</span>
 <span class="lineNum">      45 </span>            : 
 <a name="46"><span class="lineNum">      46 </span>            : // prints all the items as a comma separated list surrounded by parens</a>
 <span class="lineNum">      47 </span>            : template &lt;typename ForwardIt&gt;
-<span class="lineNum">      48 </span><span class="lineCov">         11 : inline void print_helper(std::ostream&amp; out, ForwardIt&amp;&amp; begin,</span>
+<span class="lineNum">      48 </span><span class="lineCov">         37 : inline void print_helper(std::ostream&amp; out, ForwardIt&amp;&amp; begin,</span>
 <span class="lineNum">      49 </span>            :                          ForwardIt&amp;&amp; end) {
-<a name="50"><span class="lineNum">      50 </span><span class="lineCov">         11 :   print_helper(out, std::forward&lt;ForwardIt&gt;(begin),</span></a>
+<a name="50"><span class="lineNum">      50 </span><span class="lineCov">         37 :   print_helper(out, std::forward&lt;ForwardIt&gt;(begin),</span></a>
 <span class="lineNum">      51 </span>            :                std::forward&lt;ForwardIt&gt;(end),
-<span class="lineNum">      52 </span><span class="lineCov">         26 :                [](std::ostream&amp; os, const ForwardIt&amp; it) { os &lt;&lt; *it; });</span>
-<span class="lineNum">      53 </span><span class="lineCov">         11 : }</span>
+<span class="lineNum">      52 </span><span class="lineCov">        164 :                [](std::ostream&amp; os, const ForwardIt&amp; it) { os &lt;&lt; *it; });</span>
+<span class="lineNum">      53 </span><span class="lineCov">         37 : }</span>
 <span class="lineNum">      54 </span>            : 
 <span class="lineNum">      55 </span>            : // Helper classes for operator&lt;&lt; for tuples
 <span class="lineNum">      56 </span>            : template &lt;size_t N&gt;

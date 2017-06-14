@@ -165,6 +165,9 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structPointerVector.html">PointerVector&lt; Type, AF, PF, TF &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A raw pointer endowed with expression template support via the Blaze library.  <a href="structPointerVector.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structTypeDisplayer.html">TypeDisplayer&lt;... &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get compiler error with type of template parameter.  <a href="structTypeDisplayer.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -181,6 +184,10 @@ Typedefs</h2></td></tr>
 <tr class="memitem:gaf20b9d9f0e5870cc74c49bdf971e2cc6"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__Utilities.html#gaf20b9d9f0e5870cc74c49bdf971e2cc6">make_boost_variant_over</a> = typename detail::make_boost_variant_over_impl&lt; Sequence &gt;::type</td></tr>
 <tr class="memdesc:gaf20b9d9f0e5870cc74c49bdf971e2cc6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a boost::variant with all all the types inside the typelist Sequence.  <a href="#gaf20b9d9f0e5870cc74c49bdf971e2cc6">More...</a><br /></td></tr>
 <tr class="separator:gaf20b9d9f0e5870cc74c49bdf971e2cc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4dabf6319ff36d72095831fba701afc1"><td class="memTemplParams" colspan="2">template&lt;typename... Ts&gt; </td></tr>
+<tr class="memitem:ga4dabf6319ff36d72095831fba701afc1"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__Utilities.html#ga4dabf6319ff36d72095831fba701afc1">typelist</a> = tmpl::list&lt; Ts... &gt;</td></tr>
+<tr class="memdesc:ga4dabf6319ff36d72095831fba701afc1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a typelist of types <code>Ts</code>.  <a href="#ga4dabf6319ff36d72095831fba701afc1">More...</a><br /></td></tr>
+<tr class="separator:ga4dabf6319ff36d72095831fba701afc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
@@ -276,7 +283,7 @@ Functions</h2></td></tr>
 
 <p>Always inline a function. Only use this if you benchmarked the code. </p>
 
-<p class="reference">Referenced by <a class="el" href="group__Utilities.html#ga18e7d6f15d7089f056a7d1a32ad1b536">make_array()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="group__ConstantExpressions.html#ga3c6936b9ba2439538c9ec4f8c16e36d6">cube()</a>, <a class="el" href="classDataVector.html#a864ea5a64ff387cc62a49c147ade3e76">DataVector::erfc()</a>, and <a class="el" href="group__Utilities.html#ga18e7d6f15d7089f056a7d1a32ad1b536">make_array()</a>.</p>
 
 </div>
 </div>
@@ -297,6 +304,24 @@ template&lt;typename Sequence &gt; </div>
 
 <p>Create a boost::variant with all all the types inside the typelist Sequence. </p>
 <p><em>Returns:</em> boost::variant of all types inside <code>Sequence</code> </p>
+
+</div>
+</div>
+<a id="ga4dabf6319ff36d72095831fba701afc1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga4dabf6319ff36d72095831fba701afc1">&#9670;&nbsp;</a></span>typelist</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename... Ts&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="group__Utilities.html#ga4dabf6319ff36d72095831fba701afc1">typelist</a> =  tmpl::list&lt;Ts...&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Construct a typelist of types <code>Ts</code>. </p>
 
 </div>
 </div>

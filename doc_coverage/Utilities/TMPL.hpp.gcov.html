@@ -1,0 +1,510 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - e573dead46052fecc751905e6328701677698fc2 - Utilities/TMPL.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">Utilities</a> - TMPL.hpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/e573dead46052fecc751905e6328701677698fc2">e573dead46052fecc751905e6328701677698fc2</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">1</td>
+            <td class="headerCovTableEntry">1</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2017-06-14 01:54:41</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : /// \file
+<span class="lineNum">       5 </span>            : /// Wraps the template metaprogramming library used (brigand)
+<span class="lineNum">       6 </span>            : 
+<span class="lineNum">       7 </span>            : #pragma once
+<span class="lineNum">       8 </span>            : 
+<span class="lineNum">       9 </span>            : // Since this header only wraps brigand and several additions to it we mark
+<span class="lineNum">      10 </span>            : // it as a system header file so that clang-tidy ignores it.
+<span class="lineNum">      11 </span>            : #ifdef __GNUC__
+<span class="lineNum">      12 </span>            : #pragma GCC system_header
+<span class="lineNum">      13 </span>            : #endif
+<span class="lineNum">      14 </span>            : 
+<span class="lineNum">      15 </span>            : /// \cond NEVER
+<span class="lineNum">      16 </span>            : #define BRIGAND_NO_BOOST_SUPPORT
+<span class="lineNum">      17 </span>            : /// \endcond
+<span class="lineNum">      18 </span>            : #include &lt;brigand/brigand.hpp&gt;
+<span class="lineNum">      19 </span>            : 
+<span class="lineNum">      20 </span>            : #include &quot;Utilities/Digraph.hpp&quot;
+<span class="lineNum">      21 </span>            : #include &quot;Utilities/ForceInline.hpp&quot;
+<span class="lineNum">      22 </span>            : 
+<span class="lineNum">      23 </span>            : namespace brigand {
+<span class="lineNum">      24 </span>            : namespace detail {
+<span class="lineNum">      25 </span>            : template &lt;bool b, typename O, typename L, std::size_t I, typename R,
+<span class="lineNum">      26 </span>            :           typename U = void&gt;
+<span class="lineNum">      27 </span>            : struct replace_at_impl;
+<span class="lineNum">      28 </span>            : 
+<span class="lineNum">      29 </span>            : template &lt;template &lt;typename...&gt; class S, typename... Os, typename... Ts,
+<span class="lineNum">      30 </span>            :           typename R&gt;
+<span class="lineNum">      31 </span>            : struct replace_at_impl&lt;false, S&lt;Os...&gt;, S&lt;Ts...&gt;, 0, R&gt; {
+<span class="lineNum">      32 </span>            :   using type = S&lt;Os..., Ts...&gt;;
+<span class="lineNum">      33 </span>            : };
+<span class="lineNum">      34 </span>            : 
+<span class="lineNum">      35 </span>            : template &lt;template &lt;typename...&gt; class S, typename... Os, typename... Ts,
+<span class="lineNum">      36 </span>            :           typename T, typename R&gt;
+<span class="lineNum">      37 </span>            : struct replace_at_impl&lt;false, S&lt;Os...&gt;, S&lt;T, Ts...&gt;, 1, R&gt;
+<span class="lineNum">      38 </span>            :     : replace_at_impl&lt;false, S&lt;Os..., R&gt;, S&lt;Ts...&gt;, 0, R&gt; {};
+<span class="lineNum">      39 </span>            : 
+<span class="lineNum">      40 </span>            : template &lt;template &lt;typename...&gt; class S, typename... Os, typename T,
+<span class="lineNum">      41 </span>            :           typename... Ts, std::size_t I, typename R&gt;
+<span class="lineNum">      42 </span>            : struct replace_at_impl&lt;false, S&lt;Os...&gt;, S&lt;T, Ts...&gt;, I, R,
+<span class="lineNum">      43 </span>            :                        typename std::enable_if&lt;(I &gt; 1)&gt;::type&gt;
+<span class="lineNum">      44 </span>            :     : replace_at_impl&lt;false, S&lt;Os..., T&gt;, S&lt;Ts...&gt;, (I - 1), R&gt; {};
+<span class="lineNum">      45 </span>            : 
+<span class="lineNum">      46 </span>            : template &lt;template &lt;typename...&gt; class S, typename... Os, typename T1,
+<span class="lineNum">      47 </span>            :           typename T2, typename T3, typename T4, typename T5, typename T6,
+<span class="lineNum">      48 </span>            :           typename T7, typename T8, typename T9, typename T10, typename T11,
+<span class="lineNum">      49 </span>            :           typename T12, typename T13, typename T14, typename T15, typename T16,
+<span class="lineNum">      50 </span>            :           typename... Ts, std::size_t I, typename R&gt;
+<span class="lineNum">      51 </span>            : struct replace_at_impl&lt;true, S&lt;Os...&gt;,
+<span class="lineNum">      52 </span>            :                        S&lt;T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13,
+<span class="lineNum">      53 </span>            :                          T14, T15, T16, Ts...&gt;,
+<span class="lineNum">      54 </span>            :                        I, R&gt;
+<span class="lineNum">      55 </span>            :     : replace_at_impl&lt;((I - 16) &gt; 16), S&lt;Os..., T1, T2, T3, T4, T5, T6, T7, T8,
+<span class="lineNum">      56 </span>            :                                          T9, T10, T11, T12, T13, T14, T15, T16&gt;,
+<span class="lineNum">      57 </span>            :                       S&lt;Ts...&gt;, (I - 16), R&gt; {};
+<span class="lineNum">      58 </span>            : 
+<span class="lineNum">      59 </span>            : template &lt;typename L, typename I, typename R&gt;
+<span class="lineNum">      60 </span>            : struct call_replace_at_impl
+<span class="lineNum">      61 </span>            :     : replace_at_impl&lt;(I::value &gt; 15), brigand::clear&lt;L&gt;, L, I::value + 1, R&gt; {
+<span class="lineNum">      62 </span>            : };
+<span class="lineNum">      63 </span>            : }
+<span class="lineNum">      64 </span>            : 
+<span class="lineNum">      65 </span>            : namespace lazy {
+<span class="lineNum">      66 </span>            : template &lt;typename L, typename I, typename R&gt;
+<span class="lineNum">      67 </span>            : using replace_at = ::brigand::detail::call_replace_at_impl&lt;L, I, R&gt;;
+<span class="lineNum">      68 </span>            : }
+<span class="lineNum">      69 </span>            : template &lt;typename L, typename I, typename R&gt;
+<span class="lineNum">      70 </span>            : using replace_at = typename ::brigand::lazy::replace_at&lt;L, I, R&gt;::type;
+<span class="lineNum">      71 </span>            : }  // namespace brigand
+<span class="lineNum">      72 </span>            : 
+<span class="lineNum">      73 </span>            : namespace brigand {
+<span class="lineNum">      74 </span>            : namespace detail {
+<span class="lineNum">      75 </span>            : template &lt;typename Ls, typename Ind1, typename Ind2&gt;
+<span class="lineNum">      76 </span>            : struct swap_at_impl {
+<span class="lineNum">      77 </span>            :   using type = ::brigand::replace_at&lt;
+<span class="lineNum">      78 </span>            :       ::brigand::replace_at&lt;Ls, Ind1, ::brigand::at&lt;Ls, Ind2&gt;&gt;, Ind2,
+<span class="lineNum">      79 </span>            :       ::brigand::at&lt;Ls, Ind1&gt;&gt;;
+<span class="lineNum">      80 </span>            : };
+<span class="lineNum">      81 </span>            : }
+<span class="lineNum">      82 </span>            : 
+<span class="lineNum">      83 </span>            : template &lt;typename Ls, typename Ind1, typename Ind2&gt;
+<span class="lineNum">      84 </span>            : using swap_at = typename ::brigand::detail::swap_at_impl&lt;Ls, Ind1, Ind2&gt;::type;
+<span class="lineNum">      85 </span>            : }
+<span class="lineNum">      86 </span>            : 
+<span class="lineNum">      87 </span>            : namespace brigand {
+<span class="lineNum">      88 </span>            : template &lt;typename V&gt;
+<span class="lineNum">      89 </span>            : using abs = std::integral_constant&lt;typename V::value_type,
+<span class="lineNum">      90 </span>            :                                    (V::value &lt; 0 ? -V::value : V::value)&gt;;
+<span class="lineNum">      91 </span>            : 
+<span class="lineNum">      92 </span>            : template &lt;typename V&gt;
+<span class="lineNum">      93 </span>            : using sign =
+<span class="lineNum">      94 </span>            :     std::integral_constant&lt;typename V::value_type, (V::value &lt; 0 ? -1 : 1)&gt;;
+<span class="lineNum">      95 </span>            : 
+<span class="lineNum">      96 </span>            : template &lt;int T&gt;
+<span class="lineNum">      97 </span>            : using int_ = std::integral_constant&lt;int, T&gt;;
+<span class="lineNum">      98 </span>            : 
+<span class="lineNum">      99 </span>            : template &lt;typename V, typename N&gt;
+<span class="lineNum">     100 </span>            : struct power
+<span class="lineNum">     101 </span>            :     : std::integral_constant&lt;
+<span class="lineNum">     102 </span>            :           typename V::value_type,
+<span class="lineNum">     103 </span>            :           V::value * power&lt;V, std::integral_constant&lt;typename N::value_type,
+<span class="lineNum">     104 </span>            :                                                      N::value - 1&gt;&gt;::value&gt; {};
+<span class="lineNum">     105 </span>            : 
+<span class="lineNum">     106 </span>            : template &lt;typename V, typename T&gt;
+<span class="lineNum">     107 </span>            : struct power&lt;V, std::integral_constant&lt;T, 0&gt;&gt;
+<span class="lineNum">     108 </span>            :     : std::integral_constant&lt;typename V::value_type, 1&gt; {};
+<span class="lineNum">     109 </span>            : 
+<span class="lineNum">     110 </span>            : template &lt;typename T&gt;
+<span class="lineNum">     111 </span>            : struct factorial : times&lt;T, factorial&lt;uint64_t&lt;T::value - 1&gt;&gt;&gt; {};
+<span class="lineNum">     112 </span>            : template &lt;&gt;
+<span class="lineNum">     113 </span>            : struct factorial&lt;uint64_t&lt;1&gt;&gt; : uint64_t&lt;1&gt; {};
+<span class="lineNum">     114 </span>            : }
+<span class="lineNum">     115 </span>            : 
+<span class="lineNum">     116 </span>            : namespace brigand {
+<span class="lineNum">     117 </span>            : namespace detail {
+<span class="lineNum">     118 </span>            : template &lt;typename Ls, std::size_t Size = size&lt;Ls&gt;::value&gt;
+<span class="lineNum">     119 </span>            : struct permutations_impl {
+<span class="lineNum">     120 </span>            :   template &lt;typename T, typename Ls1&gt;
+<span class="lineNum">     121 </span>            :   struct helper {
+<span class="lineNum">     122 </span>            :     using type = ::brigand::transform&lt;
+<span class="lineNum">     123 </span>            :         typename permutations_impl&lt;::brigand::remove&lt;Ls1, T&gt;&gt;::type,
+<span class="lineNum">     124 </span>            :         ::brigand::lazy::push_front&lt;_state, T&gt;&gt;;
+<span class="lineNum">     125 </span>            :   };
+<span class="lineNum">     126 </span>            : 
+<span class="lineNum">     127 </span>            :   using type = ::brigand::fold&lt;
+<span class="lineNum">     128 </span>            :       Ls, list&lt;&gt;,
+<span class="lineNum">     129 </span>            :       ::brigand::lazy::append&lt;::brigand::_state,
+<span class="lineNum">     130 </span>            :                               helper&lt;::brigand::_element, ::brigand::pin&lt;Ls&gt;&gt;&gt;&gt;;
+<span class="lineNum">     131 </span>            : };
+<span class="lineNum">     132 </span>            : 
+<span class="lineNum">     133 </span>            : template &lt;typename Ls&gt;
+<span class="lineNum">     134 </span>            : struct permutations_impl&lt;Ls, 1&gt; {
+<span class="lineNum">     135 </span>            :   using type = list&lt;Ls&gt;;
+<span class="lineNum">     136 </span>            : };
+<span class="lineNum">     137 </span>            : }
+<span class="lineNum">     138 </span>            : 
+<span class="lineNum">     139 </span>            : namespace lazy {
+<span class="lineNum">     140 </span>            : template &lt;typename Ls&gt;
+<span class="lineNum">     141 </span>            : using permutations = detail::permutations_impl&lt;Ls&gt;;
+<span class="lineNum">     142 </span>            : }
+<span class="lineNum">     143 </span>            : 
+<span class="lineNum">     144 </span>            : template &lt;typename Ls&gt;
+<span class="lineNum">     145 </span>            : using permutations = typename lazy::permutations&lt;Ls&gt;::type;
+<span class="lineNum">     146 </span>            : }
+<span class="lineNum">     147 </span>            : 
+<span class="lineNum">     148 </span>            : namespace brigand {
+<span class="lineNum">     149 </span>            : namespace detail {
+<span class="lineNum">     150 </span>            : template &lt;typename Ls, std::size_t Size = ::brigand::size&lt;Ls&gt;::value&gt;
+<span class="lineNum">     151 </span>            : struct generic_permutations_impl {
+<span class="lineNum">     152 </span>            :   template &lt;typename Lc, typename Ls1&gt;
+<span class="lineNum">     153 </span>            :   struct helper {
+<span class="lineNum">     154 </span>            :     using type = ::brigand::transform&lt;
+<span class="lineNum">     155 </span>            :         typename generic_permutations_impl&lt;::brigand::erase&lt;Ls1, Lc&gt;&gt;::type,
+<span class="lineNum">     156 </span>            :         ::brigand::lazy::push_front&lt;::brigand::_state, ::brigand::at&lt;Ls1, Lc&gt;&gt;&gt;;
+<span class="lineNum">     157 </span>            :   };
+<span class="lineNum">     158 </span>            :   using type = ::brigand::fold&lt;
+<span class="lineNum">     159 </span>            :       ::brigand::make_sequence&lt;brigand::uint32_t&lt;0&gt;, Size&gt;, ::brigand::list&lt;&gt;,
+<span class="lineNum">     160 </span>            :       ::brigand::lazy::append&lt;::brigand::_state,
+<span class="lineNum">     161 </span>            :                               helper&lt;::brigand::_element, ::brigand::pin&lt;Ls&gt;&gt;&gt;&gt;;
+<span class="lineNum">     162 </span>            : };
+<span class="lineNum">     163 </span>            : 
+<span class="lineNum">     164 </span>            : template &lt;typename Ls&gt;
+<span class="lineNum">     165 </span>            : struct generic_permutations_impl&lt;Ls, 1&gt; {
+<span class="lineNum">     166 </span>            :   using type = ::brigand::list&lt;Ls&gt;;
+<span class="lineNum">     167 </span>            : };
+<span class="lineNum">     168 </span>            : }
+<span class="lineNum">     169 </span>            : 
+<span class="lineNum">     170 </span>            : namespace lazy {
+<span class="lineNum">     171 </span>            : template &lt;typename Ls&gt;
+<span class="lineNum">     172 </span>            : using generic_permutations = detail::generic_permutations_impl&lt;Ls&gt;;
+<span class="lineNum">     173 </span>            : }
+<span class="lineNum">     174 </span>            : 
+<span class="lineNum">     175 </span>            : template &lt;typename Ls&gt;
+<span class="lineNum">     176 </span>            : using generic_permutations = typename lazy::generic_permutations&lt;Ls&gt;::type;
+<span class="lineNum">     177 </span>            : }
+<span class="lineNum">     178 </span>            : 
+<span class="lineNum">     179 </span>            : namespace brigand {
+<span class="lineNum">     180 </span>            : namespace detail {
+<span class="lineNum">     181 </span>            : template &lt;typename Ls, typename Number = uint32_t&lt;1&gt;&gt;
+<span class="lineNum">     182 </span>            : struct combinations_impl_helper {
+<span class="lineNum">     183 </span>            :   using split_list = split_at&lt;Ls, Number&gt;;
+<span class="lineNum">     184 </span>            :   using type =
+<span class="lineNum">     185 </span>            :       fold&lt;back&lt;split_list&gt;, list&lt;&gt;,
+<span class="lineNum">     186 </span>            :            lazy::append&lt;
+<span class="lineNum">     187 </span>            :                _state,
+<span class="lineNum">     188 </span>            :                bind&lt;list, bind&lt;push_back, pin&lt;front&lt;split_list&gt;&gt;, _element&gt;&gt;&gt;&gt;;
+<span class="lineNum">     189 </span>            : };
+<span class="lineNum">     190 </span>            : 
+<span class="lineNum">     191 </span>            : template &lt;typename Ls, typename OutSize, typename = void&gt;
+<span class="lineNum">     192 </span>            : struct combinations_impl {
+<span class="lineNum">     193 </span>            :   using type =
+<span class="lineNum">     194 </span>            :       append&lt;list&lt;&gt;, typename combinations_impl_helper&lt;Ls, prev&lt;OutSize&gt;&gt;::type,
+<span class="lineNum">     195 </span>            :              typename combinations_impl&lt;pop_front&lt;Ls&gt;, OutSize&gt;::type&gt;;
+<span class="lineNum">     196 </span>            : };
+<span class="lineNum">     197 </span>            : template &lt;typename Ls, typename OutSize&gt;
+<span class="lineNum">     198 </span>            : struct combinations_impl&lt;
+<span class="lineNum">     199 </span>            :     Ls, OutSize,
+<span class="lineNum">     200 </span>            :     typename std::enable_if&lt;OutSize::value == size&lt;Ls&gt;::value&gt;::type&gt; {
+<span class="lineNum">     201 </span>            :   using type = typename combinations_impl_helper&lt;Ls, prev&lt;OutSize&gt;&gt;::type;
+<span class="lineNum">     202 </span>            : };
+<span class="lineNum">     203 </span>            : }
+<span class="lineNum">     204 </span>            : 
+<span class="lineNum">     205 </span>            : namespace lazy {
+<span class="lineNum">     206 </span>            : template &lt;typename Ls, typename OutSize = uint32_t&lt;2&gt;&gt;
+<span class="lineNum">     207 </span>            : using combinations = detail::combinations_impl&lt;Ls, OutSize&gt;;
+<span class="lineNum">     208 </span>            : }
+<span class="lineNum">     209 </span>            : 
+<span class="lineNum">     210 </span>            : template &lt;typename Ls, typename OutSize = uint32_t&lt;2&gt;&gt;
+<span class="lineNum">     211 </span>            : using combinations = typename lazy::combinations&lt;Ls, OutSize&gt;::type;
+<span class="lineNum">     212 </span>            : }
+<span class="lineNum">     213 </span>            : 
+<span class="lineNum">     214 </span>            : namespace brigand {
+<span class="lineNum">     215 </span>            : namespace detail {
+<span class="lineNum">     216 </span>            : template &lt;typename Seq, typename T&gt;
+<span class="lineNum">     217 </span>            : struct equal_members_helper
+<span class="lineNum">     218 </span>            :     : std::is_same&lt;count_if&lt;Seq, std::is_same&lt;T, _1&gt;&gt;, size_t&lt;1&gt;&gt; {};
+<span class="lineNum">     219 </span>            : }
+<span class="lineNum">     220 </span>            : 
+<span class="lineNum">     221 </span>            : template &lt;typename Ls1, typename Ls2&gt;
+<span class="lineNum">     222 </span>            : using equal_members =
+<span class="lineNum">     223 </span>            :     and_&lt;fold&lt;Ls1, bool_&lt;true&gt;,
+<span class="lineNum">     224 </span>            :               and_&lt;_state, detail::equal_members_helper&lt;pin&lt;Ls2&gt;, _element&gt;&gt;&gt;,
+<span class="lineNum">     225 </span>            :          fold&lt;Ls2, bool_&lt;true&gt;,
+<span class="lineNum">     226 </span>            :               and_&lt;_state, detail::equal_members_helper&lt;pin&lt;Ls1&gt;, _element&gt;&gt;&gt;&gt;;
+<span class="lineNum">     227 </span>            : }
+<span class="lineNum">     228 </span>            : 
+<span class="lineNum">     229 </span>            : namespace brigand {
+<span class="lineNum">     230 </span>            : namespace detail {
+<span class="lineNum">     231 </span>            : template &lt;typename Functor, typename State, typename I, typename Sequence&gt;
+<span class="lineNum">     232 </span>            : struct enumerated_fold_impl {
+<span class="lineNum">     233 </span>            :   using type = State;
+<span class="lineNum">     234 </span>            : };
+<span class="lineNum">     235 </span>            : 
+<span class="lineNum">     236 </span>            : template &lt;typename Functor, typename State, typename I,
+<span class="lineNum">     237 </span>            :           template &lt;typename...&gt; class Sequence, typename T0&gt;
+<span class="lineNum">     238 </span>            : struct enumerated_fold_impl&lt;Functor, State, I, Sequence&lt;T0&gt;&gt; {
+<span class="lineNum">     239 </span>            :   using type = brigand::apply&lt;Functor, State, T0, I&gt;;
+<span class="lineNum">     240 </span>            : };
+<span class="lineNum">     241 </span>            : 
+<span class="lineNum">     242 </span>            : template &lt;typename Functor, typename State, typename I,
+<span class="lineNum">     243 </span>            :           template &lt;typename...&gt; class Sequence, typename T0, typename T1&gt;
+<span class="lineNum">     244 </span>            : struct enumerated_fold_impl&lt;Functor, State, I, Sequence&lt;T0, T1&gt;&gt; {
+<span class="lineNum">     245 </span>            :   using type = brigand::apply&lt;Functor, brigand::apply&lt;Functor, State, T0, I&gt;,
+<span class="lineNum">     246 </span>            :                               T1, brigand::next&lt;I&gt;&gt;;
+<span class="lineNum">     247 </span>            : };
+<span class="lineNum">     248 </span>            : 
+<span class="lineNum">     249 </span>            : template &lt;typename Functor, typename State, typename I,
+<span class="lineNum">     250 </span>            :           template &lt;typename...&gt; class Sequence, typename T0, typename T1,
+<span class="lineNum">     251 </span>            :           typename T2&gt;
+<span class="lineNum">     252 </span>            : struct enumerated_fold_impl&lt;Functor, State, I, Sequence&lt;T0, T1, T2&gt;&gt; {
+<span class="lineNum">     253 </span>            :   using type = brigand::apply&lt;
+<span class="lineNum">     254 </span>            :       Functor, brigand::apply&lt;Functor, brigand::apply&lt;Functor, State, T0, I&gt;,
+<span class="lineNum">     255 </span>            :                               T1, brigand::next&lt;I&gt;&gt;,
+<span class="lineNum">     256 </span>            :       T2, brigand::plus&lt;I, brigand::int32_t&lt;2&gt;&gt;&gt;;
+<span class="lineNum">     257 </span>            : };
+<span class="lineNum">     258 </span>            : 
+<span class="lineNum">     259 </span>            : template &lt;typename Functor, typename State, typename I,
+<span class="lineNum">     260 </span>            :           template &lt;typename...&gt; class Sequence, typename T0, typename T1,
+<span class="lineNum">     261 </span>            :           typename T2, typename T3&gt;
+<span class="lineNum">     262 </span>            : struct enumerated_fold_impl&lt;Functor, State, I, Sequence&lt;T0, T1, T2, T3&gt;&gt; {
+<span class="lineNum">     263 </span>            :   using type = brigand::apply&lt;
+<span class="lineNum">     264 </span>            :       Functor,
+<span class="lineNum">     265 </span>            :       brigand::apply&lt;
+<span class="lineNum">     266 </span>            :           Functor,
+<span class="lineNum">     267 </span>            :           brigand::apply&lt;Functor, brigand::apply&lt;Functor, State, T0, I&gt;, T1,
+<span class="lineNum">     268 </span>            :                          brigand::next&lt;I&gt;&gt;,
+<span class="lineNum">     269 </span>            :           T2, brigand::plus&lt;I, brigand::int32_t&lt;2&gt;&gt;&gt;,
+<span class="lineNum">     270 </span>            :       T3, brigand::plus&lt;I, brigand::int32_t&lt;3&gt;&gt;&gt;;
+<span class="lineNum">     271 </span>            : };
+<span class="lineNum">     272 </span>            : 
+<span class="lineNum">     273 </span>            : template &lt;typename Functor, typename State, typename I,
+<span class="lineNum">     274 </span>            :           template &lt;typename...&gt; class Sequence, typename T0, typename T1,
+<span class="lineNum">     275 </span>            :           typename T2, typename T3, typename T4&gt;
+<span class="lineNum">     276 </span>            : struct enumerated_fold_impl&lt;Functor, State, I, Sequence&lt;T0, T1, T2, T3, T4&gt;&gt; {
+<span class="lineNum">     277 </span>            :   using type = brigand::apply&lt;
+<span class="lineNum">     278 </span>            :       Functor,
+<span class="lineNum">     279 </span>            :       brigand::apply&lt;
+<span class="lineNum">     280 </span>            :           Functor,
+<span class="lineNum">     281 </span>            :           brigand::apply&lt;
+<span class="lineNum">     282 </span>            :               Functor,
+<span class="lineNum">     283 </span>            :               brigand::apply&lt;Functor, brigand::apply&lt;Functor, State, T0, I&gt;, T1,
+<span class="lineNum">     284 </span>            :                              brigand::next&lt;I&gt;&gt;,
+<span class="lineNum">     285 </span>            :               T2, brigand::plus&lt;I, brigand::int32_t&lt;2&gt;&gt;&gt;,
+<span class="lineNum">     286 </span>            :           T3, brigand::plus&lt;I, brigand::int32_t&lt;3&gt;&gt;&gt;,
+<span class="lineNum">     287 </span>            :       T4, brigand::plus&lt;I, brigand::int32_t&lt;4&gt;&gt;&gt;;
+<span class="lineNum">     288 </span>            : };
+<span class="lineNum">     289 </span>            : 
+<span class="lineNum">     290 </span>            : template &lt;typename Functor, typename State, typename I,
+<span class="lineNum">     291 </span>            :           template &lt;typename...&gt; class Sequence, typename T0, typename T1,
+<span class="lineNum">     292 </span>            :           typename T2, typename T3, typename T4, typename T5&gt;
+<span class="lineNum">     293 </span>            : struct enumerated_fold_impl&lt;Functor, State, I,
+<span class="lineNum">     294 </span>            :                             Sequence&lt;T0, T1, T2, T3, T4, T5&gt;&gt; {
+<span class="lineNum">     295 </span>            :   using type = brigand::apply&lt;
+<span class="lineNum">     296 </span>            :       Functor,
+<span class="lineNum">     297 </span>            :       brigand::apply&lt;
+<span class="lineNum">     298 </span>            :           Functor,
+<span class="lineNum">     299 </span>            :           brigand::apply&lt;
+<span class="lineNum">     300 </span>            :               Functor,
+<span class="lineNum">     301 </span>            :               brigand::apply&lt;
+<span class="lineNum">     302 </span>            :                   Functor,
+<span class="lineNum">     303 </span>            :                   brigand::apply&lt;Functor, brigand::apply&lt;Functor, State, T0, I&gt;,
+<span class="lineNum">     304 </span>            :                                  T1, brigand::next&lt;I&gt;&gt;,
+<span class="lineNum">     305 </span>            :                   T2, brigand::plus&lt;I, brigand::int32_t&lt;2&gt;&gt;&gt;,
+<span class="lineNum">     306 </span>            :               T3, brigand::plus&lt;I, brigand::int32_t&lt;3&gt;&gt;&gt;,
+<span class="lineNum">     307 </span>            :           T4, brigand::plus&lt;I, brigand::int32_t&lt;4&gt;&gt;&gt;,
+<span class="lineNum">     308 </span>            :       T5, brigand::plus&lt;I, brigand::int32_t&lt;5&gt;&gt;&gt;;
+<span class="lineNum">     309 </span>            : };
+<span class="lineNum">     310 </span>            : 
+<span class="lineNum">     311 </span>            : template &lt;typename Functor, typename State, typename I,
+<span class="lineNum">     312 </span>            :           template &lt;typename...&gt; class Sequence, typename T0, typename T1,
+<span class="lineNum">     313 </span>            :           typename T2, typename T3, typename T4, typename T5, typename T6&gt;
+<span class="lineNum">     314 </span>            : struct enumerated_fold_impl&lt;Functor, State, I,
+<span class="lineNum">     315 </span>            :                             Sequence&lt;T0, T1, T2, T3, T4, T5, T6&gt;&gt; {
+<span class="lineNum">     316 </span>            :   using type = brigand::apply&lt;
+<span class="lineNum">     317 </span>            :       Functor,
+<span class="lineNum">     318 </span>            :       brigand::apply&lt;
+<span class="lineNum">     319 </span>            :           Functor,
+<span class="lineNum">     320 </span>            :           brigand::apply&lt;
+<span class="lineNum">     321 </span>            :               Functor,
+<span class="lineNum">     322 </span>            :               brigand::apply&lt;
+<span class="lineNum">     323 </span>            :                   Functor, brigand::apply&lt;
+<span class="lineNum">     324 </span>            :                                Functor, brigand::apply&lt;
+<span class="lineNum">     325 </span>            :                                             Functor, brigand::apply&lt;
+<span class="lineNum">     326 </span>            :                                                          Functor, State, T0, I&gt;,
+<span class="lineNum">     327 </span>            :                                             T1, brigand::next&lt;I&gt;&gt;,
+<span class="lineNum">     328 </span>            :                                T2, brigand::plus&lt;I, brigand::int32_t&lt;2&gt;&gt;&gt;,
+<span class="lineNum">     329 </span>            :                   T3, brigand::plus&lt;I, brigand::int32_t&lt;3&gt;&gt;&gt;,
+<span class="lineNum">     330 </span>            :               T4, brigand::plus&lt;I, brigand::int32_t&lt;4&gt;&gt;&gt;,
+<span class="lineNum">     331 </span>            :           T5, brigand::plus&lt;I, brigand::int32_t&lt;5&gt;&gt;&gt;,
+<span class="lineNum">     332 </span>            :       T6, brigand::plus&lt;I, brigand::int32_t&lt;6&gt;&gt;&gt;;
+<span class="lineNum">     333 </span>            : };
+<span class="lineNum">     334 </span>            : 
+<span class="lineNum">     335 </span>            : template &lt;typename Functor, typename State, typename I,
+<span class="lineNum">     336 </span>            :           template &lt;typename...&gt; class Sequence, typename T0, typename T1,
+<span class="lineNum">     337 </span>            :           typename T2, typename T3, typename T4, typename T5, typename T6,
+<span class="lineNum">     338 </span>            :           typename T7&gt;
+<span class="lineNum">     339 </span>            : struct enumerated_fold_impl&lt;Functor, State, I,
+<span class="lineNum">     340 </span>            :                             Sequence&lt;T0, T1, T2, T3, T4, T5, T6, T7&gt;&gt; {
+<span class="lineNum">     341 </span>            :   using type = brigand::apply&lt;
+<span class="lineNum">     342 </span>            :       Functor,
+<span class="lineNum">     343 </span>            :       brigand::apply&lt;
+<span class="lineNum">     344 </span>            :           Functor,
+<span class="lineNum">     345 </span>            :           brigand::apply&lt;
+<span class="lineNum">     346 </span>            :               Functor,
+<span class="lineNum">     347 </span>            :               brigand::apply&lt;
+<span class="lineNum">     348 </span>            :                   Functor,
+<span class="lineNum">     349 </span>            :                   brigand::apply&lt;
+<span class="lineNum">     350 </span>            :                       Functor,
+<span class="lineNum">     351 </span>            :                       brigand::apply&lt;
+<span class="lineNum">     352 </span>            :                           Functor,
+<span class="lineNum">     353 </span>            :                           brigand::apply&lt;Functor,
+<span class="lineNum">     354 </span>            :                                          brigand::apply&lt;Functor, State, T0, I&gt;,
+<span class="lineNum">     355 </span>            :                                          T1, brigand::next&lt;I&gt;&gt;,
+<span class="lineNum">     356 </span>            :                           T2, brigand::plus&lt;I, brigand::int32_t&lt;2&gt;&gt;&gt;,
+<span class="lineNum">     357 </span>            :                       T3, brigand::plus&lt;I, brigand::int32_t&lt;3&gt;&gt;&gt;,
+<span class="lineNum">     358 </span>            :                   T4, brigand::plus&lt;I, brigand::int32_t&lt;4&gt;&gt;&gt;,
+<span class="lineNum">     359 </span>            :               T5, brigand::plus&lt;I, brigand::int32_t&lt;5&gt;&gt;&gt;,
+<span class="lineNum">     360 </span>            :           T6, brigand::plus&lt;I, brigand::int32_t&lt;6&gt;&gt;&gt;,
+<span class="lineNum">     361 </span>            :       T7, brigand::plus&lt;I, brigand::int32_t&lt;7&gt;&gt;&gt;;
+<span class="lineNum">     362 </span>            : };
+<span class="lineNum">     363 </span>            : 
+<span class="lineNum">     364 </span>            : template &lt;typename Functor, typename State, typename I,
+<span class="lineNum">     365 </span>            :           template &lt;typename...&gt; class Sequence, typename T0, typename T1,
+<span class="lineNum">     366 </span>            :           typename T2, typename T3, typename T4, typename T5, typename T6,
+<span class="lineNum">     367 </span>            :           typename T7, typename... T&gt;
+<span class="lineNum">     368 </span>            : struct enumerated_fold_impl&lt;Functor, State, I,
+<span class="lineNum">     369 </span>            :                             Sequence&lt;T0, T1, T2, T3, T4, T5, T6, T7, T...&gt;&gt;
+<span class="lineNum">     370 </span>            :     : enumerated_fold_impl&lt;
+<span class="lineNum">     371 </span>            :           Functor,
+<span class="lineNum">     372 </span>            :           brigand::apply&lt;
+<span class="lineNum">     373 </span>            :               Functor,
+<span class="lineNum">     374 </span>            :               brigand::apply&lt;
+<span class="lineNum">     375 </span>            :                   Functor,
+<span class="lineNum">     376 </span>            :                   brigand::apply&lt;
+<span class="lineNum">     377 </span>            :                       Functor,
+<span class="lineNum">     378 </span>            :                       brigand::apply&lt;
+<span class="lineNum">     379 </span>            :                           Functor,
+<span class="lineNum">     380 </span>            :                           brigand::apply&lt;
+<span class="lineNum">     381 </span>            :                               Functor,
+<span class="lineNum">     382 </span>            :                               brigand::apply&lt;
+<span class="lineNum">     383 </span>            :                                   Functor,
+<span class="lineNum">     384 </span>            :                                   brigand::apply&lt;
+<span class="lineNum">     385 </span>            :                                       Functor,
+<span class="lineNum">     386 </span>            :                                       brigand::apply&lt;Functor, State, T0, I&gt;, T1,
+<span class="lineNum">     387 </span>            :                                       brigand::next&lt;I&gt;&gt;,
+<span class="lineNum">     388 </span>            :                                   T2, brigand::plus&lt;I, brigand::int32_t&lt;2&gt;&gt;&gt;,
+<span class="lineNum">     389 </span>            :                               T3, brigand::plus&lt;I, brigand::int32_t&lt;3&gt;&gt;&gt;,
+<span class="lineNum">     390 </span>            :                           T4, brigand::plus&lt;I, brigand::int32_t&lt;4&gt;&gt;&gt;,
+<span class="lineNum">     391 </span>            :                       T5, brigand::plus&lt;I, brigand::int32_t&lt;5&gt;&gt;&gt;,
+<span class="lineNum">     392 </span>            :                   T6, brigand::plus&lt;I, brigand::int32_t&lt;6&gt;&gt;&gt;,
+<span class="lineNum">     393 </span>            :               T7, brigand::plus&lt;I, brigand::int32_t&lt;7&gt;&gt;&gt;,
+<span class="lineNum">     394 </span>            :           brigand::plus&lt;I, brigand::int32_t&lt;8&gt;&gt;, Sequence&lt;T...&gt;&gt; {};
+<span class="lineNum">     395 </span>            : }
+<span class="lineNum">     396 </span>            : 
+<span class="lineNum">     397 </span>            : namespace lazy {
+<span class="lineNum">     398 </span>            : template &lt;typename Sequence, typename State, typename Functor,
+<span class="lineNum">     399 </span>            :           typename I = brigand::int32_t&lt;0&gt;&gt;
+<span class="lineNum">     400 </span>            : using enumerated_fold =
+<span class="lineNum">     401 </span>            :     typename detail::enumerated_fold_impl&lt;Functor, State, I, Sequence&gt;;
+<span class="lineNum">     402 </span>            : }
+<span class="lineNum">     403 </span>            : 
+<span class="lineNum">     404 </span>            : template &lt;typename Sequence, typename State, typename Functor,
+<span class="lineNum">     405 </span>            :           typename I = brigand::int32_t&lt;0&gt;&gt;
+<span class="lineNum">     406 </span>            : using enumerated_fold =
+<span class="lineNum">     407 </span>            :     typename lazy::enumerated_fold&lt;Sequence, State, Functor, I&gt;::type;
+<span class="lineNum">     408 </span>            : }
+<span class="lineNum">     409 </span>            : 
+<span class="lineNum">     410 </span>            : namespace brigand {
+<span class="lineNum">     411 </span>            : namespace detail {
+<span class="lineNum">     412 </span>            : template &lt;typename S, typename E&gt;
+<span class="lineNum">     413 </span>            : struct remove_duplicates_helper {
+<span class="lineNum">     414 </span>            :   using type = typename std::conditional&lt;
+<span class="lineNum">     415 </span>            :       std::is_same&lt;index_of&lt;S, E&gt;, no_such_type_&gt;::value, push_back&lt;S, E&gt;,
+<span class="lineNum">     416 </span>            :       S&gt;::type;
+<span class="lineNum">     417 </span>            : };
+<span class="lineNum">     418 </span>            : }
+<span class="lineNum">     419 </span>            : 
+<span class="lineNum">     420 </span>            : template &lt;typename Ls&gt;
+<span class="lineNum">     421 </span>            : using remove_duplicates =
+<span class="lineNum">     422 </span>            :     fold&lt;Ls, list&lt;&gt;, detail::remove_duplicates_helper&lt;_state, _element&gt;&gt;;
+<span class="lineNum">     423 </span>            : }
+<span class="lineNum">     424 </span>            : 
+<span class="lineNum">     425 </span>            : namespace tmpl = brigand;
+<span class="lineNum">     426 </span>            : 
+<span class="lineNum">     427 </span>            : /// \ingroup Utilities
+<span class="lineNum">     428 </span>            : /// \brief Construct a typelist of types `Ts`.
+<span class="lineNum">     429 </span>            : template &lt;typename... Ts&gt;
+<span class="lineNum">     430 </span><span class="lineCov">          2 : using typelist = tmpl::list&lt;Ts...&gt;;</span>
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>
