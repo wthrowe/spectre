@@ -1,0 +1,165 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 62204faed5c3285d61ace50f511c782e819e106e - Utilities/FakeVirtual.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">Utilities</a> - FakeVirtual.hpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/62204faed5c3285d61ace50f511c782e819e106e">62204faed5c3285d61ace50f511c782e819e106e</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">1</td>
+            <td class="headerCovTableEntry">1</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2017-06-17 01:56:12</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : #pragma once
+<span class="lineNum">       5 </span>            : 
+<span class="lineNum">       6 </span>            : #include &lt;type_traits&gt;
+<span class="lineNum">       7 </span>            : #include &lt;typeinfo&gt;
+<span class="lineNum">       8 </span>            : 
+<span class="lineNum">       9 </span>            : #include &quot;ErrorHandling/Error.hpp&quot;
+<span class="lineNum">      10 </span>            : #include &quot;Utilities/PrettyType.hpp&quot;
+<span class="lineNum">      11 </span>            : #include &quot;Utilities/TMPL.hpp&quot;
+<span class="lineNum">      12 </span>            : 
+<span class="lineNum">      13 </span>            : /// \ingroup Utilities
+<span class="lineNum">      14 </span>            : /// \brief Define a function that acts similarly to a virtual
+<span class="lineNum">      15 </span>            : /// function, but can take template parameters.
+<span class="lineNum">      16 </span>            : ///
+<span class="lineNum">      17 </span>            : /// \details `DEFINE_FAKE_VIRTUAL(func)` defines the function
+<span class="lineNum">      18 </span>            : /// `fake_virtual_func` and the struct `FakeVirtualInherit_func`.  It
+<span class="lineNum">      19 </span>            : /// should usually be called in a detail namespace.
+<span class="lineNum">      20 </span>            : ///
+<span class="lineNum">      21 </span>            : /// A base class `Base` using this functionality should define a type
+<span class="lineNum">      22 </span>            : /// \code
+<span class="lineNum">      23 </span>            : /// using Inherit = FakeVirtualInherit_func&lt;Base&gt;;
+<span class="lineNum">      24 </span>            : /// \endcode
+<span class="lineNum">      25 </span>            : /// and a member function `func` wrapping `fake_virtual_func`, with
+<span class="lineNum">      26 </span>            : /// the wrapper passing the derived classes as a typelist as the first
+<span class="lineNum">      27 </span>            : /// template argument and the `this` pointer as the first normal
+<span class="lineNum">      28 </span>            : /// argument.
+<span class="lineNum">      29 </span>            : ///
+<span class="lineNum">      30 </span>            : /// Derived classes should then inherit from `Base::Inherit` instead
+<span class="lineNum">      31 </span>            : /// of directly from `Base`.  (`Base::Inherit` inherits from `Base`.)
+<span class="lineNum">      32 </span>            : ///
+<span class="lineNum">      33 </span>            : /// If the base class has no pure virtual functions remaining it will
+<span class="lineNum">      34 </span>            : /// generally be desirable to mark the constructors and assignment
+<span class="lineNum">      35 </span>            : /// operators protected so that a bare base class cannot be instantiated.
+<span class="lineNum">      36 </span>            : ///
+<span class="lineNum">      37 </span>            : /// If it is necessary to use multiple fake virtual functions with the
+<span class="lineNum">      38 </span>            : /// same base class, the `Inherit` definition can nest the fake
+<span class="lineNum">      39 </span>            : /// virtual classes:
+<span class="lineNum">      40 </span>            : /// \code
+<span class="lineNum">      41 </span>            : /// using Inherit = FakeVirtualInherit_func1&lt;FakeVirtualInherit_func2&lt;Base&gt;&gt;;
+<span class="lineNum">      42 </span>            : /// \endcode
+<span class="lineNum">      43 </span>            : ///
+<span class="lineNum">      44 </span>            : /// \example
+<span class="lineNum">      45 </span>            : /// \snippet FakeVirtual.cpp fake_virtual_example
+<span class="lineNum">      46 </span><span class="lineCov">          2 : #define DEFINE_FAKE_VIRTUAL(function)                                          \</span>
+<span class="lineNum">      47 </span>            :   /* This struct is only needed for producing an error if the function */      \
+<span class="lineNum">      48 </span>            :   /* is not overridden in the derived class. */                                \
+<span class="lineNum">      49 </span>            :   template &lt;typename Base&gt;                                                     \
+<span class="lineNum">      50 </span>            :   struct FakeVirtualInherit_##function : public Base {                         \
+<span class="lineNum">      51 </span>            :     using Base::Base;                                                          \
+<span class="lineNum">      52 </span>            :     void function(...) const = delete;                                         \
+<span class="lineNum">      53 </span>            :   };                                                                           \
+<span class="lineNum">      54 </span>            :                                                                                \
+<span class="lineNum">      55 </span>            :   template &lt;                                                                   \
+<span class="lineNum">      56 </span>            :       typename Classes, typename... TArgs, typename Base, typename... Args,    \
+<span class="lineNum">      57 </span>            :       typename std::enable_if_t&lt;(tmpl::size&lt;Classes&gt;::value == 0)&gt;* = nullptr&gt; \
+<span class="lineNum">      58 </span>            :   auto fake_virtual_##function(Base* obj, Args&amp;&amp;... args)                      \
+<span class="lineNum">      59 </span>            :       -&gt;decltype(obj-&gt;template function&lt;TArgs...&gt;(args...)) {                  \
+<span class="lineNum">      60 </span>            :     ERROR(&quot;Class &quot; &lt;&lt; pretty_type::get_runtime_type_name(*obj)                 \
+<span class="lineNum">      61 </span>            :                    &lt;&lt; &quot; is not registered with &quot;                               \
+<span class="lineNum">      62 </span>            :                    &lt;&lt; pretty_type::get_name&lt;std::remove_const_t&lt;Base&gt;&gt;());     \
+<span class="lineNum">      63 </span>            :   }                                                                            \
+<span class="lineNum">      64 </span>            :                                                                                \
+<span class="lineNum">      65 </span>            :   template &lt;                                                                   \
+<span class="lineNum">      66 </span>            :       typename Classes, typename... TArgs, typename Base, typename... Args,    \
+<span class="lineNum">      67 </span>            :       typename std::enable_if_t&lt;(tmpl::size&lt;Classes&gt;::value != 0)&gt;* = nullptr&gt; \
+<span class="lineNum">      68 </span>            :   decltype(auto) fake_virtual_##function(Base* obj, Args&amp;&amp;... args) {          \
+<span class="lineNum">      69 </span>            :     using derived = tmpl::front&lt;Classes&gt;;                                      \
+<span class="lineNum">      70 </span>            :     static_assert(std::is_base_of&lt;typename Base::Inherit, derived&gt;::value,     \
+<span class="lineNum">      71 </span>            :                   &quot;Derived class does not inherit from Base::Inherit&quot;);        \
+<span class="lineNum">      72 </span>            :     using derived_p = std::conditional_t&lt;std::is_const&lt;Base&gt;::value,           \
+<span class="lineNum">      73 </span>            :                                          derived const*, derived*&gt;;            \
+<span class="lineNum">      74 </span>            :     /* If we want to allow creatable classses to return objects of */          \
+<span class="lineNum">      75 </span>            :     /* types derived from themselves then this will have to be changed */      \
+<span class="lineNum">      76 </span>            :     /* to a dynamic_cast, but we probably won't want that and this */          \
+<span class="lineNum">      77 </span>            :     /* form is significantly faster. */                                        \
+<span class="lineNum">      78 </span>            :     if (typeid(*obj) == typeid(derived)) {                                     \
+<span class="lineNum">      79 </span>            :       return static_cast&lt;derived_p&gt;(obj)-&gt;template function&lt;TArgs...&gt;(         \
+<span class="lineNum">      80 </span>            :           std::forward&lt;Args&gt;(args)...);                                        \
+<span class="lineNum">      81 </span>            :     } else {                                                                   \
+<span class="lineNum">      82 </span>            :       return fake_virtual_##function&lt;tmpl::pop_front&lt;Classes&gt;, TArgs...&gt;(      \
+<span class="lineNum">      83 </span>            :           obj, std::forward&lt;Args&gt;(args)...);                                   \
+<span class="lineNum">      84 </span>            :     }                                                                          \
+<span class="lineNum">      85 </span>            :   }
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

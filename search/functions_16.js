@@ -12,6 +12,7 @@ var searchData=
   ['vfwprintf',['vfwprintf',['http://en.cppreference.com/w/cpp/io/c/vfwprintf.html',1,'std']]],
   ['vfwscanf',['vfwscanf',['http://en.cppreference.com/w/cpp/io/c/vfwscanf.html',1,'std']]],
   ['visit',['visit',['http://en.cppreference.com/w/cpp/utility/variant/visit.html',1,'std']]],
+  ['volume_5foffset',['volume_offset',['../classSliceIterator.html#ae81dd0b41c36f65c851fb16e847b41cf',1,'SliceIterator']]],
   ['vprintf',['vprintf',['http://en.cppreference.com/w/cpp/io/c/vfprintf.html',1,'std']]],
   ['vscanf',['vscanf',['http://en.cppreference.com/w/cpp/io/c/vfscanf.html',1,'std']]],
   ['vsnprintf',['vsnprintf',['http://en.cppreference.com/w/cpp/io/c/vfprintf.html',1,'std']]],

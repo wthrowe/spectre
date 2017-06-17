@@ -22,6 +22,7 @@ var searchData=
   ['lexicographical_5fcompare',['lexicographical_compare',['http://en.cppreference.com/w/cpp/algorithm/lexicographical_compare.html',1,'std']]],
   ['lgamma',['lgamma',['http://en.cppreference.com/w/cpp/numeric/math/lgamma.html',1,'std']]],
   ['linear_5fcongruential_5fengine',['linear_congruential_engine',['http://en.cppreference.com/w/cpp/numeric/random/linear_congruential_engine/linear_congruential_engine.html',1,'std::linear_congruential_engine']]],
+  ['linear_5ffilter_5fmatrix',['linear_filter_matrix',['../namespaceBasis_1_1lgl.html#acd680a8f9d7a2d2dde59e20df2ebe4fa',1,'Basis::lgl']]],
   ['list',['list',['http://en.cppreference.com/w/cpp/container/list/list.html',1,'std::list::list()'],['http://en.cppreference.com/w/cpp/container/list/list.html',1,'std::pmr::list::list()']]],
   ['llabs',['llabs',['http://en.cppreference.com/w/cpp/numeric/math/abs.html',1,'std']]],
   ['lldiv',['lldiv',['http://en.cppreference.com/w/cpp/numeric/math/div.html',1,'std']]],

@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - e573dead46052fecc751905e6328701677698fc2 - Parallel/Serialize.hpp</title>
+  <title>LCOV - 62204faed5c3285d61ace50f511c782e819e106e - Parallel/Serialize.hpp</title>
   <link rel="stylesheet" type="text/css" href="../gcov.css">
 </head>
 
@@ -28,7 +28,7 @@
           </tr>
           <tr>
             <td class="headerItem">Commit:</td>
-             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/e573dead46052fecc751905e6328701677698fc2">e573dead46052fecc751905e6328701677698fc2</a></td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/62204faed5c3285d61ace50f511c782e819e106e">62204faed5c3285d61ace50f511c782e819e106e</a></td>
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntry">14</td>
@@ -37,11 +37,11 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2017-06-16 01:54:57</td>
+            <td class="headerValue">2017-06-17 01:55:55</td>
             <td></td>
             <td class="headerItem">Functions:</td>
-            <td class="headerCovTableEntry">2</td>
-            <td class="headerCovTableEntry">2</td>
+            <td class="headerCovTableEntry">24</td>
+            <td class="headerCovTableEntry">24</td>
             <td class="headerCovTableEntryHi">100.0 %</td>
           </tr>
           <tr>
@@ -92,21 +92,21 @@
 <span class="lineNum">      22 </span>            :  * \tparam T type to serialize
 <a name="23"><span class="lineNum">      23 </span>            :  */</a>
 <span class="lineNum">      24 </span>            : template &lt;typename T, typename U&gt;
-<span class="lineNum">      25 </span><span class="lineCov">          2 : std::vector&lt;char&gt; serialize(const U&amp; obj) {</span>
+<span class="lineNum">      25 </span><span class="lineCov">         15 : std::vector&lt;char&gt; serialize(const U&amp; obj) {</span>
 <span class="lineNum">      26 </span>            :   static_assert(std::is_same&lt;T, U&gt;::value,
 <span class="lineNum">      27 </span>            :                 &quot;Explicit type for serialization differs from deduced type&quot;);
-<span class="lineNum">      28 </span><span class="lineCov">          2 :   const T&amp; typed_obj = obj;</span>
+<span class="lineNum">      28 </span><span class="lineCov">         15 :   const T&amp; typed_obj = obj;</span>
 <span class="lineNum">      29 </span>            :   // pup routine is non-const, but shouldn't modify anything in serialization
 <span class="lineNum">      30 </span>            :   // mode.
-<span class="lineNum">      31 </span><span class="lineCov">          2 :   T&amp; mut_obj = const_cast&lt;T&amp;&gt;(typed_obj);</span>
+<span class="lineNum">      31 </span><span class="lineCov">         15 :   T&amp; mut_obj = const_cast&lt;T&amp;&gt;(typed_obj);</span>
 <span class="lineNum">      32 </span>            : 
-<span class="lineNum">      33 </span><span class="lineCov">          4 :   PUP::sizer sizer;</span>
-<span class="lineNum">      34 </span><span class="lineCov">          2 :   sizer | mut_obj;</span>
-<span class="lineNum">      35 </span><span class="lineCov">          2 :   std::vector&lt;char&gt; data(sizer.size());</span>
-<span class="lineNum">      36 </span><span class="lineCov">          4 :   PUP::toMem writer(data.data());</span>
-<span class="lineNum">      37 </span><span class="lineCov">          2 :   writer | mut_obj;</span>
+<span class="lineNum">      33 </span><span class="lineCov">         30 :   PUP::sizer sizer;</span>
+<span class="lineNum">      34 </span><span class="lineCov">         15 :   sizer | mut_obj;</span>
+<span class="lineNum">      35 </span><span class="lineCov">         15 :   std::vector&lt;char&gt; data(sizer.size());</span>
+<span class="lineNum">      36 </span><span class="lineCov">         30 :   PUP::toMem writer(data.data());</span>
+<span class="lineNum">      37 </span><span class="lineCov">         15 :   writer | mut_obj;</span>
 <span class="lineNum">      38 </span>            : 
-<span class="lineNum">      39 </span><span class="lineCov">          4 :   return data;</span>
+<span class="lineNum">      39 </span><span class="lineCov">         30 :   return data;</span>
 <span class="lineNum">      40 </span>            : }
 <span class="lineNum">      41 </span>            : 
 <span class="lineNum">      42 </span>            : /*!
@@ -116,11 +116,11 @@
 <span class="lineNum">      46 </span>            :  * \tparam T the type to deserialize to
 <a name="47"><span class="lineNum">      47 </span>            :  */</a>
 <span class="lineNum">      48 </span>            : template &lt;typename T&gt;
-<span class="lineNum">      49 </span><span class="lineCov">          2 : T deserialize(const void* const data) {</span>
-<span class="lineNum">      50 </span><span class="lineCov">          4 :   PUP::fromMem reader(data);</span>
-<span class="lineNum">      51 </span><span class="lineCov">          2 :   T result;</span>
-<span class="lineNum">      52 </span><span class="lineCov">          2 :   reader | result;</span>
-<span class="lineNum">      53 </span><span class="lineCov">          4 :   return result;</span>
+<span class="lineNum">      49 </span><span class="lineCov">         15 : T deserialize(const void* const data) {</span>
+<span class="lineNum">      50 </span><span class="lineCov">         30 :   PUP::fromMem reader(data);</span>
+<span class="lineNum">      51 </span><span class="lineCov">         13 :   T result;</span>
+<span class="lineNum">      52 </span><span class="lineCov">         15 :   reader | result;</span>
+<span class="lineNum">      53 </span><span class="lineCov">         30 :   return result;</span>
 <span class="lineNum">      54 </span>            : }
 </pre>
       </td>

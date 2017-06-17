@@ -1,0 +1,194 @@
+<!-- HTML header for doxygen 1.8.10-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="SXS Collaboration">
+    <meta name="generator" content="Doxygen 1.8.13"/>
+    <style>
+        /*!
+         * IE10 viewport hack for Surface/desktop Windows 8 bug
+         * Copyright 2014-2015 Twitter, Inc.
+         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+         */
+        @-webkit-viewport { width: device-width; }
+        @-moz-viewport    { width: device-width; }
+        @-ms-viewport     { width: device-width; }
+        @-o-viewport      { width: device-width; }
+        @viewport         { width: device-width; }
+      </style>
+  <title>SpECTRE: src/Utilities/TaggedTuple.hpp Source File</title>
+  <link href="tabs.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="dynsections.js"></script>
+  <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
+  <link href="octicons.css" rel="stylesheet">
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="doxygen.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="bootstrap.min.js"></script>
+  <script type="text/javascript" src="spectre.js"></script>
+  </head>
+  <body>
+  <div id="top" class="navbar-fixed-top"><!-- do not remove this div, it is closed by doxygen! -->
+  <!-- BEGIN TITLEAREA -->
+  <div id="titlearea">
+  <script type="text/javascript">
+  var searchBox = new SearchBox("searchBox", "search",false,'Search');
+  </script>
+  <div id="main-nav">
+    <ul class="sm sm-dox" id="main-menu">
+      <li>
+      <a href="https://github.com/sxs-collaboration/spectre" target="_blank">
+      SpECTRE &#160;
+        <span id="projectnumber">v0.0.0</span>
+      </a>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-book"></i><span>Documentation</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 135px;">
+            <a href="index.html">
+            <i class="octicon octicon-book"></i><span>Documentation</span></a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="tutorials.html">
+              <i class="octicon octicon-mortar-board"></i><span>Tutorials</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="dev_guide.html">
+              <i class="octicon octicon-gist-secret"></i><span>Dev Guide</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown" style="min-width: 150px;">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 130px;">
+            <a href="modules.html">
+              <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+            </a>
+          </li>
+          <li style="min-width: 130px;">
+            <a href="namespaces.html">
+              <i class="octicon octicon-gist"></i>
+              <span>Namespaces</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="files.html">
+          <i class="octicon octicon-file-directory"></i><span>Files</span>
+        </a>
+      </li>
+      <!--The Search <li> is added by doxygen later-->
+    </ul>
+  </div><!-- main-nav -->
+  </div><!-- titlearea -->
+  <!-- window showing the filter options -->
+  <div id="MSearchSelectWindow"  style="position: fixed;"
+       onmouseover="return searchBox.OnSearchSelectShow()"
+       onmouseout="return searchBox.OnSearchSelectHide()"
+       onkeydown="return searchBox.OnSearchSelectKey(event)">
+  </div>
+  <!-- iframe showing the search results (closed by default) -->
+  <div id="MSearchResultsWindow"  style="position: fixed;">
+  <iframe src="javascript:void(0)" frameborder="0"
+          name="MSearchResults" id="MSearchResults">
+  </iframe>
+  </div><!-- Generated by Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_22cd119e9135d55404da822cc2bf42d2.html">src</a></li><li class="navelem"><a class="el" href="dir_9aa73582304dae90a1100b0a33d608e3.html">Utilities</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">TaggedTuple.hpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="TaggedTuple_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// Distributed under the MIT License.</span></div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// See LICENSE.txt for details.</span></div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;</div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#pragma once</span></div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;</div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;<a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/header/tuple.html">tuple</a>&gt;</span></div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;<a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/header/type_traits.html">type_traits</a>&gt;</span></div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="PupStlCpp11_8hpp.html">Parallel/PupStlCpp11.hpp</a>&quot;</span></div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="StdHelpers_8hpp.html">Utilities/StdHelpers.hpp</a>&quot;</span></div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="TMPL_8hpp.html">Utilities/TMPL.hpp</a>&quot;</span></div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div><div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span>... Tags&gt;</div><div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="structTaggedTuple.html">   27</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structTaggedTuple.html">TaggedTuple</a> {</div><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;  static_assert(tmpl::is_set&lt;Tags...&gt;::value,</div><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                <span class="stringliteral">&quot;Cannot create a TaggedTuple with duplicate Tags.&quot;</span>);</div><div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;  <span class="keyword">template</span> &lt;<span class="keyword">typename</span>... Args&gt;</div><div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="structTaggedTuple.html#aac15c9385dd7837e0e3ff2d1e311be1a">   38</a></span>&#160;  <span class="keyword">explicit</span> <a class="code" href="structTaggedTuple.html#aac15c9385dd7837e0e3ff2d1e311be1a">TaggedTuple</a>(Args&amp;&amp;... args) : data_(<a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/namespacestd.html">std</a>::forward&lt;Args&gt;(args)...) {}</div><div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div><div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="structTaggedTuple.html#a2b0cd629d1df23da929000b6c4fa38e4">   41</a></span>&#160;  <span class="keywordtype">void</span> <a class="code" href="structTaggedTuple.html#a2b0cd629d1df23da929000b6c4fa38e4">pup</a>(PUP::er&amp; p) { p | data_; }  <span class="comment">// NOLINT</span></div><div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div><div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="structTaggedTuple.html#a11e7b714b2c55facb1d813286eff89e3">   44</a></span>&#160;  <span class="keyword">static</span> constexpr <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/size_t.html">std::size_t</a> <a class="code" href="structTaggedTuple.html#a11e7b714b2c55facb1d813286eff89e3">size</a>() { <span class="keywordflow">return</span> <span class="keyword">sizeof</span>...(Tags); }</div><div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div><div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;  <span class="comment">// @{</span></div><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="comment"></span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Tag&gt;</div><div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="structTaggedTuple.html#a17d00e23f33d569825c579b617e23fb7">   57</a></span>&#160;  constexpr <span class="keyword">typename</span> Tag::type&amp; <span class="keyword">get</span>() noexcept {</div><div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    static_assert(</div><div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        not <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/is_same.html">std::is_same</a>&lt;tmpl::index_of&lt;tmpl::list&lt;Tags...&gt;, Tag&gt;,</div><div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;                         tmpl::no_such_type_&gt;::value,</div><div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <span class="stringliteral">&quot;Could not retrieve Tag from TaggedTuple. See the first template &quot;</span></div><div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        <span class="stringliteral">&quot;parameter of the instantiation for what Tag is being &quot;</span></div><div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        <span class="stringliteral">&quot;retrieved and the remaining template parameters for what &quot;</span></div><div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <span class="stringliteral">&quot;Tags are available.&quot;</span>);</div><div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keywordflow">return</span> std::get&lt;tmpl::index_of&lt;tmpl::list&lt;Tags...&gt;, Tag&gt;::value&gt;(data_);</div><div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;  }</div><div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div><div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Tag&gt;</div><div class="line"><a name="l00069"></a><span class="lineno"><a class="line" href="structTaggedTuple.html#a7cbb69692de39bbdab158ec3da07e6d0">   69</a></span>&#160;  constexpr <span class="keyword">const</span> <span class="keyword">typename</span> Tag::type&amp; <span class="keyword">get</span>() <span class="keyword">const</span> noexcept {</div><div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    static_assert(</div><div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        not <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/is_same.html">std::is_same</a>&lt;tmpl::index_of&lt;tmpl::list&lt;Tags...&gt;, Tag&gt;,</div><div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;                         tmpl::no_such_type_&gt;::value,</div><div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <span class="stringliteral">&quot;Could not retrieve Tag from TaggedTuple. See the first template &quot;</span></div><div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        <span class="stringliteral">&quot;parameter of the instantiation for what Tag is being &quot;</span></div><div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <span class="stringliteral">&quot;retrieved and the remaining template parameters for what &quot;</span></div><div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <span class="stringliteral">&quot;Tags are available.&quot;</span>);</div><div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keywordflow">return</span> std::get&lt;tmpl::index_of&lt;tmpl::list&lt;Tags...&gt;, Tag&gt;::value&gt;(data_);</div><div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;  }</div><div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;  <span class="comment">// @}</span></div><div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div><div class="line"><a name="l00082"></a><span class="lineno"><a class="line" href="structTaggedTuple.html#aebd7506dc363489cc1542efc2341c799">   82</a></span>&#160;  <span class="keyword">friend</span> <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/io/basic_ostream.html">std::ostream</a>&amp; <a class="code" href="structTaggedTuple.html#aebd7506dc363489cc1542efc2341c799">operator&lt;&lt;</a>(<a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/io/basic_ostream.html">std::ostream</a>&amp; os,</div><div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;                                  <span class="keyword">const</span> <a class="code" href="structTaggedTuple.html">TaggedTuple&lt;Tags...&gt;</a>&amp; t) {</div><div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keywordflow">return</span> os &lt;&lt; t.data_;</div><div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;  }</div><div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div><div class="line"><a name="l00087"></a><span class="lineno"><a class="line" href="structTaggedTuple.html#ad5c084fbc12631bb243545ebb5388a93">   87</a></span>&#160;  constexpr <span class="keyword">friend</span> <span class="keywordtype">bool</span> <a class="code" href="structTaggedTuple.html#ad5c084fbc12631bb243545ebb5388a93">operator==</a>(<span class="keyword">const</span> <a class="code" href="structTaggedTuple.html">TaggedTuple</a>&amp; lhs,</div><div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;                                   <span class="keyword">const</span> <a class="code" href="structTaggedTuple.html">TaggedTuple</a>&amp; rhs) {</div><div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <span class="keywordflow">return</span> lhs.data_ == rhs.data_;</div><div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;  }</div><div class="line"><a name="l00091"></a><span class="lineno"><a class="line" href="structTaggedTuple.html#aefb2ace8783ebb179816be353455cfe0">   91</a></span>&#160;  constexpr <span class="keyword">friend</span> <span class="keywordtype">bool</span> <a class="code" href="structTaggedTuple.html#aefb2ace8783ebb179816be353455cfe0">operator!=</a>(<span class="keyword">const</span> <a class="code" href="structTaggedTuple.html">TaggedTuple</a>&amp; lhs,</div><div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;                                   <span class="keyword">const</span> <a class="code" href="structTaggedTuple.html">TaggedTuple</a>&amp; rhs) {</div><div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="keywordflow">return</span> lhs.data_ != rhs.data_;</div><div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;  }</div><div class="line"><a name="l00095"></a><span class="lineno"><a class="line" href="structTaggedTuple.html#a2f2dca2687bb190fa31af5af6227b4dd">   95</a></span>&#160;  constexpr <span class="keyword">friend</span> <span class="keywordtype">bool</span> <a class="code" href="structTaggedTuple.html#a2f2dca2687bb190fa31af5af6227b4dd">operator&gt;</a>(<span class="keyword">const</span> <a class="code" href="structTaggedTuple.html">TaggedTuple</a>&amp; lhs,</div><div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;                                  <span class="keyword">const</span> <a class="code" href="structTaggedTuple.html">TaggedTuple</a>&amp; rhs) {</div><div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="keywordflow">return</span> lhs.data_ &gt; rhs.data_;</div><div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;  }</div><div class="line"><a name="l00099"></a><span class="lineno"><a class="line" href="structTaggedTuple.html#a3a78c853ad4530728be5d66778e6be01">   99</a></span>&#160;  constexpr <span class="keyword">friend</span> <span class="keywordtype">bool</span> <a class="code" href="structTaggedTuple.html#a3a78c853ad4530728be5d66778e6be01">operator&gt;=</a>(<span class="keyword">const</span> <a class="code" href="structTaggedTuple.html">TaggedTuple</a>&amp; lhs,</div><div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;                                   <span class="keyword">const</span> <a class="code" href="structTaggedTuple.html">TaggedTuple</a>&amp; rhs) {</div><div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <span class="keywordflow">return</span> lhs.data_ &gt;= rhs.data_;</div><div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;  }</div><div class="line"><a name="l00103"></a><span class="lineno"><a class="line" href="structTaggedTuple.html#a06968dceeb0ec894b8407e6bab9b6498">  103</a></span>&#160;  constexpr <span class="keyword">friend</span> <span class="keywordtype">bool</span> <a class="code" href="structTaggedTuple.html#a06968dceeb0ec894b8407e6bab9b6498">operator&lt;</a>(<span class="keyword">const</span> <a class="code" href="structTaggedTuple.html">TaggedTuple</a>&amp; lhs,</div><div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;                                  <span class="keyword">const</span> <a class="code" href="structTaggedTuple.html">TaggedTuple</a>&amp; rhs) {</div><div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    <span class="keywordflow">return</span> lhs.data_ &lt; rhs.data_;</div><div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;  }</div><div class="line"><a name="l00107"></a><span class="lineno"><a class="line" href="structTaggedTuple.html#a37091e635b9c9a0098e011519558a239">  107</a></span>&#160;  constexpr <span class="keyword">friend</span> <span class="keywordtype">bool</span> <a class="code" href="structTaggedTuple.html#a37091e635b9c9a0098e011519558a239">operator&lt;=</a>(<span class="keyword">const</span> <a class="code" href="structTaggedTuple.html">TaggedTuple</a>&amp; lhs,</div><div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;                                   <span class="keyword">const</span> <a class="code" href="structTaggedTuple.html">TaggedTuple</a>&amp; rhs) {</div><div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    <span class="keywordflow">return</span> lhs.data_ &lt;= rhs.data_;</div><div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;  }</div><div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;</div><div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160; <span class="keyword">private</span>:</div><div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;  <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/utility/tuple.html">std::tuple</a>&lt;<span class="keyword">typename</span> Tags::type...&gt; data_;</div><div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;};</div><div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;</div><div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceTaggedTuple__detail.html">TaggedTuple_detail</a> {</div><div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div><div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="keyword">struct </span>TaggedTupleTypelistImpl;</div><div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;</div><div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">template</span> &lt;<span class="keyword">typename</span>...&gt; <span class="keyword">class </span>Ls, <span class="keyword">typename</span>... Tags&gt;</div><div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="keyword">struct </span>TaggedTupleTypelistImpl&lt;Ls&lt;Tags...&gt;&gt; {</div><div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;  <span class="keyword">using</span> type = <a class="code" href="structTaggedTuple.html">TaggedTuple</a>&lt;Tags...&gt;;</div><div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;};</div><div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;}  <span class="comment">// namespace TaggedTuple_detail</span></div><div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;</div><div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> Ls&gt;</div><div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="keyword">using</span> <a class="code" href="TaggedTuple_8hpp.html#aacddb1e80457fbff9419f0c1618faa16">TaggedTupleTypelist</a> =</div><div class="line"><a name="l00129"></a><span class="lineno"><a class="line" href="TaggedTuple_8hpp.html#aacddb1e80457fbff9419f0c1618faa16">  129</a></span>&#160;    <span class="keyword">typename</span> TaggedTuple_detail::TaggedTupleTypelistImpl&lt;Ls&gt;::type;</div><div class="ttc" id="StdHelpers_8hpp_html"><div class="ttname"><a href="StdHelpers_8hpp.html">StdHelpers.hpp</a></div><div class="ttdoc">Defines helper functions for the standard library. </div></div>
+<div class="ttc" id="structTaggedTuple_html_a06968dceeb0ec894b8407e6bab9b6498"><div class="ttname"><a href="structTaggedTuple.html#a06968dceeb0ec894b8407e6bab9b6498">TaggedTuple::operator&lt;</a></div><div class="ttdeci">constexpr friend bool operator&lt;(const TaggedTuple &amp;lhs, const TaggedTuple &amp;rhs)</div><div class="ttdef"><b>Definition:</b> TaggedTuple.hpp:103</div></div>
+<div class="ttc" id="namespaceTaggedTuple__detail_html"><div class="ttname"><a href="namespaceTaggedTuple__detail.html">TaggedTuple_detail</a></div><div class="ttdef"><b>Definition:</b> TaggedTuple.hpp:116</div></div>
+<div class="ttc" id="structTaggedTuple_html_a11e7b714b2c55facb1d813286eff89e3"><div class="ttname"><a href="structTaggedTuple.html#a11e7b714b2c55facb1d813286eff89e3">TaggedTuple::size</a></div><div class="ttdeci">static constexpr std::size_t size()</div><div class="ttdoc">Returns the size of a TaggedTuple. </div><div class="ttdef"><b>Definition:</b> TaggedTuple.hpp:44</div></div>
+<div class="ttc" id="is_same_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/types/is_same.html">std::is_same</a></div></div>
+<div class="ttc" id="namespacestd_html"><div class="ttname"><a href="http://en.cppreference.com/w/namespacestd.html">std</a></div></div>
+<div class="ttc" id="type_traits_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/type_traits.html">type_traits</a></div></div>
+<div class="ttc" id="size_t_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/types/size_t.html">std::size_t</a></div></div>
+<div class="ttc" id="structTaggedTuple_html_aefb2ace8783ebb179816be353455cfe0"><div class="ttname"><a href="structTaggedTuple.html#aefb2ace8783ebb179816be353455cfe0">TaggedTuple::operator!=</a></div><div class="ttdeci">constexpr friend bool operator!=(const TaggedTuple &amp;lhs, const TaggedTuple &amp;rhs)</div><div class="ttdef"><b>Definition:</b> TaggedTuple.hpp:91</div></div>
+<div class="ttc" id="TaggedTuple_8hpp_html_aacddb1e80457fbff9419f0c1618faa16"><div class="ttname"><a href="TaggedTuple_8hpp.html#aacddb1e80457fbff9419f0c1618faa16">TaggedTupleTypelist</a></div><div class="ttdeci">typename TaggedTuple_detail::TaggedTupleTypelistImpl&lt; Ls &gt;::type TaggedTupleTypelist</div><div class="ttdef"><b>Definition:</b> TaggedTuple.hpp:129</div></div>
+<div class="ttc" id="PupStlCpp11_8hpp_html"><div class="ttname"><a href="PupStlCpp11_8hpp.html">PupStlCpp11.hpp</a></div><div class="ttdoc">PUP routines for new C+11 STL containers. </div></div>
+<div class="ttc" id="structTaggedTuple_html_a3a78c853ad4530728be5d66778e6be01"><div class="ttname"><a href="structTaggedTuple.html#a3a78c853ad4530728be5d66778e6be01">TaggedTuple::operator&gt;=</a></div><div class="ttdeci">constexpr friend bool operator&gt;=(const TaggedTuple &amp;lhs, const TaggedTuple &amp;rhs)</div><div class="ttdef"><b>Definition:</b> TaggedTuple.hpp:99</div></div>
+<div class="ttc" id="structTaggedTuple_html"><div class="ttname"><a href="structTaggedTuple.html">TaggedTuple</a></div><div class="ttdoc">An associative container that is indexed by structs. </div><div class="ttdef"><b>Definition:</b> TaggedTuple.hpp:27</div></div>
+<div class="ttc" id="tuple_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/tuple.html">tuple</a></div></div>
+<div class="ttc" id="structTaggedTuple_html_a2b0cd629d1df23da929000b6c4fa38e4"><div class="ttname"><a href="structTaggedTuple.html#a2b0cd629d1df23da929000b6c4fa38e4">TaggedTuple::pup</a></div><div class="ttdeci">void pup(PUP::er &amp;p)</div><div class="ttdoc">Used for serialization with Charm++. </div><div class="ttdef"><b>Definition:</b> TaggedTuple.hpp:41</div></div>
+<div class="ttc" id="structTaggedTuple_html_aebd7506dc363489cc1542efc2341c799"><div class="ttname"><a href="structTaggedTuple.html#aebd7506dc363489cc1542efc2341c799">TaggedTuple::operator&lt;&lt;</a></div><div class="ttdeci">friend std::ostream &amp; operator&lt;&lt;(std::ostream &amp;os, const TaggedTuple&lt; Tags... &gt; &amp;t)</div><div class="ttdoc">Stream operator for TaggedTuple. </div><div class="ttdef"><b>Definition:</b> TaggedTuple.hpp:82</div></div>
+<div class="ttc" id="TMPL_8hpp_html"><div class="ttname"><a href="TMPL_8hpp.html">TMPL.hpp</a></div><div class="ttdoc">Wraps the template metaprogramming library used (brigand) </div></div>
+<div class="ttc" id="structTaggedTuple_html_a2f2dca2687bb190fa31af5af6227b4dd"><div class="ttname"><a href="structTaggedTuple.html#a2f2dca2687bb190fa31af5af6227b4dd">TaggedTuple::operator&gt;</a></div><div class="ttdeci">constexpr friend bool operator&gt;(const TaggedTuple &amp;lhs, const TaggedTuple &amp;rhs)</div><div class="ttdef"><b>Definition:</b> TaggedTuple.hpp:95</div></div>
+<div class="ttc" id="structTaggedTuple_html_ad5c084fbc12631bb243545ebb5388a93"><div class="ttname"><a href="structTaggedTuple.html#ad5c084fbc12631bb243545ebb5388a93">TaggedTuple::operator==</a></div><div class="ttdeci">constexpr friend bool operator==(const TaggedTuple &amp;lhs, const TaggedTuple &amp;rhs)</div><div class="ttdef"><b>Definition:</b> TaggedTuple.hpp:87</div></div>
+<div class="ttc" id="basic_ostream_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/io/basic_ostream.html">std::ostream</a></div></div>
+<div class="ttc" id="structTaggedTuple_html_a37091e635b9c9a0098e011519558a239"><div class="ttname"><a href="structTaggedTuple.html#a37091e635b9c9a0098e011519558a239">TaggedTuple::operator&lt;=</a></div><div class="ttdeci">constexpr friend bool operator&lt;=(const TaggedTuple &amp;lhs, const TaggedTuple &amp;rhs)</div><div class="ttdef"><b>Definition:</b> TaggedTuple.hpp:107</div></div>
+<div class="ttc" id="structTaggedTuple_html_aac15c9385dd7837e0e3ff2d1e311be1a"><div class="ttname"><a href="structTaggedTuple.html#aac15c9385dd7837e0e3ff2d1e311be1a">TaggedTuple::TaggedTuple</a></div><div class="ttdeci">TaggedTuple(Args &amp;&amp;... args)</div><div class="ttdoc">Construct a TaggedTuple with Args. </div><div class="ttdef"><b>Definition:</b> TaggedTuple.hpp:38</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.10-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+&copy; Copyright 2017
+<a href="https://black-holes.org">SXS Collaboration</a>,
+<a href="LICENSE.txt" target="_blank">
+<span class="hidden-xs">Distributed under the</span>
+MIT License</a>
+</small></address>
+</body>
+</html>

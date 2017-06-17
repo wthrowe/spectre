@@ -1,0 +1,127 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 62204faed5c3285d61ace50f511c782e819e106e - DataStructures/StripeIterator.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">DataStructures</a> - StripeIterator.hpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/62204faed5c3285d61ace50f511c782e819e106e">62204faed5c3285d61ace50f511c782e819e106e</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">7</td>
+            <td class="headerCovTableEntry">11</td>
+            <td class="headerCovTableEntryLo">63.6 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2017-06-17 01:56:12</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : #pragma once
+<span class="lineNum">       5 </span>            : 
+<span class="lineNum">       6 </span>            : #include &lt;cstddef&gt;
+<span class="lineNum">       7 </span>            : #include &lt;limits&gt;
+<span class="lineNum">       8 </span>            : 
+<span class="lineNum">       9 </span>            : template &lt;size_t&gt;
+<span class="lineNum">      10 </span>            : class Index;
+<span class="lineNum">      11 </span>            : namespace PUP {
+<span class="lineNum">      12 </span>            : class er;
+<span class="lineNum">      13 </span>            : }  // namespace PUP
+<span class="lineNum">      14 </span>            : 
+<span class="lineNum">      15 </span>            : /*!
+<span class="lineNum">      16 </span>            :  * \ingroup DataStructures
+<span class="lineNum">      17 </span>            :  * \brief Iterates over the 1-dimensional stripes with info on how to
+<span class="lineNum">      18 </span>            :  * iterate over the current stripe
+<span class="lineNum">      19 </span>            :  */
+<span class="lineNum">      20 </span><span class="lineCov">          1 : class StripeIterator {</span>
+<span class="lineNum">      21 </span>            :  public:
+<span class="lineNum">      22 </span>            :   /// Construct from the grid points in each direction and which dimension the
+<span class="lineNum">      23 </span>            :   /// stripes are in.
+<span class="lineNum">      24 </span>            :   template &lt;size_t Dim&gt;
+<span class="lineNum">      25 </span><span class="lineCov">          1 :   StripeIterator(const Index&lt;Dim&gt;&amp; extents, size_t stripe_dim);</span>
+<span class="lineNum">      26 </span>            : 
+<span class="lineNum">      27 </span>            :   /// Needed for Charm++ serialization
+<span class="lineNum">      28 </span><span class="lineCov">          1 :   StripeIterator() = delete;</span>
+<span class="lineNum">      29 </span>            : 
+<span class="lineNum">      30 </span>            :   /// Returns `true` if the iterator is valid
+<span class="lineNum">      31 </span><span class="lineCov">          1 :   operator bool() const noexcept { return offset_ &lt; size_; }</span>
+<span class="lineNum">      32 </span>            : 
+<span class="lineNum">      33 </span>            :   /// Increment to the next stripe.
+<span class="lineNum">      34 </span><span class="lineCov">          1 :   StripeIterator&amp; operator++();</span>
+<span class="lineNum">      35 </span>            : 
+<span class="lineNum">      36 </span>            :   /// Offset into DataVector for first element of stripe.
+<span class="lineNum">      37 </span><span class="lineCov">          1 :   size_t offset() const noexcept { return offset_; }</span>
+<span class="lineNum">      38 </span>            : 
+<span class="lineNum">      39 </span>            :   /// Stride of elements in DataVector for the stripe.
+<span class="lineNum">      40 </span><span class="lineCov">          1 :   size_t stride() const noexcept { return stride_; }</span>
+<span class="lineNum">      41 </span>            : 
+<span class="lineNum">      42 </span>            :  private:
+<span class="lineNum">      43 </span><span class="lineNoCov">          0 :   size_t offset_ = std::numeric_limits&lt;size_t&gt;::max();</span>
+<span class="lineNum">      44 </span><span class="lineNoCov">          0 :   size_t size_ = std::numeric_limits&lt;size_t&gt;::max();</span>
+<span class="lineNum">      45 </span><span class="lineNoCov">          0 :   size_t stride_ = std::numeric_limits&lt;size_t&gt;::max();</span>
+<span class="lineNum">      46 </span><span class="lineNoCov">          0 :   size_t jump_ = std::numeric_limits&lt;size_t&gt;::max();</span>
+<span class="lineNum">      47 </span>            : };
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

@@ -1,0 +1,188 @@
+<!-- HTML header for doxygen 1.8.10-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="SXS Collaboration">
+    <meta name="generator" content="Doxygen 1.8.13"/>
+    <style>
+        /*!
+         * IE10 viewport hack for Surface/desktop Windows 8 bug
+         * Copyright 2014-2015 Twitter, Inc.
+         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+         */
+        @-webkit-viewport { width: device-width; }
+        @-moz-viewport    { width: device-width; }
+        @-ms-viewport     { width: device-width; }
+        @-o-viewport      { width: device-width; }
+        @viewport         { width: device-width; }
+      </style>
+  <title>SpECTRE: src/DataStructures/Matrix.hpp Source File</title>
+  <link href="tabs.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="dynsections.js"></script>
+  <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
+  <link href="octicons.css" rel="stylesheet">
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="doxygen.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="bootstrap.min.js"></script>
+  <script type="text/javascript" src="spectre.js"></script>
+  </head>
+  <body>
+  <div id="top" class="navbar-fixed-top"><!-- do not remove this div, it is closed by doxygen! -->
+  <!-- BEGIN TITLEAREA -->
+  <div id="titlearea">
+  <script type="text/javascript">
+  var searchBox = new SearchBox("searchBox", "search",false,'Search');
+  </script>
+  <div id="main-nav">
+    <ul class="sm sm-dox" id="main-menu">
+      <li>
+      <a href="https://github.com/sxs-collaboration/spectre" target="_blank">
+      SpECTRE &#160;
+        <span id="projectnumber">v0.0.0</span>
+      </a>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-book"></i><span>Documentation</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 135px;">
+            <a href="index.html">
+            <i class="octicon octicon-book"></i><span>Documentation</span></a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="tutorials.html">
+              <i class="octicon octicon-mortar-board"></i><span>Tutorials</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="dev_guide.html">
+              <i class="octicon octicon-gist-secret"></i><span>Dev Guide</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown" style="min-width: 150px;">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 130px;">
+            <a href="modules.html">
+              <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+            </a>
+          </li>
+          <li style="min-width: 130px;">
+            <a href="namespaces.html">
+              <i class="octicon octicon-gist"></i>
+              <span>Namespaces</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="files.html">
+          <i class="octicon octicon-file-directory"></i><span>Files</span>
+        </a>
+      </li>
+      <!--The Search <li> is added by doxygen later-->
+    </ul>
+  </div><!-- main-nav -->
+  </div><!-- titlearea -->
+  <!-- window showing the filter options -->
+  <div id="MSearchSelectWindow"  style="position: fixed;"
+       onmouseover="return searchBox.OnSearchSelectShow()"
+       onmouseout="return searchBox.OnSearchSelectHide()"
+       onkeydown="return searchBox.OnSearchSelectKey(event)">
+  </div>
+  <!-- iframe showing the search results (closed by default) -->
+  <div id="MSearchResultsWindow"  style="position: fixed;">
+  <iframe src="javascript:void(0)" frameborder="0"
+          name="MSearchResults" id="MSearchResults">
+  </iframe>
+  </div><!-- Generated by Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_22cd119e9135d55404da822cc2bf42d2.html">src</a></li><li class="navelem"><a class="el" href="dir_82345eea92ca6199b790b57d5dab4505.html">DataStructures</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">Matrix.hpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="Matrix_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// Distributed under the MIT License.</span></div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// See LICENSE.txt for details.</span></div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;</div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#pragma once</span></div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;</div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;<a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/header/iosfwd.html">iosfwd</a>&gt;</span></div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;<a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/header/limits.html">limits</a>&gt;</span></div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;<a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/header/vector.html">vector</a>&gt;</span></div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacePUP.html">PUP</a> {</div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">class </span>er;</div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;}  <span class="comment">// namespace PUP</span></div><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div><div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="classMatrix.html">   21</a></span>&#160;<span class="keyword">class </span><a class="code" href="classMatrix.html">Matrix</a> {</div><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; <span class="keyword">public</span>:</div><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;  <a class="code" href="classMatrix.html">Matrix</a>(<span class="keywordtype">size_t</span> number_of_rows, <span class="keywordtype">size_t</span> number_of_colums,</div><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;         <span class="keywordtype">double</span> value = <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/numeric_limits.html">std::numeric_limits&lt;double&gt;::signaling_NaN</a>());</div><div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;  <a class="code" href="classMatrix.html">Matrix</a>() = <span class="keywordflow">default</span>;</div><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div><div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="classMatrix.html#a130f0e21c5c5d7fdfdba1f9100f02b76">   30</a></span>&#160;  <span class="keywordtype">double</span>&amp; <a class="code" href="classMatrix.html#a130f0e21c5c5d7fdfdba1f9100f02b76">operator()</a>(<span class="keywordtype">size_t</span> i, <span class="keywordtype">size_t</span> j) noexcept {</div><div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keywordflow">return</span> data_[i + j * number_of_rows_];</div><div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;  }</div><div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="classMatrix.html#a33b9de47d44a323aada49e2eca116309">   33</a></span>&#160;  <span class="keyword">const</span> <span class="keywordtype">double</span>&amp; <a class="code" href="classMatrix.html#a33b9de47d44a323aada49e2eca116309">operator()</a>(<span class="keywordtype">size_t</span> i, <span class="keywordtype">size_t</span> j) <span class="keyword">const</span> noexcept {</div><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keywordflow">return</span> data_[i + j * number_of_rows_];</div><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;  }</div><div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div><div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="classMatrix.html#af7b3e8cbef60bf9accb5585ca135bad7">   37</a></span>&#160;  <span class="keywordtype">double</span>* <a class="code" href="classMatrix.html#af7b3e8cbef60bf9accb5585ca135bad7">data</a>() noexcept { <span class="keywordflow">return</span> data_.data(); }</div><div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="classMatrix.html#a05ff30465126e0517a3ebbb06ce8bc61">   38</a></span>&#160;  <span class="keyword">const</span> <span class="keywordtype">double</span>* <a class="code" href="classMatrix.html#a05ff30465126e0517a3ebbb06ce8bc61">data</a>() const noexcept { <span class="keywordflow">return</span> data_.data(); }</div><div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div><div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="classMatrix.html#a0067abc03ee5d040a92407f35e15bc33">   40</a></span>&#160;  decltype(<span class="keyword">auto</span>) begin() { <span class="keywordflow">return</span> data_.begin(); }</div><div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="classMatrix.html#a8f340087b46f133b6c342bb39998733f">   41</a></span>&#160;  decltype(<span class="keyword">auto</span>) begin()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> data_.begin(); }</div><div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div><div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="classMatrix.html#a1f2d9bfd765efcbf5a3fd079998889f7">   43</a></span>&#160;  decltype(<span class="keyword">auto</span>) end() { <span class="keywordflow">return</span> data_.end(); }</div><div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="classMatrix.html#a10f0c0255563bc178e4e7afa3362601c">   44</a></span>&#160;  decltype(<span class="keyword">auto</span>) end()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> data_.end(); }</div><div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div><div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="classMatrix.html#ae59be8f489d0ac1baacc9892c141c90d">   46</a></span>&#160;  <span class="keywordtype">size_t</span> <a class="code" href="classMatrix.html#ae59be8f489d0ac1baacc9892c141c90d">rows</a>() const noexcept { <span class="keywordflow">return</span> number_of_rows_; }</div><div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="classMatrix.html#aeb82c9e5f42894a50f5bcc6cafe9354d">   47</a></span>&#160;  <span class="keywordtype">size_t</span> <a class="code" href="classMatrix.html#aeb82c9e5f42894a50f5bcc6cafe9354d">columns</a>() const noexcept { <span class="keywordflow">return</span> number_of_columns_; }</div><div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div><div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;  <span class="keywordtype">void</span> pup(PUP::er&amp; p);  <span class="comment">// NOLINT</span></div><div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div><div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; <span class="keyword">private</span>:</div><div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;  <span class="keywordtype">size_t</span> number_of_rows_{0};</div><div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;  <span class="keywordtype">size_t</span> number_of_columns_{0};</div><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;  <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector&lt;double&gt;</a> data_;</div><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;};</div><div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div><div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/io/basic_ostream.html">std::ostream</a>&amp; <a class="code" href="Matrix_8hpp.html#a060711074cb5bcaf4e75498bc040c4b7">operator&lt;&lt;</a>(<a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/io/basic_ostream.html">std::ostream</a>&amp; os, <span class="keyword">const</span> <a class="code" href="classMatrix.html">Matrix</a>&amp; m);</div><div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div><div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="Matrix_8hpp.html#a9c177aa5c04d6ba7011ce67dc8294bc3">operator==</a>(<span class="keyword">const</span> <a class="code" href="classMatrix.html">Matrix</a>&amp; lhs, <span class="keyword">const</span> <a class="code" href="classMatrix.html">Matrix</a>&amp; rhs);</div><div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div><div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="Matrix_8hpp.html#a46dd5316db08a75442273e540f7b4cdd">operator!=</a>(<span class="keyword">const</span> <a class="code" href="classMatrix.html">Matrix</a>&amp; lhs, <span class="keyword">const</span> <a class="code" href="classMatrix.html">Matrix</a>&amp; rhs);</div><div class="ttc" id="namespacePUP_html"><div class="ttname"><a href="namespacePUP.html">PUP</a></div><div class="ttdef"><b>Definition:</b> Matrix.hpp:13</div></div>
+<div class="ttc" id="classMatrix_html_aeb82c9e5f42894a50f5bcc6cafe9354d"><div class="ttname"><a href="classMatrix.html#aeb82c9e5f42894a50f5bcc6cafe9354d">Matrix::columns</a></div><div class="ttdeci">size_t columns() const noexcept</div><div class="ttdef"><b>Definition:</b> Matrix.hpp:47</div></div>
+<div class="ttc" id="Matrix_8hpp_html_a46dd5316db08a75442273e540f7b4cdd"><div class="ttname"><a href="Matrix_8hpp.html#a46dd5316db08a75442273e540f7b4cdd">operator!=</a></div><div class="ttdeci">bool operator!=(const Matrix &amp;lhs, const Matrix &amp;rhs)</div><div class="ttdoc">Inequivalence operator for Matrix. </div><div class="ttdef"><b>Definition:</b> Matrix.cpp:38</div></div>
+<div class="ttc" id="classMatrix_html_af7b3e8cbef60bf9accb5585ca135bad7"><div class="ttname"><a href="classMatrix.html#af7b3e8cbef60bf9accb5585ca135bad7">Matrix::data</a></div><div class="ttdeci">double * data() noexcept</div><div class="ttdef"><b>Definition:</b> Matrix.hpp:37</div></div>
+<div class="ttc" id="classMatrix_html_a33b9de47d44a323aada49e2eca116309"><div class="ttname"><a href="classMatrix.html#a33b9de47d44a323aada49e2eca116309">Matrix::operator()</a></div><div class="ttdeci">const double &amp; operator()(size_t i, size_t j) const noexcept</div><div class="ttdef"><b>Definition:</b> Matrix.hpp:33</div></div>
+<div class="ttc" id="limits_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/limits.html">limits</a></div></div>
+<div class="ttc" id="Matrix_8hpp_html_a060711074cb5bcaf4e75498bc040c4b7"><div class="ttname"><a href="Matrix_8hpp.html#a060711074cb5bcaf4e75498bc040c4b7">operator&lt;&lt;</a></div><div class="ttdeci">std::ostream &amp; operator&lt;&lt;(std::ostream &amp;os, const Matrix &amp;m)</div><div class="ttdoc">Stream operator for Matrix. </div><div class="ttdef"><b>Definition:</b> Matrix.cpp:22</div></div>
+<div class="ttc" id="iosfwd_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/iosfwd.html">iosfwd</a></div></div>
+<div class="ttc" id="classMatrix_html_a05ff30465126e0517a3ebbb06ce8bc61"><div class="ttname"><a href="classMatrix.html#a05ff30465126e0517a3ebbb06ce8bc61">Matrix::data</a></div><div class="ttdeci">const double * data() const noexcept</div><div class="ttdef"><b>Definition:</b> Matrix.hpp:38</div></div>
+<div class="ttc" id="classMatrix_html"><div class="ttname"><a href="classMatrix.html">Matrix</a></div><div class="ttdoc">A dynamically sized matrix. </div><div class="ttdef"><b>Definition:</b> Matrix.hpp:21</div></div>
+<div class="ttc" id="vector_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/vector.html">vector</a></div></div>
+<div class="ttc" id="Matrix_8hpp_html_a9c177aa5c04d6ba7011ce67dc8294bc3"><div class="ttname"><a href="Matrix_8hpp.html#a9c177aa5c04d6ba7011ce67dc8294bc3">operator==</a></div><div class="ttdeci">bool operator==(const Matrix &amp;lhs, const Matrix &amp;rhs)</div><div class="ttdoc">Equivalence operator for Matrix. </div><div class="ttdef"><b>Definition:</b> Matrix.cpp:33</div></div>
+<div class="ttc" id="classMatrix_html_a130f0e21c5c5d7fdfdba1f9100f02b76"><div class="ttname"><a href="classMatrix.html#a130f0e21c5c5d7fdfdba1f9100f02b76">Matrix::operator()</a></div><div class="ttdeci">double &amp; operator()(size_t i, size_t j) noexcept</div><div class="ttdef"><b>Definition:</b> Matrix.hpp:30</div></div>
+<div class="ttc" id="classMatrix_html_ae59be8f489d0ac1baacc9892c141c90d"><div class="ttname"><a href="classMatrix.html#ae59be8f489d0ac1baacc9892c141c90d">Matrix::rows</a></div><div class="ttdeci">size_t rows() const noexcept</div><div class="ttdef"><b>Definition:</b> Matrix.hpp:46</div></div>
+<div class="ttc" id="basic_ostream_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/io/basic_ostream.html">std::ostream</a></div></div>
+<div class="ttc" id="numeric_limits_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/types/numeric_limits.html">std::numeric_limits</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.10-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+&copy; Copyright 2017
+<a href="https://black-holes.org">SXS Collaboration</a>,
+<a href="LICENSE.txt" target="_blank">
+<span class="hidden-xs">Distributed under the</span>
+MIT License</a>
+</small></address>
+</body>
+</html>

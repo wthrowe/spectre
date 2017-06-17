@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 62204faed5c3285d61ace50f511c782e819e106e - Parallel/CharmPupable.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">Parallel</a> - CharmPupable.hpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/62204faed5c3285d61ace50f511c782e819e106e">62204faed5c3285d61ace50f511c782e819e106e</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">4</td>
+            <td class="headerCovTableEntry">4</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2017-06-17 01:56:12</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : /// \file
+<span class="lineNum">       5 </span>            : /// Defines macros to allow serialization of abstract template base classes
+<span class="lineNum">       6 </span>            : 
+<span class="lineNum">       7 </span>            : #pragma once
+<span class="lineNum">       8 </span>            : 
+<span class="lineNum">       9 </span>            : #include &lt;pup.h&gt;
+<span class="lineNum">      10 </span>            : 
+<span class="lineNum">      11 </span>            : #ifdef __GNUC__
+<span class="lineNum">      12 </span>            : #pragma GCC system_header
+<span class="lineNum">      13 </span>            : #endif
+<span class="lineNum">      14 </span>            : 
+<span class="lineNum">      15 </span>            : /*!
+<span class="lineNum">      16 </span>            :  * \ingroup Parallel
+<span class="lineNum">      17 </span>            :  * \brief Mark derived classes as serializable
+<span class="lineNum">      18 </span>            :  *
+<span class="lineNum">      19 </span>            :  * Any class that derives off of a non-class template base class must contain
+<span class="lineNum">      20 </span>            :  * this macro if it is to be serialized.
+<span class="lineNum">      21 </span>            :  */
+<span class="lineNum">      22 </span><span class="lineCov">          2 : #define WRAPPED_PUPable_decl_template(className) \</span>
+<span class="lineNum">      23 </span>            :   PUPable_decl_template(SINGLE_ARG(className))
+<span class="lineNum">      24 </span>            : 
+<span class="lineNum">      25 </span>            : /*!
+<span class="lineNum">      26 </span>            :  * \ingroup Parallel
+<span class="lineNum">      27 </span>            :  * \brief Mark derived template classes as serializable
+<span class="lineNum">      28 </span>            :  *
+<span class="lineNum">      29 </span>            :  * Any class that derives off of a class template base class must contain
+<span class="lineNum">      30 </span>            :  * this macro if it is to be serialized.
+<span class="lineNum">      31 </span>            :  */
+<span class="lineNum">      32 </span><span class="lineCov">          2 : #define WRAPPED_PUPable_decl_base_template(baseClassName, className) \</span>
+<span class="lineNum">      33 </span>            :   PUPable_decl_base_template(SINGLE_ARG(baseClassName), SINGLE_ARG(className))
+<span class="lineNum">      34 </span>            : 
+<span class="lineNum">      35 </span>            : /// Wraps the Charm++ macro, see the Charm++ documentation
+<span class="lineNum">      36 </span><span class="lineCov">          1 : #define WRAPPED_PUPable_decl(className) PUPable_decl(SINGLE_ARG(className))</span>
+<span class="lineNum">      37 </span>            : 
+<span class="lineNum">      38 </span>            : /// Wraps the Charm++ macro, see the Charm++ documentation
+<span class="lineNum">      39 </span><span class="lineCov">          1 : #define WRAPPED_PUPable_abstract(className) \</span>
+<span class="lineNum">      40 </span>            :   PUPable_abstract(SINGLE_ARG(className))
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

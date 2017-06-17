@@ -1,0 +1,582 @@
+<!-- HTML header for doxygen 1.8.10-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="SXS Collaboration">
+    <meta name="generator" content="Doxygen 1.8.13"/>
+    <style>
+        /*!
+         * IE10 viewport hack for Surface/desktop Windows 8 bug
+         * Copyright 2014-2015 Twitter, Inc.
+         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+         */
+        @-webkit-viewport { width: device-width; }
+        @-moz-viewport    { width: device-width; }
+        @-ms-viewport     { width: device-width; }
+        @-o-viewport      { width: device-width; }
+        @viewport         { width: device-width; }
+      </style>
+  <title>SpECTRE: Matrix Class Reference</title>
+  <link href="tabs.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="dynsections.js"></script>
+  <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
+  <link href="octicons.css" rel="stylesheet">
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="doxygen.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="bootstrap.min.js"></script>
+  <script type="text/javascript" src="spectre.js"></script>
+  </head>
+  <body>
+  <div id="top" class="navbar-fixed-top"><!-- do not remove this div, it is closed by doxygen! -->
+  <!-- BEGIN TITLEAREA -->
+  <div id="titlearea">
+  <script type="text/javascript">
+  var searchBox = new SearchBox("searchBox", "search",false,'Search');
+  </script>
+  <div id="main-nav">
+    <ul class="sm sm-dox" id="main-menu">
+      <li>
+      <a href="https://github.com/sxs-collaboration/spectre" target="_blank">
+      SpECTRE &#160;
+        <span id="projectnumber">v0.0.0</span>
+      </a>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-book"></i><span>Documentation</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 135px;">
+            <a href="index.html">
+            <i class="octicon octicon-book"></i><span>Documentation</span></a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="tutorials.html">
+              <i class="octicon octicon-mortar-board"></i><span>Tutorials</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="dev_guide.html">
+              <i class="octicon octicon-gist-secret"></i><span>Dev Guide</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown" style="min-width: 150px;">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 130px;">
+            <a href="modules.html">
+              <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+            </a>
+          </li>
+          <li style="min-width: 130px;">
+            <a href="namespaces.html">
+              <i class="octicon octicon-gist"></i>
+              <span>Namespaces</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="files.html">
+          <i class="octicon octicon-file-directory"></i><span>Files</span>
+        </a>
+      </li>
+      <!--The Search <li> is added by doxygen later-->
+    </ul>
+  </div><!-- main-nav -->
+  </div><!-- titlearea -->
+  <!-- window showing the filter options -->
+  <div id="MSearchSelectWindow"  style="position: fixed;"
+       onmouseover="return searchBox.OnSearchSelectShow()"
+       onmouseout="return searchBox.OnSearchSelectHide()"
+       onkeydown="return searchBox.OnSearchSelectKey(event)">
+  </div>
+  <!-- iframe showing the search results (closed by default) -->
+  <div id="MSearchResultsWindow"  style="position: fixed;">
+  <iframe src="javascript:void(0)" frameborder="0"
+          name="MSearchResults" id="MSearchResults">
+  </iframe>
+  </div><!-- Generated by Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="classMatrix-members.html">List of all members</a>  </div>
+  <div class="headertitle">
+<div class="title">Matrix Class Reference<div class="ingroups"><a class="el" href="group__DataStructures.html">Data Structures</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>A dynamically sized matrix.  
+ <a href="classMatrix.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="Matrix_8hpp_source.html">Matrix.hpp</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a2f44d2fdc7ed5003751b2a7d06acb80c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMatrix.html#a2f44d2fdc7ed5003751b2a7d06acb80c">Matrix</a> (size_t number_of_rows, size_t number_of_colums, double value=<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/numeric_limits.html">std::numeric_limits</a>&lt; double &gt;::signaling_NaN())</td></tr>
+<tr class="memdesc:a2f44d2fdc7ed5003751b2a7d06acb80c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create and set each element to value.  <a href="#a2f44d2fdc7ed5003751b2a7d06acb80c">More...</a><br /></td></tr>
+<tr class="separator:a2f44d2fdc7ed5003751b2a7d06acb80c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a12d35ef1824cd847868a8703035b0d5d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMatrix.html#a12d35ef1824cd847868a8703035b0d5d">Matrix</a> ()=default</td></tr>
+<tr class="memdesc:a12d35ef1824cd847868a8703035b0d5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor needed for serialization.  <a href="#a12d35ef1824cd847868a8703035b0d5d">More...</a><br /></td></tr>
+<tr class="separator:a12d35ef1824cd847868a8703035b0d5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a130f0e21c5c5d7fdfdba1f9100f02b76"><td class="memItemLeft" align="right" valign="top">double &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMatrix.html#a130f0e21c5c5d7fdfdba1f9100f02b76">operator()</a> (size_t i, size_t j) noexcept</td></tr>
+<tr class="separator:a130f0e21c5c5d7fdfdba1f9100f02b76"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33b9de47d44a323aada49e2eca116309"><td class="memItemLeft" align="right" valign="top">const double &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMatrix.html#a33b9de47d44a323aada49e2eca116309">operator()</a> (size_t i, size_t j) const noexcept</td></tr>
+<tr class="separator:a33b9de47d44a323aada49e2eca116309"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af7b3e8cbef60bf9accb5585ca135bad7"><td class="memItemLeft" align="right" valign="top">double *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMatrix.html#af7b3e8cbef60bf9accb5585ca135bad7">data</a> () noexcept</td></tr>
+<tr class="separator:af7b3e8cbef60bf9accb5585ca135bad7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a05ff30465126e0517a3ebbb06ce8bc61"><td class="memItemLeft" align="right" valign="top">const double *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMatrix.html#a05ff30465126e0517a3ebbb06ce8bc61">data</a> () const noexcept</td></tr>
+<tr class="separator:a05ff30465126e0517a3ebbb06ce8bc61"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0067abc03ee5d040a92407f35e15bc33"><td class="memItemLeft" align="right" valign="top">decltype(auto)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMatrix.html#a0067abc03ee5d040a92407f35e15bc33">begin</a> ()</td></tr>
+<tr class="separator:a0067abc03ee5d040a92407f35e15bc33"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f340087b46f133b6c342bb39998733f"><td class="memItemLeft" align="right" valign="top">decltype(auto)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMatrix.html#a8f340087b46f133b6c342bb39998733f">begin</a> () const</td></tr>
+<tr class="separator:a8f340087b46f133b6c342bb39998733f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f2d9bfd765efcbf5a3fd079998889f7"><td class="memItemLeft" align="right" valign="top">decltype(auto)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMatrix.html#a1f2d9bfd765efcbf5a3fd079998889f7">end</a> ()</td></tr>
+<tr class="separator:a1f2d9bfd765efcbf5a3fd079998889f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a10f0c0255563bc178e4e7afa3362601c"><td class="memItemLeft" align="right" valign="top">decltype(auto)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMatrix.html#a10f0c0255563bc178e4e7afa3362601c">end</a> () const</td></tr>
+<tr class="separator:a10f0c0255563bc178e4e7afa3362601c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae59be8f489d0ac1baacc9892c141c90d"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMatrix.html#ae59be8f489d0ac1baacc9892c141c90d">rows</a> () const noexcept</td></tr>
+<tr class="separator:ae59be8f489d0ac1baacc9892c141c90d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb82c9e5f42894a50f5bcc6cafe9354d"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMatrix.html#aeb82c9e5f42894a50f5bcc6cafe9354d">columns</a> () const noexcept</td></tr>
+<tr class="separator:aeb82c9e5f42894a50f5bcc6cafe9354d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa0c42a864c9744c70eb425a3b57be643"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMatrix.html#aa0c42a864c9744c70eb425a3b57be643">pup</a> (PUP::er &amp;p)</td></tr>
+<tr class="memdesc:aa0c42a864c9744c70eb425a3b57be643"><td class="mdescLeft">&#160;</td><td class="mdescRight">Charm++ serialization.  <a href="#aa0c42a864c9744c70eb425a3b57be643">More...</a><br /></td></tr>
+<tr class="separator:aa0c42a864c9744c70eb425a3b57be643"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>A dynamically sized matrix. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a2f44d2fdc7ed5003751b2a7d06acb80c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2f44d2fdc7ed5003751b2a7d06acb80c">&#9670;&nbsp;</a></span>Matrix() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Matrix::Matrix </td>
+          <td>(</td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>number_of_rows</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>number_of_colums</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>value</em> = <code><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/numeric_limits.html">std::numeric_limits</a>&lt;double&gt;::signaling_NaN()</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Create and set each element to value. </p>
+
+</div>
+</div>
+<a id="a12d35ef1824cd847868a8703035b0d5d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a12d35ef1824cd847868a8703035b0d5d">&#9670;&nbsp;</a></span>Matrix() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Matrix::Matrix </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Default constructor needed for serialization. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a0067abc03ee5d040a92407f35e15bc33"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0067abc03ee5d040a92407f35e15bc33">&#9670;&nbsp;</a></span>begin() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">decltype(auto) Matrix::begin </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="reference">Referenced by <a class="el" href="Matrix_8hpp.html#a9c177aa5c04d6ba7011ce67dc8294bc3">operator==()</a>.</p>
+
+</div>
+</div>
+<a id="a8f340087b46f133b6c342bb39998733f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8f340087b46f133b6c342bb39998733f">&#9670;&nbsp;</a></span>begin() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">decltype(auto) Matrix::begin </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aeb82c9e5f42894a50f5bcc6cafe9354d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeb82c9e5f42894a50f5bcc6cafe9354d">&#9670;&nbsp;</a></span>columns()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t Matrix::columns </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="reference">Referenced by <a class="el" href="Matrix_8hpp.html#a060711074cb5bcaf4e75498bc040c4b7">operator&lt;&lt;()</a>, and <a class="el" href="Matrix_8hpp.html#a9c177aa5c04d6ba7011ce67dc8294bc3">operator==()</a>.</p>
+
+</div>
+</div>
+<a id="af7b3e8cbef60bf9accb5585ca135bad7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af7b3e8cbef60bf9accb5585ca135bad7">&#9670;&nbsp;</a></span>data() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double* Matrix::data </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="reference">Referenced by <a class="el" href="namespaceBasis_1_1lgl.html#acd680a8f9d7a2d2dde59e20df2ebe4fa">Basis::lgl::linear_filter_matrix()</a>.</p>
+
+</div>
+</div>
+<a id="a05ff30465126e0517a3ebbb06ce8bc61"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a05ff30465126e0517a3ebbb06ce8bc61">&#9670;&nbsp;</a></span>data() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const double* Matrix::data </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1f2d9bfd765efcbf5a3fd079998889f7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f2d9bfd765efcbf5a3fd079998889f7">&#9670;&nbsp;</a></span>end() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">decltype(auto) Matrix::end </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="reference">Referenced by <a class="el" href="Matrix_8hpp.html#a9c177aa5c04d6ba7011ce67dc8294bc3">operator==()</a>.</p>
+
+</div>
+</div>
+<a id="a10f0c0255563bc178e4e7afa3362601c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a10f0c0255563bc178e4e7afa3362601c">&#9670;&nbsp;</a></span>end() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">decltype(auto) Matrix::end </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a130f0e21c5c5d7fdfdba1f9100f02b76"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a130f0e21c5c5d7fdfdba1f9100f02b76">&#9670;&nbsp;</a></span>operator()() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double&amp; Matrix::operator() </td>
+          <td>(</td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>i</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>j</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a33b9de47d44a323aada49e2eca116309"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a33b9de47d44a323aada49e2eca116309">&#9670;&nbsp;</a></span>operator()() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const double&amp; Matrix::operator() </td>
+          <td>(</td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>i</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>j</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa0c42a864c9744c70eb425a3b57be643"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa0c42a864c9744c70eb425a3b57be643">&#9670;&nbsp;</a></span>pup()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Matrix::pup </td>
+          <td>(</td>
+          <td class="paramtype">PUP::er &amp;&#160;</td>
+          <td class="paramname"><em>p</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Charm++ serialization. </p>
+
+</div>
+</div>
+<a id="ae59be8f489d0ac1baacc9892c141c90d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae59be8f489d0ac1baacc9892c141c90d">&#9670;&nbsp;</a></span>rows()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t Matrix::rows </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="reference">Referenced by <a class="el" href="Matrix_8hpp.html#a060711074cb5bcaf4e75498bc040c4b7">operator&lt;&lt;()</a>, and <a class="el" href="Matrix_8hpp.html#a9c177aa5c04d6ba7011ce67dc8294bc3">operator==()</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>src/DataStructures/<a class="el" href="Matrix_8hpp_source.html">Matrix.hpp</a></li>
+<li>src/DataStructures/<a class="el" href="src_2DataStructures_2Matrix_8cpp.html">Matrix.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.10-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+&copy; Copyright 2017
+<a href="https://black-holes.org">SXS Collaboration</a>,
+<a href="LICENSE.txt" target="_blank">
+<span class="hidden-xs">Distributed under the</span>
+MIT License</a>
+</small></address>
+</body>
+</html>

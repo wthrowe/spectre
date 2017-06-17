@@ -1,0 +1,212 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 62204faed5c3285d61ace50f511c782e819e106e - Utilities/Gsl.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">Utilities</a> - Gsl.hpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/62204faed5c3285d61ace50f511c782e819e106e">62204faed5c3285d61ace50f511c782e819e106e</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">7</td>
+            <td class="headerCovTableEntry">7</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2017-06-17 01:56:12</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : 
+<span class="lineNum">       2 </span>            : /// \file
+<span class="lineNum">       3 </span>            : /// Defines functions and classes from the GSL
+<span class="lineNum">       4 </span>            : 
+<span class="lineNum">       5 </span>            : #pragma once
+<span class="lineNum">       6 </span>            : 
+<span class="lineNum">       7 </span>            : #pragma GCC system_header
+<span class="lineNum">       8 </span>            : 
+<span class="lineNum">       9 </span>            : // The code in this file is adapted from Microsoft's GSL that can be found at
+<span class="lineNum">      10 </span>            : // https://github.com/Microsoft/GSL
+<span class="lineNum">      11 </span>            : // The original license and copyright are:
+<span class="lineNum">      12 </span>            : ///////////////////////////////////////////////////////////////////////////////
+<span class="lineNum">      13 </span>            : //
+<span class="lineNum">      14 </span>            : // Copyright (c) 2015 Microsoft Corporation. All rights reserved.
+<span class="lineNum">      15 </span>            : //
+<span class="lineNum">      16 </span>            : // This code is licensed under the MIT License (MIT).
+<span class="lineNum">      17 </span>            : //
+<span class="lineNum">      18 </span>            : // THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+<span class="lineNum">      19 </span>            : // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+<span class="lineNum">      20 </span>            : // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+<span class="lineNum">      21 </span>            : // AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+<span class="lineNum">      22 </span>            : // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+<span class="lineNum">      23 </span>            : // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+<span class="lineNum">      24 </span>            : // THE SOFTWARE.
+<span class="lineNum">      25 </span>            : //
+<span class="lineNum">      26 </span>            : ///////////////////////////////////////////////////////////////////////////////
+<span class="lineNum">      27 </span>            : // The code changes are because SpECTRE is not allowed to throw under any
+<span class="lineNum">      28 </span>            : // circumstances that cannot be guaranteed to be caught and so all throw's
+<span class="lineNum">      29 </span>            : // are replaced by hard errors (ERROR).
+<span class="lineNum">      30 </span>            : 
+<span class="lineNum">      31 </span>            : #include &quot;ErrorHandling/ExpectsAndEnsures.hpp&quot;
+<span class="lineNum">      32 </span>            : #include &quot;Utilities/ForceInline.hpp&quot;
+<span class="lineNum">      33 </span>            : #include &quot;Utilities/Literals.hpp&quot;
+<span class="lineNum">      34 </span>            : #include &quot;Utilities/PrettyType.hpp&quot;
+<span class="lineNum">      35 </span>            : 
+<span class="lineNum">      36 </span>            : #if defined(__clang__) || defined(__GNUC__)
+<span class="lineNum">      37 </span>            : 
+<span class="lineNum">      38 </span>            : /*!
+<span class="lineNum">      39 </span>            :  * \ingroup Utilities
+<span class="lineNum">      40 </span>            :  * The if statement is expected to evaluate true most of the time
+<span class="lineNum">      41 </span>            :  */
+<span class="lineNum">      42 </span>            : #define LIKELY(x) __builtin_expect(!!(x), 1)
+<span class="lineNum">      43 </span>            : 
+<span class="lineNum">      44 </span>            : /*!
+<span class="lineNum">      45 </span>            :  * \ingroup Utilities
+<span class="lineNum">      46 </span>            :  * The if statement is expected to evaluate false most of the time
+<span class="lineNum">      47 </span>            :  */
+<span class="lineNum">      48 </span>            : #define UNLIKELY(x) __builtin_expect(!!(x), 0)
+<span class="lineNum">      49 </span>            : 
+<span class="lineNum">      50 </span>            : #else
+<span class="lineNum">      51 </span>            : /*!
+<span class="lineNum">      52 </span>            :  * \ingroup Utilities
+<span class="lineNum">      53 </span>            :  * The if statement is expected to evaluate true most of the time
+<span class="lineNum">      54 </span>            :  */
+<span class="lineNum">      55 </span><span class="lineCov">          2 : #define LIKELY(x) (x)</span>
+<span class="lineNum">      56 </span>            : 
+<span class="lineNum">      57 </span>            : /*!
+<span class="lineNum">      58 </span>            :  * \ingroup Utilities
+<span class="lineNum">      59 </span>            :  * The if statement is expected to evaluate false most of the time
+<span class="lineNum">      60 </span>            :  */
+<span class="lineNum">      61 </span><span class="lineCov">          2 : #define UNLIKELY(x) (x)</span>
+<span class="lineNum">      62 </span>            : #endif
+<span class="lineNum">      63 </span>            : 
+<span class="lineNum">      64 </span>            : /*!
+<span class="lineNum">      65 </span>            :  * \ingroup Utilities
+<span class="lineNum">      66 </span>            :  * \brief Implementations from the Guideline Support Library
+<span class="lineNum">      67 </span>            :  */
+<span class="lineNum">      68 </span>            : namespace gsl {
+<span class="lineNum">      69 </span>            : 
+<span class="lineNum">      70 </span>            : /*!
+<span class="lineNum">      71 </span>            :  * \ingroup Utilities
+<span class="lineNum">      72 </span>            :  * \brief Cast `u` to a type `T` where the cast may result in narrowing
+<span class="lineNum">      73 </span>            :  */
+<span class="lineNum">      74 </span>            : template &lt;class T, class U&gt;
+<span class="lineNum">      75 </span><span class="lineCov">          2 : SPECTRE_ALWAYS_INLINE constexpr T narrow_cast(U&amp;&amp; u) noexcept {</span>
+<span class="lineNum">      76 </span>            :   return static_cast&lt;T&gt;(std::forward&lt;U&gt;(u));
+<span class="lineNum">      77 </span>            : }
+<span class="lineNum">      78 </span>            : 
+<span class="lineNum">      79 </span>            : namespace details {
+<span class="lineNum">      80 </span>            : template &lt;class T, class U&gt;
+<span class="lineNum">      81 </span>            : struct is_same_signedness
+<span class="lineNum">      82 </span>            :     : public std::integral_constant&lt;
+<span class="lineNum">      83 </span>            :           bool, std::is_signed&lt;T&gt;::value == std::is_signed&lt;U&gt;::value&gt; {};
+<span class="lineNum">      84 </span>            : }  // namespace details
+<span class="lineNum">      85 </span>            : 
+<span class="lineNum">      86 </span>            : /*!
+<span class="lineNum">      87 </span>            :  * \ingroup Utilities
+<span class="lineNum">      88 </span>            :  * \brief A checked version of narrow_cast() that ERRORs if the cast changed
+<span class="lineNum">      89 </span>            :  * the value
+<span class="lineNum">      90 </span>            :  */
+<span class="lineNum">      91 </span>            : template &lt;class T, class U&gt;
+<span class="lineNum">      92 </span><span class="lineCov">          2 : SPECTRE_ALWAYS_INLINE T narrow(U u) {</span>
+<span class="lineNum">      93 </span>            :   T t = narrow_cast&lt;T&gt;(u);
+<span class="lineNum">      94 </span>            :   if (static_cast&lt;U&gt;(t) != u) {
+<span class="lineNum">      95 </span>            :     ERROR(&quot;Failed to cast &quot; &lt;&lt; u &lt;&lt; &quot; of type &quot; &lt;&lt; pretty_type::get_name&lt;U&gt;()
+<span class="lineNum">      96 </span>            :                             &lt;&lt; &quot; to type &quot; &lt;&lt; pretty_type::get_name&lt;T&gt;());
+<span class="lineNum">      97 </span>            :   }
+<span class="lineNum">      98 </span>            :   if (not details::is_same_signedness&lt;T, U&gt;::value and
+<span class="lineNum">      99 </span>            :       ((t &lt; T{}) != (u &lt; U{}))) {
+<span class="lineNum">     100 </span>            :     ERROR(&quot;Failed to cast &quot; &lt;&lt; u &lt;&lt; &quot; of type &quot; &lt;&lt; pretty_type::get_name&lt;U&gt;()
+<span class="lineNum">     101 </span>            :                             &lt;&lt; &quot; to type &quot; &lt;&lt; pretty_type::get_name&lt;T&gt;());
+<span class="lineNum">     102 </span>            :   }
+<span class="lineNum">     103 </span>            :   return t;
+<span class="lineNum">     104 </span>            : }
+<span class="lineNum">     105 </span>            : 
+<span class="lineNum">     106 </span>            : // @{
+<span class="lineNum">     107 </span>            : /*!
+<span class="lineNum">     108 </span>            :  * \ingroup Utilities
+<span class="lineNum">     109 </span>            :  * \brief Retrieve a entry from a container, with checks in Debug mode that
+<span class="lineNum">     110 </span>            :  * the index being retrieved is valid.
+<span class="lineNum">     111 </span>            :  */
+<span class="lineNum">     112 </span>            : template &lt;class T, std::size_t N, typename Size&gt;
+<span class="lineNum">     113 </span><span class="lineCov">          2 : SPECTRE_ALWAYS_INLINE constexpr T&amp; at(std::array&lt;T, N&gt;&amp; arr, Size index) {</span>
+<span class="lineNum">     114 </span>            :   Expects(index &gt;= 0 and index &lt; narrow_cast&lt;Size&gt;(N));
+<span class="lineNum">     115 </span>            :   return arr[static_cast&lt;std::size_t&gt;(index)];
+<span class="lineNum">     116 </span>            : }
+<span class="lineNum">     117 </span>            : 
+<span class="lineNum">     118 </span>            : template &lt;class Cont, typename Size&gt;
+<span class="lineNum">     119 </span><span class="lineCov">          2 : SPECTRE_ALWAYS_INLINE constexpr const typename Cont::value_type&amp; at(</span>
+<span class="lineNum">     120 </span>            :     const Cont&amp; cont, Size index) {
+<span class="lineNum">     121 </span>            :   Expects(index &gt;= 0 and index &lt; narrow_cast&lt;Size&gt;(cont.size()));
+<span class="lineNum">     122 </span>            :   return cont[static_cast&lt;typename Cont::size_type&gt;(index)];
+<span class="lineNum">     123 </span>            : }
+<span class="lineNum">     124 </span>            : 
+<span class="lineNum">     125 </span>            : template &lt;class T, typename Size&gt;
+<span class="lineNum">     126 </span><span class="lineCov">          2 : SPECTRE_ALWAYS_INLINE constexpr const T&amp; at(std::initializer_list&lt;T&gt; cont,</span>
+<span class="lineNum">     127 </span>            :                                             Size index) {
+<span class="lineNum">     128 </span>            :   Expects(index &gt;= 0 and index &lt; narrow_cast&lt;Size&gt;(cont.size()));
+<span class="lineNum">     129 </span>            :   return *(cont.begin() + index);
+<span class="lineNum">     130 </span>            : }
+<span class="lineNum">     131 </span>            : // @}
+<span class="lineNum">     132 </span>            : }  // namespace gsl
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

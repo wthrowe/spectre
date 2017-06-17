@@ -1,0 +1,149 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 62204faed5c3285d61ace50f511c782e819e106e - DataStructures/Matrix.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">SpECTRE Unit Test Code Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">DataStructures</a> - Matrix.hpp<span style="font-size: 80%;"> (source / <a href="Matrix.hpp.func-sort-c.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/62204faed5c3285d61ace50f511c782e819e106e">62204faed5c3285d61ace50f511c782e819e106e</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">12</td>
+            <td class="headerCovTableEntry">12</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2017-06-17 01:55:55</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">14</td>
+            <td class="headerCovTableEntry">14</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>            : // Distributed under the MIT License.</a>
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : /// \file
+<span class="lineNum">       5 </span>            : /// Defines class Matrix.
+<span class="lineNum">       6 </span>            : 
+<span class="lineNum">       7 </span>            : #pragma once
+<span class="lineNum">       8 </span>            : 
+<span class="lineNum">       9 </span>            : #include &lt;iosfwd&gt;
+<span class="lineNum">      10 </span>            : #include &lt;limits&gt;
+<span class="lineNum">      11 </span>            : #include &lt;vector&gt;
+<span class="lineNum">      12 </span>            : 
+<span class="lineNum">      13 </span>            : namespace PUP {
+<span class="lineNum">      14 </span>            : class er;
+<span class="lineNum">      15 </span>            : }  // namespace PUP
+<span class="lineNum">      16 </span>            : 
+<span class="lineNum">      17 </span>            : /*!
+<span class="lineNum">      18 </span>            :  * \ingroup DataStructures
+<a name="19"><span class="lineNum">      19 </span>            :  * \brief A dynamically sized matrix.</a>
+<span class="lineNum">      20 </span>            :  */
+<span class="lineNum">      21 </span><span class="lineCov">        169 : class Matrix {</span>
+<span class="lineNum">      22 </span>            :  public:
+<span class="lineNum">      23 </span>            :   /// Create and set each element to value
+<span class="lineNum">      24 </span>            :   Matrix(size_t number_of_rows, size_t number_of_colums,
+<span class="lineNum">      25 </span>            :          double value = std::numeric_limits&lt;double&gt;::signaling_NaN());
+<a name="26"><span class="lineNum">      26 </span>            : </a>
+<span class="lineNum">      27 </span>            :   /// Default constructor needed for serialization
+<a name="28"><span class="lineNum">      28 </span><span class="lineCov">          2 :   Matrix() = default;</span></a>
+<span class="lineNum">      29 </span>            : 
+<span class="lineNum">      30 </span><span class="lineCov">       3410 :   double&amp; operator()(size_t i, size_t j) noexcept {</span>
+<a name="31"><span class="lineNum">      31 </span><span class="lineCov">       3410 :     return data_[i + j * number_of_rows_];</span></a>
+<span class="lineNum">      32 </span>            :   }
+<span class="lineNum">      33 </span><span class="lineCov">        387 :   const double&amp; operator()(size_t i, size_t j) const noexcept {</span>
+<span class="lineNum">      34 </span><span class="lineCov">        387 :     return data_[i + j * number_of_rows_];</span>
+<a name="35"><span class="lineNum">      35 </span>            :   }</a>
+<a name="36"><span class="lineNum">      36 </span>            : </a>
+<span class="lineNum">      37 </span><span class="lineCov">         12 :   double* data() noexcept { return data_.data(); }</span>
+<span class="lineNum">      38 </span><span class="lineCov">         46 :   const double* data() const noexcept { return data_.data(); }</span>
+<a name="39"><span class="lineNum">      39 </span>            : </a>
+<span class="lineNum">      40 </span>            :   decltype(auto) begin() { return data_.begin(); }
+<span class="lineNum">      41 </span><span class="lineCov">         14 :   decltype(auto) begin() const { return data_.begin(); }</span>
+<a name="42"><span class="lineNum">      42 </span>            : </a>
+<span class="lineNum">      43 </span>            :   decltype(auto) end() { return data_.end(); }
+<a name="44"><span class="lineNum">      44 </span><span class="lineCov">          7 :   decltype(auto) end() const { return data_.end(); }</span></a>
+<a name="45"><span class="lineNum">      45 </span>            : </a>
+<span class="lineNum">      46 </span><span class="lineCov">         86 :   size_t rows() const noexcept { return number_of_rows_; }</span>
+<span class="lineNum">      47 </span><span class="lineCov">        279 :   size_t columns() const noexcept { return number_of_columns_; }</span>
+<span class="lineNum">      48 </span>            : 
+<span class="lineNum">      49 </span>            :   /// Charm++ serialization
+<span class="lineNum">      50 </span>            :   void pup(PUP::er&amp; p);  // NOLINT
+<span class="lineNum">      51 </span>            : 
+<span class="lineNum">      52 </span>            :  private:
+<span class="lineNum">      53 </span>            :   size_t number_of_rows_{0};
+<span class="lineNum">      54 </span>            :   size_t number_of_columns_{0};
+<span class="lineNum">      55 </span>            :   std::vector&lt;double&gt; data_;
+<span class="lineNum">      56 </span>            : };
+<span class="lineNum">      57 </span>            : 
+<span class="lineNum">      58 </span>            : /// Stream operator for Matrix
+<span class="lineNum">      59 </span>            : std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os, const Matrix&amp; m);
+<span class="lineNum">      60 </span>            : 
+<span class="lineNum">      61 </span>            : /// Equivalence operator for Matrix
+<span class="lineNum">      62 </span>            : bool operator==(const Matrix&amp; lhs, const Matrix&amp; rhs);
+<span class="lineNum">      63 </span>            : 
+<span class="lineNum">      64 </span>            : /// Inequivalence operator for Matrix
+<span class="lineNum">      65 </span>            : bool operator!=(const Matrix&amp; lhs, const Matrix&amp; rhs);
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

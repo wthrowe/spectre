@@ -1,0 +1,139 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 62204faed5c3285d61ace50f511c782e819e106e - Numerical/Spectral/LegendreGaussLobatto.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../index.html">top level</a> - <a href="index.html">Numerical/Spectral</a> - LegendreGaussLobatto.hpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/62204faed5c3285d61ace50f511c782e819e106e">62204faed5c3285d61ace50f511c782e819e106e</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">1</td>
+            <td class="headerCovTableEntry">1</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2017-06-17 01:56:12</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : /// \file
+<span class="lineNum">       5 </span>            : /// Declares functions for retrieving Legendre-Gauss-Lobatto related matrices
+<span class="lineNum">       6 </span>            : 
+<span class="lineNum">       7 </span>            : #pragma once
+<span class="lineNum">       8 </span>            : 
+<span class="lineNum">       9 </span>            : #include &lt;cstddef&gt;
+<span class="lineNum">      10 </span>            : 
+<span class="lineNum">      11 </span>            : class DataVector;
+<span class="lineNum">      12 </span>            : class Matrix;
+<span class="lineNum">      13 </span>            : 
+<span class="lineNum">      14 </span>            : /// \ingroup NumericalAlgorithms
+<span class="lineNum">      15 </span>            : /// Basis functions, derivative matrices, etc. for spectral-type methods
+<span class="lineNum">      16 </span>            : namespace Basis {
+<span class="lineNum">      17 </span>            : /// \ingroup NumericalAlgorithms
+<span class="lineNum">      18 </span>            : /// Functions for using Legendre-Gauss-Lobatto basis
+<span class="lineNum">      19 </span>            : namespace lgl {
+<span class="lineNum">      20 </span>            : /// Collocation points.
+<span class="lineNum">      21 </span>            : /// \param number_of_pts number of collocation points
+<span class="lineNum">      22 </span>            : const DataVector&amp; collocation_points(size_t number_of_pts);
+<span class="lineNum">      23 </span>            : 
+<span class="lineNum">      24 </span>            : /// Quadrature weights.
+<span class="lineNum">      25 </span>            : /// \param number_of_pts number of collocation points
+<span class="lineNum">      26 </span>            : const DataVector&amp; quadrature_weights(size_t number_of_pts);
+<span class="lineNum">      27 </span>            : 
+<span class="lineNum">      28 </span>            : /// Matrix used to compute the first derivative of a function.
+<span class="lineNum">      29 </span>            : /// \param number_of_pts number of collocation points
+<span class="lineNum">      30 </span>            : const Matrix&amp; differentiation_matrix(size_t number_of_pts);
+<span class="lineNum">      31 </span>            : 
+<span class="lineNum">      32 </span>            : /// Matrix used to compute spectral coefficients of a function.
+<span class="lineNum">      33 </span>            : /// \param number_of_pts number of collocation points
+<span class="lineNum">      34 </span>            : const Matrix&amp; grid_points_to_spectral_matrix(size_t number_of_pts);
+<span class="lineNum">      35 </span>            : 
+<span class="lineNum">      36 </span>            : /// Matrix used to compute function at the collocation points from its
+<span class="lineNum">      37 </span>            : /// spectral coefficients.
+<span class="lineNum">      38 </span>            : /// \param number_of_pts number of collocation points
+<span class="lineNum">      39 </span>            : const Matrix&amp; spectral_to_grid_points_matrix(size_t number_of_pts);
+<span class="lineNum">      40 </span>            : 
+<span class="lineNum">      41 </span>            : /// Matrix used to linearize a function.
+<span class="lineNum">      42 </span>            : ///
+<span class="lineNum">      43 </span>            : /// Filters out all except the lowest two modes.
+<span class="lineNum">      44 </span>            : /// \param number_of_pts number of collocation points
+<span class="lineNum">      45 </span>            : const Matrix&amp; linear_filter_matrix(size_t number_of_pts);
+<span class="lineNum">      46 </span>            : 
+<span class="lineNum">      47 </span>            : /// Matrix to interpolate to a set of target points
+<span class="lineNum">      48 </span>            : ///
+<span class="lineNum">      49 </span>            : /// \warning It is expected but not checked that the target points are inside
+<span class="lineNum">      50 </span>            : /// the domain.
+<span class="lineNum">      51 </span>            : /// \param number_of_pts number of collocation points
+<span class="lineNum">      52 </span>            : /// \param target_points the points to interpolate to
+<span class="lineNum">      53 </span>            : template &lt;typename T&gt;
+<span class="lineNum">      54 </span>            : Matrix interpolation_matrix(size_t number_of_pts, const T&amp; target_points);
+<span class="lineNum">      55 </span>            : 
+<span class="lineNum">      56 </span>            : /// Maximum number of allowed collocation points for LGL basis
+<span class="lineNum">      57 </span><span class="lineCov">          1 : static const size_t maximum_number_of_pts = 12;</span>
+<span class="lineNum">      58 </span>            : }  // namespace lgl
+<span class="lineNum">      59 </span>            : }  // namespace Basis
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

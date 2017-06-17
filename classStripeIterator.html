@@ -1,0 +1,372 @@
+<!-- HTML header for doxygen 1.8.10-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="SXS Collaboration">
+    <meta name="generator" content="Doxygen 1.8.13"/>
+    <style>
+        /*!
+         * IE10 viewport hack for Surface/desktop Windows 8 bug
+         * Copyright 2014-2015 Twitter, Inc.
+         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+         */
+        @-webkit-viewport { width: device-width; }
+        @-moz-viewport    { width: device-width; }
+        @-ms-viewport     { width: device-width; }
+        @-o-viewport      { width: device-width; }
+        @viewport         { width: device-width; }
+      </style>
+  <title>SpECTRE: StripeIterator Class Reference</title>
+  <link href="tabs.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="dynsections.js"></script>
+  <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
+  <link href="octicons.css" rel="stylesheet">
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="doxygen.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="bootstrap.min.js"></script>
+  <script type="text/javascript" src="spectre.js"></script>
+  </head>
+  <body>
+  <div id="top" class="navbar-fixed-top"><!-- do not remove this div, it is closed by doxygen! -->
+  <!-- BEGIN TITLEAREA -->
+  <div id="titlearea">
+  <script type="text/javascript">
+  var searchBox = new SearchBox("searchBox", "search",false,'Search');
+  </script>
+  <div id="main-nav">
+    <ul class="sm sm-dox" id="main-menu">
+      <li>
+      <a href="https://github.com/sxs-collaboration/spectre" target="_blank">
+      SpECTRE &#160;
+        <span id="projectnumber">v0.0.0</span>
+      </a>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-book"></i><span>Documentation</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 135px;">
+            <a href="index.html">
+            <i class="octicon octicon-book"></i><span>Documentation</span></a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="tutorials.html">
+              <i class="octicon octicon-mortar-board"></i><span>Tutorials</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="dev_guide.html">
+              <i class="octicon octicon-gist-secret"></i><span>Dev Guide</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown" style="min-width: 150px;">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 130px;">
+            <a href="modules.html">
+              <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+            </a>
+          </li>
+          <li style="min-width: 130px;">
+            <a href="namespaces.html">
+              <i class="octicon octicon-gist"></i>
+              <span>Namespaces</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="files.html">
+          <i class="octicon octicon-file-directory"></i><span>Files</span>
+        </a>
+      </li>
+      <!--The Search <li> is added by doxygen later-->
+    </ul>
+  </div><!-- main-nav -->
+  </div><!-- titlearea -->
+  <!-- window showing the filter options -->
+  <div id="MSearchSelectWindow"  style="position: fixed;"
+       onmouseover="return searchBox.OnSearchSelectShow()"
+       onmouseout="return searchBox.OnSearchSelectHide()"
+       onkeydown="return searchBox.OnSearchSelectKey(event)">
+  </div>
+  <!-- iframe showing the search results (closed by default) -->
+  <div id="MSearchResultsWindow"  style="position: fixed;">
+  <iframe src="javascript:void(0)" frameborder="0"
+          name="MSearchResults" id="MSearchResults">
+  </iframe>
+  </div><!-- Generated by Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="classStripeIterator-members.html">List of all members</a>  </div>
+  <div class="headertitle">
+<div class="title">StripeIterator Class Reference<div class="ingroups"><a class="el" href="group__DataStructures.html">Data Structures</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Iterates over the 1-dimensional stripes with info on how to iterate over the current stripe.  
+ <a href="classStripeIterator.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="StripeIterator_8hpp_source.html">StripeIterator.hpp</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a811337a1f059b288db3d680366854b44"><td class="memTemplParams" colspan="2">template&lt;size_t Dim&gt; </td></tr>
+<tr class="memitem:a811337a1f059b288db3d680366854b44"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classStripeIterator.html#a811337a1f059b288db3d680366854b44">StripeIterator</a> (const <a class="el" href="classIndex.html">Index</a>&lt; Dim &gt; &amp;extents, size_t stripe_dim)</td></tr>
+<tr class="memdesc:a811337a1f059b288db3d680366854b44"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct from the grid points in each direction and which dimension the stripes are in.  <a href="#a811337a1f059b288db3d680366854b44">More...</a><br /></td></tr>
+<tr class="separator:a811337a1f059b288db3d680366854b44"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4529290ae7e0258e88727382e1db9647"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStripeIterator.html#a4529290ae7e0258e88727382e1db9647">StripeIterator</a> ()=delete</td></tr>
+<tr class="memdesc:a4529290ae7e0258e88727382e1db9647"><td class="mdescLeft">&#160;</td><td class="mdescRight">Needed for Charm++ serialization.  <a href="#a4529290ae7e0258e88727382e1db9647">More...</a><br /></td></tr>
+<tr class="separator:a4529290ae7e0258e88727382e1db9647"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ed009013e3a77986fa08ba69eeb67d0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStripeIterator.html#a7ed009013e3a77986fa08ba69eeb67d0">operator bool</a> () const noexcept</td></tr>
+<tr class="memdesc:a7ed009013e3a77986fa08ba69eeb67d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns <code>true</code> if the iterator is valid.  <a href="#a7ed009013e3a77986fa08ba69eeb67d0">More...</a><br /></td></tr>
+<tr class="separator:a7ed009013e3a77986fa08ba69eeb67d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4388a8a998819bdb3e6098d985570e3d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classStripeIterator.html">StripeIterator</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStripeIterator.html#a4388a8a998819bdb3e6098d985570e3d">operator++</a> ()</td></tr>
+<tr class="memdesc:a4388a8a998819bdb3e6098d985570e3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Increment to the next stripe.  <a href="#a4388a8a998819bdb3e6098d985570e3d">More...</a><br /></td></tr>
+<tr class="separator:a4388a8a998819bdb3e6098d985570e3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afb77553f2c8710cd310c260b10815ccb"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStripeIterator.html#afb77553f2c8710cd310c260b10815ccb">offset</a> () const noexcept</td></tr>
+<tr class="memdesc:afb77553f2c8710cd310c260b10815ccb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Offset into <a class="el" href="classDataVector.html" title="A class for storing data on a mesh. ">DataVector</a> for first element of stripe.  <a href="#afb77553f2c8710cd310c260b10815ccb">More...</a><br /></td></tr>
+<tr class="separator:afb77553f2c8710cd310c260b10815ccb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e4edd819cde256f1894332b1021ac10"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStripeIterator.html#a4e4edd819cde256f1894332b1021ac10">stride</a> () const noexcept</td></tr>
+<tr class="memdesc:a4e4edd819cde256f1894332b1021ac10"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stride of elements in <a class="el" href="classDataVector.html" title="A class for storing data on a mesh. ">DataVector</a> for the stripe.  <a href="#a4e4edd819cde256f1894332b1021ac10">More...</a><br /></td></tr>
+<tr class="separator:a4e4edd819cde256f1894332b1021ac10"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Iterates over the 1-dimensional stripes with info on how to iterate over the current stripe. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a811337a1f059b288db3d680366854b44"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a811337a1f059b288db3d680366854b44">&#9670;&nbsp;</a></span>StripeIterator() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;size_t Dim&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">StripeIterator::StripeIterator </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classIndex.html">Index</a>&lt; Dim &gt; &amp;&#160;</td>
+          <td class="paramname"><em>extents</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>stripe_dim</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Construct from the grid points in each direction and which dimension the stripes are in. </p>
+
+</div>
+</div>
+<a id="a4529290ae7e0258e88727382e1db9647"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4529290ae7e0258e88727382e1db9647">&#9670;&nbsp;</a></span>StripeIterator() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">StripeIterator::StripeIterator </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">delete</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Needed for Charm++ serialization. </p>
+
+<p class="reference">Referenced by <a class="el" href="classStripeIterator.html#a4388a8a998819bdb3e6098d985570e3d">operator++()</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="afb77553f2c8710cd310c260b10815ccb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afb77553f2c8710cd310c260b10815ccb">&#9670;&nbsp;</a></span>offset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t StripeIterator::offset </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Offset into <a class="el" href="classDataVector.html" title="A class for storing data on a mesh. ">DataVector</a> for first element of stripe. </p>
+
+</div>
+</div>
+<a id="a7ed009013e3a77986fa08ba69eeb67d0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ed009013e3a77986fa08ba69eeb67d0">&#9670;&nbsp;</a></span>operator bool()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">StripeIterator::operator bool </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns <code>true</code> if the iterator is valid. </p>
+
+</div>
+</div>
+<a id="a4388a8a998819bdb3e6098d985570e3d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4388a8a998819bdb3e6098d985570e3d">&#9670;&nbsp;</a></span>operator++()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classStripeIterator.html">StripeIterator</a> &amp; StripeIterator::operator++ </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Increment to the next stripe. </p>
+
+<p class="reference">References <a class="el" href="classStripeIterator.html#a4529290ae7e0258e88727382e1db9647">StripeIterator()</a>, and <a class="el" href="group__Utilities.html#gab10d0a221f4d7a706701b806c8135fd7">UNLIKELY</a>.</p>
+
+</div>
+</div>
+<a id="a4e4edd819cde256f1894332b1021ac10"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e4edd819cde256f1894332b1021ac10">&#9670;&nbsp;</a></span>stride()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t StripeIterator::stride </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Stride of elements in <a class="el" href="classDataVector.html" title="A class for storing data on a mesh. ">DataVector</a> for the stripe. </p>
+
+<p class="reference">References <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/numeric_limits/max.html">std::numeric_limits::max()</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>src/DataStructures/<a class="el" href="StripeIterator_8hpp_source.html">StripeIterator.hpp</a></li>
+<li>src/DataStructures/<a class="el" href="src_2DataStructures_2StripeIterator_8cpp.html">StripeIterator.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.10-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+&copy; Copyright 2017
+<a href="https://black-holes.org">SXS Collaboration</a>,
+<a href="LICENSE.txt" target="_blank">
+<span class="hidden-xs">Distributed under the</span>
+MIT License</a>
+</small></address>
+</body>
+</html>

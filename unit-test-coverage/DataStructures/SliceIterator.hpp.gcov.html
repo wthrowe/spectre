@@ -1,0 +1,144 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 62204faed5c3285d61ace50f511c782e819e106e - DataStructures/SliceIterator.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">SpECTRE Unit Test Code Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">DataStructures</a> - SliceIterator.hpp<span style="font-size: 80%;"> (source / <a href="SliceIterator.hpp.func-sort-c.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/62204faed5c3285d61ace50f511c782e819e106e">62204faed5c3285d61ace50f511c782e819e106e</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">3</td>
+            <td class="headerCovTableEntry">3</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2017-06-17 01:55:55</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">3</td>
+            <td class="headerCovTableEntry">3</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>            : // Distributed under the MIT License.</a>
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : #pragma once
+<span class="lineNum">       5 </span>            : 
+<span class="lineNum">       6 </span>            : #include &lt;cstddef&gt;
+<span class="lineNum">       7 </span>            : #include &lt;limits&gt;
+<span class="lineNum">       8 </span>            : 
+<span class="lineNum">       9 </span>            : template &lt;size_t&gt;
+<span class="lineNum">      10 </span>            : class Index;
+<span class="lineNum">      11 </span>            : 
+<span class="lineNum">      12 </span>            : namespace PUP {
+<span class="lineNum">      13 </span>            : class er;
+<span class="lineNum">      14 </span>            : }  // namespace PUP
+<span class="lineNum">      15 </span>            : 
+<span class="lineNum">      16 </span>            : /*!
+<span class="lineNum">      17 </span>            :  * \ingroup DataStructures
+<span class="lineNum">      18 </span>            :  * \brief Iterate over a (dim-1)-dimensional slice
+<span class="lineNum">      19 </span>            :  */
+<span class="lineNum">      20 </span>            : class SliceIterator {
+<span class="lineNum">      21 </span>            :  public:
+<span class="lineNum">      22 </span>            :   /*!
+<span class="lineNum">      23 </span>            :    * @param extents the number of grid points in each dimension
+<span class="lineNum">      24 </span>            :    * @param fixed_dim the dimension to slice in
+<span class="lineNum">      25 </span>            :    * @param fixed_index the index of the `fixed_dim` to slice at
+<span class="lineNum">      26 </span>            :    */
+<span class="lineNum">      27 </span>            :   template &lt;size_t Dim&gt;
+<span class="lineNum">      28 </span>            :   SliceIterator(const Index&lt;Dim&gt;&amp; extents, size_t fixed_dim,
+<span class="lineNum">      29 </span>            :                 size_t fixed_index);
+<span class="lineNum">      30 </span>            : 
+<span class="lineNum">      31 </span>            :   /// Default constructor for serialization
+<span class="lineNum">      32 </span>            :   SliceIterator() = delete;
+<a name="33"><span class="lineNum">      33 </span>            : </a>
+<span class="lineNum">      34 </span>            :   /// Returns `true` if the iterator is valid
+<span class="lineNum">      35 </span><span class="lineCov">         75 :   operator bool() const noexcept { return volume_offset_ &lt; size_; }</span>
+<span class="lineNum">      36 </span>            : 
+<span class="lineNum">      37 </span>            :   /// Step to the next grid point
+<span class="lineNum">      38 </span>            :   SliceIterator&amp; operator++();
+<span class="lineNum">      39 </span>            : 
+<span class="lineNum">      40 </span>            :   /// Offset into a Dim-dimensional Data at the current gridpoint.
+<a name="41"><span class="lineNum">      41 </span>            :   /// Note that the size of the Data is assumed to be that of the Mesh</a>
+<span class="lineNum">      42 </span>            :   /// used to construct this SliceIterator
+<span class="lineNum">      43 </span><span class="lineCov">         42 :   size_t volume_offset() const noexcept { return volume_offset_; }</span>
+<span class="lineNum">      44 </span>            : 
+<span class="lineNum">      45 </span>            :   /// Offset into a (Dim-1)-dimensional Data at the current gridpoint.
+<a name="46"><span class="lineNum">      46 </span>            :   /// Note that the size of the Data is assumed to be that of a Mesh</a>
+<span class="lineNum">      47 </span>            :   /// used to construct this SliceIterator with its fixedDim sliced away.
+<span class="lineNum">      48 </span><span class="lineCov">         42 :   size_t slice_offset() const noexcept { return slice_offset_; }</span>
+<span class="lineNum">      49 </span>            : 
+<span class="lineNum">      50 </span>            :   /// Reset the iterator
+<span class="lineNum">      51 </span>            :   void reset();
+<span class="lineNum">      52 </span>            : 
+<span class="lineNum">      53 </span>            :  private:
+<span class="lineNum">      54 </span>            :   size_t size_ = std::numeric_limits&lt;size_t&gt;::max();
+<span class="lineNum">      55 </span>            :   size_t stride_ = std::numeric_limits&lt;size_t&gt;::max();
+<span class="lineNum">      56 </span>            :   size_t jump_ = std::numeric_limits&lt;size_t&gt;::max();
+<span class="lineNum">      57 </span>            :   size_t initial_offset_ = std::numeric_limits&lt;size_t&gt;::max();
+<span class="lineNum">      58 </span>            :   size_t volume_offset_ = std::numeric_limits&lt;size_t&gt;::max();
+<span class="lineNum">      59 </span>            :   size_t slice_offset_ = std::numeric_limits&lt;size_t&gt;::max();
+<span class="lineNum">      60 </span>            : };
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

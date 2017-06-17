@@ -152,7 +152,6 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pri-types">Private Types</a> &#124;
 <a href="classDataVector-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">DataVector Class Reference<div class="ingroups"><a class="el" href="group__DataStructures.html">Data Structures</a></div></div>  </div>
@@ -418,69 +417,11 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a864ea5a64ff387cc62a49c147ade3e76"><td class="memItemLeft" align="right" valign="top">decltype(auto) friend&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#a864ea5a64ff387cc62a49c147ade3e76">erfc</a> (const <a class="el" href="classDataVector.html">DataVector</a> &amp;t)</td></tr>
 <tr class="memdesc:a864ea5a64ff387cc62a49c147ade3e76"><td class="mdescLeft">&#160;</td><td class="mdescRight">See the Blaze library documentation for details on these functions since they merely forward to Blaze. <a href="https://bitbucket.org/blaze-lib/blaze/overview">https://bitbucket.org/blaze-lib/blaze/overview</a>.  <a href="#a864ea5a64ff387cc62a49c147ade3e76">More...</a><br /></td></tr>
 <tr class="separator:a864ea5a64ff387cc62a49c147ade3e76"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-types"></a>
-Private Types</h2></td></tr>
-<tr class="memitem:a38abae854b54bda612a535589e3c825e"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#a38abae854b54bda612a535589e3c825e">InternalDataVector_t</a> = <a class="el" href="structPointerVector.html">PointerVector</a>&lt; double &gt;</td></tr>
-<tr class="memdesc:a38abae854b54bda612a535589e3c825e"><td class="mdescLeft">&#160;</td><td class="mdescRight">The type of the "pointer" used internally.  <a href="#a38abae854b54bda612a535589e3c825e">More...</a><br /></td></tr>
-<tr class="separator:a38abae854b54bda612a535589e3c825e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5d4f81b396ad003f984e61eb8cb1980b"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#a5d4f81b396ad003f984e61eb8cb1980b">InternalStorage_t</a> = <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt; double &gt;</td></tr>
-<tr class="memdesc:a5d4f81b396ad003f984e61eb8cb1980b"><td class="mdescLeft">&#160;</td><td class="mdescRight">The type used to store the data in.  <a href="#a5d4f81b396ad003f984e61eb8cb1980b">More...</a><br /></td></tr>
-<tr class="separator:a5d4f81b396ad003f984e61eb8cb1980b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A class for storing data on a mesh. </p>
 <p>A Data holds an array of contiguous data and can be either owning (the array is deleted when the Data goes out of scope) or non-owning, meaning it just has a pointer to an array. </p>
-</div><h2 class="groupheader">Member Typedef Documentation</h2>
-<a id="a38abae854b54bda612a535589e3c825e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a38abae854b54bda612a535589e3c825e">&#9670;&nbsp;</a></span>InternalDataVector_t</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">using <a class="el" href="classDataVector.html#a38abae854b54bda612a535589e3c825e">DataVector::InternalDataVector_t</a> =  <a class="el" href="structPointerVector.html">PointerVector</a>&lt;double&gt;</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>The type of the "pointer" used internally. </p>
-
-</div>
-</div>
-<a id="a5d4f81b396ad003f984e61eb8cb1980b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5d4f81b396ad003f984e61eb8cb1980b">&#9670;&nbsp;</a></span>InternalStorage_t</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">using <a class="el" href="classDataVector.html#a5d4f81b396ad003f984e61eb8cb1980b">DataVector::InternalStorage_t</a> =  <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt;double&gt;</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>The type used to store the data in. </p>
-
-</div>
-</div>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a9f5c4e173087abe0ee20a41d45e4e3bc"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9f5c4e173087abe0ee20a41d45e4e3bc">&#9670;&nbsp;</a></span>DataVector() <span class="overload">[1/4]</span></h2>
 

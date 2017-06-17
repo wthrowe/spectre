@@ -160,15 +160,17 @@ $(function() {
 <ul>
 <li>Adhere to <a href="http://clang.llvm.org/docs/ClangFormat.html">Google style</a>. Can use <code>clang-format -style=google</code>.</li>
 <li>CamelCase: class names, type names, namespaces, template parameters, file names, and directory names.</li>
-<li>snake_case: (meta)function and (meta)variables names.</li>
+<li>snake_case: function, variable, metafunction and metavariable names.</li>
 <li>SCREAMING_SNAKE_CASE: macros.</li>
+<li>Name unused function parameters <code>/*parameter_name*/</code> or <code>/*meta*/</code> for TMP cases</li>
+<li>Type aliases that wrap type traits have a trailing <code>_t</code> following the STL</li>
 <li>Member variables of classes (not structs!) have a trailing underscore. See <a href="https://google.github.io/styleguide/cppguide.html#Variable_Names">Google</a>.</li>
-<li>Types NOT specified in the name (e.g. <code>double* pd_blah</code> is bad)</li>
+<li>Do NOT encode type-information in a variable name (e.g. not <code>double* pd_blah</code>)</li>
 <li>Header order: hpp corresponding to cpp, blank line, STL and externals, blank line, SpECTRE includes</li>
 <li>Header order is alphabetical</li>
-<li>Template definitions in header files are separated from the declaration of the class by the following line, which contains exactly 70 equal signs</li>
+<li>Template definitions in header files are separated from the declaration of the class by the following line, which contains exactly 64 equal signs</li>
 </ul>
-<div class="fragment"><div class="line">// ======================================================================</div></div><!-- fragment --><ul>
+<div class="fragment"><div class="line">// ================================================================</div></div><!-- fragment --><ul>
 <li>No blank lines surrounding Doxygen group comments (<code>//\@{</code> and <code>//\@}</code>).</li>
 <li>Use <a href="http://en.cppreference.com/w/cpp/language/operator_alternative">alternative tokens</a> whenever possible. E.g. <code>or</code> and <code>and</code> keywords instead of <code>||</code> and <code>&amp;&amp;</code>, respectively.</li>
 <li>Use C-style Doxygen comments except for documenting the file <code>/*! ... */</code></li>

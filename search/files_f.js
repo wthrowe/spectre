@@ -4,6 +4,8 @@ var searchData=
   ['serialize_2ehpp',['Serialize.hpp',['../Serialize_8hpp.html',1,'']]],
   ['set',['set',['http://en.cppreference.com/w/cpp/header/set.html',1,'']]],
   ['shared_5fmutex',['shared_mutex',['http://en.cppreference.com/w/cpp/header/shared_mutex.html',1,'']]],
+  ['sliceiterator_2ecpp',['SliceIterator.cpp',['../src_2DataStructures_2SliceIterator_8cpp.html',1,'(Global Namespace)'],['../tests_2Unit_2DataStructures_2SliceIterator_8cpp.html',1,'(Global Namespace)']]],
+  ['sliceiterator_2ehpp',['SliceIterator.hpp',['../SliceIterator_8hpp.html',1,'']]],
   ['sstream',['sstream',['http://en.cppreference.com/w/cpp/header/sstream.html',1,'']]],
   ['stack',['stack',['http://en.cppreference.com/w/cpp/header/stack.html',1,'']]],
   ['stdexcept',['stdexcept',['http://en.cppreference.com/w/cpp/header/stdexcept.html',1,'']]],
@@ -13,6 +15,8 @@ var searchData=
   ['streambuf',['streambuf',['http://en.cppreference.com/w/cpp/header/streambuf.html',1,'']]],
   ['string',['string',['http://en.cppreference.com/w/cpp/header/string.html',1,'']]],
   ['string_5fview',['string_view',['http://en.cppreference.com/w/cpp/header/string_view.html',1,'']]],
+  ['stripeiterator_2ecpp',['StripeIterator.cpp',['../src_2DataStructures_2StripeIterator_8cpp.html',1,'(Global Namespace)'],['../tests_2Unit_2DataStructures_2StripeIterator_8cpp.html',1,'(Global Namespace)']]],
+  ['stripeiterator_2ehpp',['StripeIterator.hpp',['../StripeIterator_8hpp.html',1,'']]],
   ['strstream',['strstream',['http://en.cppreference.com/w/cpp/header/strstream.html',1,'']]],
   ['system_5ferror',['system_error',['http://en.cppreference.com/w/cpp/header/system_error.html',1,'']]]
 ];

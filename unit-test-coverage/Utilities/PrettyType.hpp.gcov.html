@@ -1,0 +1,771 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 62204faed5c3285d61ace50f511c782e819e106e - Utilities/PrettyType.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">SpECTRE Unit Test Code Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">Utilities</a> - PrettyType.hpp<span style="font-size: 80%;"> (source / <a href="PrettyType.hpp.func-sort-c.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/62204faed5c3285d61ace50f511c782e819e106e">62204faed5c3285d61ace50f511c782e819e106e</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">142</td>
+            <td class="headerCovTableEntry">142</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2017-06-17 01:55:55</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">172</td>
+            <td class="headerCovTableEntry">175</td>
+            <td class="headerCovTableEntryHi">98.3 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>            : // Distributed under the MIT License.</a>
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : /// \file
+<span class="lineNum">       5 </span>            : /// Contains a pretty_type library to write types in a &quot;pretty&quot; format
+<span class="lineNum">       6 </span>            : 
+<span class="lineNum">       7 </span>            : #pragma once
+<span class="lineNum">       8 </span>            : 
+<span class="lineNum">       9 </span>            : #include &lt;boost/core/demangle.hpp&gt;
+<span class="lineNum">      10 </span>            : #include &lt;sstream&gt;
+<span class="lineNum">      11 </span>            : #include &lt;string&gt;
+<span class="lineNum">      12 </span>            : 
+<span class="lineNum">      13 </span>            : #include &quot;Utilities/TMPL.hpp&quot;
+<span class="lineNum">      14 </span>            : #include &quot;Utilities/TypeTraits.hpp&quot;
+<span class="lineNum">      15 </span>            : 
+<span class="lineNum">      16 </span>            : /// \cond
+<span class="lineNum">      17 </span>            : #define PRETTY_TYPE_USE_BOOST
+<span class="lineNum">      18 </span>            : /// \endcond
+<span class="lineNum">      19 </span>            : 
+<span class="lineNum">      20 </span>            : /*!
+<span class="lineNum">      21 </span>            :  * \ingroup PrettyType
+<span class="lineNum">      22 </span>            :  * \brief Contains all functions that are part of PrettyType, used for printing
+<span class="lineNum">      23 </span>            :  * types in a pretty manner.
+<span class="lineNum">      24 </span>            :  */
+<span class="lineNum">      25 </span>            : namespace pretty_type {
+<span class="lineNum">      26 </span>            : namespace detail {
+<span class="lineNum">      27 </span>            : using str_const = const char* const;
+<span class="lineNum">      28 </span>            : 
+<span class="lineNum">      29 </span>            : template &lt;typename T&gt;
+<span class="lineNum">      30 </span>            : struct Type;
+<span class="lineNum">      31 </span>            : 
+<span class="lineNum">      32 </span>            : template &lt;&gt;
+<span class="lineNum">      33 </span>            : struct Type&lt;char&gt; {
+<span class="lineNum">      34 </span>            :   using type = char;
+<span class="lineNum">      35 </span>            :   static constexpr str_const type_name = {&quot;char&quot;};
+<span class="lineNum">      36 </span>            : };
+<span class="lineNum">      37 </span>            : 
+<span class="lineNum">      38 </span>            : template &lt;&gt;
+<span class="lineNum">      39 </span>            : struct Type&lt;signed char&gt; {
+<span class="lineNum">      40 </span>            :   using type = signed char;
+<span class="lineNum">      41 </span>            :   static constexpr str_const type_name = {&quot;signed char&quot;};
+<span class="lineNum">      42 </span>            : };
+<span class="lineNum">      43 </span>            : 
+<span class="lineNum">      44 </span>            : template &lt;&gt;
+<span class="lineNum">      45 </span>            : struct Type&lt;unsigned char&gt; {
+<span class="lineNum">      46 </span>            :   using type = unsigned char;
+<span class="lineNum">      47 </span>            :   static constexpr str_const type_name = {&quot;unsigned char&quot;};
+<span class="lineNum">      48 </span>            : };
+<span class="lineNum">      49 </span>            : 
+<span class="lineNum">      50 </span>            : template &lt;&gt;
+<span class="lineNum">      51 </span>            : struct Type&lt;wchar_t&gt; {
+<span class="lineNum">      52 </span>            :   using type = wchar_t;
+<span class="lineNum">      53 </span>            :   static constexpr str_const type_name = {&quot;wchar_t&quot;};
+<span class="lineNum">      54 </span>            : };
+<span class="lineNum">      55 </span>            : 
+<span class="lineNum">      56 </span>            : template &lt;&gt;
+<span class="lineNum">      57 </span>            : struct Type&lt;char16_t&gt; {
+<span class="lineNum">      58 </span>            :   using type = char16_t;
+<span class="lineNum">      59 </span>            :   static constexpr str_const type_name = {&quot;char16_t&quot;};
+<span class="lineNum">      60 </span>            : };
+<span class="lineNum">      61 </span>            : 
+<span class="lineNum">      62 </span>            : template &lt;&gt;
+<span class="lineNum">      63 </span>            : struct Type&lt;char32_t&gt; {
+<span class="lineNum">      64 </span>            :   using type = char32_t;
+<span class="lineNum">      65 </span>            :   static constexpr str_const type_name = {&quot;char32_t&quot;};
+<span class="lineNum">      66 </span>            : };
+<span class="lineNum">      67 </span>            : 
+<span class="lineNum">      68 </span>            : template &lt;&gt;
+<span class="lineNum">      69 </span>            : struct Type&lt;int&gt; {
+<span class="lineNum">      70 </span>            :   using type = int;
+<span class="lineNum">      71 </span>            :   static constexpr str_const type_name = {&quot;int&quot;};
+<span class="lineNum">      72 </span>            : };
+<span class="lineNum">      73 </span>            : 
+<span class="lineNum">      74 </span>            : template &lt;&gt;
+<span class="lineNum">      75 </span>            : struct Type&lt;unsigned int&gt; {
+<span class="lineNum">      76 </span>            :   using type = unsigned int;
+<span class="lineNum">      77 </span>            :   static constexpr str_const type_name = {&quot;unsigned int&quot;};
+<span class="lineNum">      78 </span>            : };
+<span class="lineNum">      79 </span>            : 
+<span class="lineNum">      80 </span>            : template &lt;&gt;
+<span class="lineNum">      81 </span>            : struct Type&lt;long&gt; {
+<span class="lineNum">      82 </span>            :   using type = long;
+<span class="lineNum">      83 </span>            :   static constexpr str_const type_name = {&quot;long&quot;};
+<span class="lineNum">      84 </span>            : };
+<span class="lineNum">      85 </span>            : 
+<span class="lineNum">      86 </span>            : template &lt;&gt;
+<span class="lineNum">      87 </span>            : struct Type&lt;unsigned long&gt; {
+<span class="lineNum">      88 </span>            :   using type = unsigned long;
+<span class="lineNum">      89 </span>            :   static constexpr str_const type_name = {&quot;unsigned long&quot;};
+<span class="lineNum">      90 </span>            : };
+<span class="lineNum">      91 </span>            : 
+<span class="lineNum">      92 </span>            : template &lt;&gt;
+<span class="lineNum">      93 </span>            : struct Type&lt;long long&gt; {
+<span class="lineNum">      94 </span>            :   using type = long long;
+<span class="lineNum">      95 </span>            :   static constexpr str_const type_name = {&quot;long long&quot;};
+<span class="lineNum">      96 </span>            : };
+<span class="lineNum">      97 </span>            : 
+<span class="lineNum">      98 </span>            : template &lt;&gt;
+<span class="lineNum">      99 </span>            : struct Type&lt;unsigned long long&gt; {
+<span class="lineNum">     100 </span>            :   using type = unsigned long long;
+<span class="lineNum">     101 </span>            :   static constexpr str_const type_name = {&quot;unsigned long long&quot;};
+<span class="lineNum">     102 </span>            : };
+<span class="lineNum">     103 </span>            : 
+<span class="lineNum">     104 </span>            : template &lt;&gt;
+<span class="lineNum">     105 </span>            : struct Type&lt;short&gt; {
+<span class="lineNum">     106 </span>            :   using type = short;
+<span class="lineNum">     107 </span>            :   static constexpr str_const type_name = {&quot;short&quot;};
+<span class="lineNum">     108 </span>            : };
+<span class="lineNum">     109 </span>            : 
+<span class="lineNum">     110 </span>            : template &lt;&gt;
+<span class="lineNum">     111 </span>            : struct Type&lt;unsigned short&gt; {
+<span class="lineNum">     112 </span>            :   using type = unsigned short;
+<span class="lineNum">     113 </span>            :   static constexpr str_const type_name = {&quot;unsigned short&quot;};
+<span class="lineNum">     114 </span>            : };
+<span class="lineNum">     115 </span>            : 
+<span class="lineNum">     116 </span>            : template &lt;&gt;
+<span class="lineNum">     117 </span>            : struct Type&lt;float&gt; {
+<span class="lineNum">     118 </span>            :   using type = float;
+<span class="lineNum">     119 </span>            :   static constexpr str_const type_name = {&quot;float&quot;};
+<span class="lineNum">     120 </span>            : };
+<span class="lineNum">     121 </span>            : 
+<span class="lineNum">     122 </span>            : template &lt;&gt;
+<span class="lineNum">     123 </span>            : struct Type&lt;double&gt; {
+<span class="lineNum">     124 </span>            :   using type = double;
+<span class="lineNum">     125 </span>            :   static constexpr str_const type_name = {&quot;double&quot;};
+<span class="lineNum">     126 </span>            : };
+<span class="lineNum">     127 </span>            : 
+<span class="lineNum">     128 </span>            : template &lt;&gt;
+<span class="lineNum">     129 </span>            : struct Type&lt;long double&gt; {
+<span class="lineNum">     130 </span>            :   using type = long double;
+<span class="lineNum">     131 </span>            :   static constexpr str_const type_name = {&quot;long double&quot;};
+<span class="lineNum">     132 </span>            : };
+<span class="lineNum">     133 </span>            : 
+<span class="lineNum">     134 </span>            : template &lt;&gt;
+<span class="lineNum">     135 </span>            : struct Type&lt;bool&gt; {
+<span class="lineNum">     136 </span>            :   using type = bool;
+<span class="lineNum">     137 </span>            :   static constexpr str_const type_name = {&quot;bool&quot;};
+<span class="lineNum">     138 </span>            : };
+<span class="lineNum">     139 </span>            : 
+<span class="lineNum">     140 </span>            : template &lt;&gt;
+<span class="lineNum">     141 </span>            : struct Type&lt;void&gt; {
+<span class="lineNum">     142 </span>            :   using type = void;
+<span class="lineNum">     143 </span>            :   static constexpr str_const type_name = {&quot;void&quot;};
+<span class="lineNum">     144 </span>            : };
+<span class="lineNum">     145 </span>            : 
+<span class="lineNum">     146 </span>            : template &lt;&gt;
+<span class="lineNum">     147 </span>            : struct Type&lt;std::string&gt; {
+<span class="lineNum">     148 </span>            :   using type = std::string;
+<span class="lineNum">     149 </span>            :   static constexpr str_const type_name = {&quot;std::string&quot;};
+<span class="lineNum">     150 </span>            : };
+<span class="lineNum">     151 </span>            : 
+<span class="lineNum">     152 </span>            : template &lt;typename... T&gt;
+<span class="lineNum">     153 </span>            : using TemplateMap_t = tmpl::map&lt;tmpl::pair&lt;T, Type&lt;T&gt;&gt;...&gt;;
+<a name="154"><span class="lineNum">     154 </span>            : </a>
+<span class="lineNum">     155 </span>            : template &lt;typename T&gt;
+<span class="lineNum">     156 </span><span class="lineCov">        130 : std::string add_qualifiers() {</span>
+<span class="lineNum">     157 </span><span class="lineCov">        260 :   std::stringstream ss;</span>
+<span class="lineNum">     158 </span>            :   if (std::is_pointer&lt;T&gt;::value) {
+<span class="lineNum">     159 </span>            :     if (std::is_const&lt;std::remove_pointer_t&lt;T&gt;&gt;::value) {
+<span class="lineNum">     160 </span><span class="lineCov">          6 :       ss &lt;&lt; &quot; const&quot;;</span>
+<span class="lineNum">     161 </span>            :     }
+<span class="lineNum">     162 </span>            :     if (std::is_volatile&lt;std::remove_pointer_t&lt;T&gt;&gt;::value) {
+<span class="lineNum">     163 </span><span class="lineCov">          7 :       ss &lt;&lt; &quot; volatile&quot;;</span>
+<span class="lineNum">     164 </span>            :     }
+<span class="lineNum">     165 </span><span class="lineCov">         14 :     ss &lt;&lt; &quot;*&quot;;</span>
+<span class="lineNum">     166 </span>            :   }
+<span class="lineNum">     167 </span>            :   if (std::is_const&lt;std::remove_reference_t&lt;T&gt;&gt;::value) {
+<span class="lineNum">     168 </span><span class="lineCov">          8 :     ss &lt;&lt; &quot; const&quot;;</span>
+<span class="lineNum">     169 </span>            :   }
+<span class="lineNum">     170 </span>            :   if (std::is_volatile&lt;std::remove_reference_t&lt;T&gt;&gt;::value) {
+<span class="lineNum">     171 </span><span class="lineCov">          9 :     ss &lt;&lt; &quot; volatile&quot;;</span>
+<span class="lineNum">     172 </span>            :   }
+<span class="lineNum">     173 </span>            :   if (std::is_reference&lt;T&gt;::value) {
+<span class="lineNum">     174 </span><span class="lineCov">          4 :     ss &lt;&lt; &quot;&amp;&quot;;</span>
+<span class="lineNum">     175 </span>            :   }
+<span class="lineNum">     176 </span><span class="lineCov">        260 :   return ss.str();</span>
+<span class="lineNum">     177 </span>            : }
+<span class="lineNum">     178 </span>            : 
+<span class="lineNum">     179 </span>            : /*!
+<span class="lineNum">     180 </span>            :  * \ingroup PrettyType
+<span class="lineNum">     181 </span>            :  * Used to construct the name of a container
+<span class="lineNum">     182 </span>            :  *
+<span class="lineNum">     183 </span>            :  * \tparam T the type whose name to print
+<span class="lineNum">     184 </span>            :  * \tparam M the map of the basic types to print
+<span class="lineNum">     185 </span>            :  * \tparam KT the struct holding the template alias template_list which is a
+<span class="lineNum">     186 </span>            :  * list of known specializations of construct_name for those containers
+<span class="lineNum">     187 </span>            :  */
+<span class="lineNum">     188 </span>            : template &lt;typename T, typename M, typename KT, typename U = void&gt;
+<span class="lineNum">     189 </span>            : struct construct_name;
+<span class="lineNum">     190 </span>            : template &lt;typename T, typename M, typename KT&gt;
+<span class="lineNum">     191 </span>            : struct construct_name&lt;
+<span class="lineNum">     192 </span>            :     T, M, KT,
+<a name="193"><span class="lineNum">     193 </span>            :     std::enable_if_t&lt;</a>
+<span class="lineNum">     194 </span>            :         tmpl::has_key&lt;M, std::decay_t&lt;std::remove_pointer_t&lt;T&gt;&gt;&gt;::value == 1&gt;&gt; {
+<span class="lineNum">     195 </span><span class="lineCov">         79 :   static std::string get() {</span>
+<span class="lineNum">     196 </span>            :     constexpr str_const t =
+<span class="lineNum">     197 </span><span class="lineCov">         79 :         tmpl::at&lt;M, std::decay_t&lt;std::remove_pointer_t&lt;T&gt;&gt;&gt;::type_name;</span>
+<span class="lineNum">     198 </span><span class="lineCov">        158 :     std::stringstream ss;</span>
+<span class="lineNum">     199 </span><span class="lineCov">         79 :     ss &lt;&lt; t &lt;&lt; add_qualifiers&lt;T&gt;();</span>
+<span class="lineNum">     200 </span><span class="lineCov">        158 :     return ss.str();</span>
+<span class="lineNum">     201 </span>            :   }
+<span class="lineNum">     202 </span>            : };
+<span class="lineNum">     203 </span>            : 
+<span class="lineNum">     204 </span>            : template &lt;typename T, typename M, typename KT&gt;
+<span class="lineNum">     205 </span>            : struct construct_name&lt;
+<span class="lineNum">     206 </span>            :     T, M, KT,
+<span class="lineNum">     207 </span>            :     std::enable_if_t&lt;
+<span class="lineNum">     208 </span>            :         tmpl::has_key&lt;M, std::decay_t&lt;std::remove_reference_t&lt;
+<span class="lineNum">     209 </span>            :                              std::remove_pointer_t&lt;T&gt;&gt;&gt;&gt;::value == 0 and
+<span class="lineNum">     210 </span>            :         std::is_same&lt;
+<span class="lineNum">     211 </span>            :             tmpl::list&lt;&gt;,
+<span class="lineNum">     212 </span>            :             tmpl::find&lt;typename KT::template template_list&lt;std::decay_t&lt;
+<a name="213"><span class="lineNum">     213 </span>            :                            std::remove_reference_t&lt;std::remove_pointer_t&lt;T&gt;&gt;&gt;&gt;,</a>
+<span class="lineNum">     214 </span>            :                        std::is_base_of&lt;std::true_type, tmpl::_1&gt;&gt;&gt;::value&gt;&gt; {
+<span class="lineNum">     215 </span><span class="lineCov">          1 :   static std::string get() {</span>
+<span class="lineNum">     216 </span><span class="lineCov">          2 :     std::stringstream ss;</span>
+<span class="lineNum">     217 </span>            : #if defined(PRETTY_TYPE_USE_BOOST)
+<span class="lineNum">     218 </span><span class="lineCov">          1 :     ss &lt;&lt; boost::core::demangle(typeid(T).name());</span>
+<span class="lineNum">     219 </span>            : #else
+<span class="lineNum">     220 </span>            :     ss &lt;&lt; typeid(T).name();
+<span class="lineNum">     221 </span>            : #endif
+<span class="lineNum">     222 </span><span class="lineCov">          2 :     return ss.str();</span>
+<span class="lineNum">     223 </span>            :   }
+<span class="lineNum">     224 </span>            : };
+<span class="lineNum">     225 </span>            : 
+<span class="lineNum">     226 </span>            : // STL Sequences
+<span class="lineNum">     227 </span>            : template &lt;typename T, typename M, typename KT&gt;
+<span class="lineNum">     228 </span>            : struct construct_name&lt;
+<span class="lineNum">     229 </span>            :     T, M, KT,
+<span class="lineNum">     230 </span>            :     std::enable_if_t&lt;tt::is_a_v&lt;
+<span class="lineNum">     231 </span>            :         std::vector,
+<a name="232"><span class="lineNum">     232 </span>            :         std::decay_t&lt;std::remove_reference_t&lt;std::remove_pointer_t&lt;T&gt;&gt;&gt;&gt;&gt;&gt; {</a>
+<span class="lineNum">     233 </span>            :   using type = std::decay_t&lt;std::remove_pointer_t&lt;T&gt;&gt;;
+<span class="lineNum">     234 </span><span class="lineCov">          2 :   static std::string get() {</span>
+<span class="lineNum">     235 </span><span class="lineCov">          4 :     std::stringstream ss;</span>
+<span class="lineNum">     236 </span><span class="lineCov">          2 :     ss &lt;&lt; &quot;std::vector&lt;&quot;</span>
+<span class="lineNum">     237 </span><span class="lineCov">          4 :        &lt;&lt; construct_name&lt;</span>
+<span class="lineNum">     238 </span>            :               std::decay_t&lt;std::remove_pointer_t&lt;typename type::value_type&gt;&gt;, M,
+<span class="lineNum">     239 </span>            :               KT&gt;::get();
+<span class="lineNum">     240 </span><span class="lineCov">          2 :     ss &lt;&lt; add_qualifiers&lt;typename type::value_type&gt;() &lt;&lt; &quot;&gt;&quot;;</span>
+<span class="lineNum">     241 </span><span class="lineCov">          2 :     ss &lt;&lt; add_qualifiers&lt;T&gt;();</span>
+<span class="lineNum">     242 </span><span class="lineCov">          4 :     return ss.str();</span>
+<span class="lineNum">     243 </span>            :   }
+<span class="lineNum">     244 </span>            : };
+<span class="lineNum">     245 </span>            : 
+<span class="lineNum">     246 </span>            : template &lt;typename T, typename M, typename KT&gt;
+<span class="lineNum">     247 </span>            : struct construct_name&lt;
+<span class="lineNum">     248 </span>            :     T, M, KT, std::enable_if_t&lt;tt::is_std_array_v&lt;std::decay_t&lt;
+<a name="249"><span class="lineNum">     249 </span>            :                   std::remove_reference_t&lt;std::remove_pointer_t&lt;T&gt;&gt;&gt;&gt;&gt;&gt; {</a>
+<span class="lineNum">     250 </span>            :   using type = std::decay_t&lt;std::remove_reference_t&lt;std::remove_pointer_t&lt;T&gt;&gt;&gt;;
+<span class="lineNum">     251 </span><span class="lineCov">          1 :   static std::string get() {</span>
+<span class="lineNum">     252 </span><span class="lineCov">          2 :     std::stringstream ss;</span>
+<span class="lineNum">     253 </span><span class="lineCov">          1 :     ss &lt;&lt; &quot;std::array&lt;&quot;</span>
+<span class="lineNum">     254 </span><span class="lineCov">          2 :        &lt;&lt; construct_name&lt;</span>
+<span class="lineNum">     255 </span>            :               std::decay_t&lt;std::remove_pointer_t&lt;typename type::value_type&gt;&gt;, M,
+<span class="lineNum">     256 </span>            :               KT&gt;::get();
+<span class="lineNum">     257 </span><span class="lineCov">          1 :     ss &lt;&lt; add_qualifiers&lt;typename type::value_type&gt;();</span>
+<span class="lineNum">     258 </span><span class="lineCov">          1 :     ss &lt;&lt; &quot;, &quot; &lt;&lt; tt::array_size&lt;type&gt;::value &lt;&lt; &quot;&gt;&quot;;</span>
+<span class="lineNum">     259 </span><span class="lineCov">          1 :     ss &lt;&lt; add_qualifiers&lt;T&gt;();</span>
+<span class="lineNum">     260 </span><span class="lineCov">          2 :     return ss.str();</span>
+<span class="lineNum">     261 </span>            :   }
+<span class="lineNum">     262 </span>            : };
+<span class="lineNum">     263 </span>            : 
+<span class="lineNum">     264 </span>            : template &lt;typename T, typename M, typename KT&gt;
+<span class="lineNum">     265 </span>            : struct construct_name&lt;
+<span class="lineNum">     266 </span>            :     T, M, KT,
+<span class="lineNum">     267 </span>            :     std::enable_if_t&lt;tt::is_a_v&lt;
+<span class="lineNum">     268 </span>            :         std::deque,
+<a name="269"><span class="lineNum">     269 </span>            :         std::decay_t&lt;std::remove_reference_t&lt;std::remove_pointer_t&lt;T&gt;&gt;&gt;&gt;&gt;&gt; {</a>
+<span class="lineNum">     270 </span>            :   using type = std::decay_t&lt;std::remove_pointer_t&lt;T&gt;&gt;;
+<span class="lineNum">     271 </span><span class="lineCov">          3 :   static std::string get() {</span>
+<span class="lineNum">     272 </span><span class="lineCov">          6 :     std::stringstream ss;</span>
+<span class="lineNum">     273 </span><span class="lineCov">          3 :     ss &lt;&lt; &quot;std::deque&lt;&quot;</span>
+<span class="lineNum">     274 </span><span class="lineCov">          6 :        &lt;&lt; construct_name&lt;</span>
+<span class="lineNum">     275 </span>            :               std::decay_t&lt;std::remove_pointer_t&lt;typename type::value_type&gt;&gt;, M,
+<span class="lineNum">     276 </span>            :               KT&gt;::get();
+<span class="lineNum">     277 </span><span class="lineCov">          3 :     ss &lt;&lt; add_qualifiers&lt;typename type::value_type&gt;() &lt;&lt; &quot;&gt;&quot;;</span>
+<span class="lineNum">     278 </span><span class="lineCov">          3 :     ss &lt;&lt; add_qualifiers&lt;T&gt;();</span>
+<span class="lineNum">     279 </span><span class="lineCov">          6 :     return ss.str();</span>
+<span class="lineNum">     280 </span>            :   }
+<span class="lineNum">     281 </span>            : };
+<span class="lineNum">     282 </span>            : 
+<span class="lineNum">     283 </span>            : template &lt;typename T, typename M, typename KT&gt;
+<span class="lineNum">     284 </span>            : struct construct_name&lt;
+<span class="lineNum">     285 </span>            :     T, M, KT,
+<span class="lineNum">     286 </span>            :     std::enable_if_t&lt;tt::is_a_v&lt;
+<span class="lineNum">     287 </span>            :         std::forward_list,
+<a name="288"><span class="lineNum">     288 </span>            :         std::decay_t&lt;std::remove_reference_t&lt;std::remove_pointer_t&lt;T&gt;&gt;&gt;&gt;&gt;&gt; {</a>
+<span class="lineNum">     289 </span>            :   using type = std::decay_t&lt;std::remove_pointer_t&lt;T&gt;&gt;;
+<span class="lineNum">     290 </span><span class="lineCov">          1 :   static std::string get() {</span>
+<span class="lineNum">     291 </span><span class="lineCov">          2 :     std::stringstream ss;</span>
+<span class="lineNum">     292 </span><span class="lineCov">          1 :     ss &lt;&lt; &quot;std::forward_list&lt;&quot;</span>
+<span class="lineNum">     293 </span><span class="lineCov">          2 :        &lt;&lt; construct_name&lt;</span>
+<span class="lineNum">     294 </span>            :               std::decay_t&lt;std::remove_pointer_t&lt;typename type::value_type&gt;&gt;, M,
+<span class="lineNum">     295 </span>            :               KT&gt;::get();
+<span class="lineNum">     296 </span><span class="lineCov">          1 :     ss &lt;&lt; add_qualifiers&lt;typename type::value_type&gt;() &lt;&lt; &quot;&gt;&quot;;</span>
+<span class="lineNum">     297 </span><span class="lineCov">          1 :     ss &lt;&lt; add_qualifiers&lt;T&gt;();</span>
+<span class="lineNum">     298 </span><span class="lineCov">          2 :     return ss.str();</span>
+<span class="lineNum">     299 </span>            :   }
+<span class="lineNum">     300 </span>            : };
+<span class="lineNum">     301 </span>            : 
+<span class="lineNum">     302 </span>            : template &lt;typename T, typename M, typename KT&gt;
+<span class="lineNum">     303 </span>            : struct construct_name&lt;
+<span class="lineNum">     304 </span>            :     T, M, KT,
+<span class="lineNum">     305 </span>            :     std::enable_if_t&lt;tt::is_a_v&lt;std::list, std::decay_t&lt;std::remove_reference_t&lt;
+<a name="306"><span class="lineNum">     306 </span>            :                                                std::remove_pointer_t&lt;T&gt;&gt;&gt;&gt;&gt;&gt; {</a>
+<span class="lineNum">     307 </span>            :   using type = std::decay_t&lt;std::remove_pointer_t&lt;T&gt;&gt;;
+<span class="lineNum">     308 </span><span class="lineCov">          1 :   static std::string get() {</span>
+<span class="lineNum">     309 </span><span class="lineCov">          2 :     std::stringstream ss;</span>
+<span class="lineNum">     310 </span><span class="lineCov">          1 :     ss &lt;&lt; &quot;std::list&lt;&quot;</span>
+<span class="lineNum">     311 </span><span class="lineCov">          2 :        &lt;&lt; construct_name&lt;</span>
+<span class="lineNum">     312 </span>            :               std::decay_t&lt;std::remove_pointer_t&lt;typename type::value_type&gt;&gt;, M,
+<span class="lineNum">     313 </span>            :               KT&gt;::get();
+<span class="lineNum">     314 </span><span class="lineCov">          1 :     ss &lt;&lt; add_qualifiers&lt;typename type::value_type&gt;() &lt;&lt; &quot;&gt;&quot;;</span>
+<span class="lineNum">     315 </span><span class="lineCov">          1 :     ss &lt;&lt; add_qualifiers&lt;T&gt;();</span>
+<span class="lineNum">     316 </span><span class="lineCov">          2 :     return ss.str();</span>
+<span class="lineNum">     317 </span>            :   }
+<span class="lineNum">     318 </span>            : };
+<span class="lineNum">     319 </span>            : 
+<span class="lineNum">     320 </span>            : // STL Associative containers
+<span class="lineNum">     321 </span>            : template &lt;typename T, typename M, typename KT&gt;
+<span class="lineNum">     322 </span>            : struct construct_name&lt;
+<span class="lineNum">     323 </span>            :     T, M, KT,
+<span class="lineNum">     324 </span>            :     std::enable_if_t&lt;tt::is_a_v&lt;std::map, std::decay_t&lt;std::remove_reference_t&lt;
+<a name="325"><span class="lineNum">     325 </span>            :                                               std::remove_pointer_t&lt;T&gt;&gt;&gt;&gt;&gt;&gt; {</a>
+<span class="lineNum">     326 </span>            :   using type = std::decay_t&lt;std::remove_reference_t&lt;std::remove_pointer_t&lt;T&gt;&gt;&gt;;
+<span class="lineNum">     327 </span><span class="lineCov">          1 :   static std::string get() {</span>
+<span class="lineNum">     328 </span><span class="lineCov">          2 :     std::stringstream ss;</span>
+<span class="lineNum">     329 </span><span class="lineCov">          1 :     ss &lt;&lt; &quot;std::map&lt;&quot;</span>
+<span class="lineNum">     330 </span>            :        &lt;&lt; construct_name&lt;
+<span class="lineNum">     331 </span>            :               std::decay_t&lt;std::remove_pointer_t&lt;typename type::key_type&gt;&gt;, M,
+<span class="lineNum">     332 </span>            :               KT&gt;::get()
+<span class="lineNum">     333 </span>            :        &lt;&lt; add_qualifiers&lt;typename type::key_type&gt;() &lt;&lt; &quot;, &quot;
+<span class="lineNum">     334 </span>            :        &lt;&lt; construct_name&lt;
+<span class="lineNum">     335 </span>            :               std::decay_t&lt;std::remove_pointer_t&lt;typename type::mapped_type&gt;&gt;,
+<span class="lineNum">     336 </span>            :               M, KT&gt;::get()
+<span class="lineNum">     337 </span><span class="lineCov">          2 :        &lt;&lt; add_qualifiers&lt;typename type::mapped_type&gt;() &lt;&lt; &quot;&gt;&quot;;</span>
+<span class="lineNum">     338 </span><span class="lineCov">          1 :     ss &lt;&lt; add_qualifiers&lt;T&gt;();</span>
+<span class="lineNum">     339 </span><span class="lineCov">          2 :     return ss.str();</span>
+<span class="lineNum">     340 </span>            :   }
+<span class="lineNum">     341 </span>            : };
+<span class="lineNum">     342 </span>            : 
+<span class="lineNum">     343 </span>            : template &lt;typename T, typename M, typename KT&gt;
+<span class="lineNum">     344 </span>            : struct construct_name&lt;
+<span class="lineNum">     345 </span>            :     T, M, KT,
+<span class="lineNum">     346 </span>            :     std::enable_if_t&lt;tt::is_a_v&lt;
+<span class="lineNum">     347 </span>            :         std::multimap,
+<a name="348"><span class="lineNum">     348 </span>            :         std::decay_t&lt;std::remove_reference_t&lt;std::remove_pointer_t&lt;T&gt;&gt;&gt;&gt;&gt;&gt; {</a>
+<span class="lineNum">     349 </span>            :   using type = std::decay_t&lt;std::remove_reference_t&lt;std::remove_pointer_t&lt;T&gt;&gt;&gt;;
+<span class="lineNum">     350 </span><span class="lineCov">          1 :   static std::string get() {</span>
+<span class="lineNum">     351 </span><span class="lineCov">          2 :     std::stringstream ss;</span>
+<span class="lineNum">     352 </span><span class="lineCov">          1 :     ss &lt;&lt; &quot;std::multimap&lt;&quot;</span>
+<span class="lineNum">     353 </span>            :        &lt;&lt; construct_name&lt;
+<span class="lineNum">     354 </span>            :               std::decay_t&lt;std::remove_pointer_t&lt;typename type::key_type&gt;&gt;, M,
+<span class="lineNum">     355 </span>            :               KT&gt;::get()
+<span class="lineNum">     356 </span>            :        &lt;&lt; add_qualifiers&lt;typename type::key_type&gt;() &lt;&lt; &quot;, &quot;
+<span class="lineNum">     357 </span>            :        &lt;&lt; construct_name&lt;
+<span class="lineNum">     358 </span>            :               std::decay_t&lt;std::remove_pointer_t&lt;typename type::mapped_type&gt;&gt;,
+<span class="lineNum">     359 </span>            :               M, KT&gt;::get()
+<span class="lineNum">     360 </span><span class="lineCov">          2 :        &lt;&lt; add_qualifiers&lt;typename type::mapped_type&gt;() &lt;&lt; &quot;&gt;&quot;;</span>
+<span class="lineNum">     361 </span><span class="lineCov">          1 :     ss &lt;&lt; add_qualifiers&lt;T&gt;();</span>
+<span class="lineNum">     362 </span><span class="lineCov">          2 :     return ss.str();</span>
+<span class="lineNum">     363 </span>            :   }
+<span class="lineNum">     364 </span>            : };
+<span class="lineNum">     365 </span>            : 
+<span class="lineNum">     366 </span>            : template &lt;typename T, typename M, typename KT&gt;
+<span class="lineNum">     367 </span>            : struct construct_name&lt;
+<span class="lineNum">     368 </span>            :     T, M, KT,
+<span class="lineNum">     369 </span>            :     std::enable_if_t&lt;tt::is_a_v&lt;
+<span class="lineNum">     370 </span>            :         std::multiset,
+<a name="371"><span class="lineNum">     371 </span>            :         std::decay_t&lt;std::remove_reference_t&lt;std::remove_pointer_t&lt;T&gt;&gt;&gt;&gt;&gt;&gt; {</a>
+<span class="lineNum">     372 </span>            :   using type = std::decay_t&lt;std::remove_reference_t&lt;std::remove_pointer_t&lt;T&gt;&gt;&gt;;
+<span class="lineNum">     373 </span><span class="lineCov">          1 :   static std::string get() {</span>
+<span class="lineNum">     374 </span><span class="lineCov">          2 :     std::stringstream ss;</span>
+<span class="lineNum">     375 </span><span class="lineCov">          1 :     ss &lt;&lt; &quot;std::multiset&lt;&quot;</span>
+<span class="lineNum">     376 </span>            :        &lt;&lt; construct_name&lt;
+<span class="lineNum">     377 </span>            :               std::decay_t&lt;std::remove_pointer_t&lt;typename type::key_type&gt;&gt;, M,
+<span class="lineNum">     378 </span>            :               KT&gt;::get()
+<span class="lineNum">     379 </span><span class="lineCov">          2 :        &lt;&lt; add_qualifiers&lt;typename type::key_type&gt;() &lt;&lt; &quot;&gt;&quot;;</span>
+<span class="lineNum">     380 </span><span class="lineCov">          1 :     ss &lt;&lt; add_qualifiers&lt;T&gt;();</span>
+<span class="lineNum">     381 </span><span class="lineCov">          2 :     return ss.str();</span>
+<span class="lineNum">     382 </span>            :   }
+<span class="lineNum">     383 </span>            : };
+<span class="lineNum">     384 </span>            : 
+<span class="lineNum">     385 </span>            : template &lt;typename T, typename M, typename KT&gt;
+<span class="lineNum">     386 </span>            : struct construct_name&lt;
+<span class="lineNum">     387 </span>            :     T, M, KT,
+<span class="lineNum">     388 </span>            :     std::enable_if_t&lt;tt::is_a_v&lt;std::set, std::decay_t&lt;std::remove_reference_t&lt;
+<a name="389"><span class="lineNum">     389 </span>            :                                               std::remove_pointer_t&lt;T&gt;&gt;&gt;&gt;&gt;&gt; {</a>
+<span class="lineNum">     390 </span>            :   using type = std::decay_t&lt;std::remove_reference_t&lt;std::remove_pointer_t&lt;T&gt;&gt;&gt;;
+<span class="lineNum">     391 </span><span class="lineCov">          1 :   static std::string get() {</span>
+<span class="lineNum">     392 </span><span class="lineCov">          2 :     std::stringstream ss;</span>
+<span class="lineNum">     393 </span><span class="lineCov">          1 :     ss &lt;&lt; &quot;std::set&lt;&quot;</span>
+<span class="lineNum">     394 </span>            :        &lt;&lt; construct_name&lt;
+<span class="lineNum">     395 </span>            :               std::decay_t&lt;std::remove_pointer_t&lt;typename type::key_type&gt;&gt;, M,
+<span class="lineNum">     396 </span>            :               KT&gt;::get()
+<span class="lineNum">     397 </span><span class="lineCov">          2 :        &lt;&lt; add_qualifiers&lt;typename type::key_type&gt;() &lt;&lt; &quot;&gt;&quot;;</span>
+<span class="lineNum">     398 </span><span class="lineCov">          1 :     ss &lt;&lt; add_qualifiers&lt;T&gt;();</span>
+<span class="lineNum">     399 </span><span class="lineCov">          2 :     return ss.str();</span>
+<span class="lineNum">     400 </span>            :   }
+<span class="lineNum">     401 </span>            : };
+<span class="lineNum">     402 </span>            : 
+<span class="lineNum">     403 </span>            : // STL Unordered associative containers
+<span class="lineNum">     404 </span>            : 
+<span class="lineNum">     405 </span>            : template &lt;typename T, typename M, typename KT&gt;
+<span class="lineNum">     406 </span>            : struct construct_name&lt;
+<span class="lineNum">     407 </span>            :     T, M, KT,
+<span class="lineNum">     408 </span>            :     std::enable_if_t&lt;tt::is_a_v&lt;
+<span class="lineNum">     409 </span>            :         std::unordered_map,
+<a name="410"><span class="lineNum">     410 </span>            :         std::decay_t&lt;std::remove_reference_t&lt;std::remove_pointer_t&lt;T&gt;&gt;&gt;&gt;&gt;&gt; {</a>
+<span class="lineNum">     411 </span>            :   using type = std::decay_t&lt;std::remove_reference_t&lt;std::remove_pointer_t&lt;T&gt;&gt;&gt;;
+<span class="lineNum">     412 </span><span class="lineCov">          1 :   static std::string get() {</span>
+<span class="lineNum">     413 </span><span class="lineCov">          2 :     std::stringstream ss;</span>
+<span class="lineNum">     414 </span><span class="lineCov">          1 :     ss &lt;&lt; &quot;std::unordered_map&lt;&quot;</span>
+<span class="lineNum">     415 </span>            :        &lt;&lt; construct_name&lt;
+<span class="lineNum">     416 </span>            :               std::decay_t&lt;std::remove_pointer_t&lt;typename type::key_type&gt;&gt;, M,
+<span class="lineNum">     417 </span>            :               KT&gt;::get()
+<span class="lineNum">     418 </span>            :        &lt;&lt; add_qualifiers&lt;typename type::key_type&gt;() &lt;&lt; &quot;, &quot;
+<span class="lineNum">     419 </span>            :        &lt;&lt; construct_name&lt;
+<span class="lineNum">     420 </span>            :               std::decay_t&lt;std::remove_pointer_t&lt;typename type::mapped_type&gt;&gt;,
+<span class="lineNum">     421 </span>            :               M, KT&gt;::get()
+<span class="lineNum">     422 </span><span class="lineCov">          2 :        &lt;&lt; add_qualifiers&lt;typename type::mapped_type&gt;() &lt;&lt; &quot;&gt;&quot;;</span>
+<span class="lineNum">     423 </span><span class="lineCov">          1 :     ss &lt;&lt; add_qualifiers&lt;T&gt;();</span>
+<span class="lineNum">     424 </span><span class="lineCov">          2 :     return ss.str();</span>
+<span class="lineNum">     425 </span>            :   }
+<span class="lineNum">     426 </span>            : };
+<span class="lineNum">     427 </span>            : 
+<span class="lineNum">     428 </span>            : template &lt;typename T, typename M, typename KT&gt;
+<span class="lineNum">     429 </span>            : struct construct_name&lt;
+<span class="lineNum">     430 </span>            :     T, M, KT,
+<span class="lineNum">     431 </span>            :     std::enable_if_t&lt;tt::is_a_v&lt;
+<span class="lineNum">     432 </span>            :         std::unordered_multimap,
+<a name="433"><span class="lineNum">     433 </span>            :         std::decay_t&lt;std::remove_reference_t&lt;std::remove_pointer_t&lt;T&gt;&gt;&gt;&gt;&gt;&gt; {</a>
+<span class="lineNum">     434 </span>            :   using type = std::decay_t&lt;std::remove_reference_t&lt;std::remove_pointer_t&lt;T&gt;&gt;&gt;;
+<span class="lineNum">     435 </span><span class="lineCov">          1 :   static std::string get() {</span>
+<span class="lineNum">     436 </span><span class="lineCov">          2 :     std::stringstream ss;</span>
+<span class="lineNum">     437 </span><span class="lineCov">          1 :     ss &lt;&lt; &quot;std::unordered_multimap&lt;&quot;</span>
+<span class="lineNum">     438 </span>            :        &lt;&lt; construct_name&lt;
+<span class="lineNum">     439 </span>            :               std::decay_t&lt;std::remove_pointer_t&lt;typename type::key_type&gt;&gt;, M,
+<span class="lineNum">     440 </span>            :               KT&gt;::get()
+<span class="lineNum">     441 </span>            :        &lt;&lt; add_qualifiers&lt;typename type::key_type&gt;() &lt;&lt; &quot;, &quot;
+<span class="lineNum">     442 </span>            :        &lt;&lt; construct_name&lt;
+<span class="lineNum">     443 </span>            :               std::decay_t&lt;std::remove_pointer_t&lt;typename type::mapped_type&gt;&gt;,
+<span class="lineNum">     444 </span>            :               M, KT&gt;::get()
+<span class="lineNum">     445 </span><span class="lineCov">          2 :        &lt;&lt; add_qualifiers&lt;typename type::mapped_type&gt;() &lt;&lt; &quot;&gt;&quot;;</span>
+<span class="lineNum">     446 </span><span class="lineCov">          1 :     ss &lt;&lt; add_qualifiers&lt;T&gt;();</span>
+<span class="lineNum">     447 </span><span class="lineCov">          2 :     return ss.str();</span>
+<span class="lineNum">     448 </span>            :   }
+<span class="lineNum">     449 </span>            : };
+<span class="lineNum">     450 </span>            : 
+<span class="lineNum">     451 </span>            : template &lt;typename T, typename M, typename KT&gt;
+<span class="lineNum">     452 </span>            : struct construct_name&lt;
+<span class="lineNum">     453 </span>            :     T, M, KT,
+<span class="lineNum">     454 </span>            :     std::enable_if_t&lt;tt::is_a_v&lt;
+<span class="lineNum">     455 </span>            :         std::unordered_multiset,
+<a name="456"><span class="lineNum">     456 </span>            :         std::decay_t&lt;std::remove_reference_t&lt;std::remove_pointer_t&lt;T&gt;&gt;&gt;&gt;&gt;&gt; {</a>
+<span class="lineNum">     457 </span>            :   using type = std::decay_t&lt;std::remove_reference_t&lt;std::remove_pointer_t&lt;T&gt;&gt;&gt;;
+<span class="lineNum">     458 </span><span class="lineCov">          1 :   static std::string get() {</span>
+<span class="lineNum">     459 </span><span class="lineCov">          2 :     std::stringstream ss;</span>
+<span class="lineNum">     460 </span><span class="lineCov">          1 :     ss &lt;&lt; &quot;std::unordered_multiset&lt;&quot;</span>
+<span class="lineNum">     461 </span>            :        &lt;&lt; construct_name&lt;
+<span class="lineNum">     462 </span>            :               std::decay_t&lt;std::remove_pointer_t&lt;typename type::key_type&gt;&gt;, M,
+<span class="lineNum">     463 </span>            :               KT&gt;::get()
+<span class="lineNum">     464 </span><span class="lineCov">          2 :        &lt;&lt; add_qualifiers&lt;typename type::key_type&gt;() &lt;&lt; &quot;&gt;&quot;;</span>
+<span class="lineNum">     465 </span><span class="lineCov">          1 :     ss &lt;&lt; add_qualifiers&lt;T&gt;();</span>
+<span class="lineNum">     466 </span><span class="lineCov">          2 :     return ss.str();</span>
+<span class="lineNum">     467 </span>            :   }
+<span class="lineNum">     468 </span>            : };
+<span class="lineNum">     469 </span>            : 
+<span class="lineNum">     470 </span>            : template &lt;typename T, typename M, typename KT&gt;
+<span class="lineNum">     471 </span>            : struct construct_name&lt;
+<span class="lineNum">     472 </span>            :     T, M, KT,
+<span class="lineNum">     473 </span>            :     std::enable_if_t&lt;tt::is_a_v&lt;
+<span class="lineNum">     474 </span>            :         std::unordered_set,
+<a name="475"><span class="lineNum">     475 </span>            :         std::decay_t&lt;std::remove_reference_t&lt;std::remove_pointer_t&lt;T&gt;&gt;&gt;&gt;&gt;&gt; {</a>
+<span class="lineNum">     476 </span>            :   using type = std::decay_t&lt;std::remove_reference_t&lt;std::remove_pointer_t&lt;T&gt;&gt;&gt;;
+<span class="lineNum">     477 </span><span class="lineCov">          1 :   static std::string get() {</span>
+<span class="lineNum">     478 </span><span class="lineCov">          2 :     std::stringstream ss;</span>
+<span class="lineNum">     479 </span><span class="lineCov">          1 :     ss &lt;&lt; &quot;std::unordered_set&lt;&quot;</span>
+<span class="lineNum">     480 </span>            :        &lt;&lt; construct_name&lt;
+<span class="lineNum">     481 </span>            :               std::decay_t&lt;std::remove_pointer_t&lt;typename type::key_type&gt;&gt;, M,
+<span class="lineNum">     482 </span>            :               KT&gt;::get()
+<span class="lineNum">     483 </span><span class="lineCov">          2 :        &lt;&lt; add_qualifiers&lt;typename type::key_type&gt;() &lt;&lt; &quot;&gt;&quot;;</span>
+<span class="lineNum">     484 </span><span class="lineCov">          1 :     ss &lt;&lt; add_qualifiers&lt;T&gt;();</span>
+<span class="lineNum">     485 </span><span class="lineCov">          2 :     return ss.str();</span>
+<span class="lineNum">     486 </span>            :   }
+<span class="lineNum">     487 </span>            : };
+<span class="lineNum">     488 </span>            : 
+<span class="lineNum">     489 </span>            : // STL Container adaptors
+<span class="lineNum">     490 </span>            : template &lt;typename T, typename M, typename KT&gt;
+<span class="lineNum">     491 </span>            : struct construct_name&lt;
+<span class="lineNum">     492 </span>            :     T, M, KT,
+<span class="lineNum">     493 </span>            :     std::enable_if_t&lt;tt::is_a_v&lt;
+<span class="lineNum">     494 </span>            :         std::priority_queue,
+<a name="495"><span class="lineNum">     495 </span>            :         std::decay_t&lt;std::remove_reference_t&lt;std::remove_pointer_t&lt;T&gt;&gt;&gt;&gt;&gt;&gt; {</a>
+<span class="lineNum">     496 </span>            :   using type = std::decay_t&lt;std::remove_reference_t&lt;std::remove_pointer_t&lt;T&gt;&gt;&gt;;
+<span class="lineNum">     497 </span><span class="lineCov">          1 :   static std::string get() {</span>
+<span class="lineNum">     498 </span><span class="lineCov">          2 :     std::stringstream ss;</span>
+<span class="lineNum">     499 </span><span class="lineCov">          1 :     ss &lt;&lt; &quot;std::priority_queue&lt;&quot;</span>
+<span class="lineNum">     500 </span>            :        &lt;&lt; construct_name&lt;
+<span class="lineNum">     501 </span>            :               std::decay_t&lt;std::remove_pointer_t&lt;typename type::value_type&gt;&gt;, M,
+<span class="lineNum">     502 </span>            :               KT&gt;::get()
+<span class="lineNum">     503 </span>            :        &lt;&lt; add_qualifiers&lt;typename type::value_type&gt;() &lt;&lt; &quot;, &quot;
+<span class="lineNum">     504 </span>            :        &lt;&lt; construct_name&lt;std::decay_t&lt;std::remove_pointer_t&lt;
+<span class="lineNum">     505 </span>            :                              typename type::container_type&gt;&gt;,
+<span class="lineNum">     506 </span>            :                          M, KT&gt;::get()
+<span class="lineNum">     507 </span><span class="lineCov">          2 :        &lt;&lt; add_qualifiers&lt;typename type::container_type&gt;() &lt;&lt; &quot;&gt;&quot;;</span>
+<span class="lineNum">     508 </span><span class="lineCov">          1 :     ss &lt;&lt; add_qualifiers&lt;T&gt;();</span>
+<span class="lineNum">     509 </span><span class="lineCov">          2 :     return ss.str();</span>
+<span class="lineNum">     510 </span>            :   }
+<span class="lineNum">     511 </span>            : };
+<span class="lineNum">     512 </span>            : 
+<span class="lineNum">     513 </span>            : template &lt;typename T, typename M, typename KT&gt;
+<span class="lineNum">     514 </span>            : struct construct_name&lt;
+<span class="lineNum">     515 </span>            :     T, M, KT,
+<span class="lineNum">     516 </span>            :     std::enable_if_t&lt;tt::is_a_v&lt;
+<span class="lineNum">     517 </span>            :         std::queue,
+<a name="518"><span class="lineNum">     518 </span>            :         std::decay_t&lt;std::remove_reference_t&lt;std::remove_pointer_t&lt;T&gt;&gt;&gt;&gt;&gt;&gt; {</a>
+<span class="lineNum">     519 </span>            :   using type = std::decay_t&lt;std::remove_reference_t&lt;std::remove_pointer_t&lt;T&gt;&gt;&gt;;
+<span class="lineNum">     520 </span><span class="lineCov">          1 :   static std::string get() {</span>
+<span class="lineNum">     521 </span><span class="lineCov">          2 :     std::stringstream ss;</span>
+<span class="lineNum">     522 </span><span class="lineCov">          1 :     ss &lt;&lt; &quot;std::queue&lt;&quot;</span>
+<span class="lineNum">     523 </span>            :        &lt;&lt; construct_name&lt;
+<span class="lineNum">     524 </span>            :               std::decay_t&lt;std::remove_pointer_t&lt;typename type::value_type&gt;&gt;, M,
+<span class="lineNum">     525 </span>            :               KT&gt;::get()
+<span class="lineNum">     526 </span>            :        &lt;&lt; add_qualifiers&lt;typename type::value_type&gt;() &lt;&lt; &quot;, &quot;
+<span class="lineNum">     527 </span>            :        &lt;&lt; construct_name&lt;std::decay_t&lt;std::remove_pointer_t&lt;
+<span class="lineNum">     528 </span>            :                              typename type::container_type&gt;&gt;,
+<span class="lineNum">     529 </span>            :                          M, KT&gt;::get()
+<span class="lineNum">     530 </span><span class="lineCov">          2 :        &lt;&lt; add_qualifiers&lt;typename type::container_type&gt;() &lt;&lt; &quot;&gt;&quot;;</span>
+<span class="lineNum">     531 </span><span class="lineCov">          1 :     ss &lt;&lt; add_qualifiers&lt;T&gt;();</span>
+<span class="lineNum">     532 </span><span class="lineCov">          2 :     return ss.str();</span>
+<span class="lineNum">     533 </span>            :   }
+<span class="lineNum">     534 </span>            : };
+<span class="lineNum">     535 </span>            : 
+<span class="lineNum">     536 </span>            : template &lt;typename T, typename M, typename KT&gt;
+<span class="lineNum">     537 </span>            : struct construct_name&lt;
+<span class="lineNum">     538 </span>            :     T, M, KT,
+<span class="lineNum">     539 </span>            :     std::enable_if_t&lt;tt::is_a_v&lt;
+<span class="lineNum">     540 </span>            :         std::stack,
+<a name="541"><span class="lineNum">     541 </span>            :         std::decay_t&lt;std::remove_reference_t&lt;std::remove_pointer_t&lt;T&gt;&gt;&gt;&gt;&gt;&gt; {</a>
+<span class="lineNum">     542 </span>            :   using type = std::decay_t&lt;std::remove_reference_t&lt;std::remove_pointer_t&lt;T&gt;&gt;&gt;;
+<span class="lineNum">     543 </span><span class="lineCov">          1 :   static std::string get() {</span>
+<span class="lineNum">     544 </span><span class="lineCov">          2 :     std::stringstream ss;</span>
+<span class="lineNum">     545 </span><span class="lineCov">          1 :     ss &lt;&lt; &quot;std::stack&lt;&quot;</span>
+<span class="lineNum">     546 </span>            :        &lt;&lt; construct_name&lt;
+<span class="lineNum">     547 </span>            :               std::decay_t&lt;std::remove_pointer_t&lt;typename type::value_type&gt;&gt;, M,
+<span class="lineNum">     548 </span>            :               KT&gt;::get()
+<span class="lineNum">     549 </span>            :        &lt;&lt; add_qualifiers&lt;typename type::value_type&gt;() &lt;&lt; &quot;, &quot;
+<span class="lineNum">     550 </span>            :        &lt;&lt; construct_name&lt;std::decay_t&lt;std::remove_pointer_t&lt;
+<span class="lineNum">     551 </span>            :                              typename type::container_type&gt;&gt;,
+<span class="lineNum">     552 </span>            :                          M, KT&gt;::get()
+<span class="lineNum">     553 </span><span class="lineCov">          2 :        &lt;&lt; add_qualifiers&lt;typename type::container_type&gt;() &lt;&lt; &quot;&gt;&quot;;</span>
+<span class="lineNum">     554 </span><span class="lineCov">          1 :     ss &lt;&lt; add_qualifiers&lt;T&gt;();</span>
+<span class="lineNum">     555 </span><span class="lineCov">          2 :     return ss.str();</span>
+<span class="lineNum">     556 </span>            :   }
+<span class="lineNum">     557 </span>            : };
+<span class="lineNum">     558 </span>            : 
+<span class="lineNum">     559 </span>            : // STL Smart pointers
+<span class="lineNum">     560 </span>            : template &lt;typename T, typename M, typename KT&gt;
+<span class="lineNum">     561 </span>            : struct construct_name&lt;
+<span class="lineNum">     562 </span>            :     T, M, KT,
+<span class="lineNum">     563 </span>            :     std::enable_if_t&lt;tt::is_a_v&lt;
+<span class="lineNum">     564 </span>            :         std::unique_ptr,
+<a name="565"><span class="lineNum">     565 </span>            :         std::decay_t&lt;std::remove_reference_t&lt;std::remove_pointer_t&lt;T&gt;&gt;&gt;&gt;&gt;&gt; {</a>
+<span class="lineNum">     566 </span>            :   using type = std::decay_t&lt;std::remove_reference_t&lt;std::remove_pointer_t&lt;T&gt;&gt;&gt;;
+<span class="lineNum">     567 </span><span class="lineCov">          1 :   static std::string get() {</span>
+<span class="lineNum">     568 </span><span class="lineCov">          2 :     std::stringstream ss;</span>
+<span class="lineNum">     569 </span><span class="lineCov">          1 :     ss &lt;&lt; &quot;std::unique_ptr&lt;&quot;</span>
+<span class="lineNum">     570 </span>            :        &lt;&lt; construct_name&lt;std::decay_t&lt;std::remove_pointer_t&lt;decltype(
+<span class="lineNum">     571 </span>            :                              *std::declval&lt;type&gt;())&gt;&gt;,
+<span class="lineNum">     572 </span>            :                          M, KT&gt;::get()
+<span class="lineNum">     573 </span>            :        &lt;&lt; add_qualifiers&lt;
+<span class="lineNum">     574 </span>            :               std::remove_reference_t&lt;decltype(*std::declval&lt;type&gt;())&gt;&gt;()
+<span class="lineNum">     575 </span><span class="lineCov">          2 :        &lt;&lt; &quot;&gt;&quot;;</span>
+<span class="lineNum">     576 </span><span class="lineCov">          1 :     ss &lt;&lt; add_qualifiers&lt;T&gt;();</span>
+<span class="lineNum">     577 </span><span class="lineCov">          2 :     return ss.str();</span>
+<span class="lineNum">     578 </span>            :   }
+<span class="lineNum">     579 </span>            : };
+<span class="lineNum">     580 </span>            : 
+<span class="lineNum">     581 </span>            : template &lt;typename T, typename M, typename KT&gt;
+<span class="lineNum">     582 </span>            : struct construct_name&lt;
+<span class="lineNum">     583 </span>            :     T, M, KT,
+<span class="lineNum">     584 </span>            :     std::enable_if_t&lt;tt::is_a_v&lt;
+<span class="lineNum">     585 </span>            :         std::shared_ptr,
+<a name="586"><span class="lineNum">     586 </span>            :         std::decay_t&lt;std::remove_reference_t&lt;std::remove_pointer_t&lt;T&gt;&gt;&gt;&gt;&gt;&gt; {</a>
+<span class="lineNum">     587 </span>            :   using type = std::decay_t&lt;std::remove_reference_t&lt;std::remove_pointer_t&lt;T&gt;&gt;&gt;;
+<span class="lineNum">     588 </span><span class="lineCov">          1 :   static std::string get() {</span>
+<span class="lineNum">     589 </span><span class="lineCov">          2 :     std::stringstream ss;</span>
+<span class="lineNum">     590 </span><span class="lineCov">          1 :     ss &lt;&lt; &quot;std::shared_ptr&lt;&quot;</span>
+<span class="lineNum">     591 </span>            :        &lt;&lt; construct_name&lt;std::decay_t&lt;std::remove_pointer_t&lt;decltype(
+<span class="lineNum">     592 </span>            :                              *std::declval&lt;type&gt;())&gt;&gt;,
+<span class="lineNum">     593 </span>            :                          M, KT&gt;::get()
+<span class="lineNum">     594 </span>            :        &lt;&lt; add_qualifiers&lt;
+<span class="lineNum">     595 </span>            :               std::remove_reference_t&lt;decltype(*std::declval&lt;type&gt;())&gt;&gt;()
+<span class="lineNum">     596 </span><span class="lineCov">          2 :        &lt;&lt; &quot;&gt;&quot;;</span>
+<span class="lineNum">     597 </span><span class="lineCov">          1 :     ss &lt;&lt; add_qualifiers&lt;T&gt;();</span>
+<span class="lineNum">     598 </span><span class="lineCov">          2 :     return ss.str();</span>
+<span class="lineNum">     599 </span>            :   }
+<span class="lineNum">     600 </span>            : };
+<span class="lineNum">     601 </span>            : 
+<span class="lineNum">     602 </span>            : template &lt;typename T, typename M, typename KT&gt;
+<span class="lineNum">     603 </span>            : struct construct_name&lt;
+<span class="lineNum">     604 </span>            :     T, M, KT,
+<span class="lineNum">     605 </span>            :     std::enable_if_t&lt;tt::is_a_v&lt;
+<span class="lineNum">     606 </span>            :         std::weak_ptr,
+<span class="lineNum">     607 </span>            :         std::decay_t&lt;std::remove_reference_t&lt;std::remove_pointer_t&lt;T&gt;&gt;&gt;&gt;&gt;&gt; {
+<a name="608"><span class="lineNum">     608 </span>            :   using type = std::decay_t&lt;std::remove_reference_t&lt;std::remove_pointer_t&lt;T&gt;&gt;&gt;;</a>
+<span class="lineNum">     609 </span>            :   using element_type = typename type::element_type;
+<span class="lineNum">     610 </span><span class="lineCov">          1 :   static std::string get() {</span>
+<span class="lineNum">     611 </span><span class="lineCov">          2 :     std::stringstream ss;</span>
+<span class="lineNum">     612 </span><span class="lineCov">          1 :     ss &lt;&lt; &quot;std::weak_ptr&lt;&quot;</span>
+<span class="lineNum">     613 </span>            :        &lt;&lt; construct_name&lt;std::decay_t&lt;std::remove_pointer_t&lt;element_type&gt;&gt;, M,
+<span class="lineNum">     614 </span>            :                          KT&gt;::get()
+<span class="lineNum">     615 </span><span class="lineCov">          2 :        &lt;&lt; add_qualifiers&lt;element_type&gt;() &lt;&lt; &quot;&gt;&quot;;</span>
+<span class="lineNum">     616 </span><span class="lineCov">          1 :     ss &lt;&lt; add_qualifiers&lt;T&gt;();</span>
+<span class="lineNum">     617 </span><span class="lineCov">          2 :     return ss.str();</span>
+<span class="lineNum">     618 </span>            :   }
+<span class="lineNum">     619 </span>            : };
+<span class="lineNum">     620 </span>            : }  // namespace detail
+<span class="lineNum">     621 </span>            : 
+<span class="lineNum">     622 </span>            : /*!
+<span class="lineNum">     623 </span>            :  * \ingroup PrettyType
+<span class="lineNum">     624 </span>            :  * \brief typelist of basic types that can be pretty printed
+<span class="lineNum">     625 </span>            :  *
+<span class="lineNum">     626 </span>            :  * These are specializations of tt::Type&lt;T&gt;
+<span class="lineNum">     627 </span>            :  */
+<span class="lineNum">     628 </span>            : using basics_map =
+<span class="lineNum">     629 </span>            :     detail::TemplateMap_t&lt;char, signed char, unsigned char, wchar_t, char16_t,
+<span class="lineNum">     630 </span>            :                           char32_t, int, unsigned int, long, unsigned long,
+<span class="lineNum">     631 </span>            :                           long long, unsigned long long, short, unsigned short,
+<span class="lineNum">     632 </span>            :                           float, double, long double, bool, std::string&gt;;
+<span class="lineNum">     633 </span>            : 
+<span class="lineNum">     634 </span>            : /*!
+<span class="lineNum">     635 </span>            :  * \ingroup PrettyType
+<span class="lineNum">     636 </span>            :  * \brief A list of type traits to check if something is an STL member
+<span class="lineNum">     637 </span>            :  *
+<span class="lineNum">     638 </span>            :  * Contains a template alias with the name template_list of type traits that
+<span class="lineNum">     639 </span>            :  * identify STL containers that can be pretty printed
+<span class="lineNum">     640 </span>            :  */
+<span class="lineNum">     641 </span>            : struct stl_templates {
+<span class="lineNum">     642 </span>            :   /// List of known STL classes that can be pretty printed
+<span class="lineNum">     643 </span>            :   template &lt;typename X&gt;
+<span class="lineNum">     644 </span>            :   using template_list = tmpl::list&lt;
+<span class="lineNum">     645 </span>            :       tt::is_a&lt;std::vector, X&gt;, tt::is_std_array&lt;X&gt;, tt::is_a&lt;std::deque, X&gt;,
+<span class="lineNum">     646 </span>            :       tt::is_a&lt;std::forward_list, X&gt;, tt::is_a&lt;std::list, X&gt;,
+<span class="lineNum">     647 </span>            :       tt::is_a&lt;std::map, X&gt;, tt::is_a&lt;std::set, X&gt;, tt::is_a&lt;std::multiset, X&gt;,
+<span class="lineNum">     648 </span>            :       tt::is_a&lt;std::multimap, X&gt;, tt::is_a&lt;std::unordered_map, X&gt;,
+<span class="lineNum">     649 </span>            :       tt::is_a&lt;std::unordered_multimap, X&gt;,
+<span class="lineNum">     650 </span>            :       tt::is_a&lt;std::unordered_multiset, X&gt;, tt::is_a&lt;std::unordered_set, X&gt;,
+<span class="lineNum">     651 </span>            :       tt::is_a&lt;std::priority_queue, X&gt;, tt::is_a&lt;std::queue, X&gt;,
+<span class="lineNum">     652 </span>            :       tt::is_a&lt;std::stack, X&gt;, tt::is_a&lt;std::unique_ptr, X&gt;,
+<span class="lineNum">     653 </span>            :       tt::is_a&lt;std::shared_ptr, X&gt;, tt::is_a&lt;std::weak_ptr, X&gt;&gt;;
+<span class="lineNum">     654 </span>            : };
+<span class="lineNum">     655 </span>            : 
+<span class="lineNum">     656 </span>            : /*! \ingroup PrettyType
+<span class="lineNum">     657 </span>            :  *  \brief Returns a string with the prettiest typename known for the type T.
+<span class="lineNum">     658 </span>            :  *
+<span class="lineNum">     659 </span>            :  *  Example usage: auto name = get_name&lt;T&gt;();
+<span class="lineNum">     660 </span>            :  *
+<span class="lineNum">     661 </span>            :  *  \tparam T the type to print
+<span class="lineNum">     662 </span>            :  *  \tparam Map a tmpl::map of basic types (non-containers) and their Type&lt;T&gt;
+<span class="lineNum">     663 </span>            :  *  specializations that determine how to print the type name in a pretty form
+<span class="lineNum">     664 </span>            :  *  \tparam KnownTemplates struct hold template alias tmpl::list of is_... that
+<span class="lineNum">     665 </span>            :  *  are known how to be printed pretty
+<span class="lineNum">     666 </span>            :  *  \return std::string containing the typename
+<span class="lineNum">     667 </span>            :  */
+<a name="668"><span class="lineNum">     668 </span>            : template &lt;typename T, typename Map = basics_map,</a>
+<span class="lineNum">     669 </span>            :           typename KnownTemplates = stl_templates&gt;
+<span class="lineNum">     670 </span><span class="lineCov">         73 : std::string get_name() {</span>
+<span class="lineNum">     671 </span><span class="lineCov">         73 :   return detail::construct_name&lt;T, Map, KnownTemplates&gt;::get();</span>
+<span class="lineNum">     672 </span>            : }
+<span class="lineNum">     673 </span>            : 
+<span class="lineNum">     674 </span>            : /*!
+<span class="lineNum">     675 </span>            :  * \ingroup PrettyType
+<span class="lineNum">     676 </span>            :  * \brief Returns a string with the prettiest typename known for the runtime
+<span class="lineNum">     677 </span>            :  * type of x.
+<span class="lineNum">     678 </span>            :  *
+<span class="lineNum">     679 </span>            :  * The result will generally not be as pretty as the result of
+<span class="lineNum">     680 </span>            :  * get_name, but this function will report the derived type of a class
+<span class="lineNum">     681 </span>            :  * when only given a base class reference, which get_type cannot do.
+<a name="682"><span class="lineNum">     682 </span>            :  */</a>
+<span class="lineNum">     683 </span>            : template &lt;typename T&gt;
+<span class="lineNum">     684 </span><span class="lineCov">          2 : std::string get_runtime_type_name(const T&amp; x) {</span>
+<span class="lineNum">     685 </span><span class="lineCov">          2 :   return boost::core::demangle(typeid(x).name());</span>
+<span class="lineNum">     686 </span>            : }
+<span class="lineNum">     687 </span>            : }  // namespace pretty_type
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

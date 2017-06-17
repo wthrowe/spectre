@@ -31,6 +31,7 @@ var searchData=
   ['is_5ffunction_5fv',['is_function_v',['http://en.cppreference.com/w/cpp/types/is_function.html',1,'std::is_function_v()'],['http://en.cppreference.com/w/cpp/experimental/type_trait_variable_templates.html',1,'std::experimental::is_function_v()']]],
   ['is_5ffundamental_5fv',['is_fundamental_v',['http://en.cppreference.com/w/cpp/types/is_fundamental.html',1,'std::is_fundamental_v()'],['http://en.cppreference.com/w/cpp/experimental/type_trait_variable_templates.html',1,'std::experimental::is_fundamental_v()']]],
   ['is_5fhashable_5fv',['is_hashable_v',['../namespacett.html#a5400e8b092c3ec8932828a6d2da32ee0',1,'tt']]],
+  ['is_5finteger_5fv',['is_integer_v',['../namespacett.html#a1199b80c0851bbf8b025c562054397ec',1,'tt']]],
   ['is_5fintegral_5fv',['is_integral_v',['http://en.cppreference.com/w/cpp/types/is_integral.html',1,'std::is_integral_v()'],['http://en.cppreference.com/w/cpp/experimental/type_trait_variable_templates.html',1,'std::experimental::is_integral_v()']]],
   ['is_5fiterable_5fv',['is_iterable_v',['../namespacett.html#a3e2f1dd5f4019eba2f7073205a0a078b',1,'tt']]],
   ['is_5fliteral_5ftype_5fv',['is_literal_type_v',['http://en.cppreference.com/w/cpp/types/is_literal_type.html',1,'std::is_literal_type_v()'],['http://en.cppreference.com/w/cpp/experimental/type_trait_variable_templates.html',1,'std::experimental::is_literal_type_v()']]],

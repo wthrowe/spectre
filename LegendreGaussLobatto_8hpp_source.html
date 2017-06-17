@@ -1,0 +1,184 @@
+<!-- HTML header for doxygen 1.8.10-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="SXS Collaboration">
+    <meta name="generator" content="Doxygen 1.8.13"/>
+    <style>
+        /*!
+         * IE10 viewport hack for Surface/desktop Windows 8 bug
+         * Copyright 2014-2015 Twitter, Inc.
+         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+         */
+        @-webkit-viewport { width: device-width; }
+        @-moz-viewport    { width: device-width; }
+        @-ms-viewport     { width: device-width; }
+        @-o-viewport      { width: device-width; }
+        @viewport         { width: device-width; }
+      </style>
+  <title>SpECTRE: src/Numerical/Spectral/LegendreGaussLobatto.hpp Source File</title>
+  <link href="tabs.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="dynsections.js"></script>
+  <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
+  <link href="octicons.css" rel="stylesheet">
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="doxygen.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="bootstrap.min.js"></script>
+  <script type="text/javascript" src="spectre.js"></script>
+  </head>
+  <body>
+  <div id="top" class="navbar-fixed-top"><!-- do not remove this div, it is closed by doxygen! -->
+  <!-- BEGIN TITLEAREA -->
+  <div id="titlearea">
+  <script type="text/javascript">
+  var searchBox = new SearchBox("searchBox", "search",false,'Search');
+  </script>
+  <div id="main-nav">
+    <ul class="sm sm-dox" id="main-menu">
+      <li>
+      <a href="https://github.com/sxs-collaboration/spectre" target="_blank">
+      SpECTRE &#160;
+        <span id="projectnumber">v0.0.0</span>
+      </a>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-book"></i><span>Documentation</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 135px;">
+            <a href="index.html">
+            <i class="octicon octicon-book"></i><span>Documentation</span></a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="tutorials.html">
+              <i class="octicon octicon-mortar-board"></i><span>Tutorials</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="dev_guide.html">
+              <i class="octicon octicon-gist-secret"></i><span>Dev Guide</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown" style="min-width: 150px;">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 130px;">
+            <a href="modules.html">
+              <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+            </a>
+          </li>
+          <li style="min-width: 130px;">
+            <a href="namespaces.html">
+              <i class="octicon octicon-gist"></i>
+              <span>Namespaces</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="files.html">
+          <i class="octicon octicon-file-directory"></i><span>Files</span>
+        </a>
+      </li>
+      <!--The Search <li> is added by doxygen later-->
+    </ul>
+  </div><!-- main-nav -->
+  </div><!-- titlearea -->
+  <!-- window showing the filter options -->
+  <div id="MSearchSelectWindow"  style="position: fixed;"
+       onmouseover="return searchBox.OnSearchSelectShow()"
+       onmouseout="return searchBox.OnSearchSelectHide()"
+       onkeydown="return searchBox.OnSearchSelectKey(event)">
+  </div>
+  <!-- iframe showing the search results (closed by default) -->
+  <div id="MSearchResultsWindow"  style="position: fixed;">
+  <iframe src="javascript:void(0)" frameborder="0"
+          name="MSearchResults" id="MSearchResults">
+  </iframe>
+  </div><!-- Generated by Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_22cd119e9135d55404da822cc2bf42d2.html">src</a></li><li class="navelem"><a class="el" href="dir_0d99e4e0e91ef4c1c7fd927855cef96c.html">Numerical</a></li><li class="navelem"><a class="el" href="dir_2d06623defba00deca6899c188b0f791.html">Spectral</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">LegendreGaussLobatto.hpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="LegendreGaussLobatto_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// Distributed under the MIT License.</span></div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// See LICENSE.txt for details.</span></div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;</div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#pragma once</span></div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;</div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;<a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/header/cstddef.html">cstddef</a>&gt;</span></div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">class </span><a class="code" href="classDataVector.html">DataVector</a>;</div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">class </span><a class="code" href="classMatrix.html">Matrix</a>;</div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceBasis.html">Basis</a> {</div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">namespace </span>lgl {</div><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keyword">const</span> <a class="code" href="classDataVector.html">DataVector</a>&amp; <a class="code" href="namespaceBasis_1_1lgl.html#ae86f2251c1949e386a4d9ee6da15f935">collocation_points</a>(<span class="keywordtype">size_t</span> number_of_pts);</div><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div><div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keyword">const</span> <a class="code" href="classDataVector.html">DataVector</a>&amp; <a class="code" href="namespaceBasis_1_1lgl.html#ad94ae90843a3b2d3b56a77f73abe148f">quadrature_weights</a>(<span class="keywordtype">size_t</span> number_of_pts);</div><div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div><div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="keyword">const</span> <a class="code" href="classMatrix.html">Matrix</a>&amp; <a class="code" href="namespaceBasis_1_1lgl.html#ae4f1a65752fd27131c298dbcbac94c8f">differentiation_matrix</a>(<span class="keywordtype">size_t</span> number_of_pts);</div><div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="keyword">const</span> <a class="code" href="classMatrix.html">Matrix</a>&amp; <a class="code" href="namespaceBasis_1_1lgl.html#ad40bc93b991c27fe8cce7f8f388fa95c">grid_points_to_spectral_matrix</a>(<span class="keywordtype">size_t</span> number_of_pts);</div><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div><div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keyword">const</span> <a class="code" href="classMatrix.html">Matrix</a>&amp; <a class="code" href="namespaceBasis_1_1lgl.html#a6279bc96ac9e57db9feccdfdb22da82e">spectral_to_grid_points_matrix</a>(<span class="keywordtype">size_t</span> number_of_pts);</div><div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div><div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="keyword">const</span> <a class="code" href="classMatrix.html">Matrix</a>&amp; <a class="code" href="namespaceBasis_1_1lgl.html#acd680a8f9d7a2d2dde59e20df2ebe4fa">linear_filter_matrix</a>(<span class="keywordtype">size_t</span> number_of_pts);</div><div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div><div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div><div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<a class="code" href="classMatrix.html">Matrix</a> <a class="code" href="namespaceBasis_1_1lgl.html#a56287e67f67d9bb8f0b9c3e331f1d383">interpolation_matrix</a>(<span class="keywordtype">size_t</span> number_of_pts, <span class="keyword">const</span> T&amp; target_points);</div><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div><div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="namespaceBasis_1_1lgl.html#a71ae277a55dafd8ea68ab029e2319fb1">   57</a></span>&#160;<span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">size_t</span> <a class="code" href="namespaceBasis_1_1lgl.html#a71ae277a55dafd8ea68ab029e2319fb1">maximum_number_of_pts</a> = 12;</div><div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;}  <span class="comment">// namespace lgl</span></div><div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;}  <span class="comment">// namespace Basis</span></div><div class="ttc" id="cstddef_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/header/cstddef.html">cstddef</a></div></div>
+<div class="ttc" id="namespaceBasis_1_1lgl_html_ad94ae90843a3b2d3b56a77f73abe148f"><div class="ttname"><a href="namespaceBasis_1_1lgl.html#ad94ae90843a3b2d3b56a77f73abe148f">Basis::lgl::quadrature_weights</a></div><div class="ttdeci">const DataVector &amp; quadrature_weights(const size_t number_of_pts)</div><div class="ttdoc">Quadrature weights. </div><div class="ttdef"><b>Definition:</b> LegendreGaussLobatto.cpp:238</div></div>
+<div class="ttc" id="namespaceBasis_1_1lgl_html_a6279bc96ac9e57db9feccdfdb22da82e"><div class="ttname"><a href="namespaceBasis_1_1lgl.html#a6279bc96ac9e57db9feccdfdb22da82e">Basis::lgl::spectral_to_grid_points_matrix</a></div><div class="ttdeci">const Matrix &amp; spectral_to_grid_points_matrix(const size_t number_of_pts)</div><div class="ttdoc">Matrix used to compute function at the collocation points from its spectral coefficients. </div><div class="ttdef"><b>Definition:</b> LegendreGaussLobatto.cpp:275</div></div>
+<div class="ttc" id="namespaceBasis_1_1lgl_html_ad40bc93b991c27fe8cce7f8f388fa95c"><div class="ttname"><a href="namespaceBasis_1_1lgl.html#ad40bc93b991c27fe8cce7f8f388fa95c">Basis::lgl::grid_points_to_spectral_matrix</a></div><div class="ttdeci">const Matrix &amp; grid_points_to_spectral_matrix(const size_t number_of_pts)</div><div class="ttdoc">Matrix used to compute spectral coefficients of a function. </div><div class="ttdef"><b>Definition:</b> LegendreGaussLobatto.cpp:258</div></div>
+<div class="ttc" id="namespaceBasis_1_1lgl_html_acd680a8f9d7a2d2dde59e20df2ebe4fa"><div class="ttname"><a href="namespaceBasis_1_1lgl.html#acd680a8f9d7a2d2dde59e20df2ebe4fa">Basis::lgl::linear_filter_matrix</a></div><div class="ttdeci">const Matrix &amp; linear_filter_matrix(const size_t number_of_pts)</div><div class="ttdoc">Matrix used to linearize a function. </div><div class="ttdef"><b>Definition:</b> LegendreGaussLobatto.cpp:292</div></div>
+<div class="ttc" id="namespaceBasis_1_1lgl_html_a56287e67f67d9bb8f0b9c3e331f1d383"><div class="ttname"><a href="namespaceBasis_1_1lgl.html#a56287e67f67d9bb8f0b9c3e331f1d383">Basis::lgl::interpolation_matrix</a></div><div class="ttdeci">Matrix interpolation_matrix(const size_t number_of_pts, const T &amp;target_points)</div><div class="ttdoc">Matrix to interpolate to a set of target points. </div><div class="ttdef"><b>Definition:</b> LegendreGaussLobatto.cpp:317</div></div>
+<div class="ttc" id="namespaceBasis_1_1lgl_html_a71ae277a55dafd8ea68ab029e2319fb1"><div class="ttname"><a href="namespaceBasis_1_1lgl.html#a71ae277a55dafd8ea68ab029e2319fb1">Basis::lgl::maximum_number_of_pts</a></div><div class="ttdeci">static const size_t maximum_number_of_pts</div><div class="ttdoc">Maximum number of allowed collocation points for LGL basis. </div><div class="ttdef"><b>Definition:</b> LegendreGaussLobatto.hpp:57</div></div>
+<div class="ttc" id="namespaceBasis_html"><div class="ttname"><a href="namespaceBasis.html">Basis</a></div><div class="ttdoc">Basis functions, derivative matrices, etc. for spectral-type methods. </div><div class="ttdef"><b>Definition:</b> LegendreGaussLobatto.cpp:15</div></div>
+<div class="ttc" id="namespaceBasis_1_1lgl_html_ae4f1a65752fd27131c298dbcbac94c8f"><div class="ttname"><a href="namespaceBasis_1_1lgl.html#ae4f1a65752fd27131c298dbcbac94c8f">Basis::lgl::differentiation_matrix</a></div><div class="ttdeci">const Matrix &amp; differentiation_matrix(const size_t number_of_pts)</div><div class="ttdoc">Matrix used to compute the first derivative of a function. </div><div class="ttdef"><b>Definition:</b> LegendreGaussLobatto.cpp:243</div></div>
+<div class="ttc" id="classMatrix_html"><div class="ttname"><a href="classMatrix.html">Matrix</a></div><div class="ttdoc">A dynamically sized matrix. </div><div class="ttdef"><b>Definition:</b> Matrix.hpp:21</div></div>
+<div class="ttc" id="classDataVector_html"><div class="ttname"><a href="classDataVector.html">DataVector</a></div><div class="ttdoc">A class for storing data on a mesh. </div><div class="ttdef"><b>Definition:</b> DataVector.hpp:34</div></div>
+<div class="ttc" id="namespaceBasis_1_1lgl_html_ae86f2251c1949e386a4d9ee6da15f935"><div class="ttname"><a href="namespaceBasis_1_1lgl.html#ae86f2251c1949e386a4d9ee6da15f935">Basis::lgl::collocation_points</a></div><div class="ttdeci">const DataVector &amp; collocation_points(const size_t number_of_pts)</div><div class="ttdoc">Collocation points. </div><div class="ttdef"><b>Definition:</b> LegendreGaussLobatto.cpp:233</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.10-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+&copy; Copyright 2017
+<a href="https://black-holes.org">SXS Collaboration</a>,
+<a href="LICENSE.txt" target="_blank">
+<span class="hidden-xs">Distributed under the</span>
+MIT License</a>
+</small></address>
+</body>
+</html>

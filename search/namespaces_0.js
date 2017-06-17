@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['cpp17',['cpp17',['../namespacecpp17.html',1,'']]]
+  ['basis',['Basis',['../namespaceBasis.html',1,'']]],
+  ['lgl',['lgl',['../namespaceBasis_1_1lgl.html',1,'Basis']]]
 ];

@@ -151,6 +151,7 @@ $(function() {
 
 <div class="header">
   <div class="summary">
+<a href="#namespaces">Namespaces</a> &#124;
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#define-members">Macros</a> &#124;
 <a href="#typedef-members">Typedefs</a> &#124;
@@ -163,10 +164,22 @@ $(function() {
 <p>A collection of useful classes, functions and metafunctions.  
 <a href="#details">More...</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
+Namespaces</h2></td></tr>
+<tr class="memitem:namespacegsl"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegsl.html">gsl</a></td></tr>
+<tr class="memdesc:namespacegsl"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implementations from the Guideline Support Library. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDeferred.html">Deferred&lt; Rt &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provides deferred or lazy evaluation of a function or function object, as well as efficient storage of an object that is mutable.  <a href="classDeferred.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structPointerVector.html">PointerVector&lt; Type, AF, PF, TF &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A raw pointer endowed with expression template support via the Blaze library.  <a href="structPointerVector.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structTaggedTuple.html">TaggedTuple&lt; Tags &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">An associative container that is indexed by structs.  <a href="structTaggedTuple.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structTypeDisplayer.html">TypeDisplayer&lt;... &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get compiler error with type of template parameter.  <a href="structTypeDisplayer.html#details">More...</a><br /></td></tr>
@@ -174,9 +187,16 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
+<tr class="memitem:ga265f35910bd218c59dd33acffe0c0b69"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Utilities.html#ga265f35910bd218c59dd33acffe0c0b69">DEFINE_FAKE_VIRTUAL</a>(function)</td></tr>
+<tr class="memdesc:ga265f35910bd218c59dd33acffe0c0b69"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define a function that acts similarly to a virtual function, but can take template parameters.  <a href="#ga265f35910bd218c59dd33acffe0c0b69">More...</a><br /></td></tr>
+<tr class="separator:ga265f35910bd218c59dd33acffe0c0b69"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga9d571cd642604cb7bd87bb039ca3760f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Utilities.html#ga9d571cd642604cb7bd87bb039ca3760f">SPECTRE_ALWAYS_INLINE</a>&#160;&#160;&#160;inline</td></tr>
 <tr class="memdesc:ga9d571cd642604cb7bd87bb039ca3760f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Always inline a function. Only use this if you benchmarked the code.  <a href="#ga9d571cd642604cb7bd87bb039ca3760f">More...</a><br /></td></tr>
 <tr class="separator:ga9d571cd642604cb7bd87bb039ca3760f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaffde14445f49f65ff4f5b592e44ee71a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Utilities.html#gaffde14445f49f65ff4f5b592e44ee71a">LIKELY</a>(x)&#160;&#160;&#160;(x)</td></tr>
+<tr class="separator:gaffde14445f49f65ff4f5b592e44ee71a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab10d0a221f4d7a706701b806c8135fd7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Utilities.html#gab10d0a221f4d7a706701b806c8135fd7">UNLIKELY</a>(x)&#160;&#160;&#160;(x)</td></tr>
+<tr class="separator:gab10d0a221f4d7a706701b806c8135fd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
@@ -206,6 +226,20 @@ Functions</h2></td></tr>
 <tr class="memitem:ga9158b176bca8b48872287187b6101250"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Utilities.html#ga9158b176bca8b48872287187b6101250">spectre_patch_version</a> ()</td></tr>
 <tr class="memdesc:ga9158b176bca8b48872287187b6101250"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns patch version.  <a href="#ga9158b176bca8b48872287187b6101250">More...</a><br /></td></tr>
 <tr class="separator:ga9158b176bca8b48872287187b6101250"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaaa46a305d87ee4ae9fede9d55c373286"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Utilities.html#gaaa46a305d87ee4ae9fede9d55c373286">ddot_</a> (const size_t &amp;N, const double *X, const size_t &amp;INCX, const double *Y, const size_t &amp;INCY)</td></tr>
+<tr class="separator:gaaa46a305d87ee4ae9fede9d55c373286"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa979e736ddfc838ddcba025a40a11469"><td class="memTemplParams" colspan="2">template&lt;typename Fp , typename... Args&gt; </td></tr>
+<tr class="memitem:gaa979e736ddfc838ddcba025a40a11469"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classDeferred.html">Deferred</a>&lt; Rt1 &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__Utilities.html#gaa979e736ddfc838ddcba025a40a11469">make_deferred</a> (Fp f, Args &amp;&amp;... args)</td></tr>
+<tr class="memdesc:gaa979e736ddfc838ddcba025a40a11469"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a deferred function call object.  <a href="#gaa979e736ddfc838ddcba025a40a11469">More...</a><br /></td></tr>
+<tr class="separator:gaa979e736ddfc838ddcba025a40a11469"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2da8b404f35c108209c4ce27c8d50e1c"><td class="memTemplParams" colspan="2">template&lt;class T , class U &gt; </td></tr>
+<tr class="memitem:ga2da8b404f35c108209c4ce27c8d50e1c"><td class="memTemplItemLeft" align="right" valign="top">constexpr T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__Utilities.html#ga2da8b404f35c108209c4ce27c8d50e1c">gsl::narrow_cast</a> (U &amp;&amp;u) noexcept</td></tr>
+<tr class="memdesc:ga2da8b404f35c108209c4ce27c8d50e1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cast <code>u</code> to a type <code>T</code> where the cast may result in narrowing.  <a href="group__Utilities.html#ga2da8b404f35c108209c4ce27c8d50e1c">More...</a><br /></td></tr>
+<tr class="separator:ga2da8b404f35c108209c4ce27c8d50e1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gafaf6db75ede2a9bc2fa4b6b17b8ef128"><td class="memTemplParams" colspan="2">template&lt;class T , class U &gt; </td></tr>
+<tr class="memitem:gafaf6db75ede2a9bc2fa4b6b17b8ef128"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__Utilities.html#gafaf6db75ede2a9bc2fa4b6b17b8ef128">gsl::narrow</a> (U u)</td></tr>
+<tr class="memdesc:gafaf6db75ede2a9bc2fa4b6b17b8ef128"><td class="mdescLeft">&#160;</td><td class="mdescRight">A checked version of <a class="el" href="group__Utilities.html#ga2da8b404f35c108209c4ce27c8d50e1c" title="Cast u to a type T where the cast may result in narrowing. ">narrow_cast()</a> that ERRORs if the cast changed the value.  <a href="group__Utilities.html#gafaf6db75ede2a9bc2fa4b6b17b8ef128">More...</a><br /></td></tr>
+<tr class="separator:gafaf6db75ede2a9bc2fa4b6b17b8ef128"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga9c127d07f412267ea6548c8dab8b44c1"><td class="memItemLeft" align="right" valign="top">constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Utilities.html#ga9c127d07f412267ea6548c8dab8b44c1">operator&quot;&quot; _st</a> (const unsigned long long n)</td></tr>
 <tr class="memdesc:ga9c127d07f412267ea6548c8dab8b44c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines the _st size_t suffix.  <a href="#ga9c127d07f412267ea6548c8dab8b44c1">More...</a><br /></td></tr>
 <tr class="separator:ga9c127d07f412267ea6548c8dab8b44c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -265,10 +299,78 @@ Functions</h2></td></tr>
 <tr class="memitem:ga9a7c7ee897f581360154a3676d5f7ab9"><td class="memTemplItemLeft" align="right" valign="top"><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__Utilities.html#ga9a7c7ee897f581360154a3676d5f7ab9">formatted_string</a> (const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> &amp;fmt, Args... args)</td></tr>
 <tr class="memdesc:ga9a7c7ee897f581360154a3676d5f7ab9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Format a string like printf.  <a href="#ga9a7c7ee897f581360154a3676d5f7ab9">More...</a><br /></td></tr>
 <tr class="separator:ga9a7c7ee897f581360154a3676d5f7ab9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac932a44b57087d32ce5341314437dbbd"><td class="memTemplParams" colspan="2">template&lt;bool UseLibXsmm = false&gt; </td></tr>
+<tr class="memitem:gac932a44b57087d32ce5341314437dbbd"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__Utilities.html#gac932a44b57087d32ce5341314437dbbd">dgemm_</a> (const char &amp;TRANSA, const char &amp;TRANSB, const size_t &amp;M, const size_t &amp;N, const size_t &amp;K, const double &amp;ALPHA, const double *A, const size_t &amp;LDA, const double *B, const size_t &amp;LDB, const double &amp;BETA, double *C, const size_t &amp;LDC)</td></tr>
+<tr class="memdesc:gac932a44b57087d32ce5341314437dbbd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform a matrix-matrix multiplication.  <a href="#gac932a44b57087d32ce5341314437dbbd">More...</a><br /></td></tr>
+<tr class="separator:gac932a44b57087d32ce5341314437dbbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaba62a62589ffc7b8b85a7722390f7ce0"><td class="memTemplParams" colspan="2">template&lt;&gt; </td></tr>
+<tr class="memitem:gaba62a62589ffc7b8b85a7722390f7ce0"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__Utilities.html#gaba62a62589ffc7b8b85a7722390f7ce0">dgemm_&lt; true &gt;</a> (const char &amp;TRANSA, const char &amp;TRANSB, const size_t &amp;M, const size_t &amp;N, const size_t &amp;K, const double &amp;ALPHA, const double *A, const size_t &amp;LDA, const double *B, const size_t &amp;LDB, const double &amp;BETA, double *C, const size_t &amp;LDC)</td></tr>
+<tr class="memdesc:gaba62a62589ffc7b8b85a7722390f7ce0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform a matrix-matrix multiplication.  <a href="#gaba62a62589ffc7b8b85a7722390f7ce0">More...</a><br /></td></tr>
+<tr class="separator:gaba62a62589ffc7b8b85a7722390f7ce0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad4d31316e0975f0a66a60d9ac92756a8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Utilities.html#gad4d31316e0975f0a66a60d9ac92756a8">dgemv_</a> (const char &amp;TRANS, const size_t &amp;M, const size_t &amp;N, const double &amp;ALPHA, const double *A, const size_t &amp;LDA, const double *X, const size_t &amp;INCX, const double &amp;BETA, double *Y, const size_t &amp;INCY)</td></tr>
+<tr class="memdesc:gad4d31316e0975f0a66a60d9ac92756a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform a matrix-vector multiplication.  <a href="#gad4d31316e0975f0a66a60d9ac92756a8">More...</a><br /></td></tr>
+<tr class="separator:gad4d31316e0975f0a66a60d9ac92756a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga818f101f2f8bd824a3bc7c2c2361c560"><td class="memTemplParams" colspan="2">template&lt;class T , std::size_t N, typename Size &gt; </td></tr>
+<tr class="memitem:ga818f101f2f8bd824a3bc7c2c2361c560"><td class="memTemplItemLeft" align="right" valign="top">constexpr T &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__Utilities.html#ga818f101f2f8bd824a3bc7c2c2361c560">gsl::at</a> (<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; T, N &gt; &amp;arr, Size index)</td></tr>
+<tr class="memdesc:ga818f101f2f8bd824a3bc7c2c2361c560"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve a entry from a container, with checks in Debug mode that the index being retrieved is valid.  <a href="group__Utilities.html#ga818f101f2f8bd824a3bc7c2c2361c560">More...</a><br /></td></tr>
+<tr class="separator:ga818f101f2f8bd824a3bc7c2c2361c560"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1648d283e2a226cd398dbea1de84e88d"><td class="memTemplParams" colspan="2">template&lt;class Cont , typename Size &gt; </td></tr>
+<tr class="memitem:ga1648d283e2a226cd398dbea1de84e88d"><td class="memTemplItemLeft" align="right" valign="top">constexpr const Cont::value_type &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__Utilities.html#ga1648d283e2a226cd398dbea1de84e88d">gsl::at</a> (const Cont &amp;cont, Size index)</td></tr>
+<tr class="memdesc:ga1648d283e2a226cd398dbea1de84e88d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve a entry from a container, with checks in Debug mode that the index being retrieved is valid.  <a href="group__Utilities.html#ga1648d283e2a226cd398dbea1de84e88d">More...</a><br /></td></tr>
+<tr class="separator:ga1648d283e2a226cd398dbea1de84e88d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac75622e2034e12763b1e3989b813376b"><td class="memTemplParams" colspan="2">template&lt;class T , typename Size &gt; </td></tr>
+<tr class="memitem:gac75622e2034e12763b1e3989b813376b"><td class="memTemplItemLeft" align="right" valign="top">constexpr const T &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__Utilities.html#gac75622e2034e12763b1e3989b813376b">gsl::at</a> (<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/utility/initializer_list.html">std::initializer_list</a>&lt; T &gt; cont, Size index)</td></tr>
+<tr class="memdesc:gac75622e2034e12763b1e3989b813376b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve a entry from a container, with checks in Debug mode that the index being retrieved is valid.  <a href="group__Utilities.html#gac75622e2034e12763b1e3989b813376b">More...</a><br /></td></tr>
+<tr class="separator:gac75622e2034e12763b1e3989b813376b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>A collection of useful classes, functions and metafunctions. </p>
 <h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="ga265f35910bd218c59dd33acffe0c0b69"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga265f35910bd218c59dd33acffe0c0b69">&#9670;&nbsp;</a></span>DEFINE_FAKE_VIRTUAL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DEFINE_FAKE_VIRTUAL</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">function</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Define a function that acts similarly to a virtual function, but can take template parameters. </p>
+<h3>Details</h3>
+<p><code><a class="el" href="group__Utilities.html#ga265f35910bd218c59dd33acffe0c0b69" title="Define a function that acts similarly to a virtual function, but can take template parameters...">DEFINE_FAKE_VIRTUAL(func)</a></code> defines the function <code>fake_virtual_func</code> and the struct <code>FakeVirtualInherit_func</code>. It should usually be called in a detail namespace.</p>
+<p>A base class <code>Base</code> using this functionality should define a type </p><div class="fragment"><div class="line"><span class="keyword">using</span> Inherit = FakeVirtualInherit_func&lt;Base&gt;;</div></div><!-- fragment --><p> and a member function <code>func</code> wrapping <code>fake_virtual_func</code>, with the wrapper passing the derived classes as a typelist as the first template argument and the <code>this</code> pointer as the first normal argument.</p>
+<p>Derived classes should then inherit from <code>Base::Inherit</code> instead of directly from <code>Base</code>. (<code>Base::Inherit</code> inherits from <code>Base</code>.)</p>
+<p>If the base class has no pure virtual functions remaining it will generally be desirable to mark the constructors and assignment operators protected so that a bare base class cannot be instantiated.</p>
+<p>If it is necessary to use multiple fake virtual functions with the same base class, the <code>Inherit</code> definition can nest the fake virtual classes: </p><div class="fragment"><div class="line"><span class="keyword">using</span> Inherit = FakeVirtualInherit_func1&lt;FakeVirtualInherit_func2&lt;Base&gt;&gt;;</div></div><!-- fragment --><h3>Example</h3>
+<div class="fragment"><div class="line"><a class="code" href="group__Utilities.html#ga265f35910bd218c59dd33acffe0c0b69">DEFINE_FAKE_VIRTUAL</a>(fv)</div><div class="line"></div><div class="line"><span class="keyword">class </span>Derived;</div><div class="line"></div><div class="line"><span class="keyword">class </span>Base {</div><div class="line"> <span class="keyword">public</span>:</div><div class="line">  <span class="keyword">using</span> Inherit = FakeVirtualInherit_fv&lt;Base&gt;;</div><div class="line"></div><div class="line"> <span class="keyword">protected</span>:</div><div class="line">  Base() = <span class="keywordflow">default</span>;</div><div class="line">  Base(<span class="keyword">const</span> Base&amp;) = <span class="keywordflow">default</span>;</div><div class="line">  Base(Base&amp;&amp;) = <span class="keywordflow">default</span>;</div><div class="line">  Base&amp; operator=(<span class="keyword">const</span> Base&amp;) = <span class="keywordflow">default</span>;</div><div class="line">  Base&amp; operator=(Base&amp;&amp;) = <span class="keywordflow">default</span>;</div><div class="line"></div><div class="line"> <span class="keyword">public</span>:</div><div class="line">  <span class="keyword">virtual</span> ~Base() = <span class="keywordflow">default</span>;</div><div class="line"></div><div class="line">  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div><div class="line">  <span class="keywordtype">int</span> fv(<span class="keywordtype">int</span> x) {</div><div class="line">    <span class="keywordflow">return</span> fake_virtual_fv&lt;typelist&lt;Derived&gt;, T&gt;(<span class="keyword">this</span>, x);</div><div class="line">  }</div><div class="line">};</div><div class="line"></div><div class="line"><span class="keyword">class </span>Derived : <span class="keyword">public</span> Base::Inherit {</div><div class="line"> <span class="keyword">public</span>:</div><div class="line">  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div><div class="line">  <span class="keywordtype">int</span> fv(<span class="keywordtype">int</span> x) {</div><div class="line">    <span class="keywordflow">return</span> x + 3;</div><div class="line">  }</div><div class="line">};</div></div><!-- fragment -->
+</div>
+</div>
+<a id="gaffde14445f49f65ff4f5b592e44ee71a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaffde14445f49f65ff4f5b592e44ee71a">&#9670;&nbsp;</a></span>LIKELY</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define LIKELY</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">x</td><td>)</td>
+          <td>&#160;&#160;&#160;(x)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>The if statement is expected to evaluate true most of the time </p>
+
+</div>
+</div>
 <a id="ga9d571cd642604cb7bd87bb039ca3760f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga9d571cd642604cb7bd87bb039ca3760f">&#9670;&nbsp;</a></span>SPECTRE_ALWAYS_INLINE</h2>
 
@@ -284,6 +386,27 @@ Functions</h2></td></tr>
 <p>Always inline a function. Only use this if you benchmarked the code. </p>
 
 <p class="reference">Referenced by <a class="el" href="group__ConstantExpressions.html#ga3c6936b9ba2439538c9ec4f8c16e36d6">cube()</a>, <a class="el" href="classDataVector.html#a864ea5a64ff387cc62a49c147ade3e76">DataVector::erfc()</a>, and <a class="el" href="group__Utilities.html#ga18e7d6f15d7089f056a7d1a32ad1b536">make_array()</a>.</p>
+
+</div>
+</div>
+<a id="gab10d0a221f4d7a706701b806c8135fd7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab10d0a221f4d7a706701b806c8135fd7">&#9670;&nbsp;</a></span>UNLIKELY</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define UNLIKELY</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">x</td><td>)</td>
+          <td>&#160;&#160;&#160;(x)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>The if statement is expected to evaluate false most of the time </p>
+
+<p class="reference">Referenced by <a class="el" href="classStripeIterator.html#a4388a8a998819bdb3e6098d985570e3d">StripeIterator::operator++()</a>, and <a class="el" href="classIndexIterator.html#a7bb77160ada17993d4f9ee53b0794f52">IndexIterator&lt; Dim &gt;::operator++()</a>.</p>
 
 </div>
 </div>
@@ -326,6 +449,562 @@ template&lt;typename... Ts&gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="ga818f101f2f8bd824a3bc7c2c2361c560"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga818f101f2f8bd824a3bc7c2c2361c560">&#9670;&nbsp;</a></span>at() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T , std::size_t N, typename Size &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr T&amp; gsl::at </td>
+          <td>(</td>
+          <td class="paramtype"><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; T, N &gt; &amp;&#160;</td>
+          <td class="paramname"><em>arr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Size&#160;</td>
+          <td class="paramname"><em>index</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Retrieve a entry from a container, with checks in Debug mode that the index being retrieved is valid. </p>
+
+<p class="reference">References <a class="el" href="group__ErrorHandling.html#ga128eed9cc242b5e850cf1391744bf099">Expects</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="group__ConstantExpressions.html#ga09be92d0bb8581e96be39b82b18871df">make_array_from_list()</a>, <a class="el" href="classIndex.html#ae94c13676006986b619b2d543bd8ea06">Index&lt; Dim &gt;::operator[]()</a>, and <a class="el" href="classIndex.html#a9b6ad7896736a317a819da3d576802b6">Index&lt; Dim &gt;::slice_away()</a>.</p>
+
+</div>
+</div>
+<a id="ga1648d283e2a226cd398dbea1de84e88d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga1648d283e2a226cd398dbea1de84e88d">&#9670;&nbsp;</a></span>at() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class Cont , typename Size &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr const Cont::value_type&amp; gsl::at </td>
+          <td>(</td>
+          <td class="paramtype">const Cont &amp;&#160;</td>
+          <td class="paramname"><em>cont</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Size&#160;</td>
+          <td class="paramname"><em>index</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Retrieve a entry from a container, with checks in Debug mode that the index being retrieved is valid. </p>
+
+<p class="reference">References <a class="el" href="group__ErrorHandling.html#ga128eed9cc242b5e850cf1391744bf099">Expects</a>.</p>
+
+</div>
+</div>
+<a id="gac75622e2034e12763b1e3989b813376b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac75622e2034e12763b1e3989b813376b">&#9670;&nbsp;</a></span>at() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T , typename Size &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr const T&amp; gsl::at </td>
+          <td>(</td>
+          <td class="paramtype"><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/utility/initializer_list.html">std::initializer_list</a>&lt; T &gt;&#160;</td>
+          <td class="paramname"><em>cont</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Size&#160;</td>
+          <td class="paramname"><em>index</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Retrieve a entry from a container, with checks in Debug mode that the index being retrieved is valid. </p>
+
+<p class="reference">References <a class="el" href="group__ErrorHandling.html#ga128eed9cc242b5e850cf1391744bf099">Expects</a>.</p>
+
+</div>
+</div>
+<a id="gaaa46a305d87ee4ae9fede9d55c373286"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaaa46a305d87ee4ae9fede9d55c373286">&#9670;&nbsp;</a></span>ddot_()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double ddot_ </td>
+          <td>(</td>
+          <td class="paramtype">const size_t &amp;&#160;</td>
+          <td class="paramname"><em>N</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double *&#160;</td>
+          <td class="paramname"><em>X</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t &amp;&#160;</td>
+          <td class="paramname"><em>INCX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double *&#160;</td>
+          <td class="paramname"><em>Y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t &amp;&#160;</td>
+          <td class="paramname"><em>INCY</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>The dot product of two vectors.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">N</td><td>the length of the vectors. </td></tr>
+    <tr><td class="paramname">X</td><td>a pointer to the first element of the first vector. </td></tr>
+    <tr><td class="paramname">INCX</td><td>the stride for the elements of the first vector. </td></tr>
+    <tr><td class="paramname">Y</td><td>a pointer to the first element of the second vector. </td></tr>
+    <tr><td class="paramname">INCY</td><td>the stride for the elements of the second vector. </td></tr>
+  </table>
+  </dd>
+</dl>
+<p><em>Returns:</em> the dot product of the given vectors. </p>
+
+</div>
+</div>
+<a id="gac932a44b57087d32ce5341314437dbbd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac932a44b57087d32ce5341314437dbbd">&#9670;&nbsp;</a></span>dgemm_()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;bool UseLibXsmm = false&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void dgemm_ </td>
+          <td>(</td>
+          <td class="paramtype">const char &amp;&#160;</td>
+          <td class="paramname"><em>TRANSA</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char &amp;&#160;</td>
+          <td class="paramname"><em>TRANSB</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t &amp;&#160;</td>
+          <td class="paramname"><em>M</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t &amp;&#160;</td>
+          <td class="paramname"><em>N</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t &amp;&#160;</td>
+          <td class="paramname"><em>K</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double &amp;&#160;</td>
+          <td class="paramname"><em>ALPHA</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double *&#160;</td>
+          <td class="paramname"><em>A</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t &amp;&#160;</td>
+          <td class="paramname"><em>LDA</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double *&#160;</td>
+          <td class="paramname"><em>B</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t &amp;&#160;</td>
+          <td class="paramname"><em>LDB</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double &amp;&#160;</td>
+          <td class="paramname"><em>BETA</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double *&#160;</td>
+          <td class="paramname"><em>C</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t &amp;&#160;</td>
+          <td class="paramname"><em>LDC</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Perform a matrix-matrix multiplication. </p>
+<p>Perform the matrix-matrix multiplication </p><p class="formulaDsp">
+\[ C = \alpha \mathrm{op}(A) \mathrm{op}(B) + \beta \mathrm{op}(C) \]
+</p>
+<p>where \(\mathrm{op}(A)\) represents either \(A\) or \(A^{T}\) (transpose of \(A\)).</p>
+<p>LIBXSMM, which is much faster than BLAS for small matrices, can be called instead of BLAS by passing the template parameter <code>true</code>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">TRANSA</td><td>either 'N', 'T' or 'C', transposition of matrix A </td></tr>
+    <tr><td class="paramname">TRANSB</td><td>either 'N', 'T' or 'C', transposition of matrix B </td></tr>
+    <tr><td class="paramname">M</td><td>Number of rows in \(\mathrm{op}(A)\) </td></tr>
+    <tr><td class="paramname">N</td><td>Number of columns in \(\mathrm{op}(B)\) and \(\mathrm{op}(C)\) </td></tr>
+    <tr><td class="paramname">K</td><td>Number of columns in \(\mathrm{op}(A)\) </td></tr>
+    <tr><td class="paramname">ALPHA</td><td>specifies \(\alpha\) </td></tr>
+    <tr><td class="paramname">A</td><td><a class="el" href="classMatrix.html" title="A dynamically sized matrix. ">Matrix</a> \(A\) </td></tr>
+    <tr><td class="paramname">LDA</td><td>Specifies first dimension of \(\mathrm{op}(A)\) </td></tr>
+    <tr><td class="paramname">B</td><td><a class="el" href="classMatrix.html" title="A dynamically sized matrix. ">Matrix</a> \(B\) </td></tr>
+    <tr><td class="paramname">LDB</td><td>Specifies first dimension of \(\mathrm{op}(B)\) </td></tr>
+    <tr><td class="paramname">BETA</td><td>specifies \(\beta\) </td></tr>
+    <tr><td class="paramname">C</td><td><a class="el" href="classMatrix.html" title="A dynamically sized matrix. ">Matrix</a> \(C\) </td></tr>
+    <tr><td class="paramname">LDC</td><td>Specifies first dimension of \(\mathrm{op}(C)\) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">UseLibXsmm</td><td>if <code>true</code> then use LIBXSMM </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="reference">Referenced by <a class="el" href="namespaceBasis_1_1lgl.html#acd680a8f9d7a2d2dde59e20df2ebe4fa">Basis::lgl::linear_filter_matrix()</a>.</p>
+
+</div>
+</div>
+<a id="gaba62a62589ffc7b8b85a7722390f7ce0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaba62a62589ffc7b8b85a7722390f7ce0">&#9670;&nbsp;</a></span>dgemm_< true >()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="group__Utilities.html#gac932a44b57087d32ce5341314437dbbd">dgemm_</a>&lt; true &gt; </td>
+          <td>(</td>
+          <td class="paramtype">const char &amp;&#160;</td>
+          <td class="paramname"><em>TRANSA</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char &amp;&#160;</td>
+          <td class="paramname"><em>TRANSB</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t &amp;&#160;</td>
+          <td class="paramname"><em>M</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t &amp;&#160;</td>
+          <td class="paramname"><em>N</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t &amp;&#160;</td>
+          <td class="paramname"><em>K</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double &amp;&#160;</td>
+          <td class="paramname"><em>ALPHA</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double *&#160;</td>
+          <td class="paramname"><em>A</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t &amp;&#160;</td>
+          <td class="paramname"><em>LDA</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double *&#160;</td>
+          <td class="paramname"><em>B</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t &amp;&#160;</td>
+          <td class="paramname"><em>LDB</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double &amp;&#160;</td>
+          <td class="paramname"><em>BETA</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double *&#160;</td>
+          <td class="paramname"><em>C</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t &amp;&#160;</td>
+          <td class="paramname"><em>LDC</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Perform a matrix-matrix multiplication. </p>
+<p>Perform the matrix-matrix multiplication </p><p class="formulaDsp">
+\[ C = \alpha \mathrm{op}(A) \mathrm{op}(B) + \beta \mathrm{op}(C) \]
+</p>
+<p>where \(\mathrm{op}(A)\) represents either \(A\) or \(A^{T}\) (transpose of \(A\)).</p>
+<p>LIBXSMM, which is much faster than BLAS for small matrices, can be called instead of BLAS by passing the template parameter <code>true</code>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">TRANSA</td><td>either 'N', 'T' or 'C', transposition of matrix A </td></tr>
+    <tr><td class="paramname">TRANSB</td><td>either 'N', 'T' or 'C', transposition of matrix B </td></tr>
+    <tr><td class="paramname">M</td><td>Number of rows in \(\mathrm{op}(A)\) </td></tr>
+    <tr><td class="paramname">N</td><td>Number of columns in \(\mathrm{op}(B)\) and \(\mathrm{op}(C)\) </td></tr>
+    <tr><td class="paramname">K</td><td>Number of columns in \(\mathrm{op}(A)\) </td></tr>
+    <tr><td class="paramname">ALPHA</td><td>specifies \(\alpha\) </td></tr>
+    <tr><td class="paramname">A</td><td><a class="el" href="classMatrix.html" title="A dynamically sized matrix. ">Matrix</a> \(A\) </td></tr>
+    <tr><td class="paramname">LDA</td><td>Specifies first dimension of \(\mathrm{op}(A)\) </td></tr>
+    <tr><td class="paramname">B</td><td><a class="el" href="classMatrix.html" title="A dynamically sized matrix. ">Matrix</a> \(B\) </td></tr>
+    <tr><td class="paramname">LDB</td><td>Specifies first dimension of \(\mathrm{op}(B)\) </td></tr>
+    <tr><td class="paramname">BETA</td><td>specifies \(\beta\) </td></tr>
+    <tr><td class="paramname">C</td><td><a class="el" href="classMatrix.html" title="A dynamically sized matrix. ">Matrix</a> \(C\) </td></tr>
+    <tr><td class="paramname">LDC</td><td>Specifies first dimension of \(\mathrm{op}(C)\) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">UseLibXsmm</td><td>if <code>true</code> then use LIBXSMM </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="reference">References <a class="el" href="group__Utilities.html#ga2da8b404f35c108209c4ce27c8d50e1c">gsl::narrow_cast()</a>.</p>
+
+</div>
+</div>
+<a id="gad4d31316e0975f0a66a60d9ac92756a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad4d31316e0975f0a66a60d9ac92756a8">&#9670;&nbsp;</a></span>dgemv_()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void dgemv_ </td>
+          <td>(</td>
+          <td class="paramtype">const char &amp;&#160;</td>
+          <td class="paramname"><em>TRANS</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t &amp;&#160;</td>
+          <td class="paramname"><em>M</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t &amp;&#160;</td>
+          <td class="paramname"><em>N</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double &amp;&#160;</td>
+          <td class="paramname"><em>ALPHA</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double *&#160;</td>
+          <td class="paramname"><em>A</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t &amp;&#160;</td>
+          <td class="paramname"><em>LDA</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double *&#160;</td>
+          <td class="paramname"><em>X</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t &amp;&#160;</td>
+          <td class="paramname"><em>INCX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double &amp;&#160;</td>
+          <td class="paramname"><em>BETA</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double *&#160;</td>
+          <td class="paramname"><em>Y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t &amp;&#160;</td>
+          <td class="paramname"><em>INCY</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Perform a matrix-vector multiplication. </p>
+<p class="formulaDsp">
+\[ y = \alpha \mathrm{op}(A) x + \beta y \]
+</p>
+<p>where \(\mathrm{op}(A)\) represents either \(A\) or \(A^{T}\) (transpose of \(A\)).</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">TRANS</td><td>either 'N', 'T' or 'C', transposition of matrix A </td></tr>
+    <tr><td class="paramname">M</td><td>Number of rows in \(\mathrm{op}(A)\) </td></tr>
+    <tr><td class="paramname">N</td><td>Number of columns in \(\mathrm{op}(A)\) </td></tr>
+    <tr><td class="paramname">ALPHA</td><td>specifies \(\alpha\) </td></tr>
+    <tr><td class="paramname">A</td><td><a class="el" href="classMatrix.html" title="A dynamically sized matrix. ">Matrix</a> \(A\) </td></tr>
+    <tr><td class="paramname">LDA</td><td>Specifies first dimension of \(\mathrm{op}(A)\) </td></tr>
+    <tr><td class="paramname">X</td><td>Vector \(x\) </td></tr>
+    <tr><td class="paramname">INCX</td><td>Specifies the increment for the elements of \(x\) </td></tr>
+    <tr><td class="paramname">BETA</td><td>Specifies \(\beta\) </td></tr>
+    <tr><td class="paramname">Y</td><td>Vector \(y\) </td></tr>
+    <tr><td class="paramname">INCY</td><td>Specifies the increment for the elements of \(y\) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="ga9a7c7ee897f581360154a3676d5f7ab9"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga9a7c7ee897f581360154a3676d5f7ab9">&#9670;&nbsp;</a></span>formatted_string()</h2>
 
@@ -476,6 +1155,102 @@ template&lt;typename T , typename... V, typename std::enable_if_t&lt;(sizeof...(
 <p>Helper function to initialize a <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a> with varying number of arguments. </p>
 
 <p class="reference">References <a class="el" href="namespacecpp17.html#a958e5adb14431c4cf06fcc785985ac89">cpp17::conjunction_v</a>.</p>
+
+</div>
+</div>
+<a id="gaa979e736ddfc838ddcba025a40a11469"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa979e736ddfc838ddcba025a40a11469">&#9670;&nbsp;</a></span>make_deferred()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Fp , typename... Args&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classDeferred.html">Deferred</a>&lt;Rt1&gt; make_deferred </td>
+          <td>(</td>
+          <td class="paramtype">Fp&#160;</td>
+          <td class="paramname"><em>f</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Args &amp;&amp;...&#160;</td>
+          <td class="paramname"><em>args</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Create a deferred function call object. </p>
+<p>If creating a <a class="el" href="classDeferred.html" title="Provides deferred or lazy evaluation of a function or function object, as well as efficient storage o...">Deferred</a> with a function object the call operator of the function object must be marked <code>const</code> currently. Since the function object will only be evaluated once there currently seems to be no reason to allow mutating call operators.</p>
+<h3>Example</h3>
+<p>The examples below use the following functions: </p><div class="fragment"><div class="line"><span class="keyword">struct </span>func {</div><div class="line">  <span class="keywordtype">double</span> operator()()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> 8.2; }</div><div class="line">};</div><div class="line"></div><div class="line"><span class="keywordtype">double</span> dummy() { <span class="keywordflow">return</span> 6.7; }</div><div class="line"></div><div class="line"><span class="keyword">struct </span>func2 {</div><div class="line">  <span class="keywordtype">double</span> operator()(<span class="keyword">const</span> <span class="keywordtype">double</span>&amp; t)<span class="keyword"> const </span>{ <span class="keywordflow">return</span> t; }</div><div class="line">};</div><div class="line"></div><div class="line"><span class="keywordtype">double</span> lazy_function(<span class="keyword">const</span> <span class="keywordtype">double</span> t) { <span class="keywordflow">return</span> 10.0 * t; }</div></div><!-- fragment --><p>To create a <a class="el" href="classDeferred.html" title="Provides deferred or lazy evaluation of a function or function object, as well as efficient storage o...">Deferred</a> using a function object use: </p><div class="fragment"><div class="line">  <span class="keyword">auto</span> def = <a class="code" href="group__Utilities.html#gaa979e736ddfc838ddcba025a40a11469">make_deferred</a>(func{});</div><div class="line">  CHECK(8.2 == def.get());</div></div><!-- fragment --><p>or using a regular function: </p><div class="fragment"><div class="line">  <span class="keyword">auto</span> def2 = <a class="code" href="group__Utilities.html#gaa979e736ddfc838ddcba025a40a11469">make_deferred</a>(dummy);</div><div class="line">  CHECK(6.7 == def2.get());</div></div><!-- fragment --><p> It is also possible to pass <a class="el" href="classDeferred.html" title="Provides deferred or lazy evaluation of a function or function object, as well as efficient storage o...">Deferred</a> objects to a deferred function call: </p><div class="fragment"><div class="line">  <span class="keyword">auto</span> def2 = <a class="code" href="group__Utilities.html#gaa979e736ddfc838ddcba025a40a11469">make_deferred</a>(func2{}, 6.82);</div><div class="line">  <span class="keyword">auto</span> def3 = <a class="code" href="group__Utilities.html#gaa979e736ddfc838ddcba025a40a11469">make_deferred</a>(lazy_function, def2);</div><div class="line">  CHECK(68.2 == def3.get());</div><div class="line">  CHECK(6.82 == def2.get());</div></div><!-- fragment --><p>in which case the first function will be evaluated just before the second function is evaluated.</p>
+<p><em>Returns:</em> <a class="el" href="classDeferred.html" title="Provides deferred or lazy evaluation of a function or function object, as well as efficient storage o...">Deferred</a> object that will lazily evaluate the function </p>
+
+<p class="reference">References <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/memory/shared_ptr/make_shared.html">std::make_shared()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classDeferred.html#acf7d37ecf7d97a4189b8502fcf0f419c">Deferred&lt; Rt &gt;::Deferred()</a>.</p>
+
+</div>
+</div>
+<a id="gafaf6db75ede2a9bc2fa4b6b17b8ef128"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gafaf6db75ede2a9bc2fa4b6b17b8ef128">&#9670;&nbsp;</a></span>narrow()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T , class U &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">T gsl::narrow </td>
+          <td>(</td>
+          <td class="paramtype">U&#160;</td>
+          <td class="paramname"><em>u</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>A checked version of <a class="el" href="group__Utilities.html#ga2da8b404f35c108209c4ce27c8d50e1c" title="Cast u to a type T where the cast may result in narrowing. ">narrow_cast()</a> that ERRORs if the cast changed the value. </p>
+
+<p class="reference">References <a class="el" href="group__ErrorHandling.html#ga1d27028c1827976007fe9d29ad3a2f66">ERROR</a>, and <a class="el" href="group__Utilities.html#ga2da8b404f35c108209c4ce27c8d50e1c">gsl::narrow_cast()</a>.</p>
+
+</div>
+</div>
+<a id="ga2da8b404f35c108209c4ce27c8d50e1c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga2da8b404f35c108209c4ce27c8d50e1c">&#9670;&nbsp;</a></span>narrow_cast()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T , class U &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr T gsl::narrow_cast </td>
+          <td>(</td>
+          <td class="paramtype">U &amp;&amp;&#160;</td>
+          <td class="paramname"><em>u</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Cast <code>u</code> to a type <code>T</code> where the cast may result in narrowing. </p>
+
+<p class="reference">Referenced by <a class="el" href="group__Utilities.html#gaba62a62589ffc7b8b85a7722390f7ce0">dgemm_&lt; true &gt;()</a>, and <a class="el" href="group__Utilities.html#gafaf6db75ede2a9bc2fa4b6b17b8ef128">gsl::narrow()</a>.</p>
 
 </div>
 </div>

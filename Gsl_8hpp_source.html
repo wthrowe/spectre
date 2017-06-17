@@ -1,0 +1,187 @@
+<!-- HTML header for doxygen 1.8.10-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="SXS Collaboration">
+    <meta name="generator" content="Doxygen 1.8.13"/>
+    <style>
+        /*!
+         * IE10 viewport hack for Surface/desktop Windows 8 bug
+         * Copyright 2014-2015 Twitter, Inc.
+         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+         */
+        @-webkit-viewport { width: device-width; }
+        @-moz-viewport    { width: device-width; }
+        @-ms-viewport     { width: device-width; }
+        @-o-viewport      { width: device-width; }
+        @viewport         { width: device-width; }
+      </style>
+  <title>SpECTRE: src/Utilities/Gsl.hpp Source File</title>
+  <link href="tabs.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="dynsections.js"></script>
+  <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
+  <link href="octicons.css" rel="stylesheet">
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="doxygen.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="bootstrap.min.js"></script>
+  <script type="text/javascript" src="spectre.js"></script>
+  </head>
+  <body>
+  <div id="top" class="navbar-fixed-top"><!-- do not remove this div, it is closed by doxygen! -->
+  <!-- BEGIN TITLEAREA -->
+  <div id="titlearea">
+  <script type="text/javascript">
+  var searchBox = new SearchBox("searchBox", "search",false,'Search');
+  </script>
+  <div id="main-nav">
+    <ul class="sm sm-dox" id="main-menu">
+      <li>
+      <a href="https://github.com/sxs-collaboration/spectre" target="_blank">
+      SpECTRE &#160;
+        <span id="projectnumber">v0.0.0</span>
+      </a>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-book"></i><span>Documentation</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 135px;">
+            <a href="index.html">
+            <i class="octicon octicon-book"></i><span>Documentation</span></a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="tutorials.html">
+              <i class="octicon octicon-mortar-board"></i><span>Tutorials</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="dev_guide.html">
+              <i class="octicon octicon-gist-secret"></i><span>Dev Guide</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown" style="min-width: 150px;">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 130px;">
+            <a href="modules.html">
+              <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+            </a>
+          </li>
+          <li style="min-width: 130px;">
+            <a href="namespaces.html">
+              <i class="octicon octicon-gist"></i>
+              <span>Namespaces</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="files.html">
+          <i class="octicon octicon-file-directory"></i><span>Files</span>
+        </a>
+      </li>
+      <!--The Search <li> is added by doxygen later-->
+    </ul>
+  </div><!-- main-nav -->
+  </div><!-- titlearea -->
+  <!-- window showing the filter options -->
+  <div id="MSearchSelectWindow"  style="position: fixed;"
+       onmouseover="return searchBox.OnSearchSelectShow()"
+       onmouseout="return searchBox.OnSearchSelectHide()"
+       onkeydown="return searchBox.OnSearchSelectKey(event)">
+  </div>
+  <!-- iframe showing the search results (closed by default) -->
+  <div id="MSearchResultsWindow"  style="position: fixed;">
+  <iframe src="javascript:void(0)" frameborder="0"
+          name="MSearchResults" id="MSearchResults">
+  </iframe>
+  </div><!-- Generated by Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_22cd119e9135d55404da822cc2bf42d2.html">src</a></li><li class="navelem"><a class="el" href="dir_9aa73582304dae90a1100b0a33d608e3.html">Utilities</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">Gsl.hpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="Gsl_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;</div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#pragma once</span></div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;</div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#pragma GCC system_header</span></div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;</div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">// The code in this file is adapted from Microsoft&#39;s GSL that can be found at</span></div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment">// https://github.com/Microsoft/GSL</span></div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">// The original license and copyright are:</span></div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment"></span><span class="comment">//</span></div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">// Copyright (c) 2015 Microsoft Corporation. All rights reserved.</span></div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">//</span></div><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment">// This code is licensed under the MIT License (MIT).</span></div><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">//</span></div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment">// THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</span></div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment">// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</span></div><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment">// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE</span></div><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment">// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER</span></div><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment">// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,</span></div><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment">// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN</span></div><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="comment">// THE SOFTWARE.</span></div><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="comment">//</span></div><div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment"></span><span class="comment">// The code changes are because SpECTRE is not allowed to throw under any</span></div><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment">// circumstances that cannot be guaranteed to be caught and so all throw&#39;s</span></div><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment">// are replaced by hard errors (ERROR).</span></div><div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div><div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ExpectsAndEnsures_8hpp.html">ErrorHandling/ExpectsAndEnsures.hpp</a>&quot;</span></div><div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ForceInline_8hpp.html">Utilities/ForceInline.hpp</a>&quot;</span></div><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Literals_8hpp.html">Utilities/Literals.hpp</a>&quot;</span></div><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="PrettyType_8hpp.html">Utilities/PrettyType.hpp</a>&quot;</span></div><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div><div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#if defined(__clang__) || defined(__GNUC__)</span></div><div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div><div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="preprocessor">#define LIKELY(x) __builtin_expect(!!(x), 1)</span></div><div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div><div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="preprocessor">#define UNLIKELY(x) __builtin_expect(!!(x), 0)</span></div><div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div><div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="preprocessor">#else</span></div><div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div><div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="group__Utilities.html#gaffde14445f49f65ff4f5b592e44ee71a">   55</a></span>&#160;<span class="preprocessor">#define LIKELY(x) (x)</span></div><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div><div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="group__Utilities.html#gab10d0a221f4d7a706701b806c8135fd7">   61</a></span>&#160;<span class="preprocessor">#define UNLIKELY(x) (x)</span></div><div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="preprocessor">#endif</span></div><div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div><div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="namespacegsl.html">   68</a></span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacegsl.html">gsl</a> {</div><div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div><div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">class</span> T, <span class="keyword">class</span> U&gt;</div><div class="line"><a name="l00075"></a><span class="lineno"><a class="line" href="group__Utilities.html#ga2da8b404f35c108209c4ce27c8d50e1c">   75</a></span>&#160;<a class="code" href="group__Utilities.html#ga9d571cd642604cb7bd87bb039ca3760f">SPECTRE_ALWAYS_INLINE</a> constexpr T <a class="code" href="group__Utilities.html#ga2da8b404f35c108209c4ce27c8d50e1c">narrow_cast</a>(U&amp;&amp; u) noexcept {</div><div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;  <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span>T<span class="keyword">&gt;</span>(std::forward&lt;U&gt;(u));</div><div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;}</div><div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div><div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="keyword">namespace </span>details {</div><div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">class</span> T, <span class="keyword">class</span> U&gt;</div><div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="keyword">struct </span>is_same_signedness</div><div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    : <span class="keyword">public</span> <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/integral_constant.html">std::integral_constant</a>&lt;</div><div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;          bool, std::is_signed&lt;T&gt;::value == std::is_signed&lt;U&gt;::value&gt; {};</div><div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;}  <span class="comment">// namespace details</span></div><div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div><div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">class</span> T, <span class="keyword">class</span> U&gt;</div><div class="line"><a name="l00092"></a><span class="lineno"><a class="line" href="group__Utilities.html#gafaf6db75ede2a9bc2fa4b6b17b8ef128">   92</a></span>&#160;<a class="code" href="group__Utilities.html#ga9d571cd642604cb7bd87bb039ca3760f">SPECTRE_ALWAYS_INLINE</a> T <a class="code" href="group__Utilities.html#gafaf6db75ede2a9bc2fa4b6b17b8ef128">narrow</a>(U u) {</div><div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;  T t = <a class="code" href="group__Utilities.html#ga2da8b404f35c108209c4ce27c8d50e1c">narrow_cast</a>&lt;T&gt;(u);</div><div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;  <span class="keywordflow">if</span> (static_cast&lt;U&gt;(t) != u) {</div><div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <a class="code" href="group__ErrorHandling.html#ga1d27028c1827976007fe9d29ad3a2f66">ERROR</a>(<span class="stringliteral">&quot;Failed to cast &quot;</span> &lt;&lt; u &lt;&lt; <span class="stringliteral">&quot; of type &quot;</span> &lt;&lt; pretty_type::get_name&lt;U&gt;()</div><div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;                            &lt;&lt; <span class="stringliteral">&quot; to type &quot;</span> &lt;&lt; pretty_type::get_name&lt;T&gt;());</div><div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;  }</div><div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;  <span class="keywordflow">if</span> (not details::is_same_signedness&lt;T, U&gt;::value and</div><div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;      ((t &lt; T{}) != (u &lt; U{}))) {</div><div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    <a class="code" href="group__ErrorHandling.html#ga1d27028c1827976007fe9d29ad3a2f66">ERROR</a>(<span class="stringliteral">&quot;Failed to cast &quot;</span> &lt;&lt; u &lt;&lt; <span class="stringliteral">&quot; of type &quot;</span> &lt;&lt; pretty_type::get_name&lt;U&gt;()</div><div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;                            &lt;&lt; <span class="stringliteral">&quot; to type &quot;</span> &lt;&lt; pretty_type::get_name&lt;T&gt;());</div><div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;  }</div><div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;  <span class="keywordflow">return</span> t;</div><div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;}</div><div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;</div><div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="comment">// @{</span></div><div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="comment"></span><span class="keyword">template</span> &lt;<span class="keyword">class</span> T, std::<span class="keywordtype">size_t</span> N, <span class="keyword">typename</span> Size&gt;</div><div class="line"><a name="l00113"></a><span class="lineno"><a class="line" href="group__Utilities.html#ga818f101f2f8bd824a3bc7c2c2361c560">  113</a></span>&#160;<a class="code" href="group__Utilities.html#ga9d571cd642604cb7bd87bb039ca3760f">SPECTRE_ALWAYS_INLINE</a> constexpr T&amp; <a class="code" href="group__Utilities.html#ga818f101f2f8bd824a3bc7c2c2361c560">at</a>(<a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array&lt;T, N&gt;</a>&amp; arr, Size index) {</div><div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;  <a class="code" href="group__ErrorHandling.html#ga128eed9cc242b5e850cf1391744bf099">Expects</a>(index &gt;= 0 and index &lt; narrow_cast&lt;Size&gt;(N));</div><div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;  <span class="keywordflow">return</span> arr[<span class="keyword">static_cast&lt;</span><a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/size_t.html">std::size_t</a><span class="keyword">&gt;</span>(index)];</div><div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;}</div><div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;</div><div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">class</span> Cont, <span class="keyword">typename</span> Size&gt;</div><div class="line"><a name="l00119"></a><span class="lineno"><a class="line" href="group__Utilities.html#ga1648d283e2a226cd398dbea1de84e88d">  119</a></span>&#160;<a class="code" href="group__Utilities.html#ga9d571cd642604cb7bd87bb039ca3760f">SPECTRE_ALWAYS_INLINE</a> constexpr <span class="keyword">const</span> <span class="keyword">typename</span> Cont::value_type&amp; <a class="code" href="group__Utilities.html#ga818f101f2f8bd824a3bc7c2c2361c560">at</a>(</div><div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    <span class="keyword">const</span> Cont&amp; cont, Size index) {</div><div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;  <a class="code" href="group__ErrorHandling.html#ga128eed9cc242b5e850cf1391744bf099">Expects</a>(index &gt;= 0 and index &lt; narrow_cast&lt;Size&gt;(cont.size()));</div><div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;  <span class="keywordflow">return</span> cont[<span class="keyword">static_cast&lt;</span>typename Cont::size_type<span class="keyword">&gt;</span>(index)];</div><div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;}</div><div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;</div><div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">class</span> T, <span class="keyword">typename</span> Size&gt;</div><div class="line"><a name="l00126"></a><span class="lineno"><a class="line" href="group__Utilities.html#gac75622e2034e12763b1e3989b813376b">  126</a></span>&#160;<a class="code" href="group__Utilities.html#ga9d571cd642604cb7bd87bb039ca3760f">SPECTRE_ALWAYS_INLINE</a> constexpr <span class="keyword">const</span> T&amp; <a class="code" href="group__Utilities.html#ga818f101f2f8bd824a3bc7c2c2361c560">at</a>(<a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/utility/initializer_list.html">std::initializer_list&lt;T&gt;</a> cont,</div><div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;                                            Size index) {</div><div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;  <a class="code" href="group__ErrorHandling.html#ga128eed9cc242b5e850cf1391744bf099">Expects</a>(index &gt;= 0 and index &lt; narrow_cast&lt;Size&gt;(cont.size()));</div><div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;  <span class="keywordflow">return</span> *(cont.begin() + index);</div><div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;}</div><div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;<span class="comment">// @}</span></div><div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;}  <span class="comment">// namespace gsl</span></div><div class="ttc" id="group__ErrorHandling_html_ga128eed9cc242b5e850cf1391744bf099"><div class="ttname"><a href="group__ErrorHandling.html#ga128eed9cc242b5e850cf1391744bf099">Expects</a></div><div class="ttdeci">#define Expects(cond)</div><div class="ttdoc">check expectation of pre-conditions of a function </div><div class="ttdef"><b>Definition:</b> ExpectsAndEnsures.hpp:28</div></div>
+<div class="ttc" id="group__Utilities_html_ga2da8b404f35c108209c4ce27c8d50e1c"><div class="ttname"><a href="group__Utilities.html#ga2da8b404f35c108209c4ce27c8d50e1c">gsl::narrow_cast</a></div><div class="ttdeci">constexpr T narrow_cast(U &amp;&amp;u) noexcept</div><div class="ttdoc">Cast u to a type T where the cast may result in narrowing. </div><div class="ttdef"><b>Definition:</b> Gsl.hpp:75</div></div>
+<div class="ttc" id="namespacegsl_html"><div class="ttname"><a href="namespacegsl.html">gsl</a></div><div class="ttdoc">Implementations from the Guideline Support Library. </div><div class="ttdef"><b>Definition:</b> Gsl.hpp:68</div></div>
+<div class="ttc" id="group__Utilities_html_ga9d571cd642604cb7bd87bb039ca3760f"><div class="ttname"><a href="group__Utilities.html#ga9d571cd642604cb7bd87bb039ca3760f">SPECTRE_ALWAYS_INLINE</a></div><div class="ttdeci">#define SPECTRE_ALWAYS_INLINE</div><div class="ttdoc">Always inline a function. Only use this if you benchmarked the code. </div><div class="ttdef"><b>Definition:</b> ForceInline.hpp:16</div></div>
+<div class="ttc" id="size_t_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/types/size_t.html">std::size_t</a></div></div>
+<div class="ttc" id="ExpectsAndEnsures_8hpp_html"><div class="ttname"><a href="ExpectsAndEnsures_8hpp.html">ExpectsAndEnsures.hpp</a></div><div class="ttdoc">Defines macros Expects and Ensures. </div></div>
+<div class="ttc" id="group__Utilities_html_ga818f101f2f8bd824a3bc7c2c2361c560"><div class="ttname"><a href="group__Utilities.html#ga818f101f2f8bd824a3bc7c2c2361c560">gsl::at</a></div><div class="ttdeci">constexpr T &amp; at(std::array&lt; T, N &gt; &amp;arr, Size index)</div><div class="ttdoc">Retrieve a entry from a container, with checks in Debug mode that the index being retrieved is valid...</div><div class="ttdef"><b>Definition:</b> Gsl.hpp:113</div></div>
+<div class="ttc" id="Literals_8hpp_html"><div class="ttname"><a href="Literals_8hpp.html">Literals.hpp</a></div><div class="ttdoc">Defines useful literals. </div></div>
+<div class="ttc" id="ForceInline_8hpp_html"><div class="ttname"><a href="ForceInline_8hpp.html">ForceInline.hpp</a></div><div class="ttdoc">Defines macro to always inline a function. </div></div>
+<div class="ttc" id="group__Utilities_html_gafaf6db75ede2a9bc2fa4b6b17b8ef128"><div class="ttname"><a href="group__Utilities.html#gafaf6db75ede2a9bc2fa4b6b17b8ef128">gsl::narrow</a></div><div class="ttdeci">T narrow(U u)</div><div class="ttdoc">A checked version of narrow_cast() that ERRORs if the cast changed the value. </div><div class="ttdef"><b>Definition:</b> Gsl.hpp:92</div></div>
+<div class="ttc" id="PrettyType_8hpp_html"><div class="ttname"><a href="PrettyType_8hpp.html">PrettyType.hpp</a></div><div class="ttdoc">Contains a pretty_type library to write types in a &quot;pretty&quot; format. </div></div>
+<div class="ttc" id="integral_constant_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/types/integral_constant.html">std::integral_constant</a></div></div>
+<div class="ttc" id="group__ErrorHandling_html_ga1d27028c1827976007fe9d29ad3a2f66"><div class="ttname"><a href="group__ErrorHandling.html#ga1d27028c1827976007fe9d29ad3a2f66">ERROR</a></div><div class="ttdeci">#define ERROR(m)</div><div class="ttdoc">prints an error message to the standard error stream and aborts the program. </div><div class="ttdef"><b>Definition:</b> Error.hpp:35</div></div>
+<div class="ttc" id="array_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a></div></div>
+<div class="ttc" id="initializer_list_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/utility/initializer_list.html">std::initializer_list</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.10-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+&copy; Copyright 2017
+<a href="https://black-holes.org">SXS Collaboration</a>,
+<a href="LICENSE.txt" target="_blank">
+<span class="hidden-xs">Distributed under the</span>
+MIT License</a>
+</small></address>
+</body>
+</html>

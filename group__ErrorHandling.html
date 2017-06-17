@@ -172,6 +172,12 @@ Macros</h2></td></tr>
 <tr class="memitem:gac6b7fabac0ecf1b822a9cd865e36418a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ErrorHandling.html#gac6b7fabac0ecf1b822a9cd865e36418a">CERROR</a>(m)</td></tr>
 <tr class="memdesc:gac6b7fabac0ecf1b822a9cd865e36418a"><td class="mdescLeft">&#160;</td><td class="mdescRight">prints an error message to the standard error and aborts the program.  <a href="#gac6b7fabac0ecf1b822a9cd865e36418a">More...</a><br /></td></tr>
 <tr class="separator:gac6b7fabac0ecf1b822a9cd865e36418a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga128eed9cc242b5e850cf1391744bf099"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ErrorHandling.html#ga128eed9cc242b5e850cf1391744bf099">Expects</a>(cond)</td></tr>
+<tr class="memdesc:ga128eed9cc242b5e850cf1391744bf099"><td class="mdescLeft">&#160;</td><td class="mdescRight">check expectation of pre-conditions of a function  <a href="#ga128eed9cc242b5e850cf1391744bf099">More...</a><br /></td></tr>
+<tr class="separator:ga128eed9cc242b5e850cf1391744bf099"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaba71c3abbe11a93858cb1694a6a1ad68"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ErrorHandling.html#gaba71c3abbe11a93858cb1694a6a1ad68">Ensures</a>(cond)</td></tr>
+<tr class="memdesc:gaba71c3abbe11a93858cb1694a6a1ad68"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check that a post-condition of a function is true.  <a href="#gaba71c3abbe11a93858cb1694a6a1ad68">More...</a><br /></td></tr>
+<tr class="separator:gaba71c3abbe11a93858cb1694a6a1ad68"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
@@ -226,7 +232,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="reference">Referenced by <a class="el" href="classDataVector.html#ac7e51fc41511446910c5a1f30e758ef9">DataVector::DataVector()</a>, <a class="el" href="classDataVector.html#a864ea5a64ff387cc62a49c147ade3e76">DataVector::erfc()</a>, and <a class="el" href="classDataVector.html#a9deebf13e15056c91504ea9389786f9d">DataVector::operator[]()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="classDataVector.html#ac7e51fc41511446910c5a1f30e758ef9">DataVector::DataVector()</a>, <a class="el" href="namespaceBasis_1_1lgl.html#ae4f1a65752fd27131c298dbcbac94c8f">Basis::lgl::differentiation_matrix()</a>, <a class="el" href="classDataVector.html#a864ea5a64ff387cc62a49c147ade3e76">DataVector::erfc()</a>, <a class="el" href="namespaceBasis_1_1lgl.html#ad40bc93b991c27fe8cce7f8f388fa95c">Basis::lgl::grid_points_to_spectral_matrix()</a>, <a class="el" href="namespaceBasis_1_1lgl.html#a56287e67f67d9bb8f0b9c3e331f1d383">Basis::lgl::interpolation_matrix()</a>, <a class="el" href="namespaceBasis_1_1lgl.html#acd680a8f9d7a2d2dde59e20df2ebe4fa">Basis::lgl::linear_filter_matrix()</a>, <a class="el" href="classDataVector.html#a9deebf13e15056c91504ea9389786f9d">DataVector::operator[]()</a>, and <a class="el" href="namespaceBasis_1_1lgl.html#a6279bc96ac9e57db9feccdfdb22da82e">Basis::lgl::spectral_to_grid_points_matrix()</a>.</p>
 
 </div>
 </div>
@@ -295,6 +301,32 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="gaba71c3abbe11a93858cb1694a6a1ad68"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaba71c3abbe11a93858cb1694a6a1ad68">&#9670;&nbsp;</a></span>Ensures</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define Ensures</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">cond</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">if</span> (<span class="keyword">false</span>) {               \</div><div class="line">    static_cast&lt;<span class="keywordtype">void</span>&gt;(cond); \</div><div class="line">  } else                     \</div><div class="line">    static_cast&lt;<span class="keywordtype">void</span>&gt;(0)</div></div><!-- fragment -->
+<p>Check that a post-condition of a function is true. </p>
+<p>The Ensures macro sets the postconditions of function, it is a contract (C++20) that must be satisfied. See the CppCoreGuidelines for details. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cond</td><td>the expression that is expected to be true </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="ga1d27028c1827976007fe9d29ad3a2f66"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga1d27028c1827976007fe9d29ad3a2f66">&#9670;&nbsp;</a></span>ERROR</h2>
 
@@ -319,7 +351,35 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="reference">Referenced by <a class="el" href="TestHelpers_8hpp.html#a12746aa7e93ebd5782817d71a61ffb54">test_move_semantics()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="group__Utilities.html#gafaf6db75ede2a9bc2fa4b6b17b8ef128">gsl::narrow()</a>, and <a class="el" href="TestHelpers_8hpp.html#a12746aa7e93ebd5782817d71a61ffb54">test_move_semantics()</a>.</p>
+
+</div>
+</div>
+<a id="ga128eed9cc242b5e850cf1391744bf099"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga128eed9cc242b5e850cf1391744bf099">&#9670;&nbsp;</a></span>Expects</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define Expects</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">cond</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">if</span> (<span class="keyword">false</span>) {               \</div><div class="line">    static_cast&lt;<span class="keywordtype">void</span>&gt;(cond); \</div><div class="line">  } else                     \</div><div class="line">    static_cast&lt;<span class="keywordtype">void</span>&gt;(0)</div></div><!-- fragment -->
+<p>check expectation of pre-conditions of a function </p>
+<p>The Expects macro sets the preconditions to a function's arguments, it is a contract (C++20) that must be satisfied. See the CppCoreGuidelines for details. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cond</td><td>the expression that is expected to be true </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="reference">Referenced by <a class="el" href="group__Utilities.html#ga818f101f2f8bd824a3bc7c2c2361c560">gsl::at()</a>.</p>
 
 </div>
 </div>

@@ -1,5 +1,7 @@
 var searchData=
 [
+  ['taggedtuple_2ecpp',['TaggedTuple.cpp',['../TaggedTuple_8cpp.html',1,'']]],
+  ['taggedtuple_2ehpp',['TaggedTuple.hpp',['../TaggedTuple_8hpp.html',1,'']]],
   ['testframework_2ecpp',['TestFramework.cpp',['../TestFramework_8cpp.html',1,'']]],
   ['testhelpers_2ehpp',['TestHelpers.hpp',['../TestHelpers_8hpp.html',1,'']]],
   ['thread',['thread',['http://en.cppreference.com/w/cpp/header/thread.html',1,'']]],

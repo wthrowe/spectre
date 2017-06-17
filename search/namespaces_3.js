@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['tt',['tt',['../namespacett.html',1,'']]]
+  ['parallel',['Parallel',['../namespaceParallel.html',1,'']]],
+  ['pretty_5ftype',['pretty_type',['../namespacepretty__type.html',1,'']]]
 ];

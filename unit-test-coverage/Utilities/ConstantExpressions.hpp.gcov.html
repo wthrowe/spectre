@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - e573dead46052fecc751905e6328701677698fc2 - Utilities/ConstantExpressions.hpp</title>
+  <title>LCOV - 62204faed5c3285d61ace50f511c782e819e106e - Utilities/ConstantExpressions.hpp</title>
   <link rel="stylesheet" type="text/css" href="../gcov.css">
 </head>
 
@@ -28,7 +28,7 @@
           </tr>
           <tr>
             <td class="headerItem">Commit:</td>
-             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/e573dead46052fecc751905e6328701677698fc2">e573dead46052fecc751905e6328701677698fc2</a></td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/62204faed5c3285d61ace50f511c782e819e106e">62204faed5c3285d61ace50f511c782e819e106e</a></td>
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntry">9</td>
@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2017-06-16 01:54:57</td>
+            <td class="headerValue">2017-06-17 01:55:55</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">2</td>
@@ -128,7 +128,7 @@
 <span class="lineNum">      58 </span>            : template &lt;typename T, int N&gt;
 <span class="lineNum">      59 </span>            : struct pow&lt;T, N, typename std::enable_if&lt;(N &gt; 0)&gt;::type&gt; {
 <span class="lineNum">      60 </span>            :   SPECTRE_ALWAYS_INLINE static constexpr decltype(auto) apply(const T&amp; t) {
-<span class="lineNum">      61 </span><span class="lineCov">          5 :     return t * pow&lt;T, N - 1&gt;::apply(t);</span>
+<span class="lineNum">      61 </span><span class="lineCov">        661 :     return t * pow&lt;T, N - 1&gt;::apply(t);</span>
 <span class="lineNum">      62 </span>            :   }
 <span class="lineNum">      63 </span>            : };
 <span class="lineNum">      64 </span>            : 
@@ -143,7 +143,7 @@
 <span class="lineNum">      73 </span>            : struct pow&lt;T, 0,
 <span class="lineNum">      74 </span>            :            std::enable_if_t&lt;not std::is_base_of&lt;blaze::Expression, T&gt;::value&gt;&gt; {
 <span class="lineNum">      75 </span>            :   SPECTRE_ALWAYS_INLINE static constexpr T apply(const T&amp; /*t*/) {
-<span class="lineNum">      76 </span><span class="lineCov">          1 :     return static_cast&lt;T&gt;(1);</span>
+<span class="lineNum">      76 </span><span class="lineCov">        329 :     return static_cast&lt;T&gt;(1);</span>
 <span class="lineNum">      77 </span>            :   }
 <span class="lineNum">      78 </span>            : };
 <span class="lineNum">      79 </span>            : }  // namespace ConstantExpressions_details
@@ -159,7 +159,7 @@
 <span class="lineNum">      89 </span>            : /// \return value t^N of type T
 <span class="lineNum">      90 </span>            : template &lt;int N, typename T&gt;
 <span class="lineNum">      91 </span>            : SPECTRE_ALWAYS_INLINE constexpr decltype(auto) pow(const T&amp; t) {
-<span class="lineNum">      92 </span><span class="lineCov">          1 :   return ConstantExpressions_details::pow&lt;T, N&gt;::apply(t);</span>
+<span class="lineNum">      92 </span><span class="lineCov">        329 :   return ConstantExpressions_details::pow&lt;T, N&gt;::apply(t);</span>
 <span class="lineNum">      93 </span>            : }
 <span class="lineNum">      94 </span>            : 
 <span class="lineNum">      95 </span>            : namespace detail {

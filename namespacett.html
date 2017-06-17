@@ -192,6 +192,9 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtt_1_1is__hashable.html">is_hashable</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/utility/hash.html">std::hash</a> and <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/utility/functional/equal_to.html">std::equal_to</a> are defined for type T.  <a href="structtt_1_1is__hashable.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtt_1_1is__integer.html">is_integer</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if <code>I</code> is an integer type (non-bool, non-character), unlike <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/is_integral.html">std::is_integral</a>.  <a href="structtt_1_1is__integer.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtt_1_1is__iterable.html">is_iterable</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if type T has a begin() and end() function.  <a href="structtt_1_1is__iterable.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -218,6 +221,13 @@ Typedefs</h2></td></tr>
 <tr class="memitem:gafb844f727c41f01d5f2f2b316b648c7a"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__TypeTraits.html#gafb844f727c41f01d5f2f2b316b648c7a">array_size</a> = decltype(TypeTraits_details::array_size_impl(<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/utility/declval.html">std::declval</a>&lt; const Array &amp; &gt;()))</td></tr>
 <tr class="memdesc:gafb844f727c41f01d5f2f2b316b648c7a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the size of a <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a> as a <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/integral_constant.html">std::integral_constant</a>.  <a href="group__TypeTraits.html#gafb844f727c41f01d5f2f2b316b648c7a">More...</a><br /></td></tr>
 <tr class="separator:gafb844f727c41f01d5f2f2b316b648c7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:a1199b80c0851bbf8b025c562054397ec"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a1199b80c0851bbf8b025c562054397ec"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacett.html#a1199b80c0851bbf8b025c562054397ec">is_integer_v</a> = <a class="el" href="structtt_1_1is__integer.html">is_integer</a>&lt;T&gt;::value</td></tr>
+<tr class="separator:a1199b80c0851bbf8b025c562054397ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acb7aa0a733ac7b37f6d794809a594a2f"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
 <tr class="memitem:acb7aa0a733ac7b37f6d794809a594a2f"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacett.html#acb7aa0a733ac7b37f6d794809a594a2f">is_std_array_t</a> = typename <a class="el" href="structtt_1_1is__std__array.html">is_std_array</a>&lt; T &gt;::type</td></tr>
 <tr class="separator:acb7aa0a733ac7b37f6d794809a594a2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -758,6 +768,23 @@ template&lt;typename T &gt; </div>
       </table>
 </div><div class="memdoc">
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="structtt_1_1is__hashable.html" title="Check if std::hash and std::equal_to are defined for type T. ">is_hashable</a> </dd></dl>
+
+</div>
+</div>
+<a id="a1199b80c0851bbf8b025c562054397ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1199b80c0851bbf8b025c562054397ec">&#9670;&nbsp;</a></span>is_integer_v</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr bool tt::is_integer_v = <a class="el" href="structtt_1_1is__integer.html">is_integer</a>&lt;T&gt;::value</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="structtt_1_1is__integer.html" title="Check if I is an integer type (non-bool, non-character), unlike std::is_integral. ...">is_integer</a> </dd></dl>
 
 </div>
 </div>

@@ -1,0 +1,679 @@
+<!-- HTML header for doxygen 1.8.10-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="SXS Collaboration">
+    <meta name="generator" content="Doxygen 1.8.13"/>
+    <style>
+        /*!
+         * IE10 viewport hack for Surface/desktop Windows 8 bug
+         * Copyright 2014-2015 Twitter, Inc.
+         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+         */
+        @-webkit-viewport { width: device-width; }
+        @-moz-viewport    { width: device-width; }
+        @-ms-viewport     { width: device-width; }
+        @-o-viewport      { width: device-width; }
+        @viewport         { width: device-width; }
+      </style>
+  <title>SpECTRE: TaggedTuple&lt; Tags &gt; Struct Template Reference</title>
+  <link href="tabs.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="dynsections.js"></script>
+  <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
+  <link href="octicons.css" rel="stylesheet">
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="doxygen.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="bootstrap.min.js"></script>
+  <script type="text/javascript" src="spectre.js"></script>
+  </head>
+  <body>
+  <div id="top" class="navbar-fixed-top"><!-- do not remove this div, it is closed by doxygen! -->
+  <!-- BEGIN TITLEAREA -->
+  <div id="titlearea">
+  <script type="text/javascript">
+  var searchBox = new SearchBox("searchBox", "search",false,'Search');
+  </script>
+  <div id="main-nav">
+    <ul class="sm sm-dox" id="main-menu">
+      <li>
+      <a href="https://github.com/sxs-collaboration/spectre" target="_blank">
+      SpECTRE &#160;
+        <span id="projectnumber">v0.0.0</span>
+      </a>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-book"></i><span>Documentation</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 135px;">
+            <a href="index.html">
+            <i class="octicon octicon-book"></i><span>Documentation</span></a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="tutorials.html">
+              <i class="octicon octicon-mortar-board"></i><span>Tutorials</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="dev_guide.html">
+              <i class="octicon octicon-gist-secret"></i><span>Dev Guide</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown" style="min-width: 150px;">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 130px;">
+            <a href="modules.html">
+              <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+            </a>
+          </li>
+          <li style="min-width: 130px;">
+            <a href="namespaces.html">
+              <i class="octicon octicon-gist"></i>
+              <span>Namespaces</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="files.html">
+          <i class="octicon octicon-file-directory"></i><span>Files</span>
+        </a>
+      </li>
+      <!--The Search <li> is added by doxygen later-->
+    </ul>
+  </div><!-- main-nav -->
+  </div><!-- titlearea -->
+  <!-- window showing the filter options -->
+  <div id="MSearchSelectWindow"  style="position: fixed;"
+       onmouseover="return searchBox.OnSearchSelectShow()"
+       onmouseout="return searchBox.OnSearchSelectHide()"
+       onkeydown="return searchBox.OnSearchSelectKey(event)">
+  </div>
+  <!-- iframe showing the search results (closed by default) -->
+  <div id="MSearchResultsWindow"  style="position: fixed;">
+  <iframe src="javascript:void(0)" frameborder="0"
+          name="MSearchResults" id="MSearchResults">
+  </iframe>
+  </div><!-- Generated by Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#friends">Friends</a> &#124;
+<a href="structTaggedTuple-members.html">List of all members</a>  </div>
+  <div class="headertitle">
+<div class="title">TaggedTuple&lt; Tags &gt; Struct Template Reference<div class="ingroups"><a class="el" href="group__Utilities.html">Utilities</a> &#124; <a class="el" href="group__DataStructures.html">Data Structures</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>An associative container that is indexed by structs.  
+ <a href="structTaggedTuple.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="TaggedTuple_8hpp_source.html">TaggedTuple.hpp</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:aac15c9385dd7837e0e3ff2d1e311be1a"><td class="memTemplParams" colspan="2">template&lt;typename... Args&gt; </td></tr>
+<tr class="memitem:aac15c9385dd7837e0e3ff2d1e311be1a"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structTaggedTuple.html#aac15c9385dd7837e0e3ff2d1e311be1a">TaggedTuple</a> (Args &amp;&amp;... args)</td></tr>
+<tr class="memdesc:aac15c9385dd7837e0e3ff2d1e311be1a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a <a class="el" href="structTaggedTuple.html" title="An associative container that is indexed by structs. ">TaggedTuple</a> with Args.  <a href="#aac15c9385dd7837e0e3ff2d1e311be1a">More...</a><br /></td></tr>
+<tr class="separator:aac15c9385dd7837e0e3ff2d1e311be1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b0cd629d1df23da929000b6c4fa38e4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structTaggedTuple.html#a2b0cd629d1df23da929000b6c4fa38e4">pup</a> (PUP::er &amp;p)</td></tr>
+<tr class="memdesc:a2b0cd629d1df23da929000b6c4fa38e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used for serialization with Charm++.  <a href="#a2b0cd629d1df23da929000b6c4fa38e4">More...</a><br /></td></tr>
+<tr class="separator:a2b0cd629d1df23da929000b6c4fa38e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:a17d00e23f33d569825c579b617e23fb7"><td class="memTemplParams" colspan="2">template&lt;typename Tag &gt; </td></tr>
+<tr class="memitem:a17d00e23f33d569825c579b617e23fb7"><td class="memTemplItemLeft" align="right" valign="top">constexpr Tag::type &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structTaggedTuple.html#a17d00e23f33d569825c579b617e23fb7">get</a> () noexcept</td></tr>
+<tr class="memdesc:a17d00e23f33d569825c579b617e23fb7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve a stored object with tag <code>Tag</code>  <a href="#a17d00e23f33d569825c579b617e23fb7">More...</a><br /></td></tr>
+<tr class="separator:a17d00e23f33d569825c579b617e23fb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7cbb69692de39bbdab158ec3da07e6d0"><td class="memTemplParams" colspan="2">template&lt;typename Tag &gt; </td></tr>
+<tr class="memitem:a7cbb69692de39bbdab158ec3da07e6d0"><td class="memTemplItemLeft" align="right" valign="top">constexpr const Tag::type &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structTaggedTuple.html#a7cbb69692de39bbdab158ec3da07e6d0">get</a> () const noexcept</td></tr>
+<tr class="memdesc:a7cbb69692de39bbdab158ec3da07e6d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve a stored object with tag <code>Tag</code>  <a href="#a7cbb69692de39bbdab158ec3da07e6d0">More...</a><br /></td></tr>
+<tr class="separator:a7cbb69692de39bbdab158ec3da07e6d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a11e7b714b2c55facb1d813286eff89e3"><td class="memItemLeft" align="right" valign="top">static constexpr <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/size_t.html">std::size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structTaggedTuple.html#a11e7b714b2c55facb1d813286eff89e3">size</a> ()</td></tr>
+<tr class="memdesc:a11e7b714b2c55facb1d813286eff89e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the size of a <a class="el" href="structTaggedTuple.html" title="An associative container that is indexed by structs. ">TaggedTuple</a>.  <a href="#a11e7b714b2c55facb1d813286eff89e3">More...</a><br /></td></tr>
+<tr class="separator:a11e7b714b2c55facb1d813286eff89e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
+Friends</h2></td></tr>
+<tr class="memitem:aebd7506dc363489cc1542efc2341c799"><td class="memItemLeft" align="right" valign="top"><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/io/basic_ostream.html">std::ostream</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structTaggedTuple.html#aebd7506dc363489cc1542efc2341c799">operator&lt;&lt;</a> (<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/io/basic_ostream.html">std::ostream</a> &amp;os, const <a class="el" href="structTaggedTuple.html">TaggedTuple</a>&lt; Tags... &gt; &amp;t)</td></tr>
+<tr class="memdesc:aebd7506dc363489cc1542efc2341c799"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stream operator for <a class="el" href="structTaggedTuple.html" title="An associative container that is indexed by structs. ">TaggedTuple</a>.  <a href="#aebd7506dc363489cc1542efc2341c799">More...</a><br /></td></tr>
+<tr class="separator:aebd7506dc363489cc1542efc2341c799"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5c084fbc12631bb243545ebb5388a93"><td class="memItemLeft" align="right" valign="top">constexpr friend bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structTaggedTuple.html#ad5c084fbc12631bb243545ebb5388a93">operator==</a> (const <a class="el" href="structTaggedTuple.html">TaggedTuple</a> &amp;lhs, const <a class="el" href="structTaggedTuple.html">TaggedTuple</a> &amp;rhs)</td></tr>
+<tr class="separator:ad5c084fbc12631bb243545ebb5388a93"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aefb2ace8783ebb179816be353455cfe0"><td class="memItemLeft" align="right" valign="top">constexpr friend bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structTaggedTuple.html#aefb2ace8783ebb179816be353455cfe0">operator!=</a> (const <a class="el" href="structTaggedTuple.html">TaggedTuple</a> &amp;lhs, const <a class="el" href="structTaggedTuple.html">TaggedTuple</a> &amp;rhs)</td></tr>
+<tr class="separator:aefb2ace8783ebb179816be353455cfe0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f2dca2687bb190fa31af5af6227b4dd"><td class="memItemLeft" align="right" valign="top">constexpr friend bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structTaggedTuple.html#a2f2dca2687bb190fa31af5af6227b4dd">operator&gt;</a> (const <a class="el" href="structTaggedTuple.html">TaggedTuple</a> &amp;lhs, const <a class="el" href="structTaggedTuple.html">TaggedTuple</a> &amp;rhs)</td></tr>
+<tr class="separator:a2f2dca2687bb190fa31af5af6227b4dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a78c853ad4530728be5d66778e6be01"><td class="memItemLeft" align="right" valign="top">constexpr friend bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structTaggedTuple.html#a3a78c853ad4530728be5d66778e6be01">operator&gt;=</a> (const <a class="el" href="structTaggedTuple.html">TaggedTuple</a> &amp;lhs, const <a class="el" href="structTaggedTuple.html">TaggedTuple</a> &amp;rhs)</td></tr>
+<tr class="separator:a3a78c853ad4530728be5d66778e6be01"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06968dceeb0ec894b8407e6bab9b6498"><td class="memItemLeft" align="right" valign="top">constexpr friend bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structTaggedTuple.html#a06968dceeb0ec894b8407e6bab9b6498">operator&lt;</a> (const <a class="el" href="structTaggedTuple.html">TaggedTuple</a> &amp;lhs, const <a class="el" href="structTaggedTuple.html">TaggedTuple</a> &amp;rhs)</td></tr>
+<tr class="separator:a06968dceeb0ec894b8407e6bab9b6498"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37091e635b9c9a0098e011519558a239"><td class="memItemLeft" align="right" valign="top">constexpr friend bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structTaggedTuple.html#a37091e635b9c9a0098e011519558a239">operator&lt;=</a> (const <a class="el" href="structTaggedTuple.html">TaggedTuple</a> &amp;lhs, const <a class="el" href="structTaggedTuple.html">TaggedTuple</a> &amp;rhs)</td></tr>
+<tr class="separator:a37091e635b9c9a0098e011519558a239"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><h3>template&lt;typename... Tags&gt;<br />
+struct TaggedTuple&lt; Tags &gt;</h3>
+
+<p>An associative container that is indexed by structs. </p>
+<p>A data structure that is indexed by Tags. A Tag is a struct that contains a type alias named <code>type</code>, which is the type of the object stored with index Tag.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Tags</td><td>the tags of the objects to be placed in the tuple </td></tr>
+  </table>
+  </dd>
+</dl>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="aac15c9385dd7837e0e3ff2d1e311be1a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac15c9385dd7837e0e3ff2d1e311be1a">&#9670;&nbsp;</a></span>TaggedTuple()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename... Tags&gt; </div>
+<div class="memtemplate">
+template&lt;typename... Args&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structTaggedTuple.html">TaggedTuple</a>&lt; Tags &gt;::<a class="el" href="structTaggedTuple.html">TaggedTuple</a> </td>
+          <td>(</td>
+          <td class="paramtype">Args &amp;&amp;...&#160;</td>
+          <td class="paramname"><em>args</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Construct a <a class="el" href="structTaggedTuple.html" title="An associative container that is indexed by structs. ">TaggedTuple</a> with Args. </p>
+<p><em>Requires:</em> <code><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/is_convertible.html">std::is_convertible_v</a>&lt;Args, typename Tags::type&gt;...</code> is <code>true</code></p>
+<h3>Example</h3>
+<div class="fragment"><div class="line">  <a class="code" href="TaggedTuple_8hpp.html#aacddb1e80457fbff9419f0c1618faa16">TaggedTupleTypelist&lt;typelist&lt;name, age, email&gt;</a>&gt; test(<span class="stringliteral">&quot;bla&quot;</span>, 17,</div><div class="line">                                                       <span class="stringliteral">&quot;bla@bla.bla&quot;</span>);</div></div><!-- fragment -->
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a17d00e23f33d569825c579b617e23fb7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a17d00e23f33d569825c579b617e23fb7">&#9670;&nbsp;</a></span>get() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename... Tags&gt; </div>
+<div class="memtemplate">
+template&lt;typename Tag &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr Tag::type&amp; <a class="el" href="structTaggedTuple.html">TaggedTuple</a>&lt; Tags &gt;::get </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Retrieve a stored object with tag <code>Tag</code> </p>
+<h3>Example</h3>
+<div class="fragment"><div class="line">  CHECK(<span class="stringliteral">&quot;bla&quot;</span> == test.template get&lt;name&gt;());</div><div class="line">  CHECK(17 == test.template get&lt;age&gt;());</div><div class="line">  CHECK(<span class="stringliteral">&quot;bla@bla.bla&quot;</span> == test.template get&lt;email&gt;());</div></div><!-- fragment --> <dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Tag</td><td>the tag of the object to retrieve </td></tr>
+  </table>
+  </dd>
+</dl>
+<p><em>Returns:</em> reference to the object held in the tuple </p>
+
+</div>
+</div>
+<a id="a7cbb69692de39bbdab158ec3da07e6d0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7cbb69692de39bbdab158ec3da07e6d0">&#9670;&nbsp;</a></span>get() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename... Tags&gt; </div>
+<div class="memtemplate">
+template&lt;typename Tag &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr const Tag::type&amp; <a class="el" href="structTaggedTuple.html">TaggedTuple</a>&lt; Tags &gt;::get </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Retrieve a stored object with tag <code>Tag</code> </p>
+<h3>Example</h3>
+<div class="fragment"><div class="line">  CHECK(<span class="stringliteral">&quot;bla&quot;</span> == test.template get&lt;name&gt;());</div><div class="line">  CHECK(17 == test.template get&lt;age&gt;());</div><div class="line">  CHECK(<span class="stringliteral">&quot;bla@bla.bla&quot;</span> == test.template get&lt;email&gt;());</div></div><!-- fragment --> <dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Tag</td><td>the tag of the object to retrieve </td></tr>
+  </table>
+  </dd>
+</dl>
+<p><em>Returns:</em> reference to the object held in the tuple </p>
+
+</div>
+</div>
+<a id="a2b0cd629d1df23da929000b6c4fa38e4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b0cd629d1df23da929000b6c4fa38e4">&#9670;&nbsp;</a></span>pup()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename... Tags&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="structTaggedTuple.html">TaggedTuple</a>&lt; Tags &gt;::pup </td>
+          <td>(</td>
+          <td class="paramtype">PUP::er &amp;&#160;</td>
+          <td class="paramname"><em>p</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Used for serialization with Charm++. </p>
+
+</div>
+</div>
+<a id="a11e7b714b2c55facb1d813286eff89e3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a11e7b714b2c55facb1d813286eff89e3">&#9670;&nbsp;</a></span>size()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename... Tags&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static constexpr <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/size_t.html">std::size_t</a> <a class="el" href="structTaggedTuple.html">TaggedTuple</a>&lt; Tags &gt;::size </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the size of a <a class="el" href="structTaggedTuple.html" title="An associative container that is indexed by structs. ">TaggedTuple</a>. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Friends And Related Function Documentation</h2>
+<a id="aefb2ace8783ebb179816be353455cfe0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aefb2ace8783ebb179816be353455cfe0">&#9670;&nbsp;</a></span>operator!=</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename... Tags&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr friend bool operator!= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structTaggedTuple.html">TaggedTuple</a>&lt; Tags &gt; &amp;&#160;</td>
+          <td class="paramname"><em>lhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structTaggedTuple.html">TaggedTuple</a>&lt; Tags &gt; &amp;&#160;</td>
+          <td class="paramname"><em>rhs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a06968dceeb0ec894b8407e6bab9b6498"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a06968dceeb0ec894b8407e6bab9b6498">&#9670;&nbsp;</a></span>operator<</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename... Tags&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr friend bool operator&lt; </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structTaggedTuple.html">TaggedTuple</a>&lt; Tags &gt; &amp;&#160;</td>
+          <td class="paramname"><em>lhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structTaggedTuple.html">TaggedTuple</a>&lt; Tags &gt; &amp;&#160;</td>
+          <td class="paramname"><em>rhs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aebd7506dc363489cc1542efc2341c799"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aebd7506dc363489cc1542efc2341c799">&#9670;&nbsp;</a></span>operator<<</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename... Tags&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/io/basic_ostream.html">std::ostream</a>&amp; operator&lt;&lt; </td>
+          <td>(</td>
+          <td class="paramtype"><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/io/basic_ostream.html">std::ostream</a> &amp;&#160;</td>
+          <td class="paramname"><em>os</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structTaggedTuple.html">TaggedTuple</a>&lt; Tags... &gt; &amp;&#160;</td>
+          <td class="paramname"><em>t</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Stream operator for <a class="el" href="structTaggedTuple.html" title="An associative container that is indexed by structs. ">TaggedTuple</a>. </p>
+
+</div>
+</div>
+<a id="a37091e635b9c9a0098e011519558a239"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a37091e635b9c9a0098e011519558a239">&#9670;&nbsp;</a></span>operator<=</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename... Tags&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr friend bool operator&lt;= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structTaggedTuple.html">TaggedTuple</a>&lt; Tags &gt; &amp;&#160;</td>
+          <td class="paramname"><em>lhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structTaggedTuple.html">TaggedTuple</a>&lt; Tags &gt; &amp;&#160;</td>
+          <td class="paramname"><em>rhs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad5c084fbc12631bb243545ebb5388a93"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad5c084fbc12631bb243545ebb5388a93">&#9670;&nbsp;</a></span>operator==</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename... Tags&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr friend bool operator== </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structTaggedTuple.html">TaggedTuple</a>&lt; Tags &gt; &amp;&#160;</td>
+          <td class="paramname"><em>lhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structTaggedTuple.html">TaggedTuple</a>&lt; Tags &gt; &amp;&#160;</td>
+          <td class="paramname"><em>rhs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2f2dca2687bb190fa31af5af6227b4dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2f2dca2687bb190fa31af5af6227b4dd">&#9670;&nbsp;</a></span>operator></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename... Tags&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr friend bool operator&gt; </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structTaggedTuple.html">TaggedTuple</a>&lt; Tags &gt; &amp;&#160;</td>
+          <td class="paramname"><em>lhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structTaggedTuple.html">TaggedTuple</a>&lt; Tags &gt; &amp;&#160;</td>
+          <td class="paramname"><em>rhs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3a78c853ad4530728be5d66778e6be01"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3a78c853ad4530728be5d66778e6be01">&#9670;&nbsp;</a></span>operator>=</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename... Tags&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr friend bool operator&gt;= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structTaggedTuple.html">TaggedTuple</a>&lt; Tags &gt; &amp;&#160;</td>
+          <td class="paramname"><em>lhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structTaggedTuple.html">TaggedTuple</a>&lt; Tags &gt; &amp;&#160;</td>
+          <td class="paramname"><em>rhs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>The documentation for this struct was generated from the following file:<ul>
+<li>src/Utilities/<a class="el" href="TaggedTuple_8hpp_source.html">TaggedTuple.hpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.10-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+&copy; Copyright 2017
+<a href="https://black-holes.org">SXS Collaboration</a>,
+<a href="LICENSE.txt" target="_blank">
+<span class="hidden-xs">Distributed under the</span>
+MIT License</a>
+</small></address>
+</body>
+</html>

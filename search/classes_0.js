@@ -24,6 +24,7 @@ var searchData=
   ['allocator_5ftraits',['allocator_traits',['http://en.cppreference.com/w/cpp/memory/allocator_traits.html',1,'std']]],
   ['any',['any',['http://en.cppreference.com/w/cpp/utility/any.html',1,'std::any'],['http://en.cppreference.com/w/cpp/experimental/any.html',1,'std::experimental::any']]],
   ['array',['array',['http://en.cppreference.com/w/cpp/container/array.html',1,'std']]],
+  ['array_3c_20size_5ft_2c_20dim_20_3e',['array&lt; size_t, Dim &gt;',['http://en.cppreference.com/w/cpp/container/array.html',1,'std']]],
   ['atomic',['atomic',['http://en.cppreference.com/w/cpp/atomic/atomic.html',1,'std']]],
   ['atomic_5fbool',['atomic_bool',['http://en.cppreference.com/w/cpp/atomic/atomic.html',1,'std']]],
   ['atomic_5fchar16_5ft',['atomic_char16_t',['http://en.cppreference.com/w/cpp/atomic/atomic.html',1,'std']]],

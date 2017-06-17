@@ -151,7 +151,8 @@ $(function() {
 
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a>  </div>
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#typedef-members">Typedefs</a>  </div>
   <div class="headertitle">
 <div class="title">Data Structures</div>  </div>
 </div><!--header-->
@@ -165,9 +166,54 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html">DataVector</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A class for storing data on a mesh.  <a href="classDataVector.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIndex.html">Index&lt; Dim &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">An integer multi-index.  <a href="classIndex.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIndexIterator.html">IndexIterator&lt; Dim &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classIndexIterator.html" title="IndexIterator iterates over a unique set of Index. ">IndexIterator</a> iterates over a unique set of <a class="el" href="classIndex.html" title="An integer multi-index. ">Index</a>.  <a href="classIndexIterator.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMatrix.html">Matrix</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A dynamically sized matrix.  <a href="classMatrix.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSliceIterator.html">SliceIterator</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterate over a (dim-1)-dimensional slice.  <a href="classSliceIterator.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStripeIterator.html">StripeIterator</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterates over the 1-dimensional stripes with info on how to iterate over the current stripe.  <a href="classStripeIterator.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structTaggedTuple.html">TaggedTuple&lt; Tags &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">An associative container that is indexed by structs.  <a href="structTaggedTuple.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:ga651d81f458517368a0eb0723c36fd87a"><td class="memTemplParams" colspan="2">template&lt;size_t Dim&gt; </td></tr>
+<tr class="memitem:ga651d81f458517368a0eb0723c36fd87a"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__DataStructures.html#ga651d81f458517368a0eb0723c36fd87a">Mesh</a> = <a class="el" href="classIndex.html">Index</a>&lt; Dim &gt;</td></tr>
+<tr class="memdesc:ga651d81f458517368a0eb0723c36fd87a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents the size of a <code>Dim</code> dimensional mesh as <code>Dim</code> integers.  <a href="#ga651d81f458517368a0eb0723c36fd87a">More...</a><br /></td></tr>
+<tr class="separator:ga651d81f458517368a0eb0723c36fd87a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>Various useful data structures used in SpECTRE. </p>
+<h2 class="groupheader">Typedef Documentation</h2>
+<a id="ga651d81f458517368a0eb0723c36fd87a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga651d81f458517368a0eb0723c36fd87a">&#9670;&nbsp;</a></span>Mesh</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;size_t Dim&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="group__DataStructures.html#ga651d81f458517368a0eb0723c36fd87a">Mesh</a> =  <a class="el" href="classIndex.html">Index</a>&lt;Dim&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Represents the size of a <code>Dim</code> dimensional mesh as <code>Dim</code> integers. </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classIndex.html" title="An integer multi-index. ">Index</a> </dd></dl>
+
+</div>
+</div>
 </div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->

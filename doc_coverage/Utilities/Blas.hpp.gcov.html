@@ -1,0 +1,228 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 62204faed5c3285d61ace50f511c782e819e106e - Utilities/Blas.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">Utilities</a> - Blas.hpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/62204faed5c3285d61ace50f511c782e819e106e">62204faed5c3285d61ace50f511c782e819e106e</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">4</td>
+            <td class="headerCovTableEntry">4</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2017-06-17 01:56:12</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : /// \file
+<span class="lineNum">       5 </span>            : /// Declares the interfaces for the BLAS used.
+<span class="lineNum">       6 </span>            : ///
+<span class="lineNum">       7 </span>            : /// Wrappers are defined to perform casts from different integer types
+<span class="lineNum">       8 </span>            : /// when the natural type in C++ differs from the BLAS argument.
+<span class="lineNum">       9 </span>            : 
+<span class="lineNum">      10 </span>            : #pragma once
+<span class="lineNum">      11 </span>            : 
+<span class="lineNum">      12 </span>            : #include &lt;libxsmm.h&gt;
+<span class="lineNum">      13 </span>            : 
+<span class="lineNum">      14 </span>            : #include &quot;Utilities/Gsl.hpp&quot;
+<span class="lineNum">      15 </span>            : 
+<span class="lineNum">      16 </span>            : namespace blas_detail {
+<span class="lineNum">      17 </span>            : extern &quot;C&quot; {
+<span class="lineNum">      18 </span>            : double ddot_(const int&amp; N, const double* X, const int&amp; INCX, const double* Y,
+<span class="lineNum">      19 </span>            :              const int&amp; INCY);
+<span class="lineNum">      20 </span>            : 
+<span class="lineNum">      21 </span>            : void dgemm_(const char&amp; TRANSA, const char&amp; TRANSB, const int&amp; M, const int&amp; N,
+<span class="lineNum">      22 </span>            :             const int&amp; K, const double&amp; ALPHA, const double* A, const int&amp; LDA,
+<span class="lineNum">      23 </span>            :             const double* B, const int&amp; LDB, const double&amp; BETA,
+<span class="lineNum">      24 </span>            :             const double* C, const int&amp; LDC);
+<span class="lineNum">      25 </span>            : 
+<span class="lineNum">      26 </span>            : void dgemv_(const char&amp; TRANS, const int&amp; M, const int&amp; N, const double&amp; ALPHA,
+<span class="lineNum">      27 </span>            :             const double* A, const int&amp; LDA, const double* X, const int&amp; INCX,
+<span class="lineNum">      28 </span>            :             const double&amp; BETA, double* Y, const int&amp; INCY);
+<span class="lineNum">      29 </span>            : }  // extern &quot;C&quot;
+<span class="lineNum">      30 </span>            : }  // namespace blas_detail
+<span class="lineNum">      31 </span>            : 
+<span class="lineNum">      32 </span>            : /*!
+<span class="lineNum">      33 </span>            :  * \ingroup Utilities
+<span class="lineNum">      34 </span>            :  * The dot product of two vectors.
+<span class="lineNum">      35 </span>            :  *
+<span class="lineNum">      36 </span>            :  * \param N the length of the vectors.
+<span class="lineNum">      37 </span>            :  * \param X a pointer to the first element of the first vector.
+<span class="lineNum">      38 </span>            :  * \param INCX the stride for the elements of the first vector.
+<span class="lineNum">      39 </span>            :  * \param Y a pointer to the first element of the second vector.
+<span class="lineNum">      40 </span>            :  * \param INCY the stride for the elements of the second vector.
+<span class="lineNum">      41 </span>            :  * \return the dot product of the given vectors.
+<span class="lineNum">      42 </span>            :  */
+<span class="lineNum">      43 </span><span class="lineCov">          2 : inline double ddot_(const size_t&amp; N, const double* X, const size_t&amp; INCX,</span>
+<span class="lineNum">      44 </span>            :                     const double* Y, const size_t&amp; INCY) {
+<span class="lineNum">      45 </span>            :   // INCX and INCY are allowed to be negative by BLAS, but we never
+<span class="lineNum">      46 </span>            :   // use them that way.  If needed, they can be changed here, but then
+<span class="lineNum">      47 </span>            :   // code providing values will also have to be changed to int to
+<span class="lineNum">      48 </span>            :   // avoid warnings.
+<span class="lineNum">      49 </span>            :   return blas_detail::ddot_(gsl::narrow_cast&lt;int&gt;(N), X,
+<span class="lineNum">      50 </span>            :                             gsl::narrow_cast&lt;int&gt;(INCX), Y,
+<span class="lineNum">      51 </span>            :                             gsl::narrow_cast&lt;int&gt;(INCY));
+<span class="lineNum">      52 </span>            : }
+<span class="lineNum">      53 </span>            : 
+<span class="lineNum">      54 </span>            : // @{
+<span class="lineNum">      55 </span>            : /*!
+<span class="lineNum">      56 </span>            :  * \ingroup Utilities
+<span class="lineNum">      57 </span>            :  * \brief Perform a matrix-matrix multiplication
+<span class="lineNum">      58 </span>            :  *
+<span class="lineNum">      59 </span>            :  * Perform the matrix-matrix multiplication
+<span class="lineNum">      60 </span>            :  * \f[
+<span class="lineNum">      61 </span>            :  * C = \alpha \mathrm{op}(A) \mathrm{op}(B) + \beta \mathrm{op}(C)
+<span class="lineNum">      62 </span>            :  * \f]
+<span class="lineNum">      63 </span>            :  *
+<span class="lineNum">      64 </span>            :  * where \f$\mathrm{op}(A)\f$ represents either \f$A\f$ or \f$A^{T}\f$
+<span class="lineNum">      65 </span>            :  * (transpose of \f$A\f$).
+<span class="lineNum">      66 </span>            :  *
+<span class="lineNum">      67 </span>            :  * LIBXSMM, which is much faster than BLAS for small matrices, can be called
+<span class="lineNum">      68 </span>            :  * instead of BLAS by passing the template parameter `true`.
+<span class="lineNum">      69 </span>            :  *
+<span class="lineNum">      70 </span>            :  * \param TRANSA either 'N', 'T' or 'C', transposition of matrix A
+<span class="lineNum">      71 </span>            :  * \param TRANSB either 'N', 'T' or 'C', transposition of matrix B
+<span class="lineNum">      72 </span>            :  * \param M Number of rows in \f$\mathrm{op}(A)\f$
+<span class="lineNum">      73 </span>            :  * \param N Number of columns in \f$\mathrm{op}(B)\f$ and \f$\mathrm{op}(C)\f$
+<span class="lineNum">      74 </span>            :  * \param K Number of columns in \f$\mathrm{op}(A)\f$
+<span class="lineNum">      75 </span>            :  * \param ALPHA specifies \f$\alpha\f$
+<span class="lineNum">      76 </span>            :  * \param A Matrix \f$A\f$
+<span class="lineNum">      77 </span>            :  * \param LDA Specifies first dimension of \f$\mathrm{op}(A)\f$
+<span class="lineNum">      78 </span>            :  * \param B Matrix \f$B\f$
+<span class="lineNum">      79 </span>            :  * \param LDB Specifies first dimension of \f$\mathrm{op}(B)\f$
+<span class="lineNum">      80 </span>            :  * \param BETA specifies \f$\beta\f$
+<span class="lineNum">      81 </span>            :  * \param C Matrix \f$C\f$
+<span class="lineNum">      82 </span>            :  * \param LDC Specifies first dimension of \f$\mathrm{op}(C)\f$
+<span class="lineNum">      83 </span>            :  * \tparam UseLibXsmm if `true` then use LIBXSMM
+<span class="lineNum">      84 </span>            :  */
+<span class="lineNum">      85 </span>            : template &lt;bool UseLibXsmm = false&gt;
+<span class="lineNum">      86 </span><span class="lineCov">          2 : inline void dgemm_(const char&amp; TRANSA, const char&amp; TRANSB, const size_t&amp; M,</span>
+<span class="lineNum">      87 </span>            :                    const size_t&amp; N, const size_t&amp; K, const double&amp; ALPHA,
+<span class="lineNum">      88 </span>            :                    const double* A, const size_t&amp; LDA, const double* B,
+<span class="lineNum">      89 </span>            :                    const size_t&amp; LDB, const double&amp; BETA, double* C,
+<span class="lineNum">      90 </span>            :                    const size_t&amp; LDC) {
+<span class="lineNum">      91 </span>            :   blas_detail::dgemm_(
+<span class="lineNum">      92 </span>            :       TRANSA, TRANSB, gsl::narrow_cast&lt;int&gt;(M), gsl::narrow_cast&lt;int&gt;(N),
+<span class="lineNum">      93 </span>            :       gsl::narrow_cast&lt;int&gt;(K), ALPHA, A, gsl::narrow_cast&lt;int&gt;(LDA), B,
+<span class="lineNum">      94 </span>            :       gsl::narrow_cast&lt;int&gt;(LDB), BETA, C, gsl::narrow_cast&lt;int&gt;(LDC));
+<span class="lineNum">      95 </span>            : }
+<span class="lineNum">      96 </span>            : 
+<span class="lineNum">      97 </span>            : template &lt;&gt;
+<span class="lineNum">      98 </span><span class="lineCov">          2 : inline void dgemm_&lt;true&gt;(const char&amp; TRANSA, const char&amp; TRANSB,</span>
+<span class="lineNum">      99 </span>            :                          const size_t&amp; M, const size_t&amp; N, const size_t&amp; K,
+<span class="lineNum">     100 </span>            :                          const double&amp; ALPHA, const double* A,
+<span class="lineNum">     101 </span>            :                          const size_t&amp; LDA, const double* B, const size_t&amp; LDB,
+<span class="lineNum">     102 </span>            :                          const double&amp; BETA, double* C, const size_t&amp; LDC) {
+<span class="lineNum">     103 </span>            :   const int m = gsl::narrow_cast&lt;int&gt;(M), n = gsl::narrow_cast&lt;int&gt;(N),
+<span class="lineNum">     104 </span>            :             k = gsl::narrow_cast&lt;int&gt;(K), lda = gsl::narrow_cast&lt;int&gt;(LDA),
+<span class="lineNum">     105 </span>            :             ldb = gsl::narrow_cast&lt;int&gt;(LDB), ldc = gsl::narrow_cast&lt;int&gt;(LDC);
+<span class="lineNum">     106 </span>            :   libxsmm_dgemm(&amp;TRANSA, &amp;TRANSB, &amp;m, &amp;n, &amp;k, &amp;ALPHA, A, &amp;lda, B, &amp;ldb, &amp;BETA,
+<span class="lineNum">     107 </span>            :                 C, &amp;ldc);
+<span class="lineNum">     108 </span>            : }
+<span class="lineNum">     109 </span>            : // @}
+<span class="lineNum">     110 </span>            : 
+<span class="lineNum">     111 </span>            : // @{
+<span class="lineNum">     112 </span>            : /*!
+<span class="lineNum">     113 </span>            :  * \ingroup Utilities
+<span class="lineNum">     114 </span>            :  * \brief Perform a matrix-vector multiplication
+<span class="lineNum">     115 </span>            :  *
+<span class="lineNum">     116 </span>            :  * \f[
+<span class="lineNum">     117 </span>            :  * y = \alpha \mathrm{op}(A) x + \beta y
+<span class="lineNum">     118 </span>            :  * \f]
+<span class="lineNum">     119 </span>            :  *
+<span class="lineNum">     120 </span>            :  * where \f$\mathrm{op}(A)\f$ represents either \f$A\f$ or \f$A^{T}\f$
+<span class="lineNum">     121 </span>            :  * (transpose of \f$A\f$).
+<span class="lineNum">     122 </span>            :  *
+<span class="lineNum">     123 </span>            :  * \param TRANS either 'N', 'T' or 'C', transposition of matrix A
+<span class="lineNum">     124 </span>            :  * \param M Number of rows in \f$\mathrm{op}(A)\f$
+<span class="lineNum">     125 </span>            :  * \param N Number of columns in \f$\mathrm{op}(A)\f$
+<span class="lineNum">     126 </span>            :  * \param ALPHA specifies \f$\alpha\f$
+<span class="lineNum">     127 </span>            :  * \param A Matrix \f$A\f$
+<span class="lineNum">     128 </span>            :  * \param LDA Specifies first dimension of \f$\mathrm{op}(A)\f$
+<span class="lineNum">     129 </span>            :  * \param X Vector \f$x\f$
+<span class="lineNum">     130 </span>            :  * \param INCX Specifies the increment for the elements of \f$x\f$
+<span class="lineNum">     131 </span>            :  * \param BETA Specifies \f$\beta\f$
+<span class="lineNum">     132 </span>            :  * \param Y Vector \f$y\f$
+<span class="lineNum">     133 </span>            :  * \param INCY Specifies the increment for the elements of \f$y\f$
+<span class="lineNum">     134 </span>            :  */
+<span class="lineNum">     135 </span><span class="lineCov">          2 : inline void dgemv_(const char&amp; TRANS, const size_t&amp; M, const size_t&amp; N,</span>
+<span class="lineNum">     136 </span>            :                    const double&amp; ALPHA, const double* A, const size_t&amp; LDA,
+<span class="lineNum">     137 </span>            :                    const double* X, const size_t&amp; INCX, const double&amp; BETA,
+<span class="lineNum">     138 </span>            :                    double* Y, const size_t&amp; INCY) {
+<span class="lineNum">     139 </span>            :   // INCX and INCY are allowed to be negative by BLAS, but we never
+<span class="lineNum">     140 </span>            :   // use them that way.  If needed, they can be changed here, but then
+<span class="lineNum">     141 </span>            :   // code providing values will also have to be changed to int to
+<span class="lineNum">     142 </span>            :   // avoid warnings.
+<span class="lineNum">     143 </span>            :   blas_detail::dgemv_(TRANS, gsl::narrow_cast&lt;int&gt;(M), gsl::narrow_cast&lt;int&gt;(N),
+<span class="lineNum">     144 </span>            :                       ALPHA, A, gsl::narrow_cast&lt;int&gt;(LDA), X,
+<span class="lineNum">     145 </span>            :                       gsl::narrow_cast&lt;int&gt;(INCX), BETA, Y,
+<span class="lineNum">     146 </span>            :                       gsl::narrow_cast&lt;int&gt;(INCY));
+<span class="lineNum">     147 </span>            : }
+<span class="lineNum">     148 </span>            : //@}
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

@@ -1,0 +1,270 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 62204faed5c3285d61ace50f511c782e819e106e - Parallel/PupStlCpp11.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">SpECTRE Unit Test Code Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">Parallel</a> - PupStlCpp11.hpp<span style="font-size: 80%;"> (source / <a href="PupStlCpp11.hpp.func-sort-c.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/62204faed5c3285d61ace50f511c782e819e106e">62204faed5c3285d61ace50f511c782e819e106e</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">74</td>
+            <td class="headerCovTableEntry">74</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2017-06-17 01:55:55</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">27</td>
+            <td class="headerCovTableEntry">33</td>
+            <td class="headerCovTableEntryMed">81.8 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>            : // Distributed under the MIT License.</a>
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : /// \file
+<span class="lineNum">       5 </span>            : /// PUP routines for new C+11 STL containers
+<span class="lineNum">       6 </span>            : 
+<span class="lineNum">       7 </span>            : #pragma once
+<span class="lineNum">       8 </span>            : 
+<span class="lineNum">       9 </span>            : #include &lt;algorithm&gt;
+<span class="lineNum">      10 </span>            : #include &lt;array&gt;
+<span class="lineNum">      11 </span>            : #include &lt;memory&gt;
+<span class="lineNum">      12 </span>            : #include &lt;pup_stl.h&gt;
+<span class="lineNum">      13 </span>            : #include &lt;tuple&gt;
+<span class="lineNum">      14 </span>            : #include &lt;unordered_map&gt;
+<span class="lineNum">      15 </span>            : #include &lt;unordered_set&gt;
+<span class="lineNum">      16 </span>            : 
+<span class="lineNum">      17 </span>            : namespace PUP {
+<span class="lineNum">      18 </span>            : 
+<span class="lineNum">      19 </span>            : // @{
+<span class="lineNum">      20 </span>            : /// \ingroup Parallel
+<span class="lineNum">      21 </span>            : /// Serialization of std::array for Charm++
+<span class="lineNum">      22 </span>            : template &lt;
+<a name="23"><span class="lineNum">      23 </span>            :     typename T, std::size_t N,</a>
+<a name="24"><span class="lineNum">      24 </span>            :     typename std::enable_if_t&lt;not std::is_arithmetic&lt;T&gt;::value&gt;* = nullptr&gt;</a>
+<span class="lineNum">      25 </span><span class="lineCov">          3 : inline void pup(PUP::er&amp; p, std::array&lt;T, N&gt;&amp; a) {  // NOLINT</span>
+<span class="lineNum">      26 </span><span class="lineCov">          9 :   std::for_each(a.begin(), a.end(), [&amp;p](auto&amp; t) { p | t; });</span>
+<span class="lineNum">      27 </span><span class="lineCov">          3 : }</span>
+<span class="lineNum">      28 </span>            : 
+<a name="29"><span class="lineNum">      29 </span>            : template &lt;typename T, std::size_t N,</a>
+<span class="lineNum">      30 </span>            :           typename std::enable_if_t&lt;std::is_arithmetic&lt;T&gt;::value&gt;* = nullptr&gt;
+<span class="lineNum">      31 </span><span class="lineCov">          6 : inline void pup(PUP::er&amp; p, std::array&lt;T, N&gt;&amp; a) {  // NOLINT</span>
+<span class="lineNum">      32 </span><span class="lineCov">          6 :   PUParray(p, a.data(), N);</span>
+<span class="lineNum">      33 </span><span class="lineCov">          6 : }</span>
+<span class="lineNum">      34 </span>            : // @}
+<span class="lineNum">      35 </span>            : 
+<span class="lineNum">      36 </span>            : /// \ingroup Parallel
+<a name="37"><span class="lineNum">      37 </span>            : /// Serialization of std::array for Charm++</a>
+<span class="lineNum">      38 </span>            : template &lt;typename T, std::size_t N&gt;
+<span class="lineNum">      39 </span><span class="lineCov">          9 : inline void operator|(er&amp; p, std::array&lt;T, N&gt;&amp; a) {  // NOLINT</span>
+<span class="lineNum">      40 </span><span class="lineCov">          9 :   pup(p, a);</span>
+<span class="lineNum">      41 </span><span class="lineCov">          9 : }</span>
+<span class="lineNum">      42 </span>            : 
+<span class="lineNum">      43 </span>            : /// \ingroup Parallel
+<span class="lineNum">      44 </span>            : /// Serialization of std::unordered_map for Charm++
+<a name="45"><span class="lineNum">      45 </span>            : /// \warning This does not work with custom hash functions that have state</a>
+<span class="lineNum">      46 </span>            : template &lt;typename K, typename V, typename H&gt;
+<span class="lineNum">      47 </span><span class="lineCov">          6 : inline void pup(PUP::er&amp; p, std::unordered_map&lt;K, V, H&gt;&amp; m) {  // NOLINT</span>
+<span class="lineNum">      48 </span><span class="lineCov">          6 :   int number_elem = PUP_stl_container_size(p, m);</span>
+<span class="lineNum">      49 </span>            : 
+<span class="lineNum">      50 </span><span class="lineCov">          6 :   if (p.isUnpacking()) {</span>
+<span class="lineNum">      51 </span><span class="lineCov">          6 :     for (int i = 0; i &lt; number_elem; ++i) {</span>
+<span class="lineNum">      52 </span><span class="lineCov">          8 :       std::pair&lt;K, V&gt; kv;</span>
+<span class="lineNum">      53 </span><span class="lineCov">          4 :       p | kv;</span>
+<span class="lineNum">      54 </span><span class="lineCov">          4 :       m.emplace(std::move(kv));</span>
+<span class="lineNum">      55 </span>            :     }
+<span class="lineNum">      56 </span>            :   } else {
+<span class="lineNum">      57 </span><span class="lineCov">         12 :     for (auto&amp; kv : m) {</span>
+<span class="lineNum">      58 </span><span class="lineCov">          8 :       p | kv;</span>
+<span class="lineNum">      59 </span>            :     }
+<span class="lineNum">      60 </span>            :   }
+<span class="lineNum">      61 </span><span class="lineCov">          6 : }</span>
+<span class="lineNum">      62 </span>            : 
+<span class="lineNum">      63 </span>            : /// \ingroup Parallel
+<span class="lineNum">      64 </span>            : /// Serialization of std::unordered_map for Charm++
+<a name="65"><span class="lineNum">      65 </span>            : /// \warning This does not work with custom hash functions that have state</a>
+<span class="lineNum">      66 </span>            : template &lt;typename K, typename V, typename H&gt;
+<span class="lineNum">      67 </span><span class="lineCov">          6 : inline void operator|(er&amp; p, std::unordered_map&lt;K, V, H&gt;&amp; m) {  // NOLINT</span>
+<span class="lineNum">      68 </span><span class="lineCov">          6 :   pup(p, m);</span>
+<span class="lineNum">      69 </span><span class="lineCov">          6 : }</span>
+<span class="lineNum">      70 </span>            : 
+<span class="lineNum">      71 </span>            : /// \ingroup Parallel
+<a name="72"><span class="lineNum">      72 </span>            : /// Serialization of std::unordered_set for Charm++</a>
+<span class="lineNum">      73 </span>            : template &lt;typename T&gt;
+<span class="lineNum">      74 </span><span class="lineCov">          6 : inline void pup(PUP::er&amp; p, std::unordered_set&lt;T&gt;&amp; s) {  // NOLINT</span>
+<span class="lineNum">      75 </span><span class="lineCov">          6 :   int number_elem = PUP_stl_container_size(p, s);</span>
+<span class="lineNum">      76 </span>            : 
+<span class="lineNum">      77 </span><span class="lineCov">          6 :   if (p.isUnpacking()) {</span>
+<span class="lineNum">      78 </span><span class="lineCov">          6 :     for (int i = 0; i &lt; number_elem; ++i) {</span>
+<span class="lineNum">      79 </span>            :       T element;
+<span class="lineNum">      80 </span><span class="lineCov">          4 :       p | element;</span>
+<span class="lineNum">      81 </span><span class="lineCov">          4 :       s.emplace(std::move(element));</span>
+<span class="lineNum">      82 </span>            :     }
+<span class="lineNum">      83 </span>            :   } else {
+<span class="lineNum">      84 </span>            :     // This intenionally is not a reference because at least with stdlibc++ the
+<span class="lineNum">      85 </span>            :     // reference code does not compile because it turns the dereferenced
+<span class="lineNum">      86 </span>            :     // iterator into a value
+<span class="lineNum">      87 </span><span class="lineCov">         12 :     for (T e : s) {</span>
+<span class="lineNum">      88 </span><span class="lineCov">          8 :       p | e;</span>
+<span class="lineNum">      89 </span>            :     }
+<span class="lineNum">      90 </span>            :   }
+<span class="lineNum">      91 </span><span class="lineCov">          6 : }</span>
+<span class="lineNum">      92 </span>            : 
+<span class="lineNum">      93 </span>            : /// \ingroup Parallel
+<a name="94"><span class="lineNum">      94 </span>            : /// Serialization of std::unordered_set for Charm++</a>
+<span class="lineNum">      95 </span>            : template &lt;class T&gt;
+<span class="lineNum">      96 </span><span class="lineCov">          6 : inline void operator|(er&amp; p, std::unordered_set&lt;T&gt;&amp; s) {  // NOLINT</span>
+<span class="lineNum">      97 </span><span class="lineCov">          6 :   pup(p, s);</span>
+<span class="lineNum">      98 </span><span class="lineCov">          6 : }</span>
+<span class="lineNum">      99 </span>            : 
+<span class="lineNum">     100 </span>            : /// \ingroup Parallel
+<span class="lineNum">     101 </span>            : /// Serialization of enum for Charm++
+<span class="lineNum">     102 </span>            : ///
+<a name="103"><span class="lineNum">     103 </span>            : /// \note This requires a change to Charm++ to work</a>
+<span class="lineNum">     104 </span>            : template &lt;typename T, std::enable_if_t&lt;std::is_enum&lt;T&gt;::value&gt;* = nullptr&gt;
+<span class="lineNum">     105 </span><span class="lineCov">          3 : inline void operator|(PUP::er&amp; p, T&amp; s) {  // NOLINT</span>
+<span class="lineNum">     106 </span><span class="lineCov">          3 :   pup_bytes(&amp;p, static_cast&lt;void*&gt;(&amp;s), sizeof(T));</span>
+<span class="lineNum">     107 </span><span class="lineCov">          3 : }</span>
+<span class="lineNum">     108 </span>            : 
+<span class="lineNum">     109 </span>            : template &lt;size_t N = 0, typename... Args,
+<span class="lineNum">     110 </span>            :           std::enable_if_t&lt;0 == sizeof...(Args)&gt;* = nullptr&gt;
+<span class="lineNum">     111 </span>            : void pup_tuple_impl(PUP::er&amp; /* p */, std::tuple&lt;Args...&gt;&amp; /* t */) {  // NOLINT
+<span class="lineNum">     112 </span>            : }
+<span class="lineNum">     113 </span>            : 
+<a name="114"><span class="lineNum">     114 </span>            : template &lt;size_t N = 0, typename... Args,</a>
+<span class="lineNum">     115 </span>            :           std::enable_if_t&lt;(0 &lt; sizeof...(Args) and 0 == N)&gt;* = nullptr&gt;
+<span class="lineNum">     116 </span><span class="lineCov">          6 : void pup_tuple_impl(PUP::er&amp; p, std::tuple&lt;Args...&gt;&amp; t) {  // NOLINT</span>
+<span class="lineNum">     117 </span><span class="lineCov">          6 :   p | std::get&lt;N&gt;(t);</span>
+<span class="lineNum">     118 </span><span class="lineCov">          6 : }</span>
+<span class="lineNum">     119 </span>            : 
+<a name="120"><span class="lineNum">     120 </span>            : template &lt;size_t N, typename... Args,</a>
+<span class="lineNum">     121 </span>            :           std::enable_if_t&lt;(sizeof...(Args) &gt; 0 and N &gt; 0)&gt;* = nullptr&gt;
+<span class="lineNum">     122 </span><span class="lineCov">         15 : void pup_tuple_impl(PUP::er&amp; p, std::tuple&lt;Args...&gt;&amp; t) {  // NOLINT</span>
+<span class="lineNum">     123 </span><span class="lineCov">         15 :   p | std::get&lt;N&gt;(t);</span>
+<span class="lineNum">     124 </span><span class="lineCov">         15 :   pup_tuple_impl&lt;N - 1&gt;(p, t);</span>
+<span class="lineNum">     125 </span><span class="lineCov">         15 : }</span>
+<span class="lineNum">     126 </span>            : 
+<span class="lineNum">     127 </span>            : /// \ingroup Parallel
+<a name="128"><span class="lineNum">     128 </span>            : /// Serialization of std::tuple for Charm++</a>
+<span class="lineNum">     129 </span>            : template &lt;typename... Args&gt;
+<span class="lineNum">     130 </span><span class="lineCov">          6 : inline void pup(PUP::er&amp; p, std::tuple&lt;Args...&gt;&amp; t) {  // NOLINT</span>
+<span class="lineNum">     131 </span><span class="lineCov">          6 :   if (p.isUnpacking()) {</span>
+<span class="lineNum">     132 </span><span class="lineCov">          2 :     t = std::tuple&lt;Args...&gt;{};</span>
+<span class="lineNum">     133 </span>            :   }
+<span class="lineNum">     134 </span><span class="lineCov">          6 :   pup_tuple_impl&lt;sizeof...(Args) - 1&gt;(p, t);</span>
+<span class="lineNum">     135 </span><span class="lineCov">          6 : }</span>
+<span class="lineNum">     136 </span>            : 
+<span class="lineNum">     137 </span>            : /// \ingroup Parallel
+<a name="138"><span class="lineNum">     138 </span>            : /// Serialization of std::tuple for Charm++</a>
+<span class="lineNum">     139 </span>            : template &lt;typename... Args&gt;
+<span class="lineNum">     140 </span><span class="lineCov">          6 : inline void operator|(PUP::er&amp; p, std::tuple&lt;Args...&gt;&amp; t) {  // NOLINT</span>
+<span class="lineNum">     141 </span><span class="lineCov">          6 :   pup(p, t);</span>
+<span class="lineNum">     142 </span><span class="lineCov">          6 : }</span>
+<span class="lineNum">     143 </span>            : 
+<span class="lineNum">     144 </span>            : // @{
+<span class="lineNum">     145 </span>            : /// \ingroup Parallel
+<span class="lineNum">     146 </span>            : /// Serialization of a unique_ptr for Charm++
+<a name="147"><span class="lineNum">     147 </span>            : template &lt;typename T,</a>
+<span class="lineNum">     148 </span>            :           std::enable_if_t&lt;not std::is_base_of&lt;PUP::able, T&gt;::value&gt;* = nullptr&gt;
+<span class="lineNum">     149 </span><span class="lineCov">          6 : inline void pup(PUP::er&amp; p, std::unique_ptr&lt;T&gt;&amp; t) {  // NOLINT</span>
+<span class="lineNum">     150 </span><span class="lineCov">          6 :   bool is_nullptr = nullptr == t;</span>
+<span class="lineNum">     151 </span><span class="lineCov">          6 :   p | is_nullptr;</span>
+<span class="lineNum">     152 </span><span class="lineCov">          6 :   if (not is_nullptr) {</span>
+<span class="lineNum">     153 </span>            :     T* t1;
+<span class="lineNum">     154 </span><span class="lineCov">          3 :     if (p.isUnpacking()) {</span>
+<span class="lineNum">     155 </span><span class="lineCov">          1 :       t1 = new T;</span>
+<span class="lineNum">     156 </span>            :     } else {
+<span class="lineNum">     157 </span><span class="lineCov">          2 :       t1 = t.get();</span>
+<span class="lineNum">     158 </span>            :     }
+<span class="lineNum">     159 </span><span class="lineCov">          3 :     p | *t1;</span>
+<span class="lineNum">     160 </span><span class="lineCov">          3 :     if (p.isUnpacking()) {</span>
+<span class="lineNum">     161 </span><span class="lineCov">          1 :       t.reset(t1);</span>
+<span class="lineNum">     162 </span>            :     }
+<span class="lineNum">     163 </span>            :   }
+<span class="lineNum">     164 </span><span class="lineCov">          6 : }</span>
+<span class="lineNum">     165 </span>            : 
+<a name="166"><span class="lineNum">     166 </span>            : template &lt;typename T,</a>
+<span class="lineNum">     167 </span>            :           std::enable_if_t&lt;std::is_base_of&lt;PUP::able, T&gt;::value&gt;* = nullptr&gt;
+<span class="lineNum">     168 </span><span class="lineCov">          3 : inline void pup(PUP::er&amp; p, std::unique_ptr&lt;T&gt;&amp; t) {  // NOLINT</span>
+<span class="lineNum">     169 </span><span class="lineCov">          3 :   T* t1 = nullptr;</span>
+<span class="lineNum">     170 </span><span class="lineCov">          3 :   if (p.isUnpacking()) {</span>
+<span class="lineNum">     171 </span><span class="lineCov">          1 :     p | t1;</span>
+<span class="lineNum">     172 </span><span class="lineCov">          1 :     t = std::unique_ptr&lt;T&gt;(t1);</span>
+<span class="lineNum">     173 </span>            :   } else {
+<span class="lineNum">     174 </span><span class="lineCov">          2 :     t1 = t.get();</span>
+<span class="lineNum">     175 </span><span class="lineCov">          2 :     p | t1;</span>
+<span class="lineNum">     176 </span>            :   }
+<span class="lineNum">     177 </span><span class="lineCov">          3 : }</span>
+<span class="lineNum">     178 </span>            : // @}
+<span class="lineNum">     179 </span>            : 
+<span class="lineNum">     180 </span>            : /// \ingroup Parallel
+<a name="181"><span class="lineNum">     181 </span>            : /// Serialization of a unique_ptr for Charm++</a>
+<span class="lineNum">     182 </span>            : template &lt;typename T&gt;
+<span class="lineNum">     183 </span><span class="lineCov">          9 : inline void operator|(PUP::er&amp; p, std::unique_ptr&lt;T&gt;&amp; t) {  // NOLINT</span>
+<span class="lineNum">     184 </span><span class="lineCov">          9 :   pup(p, t);</span>
+<span class="lineNum">     185 </span><span class="lineCov">          9 : }</span>
+<span class="lineNum">     186 </span>            : }  // namespace PUP
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>
