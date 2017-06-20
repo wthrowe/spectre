@@ -18,5 +18,7 @@ var searchData=
   ['stripeiterator_2ecpp',['StripeIterator.cpp',['../src_2DataStructures_2StripeIterator_8cpp.html',1,'(Global Namespace)'],['../tests_2Unit_2DataStructures_2StripeIterator_8cpp.html',1,'(Global Namespace)']]],
   ['stripeiterator_2ehpp',['StripeIterator.hpp',['../StripeIterator_8hpp.html',1,'']]],
   ['strstream',['strstream',['http://en.cppreference.com/w/cpp/header/strstream.html',1,'']]],
+  ['structure_2ehpp',['Structure.hpp',['../Structure_8hpp.html',1,'']]],
+  ['symmetry_2ehpp',['Symmetry.hpp',['../Symmetry_8hpp.html',1,'']]],
   ['system_5ferror',['system_error',['http://en.cppreference.com/w/cpp/header/system_error.html',1,'']]]
 ];

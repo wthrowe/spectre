@@ -12,6 +12,8 @@ var searchData=
   ['acosh',['acosh',['../classDataVector.html#ab09d91be4b62b9719ffe1111ea536c20',1,'DataVector::acosh()'],['http://en.cppreference.com/w/cpp/numeric/math/acosh.html',1,'std::acosh()']]],
   ['address',['address',['http://en.cppreference.com/w/cpp/memory/allocator/address.html',1,'std::allocator']]],
   ['addressof',['addressof',['http://en.cppreference.com/w/cpp/memory/addressof.html',1,'std']]],
+  ['addscalar',['AddScalar',['../structblaze_1_1AddScalar.html#a7b50813e5de3f2a8e47a3cd77456740d',1,'blaze::AddScalar']]],
+  ['addsub',['AddSub',['../structTensorExpressions_1_1AddSub_3_01T1_00_01T2_00_01ArgsLs1_3_01Args1_8_8_8_01_4_00_01ArgsLs2_dd965ff16ece69e5a58457285dbba0d9.html#a5ca0c5a69457ca93aaa8ab12f2cb2a36',1,'TensorExpressions::AddSub&lt; T1, T2, ArgsLs1&lt; Args1... &gt;, ArgsLs2&lt; Args2... &gt;, Sign &gt;']]],
   ['adjacent_5fdifference',['adjacent_difference',['http://en.cppreference.com/w/cpp/algorithm/adjacent_difference.html',1,'std']]],
   ['adjacent_5ffind',['adjacent_find',['http://en.cppreference.com/w/cpp/algorithm/adjacent_find.html',1,'std']]],
   ['advance',['advance',['http://en.cppreference.com/w/cpp/iterator/advance.html',1,'std']]],

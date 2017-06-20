@@ -1,0 +1,187 @@
+<!-- HTML header for doxygen 1.8.10-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="SXS Collaboration">
+    <meta name="generator" content="Doxygen 1.8.13"/>
+    <style>
+        /*!
+         * IE10 viewport hack for Surface/desktop Windows 8 bug
+         * Copyright 2014-2015 Twitter, Inc.
+         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+         */
+        @-webkit-viewport { width: device-width; }
+        @-moz-viewport    { width: device-width; }
+        @-ms-viewport     { width: device-width; }
+        @-o-viewport      { width: device-width; }
+        @viewport         { width: device-width; }
+      </style>
+  <title>SpECTRE: src/DataStructures/Tensor/Expressions/Product.hpp Source File</title>
+  <link href="tabs.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="dynsections.js"></script>
+  <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
+  <link href="octicons.css" rel="stylesheet">
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="doxygen.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="bootstrap.min.js"></script>
+  <script type="text/javascript" src="spectre.js"></script>
+  </head>
+  <body>
+  <div id="top" class="navbar-fixed-top"><!-- do not remove this div, it is closed by doxygen! -->
+  <!-- BEGIN TITLEAREA -->
+  <div id="titlearea">
+  <script type="text/javascript">
+  var searchBox = new SearchBox("searchBox", "search",false,'Search');
+  </script>
+  <div id="main-nav">
+    <ul class="sm sm-dox" id="main-menu">
+      <li>
+      <a href="https://github.com/sxs-collaboration/spectre" target="_blank">
+      SpECTRE &#160;
+        <span id="projectnumber">v0.0.0</span>
+      </a>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-book"></i><span>Documentation</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 135px;">
+            <a href="index.html">
+            <i class="octicon octicon-book"></i><span>Documentation</span></a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="tutorials.html">
+              <i class="octicon octicon-mortar-board"></i><span>Tutorials</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="dev_guide.html">
+              <i class="octicon octicon-gist-secret"></i><span>Dev Guide</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown" style="min-width: 150px;">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 130px;">
+            <a href="modules.html">
+              <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+            </a>
+          </li>
+          <li style="min-width: 130px;">
+            <a href="namespaces.html">
+              <i class="octicon octicon-gist"></i>
+              <span>Namespaces</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="files.html">
+          <i class="octicon octicon-file-directory"></i><span>Files</span>
+        </a>
+      </li>
+      <!--The Search <li> is added by doxygen later-->
+    </ul>
+  </div><!-- main-nav -->
+  </div><!-- titlearea -->
+  <!-- window showing the filter options -->
+  <div id="MSearchSelectWindow"  style="position: fixed;"
+       onmouseover="return searchBox.OnSearchSelectShow()"
+       onmouseout="return searchBox.OnSearchSelectHide()"
+       onkeydown="return searchBox.OnSearchSelectKey(event)">
+  </div>
+  <!-- iframe showing the search results (closed by default) -->
+  <div id="MSearchResultsWindow"  style="position: fixed;">
+  <iframe src="javascript:void(0)" frameborder="0"
+          name="MSearchResults" id="MSearchResults">
+  </iframe>
+  </div><!-- Generated by Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_22cd119e9135d55404da822cc2bf42d2.html">src</a></li><li class="navelem"><a class="el" href="dir_82345eea92ca6199b790b57d5dab4505.html">DataStructures</a></li><li class="navelem"><a class="el" href="dir_138f75fd6934d88735e4b7e6707d5b59.html">Tensor</a></li><li class="navelem"><a class="el" href="dir_86c8659c7971923fd05f53f87a73b7a3.html">Expressions</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">Product.hpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="Product_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// Distributed under the MIT License.</span></div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// See LICENSE.txt for details.</span></div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;</div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#pragma once</span></div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;</div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;Data/Tensor/Expressions/TensorExpression.hpp&quot;</span></div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceTensorExpressions.html">TensorExpressions</a> {</div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2, <span class="keyword">typename</span> ArgsLs1, <span class="keyword">typename</span> ArgsLs2&gt;</div><div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="structTensorExpressions_1_1Product.html">   21</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structTensorExpressions_1_1Product.html">Product</a>;</div><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2, <span class="keyword">template</span> &lt;<span class="keyword">typename</span>...&gt; <span class="keyword">class </span>ArgsLs1,</div><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;          <span class="keyword">template</span> &lt;<span class="keyword">typename</span>...&gt; <span class="keyword">class </span>ArgsLs2, <span class="keyword">typename</span>... Args1,</div><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;          <span class="keyword">typename</span>... Args2&gt;</div><div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="structTensorExpressions_1_1Product_3_01T1_00_01T2_00_01ArgsLs1_3_01Args1_8_8_8_01_4_00_01ArgsLs2_3_01Args2_8_8_8_01_4_01_4.html">   26</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structTensorExpressions_1_1Product.html">Product</a>&lt;T1, T2, ArgsLs1&lt;Args1...&gt;, ArgsLs2&lt;Args2...&gt;&gt;</div><div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    : <span class="keyword">public</span> TensorExpression&lt;</div><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;          Product&lt;T1, T2, ArgsLs1&lt;Args1...&gt;, ArgsLs2&lt;Args2...&gt;&gt;,</div><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;          typename T1::type, double,</div><div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;          tmpl::append&lt;typename T1::index_list, typename T2::index_list&gt;,</div><div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;          tmpl::sort&lt;</div><div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;              tmpl::append&lt;typename T1::args_list, typename T2::args_list&gt;&gt;&gt;,</div><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;      <span class="keyword">public</span> <a class="code" href="structExpression.html">Expression</a> {</div><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;  static_assert(<a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/is_same.html">std::is_same&lt;typename T1::type, typename T2::type&gt;::value</a>,</div><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;                <span class="stringliteral">&quot;Cannot product Tensors holding different data types.&quot;</span>);</div><div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;  <span class="keyword">using</span> <a class="code" href="structTensorExpressions_1_1Product_3_01T1_00_01T2_00_01ArgsLs1_3_01Args1_8_8_8_01_4_00_01ArgsLs2_3_01Args2_8_8_8_01_4_01_4.html#a39a3409de6e1340e8566c33b3f015fce">max_symm2</a> = tmpl::fold&lt;typename T2::symmetry, tmpl::uint32_t&lt;0&gt;,</div><div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="structTensorExpressions_1_1Product_3_01T1_00_01T2_00_01ArgsLs1_3_01Args1_8_8_8_01_4_00_01ArgsLs2_3_01Args2_8_8_8_01_4_01_4.html#a39a3409de6e1340e8566c33b3f015fce">   37</a></span>&#160;                               tmpl::max&lt;tmpl::_state, tmpl::_element&gt;&gt;;</div><div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div><div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="structTensorExpressions_1_1Product_3_01T1_00_01T2_00_01ArgsLs1_3_01Args1_8_8_8_01_4_00_01ArgsLs2_3_01Args2_8_8_8_01_4_01_4.html#a731808a9ae4e4609f59723303ea3d62f">   39</a></span>&#160;  <span class="keyword">using</span> <a class="code" href="structTensorExpressions_1_1Product_3_01T1_00_01T2_00_01ArgsLs1_3_01Args1_8_8_8_01_4_00_01ArgsLs2_3_01Args2_8_8_8_01_4_01_4.html#a731808a9ae4e4609f59723303ea3d62f">type</a> = <span class="keyword">typename</span> T1::type;</div><div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;  <span class="keyword">using</span> <a class="code" href="structTensorExpressions_1_1Product_3_01T1_00_01T2_00_01ArgsLs1_3_01Args1_8_8_8_01_4_00_01ArgsLs2_3_01Args2_8_8_8_01_4_01_4.html#a34f3516314da13170c2732f7c0805f9a">symmetry</a> = tmpl::append&lt;</div><div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;      tmpl::transform&lt;typename T1::symmetry, tmpl::plus&lt;tmpl::_1, max_symm2&gt;&gt;,</div><div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="structTensorExpressions_1_1Product_3_01T1_00_01T2_00_01ArgsLs1_3_01Args1_8_8_8_01_4_00_01ArgsLs2_3_01Args2_8_8_8_01_4_01_4.html#a34f3516314da13170c2732f7c0805f9a">   42</a></span>&#160;      <span class="keyword">typename</span> T2::symmetry&gt;;</div><div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;  <span class="keyword">using</span> <a class="code" href="structTensorExpressions_1_1Product_3_01T1_00_01T2_00_01ArgsLs1_3_01Args1_8_8_8_01_4_00_01ArgsLs2_3_01Args2_8_8_8_01_4_01_4.html#a4a74d755e75ce1c1c2f16cd9356d6b0e">index_list</a> =</div><div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="structTensorExpressions_1_1Product_3_01T1_00_01T2_00_01ArgsLs1_3_01Args1_8_8_8_01_4_00_01ArgsLs2_3_01Args2_8_8_8_01_4_01_4.html#a4a74d755e75ce1c1c2f16cd9356d6b0e">   44</a></span>&#160;      tmpl::append&lt;typename T1::index_list, typename T2::index_list&gt;;</div><div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="structTensorExpressions_1_1Product_3_01T1_00_01T2_00_01ArgsLs1_3_01Args1_8_8_8_01_4_00_01ArgsLs2_3_01Args2_8_8_8_01_4_01_4.html#ace6dfbcaeda5c2f23bdc9918414ccaa2">   45</a></span>&#160;  <span class="keyword">static</span> constexpr <span class="keyword">auto</span> num_tensor_indices =</div><div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;      tmpl::size&lt;index_list&gt;::value == 0 ? 1 : tmpl::size&lt;index_list&gt;::value;</div><div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;  <span class="keyword">using</span> <a class="code" href="structTensorExpressions_1_1Product_3_01T1_00_01T2_00_01ArgsLs1_3_01Args1_8_8_8_01_4_00_01ArgsLs2_3_01Args2_8_8_8_01_4_01_4.html#a028c06b0c1a2c1c555fcb0526b870617">args_list</a> =</div><div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="structTensorExpressions_1_1Product_3_01T1_00_01T2_00_01ArgsLs1_3_01Args1_8_8_8_01_4_00_01ArgsLs2_3_01Args2_8_8_8_01_4_01_4.html#a028c06b0c1a2c1c555fcb0526b870617">   48</a></span>&#160;      tmpl::sort&lt;tmpl::append&lt;typename T1::args_list, typename T2::args_list&gt;&gt;;</div><div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div><div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="structTensorExpressions_1_1Product_3_01T1_00_01T2_00_01ArgsLs1_3_01Args1_8_8_8_01_4_00_01ArgsLs2_3_01Args2_8_8_8_01_4_01_4.html#ab0cf1f191b123d8eadde2df389bb5cee">   50</a></span>&#160;  <a class="code" href="structTensorExpressions_1_1Product_3_01T1_00_01T2_00_01ArgsLs1_3_01Args1_8_8_8_01_4_00_01ArgsLs2_3_01Args2_8_8_8_01_4_01_4.html#ab0cf1f191b123d8eadde2df389bb5cee">Product</a>(<span class="keyword">const</span> T1&amp; t1, <span class="keyword">const</span> T2&amp; t2) : t1_(t1), t2_(t2) {}</div><div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div><div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;  <span class="comment">// TODO: The args will need to be reduced in a careful manner, which means</span></div><div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;  <span class="comment">// they need to be reduced together, then split at the correct length so that</span></div><div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;  <span class="comment">// the indexing is correct.</span></div><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;  <span class="keyword">template</span> &lt;<span class="keyword">typename</span>... LhsIndices, <span class="keyword">typename</span> U&gt;</div><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;  <a class="code" href="group__Utilities.html#ga9d571cd642604cb7bd87bb039ca3760f">SPECTRE_ALWAYS_INLINE</a> <a class="code" href="structTensorExpressions_1_1Product_3_01T1_00_01T2_00_01ArgsLs1_3_01Args1_8_8_8_01_4_00_01ArgsLs2_3_01Args2_8_8_8_01_4_01_4.html#a731808a9ae4e4609f59723303ea3d62f">type</a></div><div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="structTensorExpressions_1_1Product_3_01T1_00_01T2_00_01ArgsLs1_3_01Args1_8_8_8_01_4_00_01ArgsLs2_3_01Args2_8_8_8_01_4_01_4.html#a2c7b109a7ef4f21f249e286ca48ed886">   57</a></span>&#160;  <span class="keyword">get</span>(<span class="keyword">const</span> <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array&lt;U, num_tensor_indices&gt;</a>&amp; tensor_index) <span class="keyword">const</span> {</div><div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keywordflow">return</span> t1_.template <span class="keyword">get</span>&lt;LhsIndices...&gt;(tensor_index) *</div><div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;           t2_.template get&lt;LhsIndices...&gt;(tensor_index);</div><div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;  }</div><div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div><div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; <span class="keyword">private</span>:</div><div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;  <span class="keyword">const</span> T1 t1_;</div><div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;  <span class="keyword">const</span> T2 t2_;</div><div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;};</div><div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div><div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;}  <span class="comment">// namespace TensorExpressions</span></div><div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div><div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2, <span class="keyword">typename</span> X, <span class="keyword">typename</span> Symm1, <span class="keyword">typename</span> Symm2,</div><div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;          <span class="keyword">typename</span> IndexLs1, <span class="keyword">typename</span> IndexLs2, <span class="keyword">typename</span> Args1, <span class="keyword">typename</span> Args2&gt;</div><div class="line"><a name="l00086"></a><span class="lineno"><a class="line" href="group__TensorExpressions.html#ga1573302bc98f4f32b87d79f7ef22517a">   86</a></span>&#160;<a class="code" href="group__Utilities.html#ga9d571cd642604cb7bd87bb039ca3760f">SPECTRE_ALWAYS_INLINE</a> <span class="keyword">auto</span> <a class="code" href="group__TensorExpressions.html#ga1573302bc98f4f32b87d79f7ef22517a">operator*</a>(</div><div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="keyword">const</span> TensorExpression&lt;T1, X, Symm1, IndexLs1, Args1&gt;&amp; t1,</div><div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="keyword">const</span> TensorExpression&lt;T2, X, Symm2, IndexLs2, Args2&gt;&amp; t2) {</div><div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;  <span class="comment">// static_assert(tmpl::size&lt;Args1&gt;::value == tmpl::size&lt;Args2&gt;::value,</span></div><div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;  <span class="comment">//               &quot;Tensor addition is only possible with the same rank</span></div><div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;  <span class="comment">//               tensors&quot;);</span></div><div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;  <span class="comment">// static_assert(tmpl::equal_members&lt;Args1, Args2&gt;::value,</span></div><div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;  <span class="comment">//               &quot;The indices when adding two tensors must be equal. This</span></div><div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;  <span class="comment">//               error &quot;</span></div><div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;  <span class="comment">//               &quot;occurs from expressions like A(_a, _b) + B(_c, _a)&quot;);</span></div><div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;  <span class="keywordflow">return</span> <a class="code" href="structTensorExpressions_1_1Product.html">TensorExpressions::Product</a>&lt;</div><div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;      <span class="keyword">typename</span> <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/conditional.html">std::conditional</a>&lt;</div><div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;          <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/is_base_of.html">std::is_base_of&lt;Expression, T1&gt;::value</a>, T1,</div><div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;          TensorExpression&lt;T1, X, Symm1, IndexLs1, Args1&gt;&gt;::type,</div><div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;      <span class="keyword">typename</span> <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/conditional.html">std::conditional</a>&lt;</div><div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;          <a class="codeRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/is_base_of.html">std::is_base_of&lt;Expression, T2&gt;::value</a>, T2,</div><div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;          TensorExpression&lt;T2, X, Symm2, IndexLs2, Args2&gt;&gt;::type,</div><div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;      Args1, Args2&gt;(~t1, ~t2);</div><div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;}</div><div class="ttc" id="structTensorExpressions_1_1Product_3_01T1_00_01T2_00_01ArgsLs1_3_01Args1_8_8_8_01_4_00_01ArgsLs2_3_01Args2_8_8_8_01_4_01_4_html_a028c06b0c1a2c1c555fcb0526b870617"><div class="ttname"><a href="structTensorExpressions_1_1Product_3_01T1_00_01T2_00_01ArgsLs1_3_01Args1_8_8_8_01_4_00_01ArgsLs2_3_01Args2_8_8_8_01_4_01_4.html#a028c06b0c1a2c1c555fcb0526b870617">TensorExpressions::Product&lt; T1, T2, ArgsLs1&lt; Args1... &gt;, ArgsLs2&lt; Args2... &gt; &gt;::args_list</a></div><div class="ttdeci">tmpl::sort&lt; tmpl::append&lt; typename T1::args_list, typename T2::args_list &gt; &gt; args_list</div><div class="ttdef"><b>Definition:</b> Product.hpp:48</div></div>
+<div class="ttc" id="group__TensorExpressions_html_ga1573302bc98f4f32b87d79f7ef22517a"><div class="ttname"><a href="group__TensorExpressions.html#ga1573302bc98f4f32b87d79f7ef22517a">operator*</a></div><div class="ttdeci">auto operator*(const TensorExpression&lt; T1, X, Symm1, IndexLs1, Args1 &gt; &amp;t1, const TensorExpression&lt; T2, X, Symm2, IndexLs2, Args2 &gt; &amp;t2)</div><div class="ttdef"><b>Definition:</b> Product.hpp:86</div></div>
+<div class="ttc" id="group__Utilities_html_ga9d571cd642604cb7bd87bb039ca3760f"><div class="ttname"><a href="group__Utilities.html#ga9d571cd642604cb7bd87bb039ca3760f">SPECTRE_ALWAYS_INLINE</a></div><div class="ttdeci">#define SPECTRE_ALWAYS_INLINE</div><div class="ttdoc">Always inline a function. Only use this if you benchmarked the code. </div><div class="ttdef"><b>Definition:</b> ForceInline.hpp:16</div></div>
+<div class="ttc" id="structTensorExpressions_1_1Product_3_01T1_00_01T2_00_01ArgsLs1_3_01Args1_8_8_8_01_4_00_01ArgsLs2_3_01Args2_8_8_8_01_4_01_4_html_a34f3516314da13170c2732f7c0805f9a"><div class="ttname"><a href="structTensorExpressions_1_1Product_3_01T1_00_01T2_00_01ArgsLs1_3_01Args1_8_8_8_01_4_00_01ArgsLs2_3_01Args2_8_8_8_01_4_01_4.html#a34f3516314da13170c2732f7c0805f9a">TensorExpressions::Product&lt; T1, T2, ArgsLs1&lt; Args1... &gt;, ArgsLs2&lt; Args2... &gt; &gt;::symmetry</a></div><div class="ttdeci">tmpl::append&lt; tmpl::transform&lt; typename T1::symmetry, tmpl::plus&lt; tmpl::_1, max_symm2 &gt; &gt;, typename T2::symmetry &gt; symmetry</div><div class="ttdef"><b>Definition:</b> Product.hpp:42</div></div>
+<div class="ttc" id="structTensorExpressions_1_1Product_3_01T1_00_01T2_00_01ArgsLs1_3_01Args1_8_8_8_01_4_00_01ArgsLs2_3_01Args2_8_8_8_01_4_01_4_html_a4a74d755e75ce1c1c2f16cd9356d6b0e"><div class="ttname"><a href="structTensorExpressions_1_1Product_3_01T1_00_01T2_00_01ArgsLs1_3_01Args1_8_8_8_01_4_00_01ArgsLs2_3_01Args2_8_8_8_01_4_01_4.html#a4a74d755e75ce1c1c2f16cd9356d6b0e">TensorExpressions::Product&lt; T1, T2, ArgsLs1&lt; Args1... &gt;, ArgsLs2&lt; Args2... &gt; &gt;::index_list</a></div><div class="ttdeci">tmpl::append&lt; typename T1::index_list, typename T2::index_list &gt; index_list</div><div class="ttdef"><b>Definition:</b> Product.hpp:44</div></div>
+<div class="ttc" id="is_same_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/types/is_same.html">std::is_same</a></div></div>
+<div class="ttc" id="structTensorExpressions_1_1Product_3_01T1_00_01T2_00_01ArgsLs1_3_01Args1_8_8_8_01_4_00_01ArgsLs2_3_01Args2_8_8_8_01_4_01_4_html_a39a3409de6e1340e8566c33b3f015fce"><div class="ttname"><a href="structTensorExpressions_1_1Product_3_01T1_00_01T2_00_01ArgsLs1_3_01Args1_8_8_8_01_4_00_01ArgsLs2_3_01Args2_8_8_8_01_4_01_4.html#a39a3409de6e1340e8566c33b3f015fce">TensorExpressions::Product&lt; T1, T2, ArgsLs1&lt; Args1... &gt;, ArgsLs2&lt; Args2... &gt; &gt;::max_symm2</a></div><div class="ttdeci">tmpl::fold&lt; typename T2::symmetry, tmpl::uint32_t&lt; 0 &gt;, tmpl::max&lt; tmpl::_state, tmpl::_element &gt; &gt; max_symm2</div><div class="ttdef"><b>Definition:</b> Product.hpp:37</div></div>
+<div class="ttc" id="structExpression_html"><div class="ttname"><a href="structExpression.html">Expression</a></div><div class="ttdoc">Marks a class as being a TensorExpression. </div><div class="ttdef"><b>Definition:</b> TensorExpression.hpp:264</div></div>
+<div class="ttc" id="structTensorExpressions_1_1Product_3_01T1_00_01T2_00_01ArgsLs1_3_01Args1_8_8_8_01_4_00_01ArgsLs2_3_01Args2_8_8_8_01_4_01_4_html_ab0cf1f191b123d8eadde2df389bb5cee"><div class="ttname"><a href="structTensorExpressions_1_1Product_3_01T1_00_01T2_00_01ArgsLs1_3_01Args1_8_8_8_01_4_00_01ArgsLs2_3_01Args2_8_8_8_01_4_01_4.html#ab0cf1f191b123d8eadde2df389bb5cee">TensorExpressions::Product&lt; T1, T2, ArgsLs1&lt; Args1... &gt;, ArgsLs2&lt; Args2... &gt; &gt;::Product</a></div><div class="ttdeci">Product(const T1 &amp;t1, const T2 &amp;t2)</div><div class="ttdef"><b>Definition:</b> Product.hpp:50</div></div>
+<div class="ttc" id="structTensorExpressions_1_1Product_html"><div class="ttname"><a href="structTensorExpressions_1_1Product.html">TensorExpressions::Product</a></div><div class="ttdef"><b>Definition:</b> Product.hpp:21</div></div>
+<div class="ttc" id="structTensorExpressions_1_1Product_3_01T1_00_01T2_00_01ArgsLs1_3_01Args1_8_8_8_01_4_00_01ArgsLs2_3_01Args2_8_8_8_01_4_01_4_html_a731808a9ae4e4609f59723303ea3d62f"><div class="ttname"><a href="structTensorExpressions_1_1Product_3_01T1_00_01T2_00_01ArgsLs1_3_01Args1_8_8_8_01_4_00_01ArgsLs2_3_01Args2_8_8_8_01_4_01_4.html#a731808a9ae4e4609f59723303ea3d62f">TensorExpressions::Product&lt; T1, T2, ArgsLs1&lt; Args1... &gt;, ArgsLs2&lt; Args2... &gt; &gt;::type</a></div><div class="ttdeci">typename T1::type type</div><div class="ttdef"><b>Definition:</b> Product.hpp:39</div></div>
+<div class="ttc" id="namespaceTensorExpressions_html"><div class="ttname"><a href="namespaceTensorExpressions.html">TensorExpressions</a></div><div class="ttdef"><b>Definition:</b> AddSubtract.hpp:11</div></div>
+<div class="ttc" id="conditional_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/types/conditional.html">std::conditional</a></div></div>
+<div class="ttc" id="is_base_of_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/types/is_base_of.html">std::is_base_of</a></div></div>
+<div class="ttc" id="array_html"><div class="ttname"><a href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.10-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+&copy; Copyright 2017
+<a href="https://black-holes.org">SXS Collaboration</a>,
+<a href="LICENSE.txt" target="_blank">
+<span class="hidden-xs">Distributed under the</span>
+MIT License</a>
+</small></address>
+</body>
+</html>

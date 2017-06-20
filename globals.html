@@ -155,7 +155,7 @@ $(function() {
 <h3><a id="index_a"></a>- a -</h3><ul>
 <li>abort_with_error_message()
 : <a class="el" href="group__ErrorHandling.html#ga976ceeca531715395cf8b0cb9664fbc7">AbortWithErrorMessage.cpp</a>
-, <a class="el" href="group__ErrorHandling.html#ga756d969ca9f2d2c56f14a04fe30cb815">AbortWithErrorMessage.hpp</a>
+, <a class="el" href="group__ErrorHandling.html#ga976ceeca531715395cf8b0cb9664fbc7">AbortWithErrorMessage.hpp</a>
 </li>
 <li>array_equal()
 : <a class="el" href="group__ConstantExpressions.html#ga4ba185e114b03850b947f1482bf73d5f">ConstantExpressions.hpp</a>
@@ -178,6 +178,9 @@ $(function() {
 </li>
 <li>CERROR
 : <a class="el" href="group__ErrorHandling.html#gac6b7fabac0ecf1b822a9cd865e36418a">Error.hpp</a>
+</li>
+<li>change_index_up_lo
+: <a class="el" href="group__Tensor.html#gacb33fd857700a3fc87b9dce8c877fee7">IndexType.hpp</a>
 </li>
 <li>CkRegisterMainModule()
 : <a class="el" href="ParallelInfo_8cpp.html#a7e91ceb8c6194c6aa80f2d95ed422922">ParallelInfo.cpp</a>
@@ -214,8 +217,8 @@ $(function() {
 : <a class="el" href="group__Utilities.html#gad4d31316e0975f0a66a60d9ac92756a8">Blas.hpp</a>
 </li>
 <li>disable_floating_point_exceptions()
-: <a class="el" href="group__ErrorHandling.html#ga15999710b74a2bb739b0273bf1bc7b7b">FloatingPointExceptions.hpp</a>
-, <a class="el" href="group__ErrorHandling.html#ga15999710b74a2bb739b0273bf1bc7b7b">FloatingPointExceptions.cpp</a>
+: <a class="el" href="group__ErrorHandling.html#ga15999710b74a2bb739b0273bf1bc7b7b">FloatingPointExceptions.cpp</a>
+, <a class="el" href="group__ErrorHandling.html#ga15999710b74a2bb739b0273bf1bc7b7b">FloatingPointExceptions.hpp</a>
 </li>
 </ul>
 
@@ -248,6 +251,9 @@ $(function() {
 
 
 <h3><a id="index_g"></a>- g -</h3><ul>
+<li>generate_transformation
+: <a class="el" href="group__TensorExpressions.html#ga88f7c9ca14eb7eb288bb972e241c18f6">TensorExpression.hpp</a>
+</li>
 <li>get_nth_bit()
 : <a class="el" href="group__ConstantExpressions.html#ga6081cdd84b199ef868569b149f3e7256">ConstantExpressions.hpp</a>
 </li>
@@ -258,6 +264,15 @@ $(function() {
 
 
 <h3><a id="index_i"></a>- i -</h3><ul>
+<li>Index
+: <a class="el" href="Tensor_8cpp.html#adce8167d142fbf2347e616e0e105d465">Tensor.cpp</a>
+</li>
+<li>index_list
+: <a class="el" href="IndexType_8hpp.html#aed089afaa0428b29bb5a9b9e77c81927">IndexType.hpp</a>
+</li>
+<li>IndexType
+: <a class="el" href="group__Tensor.html#ga875b107b929ff008a27078792ac0bc8e">IndexType.hpp</a>
+</li>
 <li>info_from_build()
 : <a class="el" href="group__Utilities.html#gada33ac747e1720e8d6c7d89323663c3e">InfoFromBuild.cpp</a>
 , <a class="el" href="group__Utilities.html#gada33ac747e1720e8d6c7d89323663c3e">InfoFromBuild.hpp</a>
@@ -301,43 +316,68 @@ $(function() {
 </ul>
 
 
+<h3><a id="index_n"></a>- n -</h3><ul>
+<li>next_tensor_index
+: <a class="el" href="group__TensorExpressions.html#ga4e3e7bcf352b9ea3d8dec615784331f9">TensorExpression.hpp</a>
+</li>
+</ul>
+
+
 <h3><a id="index_o"></a>- o -</h3><ul>
 <li>operator!=()
 : <a class="el" href="src_2DataStructures_2DataVector_8cpp.html#ae682169a31ba101c7f21a8610951aa57">DataVector.cpp</a>
 , <a class="el" href="DataVector_8hpp.html#ae682169a31ba101c7f21a8610951aa57">DataVector.hpp</a>
-, <a class="el" href="Matrix_8hpp.html#a46dd5316db08a75442273e540f7b4cdd">Matrix.hpp</a>
 , <a class="el" href="src_2DataStructures_2Matrix_8cpp.html#a46dd5316db08a75442273e540f7b4cdd">Matrix.cpp</a>
+, <a class="el" href="Matrix_8hpp.html#a46dd5316db08a75442273e540f7b4cdd">Matrix.hpp</a>
+, <a class="el" href="Tensor_8hpp.html#a3a4edba4728703a32228ba1bb066aa1b">Tensor.hpp</a>
 </li>
 <li>operator&quot;&quot; _st()
 : <a class="el" href="group__Utilities.html#ga9c127d07f412267ea6548c8dab8b44c1">Literals.hpp</a>
 </li>
+<li>operator*()
+: <a class="el" href="group__TensorExpressions.html#ga1573302bc98f4f32b87d79f7ef22517a">Product.hpp</a>
+</li>
+<li>operator+()
+: <a class="el" href="group__TensorExpressions.html#ga3e93d8dc6f61e9eecd5d5e9ae44c66cb">AddSubtract.hpp</a>
+</li>
+<li>operator-()
+: <a class="el" href="group__TensorExpressions.html#ga75aaaf15469ffbaed5e34dcbb110ce71">AddSubtract.hpp</a>
+</li>
 <li>operator&lt;&lt;()
-: <a class="el" href="group__Utilities.html#ga4b8db62a17e01a839e499a4c59112df5">StdHelpers.hpp</a>
-, <a class="el" href="group__Utilities.html#ga78d6a6a95d4ebc4e5fca330a272a6182">StlStreamDeclarations.hpp</a>
-, <a class="el" href="src_2DataStructures_2DataVector_8cpp.html#ab56cbde3e22a293db2289db0a92a9764">DataVector.cpp</a>
-, <a class="el" href="group__Utilities.html#ga78d6a6a95d4ebc4e5fca330a272a6182">StdHelpers.hpp</a>
-, <a class="el" href="group__Utilities.html#gaf389850e8ebc7d8040dfb5a50036f0ee">StlStreamDeclarations.hpp</a>
-, <a class="el" href="group__Utilities.html#gaf389850e8ebc7d8040dfb5a50036f0ee">StdHelpers.hpp</a>
-, <a class="el" href="group__Utilities.html#ga4248026e7d2c0f6a4ea723b16668531e">StlStreamDeclarations.hpp</a>
-, <a class="el" href="group__Utilities.html#ga3d4166ba0e61c9267ef6f3fb1a5dfe8e">StdHelpers.hpp</a>
-, <a class="el" href="group__Utilities.html#ga81330e34bc91cfbd33c4d5272d33c53b">StlStreamDeclarations.hpp</a>
-, <a class="el" href="group__Utilities.html#ga49015243242c2caad5bdbd64ea7449a1">StdHelpers.hpp</a>
-, <a class="el" href="Matrix_8hpp.html#a060711074cb5bcaf4e75498bc040c4b7">Matrix.hpp</a>
+: <a class="el" href="group__Utilities.html#ga78d6a6a95d4ebc4e5fca330a272a6182">StdHelpers.hpp</a>
+, <a class="el" href="group__Utilities.html#ga5a4affaa7af20b9ab232a5cae60d1fd5">StlStreamDeclarations.hpp</a>
 , <a class="el" href="src_2DataStructures_2Matrix_8cpp.html#a060711074cb5bcaf4e75498bc040c4b7">Matrix.cpp</a>
-, <a class="el" href="group__Utilities.html#gadcbd91b985044319a768092b12cd5045">StlStreamDeclarations.hpp</a>
-, <a class="el" href="DataVector_8hpp.html#ab56cbde3e22a293db2289db0a92a9764">DataVector.hpp</a>
+, <a class="el" href="group__Utilities.html#ga49015243242c2caad5bdbd64ea7449a1">StlStreamDeclarations.hpp</a>
+, <a class="el" href="Tensor_8hpp.html#adede4c1e1fd61a5bd94d2dd17273f166">Tensor.hpp</a>
 , <a class="el" href="Index_8hpp.html#a147c4c0fecf8fa6c73a9febffced87c1">Index.hpp</a>
+, <a class="el" href="group__Utilities.html#ga81330e34bc91cfbd33c4d5272d33c53b">StdHelpers.hpp</a>
+, <a class="el" href="group__Utilities.html#ga78d6a6a95d4ebc4e5fca330a272a6182">StlStreamDeclarations.hpp</a>
+, <a class="el" href="group__Utilities.html#ga4b8db62a17e01a839e499a4c59112df5">StdHelpers.hpp</a>
+, <a class="el" href="DataVector_8hpp.html#ab56cbde3e22a293db2289db0a92a9764">DataVector.hpp</a>
+, <a class="el" href="group__Utilities.html#gaf389850e8ebc7d8040dfb5a50036f0ee">StdHelpers.hpp</a>
+, <a class="el" href="group__Utilities.html#gaf389850e8ebc7d8040dfb5a50036f0ee">StlStreamDeclarations.hpp</a>
+, <a class="el" href="group__Utilities.html#gadcbd91b985044319a768092b12cd5045">StdHelpers.hpp</a>
+, <a class="el" href="Matrix_8hpp.html#a060711074cb5bcaf4e75498bc040c4b7">Matrix.hpp</a>
+, <a class="el" href="group__Utilities.html#ga5a4affaa7af20b9ab232a5cae60d1fd5">StdHelpers.hpp</a>
+, <a class="el" href="group__Utilities.html#ga3d4166ba0e61c9267ef6f3fb1a5dfe8e">StlStreamDeclarations.hpp</a>
+, <a class="el" href="group__Utilities.html#ga3d4166ba0e61c9267ef6f3fb1a5dfe8e">StdHelpers.hpp</a>
+, <a class="el" href="src_2DataStructures_2DataVector_8cpp.html#ab56cbde3e22a293db2289db0a92a9764">DataVector.cpp</a>
+, <a class="el" href="group__Utilities.html#ga49015243242c2caad5bdbd64ea7449a1">StdHelpers.hpp</a>
 </li>
 <li>operator==()
-: <a class="el" href="Matrix_8hpp.html#a9c177aa5c04d6ba7011ce67dc8294bc3">Matrix.hpp</a>
+: <a class="el" href="DataVector_8hpp.html#a6b818e491a272b8ac8e57e69299fd61f">DataVector.hpp</a>
 , <a class="el" href="src_2DataStructures_2DataVector_8cpp.html#a6b818e491a272b8ac8e57e69299fd61f">DataVector.cpp</a>
-, <a class="el" href="DataVector_8hpp.html#a6b818e491a272b8ac8e57e69299fd61f">DataVector.hpp</a>
 , <a class="el" href="src_2DataStructures_2Matrix_8cpp.html#a9c177aa5c04d6ba7011ce67dc8294bc3">Matrix.cpp</a>
+, <a class="el" href="Tensor_8hpp.html#a46149431ffdb8209229be49a1688d822">Tensor.hpp</a>
+, <a class="el" href="Matrix_8hpp.html#a9c177aa5c04d6ba7011ce67dc8294bc3">Matrix.hpp</a>
 </li>
 </ul>
 
 
 <h3><a id="index_p"></a>- p -</h3><ul>
+<li>plus_tensor_index
+: <a class="el" href="group__TensorExpressions.html#ga9d00e6077873db78d911e222226cb2ee">TensorExpression.hpp</a>
+</li>
 <li>pow()
 : <a class="el" href="group__ConstantExpressions.html#ga711d1085380b0f6e020ad98af636350b">ConstantExpressions.hpp</a>
 </li>
@@ -349,21 +389,45 @@ $(function() {
 : <a class="el" href="PupStlCpp11_8cpp.html#a1a50f51fde18d2e515e26844716f5abf">PupStlCpp11.cpp</a>
 , <a class="el" href="RunTests_8hpp.html#a1a50f51fde18d2e515e26844716f5abf">RunTests.hpp</a>
 </li>
+<li>repeated
+: <a class="el" href="group__TensorExpressions.html#gaa56b319386c04176c6154bec4f9adc5d">TensorExpression.hpp</a>
+</li>
 <li>replace_at()
 : <a class="el" href="group__ConstantExpressions.html#ga67df32bbc36ce9e80f16019b14345ba8">ConstantExpressions.hpp</a>
+</li>
+<li>replace_indices
+: <a class="el" href="group__TensorExpressions.html#gab737c98bb324929f5d37cca741b71a0e">TensorExpression.hpp</a>
+</li>
+<li>rhs_elements_in_lhs
+: <a class="el" href="group__TensorExpressions.html#gabb654b7a0322d916ac187ab45c47e4b8">TensorExpression.hpp</a>
 </li>
 </ul>
 
 
 <h3><a id="index_s"></a>- s -</h3><ul>
+<li>Scalar
+: <a class="el" href="group__Tensor.html#ga06ebcb38a1f13c246e53378b9e8959ce">TypeAliases.hpp</a>
+</li>
 <li>serialize()
 : <a class="el" href="group__Parallel.html#gaf46b590510bd8fad34c7055079262707">Serialize.hpp</a>
 </li>
 <li>serialize_and_deserialize()
 : <a class="el" href="group__TestingFramework.html#ga2895e57f4cacd63d2549655bb29bba7b">TestHelpers.hpp</a>
 </li>
+<li>SpacetimeIndex
+: <a class="el" href="group__Tensor.html#ga05c512b755e913cdbddce8634bdb4fa6">IndexType.hpp</a>
+</li>
+<li>SpatialIndex
+: <a class="el" href="group__Tensor.html#ga557beda9bce6c7f236213ec8b24b3ff3">IndexType.hpp</a>
+</li>
 <li>SPECTRE_ALWAYS_INLINE
 : <a class="el" href="group__Utilities.html#ga9d571cd642604cb7bd87bb039ca3760f">ForceInline.hpp</a>
+</li>
+<li>SPECTRE_BLAZE_ALLOCATOR
+: <a class="el" href="PointerVector_8hpp.html#ac86d4f82ee5912a6b2106e2ddf3fc190">PointerVector.hpp</a>
+</li>
+<li>SPECTRE_BLAZE_DEALLOCATOR
+: <a class="el" href="PointerVector_8hpp.html#a2d842ea405c9686813bf179f5c3b68c0">PointerVector.hpp</a>
 </li>
 <li>spectre_major_version()
 : <a class="el" href="group__Utilities.html#ga36b2bffa5f55447db8d65c1e045d626a">InfoFromBuild.cpp</a>
@@ -374,8 +438,8 @@ $(function() {
 , <a class="el" href="group__Utilities.html#gaddcfc56ecb94ec0577388d27f7431bb2">InfoFromBuild.hpp</a>
 </li>
 <li>spectre_patch_version()
-: <a class="el" href="group__Utilities.html#ga9158b176bca8b48872287187b6101250">InfoFromBuild.hpp</a>
-, <a class="el" href="group__Utilities.html#ga9158b176bca8b48872287187b6101250">InfoFromBuild.cpp</a>
+: <a class="el" href="group__Utilities.html#ga9158b176bca8b48872287187b6101250">InfoFromBuild.cpp</a>
+, <a class="el" href="group__Utilities.html#ga9158b176bca8b48872287187b6101250">InfoFromBuild.hpp</a>
 </li>
 <li>spectre_version()
 : <a class="el" href="group__Utilities.html#ga440a175ca29c1e92a7147f210a860932">InfoFromBuild.cpp</a>
@@ -383,6 +447,9 @@ $(function() {
 </li>
 <li>square()
 : <a class="el" href="group__ConstantExpressions.html#ga4acefaccfb2d2ff1d491ac107f8bb2a8">ConstantExpressions.hpp</a>
+</li>
+<li>Symmetry
+: <a class="el" href="group__Tensor.html#ga8cfb4461e3d8d897b541a8d64da1369e">Symmetry.hpp</a>
 </li>
 </ul>
 
@@ -397,6 +464,126 @@ $(function() {
 <li>test_move_semantics()
 : <a class="el" href="TestHelpers_8hpp.html#a12746aa7e93ebd5782817d71a61ffb54">TestHelpers.hpp</a>
 </li>
+<li>ti_a
+: <a class="el" href="group__TensorExpressions.html#gac6c7a257386976fe1278ba97db99cad1">TensorExpression.hpp</a>
+</li>
+<li>ti_A
+: <a class="el" href="TensorExpression_8hpp.html#a04574c963c08ce869f029d4b6a82946a">TensorExpression.hpp</a>
+</li>
+<li>ti_A_t
+: <a class="el" href="TensorExpression_8hpp.html#a8e72593ea656bff8300387cf196a4b8c">TensorExpression.hpp</a>
+</li>
+<li>ti_a_t
+: <a class="el" href="TensorExpression_8hpp.html#a4c7bd1d8741f04ec0c7dee8e6f71a960">TensorExpression.hpp</a>
+</li>
+<li>ti_B
+: <a class="el" href="TensorExpression_8hpp.html#af06495bfba333b6840246bbdc4473d85">TensorExpression.hpp</a>
+</li>
+<li>ti_b
+: <a class="el" href="TensorExpression_8hpp.html#a9a864efaffb8c4703ecaa2f5e248adde">TensorExpression.hpp</a>
+</li>
+<li>ti_B_t
+: <a class="el" href="TensorExpression_8hpp.html#a2bc36b210ba60869431fe2f7c276140e">TensorExpression.hpp</a>
+</li>
+<li>ti_b_t
+: <a class="el" href="TensorExpression_8hpp.html#a08767a7756ce4ee4adfaa31259a8fcf9">TensorExpression.hpp</a>
+</li>
+<li>ti_c
+: <a class="el" href="TensorExpression_8hpp.html#a83b9730fe12c99464604067f47b10d2a">TensorExpression.hpp</a>
+</li>
+<li>ti_C
+: <a class="el" href="TensorExpression_8hpp.html#afebcc2672a8fc05bdedaefc887094563">TensorExpression.hpp</a>
+</li>
+<li>ti_c_t
+: <a class="el" href="TensorExpression_8hpp.html#aa1c816207e9ecac81f993606c8d895fe">TensorExpression.hpp</a>
+</li>
+<li>ti_C_t
+: <a class="el" href="TensorExpression_8hpp.html#ab6b3d9cb70866ea9a84ff1ff3df76b27">TensorExpression.hpp</a>
+</li>
+<li>ti_D
+: <a class="el" href="TensorExpression_8hpp.html#a5b0009556f05fc60b74b5fa5f9707666">TensorExpression.hpp</a>
+</li>
+<li>ti_d
+: <a class="el" href="TensorExpression_8hpp.html#aba55336443094eb556fa71bf0bd9cba9">TensorExpression.hpp</a>
+</li>
+<li>ti_d_t
+: <a class="el" href="TensorExpression_8hpp.html#aedc5062189649d7dc2f2ed83851b4b29">TensorExpression.hpp</a>
+</li>
+<li>ti_D_t
+: <a class="el" href="TensorExpression_8hpp.html#a28f2f9acebe8961b8109d7e54f612a23">TensorExpression.hpp</a>
+</li>
+<li>ti_E
+: <a class="el" href="TensorExpression_8hpp.html#aa3a2d4092b1483a08996712303d3dbd9">TensorExpression.hpp</a>
+</li>
+<li>ti_e
+: <a class="el" href="TensorExpression_8hpp.html#a9013359de4f0c72ea87cf67998c138a9">TensorExpression.hpp</a>
+</li>
+<li>ti_e_t
+: <a class="el" href="TensorExpression_8hpp.html#a69ad7941ec41bfbbb823d0d1f768a34d">TensorExpression.hpp</a>
+</li>
+<li>ti_E_t
+: <a class="el" href="TensorExpression_8hpp.html#a1d203bdb407dfd4a00d334aa259c7d43">TensorExpression.hpp</a>
+</li>
+<li>ti_f
+: <a class="el" href="TensorExpression_8hpp.html#ac32c812308d92c93bbbece7d74151507">TensorExpression.hpp</a>
+</li>
+<li>ti_F
+: <a class="el" href="TensorExpression_8hpp.html#a84945f8cbaf62e6c87ca1e6defad8526">TensorExpression.hpp</a>
+</li>
+<li>ti_f_t
+: <a class="el" href="TensorExpression_8hpp.html#a9afabad39436df39da9ebfdad9627e19">TensorExpression.hpp</a>
+</li>
+<li>ti_F_t
+: <a class="el" href="TensorExpression_8hpp.html#a5588da718c55e8bbc1ddea384e31fe01">TensorExpression.hpp</a>
+</li>
+<li>ti_G
+: <a class="el" href="TensorExpression_8hpp.html#a8229b0f1fc80990b85e7e585ba6c621e">TensorExpression.hpp</a>
+</li>
+<li>ti_g
+: <a class="el" href="TensorExpression_8hpp.html#a095dec0f1f47c2655b781fa278fe5a56">TensorExpression.hpp</a>
+</li>
+<li>ti_G_t
+: <a class="el" href="TensorExpression_8hpp.html#aa91371572f37baa9362143d8359f3dd4">TensorExpression.hpp</a>
+</li>
+<li>ti_g_t
+: <a class="el" href="TensorExpression_8hpp.html#a5d75ed7c7b46e86b20490738e6551abc">TensorExpression.hpp</a>
+</li>
+<li>ti_H
+: <a class="el" href="TensorExpression_8hpp.html#adc6e9d7510c1d474fc61d5dcb2a1f105">TensorExpression.hpp</a>
+</li>
+<li>ti_h
+: <a class="el" href="TensorExpression_8hpp.html#aa7b097880bed2daf6ff634dcd939baf0">TensorExpression.hpp</a>
+</li>
+<li>ti_h_t
+: <a class="el" href="TensorExpression_8hpp.html#aec83ca1988b5d7bd3c5999896cd9971d">TensorExpression.hpp</a>
+</li>
+<li>ti_H_t
+: <a class="el" href="TensorExpression_8hpp.html#a3b88f130fa66746c6236e91f67b36942">TensorExpression.hpp</a>
+</li>
+<li>ti_I
+: <a class="el" href="TensorExpression_8hpp.html#a50b2bf0f2f42c86d74abc9fd53cbf4c1">TensorExpression.hpp</a>
+</li>
+<li>ti_i
+: <a class="el" href="TensorExpression_8hpp.html#a16798a7270238704b9298d8673ea6547">TensorExpression.hpp</a>
+</li>
+<li>ti_i_t
+: <a class="el" href="TensorExpression_8hpp.html#aef0cdc58b84661d47e7c42f9b48ca017">TensorExpression.hpp</a>
+</li>
+<li>ti_I_t
+: <a class="el" href="TensorExpression_8hpp.html#a382f7c4371c3a092ede174900b7bf943">TensorExpression.hpp</a>
+</li>
+<li>ti_j
+: <a class="el" href="TensorExpression_8hpp.html#a1bdc88470df948ecc3f57b7b91353dfb">TensorExpression.hpp</a>
+</li>
+<li>ti_J
+: <a class="el" href="TensorExpression_8hpp.html#aedca80eb6cb87accbcfad119508e4bee">TensorExpression.hpp</a>
+</li>
+<li>ti_j_t
+: <a class="el" href="TensorExpression_8hpp.html#ac06c9ced4d471362a030cf004049a3a0">TensorExpression.hpp</a>
+</li>
+<li>ti_J_t
+: <a class="el" href="TensorExpression_8hpp.html#a60bd287a9589e2ddd505174127cadaec">TensorExpression.hpp</a>
+</li>
 <li>two_to_the()
 : <a class="el" href="group__ConstantExpressions.html#ga6c01ded3973bb4b9973e5381c32c0807">ConstantExpressions.hpp</a>
 </li>
@@ -409,6 +596,12 @@ $(function() {
 <h3><a id="index_u"></a>- u -</h3><ul>
 <li>UNLIKELY
 : <a class="el" href="group__Utilities.html#gab10d0a221f4d7a706701b806c8135fd7">Gsl.hpp</a>
+</li>
+<li>UpIndex
+: <a class="el" href="Tensor_8cpp.html#a03a843f319bc4f2d1e3b93a487f2b8a1">Tensor.cpp</a>
+</li>
+<li>UpLo
+: <a class="el" href="group__Tensor.html#gaab1181edf2ab2b664b0f174223f08c28">IndexType.hpp</a>
 </li>
 </ul>
 

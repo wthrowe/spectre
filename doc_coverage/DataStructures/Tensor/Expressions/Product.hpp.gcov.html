@@ -1,0 +1,184 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - e5cbc5bb9c5aba2950342934cd01e8f137343a21 - DataStructures/Tensor/Expressions/Product.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../../index.html">top level</a> - <a href="index.html">DataStructures/Tensor/Expressions</a> - Product.hpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/e5cbc5bb9c5aba2950342934cd01e8f137343a21">e5cbc5bb9c5aba2950342934cd01e8f137343a21</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">2</td>
+            <td class="headerCovTableEntry">13</td>
+            <td class="headerCovTableEntryLo">15.4 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2017-06-20 01:58:59</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : /// \file
+<span class="lineNum">       5 </span>            : /// Defines ET for tensor products
+<span class="lineNum">       6 </span>            : 
+<span class="lineNum">       7 </span>            : #pragma once
+<span class="lineNum">       8 </span>            : 
+<span class="lineNum">       9 </span>            : #include &quot;Data/Tensor/Expressions/TensorExpression.hpp&quot;
+<span class="lineNum">      10 </span>            : 
+<span class="lineNum">      11 </span>            : namespace TensorExpressions {
+<span class="lineNum">      12 </span>            : 
+<span class="lineNum">      13 </span>            : /*! \ingroup TensorExpressions
+<span class="lineNum">      14 </span>            :  *
+<span class="lineNum">      15 </span>            :  * @tparam T1
+<span class="lineNum">      16 </span>            :  * @tparam T2
+<span class="lineNum">      17 </span>            :  * @tparam ArgsLs1
+<span class="lineNum">      18 </span>            :  * @tparam ArgsLs2
+<span class="lineNum">      19 </span>            :  */
+<span class="lineNum">      20 </span>            : template &lt;typename T1, typename T2, typename ArgsLs1, typename ArgsLs2&gt;
+<span class="lineNum">      21 </span><span class="lineCov">          1 : struct Product;</span>
+<span class="lineNum">      22 </span>            : 
+<span class="lineNum">      23 </span>            : template &lt;typename T1, typename T2, template &lt;typename...&gt; class ArgsLs1,
+<span class="lineNum">      24 </span>            :           template &lt;typename...&gt; class ArgsLs2, typename... Args1,
+<span class="lineNum">      25 </span>            :           typename... Args2&gt;
+<span class="lineNum">      26 </span>            : struct Product&lt;T1, T2, ArgsLs1&lt;Args1...&gt;, ArgsLs2&lt;Args2...&gt;&gt;
+<span class="lineNum">      27 </span>            :     : public TensorExpression&lt;
+<span class="lineNum">      28 </span>            :           Product&lt;T1, T2, ArgsLs1&lt;Args1...&gt;, ArgsLs2&lt;Args2...&gt;&gt;,
+<span class="lineNum">      29 </span>            :           typename T1::type, double,
+<span class="lineNum">      30 </span>            :           tmpl::append&lt;typename T1::index_list, typename T2::index_list&gt;,
+<span class="lineNum">      31 </span>            :           tmpl::sort&lt;
+<span class="lineNum">      32 </span>            :               tmpl::append&lt;typename T1::args_list, typename T2::args_list&gt;&gt;&gt;,
+<span class="lineNum">      33 </span><span class="lineNoCov">          0 :       public Expression {</span>
+<span class="lineNum">      34 </span>            :   static_assert(std::is_same&lt;typename T1::type, typename T2::type&gt;::value,
+<span class="lineNum">      35 </span>            :                 &quot;Cannot product Tensors holding different data types.&quot;);
+<span class="lineNum">      36 </span><span class="lineNoCov">          0 :   using max_symm2 = tmpl::fold&lt;typename T2::symmetry, tmpl::uint32_t&lt;0&gt;,</span>
+<span class="lineNum">      37 </span>            :                                tmpl::max&lt;tmpl::_state, tmpl::_element&gt;&gt;;
+<span class="lineNum">      38 </span>            : 
+<span class="lineNum">      39 </span><span class="lineNoCov">          0 :   using type = typename T1::type;</span>
+<span class="lineNum">      40 </span><span class="lineNoCov">          0 :   using symmetry = tmpl::append&lt;</span>
+<span class="lineNum">      41 </span>            :       tmpl::transform&lt;typename T1::symmetry, tmpl::plus&lt;tmpl::_1, max_symm2&gt;&gt;,
+<span class="lineNum">      42 </span>            :       typename T2::symmetry&gt;;
+<span class="lineNum">      43 </span><span class="lineNoCov">          0 :   using index_list =</span>
+<span class="lineNum">      44 </span>            :       tmpl::append&lt;typename T1::index_list, typename T2::index_list&gt;;
+<span class="lineNum">      45 </span><span class="lineNoCov">          0 :   static constexpr auto num_tensor_indices =</span>
+<span class="lineNum">      46 </span>            :       tmpl::size&lt;index_list&gt;::value == 0 ? 1 : tmpl::size&lt;index_list&gt;::value;
+<span class="lineNum">      47 </span><span class="lineNoCov">          0 :   using args_list =</span>
+<span class="lineNum">      48 </span>            :       tmpl::sort&lt;tmpl::append&lt;typename T1::args_list, typename T2::args_list&gt;&gt;;
+<span class="lineNum">      49 </span>            : 
+<span class="lineNum">      50 </span><span class="lineNoCov">          0 :   Product(const T1&amp; t1, const T2&amp; t2) : t1_(t1), t2_(t2) {}</span>
+<span class="lineNum">      51 </span>            : 
+<span class="lineNum">      52 </span>            :   // TODO: The args will need to be reduced in a careful manner, which means
+<span class="lineNum">      53 </span>            :   // they need to be reduced together, then split at the correct length so that
+<span class="lineNum">      54 </span>            :   // the indexing is correct.
+<span class="lineNum">      55 </span>            :   template &lt;typename... LhsIndices, typename U&gt;
+<span class="lineNum">      56 </span>            :   SPECTRE_ALWAYS_INLINE type
+<span class="lineNum">      57 </span><span class="lineNoCov">          0 :   get(const std::array&lt;U, num_tensor_indices&gt;&amp; tensor_index) const {</span>
+<span class="lineNum">      58 </span>            :     return t1_.template get&lt;LhsIndices...&gt;(tensor_index) *
+<span class="lineNum">      59 </span>            :            t2_.template get&lt;LhsIndices...&gt;(tensor_index);
+<span class="lineNum">      60 </span>            :   }
+<span class="lineNum">      61 </span>            : 
+<span class="lineNum">      62 </span>            :  private:
+<span class="lineNum">      63 </span><span class="lineNoCov">          0 :   const T1 t1_;</span>
+<span class="lineNum">      64 </span><span class="lineNoCov">          0 :   const T2 t2_;</span>
+<span class="lineNum">      65 </span>            : };
+<span class="lineNum">      66 </span>            : 
+<span class="lineNum">      67 </span>            : }  // namespace TensorExpressions
+<span class="lineNum">      68 </span>            : 
+<span class="lineNum">      69 </span>            : /*! @ingroup TensorExpressions
+<span class="lineNum">      70 </span>            :  *
+<span class="lineNum">      71 </span>            :  * @tparam T1
+<span class="lineNum">      72 </span>            :  * @tparam T2
+<span class="lineNum">      73 </span>            :  * @tparam X
+<span class="lineNum">      74 </span>            :  * @tparam Symm1
+<span class="lineNum">      75 </span>            :  * @tparam Symm2
+<span class="lineNum">      76 </span>            :  * @tparam IndexLs1
+<span class="lineNum">      77 </span>            :  * @tparam IndexLs2
+<span class="lineNum">      78 </span>            :  * @tparam Args1
+<span class="lineNum">      79 </span>            :  * @tparam Args2
+<span class="lineNum">      80 </span>            :  * @param t1
+<span class="lineNum">      81 </span>            :  * @param t2
+<span class="lineNum">      82 </span>            :  * @return
+<span class="lineNum">      83 </span>            :  */
+<span class="lineNum">      84 </span>            : template &lt;typename T1, typename T2, typename X, typename Symm1, typename Symm2,
+<span class="lineNum">      85 </span>            :           typename IndexLs1, typename IndexLs2, typename Args1, typename Args2&gt;
+<span class="lineNum">      86 </span><span class="lineCov">          2 : SPECTRE_ALWAYS_INLINE auto operator*(</span>
+<span class="lineNum">      87 </span>            :     const TensorExpression&lt;T1, X, Symm1, IndexLs1, Args1&gt;&amp; t1,
+<span class="lineNum">      88 </span>            :     const TensorExpression&lt;T2, X, Symm2, IndexLs2, Args2&gt;&amp; t2) {
+<span class="lineNum">      89 </span>            :   // static_assert(tmpl::size&lt;Args1&gt;::value == tmpl::size&lt;Args2&gt;::value,
+<span class="lineNum">      90 </span>            :   //               &quot;Tensor addition is only possible with the same rank
+<span class="lineNum">      91 </span>            :   //               tensors&quot;);
+<span class="lineNum">      92 </span>            :   // static_assert(tmpl::equal_members&lt;Args1, Args2&gt;::value,
+<span class="lineNum">      93 </span>            :   //               &quot;The indices when adding two tensors must be equal. This
+<span class="lineNum">      94 </span>            :   //               error &quot;
+<span class="lineNum">      95 </span>            :   //               &quot;occurs from expressions like A(_a, _b) + B(_c, _a)&quot;);
+<span class="lineNum">      96 </span>            :   return TensorExpressions::Product&lt;
+<span class="lineNum">      97 </span>            :       typename std::conditional&lt;
+<span class="lineNum">      98 </span>            :           std::is_base_of&lt;Expression, T1&gt;::value, T1,
+<span class="lineNum">      99 </span>            :           TensorExpression&lt;T1, X, Symm1, IndexLs1, Args1&gt;&gt;::type,
+<span class="lineNum">     100 </span>            :       typename std::conditional&lt;
+<span class="lineNum">     101 </span>            :           std::is_base_of&lt;Expression, T2&gt;::value, T2,
+<span class="lineNum">     102 </span>            :           TensorExpression&lt;T2, X, Symm2, IndexLs2, Args2&gt;&gt;::type,
+<span class="lineNum">     103 </span>            :       Args1, Args2&gt;(~t1, ~t2);
+<span class="lineNum">     104 </span>            : }
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

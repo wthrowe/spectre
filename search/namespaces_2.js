@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['gsl',['gsl',['../namespacegsl.html',1,'']]]
+  ['frame',['Frame',['../namespaceFrame.html',1,'']]]
 ];

@@ -151,6 +151,7 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="classDataVector-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -163,6 +164,17 @@ $(function() {
 
 <p><code>#include &lt;<a class="el" href="DataVector_8hpp_source.html">DataVector.hpp</a>&gt;</code></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:ada881576977081726bc50c50b8789c6e"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#ada881576977081726bc50c50b8789c6e">value_type</a> = double</td></tr>
+<tr class="separator:ada881576977081726bc50c50b8789c6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a94d1dac73eb40e7daabcf74de7c7ed66"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#a94d1dac73eb40e7daabcf74de7c7ed66">allocator_type</a> = <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/memory/allocator.html">std::allocator</a>&lt; <a class="el" href="classDataVector.html#ada881576977081726bc50c50b8789c6e">value_type</a> &gt;</td></tr>
+<tr class="separator:a94d1dac73eb40e7daabcf74de7c7ed66"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b9ef4e180eb681043ad15f667e95da7"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#a5b9ef4e180eb681043ad15f667e95da7">size_type</a> = size_t</td></tr>
+<tr class="separator:a5b9ef4e180eb681043ad15f667e95da7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acad716aab5c674ed5733937407bd2f20"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#acad716aab5c674ed5733937407bd2f20">difference_type</a> = <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/ptrdiff_t.html">std::ptrdiff_t</a></td></tr>
+<tr class="separator:acad716aab5c674ed5733937407bd2f20"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a9f5c4e173087abe0ee20a41d45e4e3bc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#a9f5c4e173087abe0ee20a41d45e4e3bc">DataVector</a> (size_t <a class="el" href="classDataVector.html#a39a9ecdd962c142bee87c6c55be825a4">size</a>, double value=<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/numeric_limits.html">std::numeric_limits</a>&lt; double &gt;::signaling_NaN())</td></tr>
@@ -194,12 +206,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:aa1b4c75120323ced28edf7090959264a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the <a class="el" href="classDataVector.html" title="A class for storing data on a mesh. ">DataVector</a> to be a reference to another <a class="el" href="classDataVector.html" title="A class for storing data on a mesh. ">DataVector</a> object.  <a href="#aa1b4c75120323ced28edf7090959264a">More...</a><br /></td></tr>
 <tr class="separator:aa1b4c75120323ced28edf7090959264a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
-<tr class="memitem:a9deebf13e15056c91504ea9389786f9d"><td class="memItemLeft" align="right" valign="top">double &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#a9deebf13e15056c91504ea9389786f9d">operator[]</a> (const size_t i)</td></tr>
-<tr class="memdesc:a9deebf13e15056c91504ea9389786f9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Access ith element.  <a href="#a9deebf13e15056c91504ea9389786f9d">More...</a><br /></td></tr>
-<tr class="separator:a9deebf13e15056c91504ea9389786f9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac3210ca5a3ff54961d870c15f116831a"><td class="memItemLeft" align="right" valign="top">const double &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#ac3210ca5a3ff54961d870c15f116831a">operator[]</a> (const size_t i) const</td></tr>
-<tr class="memdesc:ac3210ca5a3ff54961d870c15f116831a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Access ith element.  <a href="#ac3210ca5a3ff54961d870c15f116831a">More...</a><br /></td></tr>
-<tr class="separator:ac3210ca5a3ff54961d870c15f116831a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a125506183d0cf74b93e978c6e5172417"><td class="memItemLeft" align="right" valign="top">double &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#a125506183d0cf74b93e978c6e5172417">operator[]</a> (const <a class="el" href="classDataVector.html#a5b9ef4e180eb681043ad15f667e95da7">size_type</a> i)</td></tr>
+<tr class="memdesc:a125506183d0cf74b93e978c6e5172417"><td class="mdescLeft">&#160;</td><td class="mdescRight">Access ith element.  <a href="#a125506183d0cf74b93e978c6e5172417">More...</a><br /></td></tr>
+<tr class="separator:a125506183d0cf74b93e978c6e5172417"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a23eb797350187aa4cddaaab933aacc48"><td class="memItemLeft" align="right" valign="top">const double &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#a23eb797350187aa4cddaaab933aacc48">operator[]</a> (const <a class="el" href="classDataVector.html#a5b9ef4e180eb681043ad15f667e95da7">size_type</a> i) const</td></tr>
+<tr class="memdesc:a23eb797350187aa4cddaaab933aacc48"><td class="mdescLeft">&#160;</td><td class="mdescRight">Access ith element.  <a href="#a23eb797350187aa4cddaaab933aacc48">More...</a><br /></td></tr>
+<tr class="separator:a23eb797350187aa4cddaaab933aacc48"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr class="memitem:aa5d5ead2edfa3c66ad7ec38ee7a6fa7c"><td class="memItemLeft" align="right" valign="top">double *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDataVector.html#aa5d5ead2edfa3c66ad7ec38ee7a6fa7c">data</a> ()</td></tr>
 <tr class="memdesc:aa5d5ead2edfa3c66ad7ec38ee7a6fa7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Access to the pointer.  <a href="#aa5d5ead2edfa3c66ad7ec38ee7a6fa7c">More...</a><br /></td></tr>
@@ -421,7 +433,64 @@ Public Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A class for storing data on a mesh. </p>
 <p>A Data holds an array of contiguous data and can be either owning (the array is deleted when the Data goes out of scope) or non-owning, meaning it just has a pointer to an array. </p>
-</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+</div><h2 class="groupheader">Member Typedef Documentation</h2>
+<a id="a94d1dac73eb40e7daabcf74de7c7ed66"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a94d1dac73eb40e7daabcf74de7c7ed66">&#9670;&nbsp;</a></span>allocator_type</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classDataVector.html#a94d1dac73eb40e7daabcf74de7c7ed66">DataVector::allocator_type</a> =  <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/memory/allocator.html">std::allocator</a>&lt;<a class="el" href="classDataVector.html#ada881576977081726bc50c50b8789c6e">value_type</a>&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acad716aab5c674ed5733937407bd2f20"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acad716aab5c674ed5733937407bd2f20">&#9670;&nbsp;</a></span>difference_type</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classDataVector.html#acad716aab5c674ed5733937407bd2f20">DataVector::difference_type</a> =  <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/ptrdiff_t.html">std::ptrdiff_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5b9ef4e180eb681043ad15f667e95da7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5b9ef4e180eb681043ad15f667e95da7">&#9670;&nbsp;</a></span>size_type</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classDataVector.html#a5b9ef4e180eb681043ad15f667e95da7">DataVector::size_type</a> =  size_t</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ada881576977081726bc50c50b8789c6e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada881576977081726bc50c50b8789c6e">&#9670;&nbsp;</a></span>value_type</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classDataVector.html#ada881576977081726bc50c50b8789c6e">DataVector::value_type</a> =  double</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a9f5c4e173087abe0ee20a41d45e4e3bc"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9f5c4e173087abe0ee20a41d45e4e3bc">&#9670;&nbsp;</a></span>DataVector() <span class="overload">[1/4]</span></h2>
 
@@ -2578,8 +2647,8 @@ template&lt;typename VT , bool VF&gt; </div>
 
 </div>
 </div>
-<a id="a9deebf13e15056c91504ea9389786f9d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9deebf13e15056c91504ea9389786f9d">&#9670;&nbsp;</a></span>operator[]() <span class="overload">[1/2]</span></h2>
+<a id="a125506183d0cf74b93e978c6e5172417"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a125506183d0cf74b93e978c6e5172417">&#9670;&nbsp;</a></span>operator[]() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2590,7 +2659,7 @@ template&lt;typename VT , bool VF&gt; </div>
         <tr>
           <td class="memname">double&amp; DataVector::operator[] </td>
           <td>(</td>
-          <td class="paramtype">const size_t&#160;</td>
+          <td class="paramtype">const <a class="el" href="classDataVector.html#a5b9ef4e180eb681043ad15f667e95da7">size_type</a>&#160;</td>
           <td class="paramname"><em>i</em></td><td>)</td>
           <td></td>
         </tr>
@@ -2608,8 +2677,8 @@ template&lt;typename VT , bool VF&gt; </div>
 
 </div>
 </div>
-<a id="ac3210ca5a3ff54961d870c15f116831a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac3210ca5a3ff54961d870c15f116831a">&#9670;&nbsp;</a></span>operator[]() <span class="overload">[2/2]</span></h2>
+<a id="a23eb797350187aa4cddaaab933aacc48"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a23eb797350187aa4cddaaab933aacc48">&#9670;&nbsp;</a></span>operator[]() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2620,7 +2689,7 @@ template&lt;typename VT , bool VF&gt; </div>
         <tr>
           <td class="memname">const double&amp; DataVector::operator[] </td>
           <td>(</td>
-          <td class="paramtype">const size_t&#160;</td>
+          <td class="paramtype">const <a class="el" href="classDataVector.html#a5b9ef4e180eb681043ad15f667e95da7">size_type</a>&#160;</td>
           <td class="paramname"><em>i</em></td><td>)</td>
           <td> const</td>
         </tr>

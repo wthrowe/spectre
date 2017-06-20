@@ -155,7 +155,10 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a>  </div>
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#namespaces">Namespaces</a> &#124;
+<a href="#define-members">Macros</a> &#124;
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">PointerVector.hpp File Reference</div>  </div>
 </div><!--header-->
@@ -164,18 +167,102 @@ $(function() {
 <p>Defines class <a class="el" href="structPointerVector.html" title="A raw pointer endowed with expression template support via the Blaze library. ">PointerVector</a>.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="Blaze_8hpp_source.html">Utilities/Blaze.hpp</a>&quot;</code><br />
+<code>#include &lt;blaze/math/CustomVector.h&gt;</code><br />
+<code>#include &lt;blaze/util/typetraits/RemoveConst.h&gt;</code><br />
 </div>
 <p><a href="PointerVector_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structblaze_1_1AddScalar.html">blaze::AddScalar&lt; ST &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structblaze_1_1SubScalarRhs.html">blaze::SubScalarRhs&lt; ST &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structblaze_1_1SubScalarLhs.html">blaze::SubScalarLhs&lt; ST &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structPointerVector.html">PointerVector&lt; Type, AF, PF, TF &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A raw pointer endowed with expression template support via the Blaze library.  <a href="structPointerVector.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
+Namespaces</h2></td></tr>
+<tr class="memitem:namespaceblaze"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceblaze.html">blaze</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:ac86d4f82ee5912a6b2106e2ddf3fc190"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="PointerVector_8hpp.html#ac86d4f82ee5912a6b2106e2ddf3fc190">SPECTRE_BLAZE_ALLOCATOR</a>(_TYPE_T,  _SIZE_V)&#160;&#160;&#160;new _TYPE_T[_SIZE_V]</td></tr>
+<tr class="separator:ac86d4f82ee5912a6b2106e2ddf3fc190"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d842ea405c9686813bf179f5c3b68c0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="PointerVector_8hpp.html#a2d842ea405c9686813bf179f5c3b68c0">SPECTRE_BLAZE_DEALLOCATOR</a>&#160;&#160;&#160;blaze::ArrayDelete()</td></tr>
+<tr class="separator:a2d842ea405c9686813bf179f5c3b68c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a5dc32d0bc75c836f39c3f5bfa7ea793a"><td class="memTemplParams" colspan="2">template&lt;typename VT , bool TF, typename Scalar , typename  = blaze::EnableIf_&lt;blaze::IsNumeric&lt;Scalar&gt;&gt;&gt; </td></tr>
+<tr class="memitem:a5dc32d0bc75c836f39c3f5bfa7ea793a"><td class="memTemplItemLeft" align="right" valign="top">decltype(auto)&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceblaze.html#a5dc32d0bc75c836f39c3f5bfa7ea793a">blaze::operator+</a> (const blaze::DenseVector&lt; VT, TF &gt; &amp;vec, <a class="el" href="group__Tensor.html#ga06ebcb38a1f13c246e53378b9e8959ce">Scalar</a> scalar)</td></tr>
+<tr class="separator:a5dc32d0bc75c836f39c3f5bfa7ea793a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed5b314a103a4f8ee4b240811cc512ea"><td class="memTemplParams" colspan="2">template&lt;typename Scalar , typename VT , bool TF, typename  = blaze::EnableIf_&lt;blaze::IsNumeric&lt;Scalar&gt;&gt;&gt; </td></tr>
+<tr class="memitem:aed5b314a103a4f8ee4b240811cc512ea"><td class="memTemplItemLeft" align="right" valign="top">decltype(auto)&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceblaze.html#aed5b314a103a4f8ee4b240811cc512ea">blaze::operator+</a> (<a class="el" href="group__Tensor.html#ga06ebcb38a1f13c246e53378b9e8959ce">Scalar</a> scalar, const blaze::DenseVector&lt; VT, TF &gt; &amp;vec)</td></tr>
+<tr class="separator:aed5b314a103a4f8ee4b240811cc512ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d9980b7d75b7c1f790f42874aaebb33"><td class="memTemplParams" colspan="2">template&lt;typename VT , bool TF, typename Scalar , typename  = blaze::EnableIf_&lt;blaze::IsNumeric&lt;Scalar&gt;&gt;&gt; </td></tr>
+<tr class="memitem:a0d9980b7d75b7c1f790f42874aaebb33"><td class="memTemplItemLeft" align="right" valign="top">VT &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceblaze.html#a0d9980b7d75b7c1f790f42874aaebb33">blaze::operator+=</a> (blaze::DenseVector&lt; VT, TF &gt; &amp;vec, <a class="el" href="group__Tensor.html#ga06ebcb38a1f13c246e53378b9e8959ce">Scalar</a> scalar)</td></tr>
+<tr class="separator:a0d9980b7d75b7c1f790f42874aaebb33"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d52a1b3ac83b58cb2b5059c86d6f954"><td class="memTemplParams" colspan="2">template&lt;typename VT , bool TF, typename Scalar , typename  = blaze::EnableIf_&lt;blaze::IsNumeric&lt;Scalar&gt;&gt;&gt; </td></tr>
+<tr class="memitem:a8d52a1b3ac83b58cb2b5059c86d6f954"><td class="memTemplItemLeft" align="right" valign="top">decltype(auto)&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceblaze.html#a8d52a1b3ac83b58cb2b5059c86d6f954">blaze::operator-</a> (const blaze::DenseVector&lt; VT, TF &gt; &amp;vec, <a class="el" href="group__Tensor.html#ga06ebcb38a1f13c246e53378b9e8959ce">Scalar</a> scalar)</td></tr>
+<tr class="separator:a8d52a1b3ac83b58cb2b5059c86d6f954"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af158ec73e2f90afb0afdb25b4b7c21e0"><td class="memTemplParams" colspan="2">template&lt;typename VT , bool TF, typename Scalar , typename  = blaze::EnableIf_&lt;blaze::IsNumeric&lt;Scalar&gt;&gt;&gt; </td></tr>
+<tr class="memitem:af158ec73e2f90afb0afdb25b4b7c21e0"><td class="memTemplItemLeft" align="right" valign="top">decltype(auto)&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceblaze.html#af158ec73e2f90afb0afdb25b4b7c21e0">blaze::operator-</a> (<a class="el" href="group__Tensor.html#ga06ebcb38a1f13c246e53378b9e8959ce">Scalar</a> scalar, const blaze::DenseVector&lt; VT, TF &gt; &amp;vec)</td></tr>
+<tr class="separator:af158ec73e2f90afb0afdb25b4b7c21e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a458d8fd8ed8c94a74af9d44e8ecac344"><td class="memTemplParams" colspan="2">template&lt;typename VT , bool TF, typename Scalar , typename  = blaze::EnableIf_&lt;blaze::IsNumeric&lt;Scalar&gt;&gt;&gt; </td></tr>
+<tr class="memitem:a458d8fd8ed8c94a74af9d44e8ecac344"><td class="memTemplItemLeft" align="right" valign="top">VT &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceblaze.html#a458d8fd8ed8c94a74af9d44e8ecac344">blaze::operator-=</a> (blaze::DenseVector&lt; VT, TF &gt; &amp;vec, <a class="el" href="group__Tensor.html#ga06ebcb38a1f13c246e53378b9e8959ce">Scalar</a> scalar)</td></tr>
+<tr class="separator:a458d8fd8ed8c94a74af9d44e8ecac344"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Defines class <a class="el" href="structPointerVector.html" title="A raw pointer endowed with expression template support via the Blaze library. ">PointerVector</a>. </p>
-</div></div><!-- contents -->
+</div><h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="ac86d4f82ee5912a6b2106e2ddf3fc190"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac86d4f82ee5912a6b2106e2ddf3fc190">&#9670;&nbsp;</a></span>SPECTRE_BLAZE_ALLOCATOR</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SPECTRE_BLAZE_ALLOCATOR</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">_TYPE_T, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">_SIZE_V&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;new _TYPE_T[_SIZE_V]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2d842ea405c9686813bf179f5c3b68c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2d842ea405c9686813bf179f5c3b68c0">&#9670;&nbsp;</a></span>SPECTRE_BLAZE_DEALLOCATOR</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SPECTRE_BLAZE_DEALLOCATOR&#160;&#160;&#160;blaze::ArrayDelete()</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

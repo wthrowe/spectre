@@ -1,0 +1,470 @@
+<!-- HTML header for doxygen 1.8.10-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="SXS Collaboration">
+    <meta name="generator" content="Doxygen 1.8.13"/>
+    <style>
+        /*!
+         * IE10 viewport hack for Surface/desktop Windows 8 bug
+         * Copyright 2014-2015 Twitter, Inc.
+         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+         */
+        @-webkit-viewport { width: device-width; }
+        @-moz-viewport    { width: device-width; }
+        @-ms-viewport     { width: device-width; }
+        @-o-viewport      { width: device-width; }
+        @viewport         { width: device-width; }
+      </style>
+  <title>SpECTRE: TensorExpressions::AddSub&lt; T1, T2, ArgsLs1&lt; Args1... &gt;, ArgsLs2&lt; Args2... &gt;, Sign &gt; Struct Template Reference</title>
+  <link href="tabs.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="dynsections.js"></script>
+  <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
+  <link href="octicons.css" rel="stylesheet">
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="doxygen.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="bootstrap.min.js"></script>
+  <script type="text/javascript" src="spectre.js"></script>
+  </head>
+  <body>
+  <div id="top" class="navbar-fixed-top"><!-- do not remove this div, it is closed by doxygen! -->
+  <!-- BEGIN TITLEAREA -->
+  <div id="titlearea">
+  <script type="text/javascript">
+  var searchBox = new SearchBox("searchBox", "search",false,'Search');
+  </script>
+  <div id="main-nav">
+    <ul class="sm sm-dox" id="main-menu">
+      <li>
+      <a href="https://github.com/sxs-collaboration/spectre" target="_blank">
+      SpECTRE &#160;
+        <span id="projectnumber">v0.0.0</span>
+      </a>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-book"></i><span>Documentation</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 135px;">
+            <a href="index.html">
+            <i class="octicon octicon-book"></i><span>Documentation</span></a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="tutorials.html">
+              <i class="octicon octicon-mortar-board"></i><span>Tutorials</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="dev_guide.html">
+              <i class="octicon octicon-gist-secret"></i><span>Dev Guide</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown" style="min-width: 150px;">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 130px;">
+            <a href="modules.html">
+              <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+            </a>
+          </li>
+          <li style="min-width: 130px;">
+            <a href="namespaces.html">
+              <i class="octicon octicon-gist"></i>
+              <span>Namespaces</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="files.html">
+          <i class="octicon octicon-file-directory"></i><span>Files</span>
+        </a>
+      </li>
+      <!--The Search <li> is added by doxygen later-->
+    </ul>
+  </div><!-- main-nav -->
+  </div><!-- titlearea -->
+  <!-- window showing the filter options -->
+  <div id="MSearchSelectWindow"  style="position: fixed;"
+       onmouseover="return searchBox.OnSearchSelectShow()"
+       onmouseout="return searchBox.OnSearchSelectHide()"
+       onkeydown="return searchBox.OnSearchSelectKey(event)">
+  </div>
+  <!-- iframe showing the search results (closed by default) -->
+  <div id="MSearchResultsWindow"  style="position: fixed;">
+  <iframe src="javascript:void(0)" frameborder="0"
+          name="MSearchResults" id="MSearchResults">
+  </iframe>
+  </div><!-- Generated by Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespaceTensorExpressions.html">TensorExpressions</a></li><li class="navelem"><a class="el" href="structTensorExpressions_1_1AddSub_3_01T1_00_01T2_00_01ArgsLs1_3_01Args1_8_8_8_01_4_00_01ArgsLs2_dd965ff16ece69e5a58457285dbba0d9.html">AddSub&lt; T1, T2, ArgsLs1&lt; Args1... &gt;, ArgsLs2&lt; Args2... &gt;, Sign &gt;</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
+<a href="structTensorExpressions_1_1AddSub_3_01T1_00_01T2_00_01ArgsLs1_3_01Args1_8_8_8_01_4_00_01ArgsLs2_b79437f8098e0b5fec22b8496f4cb2c8.html">List of all members</a>  </div>
+  <div class="headertitle">
+<div class="title">TensorExpressions::AddSub&lt; T1, T2, ArgsLs1&lt; Args1... &gt;, ArgsLs2&lt; Args2... &gt;, Sign &gt; Struct Template Reference</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="AddSubtract_8hpp_source.html">AddSubtract.hpp</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:a9c83f995c735c5e4a4407c8190b8c894"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structTensorExpressions_1_1AddSub_3_01T1_00_01T2_00_01ArgsLs1_3_01Args1_8_8_8_01_4_00_01ArgsLs2_dd965ff16ece69e5a58457285dbba0d9.html#a9c83f995c735c5e4a4407c8190b8c894">type</a> = typename T1::type</td></tr>
+<tr class="separator:a9c83f995c735c5e4a4407c8190b8c894"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af1fa7129dc5c2422ea693c002bc699ee"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structTensorExpressions_1_1AddSub_3_01T1_00_01T2_00_01ArgsLs1_3_01Args1_8_8_8_01_4_00_01ArgsLs2_dd965ff16ece69e5a58457285dbba0d9.html#af1fa7129dc5c2422ea693c002bc699ee">symmetry</a> = tmpl::transform&lt; typename T1::symmetry, typename T2::symmetry, tmpl::append&lt; tmpl::max&lt; tmpl::_1, tmpl::_2 &gt; &gt;&gt;</td></tr>
+<tr class="separator:af1fa7129dc5c2422ea693c002bc699ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3599c23f4ba68b39db2522b0047ed374"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structTensorExpressions_1_1AddSub_3_01T1_00_01T2_00_01ArgsLs1_3_01Args1_8_8_8_01_4_00_01ArgsLs2_dd965ff16ece69e5a58457285dbba0d9.html#a3599c23f4ba68b39db2522b0047ed374">index_list</a> = typename T1::index_list</td></tr>
+<tr class="separator:a3599c23f4ba68b39db2522b0047ed374"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af2e2f294e0da028ed7952f4b0ee74414"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structTensorExpressions_1_1AddSub_3_01T1_00_01T2_00_01ArgsLs1_3_01Args1_8_8_8_01_4_00_01ArgsLs2_dd965ff16ece69e5a58457285dbba0d9.html#af2e2f294e0da028ed7952f4b0ee74414">args_list</a> = tmpl::sort&lt; typename T1::args_list &gt;</td></tr>
+<tr class="separator:af2e2f294e0da028ed7952f4b0ee74414"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a5ca0c5a69457ca93aaa8ab12f2cb2a36"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structTensorExpressions_1_1AddSub_3_01T1_00_01T2_00_01ArgsLs1_3_01Args1_8_8_8_01_4_00_01ArgsLs2_dd965ff16ece69e5a58457285dbba0d9.html#a5ca0c5a69457ca93aaa8ab12f2cb2a36">AddSub</a> (T1 t1, T2 t2)</td></tr>
+<tr class="separator:a5ca0c5a69457ca93aaa8ab12f2cb2a36"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e7f94144cae61c1f83e77f0d7b72bcb"><td class="memTemplParams" colspan="2">template&lt;typename... LhsIndices, typename T , int U = Sign, std::enable_if_t&lt; U==1 &gt; *  = nullptr&gt; </td></tr>
+<tr class="memitem:a6e7f94144cae61c1f83e77f0d7b72bcb"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="structTensorExpressions_1_1AddSub_3_01T1_00_01T2_00_01ArgsLs1_3_01Args1_8_8_8_01_4_00_01ArgsLs2_dd965ff16ece69e5a58457285dbba0d9.html#a9c83f995c735c5e4a4407c8190b8c894">type</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structTensorExpressions_1_1AddSub_3_01T1_00_01T2_00_01ArgsLs1_3_01Args1_8_8_8_01_4_00_01ArgsLs2_dd965ff16ece69e5a58457285dbba0d9.html#a6e7f94144cae61c1f83e77f0d7b72bcb">get</a> (const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; T, <a class="el" href="structTensorExpressions_1_1AddSub_3_01T1_00_01T2_00_01ArgsLs1_3_01Args1_8_8_8_01_4_00_01ArgsLs2_dd965ff16ece69e5a58457285dbba0d9.html#a1bfcfbb18526da071af6842760c49ffc">num_tensor_indices</a> &gt; &amp;tensor_index) const</td></tr>
+<tr class="separator:a6e7f94144cae61c1f83e77f0d7b72bcb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e7f94144cae61c1f83e77f0d7b72bcb"><td class="memTemplParams" colspan="2">template&lt;typename... LhsIndices, typename T , int U = Sign, std::enable_if_t&lt; U==-1 &gt; *  = nullptr&gt; </td></tr>
+<tr class="memitem:a6e7f94144cae61c1f83e77f0d7b72bcb"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="structTensorExpressions_1_1AddSub_3_01T1_00_01T2_00_01ArgsLs1_3_01Args1_8_8_8_01_4_00_01ArgsLs2_dd965ff16ece69e5a58457285dbba0d9.html#a9c83f995c735c5e4a4407c8190b8c894">type</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structTensorExpressions_1_1AddSub_3_01T1_00_01T2_00_01ArgsLs1_3_01Args1_8_8_8_01_4_00_01ArgsLs2_dd965ff16ece69e5a58457285dbba0d9.html#a6e7f94144cae61c1f83e77f0d7b72bcb">get</a> (const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; T, <a class="el" href="structTensorExpressions_1_1AddSub_3_01T1_00_01T2_00_01ArgsLs1_3_01Args1_8_8_8_01_4_00_01ArgsLs2_dd965ff16ece69e5a58457285dbba0d9.html#a1bfcfbb18526da071af6842760c49ffc">num_tensor_indices</a> &gt; &amp;tensor_index) const</td></tr>
+<tr class="separator:a6e7f94144cae61c1f83e77f0d7b72bcb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d324f43cd64690336dba4b35b1d0c11"><td class="memTemplParams" colspan="2">template&lt;int U = Sign, std::enable_if_t&lt; U==1 &gt; *  = nullptr&gt; </td></tr>
+<tr class="memitem:a3d324f43cd64690336dba4b35b1d0c11"><td class="memTemplItemLeft" align="right" valign="top">T1::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structTensorExpressions_1_1AddSub_3_01T1_00_01T2_00_01ArgsLs1_3_01Args1_8_8_8_01_4_00_01ArgsLs2_dd965ff16ece69e5a58457285dbba0d9.html#a3d324f43cd64690336dba4b35b1d0c11">operator[]</a> (size_t i) const</td></tr>
+<tr class="separator:a3d324f43cd64690336dba4b35b1d0c11"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d324f43cd64690336dba4b35b1d0c11"><td class="memTemplParams" colspan="2">template&lt;int U = Sign, std::enable_if_t&lt; U==-1 &gt; *  = nullptr&gt; </td></tr>
+<tr class="memitem:a3d324f43cd64690336dba4b35b1d0c11"><td class="memTemplItemLeft" align="right" valign="top">T1::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structTensorExpressions_1_1AddSub_3_01T1_00_01T2_00_01ArgsLs1_3_01Args1_8_8_8_01_4_00_01ArgsLs2_dd965ff16ece69e5a58457285dbba0d9.html#a3d324f43cd64690336dba4b35b1d0c11">operator[]</a> (size_t i) const</td></tr>
+<tr class="separator:a3d324f43cd64690336dba4b35b1d0c11"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
+<tr class="memitem:a1bfcfbb18526da071af6842760c49ffc"><td class="memItemLeft" align="right" valign="top">static constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structTensorExpressions_1_1AddSub_3_01T1_00_01T2_00_01ArgsLs1_3_01Args1_8_8_8_01_4_00_01ArgsLs2_dd965ff16ece69e5a58457285dbba0d9.html#a1bfcfbb18526da071af6842760c49ffc">num_tensor_indices</a></td></tr>
+<tr class="separator:a1bfcfbb18526da071af6842760c49ffc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Member Typedef Documentation</h2>
+<a id="af2e2f294e0da028ed7952f4b0ee74414"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af2e2f294e0da028ed7952f4b0ee74414">&#9670;&nbsp;</a></span>args_list</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 , typename T2 , template&lt; typename... &gt; class ArgsLs1, template&lt; typename... &gt; class ArgsLs2, typename... Args1, typename... Args2, int Sign&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="structTensorExpressions_1_1AddSub.html">TensorExpressions::AddSub</a>&lt; T1, T2, ArgsLs1&lt; Args1... &gt;, ArgsLs2&lt; Args2... &gt;, Sign &gt;::<a class="el" href="structTensorExpressions_1_1AddSub_3_01T1_00_01T2_00_01ArgsLs1_3_01Args1_8_8_8_01_4_00_01ArgsLs2_dd965ff16ece69e5a58457285dbba0d9.html#af2e2f294e0da028ed7952f4b0ee74414">args_list</a> =  tmpl::sort&lt;typename T1::args_list&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3599c23f4ba68b39db2522b0047ed374"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3599c23f4ba68b39db2522b0047ed374">&#9670;&nbsp;</a></span>index_list</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 , typename T2 , template&lt; typename... &gt; class ArgsLs1, template&lt; typename... &gt; class ArgsLs2, typename... Args1, typename... Args2, int Sign&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="structTensorExpressions_1_1AddSub.html">TensorExpressions::AddSub</a>&lt; T1, T2, ArgsLs1&lt; Args1... &gt;, ArgsLs2&lt; Args2... &gt;, Sign &gt;::<a class="el" href="structTensorExpressions_1_1AddSub_3_01T1_00_01T2_00_01ArgsLs1_3_01Args1_8_8_8_01_4_00_01ArgsLs2_dd965ff16ece69e5a58457285dbba0d9.html#a3599c23f4ba68b39db2522b0047ed374">index_list</a> =  typename T1::index_list</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af1fa7129dc5c2422ea693c002bc699ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af1fa7129dc5c2422ea693c002bc699ee">&#9670;&nbsp;</a></span>symmetry</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 , typename T2 , template&lt; typename... &gt; class ArgsLs1, template&lt; typename... &gt; class ArgsLs2, typename... Args1, typename... Args2, int Sign&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="structTensorExpressions_1_1AddSub.html">TensorExpressions::AddSub</a>&lt; T1, T2, ArgsLs1&lt; Args1... &gt;, ArgsLs2&lt; Args2... &gt;, Sign &gt;::<a class="el" href="structTensorExpressions_1_1AddSub_3_01T1_00_01T2_00_01ArgsLs1_3_01Args1_8_8_8_01_4_00_01ArgsLs2_dd965ff16ece69e5a58457285dbba0d9.html#af1fa7129dc5c2422ea693c002bc699ee">symmetry</a> =  tmpl::transform&lt;typename T1::symmetry, typename T2::symmetry, tmpl::append&lt;tmpl::max&lt;tmpl::_1, tmpl::_2&gt; &gt;&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9c83f995c735c5e4a4407c8190b8c894"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c83f995c735c5e4a4407c8190b8c894">&#9670;&nbsp;</a></span>type</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 , typename T2 , template&lt; typename... &gt; class ArgsLs1, template&lt; typename... &gt; class ArgsLs2, typename... Args1, typename... Args2, int Sign&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="structTensorExpressions_1_1AddSub.html">TensorExpressions::AddSub</a>&lt; T1, T2, ArgsLs1&lt; Args1... &gt;, ArgsLs2&lt; Args2... &gt;, Sign &gt;::<a class="el" href="structTensorExpressions_1_1AddSub_3_01T1_00_01T2_00_01ArgsLs1_3_01Args1_8_8_8_01_4_00_01ArgsLs2_dd965ff16ece69e5a58457285dbba0d9.html#a9c83f995c735c5e4a4407c8190b8c894">type</a> =  typename T1::type</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a5ca0c5a69457ca93aaa8ab12f2cb2a36"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5ca0c5a69457ca93aaa8ab12f2cb2a36">&#9670;&nbsp;</a></span>AddSub()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 , typename T2 , template&lt; typename... &gt; class ArgsLs1, template&lt; typename... &gt; class ArgsLs2, typename... Args1, typename... Args2, int Sign&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structTensorExpressions_1_1AddSub.html">TensorExpressions::AddSub</a>&lt; T1, T2, ArgsLs1&lt; Args1... &gt;, ArgsLs2&lt; Args2... &gt;, Sign &gt;::<a class="el" href="structTensorExpressions_1_1AddSub.html">AddSub</a> </td>
+          <td>(</td>
+          <td class="paramtype">T1&#160;</td>
+          <td class="paramname"><em>t1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">T2&#160;</td>
+          <td class="paramname"><em>t2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="reference">References <a class="el" href="group__Utilities.html#ga9d571cd642604cb7bd87bb039ca3760f">SPECTRE_ALWAYS_INLINE</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a6e7f94144cae61c1f83e77f0d7b72bcb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6e7f94144cae61c1f83e77f0d7b72bcb">&#9670;&nbsp;</a></span>get() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 , typename T2 , template&lt; typename... &gt; class ArgsLs1, template&lt; typename... &gt; class ArgsLs2, typename... Args1, typename... Args2, int Sign&gt; </div>
+<div class="memtemplate">
+template&lt;typename... LhsIndices, typename T , int U = Sign, std::enable_if_t&lt; U==1 &gt; *  = nullptr&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structTensorExpressions_1_1AddSub_3_01T1_00_01T2_00_01ArgsLs1_3_01Args1_8_8_8_01_4_00_01ArgsLs2_dd965ff16ece69e5a58457285dbba0d9.html#a9c83f995c735c5e4a4407c8190b8c894">type</a> <a class="el" href="structTensorExpressions_1_1AddSub.html">TensorExpressions::AddSub</a>&lt; T1, T2, ArgsLs1&lt; Args1... &gt;, ArgsLs2&lt; Args2... &gt;, Sign &gt;::get </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; T, <a class="el" href="structTensorExpressions_1_1AddSub_3_01T1_00_01T2_00_01ArgsLs1_3_01Args1_8_8_8_01_4_00_01ArgsLs2_dd965ff16ece69e5a58457285dbba0d9.html#a1bfcfbb18526da071af6842760c49ffc">num_tensor_indices</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>tensor_index</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="reference">References <a class="el" href="group__Utilities.html#ga9d571cd642604cb7bd87bb039ca3760f">SPECTRE_ALWAYS_INLINE</a>.</p>
+
+</div>
+</div>
+<a id="a6e7f94144cae61c1f83e77f0d7b72bcb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6e7f94144cae61c1f83e77f0d7b72bcb">&#9670;&nbsp;</a></span>get() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 , typename T2 , template&lt; typename... &gt; class ArgsLs1, template&lt; typename... &gt; class ArgsLs2, typename... Args1, typename... Args2, int Sign&gt; </div>
+<div class="memtemplate">
+template&lt;typename... LhsIndices, typename T , int U = Sign, std::enable_if_t&lt; U==-1 &gt; *  = nullptr&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structTensorExpressions_1_1AddSub_3_01T1_00_01T2_00_01ArgsLs1_3_01Args1_8_8_8_01_4_00_01ArgsLs2_dd965ff16ece69e5a58457285dbba0d9.html#a9c83f995c735c5e4a4407c8190b8c894">type</a> <a class="el" href="structTensorExpressions_1_1AddSub.html">TensorExpressions::AddSub</a>&lt; T1, T2, ArgsLs1&lt; Args1... &gt;, ArgsLs2&lt; Args2... &gt;, Sign &gt;::get </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; T, <a class="el" href="structTensorExpressions_1_1AddSub_3_01T1_00_01T2_00_01ArgsLs1_3_01Args1_8_8_8_01_4_00_01ArgsLs2_dd965ff16ece69e5a58457285dbba0d9.html#a1bfcfbb18526da071af6842760c49ffc">num_tensor_indices</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>tensor_index</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3d324f43cd64690336dba4b35b1d0c11"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d324f43cd64690336dba4b35b1d0c11">&#9670;&nbsp;</a></span>operator[]() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 , typename T2 , template&lt; typename... &gt; class ArgsLs1, template&lt; typename... &gt; class ArgsLs2, typename... Args1, typename... Args2, int Sign&gt; </div>
+<div class="memtemplate">
+template&lt;int U = Sign, std::enable_if_t&lt; U==1 &gt; *  = nullptr&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">T1::type <a class="el" href="structTensorExpressions_1_1AddSub.html">TensorExpressions::AddSub</a>&lt; T1, T2, ArgsLs1&lt; Args1... &gt;, ArgsLs2&lt; Args2... &gt;, Sign &gt;::operator[] </td>
+          <td>(</td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>i</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3d324f43cd64690336dba4b35b1d0c11"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d324f43cd64690336dba4b35b1d0c11">&#9670;&nbsp;</a></span>operator[]() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 , typename T2 , template&lt; typename... &gt; class ArgsLs1, template&lt; typename... &gt; class ArgsLs2, typename... Args1, typename... Args2, int Sign&gt; </div>
+<div class="memtemplate">
+template&lt;int U = Sign, std::enable_if_t&lt; U==-1 &gt; *  = nullptr&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">T1::type <a class="el" href="structTensorExpressions_1_1AddSub.html">TensorExpressions::AddSub</a>&lt; T1, T2, ArgsLs1&lt; Args1... &gt;, ArgsLs2&lt; Args2... &gt;, Sign &gt;::operator[] </td>
+          <td>(</td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>i</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a1bfcfbb18526da071af6842760c49ffc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1bfcfbb18526da071af6842760c49ffc">&#9670;&nbsp;</a></span>num_tensor_indices</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 , typename T2 , template&lt; typename... &gt; class ArgsLs1, template&lt; typename... &gt; class ArgsLs2, typename... Args1, typename... Args2, int Sign&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr auto <a class="el" href="structTensorExpressions_1_1AddSub.html">TensorExpressions::AddSub</a>&lt; T1, T2, ArgsLs1&lt; Args1... &gt;, ArgsLs2&lt; Args2... &gt;, Sign &gt;::num_tensor_indices</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">=</div><div class="line">      tmpl::size&lt;index_list&gt;::value == 0 ? 1 : tmpl::size&lt;index_list&gt;::value</div></div><!-- fragment -->
+</div>
+</div>
+<hr/>The documentation for this struct was generated from the following file:<ul>
+<li>src/DataStructures/Tensor/Expressions/<a class="el" href="AddSubtract_8hpp_source.html">AddSubtract.hpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.10-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+&copy; Copyright 2017
+<a href="https://black-holes.org">SXS Collaboration</a>,
+<a href="LICENSE.txt" target="_blank">
+<span class="hidden-xs">Distributed under the</span>
+MIT License</a>
+</small></address>
+</body>
+</html>

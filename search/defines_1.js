@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['wrapped_5fpupable_5fabstract',['WRAPPED_PUPable_abstract',['../CharmPupable_8hpp.html#a2811c7e8423d4f37ad97e340c1322dd9',1,'CharmPupable.hpp']]],
-  ['wrapped_5fpupable_5fdecl',['WRAPPED_PUPable_decl',['../CharmPupable_8hpp.html#a9bea344c203a07f5821dd721697dcecc',1,'CharmPupable.hpp']]]
+  ['spectre_5fblaze_5fallocator',['SPECTRE_BLAZE_ALLOCATOR',['../PointerVector_8hpp.html#ac86d4f82ee5912a6b2106e2ddf3fc190',1,'PointerVector.hpp']]],
+  ['spectre_5fblaze_5fdeallocator',['SPECTRE_BLAZE_DEALLOCATOR',['../PointerVector_8hpp.html#a2d842ea405c9686813bf179f5c3b68c0',1,'PointerVector.hpp']]]
 ];

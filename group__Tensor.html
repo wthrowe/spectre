@@ -150,11 +150,589 @@ $(function() {
 </div>
 
 <div class="header">
+  <div class="summary">
+<a href="#namespaces">Namespaces</a> &#124;
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#typedef-members">Typedefs</a> &#124;
+<a href="#enum-members">Enumerations</a>  </div>
   <div class="headertitle">
 <div class="title">Tensor</div>  </div>
 </div><!--header-->
 <div class="contents">
-<p>Tensor use documentation. </p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
+Namespaces</h2></td></tr>
+<tr class="memitem:namespaceFrame"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceFrame.html">Frame</a></td></tr>
+<tr class="memdesc:namespaceFrame"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates the <a class="el" href="namespaceFrame.html" title="Indicates the Frame that a TensorIndexType is in. ">Frame</a> that a <a class="el" href="group__Tensor.html#ga05c512b755e913cdbddce8634bdb4fa6">TensorIndexType</a> is in. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:namespaceTensorMetafunctions"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceTensorMetafunctions.html">TensorMetafunctions</a></td></tr>
+<tr class="memdesc:namespaceTensorMetafunctions"><td class="mdescLeft">&#160;</td><td class="mdescRight">Contains all metafunctions related to <a class="el" href="classTensor.html">Tensor</a> manipulations. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:namespacetnsr"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetnsr.html">tnsr</a></td></tr>
+<tr class="memdesc:namespacetnsr"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type aliases to construct common Tensors. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtt_1_1is__tensor__index__type.html">tt::is_tensor_index_type&lt; T &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inherits from <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/integral_constant.html">std::true_type</a> if T is a <a class="el" href="group__Tensor.html#ga05c512b755e913cdbddce8634bdb4fa6">TensorIndexType</a>.  <a href="structtt_1_1is__tensor__index__type.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html">Tensor&lt; X, Symm, IndexLs&lt; Indices... &gt; &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents an object with multiple components.  <a href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:ga557beda9bce6c7f236213ec8b24b3ff3"><td class="memTemplParams" colspan="2">template&lt;size_t SpatialDim, UpLo Ul, typename Fr &gt; </td></tr>
+<tr class="memitem:ga557beda9bce6c7f236213ec8b24b3ff3"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__Tensor.html#ga557beda9bce6c7f236213ec8b24b3ff3">SpatialIndex</a> = Tensor_detail::TensorIndexType&lt; SpatialDim, Ul, Fr, <a class="el" href="group__Tensor.html#gga875b107b929ff008a27078792ac0bc8ea33d7f1ec5fe18e7ba799474138e71504">IndexType::Spatial</a> &gt;</td></tr>
+<tr class="memdesc:ga557beda9bce6c7f236213ec8b24b3ff3"><td class="mdescLeft">&#160;</td><td class="mdescRight">A SpatialIndex holds information about the number of spatial dimensions, whether the index is covariant or contravariant (<a class="el" href="group__Tensor.html#gaab1181edf2ab2b664b0f174223f08c28" title="Whether a TensorIndexType is covariant or contravariant. ">UpLo</a>), and the <a class="el" href="namespaceFrame.html" title="Indicates the Frame that a TensorIndexType is in. ">Frame</a> the index is in.  <a href="#ga557beda9bce6c7f236213ec8b24b3ff3">More...</a><br /></td></tr>
+<tr class="separator:ga557beda9bce6c7f236213ec8b24b3ff3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga05c512b755e913cdbddce8634bdb4fa6"><td class="memTemplParams" colspan="2">template&lt;size_t SpatialDim, UpLo Ul, typename Fr &gt; </td></tr>
+<tr class="memitem:ga05c512b755e913cdbddce8634bdb4fa6"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__Tensor.html#ga05c512b755e913cdbddce8634bdb4fa6">SpacetimeIndex</a> = Tensor_detail::TensorIndexType&lt; SpatialDim, Ul, Fr, <a class="el" href="group__Tensor.html#gga875b107b929ff008a27078792ac0bc8eaed5df3a695921f514a83c22d119c0f8e">IndexType::Spacetime</a> &gt;</td></tr>
+<tr class="memdesc:ga05c512b755e913cdbddce8634bdb4fa6"><td class="mdescLeft">&#160;</td><td class="mdescRight">A SpacetimeIndex holds information about the number of spatial dimensions, whether the index is covariant or contravariant (<a class="el" href="group__Tensor.html#gaab1181edf2ab2b664b0f174223f08c28" title="Whether a TensorIndexType is covariant or contravariant. ">UpLo</a>), and the <a class="el" href="namespaceFrame.html" title="Indicates the Frame that a TensorIndexType is in. ">Frame</a> the index is in.  <a href="#ga05c512b755e913cdbddce8634bdb4fa6">More...</a><br /></td></tr>
+<tr class="separator:ga05c512b755e913cdbddce8634bdb4fa6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gacb33fd857700a3fc87b9dce8c877fee7"><td class="memTemplParams" colspan="2">template&lt;typename Index &gt; </td></tr>
+<tr class="memitem:gacb33fd857700a3fc87b9dce8c877fee7"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__Tensor.html#gacb33fd857700a3fc87b9dce8c877fee7">change_index_up_lo</a> = Tensor_detail::TensorIndexType&lt; Index::index_type==<a class="el" href="group__Tensor.html#gga875b107b929ff008a27078792ac0bc8ea33d7f1ec5fe18e7ba799474138e71504">IndexType::Spatial</a> ? Index::value :Index::value - 1, Index::ul==<a class="el" href="group__Tensor.html#ggaab1181edf2ab2b664b0f174223f08c28a258f49887ef8d14ac268c92b02503aaa">UpLo::Up</a> ? <a class="el" href="group__Tensor.html#ggaab1181edf2ab2b664b0f174223f08c28aff50b4aa1c9cc2197ef898436641c911">UpLo::Lo</a> :<a class="el" href="group__Tensor.html#ggaab1181edf2ab2b664b0f174223f08c28a258f49887ef8d14ac268c92b02503aaa">UpLo::Up</a>, typename Index::Frame, Index::index_type &gt;</td></tr>
+<tr class="memdesc:gacb33fd857700a3fc87b9dce8c877fee7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Change the <a class="el" href="group__Tensor.html#ga05c512b755e913cdbddce8634bdb4fa6">TensorIndexType</a> to be covariant if it's contravariant and vice-versa.  <a href="#gacb33fd857700a3fc87b9dce8c877fee7">More...</a><br /></td></tr>
+<tr class="separator:gacb33fd857700a3fc87b9dce8c877fee7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa206519a530a23bd3c3381fb19a9a7bf"><td class="memTemplParams" colspan="2">template&lt;typename Symmetry_t , typename Indices_t &gt; </td></tr>
+<tr class="memitem:gaa206519a530a23bd3c3381fb19a9a7bf"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__Tensor.html#gaa206519a530a23bd3c3381fb19a9a7bf">TensorMetafunctions::independent_components</a> = typename detail::number_of_independent_components_impl&lt; Symmetry_t, Indices_t &gt;::number_of_independent_components</td></tr>
+<tr class="memdesc:gaa206519a530a23bd3c3381fb19a9a7bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the number of independent components for a given <a class="el" href="group__Tensor.html#ga8cfb4461e3d8d897b541a8d64da1369e" title="Computes the canonical symmetry from the integers T ">Symmetry</a> and <a class="el" href="group__Tensor.html#ga05c512b755e913cdbddce8634bdb4fa6">TensorIndexType</a> list.  <a href="group__Tensor.html#gaa206519a530a23bd3c3381fb19a9a7bf">More...</a><br /></td></tr>
+<tr class="separator:gaa206519a530a23bd3c3381fb19a9a7bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gacedade543e71bda4d05cf0abdd285001"><td class="memTemplParams" colspan="2">template&lt;typename Symmetry_t , typename Indices_t &gt; </td></tr>
+<tr class="memitem:gacedade543e71bda4d05cf0abdd285001"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__Tensor.html#gacedade543e71bda4d05cf0abdd285001">TensorMetafunctions::number_of_components</a> = typename detail::number_of_independent_components_impl&lt; Symmetry_t, Indices_t &gt;::<a class="el" href="group__Tensor.html#gacedade543e71bda4d05cf0abdd285001">number_of_components</a></td></tr>
+<tr class="memdesc:gacedade543e71bda4d05cf0abdd285001"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the number of components for a given <a class="el" href="group__Tensor.html#ga8cfb4461e3d8d897b541a8d64da1369e" title="Computes the canonical symmetry from the integers T ">Symmetry</a> and <a class="el" href="group__Tensor.html#ga05c512b755e913cdbddce8634bdb4fa6">TensorIndexType</a> list.  <a href="group__Tensor.html#gacedade543e71bda4d05cf0abdd285001">More...</a><br /></td></tr>
+<tr class="separator:gacedade543e71bda4d05cf0abdd285001"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab670beaf41985a1b770f6e8909345465"><td class="memTemplParams" colspan="2">template&lt;typename IndexList , typename TensorIndex &gt; </td></tr>
+<tr class="memitem:gab670beaf41985a1b770f6e8909345465"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__Tensor.html#gab670beaf41985a1b770f6e8909345465">TensorMetafunctions::increment_tensor_index</a> = typename detail::increment_tensor_index_impl&lt;(tmpl::at&lt; <a class="el" href="structTensorIndex.html">TensorIndex</a>, tmpl::size_t&lt; 0 &gt; &gt;::value+1 &gt;=tmpl::at&lt; IndexList, tmpl::size_t&lt; 0 &gt; &gt;::dim)&gt;::template type&lt; IndexList, <a class="el" href="structTensorIndex.html">TensorIndex</a>, 0 &gt;</td></tr>
+<tr class="memdesc:gab670beaf41985a1b770f6e8909345465"><td class="mdescLeft">&#160;</td><td class="mdescRight">Increment a tensor index.  <a href="group__Tensor.html#gab670beaf41985a1b770f6e8909345465">More...</a><br /></td></tr>
+<tr class="separator:gab670beaf41985a1b770f6e8909345465"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab7dcbad000fac1fbbfd3359c45c038bd"><td class="memTemplParams" colspan="2">template&lt;typename Symm , typename TensorIndex , size_t Rank, size_t I, size_t Offset&gt; </td></tr>
+<tr class="memitem:gab7dcbad000fac1fbbfd3359c45c038bd"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__Tensor.html#gab7dcbad000fac1fbbfd3359c45c038bd">TensorMetafunctions::tensor_index_to_swap</a> = typename detail::tensor_index_to_swap_impl&lt; Rank==Offset+1 &gt;::template type&lt; Symm, <a class="el" href="structTensorIndex.html">TensorIndex</a>, tmpl::size_t&lt; Rank &gt;, tmpl::size_t&lt; I &gt;, tmpl::size_t&lt; Offset &gt; &gt;</td></tr>
+<tr class="separator:gab7dcbad000fac1fbbfd3359c45c038bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf50101d68ca4b9f2b4059ea4219a10ee"><td class="memTemplParams" colspan="2">template&lt;typename Symm , typename IndexLs , typename TensorIndex &gt; </td></tr>
+<tr class="memitem:gaf50101d68ca4b9f2b4059ea4219a10ee"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__Tensor.html#gaf50101d68ca4b9f2b4059ea4219a10ee">TensorMetafunctions::canonicalize_tensor_index</a> = typename detail::canonicalize_tensor_index_impl&lt;(tmpl::size&lt; IndexLs &gt;::value &gt; 0)&gt;::template type&lt; Symm, IndexLs, <a class="el" href="structTensorIndex.html">TensorIndex</a>, tmpl::size&lt; IndexLs &gt;::value, 0 &gt;</td></tr>
+<tr class="separator:gaf50101d68ca4b9f2b4059ea4219a10ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaacab4cf12c3673c023903832cf5354bd"><td class="memTemplParams" colspan="2">template&lt;typename TensorIndex , typename IndexLs &gt; </td></tr>
+<tr class="memitem:gaacab4cf12c3673c023903832cf5354bd"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__Tensor.html#gaacab4cf12c3673c023903832cf5354bd">TensorMetafunctions::compute_collapsed_index</a> = typename detail::compute_collapsed_index_impl&lt;(tmpl::size&lt; <a class="el" href="structTensorIndex.html">TensorIndex</a> &gt;::value &gt; 1)&gt;::template type&lt; <a class="el" href="structTensorIndex.html">TensorIndex</a>, IndexLs &gt;</td></tr>
+<tr class="separator:gaacab4cf12c3673c023903832cf5354bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0fb787a406314d41e8f9e728fec649e5"><td class="memTemplParams" colspan="2">template&lt;typename IndexLs , typename CanonicalTensorIndex , typename TensorIndex , typename CollapsedToStorageLs , typename I , typename Count &gt; </td></tr>
+<tr class="memitem:ga0fb787a406314d41e8f9e728fec649e5"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__Tensor.html#ga0fb787a406314d41e8f9e728fec649e5">TensorMetafunctions::update_collapsed_to_storage_using_canonical_tensor_index</a> = typename detail::update_collapsed_to_storage_using_canonical_tensor_index_impl&lt; <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/is_same.html">std::is_same</a>&lt; CanonicalTensorIndex, <a class="el" href="structTensorIndex.html">TensorIndex</a> &gt;::value &gt;::template type&lt; IndexLs, CanonicalTensorIndex, <a class="el" href="structTensorIndex.html">TensorIndex</a>, CollapsedToStorageLs, I, Count &gt;</td></tr>
+<tr class="separator:ga0fb787a406314d41e8f9e728fec649e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga312d4f68099a690a8b6de27a7c7db425"><td class="memTemplParams" colspan="2">template&lt;typename CanonicalizeTensorIndex , typename TI , typename Count &gt; </td></tr>
+<tr class="memitem:ga312d4f68099a690a8b6de27a7c7db425"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__Tensor.html#ga312d4f68099a690a8b6de27a7c7db425">TensorMetafunctions::increase_count</a> = tmpl::conditional_t&lt; <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/is_same.html">std::is_same</a>&lt; CanonicalizeTensorIndex, TI &gt;::value, tmpl::size_t&lt; Count::value+1 &gt;, Count &gt;</td></tr>
+<tr class="memdesc:ga312d4f68099a690a8b6de27a7c7db425"><td class="mdescLeft">&#160;</td><td class="mdescRight">given a <code><a class="el" href="structTensorIndex.html" title="Represents the indices in a TensorExpression. ">TensorIndex</a></code> checks if it is the canonical form, if so returns <code>tmpl::plus&lt;Count, tmpl::size_t&lt;1&gt;&gt;</code> otherwise returns <code>Count</code>  <a href="group__Tensor.html#ga312d4f68099a690a8b6de27a7c7db425">More...</a><br /></td></tr>
+<tr class="separator:ga312d4f68099a690a8b6de27a7c7db425"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad5f6f964e806c8d1d8ad678a88c55c48"><td class="memTemplParams" colspan="2">template&lt;typename IndexLs , typename Symm , typename NumComps &gt; </td></tr>
+<tr class="memitem:gad5f6f964e806c8d1d8ad678a88c55c48"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__Tensor.html#gad5f6f964e806c8d1d8ad678a88c55c48">TensorMetafunctions::compute_collapsed_to_storage</a> = typename detail::compute_collapsed_to_storage_impl&lt;(0&lt; NumComps::value - 1)&gt;::template type&lt; tmpl::filled_list&lt; tmpl::size_t&lt; 0 &gt;, NumComps::value &gt;, IndexLs, Symm, tmpl::filled_list&lt; tmpl::size_t&lt; 0 &gt;, tmpl::size&lt; IndexLs &gt;::value &gt;, tmpl::size_t&lt; 0 &gt;, tmpl::size_t&lt; 0 &gt;, NumComps &gt;</td></tr>
+<tr class="memdesc:gad5f6f964e806c8d1d8ad678a88c55c48"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the collapse index to storage index <a class="el" href="group__Utilities.html#ga4dabf6319ff36d72095831fba701afc1" title="Construct a typelist of types Ts. ">typelist</a>.  <a href="group__Tensor.html#gad5f6f964e806c8d1d8ad678a88c55c48">More...</a><br /></td></tr>
+<tr class="separator:gad5f6f964e806c8d1d8ad678a88c55c48"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf65cc7e0a6f40ba9fdcedb59ea06af3c"><td class="memTemplParams" colspan="2">template&lt;typename Symm , typename IndexLs , typename CollapsedToStorageLs , typename NumIndComps &gt; </td></tr>
+<tr class="memitem:gaf65cc7e0a6f40ba9fdcedb59ea06af3c"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__Tensor.html#gaf65cc7e0a6f40ba9fdcedb59ea06af3c">TensorMetafunctions::compute_storage_to_tensor</a> = typename detail::compute_storage_to_tensor_impl&lt;(tmpl::size&lt; CollapsedToStorageLs &gt;::value &gt; 1) ? 2 :(tmpl::size&lt; CollapsedToStorageLs &gt;::value==2 and <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/is_same.html">std::is_same</a>&lt; tmpl::back&lt; CollapsedToStorageLs &gt;, tmpl::list&lt; tmpl::size_t&lt; 0 &gt; &gt;&gt;::value) ? 1 :0 &gt;::template type&lt; Symm, IndexLs, CollapsedToStorageLs, tmpl::filled_list&lt; tmpl::size_t&lt; 0 &gt;, tmpl::size&lt; IndexLs &gt;::value &gt;, tmpl::filled_list&lt; tmpl::size_t&lt; 0 &gt;, NumIndComps::value &gt; &gt;</td></tr>
+<tr class="memdesc:gaf65cc7e0a6f40ba9fdcedb59ea06af3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute a <a class="el" href="group__Utilities.html#ga4dabf6319ff36d72095831fba701afc1" title="Construct a typelist of types Ts. ">typelist</a> holding the tensor index for each storage index.  <a href="group__Tensor.html#gaf65cc7e0a6f40ba9fdcedb59ea06af3c">More...</a><br /></td></tr>
+<tr class="separator:gaf65cc7e0a6f40ba9fdcedb59ea06af3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab95925257254e93da3bf494554d9a57c"><td class="memTemplParams" colspan="2">template&lt;typename CollapsedToStorageLs , typename NumIndComps &gt; </td></tr>
+<tr class="memitem:gab95925257254e93da3bf494554d9a57c"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__Tensor.html#gab95925257254e93da3bf494554d9a57c">TensorMetafunctions::compute_multiplicity</a> = typename detail::compute_multiplicity_impl&lt;(tmpl::size&lt; CollapsedToStorageLs &gt;::value &gt; 1)&gt;::template type&lt; CollapsedToStorageLs, tmpl::filled_list&lt; tmpl::size_t&lt; 0 &gt;, NumIndComps::value &gt; &gt;</td></tr>
+<tr class="memdesc:gab95925257254e93da3bf494554d9a57c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute <a class="el" href="group__Utilities.html#ga4dabf6319ff36d72095831fba701afc1" title="Construct a typelist of types Ts. ">typelist</a> of the multiplicity of each storage index of a <a class="el" href="classTensor.html">Tensor</a>.  <a href="group__Tensor.html#gab95925257254e93da3bf494554d9a57c">More...</a><br /></td></tr>
+<tr class="separator:gab95925257254e93da3bf494554d9a57c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga19fe479c1cba5e3c4d425afe58f00a0c"><td class="memTemplParams" colspan="2">template&lt;typename Symm , typename IndexLs &gt; </td></tr>
+<tr class="memitem:ga19fe479c1cba5e3c4d425afe58f00a0c"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__Tensor.html#ga19fe479c1cba5e3c4d425afe58f00a0c">TensorMetafunctions::check_index_symmetry</a> = typename detail::check_index_symmetry_impl&lt; tmpl::size&lt; Symm &gt;::value==0 ? 0 :2 &gt;::template type&lt; Symm, IndexLs, tmpl::map&lt;&gt; &gt;</td></tr>
+<tr class="memdesc:ga19fe479c1cba5e3c4d425afe58f00a0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check that each of symmetric indices is in the same frame and have the same dimensionality.  <a href="group__Tensor.html#ga19fe479c1cba5e3c4d425afe58f00a0c">More...</a><br /></td></tr>
+<tr class="separator:ga19fe479c1cba5e3c4d425afe58f00a0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2248ababd3acdf6f99dbf12221d39c9d"><td class="memTemplParams" colspan="2">template&lt;typename Tensor_t , std::size_t VolumeDim, UpLo Ul, typename Fr  = Frame::Grid&gt; </td></tr>
+<tr class="memitem:ga2248ababd3acdf6f99dbf12221d39c9d"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__Tensor.html#ga2248ababd3acdf6f99dbf12221d39c9d">TensorMetafunctions::prepend_spatial_index</a> = <a class="el" href="classTensor.html">Tensor</a>&lt; typename Tensor_t::type, tmpl::push_front&lt; typename Tensor_t::symmetry, tmpl::int32_t&lt; 1+tmpl::fold&lt; typename Tensor_t::symmetry, tmpl::int32_t&lt; 0 &gt;, tmpl::max&lt; tmpl::_state, tmpl::_element &gt; &gt;::value &gt; &gt;, tmpl::push_front&lt; typename <a class="el" href="IndexType_8hpp.html#aed089afaa0428b29bb5a9b9e77c81927">Tensor_t::index_list</a>, <a class="el" href="group__Tensor.html#ga557beda9bce6c7f236213ec8b24b3ff3">SpatialIndex</a>&lt; VolumeDim, Ul, Fr &gt; &gt;&gt;</td></tr>
+<tr class="memdesc:ga2248ababd3acdf6f99dbf12221d39c9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a spatial index to the from of a <a class="el" href="classTensor.html">Tensor</a>.  <a href="group__Tensor.html#ga2248ababd3acdf6f99dbf12221d39c9d">More...</a><br /></td></tr>
+<tr class="separator:ga2248ababd3acdf6f99dbf12221d39c9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae4c1dd6e365c47fc19106a4c1f7cff0f"><td class="memTemplParams" colspan="2">template&lt;typename Tensor_t , std::size_t VolumeDim, UpLo Ul, typename Fr  = Frame::Grid&gt; </td></tr>
+<tr class="memitem:gae4c1dd6e365c47fc19106a4c1f7cff0f"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__Tensor.html#gae4c1dd6e365c47fc19106a4c1f7cff0f">TensorMetafunctions::prepend_spacetime_index</a> = <a class="el" href="classTensor.html">Tensor</a>&lt; typename Tensor_t::type, tmpl::push_front&lt; typename Tensor_t::symmetry, tmpl::int32_t&lt; 1+tmpl::fold&lt; typename Tensor_t::symmetry, tmpl::int32_t&lt; 0 &gt;, tmpl::max&lt; tmpl::_state, tmpl::_element &gt; &gt;::value &gt; &gt;, tmpl::push_front&lt; typename <a class="el" href="IndexType_8hpp.html#aed089afaa0428b29bb5a9b9e77c81927">Tensor_t::index_list</a>, <a class="el" href="group__Tensor.html#ga05c512b755e913cdbddce8634bdb4fa6">SpacetimeIndex</a>&lt; VolumeDim, Ul, Fr &gt; &gt;&gt;</td></tr>
+<tr class="memdesc:gae4c1dd6e365c47fc19106a4c1f7cff0f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a spacetime index to the from of a <a class="el" href="classTensor.html">Tensor</a>.  <a href="group__Tensor.html#gae4c1dd6e365c47fc19106a4c1f7cff0f">More...</a><br /></td></tr>
+<tr class="separator:gae4c1dd6e365c47fc19106a4c1f7cff0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8cfb4461e3d8d897b541a8d64da1369e"><td class="memTemplParams" colspan="2">template&lt;std::int32_t... T&gt; </td></tr>
+<tr class="memitem:ga8cfb4461e3d8d897b541a8d64da1369e"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__Tensor.html#ga8cfb4461e3d8d897b541a8d64da1369e">Symmetry</a> = typename detail::symm&lt; T... &gt;::type</td></tr>
+<tr class="memdesc:ga8cfb4461e3d8d897b541a8d64da1369e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the canonical symmetry from the integers <code>T</code>  <a href="#ga8cfb4461e3d8d897b541a8d64da1369e">More...</a><br /></td></tr>
+<tr class="separator:ga8cfb4461e3d8d897b541a8d64da1369e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga06ebcb38a1f13c246e53378b9e8959ce"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:ga06ebcb38a1f13c246e53378b9e8959ce"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__Tensor.html#ga06ebcb38a1f13c246e53378b9e8959ce">Scalar</a> = <a class="el" href="classTensor.html">Tensor</a>&lt; T, <a class="el" href="group__Tensor.html#ga8cfb4461e3d8d897b541a8d64da1369e">Symmetry</a>&lt;&gt;, <a class="el" href="IndexType_8hpp.html#aed089afaa0428b29bb5a9b9e77c81927">index_list</a>&lt;&gt; &gt;</td></tr>
+<tr class="memdesc:ga06ebcb38a1f13c246e53378b9e8959ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scalar type.  <a href="#ga06ebcb38a1f13c246e53378b9e8959ce">More...</a><br /></td></tr>
+<tr class="separator:ga06ebcb38a1f13c246e53378b9e8959ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:gaab1181edf2ab2b664b0f174223f08c28"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Tensor.html#gaab1181edf2ab2b664b0f174223f08c28">UpLo</a> { <a class="el" href="group__Tensor.html#ggaab1181edf2ab2b664b0f174223f08c28a258f49887ef8d14ac268c92b02503aaa">UpLo::Up</a>, 
+<a class="el" href="group__Tensor.html#ggaab1181edf2ab2b664b0f174223f08c28aff50b4aa1c9cc2197ef898436641c911">UpLo::Lo</a>
+ }<tr class="memdesc:gaab1181edf2ab2b664b0f174223f08c28"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether a <a class="el" href="group__Tensor.html#ga05c512b755e913cdbddce8634bdb4fa6">TensorIndexType</a> is covariant or contravariant.  <a href="group__Tensor.html#gaab1181edf2ab2b664b0f174223f08c28">More...</a><br /></td></tr>
+</td></tr>
+<tr class="separator:gaab1181edf2ab2b664b0f174223f08c28"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga875b107b929ff008a27078792ac0bc8e"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Tensor.html#ga875b107b929ff008a27078792ac0bc8e">IndexType</a> : char { <a class="el" href="group__Tensor.html#gga875b107b929ff008a27078792ac0bc8ea33d7f1ec5fe18e7ba799474138e71504">IndexType::Spatial</a>, 
+<a class="el" href="group__Tensor.html#gga875b107b929ff008a27078792ac0bc8eaed5df3a695921f514a83c22d119c0f8e">IndexType::Spacetime</a>
+ }<tr class="memdesc:ga875b107b929ff008a27078792ac0bc8e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates whether the <a class="el" href="group__Tensor.html#ga05c512b755e913cdbddce8634bdb4fa6">TensorIndexType</a> is Spatial or Spacetime.  <a href="group__Tensor.html#ga875b107b929ff008a27078792ac0bc8e">More...</a><br /></td></tr>
+</td></tr>
+<tr class="separator:ga875b107b929ff008a27078792ac0bc8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<p><a class="el" href="classTensor.html">Tensor</a> use documentation. </p>
+<h2 class="groupheader">Typedef Documentation</h2>
+<a id="gaf50101d68ca4b9f2b4059ea4219a10ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf50101d68ca4b9f2b4059ea4219a10ee">&#9670;&nbsp;</a></span>canonicalize_tensor_index</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Symm , typename IndexLs , typename TensorIndex &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="group__Tensor.html#gaf50101d68ca4b9f2b4059ea4219a10ee">TensorMetafunctions::canonicalize_tensor_index</a> = typedef typename detail::canonicalize_tensor_index_impl&lt;( tmpl::size&lt;IndexLs&gt;::value &gt; 0)&gt;::template type&lt;Symm, IndexLs, <a class="el" href="structTensorIndex.html">TensorIndex</a>, tmpl::size&lt;IndexLs&gt;::value, 0&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="gacb33fd857700a3fc87b9dce8c877fee7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gacb33fd857700a3fc87b9dce8c877fee7">&#9670;&nbsp;</a></span>change_index_up_lo</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Index &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="group__Tensor.html#gacb33fd857700a3fc87b9dce8c877fee7">change_index_up_lo</a> =  Tensor_detail::TensorIndexType&lt; Index::index_type == <a class="el" href="group__Tensor.html#gga875b107b929ff008a27078792ac0bc8ea33d7f1ec5fe18e7ba799474138e71504">IndexType::Spatial</a> ? Index::value : Index::value - 1, Index::ul == <a class="el" href="group__Tensor.html#ggaab1181edf2ab2b664b0f174223f08c28a258f49887ef8d14ac268c92b02503aaa">UpLo::Up</a> ? <a class="el" href="group__Tensor.html#ggaab1181edf2ab2b664b0f174223f08c28aff50b4aa1c9cc2197ef898436641c911">UpLo::Lo</a> : <a class="el" href="group__Tensor.html#ggaab1181edf2ab2b664b0f174223f08c28a258f49887ef8d14ac268c92b02503aaa">UpLo::Up</a>, typename Index::Frame, Index::index_type&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Change the <a class="el" href="group__Tensor.html#ga05c512b755e913cdbddce8634bdb4fa6">TensorIndexType</a> to be covariant if it's contravariant and vice-versa. </p>
+<p>Here is an example of how to use <a class="el" href="group__Tensor.html#gacb33fd857700a3fc87b9dce8c877fee7" title="Change the TensorIndexType to be covariant if it&#39;s contravariant and vice-versa. ">change_index_up_lo</a> </p><div class="fragment"><div class="line"><span class="keyword">using</span> <a class="code" href="classIndex.html">Index</a> = <a class="code" href="group__Tensor.html#ga557beda9bce6c7f236213ec8b24b3ff3">SpatialIndex&lt;3, UpLo::Lo, Frame::Grid&gt;</a>;</div><div class="line"><span class="keyword">using</span> <a class="code" href="Tensor_8cpp.html#a03a843f319bc4f2d1e3b93a487f2b8a1">UpIndex</a> = <a class="code" href="group__Tensor.html#gacb33fd857700a3fc87b9dce8c877fee7">change_index_up_lo&lt;Index&gt;</a>;</div><div class="line">static_assert(<a class="code" href="group__TypeTraits.html#ga173105b805ff5fa637edb005f704feca">cpp17::is_same_v</a>&lt;<a class="code" href="Tensor_8cpp.html#a03a843f319bc4f2d1e3b93a487f2b8a1">UpIndex</a>, <a class="code" href="group__Tensor.html#ga557beda9bce6c7f236213ec8b24b3ff3">SpatialIndex&lt;3, UpLo::Up, Frame::Grid&gt;</a>&gt;,</div><div class="line">              <span class="stringliteral">&quot;Failed testing change_index_up_lo&quot;</span>);</div></div><!-- fragment --> <dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname"><a class="el" href="classIndex.html" title="An integer multi-index. ">Index</a></td><td>the <a class="el" href="group__Tensor.html#ga05c512b755e913cdbddce8634bdb4fa6">TensorIndexType</a> to change </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga19fe479c1cba5e3c4d425afe58f00a0c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga19fe479c1cba5e3c4d425afe58f00a0c">&#9670;&nbsp;</a></span>check_index_symmetry</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Symm , typename IndexLs &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="group__Tensor.html#ga19fe479c1cba5e3c4d425afe58f00a0c">TensorMetafunctions::check_index_symmetry</a> = typedef typename detail::check_index_symmetry_impl&lt; tmpl::size&lt;Symm&gt;::value == 0 ? 0 : 2&gt;::template type&lt;Symm, IndexLs, tmpl::map&lt;&gt; &gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Check that each of symmetric indices is in the same frame and have the same dimensionality. </p>
+
+</div>
+</div>
+<a id="gaacab4cf12c3673c023903832cf5354bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaacab4cf12c3673c023903832cf5354bd">&#9670;&nbsp;</a></span>compute_collapsed_index</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename TensorIndex , typename IndexLs &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="group__Tensor.html#gaacab4cf12c3673c023903832cf5354bd">TensorMetafunctions::compute_collapsed_index</a> = typedef typename detail::compute_collapsed_index_impl&lt;( tmpl::size&lt;<a class="el" href="structTensorIndex.html">TensorIndex</a>&gt;::value &gt; 1)&gt;::template type&lt;<a class="el" href="structTensorIndex.html">TensorIndex</a>, IndexLs&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p><em>Requires:</em> <code>is_a&lt;typelist, IndexLs&gt;::value</code> is true, <code><a class="el" href="structtt_1_1is__a.html" title="Check if type T is a template specialization of U ">tt::is_a</a>&lt;typelist, <a class="el" href="structTensorIndex.html" title="Represents the indices in a TensorExpression. ">TensorIndex</a>&gt;::value</code> is true, and <code>tmpl::all&lt;<a class="el" href="structTensorIndex.html" title="Represents the indices in a TensorExpression. ">TensorIndex</a>, is_a&lt;<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/integral_constant.html">std::integral_constant</a>, tmpl::_1&gt;&gt;::value</code> is true </p>
+
+</div>
+</div>
+<a id="gad5f6f964e806c8d1d8ad678a88c55c48"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad5f6f964e806c8d1d8ad678a88c55c48">&#9670;&nbsp;</a></span>compute_collapsed_to_storage</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename IndexLs , typename Symm , typename NumComps &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="group__Tensor.html#gad5f6f964e806c8d1d8ad678a88c55c48">TensorMetafunctions::compute_collapsed_to_storage</a> = typedef typename detail:: compute_collapsed_to_storage_impl&lt;(0 &lt; NumComps::value - 1)&gt;::template type&lt; tmpl::filled_list&lt;tmpl::size_t&lt;0&gt;, NumComps::value&gt;, IndexLs, Symm, tmpl::filled_list&lt;tmpl::size_t&lt;0&gt;, tmpl::size&lt;IndexLs&gt;::value&gt;, tmpl::size_t&lt;0&gt;, tmpl::size_t&lt;0&gt;, NumComps&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Compute the collapse index to storage index <a class="el" href="group__Utilities.html#ga4dabf6319ff36d72095831fba701afc1" title="Construct a typelist of types Ts. ">typelist</a>. </p>
+
+</div>
+</div>
+<a id="gab95925257254e93da3bf494554d9a57c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab95925257254e93da3bf494554d9a57c">&#9670;&nbsp;</a></span>compute_multiplicity</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename CollapsedToStorageLs , typename NumIndComps &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="group__Tensor.html#gab95925257254e93da3bf494554d9a57c">TensorMetafunctions::compute_multiplicity</a> = typedef typename detail::compute_multiplicity_impl&lt;( tmpl::size&lt;CollapsedToStorageLs&gt;::value &gt; 1)&gt;::template type&lt;CollapsedToStorageLs, tmpl::filled_list&lt;tmpl::size_t&lt;0&gt;, NumIndComps::value&gt; &gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Compute <a class="el" href="group__Utilities.html#ga4dabf6319ff36d72095831fba701afc1" title="Construct a typelist of types Ts. ">typelist</a> of the multiplicity of each storage index of a <a class="el" href="classTensor.html">Tensor</a>. </p>
+<h3>Details</h3>
+<p>The multiplicity of a storage index is the number of tensor components it represents. For example, if a tensor is symmetric then the multiplicity for the storage index's representing symmetric terms have a multiplicity of 2. Specifically, consider a rank-2 symmetric tensor \(T_{ab}\), let the storage of the \(T_{02}\) component be <code>N</code>, for example. Then, since \(T_{20} = T_{02}\) </p><div class="fragment"><div class="line"><span class="keyword">using</span> result = tmpl::at&lt;ComputeMultiplicity&lt;ColToStor, NumIndComps&gt;,</div><div class="line">                         tmpl::size_t&lt;5&gt;&gt; = tmpl::size_t&lt;2&gt;;</div></div><!-- fragment --> 
+</div>
+</div>
+<a id="gaf65cc7e0a6f40ba9fdcedb59ea06af3c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf65cc7e0a6f40ba9fdcedb59ea06af3c">&#9670;&nbsp;</a></span>compute_storage_to_tensor</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Symm , typename IndexLs , typename CollapsedToStorageLs , typename NumIndComps &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="group__Tensor.html#gaf65cc7e0a6f40ba9fdcedb59ea06af3c">TensorMetafunctions::compute_storage_to_tensor</a> = typedef typename detail::compute_storage_to_tensor_impl&lt; (tmpl::size&lt;CollapsedToStorageLs&gt;::value &gt; 1) ? 2 : (tmpl::size&lt;CollapsedToStorageLs&gt;::value == 2 and <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/is_same.html">std::is_same</a>&lt;tmpl::back&lt;CollapsedToStorageLs&gt;, tmpl::list&lt;tmpl::size_t&lt;0&gt; &gt;&gt;::value) ? 1 : 0&gt;:: template type&lt; Symm, IndexLs, CollapsedToStorageLs, tmpl::filled_list&lt;tmpl::size_t&lt;0&gt;, tmpl::size&lt;IndexLs&gt;::value&gt;, tmpl::filled_list&lt;tmpl::size_t&lt;0&gt;, NumIndComps::value&gt; &gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Compute a <a class="el" href="group__Utilities.html#ga4dabf6319ff36d72095831fba701afc1" title="Construct a typelist of types Ts. ">typelist</a> holding the tensor index for each storage index. </p>
+
+</div>
+</div>
+<a id="ga312d4f68099a690a8b6de27a7c7db425"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga312d4f68099a690a8b6de27a7c7db425">&#9670;&nbsp;</a></span>increase_count</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename CanonicalizeTensorIndex , typename TI , typename Count &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="group__Tensor.html#ga312d4f68099a690a8b6de27a7c7db425">TensorMetafunctions::increase_count</a> = typedef tmpl::conditional_t&lt;<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/is_same.html">std::is_same</a>&lt;CanonicalizeTensorIndex, TI&gt;::value, tmpl::size_t&lt;Count::value + 1&gt;, Count&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>given a <code><a class="el" href="structTensorIndex.html" title="Represents the indices in a TensorExpression. ">TensorIndex</a></code> checks if it is the canonical form, if so returns <code>tmpl::plus&lt;Count, tmpl::size_t&lt;1&gt;&gt;</code> otherwise returns <code>Count</code> </p>
+
+</div>
+</div>
+<a id="gab670beaf41985a1b770f6e8909345465"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab670beaf41985a1b770f6e8909345465">&#9670;&nbsp;</a></span>increment_tensor_index</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename IndexList , typename TensorIndex &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="group__Tensor.html#gab670beaf41985a1b770f6e8909345465">TensorMetafunctions::increment_tensor_index</a> = typedef typename detail::increment_tensor_index_impl&lt;( tmpl::at&lt;<a class="el" href="structTensorIndex.html">TensorIndex</a>, tmpl::size_t&lt;0&gt; &gt;::value + 1 &gt;= tmpl::at&lt;IndexList, tmpl::size_t&lt;0&gt; &gt;::dim)&gt;::template type&lt;IndexList, <a class="el" href="structTensorIndex.html">TensorIndex</a>, 0&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Increment a tensor index. </p>
+<h3>Details</h3>
+<p>Given a tensor index <code><a class="el" href="structTensorIndex.html" title="Represents the indices in a TensorExpression. ">TensorIndex</a></code> and a list of <a class="el" href="group__Tensor.html#ga05c512b755e913cdbddce8634bdb4fa6">TensorIndex</a>'s, <code>IndexList</code>, increment the tensor index to the next component. Incrementing is done by incremeting the first (left-most) index first, once it reaches the dimensionality of that index, the next index is increment. That is, for a tensor \(T_{abc}\) where all indices are 3-dimensional, incrementing the index \((1, 3, 0)\) results in the index \((2, 3, 0)\), and incrementing the index \((3, 3, 0)\) results \((0, 0, 1)\).</p>
+<p>For a <a class="el" href="group__Utilities.html#ga4dabf6319ff36d72095831fba701afc1" title="Construct a typelist of types Ts. ">typelist</a> of <a class="el" href="group__Tensor.html#ga05c512b755e913cdbddce8634bdb4fa6">TensorIndexType</a>'s <code>IndexList</code> and a tensor index (<a class="el" href="group__Utilities.html#ga4dabf6319ff36d72095831fba701afc1" title="Construct a typelist of types Ts. ">typelist</a> of <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/integral_constant.html">std::integral_constant</a>) <code><a class="el" href="structTensorIndex.html" title="Represents the indices in a TensorExpression. ">TensorIndex</a></code>, </p><div class="fragment"><div class="line"><span class="keyword">using</span> result = IncrementTensorIndex&lt;IndexList, TensorIndex&gt;;</div></div><!-- fragment --> <p><em>Returns:</em> <a class="el" href="group__Utilities.html#ga4dabf6319ff36d72095831fba701afc1" title="Construct a typelist of types Ts. ">typelist&lt;std::integral_constant...&gt;</a></p>
+<p><em>Semantics:</em> Let <code>IndexList</code> by a <a class="el" href="group__Utilities.html#ga4dabf6319ff36d72095831fba701afc1" title="Construct a typelist of types Ts. ">typelist</a> </p><div class="fragment"><div class="line"><a class="code" href="group__Utilities.html#ga4dabf6319ff36d72095831fba701afc1">typelist&lt;SpacetimeTensorIndex&lt;3, UpLo::Lo, Frame::Grid&gt;</a>,</div><div class="line">         SpacetimeTensorIndex&lt;3, UpLo::Lo, Frame::Grid&gt;,</div><div class="line">         SpacetimeTensorIndex&lt;3, UpLo::Lo, Frame::Grid&gt;&gt;;</div></div><!-- fragment --><p> and <code><a class="el" href="structTensorIndex.html" title="Represents the indices in a TensorExpression. ">TensorIndex</a></code> be <code>tmpl::integral_list&lt;int, 3, 3, 0&gt;</code>, then </p><div class="fragment"><div class="line"><span class="keyword">using</span> result = tmpl::integral_list&lt;int, 0, 0, 1&gt;;</div></div><!-- fragment --> 
+</div>
+</div>
+<a id="gaa206519a530a23bd3c3381fb19a9a7bf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa206519a530a23bd3c3381fb19a9a7bf">&#9670;&nbsp;</a></span>independent_components</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Symmetry_t , typename Indices_t &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="group__Tensor.html#gaa206519a530a23bd3c3381fb19a9a7bf">TensorMetafunctions::independent_components</a> = typedef typename detail::number_of_independent_components_impl&lt; Symmetry_t, Indices_t&gt;::number_of_independent_components</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Compute the number of independent components for a given <a class="el" href="group__Tensor.html#ga8cfb4461e3d8d897b541a8d64da1369e" title="Computes the canonical symmetry from the integers T ">Symmetry</a> and <a class="el" href="group__Tensor.html#ga05c512b755e913cdbddce8634bdb4fa6">TensorIndexType</a> list. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Symmetry_t</td><td>Symmetry of the <a class="el" href="classTensor.html">Tensor</a> </td></tr>
+    <tr><td class="paramname">Indices_t</td><td>typelist of the <a class="el" href="structTensorIndex.html" title="Represents the indices in a TensorExpression. ">TensorIndex</a>'s of the <a class="el" href="classTensor.html">Tensor</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="gacedade543e71bda4d05cf0abdd285001"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gacedade543e71bda4d05cf0abdd285001">&#9670;&nbsp;</a></span>number_of_components</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Symmetry_t , typename Indices_t &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="group__Tensor.html#gacedade543e71bda4d05cf0abdd285001">TensorMetafunctions::number_of_components</a> = typedef typename detail::number_of_independent_components_impl&lt; Symmetry_t, Indices_t&gt;::<a class="el" href="group__Tensor.html#gacedade543e71bda4d05cf0abdd285001">number_of_components</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Compute the number of components for a given <a class="el" href="group__Tensor.html#ga8cfb4461e3d8d897b541a8d64da1369e" title="Computes the canonical symmetry from the integers T ">Symmetry</a> and <a class="el" href="group__Tensor.html#ga05c512b755e913cdbddce8634bdb4fa6">TensorIndexType</a> list. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Symmetry_t</td><td>Symmetry of the <a class="el" href="classTensor.html">Tensor</a> </td></tr>
+    <tr><td class="paramname">Indices_t</td><td>typelist of the <a class="el" href="structTensorIndex.html" title="Represents the indices in a TensorExpression. ">TensorIndex</a>'s of the <a class="el" href="classTensor.html">Tensor</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="gae4c1dd6e365c47fc19106a4c1f7cff0f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae4c1dd6e365c47fc19106a4c1f7cff0f">&#9670;&nbsp;</a></span>prepend_spacetime_index</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Tensor_t , std::size_t VolumeDim, UpLo Ul, typename Fr  = Frame::Grid&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="group__Tensor.html#gae4c1dd6e365c47fc19106a4c1f7cff0f">TensorMetafunctions::prepend_spacetime_index</a> = typedef <a class="el" href="classTensor.html">Tensor</a>&lt; typename Tensor_t::type, tmpl::push_front&lt; typename Tensor_t::symmetry, tmpl::int32_t&lt; 1 + tmpl::fold&lt;typename Tensor_t::symmetry, tmpl::int32_t&lt;0&gt;, tmpl::max&lt;tmpl::_state, tmpl::_element&gt; &gt;::value&gt; &gt;, tmpl::push_front&lt;typename <a class="el" href="IndexType_8hpp.html#aed089afaa0428b29bb5a9b9e77c81927">Tensor_t::index_list</a>, <a class="el" href="group__Tensor.html#ga05c512b755e913cdbddce8634bdb4fa6">SpacetimeIndex</a>&lt;VolumeDim, Ul, Fr&gt; &gt;&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Add a spacetime index to the from of a <a class="el" href="classTensor.html">Tensor</a>. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Tensor_t</td><td>the tensor type to prepend </td></tr>
+    <tr><td class="paramname">VolumeDim</td><td>the volume dimension of the tensor index to prepend </td></tr>
+    <tr><td class="paramname">Fr</td><td>the <a class="el" href="namespaceFrame.html" title="Indicates the Frame that a TensorIndexType is in. ">Frame</a> of the tensor index to prepend </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga2248ababd3acdf6f99dbf12221d39c9d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga2248ababd3acdf6f99dbf12221d39c9d">&#9670;&nbsp;</a></span>prepend_spatial_index</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Tensor_t , std::size_t VolumeDim, UpLo Ul, typename Fr  = Frame::Grid&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="group__Tensor.html#ga2248ababd3acdf6f99dbf12221d39c9d">TensorMetafunctions::prepend_spatial_index</a> = typedef <a class="el" href="classTensor.html">Tensor</a>&lt; typename Tensor_t::type, tmpl::push_front&lt; typename Tensor_t::symmetry, tmpl::int32_t&lt; 1 + tmpl::fold&lt;typename Tensor_t::symmetry, tmpl::int32_t&lt;0&gt;, tmpl::max&lt;tmpl::_state, tmpl::_element&gt; &gt;::value&gt; &gt;, tmpl::push_front&lt;typename <a class="el" href="IndexType_8hpp.html#aed089afaa0428b29bb5a9b9e77c81927">Tensor_t::index_list</a>, <a class="el" href="group__Tensor.html#ga557beda9bce6c7f236213ec8b24b3ff3">SpatialIndex</a>&lt;VolumeDim, Ul, Fr&gt; &gt;&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Add a spatial index to the from of a <a class="el" href="classTensor.html">Tensor</a>. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Tensor_t</td><td>the tensor type to prepend </td></tr>
+    <tr><td class="paramname">VolumeDim</td><td>the volume dimension of the tensor index to prepend </td></tr>
+    <tr><td class="paramname">Fr</td><td>the <a class="el" href="namespaceFrame.html" title="Indicates the Frame that a TensorIndexType is in. ">Frame</a> of the tensor index to prepend </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga06ebcb38a1f13c246e53378b9e8959ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga06ebcb38a1f13c246e53378b9e8959ce">&#9670;&nbsp;</a></span>Scalar</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="group__Tensor.html#ga06ebcb38a1f13c246e53378b9e8959ce">Scalar</a> =  <a class="el" href="classTensor.html">Tensor</a>&lt;T, <a class="el" href="group__Tensor.html#ga8cfb4461e3d8d897b541a8d64da1369e">Symmetry</a>&lt;&gt;, <a class="el" href="IndexType_8hpp.html#aed089afaa0428b29bb5a9b9e77c81927">index_list</a>&lt;&gt; &gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Scalar type. </p>
+
+</div>
+</div>
+<a id="ga05c512b755e913cdbddce8634bdb4fa6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga05c512b755e913cdbddce8634bdb4fa6">&#9670;&nbsp;</a></span>SpacetimeIndex</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;size_t SpatialDim, UpLo Ul, typename Fr &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="group__Tensor.html#ga05c512b755e913cdbddce8634bdb4fa6">SpacetimeIndex</a> =  Tensor_detail::TensorIndexType&lt;SpatialDim, Ul, Fr, <a class="el" href="group__Tensor.html#gga875b107b929ff008a27078792ac0bc8eaed5df3a695921f514a83c22d119c0f8e">IndexType::Spacetime</a>&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>A SpacetimeIndex holds information about the number of spatial dimensions, whether the index is covariant or contravariant (<a class="el" href="group__Tensor.html#gaab1181edf2ab2b664b0f174223f08c28" title="Whether a TensorIndexType is covariant or contravariant. ">UpLo</a>), and the <a class="el" href="namespaceFrame.html" title="Indicates the Frame that a TensorIndexType is in. ">Frame</a> the index is in. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">SpatialDim</td><td>the spatial dimensionality of the <a class="el" href="group__Tensor.html#ga05c512b755e913cdbddce8634bdb4fa6">TensorIndexType</a> </td></tr>
+    <tr><td class="paramname">Ul</td><td>either <a class="el" href="group__Tensor.html#ggaab1181edf2ab2b664b0f174223f08c28a258f49887ef8d14ac268c92b02503aaa" title="Contravariant, or Upper index. ">UpLo::Up</a> or <a class="el" href="group__Tensor.html#ggaab1181edf2ab2b664b0f174223f08c28aff50b4aa1c9cc2197ef898436641c911" title="Covariant, or Lower index. ">UpLo::Lo</a> for contra or covariant </td></tr>
+    <tr><td class="paramname">Fr</td><td>the <a class="el" href="namespaceFrame.html" title="Indicates the Frame that a TensorIndexType is in. ">Frame</a> the <a class="el" href="group__Tensor.html#ga05c512b755e913cdbddce8634bdb4fa6">TensorIndexType</a> is in </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga557beda9bce6c7f236213ec8b24b3ff3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga557beda9bce6c7f236213ec8b24b3ff3">&#9670;&nbsp;</a></span>SpatialIndex</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;size_t SpatialDim, UpLo Ul, typename Fr &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="group__Tensor.html#ga557beda9bce6c7f236213ec8b24b3ff3">SpatialIndex</a> =  Tensor_detail::TensorIndexType&lt;SpatialDim, Ul, Fr, <a class="el" href="group__Tensor.html#gga875b107b929ff008a27078792ac0bc8ea33d7f1ec5fe18e7ba799474138e71504">IndexType::Spatial</a>&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>A SpatialIndex holds information about the number of spatial dimensions, whether the index is covariant or contravariant (<a class="el" href="group__Tensor.html#gaab1181edf2ab2b664b0f174223f08c28" title="Whether a TensorIndexType is covariant or contravariant. ">UpLo</a>), and the <a class="el" href="namespaceFrame.html" title="Indicates the Frame that a TensorIndexType is in. ">Frame</a> the index is in. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">SpatialDim</td><td>the spatial dimensionality of the <a class="el" href="group__Tensor.html#ga557beda9bce6c7f236213ec8b24b3ff3">TensorIndexType</a> </td></tr>
+    <tr><td class="paramname">Ul</td><td>either <a class="el" href="group__Tensor.html#ggaab1181edf2ab2b664b0f174223f08c28a258f49887ef8d14ac268c92b02503aaa" title="Contravariant, or Upper index. ">UpLo::Up</a> or <a class="el" href="group__Tensor.html#ggaab1181edf2ab2b664b0f174223f08c28aff50b4aa1c9cc2197ef898436641c911" title="Covariant, or Lower index. ">UpLo::Lo</a> for contra or covariant </td></tr>
+    <tr><td class="paramname">Fr</td><td>the <a class="el" href="namespaceFrame.html" title="Indicates the Frame that a TensorIndexType is in. ">Frame</a> the <a class="el" href="group__Tensor.html#ga557beda9bce6c7f236213ec8b24b3ff3">TensorIndexType</a> is in </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga8cfb4461e3d8d897b541a8d64da1369e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga8cfb4461e3d8d897b541a8d64da1369e">&#9670;&nbsp;</a></span>Symmetry</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;std::int32_t... T&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="group__Tensor.html#ga8cfb4461e3d8d897b541a8d64da1369e">Symmetry</a> =  typename detail::symm&lt;T...&gt;::type</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Computes the canonical symmetry from the integers <code>T</code> </p>
+<h3>Details</h3>
+<p>Compute the canonical symmetry typelist given a set of integers, T. The resulting typelist is in descending order of the absolute value of the integers. For example, the result of <code>Symmetry&lt;1, 2, 3&gt;</code> is <code>integral_list&lt;int32_t, 3, 2, 1&gt;</code>. Anti-symmetries can be denoted with a minus sign on either <em>or</em> both indices. That is, <code>Symmetry&lt;-1, 2, 1&gt;</code> is anti-symmetric in the first and last index and is the same as <code>Symmetry&lt;-1, 2, -1&gt;</code>. Note: two minus signs are still anti-symmetric because it simplifies the algorithm used to compute the canonical form of the symmetry.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>the integers denoting the symmetry of the <a class="el" href="classTensor.html">Tensor</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="gab7dcbad000fac1fbbfd3359c45c038bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab7dcbad000fac1fbbfd3359c45c038bd">&#9670;&nbsp;</a></span>tensor_index_to_swap</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Symm , typename TensorIndex , size_t Rank, size_t I, size_t Offset&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="group__Tensor.html#gab7dcbad000fac1fbbfd3359c45c038bd">TensorMetafunctions::tensor_index_to_swap</a> = typedef typename detail::tensor_index_to_swap_impl&lt; Rank == Offset + 1&gt;::template type&lt;Symm, <a class="el" href="structTensorIndex.html">TensorIndex</a>, tmpl::size_t&lt;Rank&gt;, tmpl::size_t&lt;I&gt;, tmpl::size_t&lt;Offset&gt; &gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ga0fb787a406314d41e8f9e728fec649e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga0fb787a406314d41e8f9e728fec649e5">&#9670;&nbsp;</a></span>update_collapsed_to_storage_using_canonical_tensor_index</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename IndexLs , typename CanonicalTensorIndex , typename TensorIndex , typename CollapsedToStorageLs , typename I , typename Count &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="group__Tensor.html#ga0fb787a406314d41e8f9e728fec649e5">TensorMetafunctions::update_collapsed_to_storage_using_canonical_tensor_index</a> = typedef typename detail:: update_collapsed_to_storage_using_canonical_tensor_index_impl&lt; <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/is_same.html">std::is_same</a>&lt;CanonicalTensorIndex, <a class="el" href="structTensorIndex.html">TensorIndex</a>&gt;::value&gt;:: template type&lt;IndexLs, CanonicalTensorIndex, <a class="el" href="structTensorIndex.html">TensorIndex</a>, CollapsedToStorageLs, I, Count&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section note"><dt>Note</dt><dd>Cannot use <code><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/conditional.html">std::conditional_t</a></code> because <code>typelist&lt;&gt;</code> will fail </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Enumeration Type Documentation</h2>
+<a id="ga875b107b929ff008a27078792ac0bc8e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga875b107b929ff008a27078792ac0bc8e">&#9670;&nbsp;</a></span>IndexType</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="group__Tensor.html#ga875b107b929ff008a27078792ac0bc8e">IndexType</a> : char</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Indicates whether the <a class="el" href="group__Tensor.html#ga05c512b755e913cdbddce8634bdb4fa6">TensorIndexType</a> is Spatial or Spacetime. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga875b107b929ff008a27078792ac0bc8ea33d7f1ec5fe18e7ba799474138e71504"></a>Spatial&#160;</td><td class="fielddoc"><p>The <a class="el" href="group__Tensor.html#ga557beda9bce6c7f236213ec8b24b3ff3">TensorIndexType</a> is purely spatial. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga875b107b929ff008a27078792ac0bc8eaed5df3a695921f514a83c22d119c0f8e"></a>Spacetime&#160;</td><td class="fielddoc"><p>The <a class="el" href="group__Tensor.html#ga05c512b755e913cdbddce8634bdb4fa6">TensorIndexType</a> is a spacetime index. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="gaab1181edf2ab2b664b0f174223f08c28"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaab1181edf2ab2b664b0f174223f08c28">&#9670;&nbsp;</a></span>UpLo</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="group__Tensor.html#gaab1181edf2ab2b664b0f174223f08c28">UpLo</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Whether a <a class="el" href="group__Tensor.html#ga05c512b755e913cdbddce8634bdb4fa6">TensorIndexType</a> is covariant or contravariant. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ggaab1181edf2ab2b664b0f174223f08c28a258f49887ef8d14ac268c92b02503aaa"></a>Up&#160;</td><td class="fielddoc"><p>Contravariant, or Upper index. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggaab1181edf2ab2b664b0f174223f08c28aff50b4aa1c9cc2197ef898436641c911"></a>Lo&#160;</td><td class="fielddoc"><p>Covariant, or Lower index. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
 </div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->

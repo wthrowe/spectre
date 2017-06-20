@@ -1,0 +1,2027 @@
+<!-- HTML header for doxygen 1.8.10-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="SXS Collaboration">
+    <meta name="generator" content="Doxygen 1.8.13"/>
+    <style>
+        /*!
+         * IE10 viewport hack for Surface/desktop Windows 8 bug
+         * Copyright 2014-2015 Twitter, Inc.
+         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+         */
+        @-webkit-viewport { width: device-width; }
+        @-moz-viewport    { width: device-width; }
+        @-ms-viewport     { width: device-width; }
+        @-o-viewport      { width: device-width; }
+        @viewport         { width: device-width; }
+      </style>
+  <title>SpECTRE: Tensor&lt; X, Symm, IndexLs&lt; Indices... &gt; &gt; Class Template Reference</title>
+  <link href="tabs.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="dynsections.js"></script>
+  <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
+  <link href="octicons.css" rel="stylesheet">
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="doxygen.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="bootstrap.min.js"></script>
+  <script type="text/javascript" src="spectre.js"></script>
+  </head>
+  <body>
+  <div id="top" class="navbar-fixed-top"><!-- do not remove this div, it is closed by doxygen! -->
+  <!-- BEGIN TITLEAREA -->
+  <div id="titlearea">
+  <script type="text/javascript">
+  var searchBox = new SearchBox("searchBox", "search",false,'Search');
+  </script>
+  <div id="main-nav">
+    <ul class="sm sm-dox" id="main-menu">
+      <li>
+      <a href="https://github.com/sxs-collaboration/spectre" target="_blank">
+      SpECTRE &#160;
+        <span id="projectnumber">v0.0.0</span>
+      </a>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-book"></i><span>Documentation</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 135px;">
+            <a href="index.html">
+            <i class="octicon octicon-book"></i><span>Documentation</span></a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="tutorials.html">
+              <i class="octicon octicon-mortar-board"></i><span>Tutorials</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="dev_guide.html">
+              <i class="octicon octicon-gist-secret"></i><span>Dev Guide</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown" style="min-width: 150px;">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 130px;">
+            <a href="modules.html">
+              <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+            </a>
+          </li>
+          <li style="min-width: 130px;">
+            <a href="namespaces.html">
+              <i class="octicon octicon-gist"></i>
+              <span>Namespaces</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="files.html">
+          <i class="octicon octicon-file-directory"></i><span>Files</span>
+        </a>
+      </li>
+      <!--The Search <li> is added by doxygen later-->
+    </ul>
+  </div><!-- main-nav -->
+  </div><!-- titlearea -->
+  <!-- window showing the filter options -->
+  <div id="MSearchSelectWindow"  style="position: fixed;"
+       onmouseover="return searchBox.OnSearchSelectShow()"
+       onmouseout="return searchBox.OnSearchSelectHide()"
+       onkeydown="return searchBox.OnSearchSelectKey(event)">
+  </div>
+  <!-- iframe showing the search results (closed by default) -->
+  <div id="MSearchResultsWindow"  style="position: fixed;">
+  <iframe src="javascript:void(0)" frameborder="0"
+          name="MSearchResults" id="MSearchResults">
+  </iframe>
+  </div><!-- Generated by Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4-members.html">List of all members</a>  </div>
+  <div class="headertitle">
+<div class="title">Tensor&lt; X, Symm, IndexLs&lt; Indices... &gt; &gt; Class Template Reference<div class="ingroups"><a class="el" href="group__Tensor.html">Tensor</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Represents an object with multiple components.  
+ <a href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="Tensor_8hpp_source.html">Tensor.hpp</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:a6a94cd52e9e523e6efd869a1a4dd6a64"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#a6a94cd52e9e523e6efd869a1a4dd6a64">storage_type</a> = <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; X, Tensor_detail::Structure&lt; Symm, Indices... &gt;::<a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#aa116d528c35c17049b075ee3281c92f1">size</a>()&gt;</td></tr>
+<tr class="memdesc:a6a94cd52e9e523e6efd869a1a4dd6a64"><td class="mdescLeft">&#160;</td><td class="mdescRight">The type of the sequence that holds the data.  <a href="#a6a94cd52e9e523e6efd869a1a4dd6a64">More...</a><br /></td></tr>
+<tr class="separator:a6a94cd52e9e523e6efd869a1a4dd6a64"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae5130a781657d41382f732daa4de7a5e"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#ae5130a781657d41382f732daa4de7a5e">type</a> = X</td></tr>
+<tr class="memdesc:ae5130a781657d41382f732daa4de7a5e"><td class="mdescLeft">&#160;</td><td class="mdescRight">The type that is stored by the <a class="el" href="classTensor.html">Tensor</a>.  <a href="#ae5130a781657d41382f732daa4de7a5e">More...</a><br /></td></tr>
+<tr class="separator:ae5130a781657d41382f732daa4de7a5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f28f4ddf654a17b7d80efa207d84f6e"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#a0f28f4ddf654a17b7d80efa207d84f6e">symmetry</a> = Symm</td></tr>
+<tr class="memdesc:a0f28f4ddf654a17b7d80efa207d84f6e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Typelist of the symmetry of the <a class="el" href="classTensor.html">Tensor</a>.  <a href="#a0f28f4ddf654a17b7d80efa207d84f6e">More...</a><br /></td></tr>
+<tr class="separator:a0f28f4ddf654a17b7d80efa207d84f6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a85fa85adc5b0fd700c958bb2b5ffa318"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#a85fa85adc5b0fd700c958bb2b5ffa318">index_list</a> = <a class="el" href="group__Utilities.html#ga4dabf6319ff36d72095831fba701afc1">typelist</a>&lt; Indices... &gt;</td></tr>
+<tr class="memdesc:a85fa85adc5b0fd700c958bb2b5ffa318"><td class="mdescLeft">&#160;</td><td class="mdescRight">Typelist of the <a class="el" href="group__Tensor.html#ga05c512b755e913cdbddce8634bdb4fa6">TensorIndexType</a>'s that the <a class="el" href="classTensor.html">Tensor</a> has.  <a href="#a85fa85adc5b0fd700c958bb2b5ffa318">More...</a><br /></td></tr>
+<tr class="separator:a85fa85adc5b0fd700c958bb2b5ffa318"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7962eedf975b9e6aaa26e0720e93c1f4"><td class="memTemplParams" colspan="2">template&lt;typename ArgsLs &gt; </td></tr>
+<tr class="memitem:a7962eedf975b9e6aaa26e0720e93c1f4"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#a7962eedf975b9e6aaa26e0720e93c1f4">TE</a> = TensorExpression&lt; <a class="el" href="classTensor.html">Tensor</a>&lt; X, Symm, tmpl::list&lt; Indices... &gt; &gt;, X, Symm, tmpl::list&lt; Indices... &gt;, ArgsLs &gt;</td></tr>
+<tr class="memdesc:a7962eedf975b9e6aaa26e0720e93c1f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">The type of the TensorExpression that would represent this <a class="el" href="classTensor.html">Tensor</a> in a tensor expression.  <a href="#a7962eedf975b9e6aaa26e0720e93c1f4">More...</a><br /></td></tr>
+<tr class="separator:a7962eedf975b9e6aaa26e0720e93c1f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac9b7252195549941b94dc7455ce5324c"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#ac9b7252195549941b94dc7455ce5324c">value_type</a> = typename storage_type::value_type</td></tr>
+<tr class="separator:ac9b7252195549941b94dc7455ce5324c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37b572a2daa5ce85f049a5cd1faefd7d"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#a37b572a2daa5ce85f049a5cd1faefd7d">reference</a> = typename storage_type::reference</td></tr>
+<tr class="separator:a37b572a2daa5ce85f049a5cd1faefd7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd8fdd3c418b0899dd0bf9c23e122e71"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#afd8fdd3c418b0899dd0bf9c23e122e71">const_reference</a> = typename storage_type::const_reference</td></tr>
+<tr class="separator:afd8fdd3c418b0899dd0bf9c23e122e71"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a08b2e3f52f7da2247d537a7a2bde9a3f"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#a08b2e3f52f7da2247d537a7a2bde9a3f">iterator</a> = typename storage_type::iterator</td></tr>
+<tr class="separator:a08b2e3f52f7da2247d537a7a2bde9a3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a955b690bae005cbac8ef5e373d3c69f2"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#a955b690bae005cbac8ef5e373d3c69f2">const_iterator</a> = typename storage_type::const_iterator</td></tr>
+<tr class="separator:a955b690bae005cbac8ef5e373d3c69f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af049cb78253625b86e3f87bb59631aae"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#af049cb78253625b86e3f87bb59631aae">pointer</a> = typename storage_type::pointer</td></tr>
+<tr class="separator:af049cb78253625b86e3f87bb59631aae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac6c67f0cd1cc8e3cbae3a47393395f46"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#ac6c67f0cd1cc8e3cbae3a47393395f46">const_pointer</a> = typename storage_type::const_pointer</td></tr>
+<tr class="separator:ac6c67f0cd1cc8e3cbae3a47393395f46"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afaf21860056f3921bb89266ed7ed4abd"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#afaf21860056f3921bb89266ed7ed4abd">reverse_iterator</a> = typename storage_type::reverse_iterator</td></tr>
+<tr class="separator:afaf21860056f3921bb89266ed7ed4abd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a125bea0efb1f21c3ed9cfc83eaad083e"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#a125bea0efb1f21c3ed9cfc83eaad083e">const_reverse_iterator</a> = typename storage_type::const_reverse_iterator</td></tr>
+<tr class="separator:a125bea0efb1f21c3ed9cfc83eaad083e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:ab87202f3a54a2f8698143b2a1a7417a3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#ab87202f3a54a2f8698143b2a1a7417a3">Tensor</a> ()=default</td></tr>
+<tr class="separator:ab87202f3a54a2f8698143b2a1a7417a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7eda26115055a9dfc08b148052ae7199"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#a7eda26115055a9dfc08b148052ae7199">~Tensor</a> ()=default</td></tr>
+<tr class="separator:a7eda26115055a9dfc08b148052ae7199"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6645f512a9ffe9eaeae11241d83b7da0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#a6645f512a9ffe9eaeae11241d83b7da0">Tensor</a> (const <a class="el" href="classTensor.html">Tensor</a> &amp;)=default</td></tr>
+<tr class="separator:a6645f512a9ffe9eaeae11241d83b7da0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af96ef5c7214eaece793a7e321a6a41a3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#af96ef5c7214eaece793a7e321a6a41a3">Tensor</a> (<a class="el" href="classTensor.html">Tensor</a> &amp;&amp;) noexcept=default</td></tr>
+<tr class="separator:af96ef5c7214eaece793a7e321a6a41a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a26775b60811e89da91995410115f64"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classTensor.html">Tensor</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#a6a26775b60811e89da91995410115f64">operator=</a> (const <a class="el" href="classTensor.html">Tensor</a> &amp;)=default</td></tr>
+<tr class="separator:a6a26775b60811e89da91995410115f64"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a475e0ab0493fa184e5113365e5e0bdbd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classTensor.html">Tensor</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#a475e0ab0493fa184e5113365e5e0bdbd">operator=</a> (<a class="el" href="classTensor.html">Tensor</a> &amp;&amp;) noexcept=default</td></tr>
+<tr class="separator:a475e0ab0493fa184e5113365e5e0bdbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d1e8070452c113195ac15306b469160"><td class="memTemplParams" colspan="2">template&lt;size_t NumberOfIndices = sizeof...(Indices), std::enable_if_t&lt;(NumberOfIndices==1)&gt; *  = nullptr&gt; </td></tr>
+<tr class="memitem:a6d1e8070452c113195ac15306b469160"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#a6d1e8070452c113195ac15306b469160">Tensor</a> (<a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#a6a94cd52e9e523e6efd869a1a4dd6a64">storage_type</a> data)</td></tr>
+<tr class="memdesc:a6d1e8070452c113195ac15306b469160"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize a Vector with the value in the <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/utility/initializer_list.html">std::initializer_list</a>.  <a href="#a6d1e8070452c113195ac15306b469160">More...</a><br /></td></tr>
+<tr class="separator:a6d1e8070452c113195ac15306b469160"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1428af0e60a8d21c5dee4453493ffa3"><td class="memTemplParams" colspan="2">template&lt;typename... Args&gt; </td></tr>
+<tr class="memitem:aa1428af0e60a8d21c5dee4453493ffa3"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#aa1428af0e60a8d21c5dee4453493ffa3">Tensor</a> (Args &amp;&amp;... args)</td></tr>
+<tr class="memdesc:aa1428af0e60a8d21c5dee4453493ffa3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor that passes "args" to constructor of X and initializes each component to be the same.  <a href="#aa1428af0e60a8d21c5dee4453493ffa3">More...</a><br /></td></tr>
+<tr class="separator:aa1428af0e60a8d21c5dee4453493ffa3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0c05ed91bf8f5bb772bc2437b18baa5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#a08b2e3f52f7da2247d537a7a2bde9a3f">iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#ae0c05ed91bf8f5bb772bc2437b18baa5">begin</a> ()</td></tr>
+<tr class="separator:ae0c05ed91bf8f5bb772bc2437b18baa5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1b4496224029eb5b1dbeb188fb265de"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#a955b690bae005cbac8ef5e373d3c69f2">const_iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#ab1b4496224029eb5b1dbeb188fb265de">begin</a> () const</td></tr>
+<tr class="separator:ab1b4496224029eb5b1dbeb188fb265de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae87c381839415ef25f5c4e8c566f5c6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#a955b690bae005cbac8ef5e373d3c69f2">const_iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#aae87c381839415ef25f5c4e8c566f5c6">cbegin</a> () const</td></tr>
+<tr class="separator:aae87c381839415ef25f5c4e8c566f5c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f59afa5b11af9d9405d46cd31588701"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#a08b2e3f52f7da2247d537a7a2bde9a3f">iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#a5f59afa5b11af9d9405d46cd31588701">end</a> ()</td></tr>
+<tr class="separator:a5f59afa5b11af9d9405d46cd31588701"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a041de7f59518749cb26c9fe3b2fa3c14"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#a955b690bae005cbac8ef5e373d3c69f2">const_iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#a041de7f59518749cb26c9fe3b2fa3c14">end</a> () const</td></tr>
+<tr class="separator:a041de7f59518749cb26c9fe3b2fa3c14"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4784c06cb0b1b484b1bc94884f8b12a7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#a955b690bae005cbac8ef5e373d3c69f2">const_iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#a4784c06cb0b1b484b1bc94884f8b12a7">cend</a> () const</td></tr>
+<tr class="separator:a4784c06cb0b1b484b1bc94884f8b12a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab18d26b9d2ddc12f0e7a803fa3279024"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#afaf21860056f3921bb89266ed7ed4abd">reverse_iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#ab18d26b9d2ddc12f0e7a803fa3279024">rbegin</a> ()</td></tr>
+<tr class="separator:ab18d26b9d2ddc12f0e7a803fa3279024"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec3c3ae355d6d1968f5e113b8cf13e27"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#a125bea0efb1f21c3ed9cfc83eaad083e">const_reverse_iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#aec3c3ae355d6d1968f5e113b8cf13e27">rbegin</a> () const</td></tr>
+<tr class="separator:aec3c3ae355d6d1968f5e113b8cf13e27"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe889fcab2d2d7890499bd38bc64a2fe"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#a125bea0efb1f21c3ed9cfc83eaad083e">const_reverse_iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#abe889fcab2d2d7890499bd38bc64a2fe">crbegin</a> () const</td></tr>
+<tr class="separator:abe889fcab2d2d7890499bd38bc64a2fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a4ca05bdd69dd3f18d05fdec079d7a4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#afaf21860056f3921bb89266ed7ed4abd">reverse_iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#a4a4ca05bdd69dd3f18d05fdec079d7a4">rend</a> ()</td></tr>
+<tr class="separator:a4a4ca05bdd69dd3f18d05fdec079d7a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa4f7665c76b939ef67958a1f1b90b4a0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#a125bea0efb1f21c3ed9cfc83eaad083e">const_reverse_iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#aa4f7665c76b939ef67958a1f1b90b4a0">rend</a> () const</td></tr>
+<tr class="separator:aa4f7665c76b939ef67958a1f1b90b4a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71b758e5168e5dc1bffcffbb934689c4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#a125bea0efb1f21c3ed9cfc83eaad083e">const_reverse_iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#a71b758e5168e5dc1bffcffbb934689c4">crend</a> () const</td></tr>
+<tr class="separator:a71b758e5168e5dc1bffcffbb934689c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e6e7f0770d453cb566d30b824eba366"><td class="memItemLeft" align="right" valign="top"><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/utility/pair.html">std::pair</a>&lt; <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt; <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> &gt;, <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt; X &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#a8e6e7f0770d453cb566d30b824eba366">get_vector_of_data</a> () const</td></tr>
+<tr class="memdesc:a8e6e7f0770d453cb566d30b824eba366"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy tensor data into an <code><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt;X&gt;</code> along with the component names into a <code><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt;<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a>&gt;</code>  <a href="#a8e6e7f0770d453cb566d30b824eba366">More...</a><br /></td></tr>
+<tr class="separator:a8e6e7f0770d453cb566d30b824eba366"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:a7510cc158e3c4bf0f4794fe6a401f31f"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a7510cc158e3c4bf0f4794fe6a401f31f"><td class="memTemplItemLeft" align="right" valign="top">constexpr <a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#a37b572a2daa5ce85f049a5cd1faefd7d">reference</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#a7510cc158e3c4bf0f4794fe6a401f31f">get</a> (const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; T, num_tensor_indices &gt; &amp;tensor_index)</td></tr>
+<tr class="memdesc:a7510cc158e3c4bf0f4794fe6a401f31f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get data entry using an array representing a tensor index.  <a href="#a7510cc158e3c4bf0f4794fe6a401f31f">More...</a><br /></td></tr>
+<tr class="separator:a7510cc158e3c4bf0f4794fe6a401f31f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa0c0445277f79f0197c9504df8759881"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:aa0c0445277f79f0197c9504df8759881"><td class="memTemplItemLeft" align="right" valign="top">constexpr <a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#afd8fdd3c418b0899dd0bf9c23e122e71">const_reference</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#aa0c0445277f79f0197c9504df8759881">get</a> (const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; T, num_tensor_indices &gt; &amp;tensor_index) const</td></tr>
+<tr class="memdesc:aa0c0445277f79f0197c9504df8759881"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get data entry using an array representing a tensor index.  <a href="#aa0c0445277f79f0197c9504df8759881">More...</a><br /></td></tr>
+<tr class="separator:aa0c0445277f79f0197c9504df8759881"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:a5b78b0b999d88a8fe73b9564eda7e716"><td class="memTemplParams" colspan="2">template&lt;typename... N&gt; </td></tr>
+<tr class="memitem:a5b78b0b999d88a8fe73b9564eda7e716"><td class="memTemplItemLeft" align="right" valign="top">constexpr <a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#a37b572a2daa5ce85f049a5cd1faefd7d">reference</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#a5b78b0b999d88a8fe73b9564eda7e716">get</a> (N... n)</td></tr>
+<tr class="memdesc:a5b78b0b999d88a8fe73b9564eda7e716"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get data entry using a list of integers representing a tensor index.  <a href="#a5b78b0b999d88a8fe73b9564eda7e716">More...</a><br /></td></tr>
+<tr class="separator:a5b78b0b999d88a8fe73b9564eda7e716"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a53bdfb488ea8566ed06134c7c01ade02"><td class="memTemplParams" colspan="2">template&lt;typename... N&gt; </td></tr>
+<tr class="memitem:a53bdfb488ea8566ed06134c7c01ade02"><td class="memTemplItemLeft" align="right" valign="top">constexpr <a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#afd8fdd3c418b0899dd0bf9c23e122e71">const_reference</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#a53bdfb488ea8566ed06134c7c01ade02">get</a> (N... n) const</td></tr>
+<tr class="memdesc:a53bdfb488ea8566ed06134c7c01ade02"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get data entry using a list of integers representing a tensor index.  <a href="#a53bdfb488ea8566ed06134c7c01ade02">More...</a><br /></td></tr>
+<tr class="separator:a53bdfb488ea8566ed06134c7c01ade02"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:a0d07183c317389077c2de55c5fcb8cf9"><td class="memTemplParams" colspan="2">template&lt;int... N&gt; </td></tr>
+<tr class="memitem:a0d07183c317389077c2de55c5fcb8cf9"><td class="memTemplItemLeft" align="right" valign="top">constexpr <a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#a37b572a2daa5ce85f049a5cd1faefd7d">reference</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#a0d07183c317389077c2de55c5fcb8cf9">get</a> ()</td></tr>
+<tr class="memdesc:a0d07183c317389077c2de55c5fcb8cf9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve the index <code>N...</code> by computing the storage index at compile time.  <a href="#a0d07183c317389077c2de55c5fcb8cf9">More...</a><br /></td></tr>
+<tr class="separator:a0d07183c317389077c2de55c5fcb8cf9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a726d0fbbf2d15557e40ac28ee721c7f7"><td class="memTemplParams" colspan="2">template&lt;int... N&gt; </td></tr>
+<tr class="memitem:a726d0fbbf2d15557e40ac28ee721c7f7"><td class="memTemplItemLeft" align="right" valign="top">constexpr <a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#afd8fdd3c418b0899dd0bf9c23e122e71">const_reference</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#a726d0fbbf2d15557e40ac28ee721c7f7">get</a> () const</td></tr>
+<tr class="memdesc:a726d0fbbf2d15557e40ac28ee721c7f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve the index <code>N...</code> by computing the storage index at compile time.  <a href="#a726d0fbbf2d15557e40ac28ee721c7f7">More...</a><br /></td></tr>
+<tr class="separator:a726d0fbbf2d15557e40ac28ee721c7f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:a343c33f1bf61311c0d23631b74beae41"><td class="memTemplParams" colspan="2">template&lt;typename... N, std::enable_if_t&lt; cpp17::conjunction_v&lt; tt::is_tensor_index&lt; N &gt;... &gt; and tmpl::is_set&lt; N... &gt;::value &gt; *  = nullptr&gt; </td></tr>
+<tr class="memitem:a343c33f1bf61311c0d23631b74beae41"><td class="memTemplItemLeft" align="right" valign="top">constexpr <a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#a7962eedf975b9e6aaa26e0720e93c1f4">TE</a>&lt; tmpl::list&lt; N... &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#a343c33f1bf61311c0d23631b74beae41">operator()</a> (N...) const</td></tr>
+<tr class="memdesc:a343c33f1bf61311c0d23631b74beae41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve a TensorExpression object with the index structure passed in.  <a href="#a343c33f1bf61311c0d23631b74beae41">More...</a><br /></td></tr>
+<tr class="separator:a343c33f1bf61311c0d23631b74beae41"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2069e4979c8a681a0201fc05b44b5a2f"><td class="memTemplParams" colspan="2">template&lt;typename... N, std::enable_if_t&lt; cpp17::conjunction_v&lt; tt::is_tensor_index&lt; N &gt;... &gt; and not tmpl::is_set&lt; N... &gt;::value &gt; *  = nullptr&gt; </td></tr>
+<tr class="memitem:a2069e4979c8a681a0201fc05b44b5a2f"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#a2069e4979c8a681a0201fc05b44b5a2f">operator()</a> (N...) const -&gt; decltype(<a class="el" href="group__TensorExpressions.html#ga86a547fd7aaede82ec04d93d0c9c8090">TensorExpressions::fully_contracted</a>&lt; <a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#a7962eedf975b9e6aaa26e0720e93c1f4">TE</a>, <a class="el" href="group__TensorExpressions.html#gab737c98bb324929f5d37cca741b71a0e">replace_indices</a>&lt; tmpl::list&lt; N... &gt;, <a class="el" href="group__TensorExpressions.html#gaa56b319386c04176c6154bec4f9adc5d">repeated</a>&lt; tmpl::list&lt; N... &gt;&gt;&gt;, tmpl::int32_t&lt; 0 &gt;, tmpl::size&lt; <a class="el" href="group__TensorExpressions.html#gaa56b319386c04176c6154bec4f9adc5d">repeated</a>&lt; tmpl::list&lt; N... &gt;&gt;&gt;&gt;::apply(*this))</td></tr>
+<tr class="memdesc:a2069e4979c8a681a0201fc05b44b5a2f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve a TensorExpression object with the index structure passed in.  <a href="#a2069e4979c8a681a0201fc05b44b5a2f">More...</a><br /></td></tr>
+<tr class="separator:a2069e4979c8a681a0201fc05b44b5a2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:a6f8e204896288321f539d77958e1faea"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#a37b572a2daa5ce85f049a5cd1faefd7d">reference</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#a6f8e204896288321f539d77958e1faea">operator[]</a> (const size_t storage_index)</td></tr>
+<tr class="memdesc:a6f8e204896288321f539d77958e1faea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return i'th component of storage vector.  <a href="#a6f8e204896288321f539d77958e1faea">More...</a><br /></td></tr>
+<tr class="separator:a6f8e204896288321f539d77958e1faea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4067a7a842055dc2a1644cb713d9587b"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#afd8fdd3c418b0899dd0bf9c23e122e71">const_reference</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#a4067a7a842055dc2a1644cb713d9587b">operator[]</a> (const size_t storage_index) const</td></tr>
+<tr class="memdesc:a4067a7a842055dc2a1644cb713d9587b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return i'th component of storage vector.  <a href="#a4067a7a842055dc2a1644cb713d9587b">More...</a><br /></td></tr>
+<tr class="separator:a4067a7a842055dc2a1644cb713d9587b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:aa116d528c35c17049b075ee3281c92f1"><td class="memItemLeft" align="right" valign="top">static constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#aa116d528c35c17049b075ee3281c92f1">size</a> () noexcept</td></tr>
+<tr class="memdesc:aa116d528c35c17049b075ee3281c92f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the number of independent components of the <a class="el" href="classTensor.html">Tensor</a>.  <a href="#aa116d528c35c17049b075ee3281c92f1">More...</a><br /></td></tr>
+<tr class="separator:aa116d528c35c17049b075ee3281c92f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac4281a4a6adfb073301e884557666bf0"><td class="memItemLeft" align="right" valign="top">static constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#ac4281a4a6adfb073301e884557666bf0">rank</a> () noexcept</td></tr>
+<tr class="memdesc:ac4281a4a6adfb073301e884557666bf0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the rank of the <a class="el" href="classTensor.html">Tensor</a>.  <a href="#ac4281a4a6adfb073301e884557666bf0">More...</a><br /></td></tr>
+<tr class="separator:ac4281a4a6adfb073301e884557666bf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:acc2ac290d08bad3c17813eed85fb0364"><td class="memItemLeft" align="right" valign="top">static constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#acc2ac290d08bad3c17813eed85fb0364">index_dim</a> (const size_t i) noexcept</td></tr>
+<tr class="memdesc:acc2ac290d08bad3c17813eed85fb0364"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get dimensionality of i'th tensor index.  <a href="#acc2ac290d08bad3c17813eed85fb0364">More...</a><br /></td></tr>
+<tr class="separator:acc2ac290d08bad3c17813eed85fb0364"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af08f321ac908125c81bc127dbf642bdd"><td class="memTemplParams" colspan="2">template&lt;int I&gt; </td></tr>
+<tr class="memitem:af08f321ac908125c81bc127dbf642bdd"><td class="memTemplItemLeft" align="right" valign="top">static constexpr size_t&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#af08f321ac908125c81bc127dbf642bdd">index_dim</a> () noexcept</td></tr>
+<tr class="memdesc:af08f321ac908125c81bc127dbf642bdd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get dimensionality of i'th tensor index.  <a href="#af08f321ac908125c81bc127dbf642bdd">More...</a><br /></td></tr>
+<tr class="separator:af08f321ac908125c81bc127dbf642bdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:a959883f82cd063e75d83096167166a95"><td class="memItemLeft" align="right" valign="top">static constexpr <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; int, sizeof...(Indices)&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#a959883f82cd063e75d83096167166a95">symmetries</a> () noexcept</td></tr>
+<tr class="memdesc:a959883f82cd063e75d83096167166a95"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return an array corresponding to the <a class="el" href="group__Tensor.html#ga8cfb4461e3d8d897b541a8d64da1369e" title="Computes the canonical symmetry from the integers T ">Symmetry</a> of the <a class="el" href="classTensor.html">Tensor</a>.  <a href="#a959883f82cd063e75d83096167166a95">More...</a><br /></td></tr>
+<tr class="separator:a959883f82cd063e75d83096167166a95"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:a27cce097adbce40dedc564b0b7baca5d"><td class="memItemLeft" align="right" valign="top">static constexpr <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; <a class="el" href="group__Tensor.html#ga875b107b929ff008a27078792ac0bc8e">IndexType</a>, sizeof...(Indices)&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#a27cce097adbce40dedc564b0b7baca5d">index_types</a> () noexcept</td></tr>
+<tr class="memdesc:a27cce097adbce40dedc564b0b7baca5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return array of the <a class="el" href="group__Tensor.html#ga875b107b929ff008a27078792ac0bc8e" title="Indicates whether the TensorIndexType is Spatial or Spacetime. ">IndexType</a>'s (spatial or spacetime)  <a href="#a27cce097adbce40dedc564b0b7baca5d">More...</a><br /></td></tr>
+<tr class="separator:a27cce097adbce40dedc564b0b7baca5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:aae3f7fb6c07867d8194b424649b7b8dd"><td class="memItemLeft" align="right" valign="top">static constexpr <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; size_t, sizeof...(Indices)&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#aae3f7fb6c07867d8194b424649b7b8dd">index_dims</a> () noexcept</td></tr>
+<tr class="memdesc:aae3f7fb6c07867d8194b424649b7b8dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return array of dimensionality of each index.  <a href="#aae3f7fb6c07867d8194b424649b7b8dd">More...</a><br /></td></tr>
+<tr class="separator:aae3f7fb6c07867d8194b424649b7b8dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:ad20ed2bfb7f84534d56286d7069a0d0b"><td class="memItemLeft" align="right" valign="top">static constexpr <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; <a class="el" href="group__Tensor.html#gaab1181edf2ab2b664b0f174223f08c28">UpLo</a>, sizeof...(Indices)&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#ad20ed2bfb7f84534d56286d7069a0d0b">index_valences</a> () noexcept</td></tr>
+<tr class="memdesc:ad20ed2bfb7f84534d56286d7069a0d0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return array of the valence of each index (<a class="el" href="group__Tensor.html#gaab1181edf2ab2b664b0f174223f08c28" title="Whether a TensorIndexType is covariant or contravariant. ">UpLo</a>)  <a href="#ad20ed2bfb7f84534d56286d7069a0d0b">More...</a><br /></td></tr>
+<tr class="separator:ad20ed2bfb7f84534d56286d7069a0d0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:ae0f9bdb9ca91129061d8bafbc5df7588"><td class="memItemLeft" align="right" valign="top">static constexpr auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#ae0f9bdb9ca91129061d8bafbc5df7588">index_frames</a> () noexcept</td></tr>
+<tr class="memdesc:ae0f9bdb9ca91129061d8bafbc5df7588"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/utility/tuple.html">std::tuple</a> of the <a class="el" href="namespaceFrame.html" title="Indicates the Frame that a TensorIndexType is in. ">Frame</a> of each index.  <a href="#ae0f9bdb9ca91129061d8bafbc5df7588">More...</a><br /></td></tr>
+<tr class="separator:ae0f9bdb9ca91129061d8bafbc5df7588"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:a8e87e19fc128b6072452fa264011f918"><td class="memTemplParams" colspan="2">template&lt;typename T  = int&gt; </td></tr>
+<tr class="memitem:a8e87e19fc128b6072452fa264011f918"><td class="memTemplItemLeft" align="right" valign="top">static <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#a8e87e19fc128b6072452fa264011f918">component_name</a> (const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; T, <a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#ac4281a4a6adfb073301e884557666bf0">rank</a>()&gt; &amp;tensor_index=<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; T, <a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#ac4281a4a6adfb073301e884557666bf0">rank</a>()&gt;{}, const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a>, <a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#ac4281a4a6adfb073301e884557666bf0">rank</a>()&gt; &amp;axis_labels=<a class="el" href="group__Utilities.html#ga55b73f5c6d3e8963a3110b1b314fc463">make_array</a>&lt; <a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#ac4281a4a6adfb073301e884557666bf0">rank</a>()&gt;(<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a>(&quot;&quot;)))</td></tr>
+<tr class="memdesc:a8e87e19fc128b6072452fa264011f918"><td class="mdescLeft">&#160;</td><td class="mdescRight">Given a tensor index, get the canonical label associated with the canonical <a class="el" href="group__Tensor.html#ga05c512b755e913cdbddce8634bdb4fa6">TensorIndexType</a>.  <a href="#a8e87e19fc128b6072452fa264011f918">More...</a><br /></td></tr>
+<tr class="separator:a8e87e19fc128b6072452fa264011f918"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9a0bde8b18a8fb77137a31a5e7d735e"><td class="memItemLeft" align="right" valign="top">constexpr <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; size_t, sizeof...(Indices)==0 ? 1 :sizeof...(Indices)&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#ad9a0bde8b18a8fb77137a31a5e7d735e">get_tensor_index</a> (const <a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#a955b690bae005cbac8ef5e373d3c69f2">const_iterator</a> &amp;iter) noexcept</td></tr>
+<tr class="memdesc:ad9a0bde8b18a8fb77137a31a5e7d735e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Given an iterator or storage index, get the canonical tensor index. For scalars this is defined to be std::array&lt;int, 1&gt;{{0}}.  <a href="#ad9a0bde8b18a8fb77137a31a5e7d735e">More...</a><br /></td></tr>
+<tr class="separator:ad9a0bde8b18a8fb77137a31a5e7d735e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a725c6052d30d9cc49218b4b3489c5236"><td class="memItemLeft" align="right" valign="top">static constexpr <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; size_t, sizeof...(Indices)==0 ? 1 :sizeof...(Indices)&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#a725c6052d30d9cc49218b4b3489c5236">get_tensor_index</a> (const size_t storage_index) noexcept</td></tr>
+<tr class="memdesc:a725c6052d30d9cc49218b4b3489c5236"><td class="mdescLeft">&#160;</td><td class="mdescRight">Given an iterator or storage index, get the canonical tensor index. For scalars this is defined to be std::array&lt;int, 1&gt;{{0}}.  <a href="#a725c6052d30d9cc49218b4b3489c5236">More...</a><br /></td></tr>
+<tr class="separator:a725c6052d30d9cc49218b4b3489c5236"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c8d5ec12ab3bd67053c7e6ef59c4457"><td class="memItemLeft" align="right" valign="top">constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#a9c8d5ec12ab3bd67053c7e6ef59c4457">multiplicity</a> (const <a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#a08b2e3f52f7da2247d537a7a2bde9a3f">iterator</a> &amp;iter) const noexcept</td></tr>
+<tr class="memdesc:a9c8d5ec12ab3bd67053c7e6ef59c4457"><td class="mdescLeft">&#160;</td><td class="mdescRight">Given an iterator or storage index, get the multiplicity of an index.  <a href="#a9c8d5ec12ab3bd67053c7e6ef59c4457">More...</a><br /></td></tr>
+<tr class="separator:a9c8d5ec12ab3bd67053c7e6ef59c4457"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab92ec5b1baa7fc7558fbf273e00a300b"><td class="memItemLeft" align="right" valign="top">static constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#ab92ec5b1baa7fc7558fbf273e00a300b">multiplicity</a> (const size_t storage_index) noexcept</td></tr>
+<tr class="memdesc:ab92ec5b1baa7fc7558fbf273e00a300b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Given an iterator or storage index, get the multiplicity of an index.  <a href="#ab92ec5b1baa7fc7558fbf273e00a300b">More...</a><br /></td></tr>
+<tr class="separator:ab92ec5b1baa7fc7558fbf273e00a300b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><h3>template&lt;typename X, typename Symm, template&lt; typename... &gt; class IndexLs, typename... Indices&gt;<br />
+class Tensor&lt; X, Symm, IndexLs&lt; Indices... &gt; &gt;</h3>
+
+<p>Represents an object with multiple components. </p>
+<h3>Details</h3>
+<p><a class="el" href="classTensor.html">Tensor</a> is a container that represents indexable geometric objects. Each index has its own dimension, valence, and frame and must be either spatial or spacetime. Note that the dimension passed to <code>SpatialIndex</code> and <code>SpacetimeIndex</code> is always the spatial dimension of the index. Tensors with symmetric indices are stored only once and must be of the same type. A list of available type aliases can be found in the <a class="el" href="namespacetnsr.html" title="Type aliases to construct common Tensors. ">tnsr</a> namespace where the adopted conventions are:</p>
+<ol type="1">
+<li>Upper case for contravariant or upper indices, lower case for covariant or lower indices.</li>
+<li><code>a, b, c, d</code> are used for spacetime indices while <code>i, j, k, l</code> are used for spatial indices.</li>
+<li><code><a class="el" href="group__Tensor.html#ga06ebcb38a1f13c246e53378b9e8959ce" title="Scalar type. ">Scalar</a></code> is not inside the <code><a class="el" href="namespacetnsr.html" title="Type aliases to construct common Tensors. ">tnsr</a></code> namespace but is used to represent a scalar with no indices.</li>
+</ol>
+<h3>Example</h3>
+<div class="fragment"><div class="line">  <a class="code" href="classTensor.html">Tensor&lt;double&gt;</a> scalar{};</div></div><!-- fragment --><div class="fragment"><div class="line">  <a class="code" href="classTensor.html">tnsr::I&lt;double, 3, Frame::Grid&gt;</a> spatial_vector3{};</div></div><!-- fragment --><div class="fragment"><div class="line">  <a class="code" href="classTensor.html">tnsr::A&lt;double, 3, Frame::Grid&gt;</a> spacetime_vector3{};</div></div><!-- fragment --><div class="fragment"><div class="line">  <a class="code" href="classTensor.html">Tensor&lt;double, Symmetry&lt;1, 2, 2&gt;</a>,</div><div class="line">         <a class="code" href="IndexType_8hpp.html#aed089afaa0428b29bb5a9b9e77c81927">index_list&lt;SpacetimeIndex&lt;1, UpLo::Lo, Frame::Grid&gt;</a>,</div><div class="line">                    <a class="code" href="group__Tensor.html#ga557beda9bce6c7f236213ec8b24b3ff3">SpatialIndex&lt;1, UpLo::Lo, Frame::Grid&gt;</a>,</div><div class="line">                    SpatialIndex&lt;1, UpLo::Lo, Frame::Grid&gt;&gt;&gt;</div><div class="line">      tensor_1{};</div></div><!-- fragment --> <dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">X</td><td>the type held </td></tr>
+    <tr><td class="paramname">Symm</td><td>the <a class="el" href="group__Tensor.html#ga8cfb4461e3d8d897b541a8d64da1369e" title="Computes the canonical symmetry from the integers T ">Symmetry</a> of the indices </td></tr>
+    <tr><td class="paramname">IndexLs</td><td>a typelist of <a class="el" href="group__Tensor.html#ga05c512b755e913cdbddce8634bdb4fa6">TensorIndexType</a>'s </td></tr>
+  </table>
+  </dd>
+</dl>
+</div><h2 class="groupheader">Member Typedef Documentation</h2>
+<a id="a955b690bae005cbac8ef5e373d3c69f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a955b690bae005cbac8ef5e373d3c69f2">&#9670;&nbsp;</a></span>const_iterator</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename X , typename Symm , template&lt; typename... &gt; class IndexLs, typename... Indices&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classTensor.html">Tensor</a>&lt; X, Symm, IndexLs&lt; Indices... &gt; &gt;::<a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#a955b690bae005cbac8ef5e373d3c69f2">const_iterator</a> =  typename storage_type::const_iterator</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac6c67f0cd1cc8e3cbae3a47393395f46"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac6c67f0cd1cc8e3cbae3a47393395f46">&#9670;&nbsp;</a></span>const_pointer</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename X , typename Symm , template&lt; typename... &gt; class IndexLs, typename... Indices&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classTensor.html">Tensor</a>&lt; X, Symm, IndexLs&lt; Indices... &gt; &gt;::<a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#ac6c67f0cd1cc8e3cbae3a47393395f46">const_pointer</a> =  typename storage_type::const_pointer</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afd8fdd3c418b0899dd0bf9c23e122e71"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd8fdd3c418b0899dd0bf9c23e122e71">&#9670;&nbsp;</a></span>const_reference</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename X , typename Symm , template&lt; typename... &gt; class IndexLs, typename... Indices&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classTensor.html">Tensor</a>&lt; X, Symm, IndexLs&lt; Indices... &gt; &gt;::<a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#afd8fdd3c418b0899dd0bf9c23e122e71">const_reference</a> =  typename storage_type::const_reference</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a125bea0efb1f21c3ed9cfc83eaad083e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a125bea0efb1f21c3ed9cfc83eaad083e">&#9670;&nbsp;</a></span>const_reverse_iterator</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename X , typename Symm , template&lt; typename... &gt; class IndexLs, typename... Indices&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classTensor.html">Tensor</a>&lt; X, Symm, IndexLs&lt; Indices... &gt; &gt;::<a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#a125bea0efb1f21c3ed9cfc83eaad083e">const_reverse_iterator</a> =  typename storage_type::const_reverse_iterator</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a85fa85adc5b0fd700c958bb2b5ffa318"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a85fa85adc5b0fd700c958bb2b5ffa318">&#9670;&nbsp;</a></span>index_list</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename X , typename Symm , template&lt; typename... &gt; class IndexLs, typename... Indices&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classTensor.html">Tensor</a>&lt; X, Symm, IndexLs&lt; Indices... &gt; &gt;::<a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#a85fa85adc5b0fd700c958bb2b5ffa318">index_list</a> =  <a class="el" href="group__Utilities.html#ga4dabf6319ff36d72095831fba701afc1">typelist</a>&lt;Indices...&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Typelist of the <a class="el" href="group__Tensor.html#ga05c512b755e913cdbddce8634bdb4fa6">TensorIndexType</a>'s that the <a class="el" href="classTensor.html">Tensor</a> has. </p>
+
+</div>
+</div>
+<a id="a08b2e3f52f7da2247d537a7a2bde9a3f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a08b2e3f52f7da2247d537a7a2bde9a3f">&#9670;&nbsp;</a></span>iterator</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename X , typename Symm , template&lt; typename... &gt; class IndexLs, typename... Indices&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classTensor.html">Tensor</a>&lt; X, Symm, IndexLs&lt; Indices... &gt; &gt;::<a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#a08b2e3f52f7da2247d537a7a2bde9a3f">iterator</a> =  typename storage_type::iterator</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af049cb78253625b86e3f87bb59631aae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af049cb78253625b86e3f87bb59631aae">&#9670;&nbsp;</a></span>pointer</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename X , typename Symm , template&lt; typename... &gt; class IndexLs, typename... Indices&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classTensor.html">Tensor</a>&lt; X, Symm, IndexLs&lt; Indices... &gt; &gt;::<a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#af049cb78253625b86e3f87bb59631aae">pointer</a> =  typename storage_type::pointer</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a37b572a2daa5ce85f049a5cd1faefd7d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a37b572a2daa5ce85f049a5cd1faefd7d">&#9670;&nbsp;</a></span>reference</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename X , typename Symm , template&lt; typename... &gt; class IndexLs, typename... Indices&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classTensor.html">Tensor</a>&lt; X, Symm, IndexLs&lt; Indices... &gt; &gt;::<a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#a37b572a2daa5ce85f049a5cd1faefd7d">reference</a> =  typename storage_type::reference</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afaf21860056f3921bb89266ed7ed4abd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afaf21860056f3921bb89266ed7ed4abd">&#9670;&nbsp;</a></span>reverse_iterator</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename X , typename Symm , template&lt; typename... &gt; class IndexLs, typename... Indices&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classTensor.html">Tensor</a>&lt; X, Symm, IndexLs&lt; Indices... &gt; &gt;::<a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#afaf21860056f3921bb89266ed7ed4abd">reverse_iterator</a> =  typename storage_type::reverse_iterator</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6a94cd52e9e523e6efd869a1a4dd6a64"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a94cd52e9e523e6efd869a1a4dd6a64">&#9670;&nbsp;</a></span>storage_type</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename X , typename Symm , template&lt; typename... &gt; class IndexLs, typename... Indices&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classTensor.html">Tensor</a>&lt; X, Symm, IndexLs&lt; Indices... &gt; &gt;::<a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#a6a94cd52e9e523e6efd869a1a4dd6a64">storage_type</a> =  <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt;X, Tensor_detail::Structure&lt;Symm, Indices...&gt;::<a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#aa116d528c35c17049b075ee3281c92f1">size</a>()&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The type of the sequence that holds the data. </p>
+
+</div>
+</div>
+<a id="a0f28f4ddf654a17b7d80efa207d84f6e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0f28f4ddf654a17b7d80efa207d84f6e">&#9670;&nbsp;</a></span>symmetry</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename X , typename Symm , template&lt; typename... &gt; class IndexLs, typename... Indices&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classTensor.html">Tensor</a>&lt; X, Symm, IndexLs&lt; Indices... &gt; &gt;::<a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#a0f28f4ddf654a17b7d80efa207d84f6e">symmetry</a> =  Symm</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Typelist of the symmetry of the <a class="el" href="classTensor.html">Tensor</a>. </p>
+<h3>Details</h3>
+<p>For a rank-3 tensor symmetric in the last two indices, \(T_{a(bc)}\), the <a class="el" href="group__Tensor.html#ga8cfb4461e3d8d897b541a8d64da1369e" title="Computes the canonical symmetry from the integers T ">Symmetry</a> is <code>&lt;2, 1, 1&gt;</code>. For a non-symmetric rank-2 tensor the <a class="el" href="group__Tensor.html#ga8cfb4461e3d8d897b541a8d64da1369e" title="Computes the canonical symmetry from the integers T ">Symmetry</a> is <code>&lt;2, 1&gt;</code>. </p>
+
+</div>
+</div>
+<a id="a7962eedf975b9e6aaa26e0720e93c1f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7962eedf975b9e6aaa26e0720e93c1f4">&#9670;&nbsp;</a></span>TE</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename X , typename Symm , template&lt; typename... &gt; class IndexLs, typename... Indices&gt; </div>
+<div class="memtemplate">
+template&lt;typename ArgsLs &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classTensor.html">Tensor</a>&lt; X, Symm, IndexLs&lt; Indices... &gt; &gt;::<a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#a7962eedf975b9e6aaa26e0720e93c1f4">TE</a> =  TensorExpression&lt;<a class="el" href="classTensor.html">Tensor</a>&lt;X, Symm, tmpl::list&lt;Indices...&gt; &gt;, X, Symm, tmpl::list&lt;Indices...&gt;, ArgsLs&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The type of the TensorExpression that would represent this <a class="el" href="classTensor.html">Tensor</a> in a tensor expression. </p>
+
+</div>
+</div>
+<a id="ae5130a781657d41382f732daa4de7a5e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae5130a781657d41382f732daa4de7a5e">&#9670;&nbsp;</a></span>type</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename X , typename Symm , template&lt; typename... &gt; class IndexLs, typename... Indices&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classTensor.html">Tensor</a>&lt; X, Symm, IndexLs&lt; Indices... &gt; &gt;::<a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#ae5130a781657d41382f732daa4de7a5e">type</a> =  X</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The type that is stored by the <a class="el" href="classTensor.html">Tensor</a>. </p>
+
+</div>
+</div>
+<a id="ac9b7252195549941b94dc7455ce5324c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac9b7252195549941b94dc7455ce5324c">&#9670;&nbsp;</a></span>value_type</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename X , typename Symm , template&lt; typename... &gt; class IndexLs, typename... Indices&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classTensor.html">Tensor</a>&lt; X, Symm, IndexLs&lt; Indices... &gt; &gt;::<a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#ac9b7252195549941b94dc7455ce5324c">value_type</a> =  typename storage_type::value_type</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="ab87202f3a54a2f8698143b2a1a7417a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab87202f3a54a2f8698143b2a1a7417a3">&#9670;&nbsp;</a></span>Tensor() <span class="overload">[1/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename X , typename Symm , template&lt; typename... &gt; class IndexLs, typename... Indices&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classTensor.html">Tensor</a>&lt; X, Symm, IndexLs&lt; Indices... &gt; &gt;::<a class="el" href="classTensor.html">Tensor</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7eda26115055a9dfc08b148052ae7199"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7eda26115055a9dfc08b148052ae7199">&#9670;&nbsp;</a></span>~Tensor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename X , typename Symm , template&lt; typename... &gt; class IndexLs, typename... Indices&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classTensor.html">Tensor</a>&lt; X, Symm, IndexLs&lt; Indices... &gt; &gt;::~<a class="el" href="classTensor.html">Tensor</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6645f512a9ffe9eaeae11241d83b7da0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6645f512a9ffe9eaeae11241d83b7da0">&#9670;&nbsp;</a></span>Tensor() <span class="overload">[2/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename X , typename Symm , template&lt; typename... &gt; class IndexLs, typename... Indices&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classTensor.html">Tensor</a>&lt; X, Symm, IndexLs&lt; Indices... &gt; &gt;::<a class="el" href="classTensor.html">Tensor</a> </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classTensor.html">Tensor</a>&lt; X, Symm, IndexLs&lt; Indices... &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af96ef5c7214eaece793a7e321a6a41a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af96ef5c7214eaece793a7e321a6a41a3">&#9670;&nbsp;</a></span>Tensor() <span class="overload">[3/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename X , typename Symm , template&lt; typename... &gt; class IndexLs, typename... Indices&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classTensor.html">Tensor</a>&lt; X, Symm, IndexLs&lt; Indices... &gt; &gt;::<a class="el" href="classTensor.html">Tensor</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classTensor.html">Tensor</a>&lt; X, Symm, IndexLs&lt; Indices... &gt; &gt; &amp;&amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6d1e8070452c113195ac15306b469160"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d1e8070452c113195ac15306b469160">&#9670;&nbsp;</a></span>Tensor() <span class="overload">[4/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename X , typename Symm , template&lt; typename... &gt; class IndexLs, typename... Indices&gt; </div>
+<div class="memtemplate">
+template&lt;size_t NumberOfIndices, std::enable_if_t&lt;(NumberOfIndices==1)&gt; * &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classTensor.html">Tensor</a>&lt; X, Symm, IndexLs&lt; Indices... &gt; &gt;::<a class="el" href="classTensor.html">Tensor</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#a6a94cd52e9e523e6efd869a1a4dd6a64">storage_type</a>&#160;</td>
+          <td class="paramname"><em>data</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Initialize a Vector with the value in the <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/utility/initializer_list.html">std::initializer_list</a>. </p>
+<h3>Example</h3>
+<div class="fragment"><div class="line">  <a class="code" href="classTensor.html">tnsr::I&lt;std::vector&lt;double&gt;</a>, 3, <a class="code" href="structFrame_1_1Grid.html">Frame::Grid</a>&gt; tensor_std_vector(</div><div class="line">      {{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}}});</div></div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>the values of the individual components of the Vector </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="reference">References <a class="el" href="namespacecpp17.html#ab227ae74534c83a71278f902472547f6">cpp17::disjunction_v</a>.</p>
+
+</div>
+</div>
+<a id="aa1428af0e60a8d21c5dee4453493ffa3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa1428af0e60a8d21c5dee4453493ffa3">&#9670;&nbsp;</a></span>Tensor() <span class="overload">[5/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename X , typename Symm , template&lt; typename... &gt; class IndexLs, typename... Indices&gt; </div>
+<div class="memtemplate">
+template&lt;typename... Args&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classTensor.html">Tensor</a>&lt; X, Symm, IndexLs&lt; Indices... &gt; &gt;::<a class="el" href="classTensor.html">Tensor</a> </td>
+          <td>(</td>
+          <td class="paramtype">Args &amp;&amp;...&#160;</td>
+          <td class="paramname"><em>args</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructor that passes "args" to constructor of X and initializes each component to be the same. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="ae0c05ed91bf8f5bb772bc2437b18baa5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae0c05ed91bf8f5bb772bc2437b18baa5">&#9670;&nbsp;</a></span>begin() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename X , typename Symm , template&lt; typename... &gt; class IndexLs, typename... Indices&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#a08b2e3f52f7da2247d537a7a2bde9a3f">iterator</a> <a class="el" href="classTensor.html">Tensor</a>&lt; X, Symm, IndexLs&lt; Indices... &gt; &gt;::begin </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab1b4496224029eb5b1dbeb188fb265de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab1b4496224029eb5b1dbeb188fb265de">&#9670;&nbsp;</a></span>begin() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename X , typename Symm , template&lt; typename... &gt; class IndexLs, typename... Indices&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#a955b690bae005cbac8ef5e373d3c69f2">const_iterator</a> <a class="el" href="classTensor.html">Tensor</a>&lt; X, Symm, IndexLs&lt; Indices... &gt; &gt;::begin </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aae87c381839415ef25f5c4e8c566f5c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae87c381839415ef25f5c4e8c566f5c6">&#9670;&nbsp;</a></span>cbegin()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename X , typename Symm , template&lt; typename... &gt; class IndexLs, typename... Indices&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#a955b690bae005cbac8ef5e373d3c69f2">const_iterator</a> <a class="el" href="classTensor.html">Tensor</a>&lt; X, Symm, IndexLs&lt; Indices... &gt; &gt;::cbegin </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4784c06cb0b1b484b1bc94884f8b12a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4784c06cb0b1b484b1bc94884f8b12a7">&#9670;&nbsp;</a></span>cend()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename X , typename Symm , template&lt; typename... &gt; class IndexLs, typename... Indices&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#a955b690bae005cbac8ef5e373d3c69f2">const_iterator</a> <a class="el" href="classTensor.html">Tensor</a>&lt; X, Symm, IndexLs&lt; Indices... &gt; &gt;::cend </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8e87e19fc128b6072452fa264011f918"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e87e19fc128b6072452fa264011f918">&#9670;&nbsp;</a></span>component_name()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename X , typename Symm , template&lt; typename... &gt; class IndexLs, typename... Indices&gt; </div>
+<div class="memtemplate">
+template&lt;typename T  = int&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> <a class="el" href="classTensor.html">Tensor</a>&lt; X, Symm, IndexLs&lt; Indices... &gt; &gt;::component_name </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; T, <a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#ac4281a4a6adfb073301e884557666bf0">rank</a>()&gt; &amp;&#160;</td>
+          <td class="paramname"><em>tensor_index</em> = <code><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt;T,&#160;<a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#ac4281a4a6adfb073301e884557666bf0">rank</a>()&gt;{}</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a>, <a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#ac4281a4a6adfb073301e884557666bf0">rank</a>()&gt; &amp;&#160;</td>
+          <td class="paramname"><em>axis_labels</em> = <code><a class="el" href="group__Utilities.html#ga55b73f5c6d3e8963a3110b1b314fc463">make_array</a>&lt;<a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#ac4281a4a6adfb073301e884557666bf0">rank</a>()&gt;(<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a>(&quot;&quot;))</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Given a tensor index, get the canonical label associated with the canonical <a class="el" href="group__Tensor.html#ga05c512b755e913cdbddce8634bdb4fa6">TensorIndexType</a>. </p>
+
+</div>
+</div>
+<a id="abe889fcab2d2d7890499bd38bc64a2fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe889fcab2d2d7890499bd38bc64a2fe">&#9670;&nbsp;</a></span>crbegin()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename X , typename Symm , template&lt; typename... &gt; class IndexLs, typename... Indices&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#a125bea0efb1f21c3ed9cfc83eaad083e">const_reverse_iterator</a> <a class="el" href="classTensor.html">Tensor</a>&lt; X, Symm, IndexLs&lt; Indices... &gt; &gt;::crbegin </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a71b758e5168e5dc1bffcffbb934689c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a71b758e5168e5dc1bffcffbb934689c4">&#9670;&nbsp;</a></span>crend()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename X , typename Symm , template&lt; typename... &gt; class IndexLs, typename... Indices&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#a125bea0efb1f21c3ed9cfc83eaad083e">const_reverse_iterator</a> <a class="el" href="classTensor.html">Tensor</a>&lt; X, Symm, IndexLs&lt; Indices... &gt; &gt;::crend </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5f59afa5b11af9d9405d46cd31588701"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f59afa5b11af9d9405d46cd31588701">&#9670;&nbsp;</a></span>end() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename X , typename Symm , template&lt; typename... &gt; class IndexLs, typename... Indices&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#a08b2e3f52f7da2247d537a7a2bde9a3f">iterator</a> <a class="el" href="classTensor.html">Tensor</a>&lt; X, Symm, IndexLs&lt; Indices... &gt; &gt;::end </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a041de7f59518749cb26c9fe3b2fa3c14"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a041de7f59518749cb26c9fe3b2fa3c14">&#9670;&nbsp;</a></span>end() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename X , typename Symm , template&lt; typename... &gt; class IndexLs, typename... Indices&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#a955b690bae005cbac8ef5e373d3c69f2">const_iterator</a> <a class="el" href="classTensor.html">Tensor</a>&lt; X, Symm, IndexLs&lt; Indices... &gt; &gt;::end </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7510cc158e3c4bf0f4794fe6a401f31f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7510cc158e3c4bf0f4794fe6a401f31f">&#9670;&nbsp;</a></span>get() <span class="overload">[1/6]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename X , typename Symm , template&lt; typename... &gt; class IndexLs, typename... Indices&gt; </div>
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#a37b572a2daa5ce85f049a5cd1faefd7d">reference</a> <a class="el" href="classTensor.html">Tensor</a>&lt; X, Symm, IndexLs&lt; Indices... &gt; &gt;::get </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; T, num_tensor_indices &gt; &amp;&#160;</td>
+          <td class="paramname"><em>tensor_index</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get data entry using an array representing a tensor index. </p>
+<h3>Details</h3>
+<p>Let \(T_{abc}\) be a <a class="el" href="classTensor.html">Tensor</a>. Then <code>get({{0, 2, 1}})</code> returns the \(T_{0 2 1}\) component. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tensor_index</td><td>the index at which to get the data </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="reference">References <a class="el" href="group__Utilities.html#ga818f101f2f8bd824a3bc7c2c2361c560">gsl::at()</a>.</p>
+
+</div>
+</div>
+<a id="aa0c0445277f79f0197c9504df8759881"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa0c0445277f79f0197c9504df8759881">&#9670;&nbsp;</a></span>get() <span class="overload">[2/6]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename X , typename Symm , template&lt; typename... &gt; class IndexLs, typename... Indices&gt; </div>
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#afd8fdd3c418b0899dd0bf9c23e122e71">const_reference</a> <a class="el" href="classTensor.html">Tensor</a>&lt; X, Symm, IndexLs&lt; Indices... &gt; &gt;::get </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; T, num_tensor_indices &gt; &amp;&#160;</td>
+          <td class="paramname"><em>tensor_index</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get data entry using an array representing a tensor index. </p>
+<h3>Details</h3>
+<p>Let \(T_{abc}\) be a <a class="el" href="classTensor.html">Tensor</a>. Then <code>get({{0, 2, 1}})</code> returns the \(T_{0 2 1}\) component. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tensor_index</td><td>the index at which to get the data </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="reference">References <a class="el" href="group__Utilities.html#ga818f101f2f8bd824a3bc7c2c2361c560">gsl::at()</a>.</p>
+
+</div>
+</div>
+<a id="a5b78b0b999d88a8fe73b9564eda7e716"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5b78b0b999d88a8fe73b9564eda7e716">&#9670;&nbsp;</a></span>get() <span class="overload">[3/6]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename X , typename Symm , template&lt; typename... &gt; class IndexLs, typename... Indices&gt; </div>
+<div class="memtemplate">
+template&lt;typename... N&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#a37b572a2daa5ce85f049a5cd1faefd7d">reference</a> <a class="el" href="classTensor.html">Tensor</a>&lt; X, Symm, IndexLs&lt; Indices... &gt; &gt;::get </td>
+          <td>(</td>
+          <td class="paramtype">N...&#160;</td>
+          <td class="paramname"><em>n</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get data entry using a list of integers representing a tensor index. </p>
+<h3>Details</h3>
+<p>Let \(T_{abc}\) be a <a class="el" href="classTensor.html">Tensor</a>. Then <code>get(0, 2, 1)</code> returns the \(T_{0 2 1}\) component. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">n</td><td>the index at which to get the data </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="reference">References <a class="el" href="group__Utilities.html#ga818f101f2f8bd824a3bc7c2c2361c560">gsl::at()</a>.</p>
+
+</div>
+</div>
+<a id="a53bdfb488ea8566ed06134c7c01ade02"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a53bdfb488ea8566ed06134c7c01ade02">&#9670;&nbsp;</a></span>get() <span class="overload">[4/6]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename X , typename Symm , template&lt; typename... &gt; class IndexLs, typename... Indices&gt; </div>
+<div class="memtemplate">
+template&lt;typename... N&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#afd8fdd3c418b0899dd0bf9c23e122e71">const_reference</a> <a class="el" href="classTensor.html">Tensor</a>&lt; X, Symm, IndexLs&lt; Indices... &gt; &gt;::get </td>
+          <td>(</td>
+          <td class="paramtype">N...&#160;</td>
+          <td class="paramname"><em>n</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get data entry using a list of integers representing a tensor index. </p>
+<h3>Details</h3>
+<p>Let \(T_{abc}\) be a <a class="el" href="classTensor.html">Tensor</a>. Then <code>get(0, 2, 1)</code> returns the \(T_{0 2 1}\) component. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">n</td><td>the index at which to get the data </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="reference">References <a class="el" href="group__Utilities.html#ga818f101f2f8bd824a3bc7c2c2361c560">gsl::at()</a>.</p>
+
+</div>
+</div>
+<a id="a0d07183c317389077c2de55c5fcb8cf9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d07183c317389077c2de55c5fcb8cf9">&#9670;&nbsp;</a></span>get() <span class="overload">[5/6]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename X , typename Symm , template&lt; typename... &gt; class IndexLs, typename... Indices&gt; </div>
+<div class="memtemplate">
+template&lt;int... N&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#a37b572a2daa5ce85f049a5cd1faefd7d">reference</a> <a class="el" href="classTensor.html">Tensor</a>&lt; X, Symm, IndexLs&lt; Indices... &gt; &gt;::get </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Retrieve the index <code>N...</code> by computing the storage index at compile time. </p>
+
+<p class="reference">References <a class="el" href="group__Utilities.html#ga818f101f2f8bd824a3bc7c2c2361c560">gsl::at()</a>.</p>
+
+</div>
+</div>
+<a id="a726d0fbbf2d15557e40ac28ee721c7f7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a726d0fbbf2d15557e40ac28ee721c7f7">&#9670;&nbsp;</a></span>get() <span class="overload">[6/6]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename X , typename Symm , template&lt; typename... &gt; class IndexLs, typename... Indices&gt; </div>
+<div class="memtemplate">
+template&lt;int... N&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#afd8fdd3c418b0899dd0bf9c23e122e71">const_reference</a> <a class="el" href="classTensor.html">Tensor</a>&lt; X, Symm, IndexLs&lt; Indices... &gt; &gt;::get </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Retrieve the index <code>N...</code> by computing the storage index at compile time. </p>
+
+<p class="reference">References <a class="el" href="group__Utilities.html#ga818f101f2f8bd824a3bc7c2c2361c560">gsl::at()</a>.</p>
+
+</div>
+</div>
+<a id="ad9a0bde8b18a8fb77137a31a5e7d735e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9a0bde8b18a8fb77137a31a5e7d735e">&#9670;&nbsp;</a></span>get_tensor_index() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename X , typename Symm , template&lt; typename... &gt; class IndexLs, typename... Indices&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; size_t, sizeof...(Indices) == 0 ? 1 : sizeof...(Indices)&gt; <a class="el" href="classTensor.html">Tensor</a>&lt; X, Symm, IndexLs&lt; Indices... &gt; &gt;::get_tensor_index </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#a955b690bae005cbac8ef5e373d3c69f2">const_iterator</a> &amp;&#160;</td>
+          <td class="paramname"><em>iter</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Given an iterator or storage index, get the canonical tensor index. For scalars this is defined to be std::array&lt;int, 1&gt;{{0}}. </p>
+
+<p class="reference">References <a class="el" href="group__Utilities.html#ga9d571cd642604cb7bd87bb039ca3760f">SPECTRE_ALWAYS_INLINE</a>.</p>
+
+</div>
+</div>
+<a id="a725c6052d30d9cc49218b4b3489c5236"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a725c6052d30d9cc49218b4b3489c5236">&#9670;&nbsp;</a></span>get_tensor_index() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename X , typename Symm , template&lt; typename... &gt; class IndexLs, typename... Indices&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static constexpr <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt; size_t, sizeof...(Indices) == 0 ? 1 : sizeof...(Indices)&gt; <a class="el" href="classTensor.html">Tensor</a>&lt; X, Symm, IndexLs&lt; Indices... &gt; &gt;::get_tensor_index </td>
+          <td>(</td>
+          <td class="paramtype">const size_t&#160;</td>
+          <td class="paramname"><em>storage_index</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Given an iterator or storage index, get the canonical tensor index. For scalars this is defined to be std::array&lt;int, 1&gt;{{0}}. </p>
+
+</div>
+</div>
+<a id="a8e6e7f0770d453cb566d30b824eba366"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e6e7f0770d453cb566d30b824eba366">&#9670;&nbsp;</a></span>get_vector_of_data()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename X , typename Symm , template&lt; typename... &gt; class IndexLs, typename... Indices&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/utility/pair.html">std::pair</a>&lt; <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt; <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a> &gt;, <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt; X &gt; &gt; <a class="el" href="classTensor.html">Tensor</a>&lt; X, Symm, IndexLs&lt; Indices... &gt; &gt;::get_vector_of_data </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Copy tensor data into an <code><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt;X&gt;</code> along with the component names into a <code><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/vector.html">std::vector</a>&lt;<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a>&gt;</code> </p>
+<p><em>Requires:</em> <code><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/is_same.html">std::is_same</a>&lt;X, <a class="el" href="classDataVector.html" title="A class for storing data on a mesh. ">DataVector</a>&gt;::value</code> is true </p>
+
+<p class="reference">References <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/utility/pair/make_pair.html">std::make_pair()</a>.</p>
+
+</div>
+</div>
+<a id="acc2ac290d08bad3c17813eed85fb0364"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc2ac290d08bad3c17813eed85fb0364">&#9670;&nbsp;</a></span>index_dim() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename X , typename Symm , template&lt; typename... &gt; class IndexLs, typename... Indices&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static constexpr size_t <a class="el" href="classTensor.html">Tensor</a>&lt; X, Symm, IndexLs&lt; Indices... &gt; &gt;::index_dim </td>
+          <td>(</td>
+          <td class="paramtype">const size_t&#160;</td>
+          <td class="paramname"><em>i</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get dimensionality of i'th tensor index. </p>
+<h3>Details</h3>
+<p>Consider the tensor \(T_{abc}\) where the dimensionality of each index is \((3, 2, 4)\), respectively. Then </p><div class="fragment"><div class="line">dimensionality(0) = 3;</div><div class="line">dimensionality(1) = 2;</div><div class="line">dimensionality(2) = 4;</div></div><!-- fragment --> 
+<p class="reference">References <a class="el" href="group__Utilities.html#ga818f101f2f8bd824a3bc7c2c2361c560">gsl::at()</a>.</p>
+
+</div>
+</div>
+<a id="af08f321ac908125c81bc127dbf642bdd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af08f321ac908125c81bc127dbf642bdd">&#9670;&nbsp;</a></span>index_dim() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename X , typename Symm , template&lt; typename... &gt; class IndexLs, typename... Indices&gt; </div>
+<div class="memtemplate">
+template&lt;int I&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static constexpr size_t <a class="el" href="classTensor.html">Tensor</a>&lt; X, Symm, IndexLs&lt; Indices... &gt; &gt;::index_dim </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get dimensionality of i'th tensor index. </p>
+<h3>Details</h3>
+<p>Consider the tensor \(T_{abc}\) where the dimensionality of each index is \((3, 2, 4)\), respectively. Then </p><div class="fragment"><div class="line">dimensionality(0) = 3;</div><div class="line">dimensionality(1) = 2;</div><div class="line">dimensionality(2) = 4;</div></div><!-- fragment --> 
+<p class="reference">References <a class="el" href="group__Utilities.html#ga9d571cd642604cb7bd87bb039ca3760f">SPECTRE_ALWAYS_INLINE</a>.</p>
+
+</div>
+</div>
+<a id="aae3f7fb6c07867d8194b424649b7b8dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae3f7fb6c07867d8194b424649b7b8dd">&#9670;&nbsp;</a></span>index_dims()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename X , typename Symm , template&lt; typename... &gt; class IndexLs, typename... Indices&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static constexpr <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt;size_t, sizeof...(Indices)&gt; <a class="el" href="classTensor.html">Tensor</a>&lt; X, Symm, IndexLs&lt; Indices... &gt; &gt;::index_dims </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Return array of dimensionality of each index. </p>
+
+<p class="reference">References <a class="el" href="group__Utilities.html#ga9d571cd642604cb7bd87bb039ca3760f">SPECTRE_ALWAYS_INLINE</a>.</p>
+
+</div>
+</div>
+<a id="ae0f9bdb9ca91129061d8bafbc5df7588"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae0f9bdb9ca91129061d8bafbc5df7588">&#9670;&nbsp;</a></span>index_frames()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename X , typename Symm , template&lt; typename... &gt; class IndexLs, typename... Indices&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static constexpr auto <a class="el" href="classTensor.html">Tensor</a>&lt; X, Symm, IndexLs&lt; Indices... &gt; &gt;::index_frames </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/utility/tuple.html">std::tuple</a> of the <a class="el" href="namespaceFrame.html" title="Indicates the Frame that a TensorIndexType is in. ">Frame</a> of each index. </p>
+
+</div>
+</div>
+<a id="a27cce097adbce40dedc564b0b7baca5d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a27cce097adbce40dedc564b0b7baca5d">&#9670;&nbsp;</a></span>index_types()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename X , typename Symm , template&lt; typename... &gt; class IndexLs, typename... Indices&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static constexpr <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt;<a class="el" href="group__Tensor.html#ga875b107b929ff008a27078792ac0bc8e">IndexType</a>, sizeof...(Indices)&gt; <a class="el" href="classTensor.html">Tensor</a>&lt; X, Symm, IndexLs&lt; Indices... &gt; &gt;::index_types </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Return array of the <a class="el" href="group__Tensor.html#ga875b107b929ff008a27078792ac0bc8e" title="Indicates whether the TensorIndexType is Spatial or Spacetime. ">IndexType</a>'s (spatial or spacetime) </p>
+
+<p class="reference">References <a class="el" href="group__Utilities.html#ga9d571cd642604cb7bd87bb039ca3760f">SPECTRE_ALWAYS_INLINE</a>.</p>
+
+</div>
+</div>
+<a id="ad20ed2bfb7f84534d56286d7069a0d0b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad20ed2bfb7f84534d56286d7069a0d0b">&#9670;&nbsp;</a></span>index_valences()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename X , typename Symm , template&lt; typename... &gt; class IndexLs, typename... Indices&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static constexpr <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt;<a class="el" href="group__Tensor.html#gaab1181edf2ab2b664b0f174223f08c28">UpLo</a>, sizeof...(Indices)&gt; <a class="el" href="classTensor.html">Tensor</a>&lt; X, Symm, IndexLs&lt; Indices... &gt; &gt;::index_valences </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Return array of the valence of each index (<a class="el" href="group__Tensor.html#gaab1181edf2ab2b664b0f174223f08c28" title="Whether a TensorIndexType is covariant or contravariant. ">UpLo</a>) </p>
+
+<p class="reference">References <a class="el" href="group__Utilities.html#ga9d571cd642604cb7bd87bb039ca3760f">SPECTRE_ALWAYS_INLINE</a>.</p>
+
+</div>
+</div>
+<a id="a9c8d5ec12ab3bd67053c7e6ef59c4457"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c8d5ec12ab3bd67053c7e6ef59c4457">&#9670;&nbsp;</a></span>multiplicity() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename X , typename Symm , template&lt; typename... &gt; class IndexLs, typename... Indices&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr size_t <a class="el" href="classTensor.html">Tensor</a>&lt; X, Symm, IndexLs&lt; Indices... &gt; &gt;::multiplicity </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#a08b2e3f52f7da2247d537a7a2bde9a3f">iterator</a> &amp;&#160;</td>
+          <td class="paramname"><em>iter</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Given an iterator or storage index, get the multiplicity of an index. </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__Tensor.html#gab95925257254e93da3bf494554d9a57c" title="Compute typelist of the multiplicity of each storage index of a Tensor. ">TensorMetafunctions::compute_multiplicity</a> </dd></dl>
+
+</div>
+</div>
+<a id="ab92ec5b1baa7fc7558fbf273e00a300b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab92ec5b1baa7fc7558fbf273e00a300b">&#9670;&nbsp;</a></span>multiplicity() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename X , typename Symm , template&lt; typename... &gt; class IndexLs, typename... Indices&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static constexpr size_t <a class="el" href="classTensor.html">Tensor</a>&lt; X, Symm, IndexLs&lt; Indices... &gt; &gt;::multiplicity </td>
+          <td>(</td>
+          <td class="paramtype">const size_t&#160;</td>
+          <td class="paramname"><em>storage_index</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Given an iterator or storage index, get the multiplicity of an index. </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__Tensor.html#gab95925257254e93da3bf494554d9a57c" title="Compute typelist of the multiplicity of each storage index of a Tensor. ">TensorMetafunctions::compute_multiplicity</a> </dd></dl>
+
+</div>
+</div>
+<a id="a343c33f1bf61311c0d23631b74beae41"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a343c33f1bf61311c0d23631b74beae41">&#9670;&nbsp;</a></span>operator()() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename X , typename Symm , template&lt; typename... &gt; class IndexLs, typename... Indices&gt; </div>
+<div class="memtemplate">
+template&lt;typename... N, std::enable_if_t&lt; cpp17::conjunction_v&lt; tt::is_tensor_index&lt; N &gt;... &gt; and tmpl::is_set&lt; N... &gt;::value &gt; *  = nullptr&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#a7962eedf975b9e6aaa26e0720e93c1f4">TE</a>&lt;tmpl::list&lt;N...&gt; &gt; <a class="el" href="classTensor.html">Tensor</a>&lt; X, Symm, IndexLs&lt; Indices... &gt; &gt;::operator() </td>
+          <td>(</td>
+          <td class="paramtype">N...&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Retrieve a TensorExpression object with the index structure passed in. </p>
+
+</div>
+</div>
+<a id="a2069e4979c8a681a0201fc05b44b5a2f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2069e4979c8a681a0201fc05b44b5a2f">&#9670;&nbsp;</a></span>operator()() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename X , typename Symm , template&lt; typename... &gt; class IndexLs, typename... Indices&gt; </div>
+<div class="memtemplate">
+template&lt;typename... N, std::enable_if_t&lt; cpp17::conjunction_v&lt; tt::is_tensor_index&lt; N &gt;... &gt; and not tmpl::is_set&lt; N... &gt;::value &gt; *  = nullptr&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr auto <a class="el" href="classTensor.html">Tensor</a>&lt; X, Symm, IndexLs&lt; Indices... &gt; &gt;::operator() </td>
+          <td>(</td>
+          <td class="paramtype">N...&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const -&gt; decltype(
+          <a class="el" href="group__TensorExpressions.html#ga86a547fd7aaede82ec04d93d0c9c8090">TensorExpressions::fully_contracted</a>&lt;
+              <a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#a7962eedf975b9e6aaa26e0720e93c1f4">TE</a>, <a class="el" href="group__TensorExpressions.html#gab737c98bb324929f5d37cca741b71a0e">replace_indices</a>&lt;tmpl::list&lt;N...&gt;, <a class="el" href="group__TensorExpressions.html#gaa56b319386c04176c6154bec4f9adc5d">repeated</a>&lt;tmpl::list&lt;N...&gt;&gt;&gt;,
+              tmpl::int32_t&lt;0&gt;,
+              tmpl::size&lt;<a class="el" href="group__TensorExpressions.html#gaa56b319386c04176c6154bec4f9adc5d">repeated</a>&lt;tmpl::list&lt;N...&gt;&gt;&gt;&gt;::apply(*this)) </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Retrieve a TensorExpression object with the index structure passed in. </p>
+
+</div>
+</div>
+<a id="a6a26775b60811e89da91995410115f64"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a26775b60811e89da91995410115f64">&#9670;&nbsp;</a></span>operator=() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename X , typename Symm , template&lt; typename... &gt; class IndexLs, typename... Indices&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classTensor.html">Tensor</a>&amp; <a class="el" href="classTensor.html">Tensor</a>&lt; X, Symm, IndexLs&lt; Indices... &gt; &gt;::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classTensor.html">Tensor</a>&lt; X, Symm, IndexLs&lt; Indices... &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a475e0ab0493fa184e5113365e5e0bdbd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a475e0ab0493fa184e5113365e5e0bdbd">&#9670;&nbsp;</a></span>operator=() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename X , typename Symm , template&lt; typename... &gt; class IndexLs, typename... Indices&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classTensor.html">Tensor</a>&amp; <a class="el" href="classTensor.html">Tensor</a>&lt; X, Symm, IndexLs&lt; Indices... &gt; &gt;::operator= </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classTensor.html">Tensor</a>&lt; X, Symm, IndexLs&lt; Indices... &gt; &gt; &amp;&amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6f8e204896288321f539d77958e1faea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f8e204896288321f539d77958e1faea">&#9670;&nbsp;</a></span>operator[]() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename X , typename Symm , template&lt; typename... &gt; class IndexLs, typename... Indices&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#a37b572a2daa5ce85f049a5cd1faefd7d">reference</a> <a class="el" href="classTensor.html">Tensor</a>&lt; X, Symm, IndexLs&lt; Indices... &gt; &gt;::operator[] </td>
+          <td>(</td>
+          <td class="paramtype">const size_t&#160;</td>
+          <td class="paramname"><em>storage_index</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Return i'th component of storage vector. </p>
+
+<p class="reference">References <a class="el" href="group__Utilities.html#ga818f101f2f8bd824a3bc7c2c2361c560">gsl::at()</a>.</p>
+
+</div>
+</div>
+<a id="a4067a7a842055dc2a1644cb713d9587b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4067a7a842055dc2a1644cb713d9587b">&#9670;&nbsp;</a></span>operator[]() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename X , typename Symm , template&lt; typename... &gt; class IndexLs, typename... Indices&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#afd8fdd3c418b0899dd0bf9c23e122e71">const_reference</a> <a class="el" href="classTensor.html">Tensor</a>&lt; X, Symm, IndexLs&lt; Indices... &gt; &gt;::operator[] </td>
+          <td>(</td>
+          <td class="paramtype">const size_t&#160;</td>
+          <td class="paramname"><em>storage_index</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Return i'th component of storage vector. </p>
+
+<p class="reference">References <a class="el" href="group__Utilities.html#ga818f101f2f8bd824a3bc7c2c2361c560">gsl::at()</a>.</p>
+
+</div>
+</div>
+<a id="ac4281a4a6adfb073301e884557666bf0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac4281a4a6adfb073301e884557666bf0">&#9670;&nbsp;</a></span>rank()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename X , typename Symm , template&lt; typename... &gt; class IndexLs, typename... Indices&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static constexpr size_t <a class="el" href="classTensor.html">Tensor</a>&lt; X, Symm, IndexLs&lt; Indices... &gt; &gt;::rank </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the rank of the <a class="el" href="classTensor.html">Tensor</a>. </p>
+<h3>Details</h3>
+<p>The rank of a tensor is the number of indices it has. For example, the tensor \(v^a\) is rank-1, the tensor \(\phi\) is rank-0, and the tensor \(T_{abc}\) is rank-3. </p>
+
+<p class="reference">References <a class="el" href="group__Utilities.html#ga9d571cd642604cb7bd87bb039ca3760f">SPECTRE_ALWAYS_INLINE</a>.</p>
+
+</div>
+</div>
+<a id="ab18d26b9d2ddc12f0e7a803fa3279024"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab18d26b9d2ddc12f0e7a803fa3279024">&#9670;&nbsp;</a></span>rbegin() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename X , typename Symm , template&lt; typename... &gt; class IndexLs, typename... Indices&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#afaf21860056f3921bb89266ed7ed4abd">reverse_iterator</a> <a class="el" href="classTensor.html">Tensor</a>&lt; X, Symm, IndexLs&lt; Indices... &gt; &gt;::rbegin </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aec3c3ae355d6d1968f5e113b8cf13e27"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aec3c3ae355d6d1968f5e113b8cf13e27">&#9670;&nbsp;</a></span>rbegin() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename X , typename Symm , template&lt; typename... &gt; class IndexLs, typename... Indices&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#a125bea0efb1f21c3ed9cfc83eaad083e">const_reverse_iterator</a> <a class="el" href="classTensor.html">Tensor</a>&lt; X, Symm, IndexLs&lt; Indices... &gt; &gt;::rbegin </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4a4ca05bdd69dd3f18d05fdec079d7a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a4ca05bdd69dd3f18d05fdec079d7a4">&#9670;&nbsp;</a></span>rend() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename X , typename Symm , template&lt; typename... &gt; class IndexLs, typename... Indices&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#afaf21860056f3921bb89266ed7ed4abd">reverse_iterator</a> <a class="el" href="classTensor.html">Tensor</a>&lt; X, Symm, IndexLs&lt; Indices... &gt; &gt;::rend </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa4f7665c76b939ef67958a1f1b90b4a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa4f7665c76b939ef67958a1f1b90b4a0">&#9670;&nbsp;</a></span>rend() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename X , typename Symm , template&lt; typename... &gt; class IndexLs, typename... Indices&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#a125bea0efb1f21c3ed9cfc83eaad083e">const_reverse_iterator</a> <a class="el" href="classTensor.html">Tensor</a>&lt; X, Symm, IndexLs&lt; Indices... &gt; &gt;::rend </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa116d528c35c17049b075ee3281c92f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa116d528c35c17049b075ee3281c92f1">&#9670;&nbsp;</a></span>size()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename X , typename Symm , template&lt; typename... &gt; class IndexLs, typename... Indices&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static constexpr size_t <a class="el" href="classTensor.html">Tensor</a>&lt; X, Symm, IndexLs&lt; Indices... &gt; &gt;::size </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Return the number of independent components of the <a class="el" href="classTensor.html">Tensor</a>. </p>
+<h3>Details</h3>
+<p>Returns the number of independent components of the <a class="el" href="classTensor.html">Tensor</a> taking into account symmetries. For example, let \(T_{ab}\) be a n-dimensional rank-2 symmetric tensor, then the number of independent components is \(n(n+1)/2\). </p>
+
+</div>
+</div>
+<a id="a959883f82cd063e75d83096167166a95"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a959883f82cd063e75d83096167166a95">&#9670;&nbsp;</a></span>symmetries()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename X , typename Symm , template&lt; typename... &gt; class IndexLs, typename... Indices&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static constexpr <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/container/array.html">std::array</a>&lt;int, sizeof...(Indices)&gt; <a class="el" href="classTensor.html">Tensor</a>&lt; X, Symm, IndexLs&lt; Indices... &gt; &gt;::symmetries </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Return an array corresponding to the <a class="el" href="group__Tensor.html#ga8cfb4461e3d8d897b541a8d64da1369e" title="Computes the canonical symmetry from the integers T ">Symmetry</a> of the <a class="el" href="classTensor.html">Tensor</a>. </p>
+
+<p class="reference">References <a class="el" href="group__Utilities.html#ga9d571cd642604cb7bd87bb039ca3760f">SPECTRE_ALWAYS_INLINE</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>src/DataStructures/Tensor/<a class="el" href="Tensor_8hpp_source.html">Tensor.hpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.10-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+&copy; Copyright 2017
+<a href="https://black-holes.org">SXS Collaboration</a>,
+<a href="LICENSE.txt" target="_blank">
+<span class="hidden-xs">Distributed under the</span>
+MIT License</a>
+</small></address>
+</body>
+</html>

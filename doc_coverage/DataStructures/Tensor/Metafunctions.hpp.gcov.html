@@ -1,0 +1,680 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - e5cbc5bb9c5aba2950342934cd01e8f137343a21 - DataStructures/Tensor/Metafunctions.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../index.html">top level</a> - <a href="index.html">DataStructures/Tensor</a> - Metafunctions.hpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/e5cbc5bb9c5aba2950342934cd01e8f137343a21">e5cbc5bb9c5aba2950342934cd01e8f137343a21</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">12</td>
+            <td class="headerCovTableEntry">15</td>
+            <td class="headerCovTableEntryMed">80.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2017-06-20 01:58:59</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : /// \file
+<span class="lineNum">       5 </span>            : /// Defines metafunctions used by Tensor
+<span class="lineNum">       6 </span>            : 
+<span class="lineNum">       7 </span>            : #pragma once
+<span class="lineNum">       8 </span>            : 
+<span class="lineNum">       9 </span>            : #include &quot;Utilities/TMPL.hpp&quot;
+<span class="lineNum">      10 </span>            : 
+<span class="lineNum">      11 </span>            : template &lt;typename X, typename Symm, typename IndexLs&gt;
+<span class="lineNum">      12 </span>            : class Tensor;
+<span class="lineNum">      13 </span>            : 
+<span class="lineNum">      14 </span>            : /// \ingroup Tensor
+<span class="lineNum">      15 </span>            : /// Contains all metafunctions related to Tensor manipulations
+<span class="lineNum">      16 </span>            : namespace TensorMetafunctions {
+<span class="lineNum">      17 </span>            : namespace detail {
+<span class="lineNum">      18 </span>            : /*!
+<span class="lineNum">      19 </span>            :  * \ingroup Tensor
+<span class="lineNum">      20 </span>            :  * Compute the number of components and independent components for a given
+<span class="lineNum">      21 </span>            :  * Symmetry and TensorIndex list
+<span class="lineNum">      22 </span>            :  * \tparam Symmetry_t Symmetry of the Tensor
+<span class="lineNum">      23 </span>            :  * \tparam Indices_t typelist of the TensorIndex's of the Tensor
+<span class="lineNum">      24 </span>            :  */
+<span class="lineNum">      25 </span>            : template &lt;typename Symmetry_t, typename Indices_t, typename = void&gt;
+<span class="lineNum">      26 </span>            : struct number_of_independent_components_impl;
+<span class="lineNum">      27 </span>            : 
+<span class="lineNum">      28 </span>            : /*!
+<span class="lineNum">      29 </span>            :  * \ingroup Tensor
+<span class="lineNum">      30 </span>            :  * Case where the Tensor is a scalar
+<span class="lineNum">      31 </span>            :  */
+<span class="lineNum">      32 </span>            : template &lt;&gt;
+<span class="lineNum">      33 </span>            : struct number_of_independent_components_impl&lt;tmpl::list&lt;&gt;, tmpl::list&lt;&gt;&gt; {
+<span class="lineNum">      34 </span>            :   using number_of_components = tmpl::size_t&lt;1&gt;;
+<span class="lineNum">      35 </span>            :   using number_of_independent_components = tmpl::size_t&lt;1&gt;;
+<span class="lineNum">      36 </span>            : };
+<span class="lineNum">      37 </span>            : 
+<span class="lineNum">      38 </span>            : /*!
+<span class="lineNum">      39 </span>            :  * \ingroup Tensor
+<span class="lineNum">      40 </span>            :  * End recursion, only one index left. The component number is 1 (first
+<span class="lineNum">      41 </span>            :  * component) and the number of components and independent components is the
+<span class="lineNum">      42 </span>            :  * dimensionality of the first index
+<span class="lineNum">      43 </span>            :  */
+<span class="lineNum">      44 </span>            : 
+<span class="lineNum">      45 </span>            : template &lt;typename SymmetryValue, typename Index&gt;
+<span class="lineNum">      46 </span>            : struct number_of_independent_components_impl&lt;typelist&lt;SymmetryValue&gt;,
+<span class="lineNum">      47 </span>            :                                              typelist&lt;Index&gt;, void&gt; {
+<span class="lineNum">      48 </span>            :   using number_of_independent_components = tmpl::size_t&lt;Index::dim&gt;;
+<span class="lineNum">      49 </span>            :   using component_number = tmpl::size_t&lt;1&gt;;
+<span class="lineNum">      50 </span>            :   using number_of_components = tmpl::size_t&lt;Index::dim&gt;;
+<span class="lineNum">      51 </span>            : };
+<span class="lineNum">      52 </span>            : 
+<span class="lineNum">      53 </span>            : /// \cond HIDDEN_SYMBOLS
+<span class="lineNum">      54 </span>            : /*!
+<span class="lineNum">      55 </span>            :  * \ingroup Tensor
+<span class="lineNum">      56 </span>            :  *
+<span class="lineNum">      57 </span>            :  * General case for computing the number of (independent) components. The type
+<span class="lineNum">      58 </span>            :  * alias `next` computes the number of components with one fewer TensorIndex,
+<span class="lineNum">      59 </span>            :  * popping the front off the typelists. The `number_of_components` is given by
+<span class="lineNum">      60 </span>            :  * the product of the dimensionality of each TensorIndex. The component_number
+<span class="lineNum">      61 </span>            :  * is used to keep track of whether the current component is independent or
+<span class="lineNum">      62 </span>            :  * not. This is done by comparing the `component_number + 1` with the first
+<span class="lineNum">      63 </span>            :  * element in Symmetry, if they are equal then we have a new independent
+<span class="lineNum">      64 </span>            :  * component, otherwise the component is a symmetry. For the `component_number`
+<span class="lineNum">      65 </span>            :  * comparison to make sense recall that symmetry is sorted in _descending_
+<span class="lineNum">      66 </span>            :  * order.
+<span class="lineNum">      67 </span>            :  * Finally, to compute the number of independent components we perform the same
+<span class="lineNum">      68 </span>            :  * check with `component_number + 1` and the front of the Symmetry list. If
+<span class="lineNum">      69 </span>            :  * this is a new component we multiply by the dimensionality of the index,
+<span class="lineNum">      70 </span>            :  * otherwise we multiply by `dim + 1` or `dim - 1` depending on whether the
+<span class="lineNum">      71 </span>            :  * index is symmetric or anti-symmetric, respectively and  divide by two.
+<span class="lineNum">      72 </span>            :  */
+<span class="lineNum">      73 </span>            : template &lt;typename FirstSymm, typename... SymmetryValues, typename FirstIndex,
+<span class="lineNum">      74 </span>            :           typename... Indices&gt;
+<span class="lineNum">      75 </span>            : struct number_of_independent_components_impl&lt;
+<span class="lineNum">      76 </span>            :     typelist&lt;FirstSymm, SymmetryValues...&gt;, typelist&lt;FirstIndex, Indices...&gt;,
+<span class="lineNum">      77 </span>            :     std::enable_if_t&lt;(sizeof...(SymmetryValues) &gt; 0 and
+<span class="lineNum">      78 </span>            :                       sizeof...(Indices) &gt; 0)&gt;&gt; {
+<span class="lineNum">      79 </span>            :   static_assert(
+<span class="lineNum">      80 </span>            :       sizeof...(SymmetryValues) == sizeof...(Indices),
+<span class="lineNum">      81 </span>            :       &quot;Number of components in Symmetry_t and Indices_t must be the same.&quot;);
+<span class="lineNum">      82 </span>            :   using next =
+<span class="lineNum">      83 </span>            :       number_of_independent_components_impl&lt;typelist&lt;SymmetryValues...&gt;,
+<span class="lineNum">      84 </span>            :                                             typelist&lt;Indices...&gt;&gt;;
+<span class="lineNum">      85 </span>            :   using Symm_t = typelist&lt;SymmetryValues...&gt;;
+<span class="lineNum">      86 </span>            :   using Indi_t = typelist&lt;Indices...&gt;;
+<span class="lineNum">      87 </span>            : 
+<span class="lineNum">      88 </span>            :   using number_of_components =
+<span class="lineNum">      89 </span>            :       tmpl::size_t&lt;next::number_of_components::value * FirstIndex::dim&gt;;
+<span class="lineNum">      90 </span>            : 
+<span class="lineNum">      91 </span>            :   using component_number =
+<span class="lineNum">      92 </span>            :       tmpl::conditional_t&lt;next::component_number::value + 1 ==
+<span class="lineNum">      93 </span>            :                               tmpl::abs&lt;FirstSymm&gt;::value,
+<span class="lineNum">      94 </span>            :                           tmpl::size_t&lt;next::component_number::value + 1&gt;,
+<span class="lineNum">      95 </span>            :                           tmpl::size_t&lt;next::component_number::value&gt;&gt;;
+<span class="lineNum">      96 </span>            :   using number_of_independent_components = tmpl::conditional_t&lt;
+<span class="lineNum">      97 </span>            :       next::component_number::value + 1 == tmpl::abs&lt;FirstSymm&gt;::value,
+<span class="lineNum">      98 </span>            :       tmpl::size_t&lt;next::number_of_independent_components::value *
+<span class="lineNum">      99 </span>            :                    FirstIndex::dim&gt;,
+<span class="lineNum">     100 </span>            :       tmpl::size_t&lt;(next::number_of_independent_components::value *
+<span class="lineNum">     101 </span>            :                     (FirstSymm::value &gt; 0 ? FirstIndex::dim + 1
+<span class="lineNum">     102 </span>            :                                           : FirstIndex::dim - 1)) /
+<span class="lineNum">     103 </span>            :                    2&gt;&gt;;
+<span class="lineNum">     104 </span>            : };
+<span class="lineNum">     105 </span>            : /// \endcond
+<span class="lineNum">     106 </span>            : }  // namespace detail
+<span class="lineNum">     107 </span>            : 
+<span class="lineNum">     108 </span>            : /*! \ingroup Tensor
+<span class="lineNum">     109 </span>            :  * \brief Compute the number of independent components for a given ::Symmetry
+<span class="lineNum">     110 </span>            :  * and \ref SpacetimeIndex &quot;TensorIndexType&quot; list
+<span class="lineNum">     111 </span>            :  * \tparam Symmetry_t Symmetry of the Tensor
+<span class="lineNum">     112 </span>            :  * \tparam Indices_t typelist of the TensorIndex's of the Tensor
+<span class="lineNum">     113 </span>            :  */
+<span class="lineNum">     114 </span>            : template &lt;typename Symmetry_t, typename Indices_t&gt;
+<span class="lineNum">     115 </span><span class="lineCov">          2 : using independent_components =</span>
+<span class="lineNum">     116 </span>            :     typename detail::number_of_independent_components_impl&lt;
+<span class="lineNum">     117 </span>            :         Symmetry_t, Indices_t&gt;::number_of_independent_components;
+<span class="lineNum">     118 </span>            : 
+<span class="lineNum">     119 </span>            : /*!
+<span class="lineNum">     120 </span>            :  * \ingroup Tensor
+<span class="lineNum">     121 </span>            :  * \brief Compute the number of components for a given ::Symmetry and \ref
+<span class="lineNum">     122 </span>            :  * SpacetimeIndex &quot;TensorIndexType&quot; list
+<span class="lineNum">     123 </span>            :  * \tparam Symmetry_t Symmetry of the Tensor
+<span class="lineNum">     124 </span>            :  * \tparam Indices_t typelist of the TensorIndex's of the Tensor
+<span class="lineNum">     125 </span>            :  */
+<span class="lineNum">     126 </span>            : template &lt;typename Symmetry_t, typename Indices_t&gt;
+<span class="lineNum">     127 </span><span class="lineCov">          2 : using number_of_components =</span>
+<span class="lineNum">     128 </span>            :     typename detail::number_of_independent_components_impl&lt;
+<span class="lineNum">     129 </span>            :         Symmetry_t, Indices_t&gt;::number_of_components;
+<span class="lineNum">     130 </span>            : 
+<span class="lineNum">     131 </span>            : namespace detail {
+<span class="lineNum">     132 </span>            : template &lt;bool&gt;
+<span class="lineNum">     133 </span>            : struct increment_tensor_index_impl;
+<span class="lineNum">     134 </span>            : 
+<span class="lineNum">     135 </span>            : template &lt;&gt;
+<span class="lineNum">     136 </span>            : struct increment_tensor_index_impl&lt;false&gt; {
+<span class="lineNum">     137 </span>            :   template &lt;typename IndexList, typename TensorIndex, size_t I&gt;
+<span class="lineNum">     138 </span>            :   using type = tmpl::replace_at&lt;
+<span class="lineNum">     139 </span>            :       TensorIndex, tmpl::size_t&lt;I&gt;,
+<span class="lineNum">     140 </span>            :       tmpl::size_t&lt;tmpl::at&lt;TensorIndex, tmpl::size_t&lt;I&gt;&gt;::value + 1&gt;&gt;;
+<span class="lineNum">     141 </span>            : };
+<span class="lineNum">     142 </span>            : 
+<span class="lineNum">     143 </span>            : template &lt;&gt;
+<span class="lineNum">     144 </span>            : struct increment_tensor_index_impl&lt;true&gt; {
+<span class="lineNum">     145 </span>            :   template &lt;typename IndexList, typename TensorIndex, size_t I&gt;
+<span class="lineNum">     146 </span>            :   using type =
+<span class="lineNum">     147 </span>            :       typename ::TensorMetafunctions::detail::increment_tensor_index_impl&lt;(
+<span class="lineNum">     148 </span>            :           tmpl::at&lt;TensorIndex, tmpl::size_t&lt;I + 1&gt;&gt;::value + 1 &gt;=
+<span class="lineNum">     149 </span>            :           tmpl::at&lt;IndexList, tmpl::size_t&lt;I + 1&gt;&gt;::dim)&gt;::
+<span class="lineNum">     150 </span>            :           template type&lt;
+<span class="lineNum">     151 </span>            :               IndexList,
+<span class="lineNum">     152 </span>            :               tmpl::replace_at&lt;TensorIndex, tmpl::size_t&lt;I&gt;, tmpl::size_t&lt;0&gt;&gt;,
+<span class="lineNum">     153 </span>            :               I + 1&gt;;
+<span class="lineNum">     154 </span>            : };
+<span class="lineNum">     155 </span>            : }  // namespace detail
+<span class="lineNum">     156 </span>            : 
+<span class="lineNum">     157 </span>            : /*!
+<span class="lineNum">     158 </span>            :  * \ingroup Tensor
+<span class="lineNum">     159 </span>            :  * \brief Increment a tensor index
+<span class="lineNum">     160 </span>            :  *
+<span class="lineNum">     161 </span>            :  * \details
+<span class="lineNum">     162 </span>            :  * Given a tensor index `TensorIndex` and a list of \ref SpacetimeIndex
+<span class="lineNum">     163 </span>            :  * &quot;TensorIndex&quot;'s, `IndexList`, increment the tensor index to the next
+<span class="lineNum">     164 </span>            :  * component. Incrementing is done by incremeting the first (left-most) index
+<span class="lineNum">     165 </span>            :  * first, once it reaches the dimensionality of that index, the next index is
+<span class="lineNum">     166 </span>            :  * increment. That is, for a tensor \f$T_{abc}\f$ where all indices are
+<span class="lineNum">     167 </span>            :  * 3-dimensional, incrementing the index \f$(1, 3, 0)\f$ results in the index
+<span class="lineNum">     168 </span>            :  * \f$(2, 3, 0)\f$, and incrementing the index \f$(3, 3, 0)\f$ results
+<span class="lineNum">     169 </span>            :  * \f$(0, 0, 1)\f$.
+<span class="lineNum">     170 </span>            :  *
+<span class="lineNum">     171 </span>            :  * For a ::typelist of \ref SpacetimeIndex &quot;TensorIndexType&quot;'s
+<span class="lineNum">     172 </span>            :  * `IndexList`
+<span class="lineNum">     173 </span>            :  * and a tensor index (::typelist of std::integral_constant) `TensorIndex`,
+<span class="lineNum">     174 </span>            :  * \code
+<span class="lineNum">     175 </span>            :  * using result = IncrementTensorIndex&lt;IndexList, TensorIndex&gt;;
+<span class="lineNum">     176 </span>            :  * \endcode
+<span class="lineNum">     177 </span>            :  * \metareturns
+<span class="lineNum">     178 </span>            :  * ::typelist&lt;std::integral_constant...&gt;
+<span class="lineNum">     179 </span>            :  *
+<span class="lineNum">     180 </span>            :  * \semantics
+<span class="lineNum">     181 </span>            :  * Let `IndexList` by a ::typelist
+<span class="lineNum">     182 </span>            :  * \code
+<span class="lineNum">     183 </span>            :  * typelist&lt;SpacetimeTensorIndex&lt;3, UpLo::Lo, Frame::Grid&gt;,
+<span class="lineNum">     184 </span>            :  *          SpacetimeTensorIndex&lt;3, UpLo::Lo, Frame::Grid&gt;,
+<span class="lineNum">     185 </span>            :  *          SpacetimeTensorIndex&lt;3, UpLo::Lo, Frame::Grid&gt;&gt;;
+<span class="lineNum">     186 </span>            :  * \endcode
+<span class="lineNum">     187 </span>            :  * and `TensorIndex` be
+<span class="lineNum">     188 </span>            :  * `tmpl::integral_list&lt;int, 3, 3, 0&gt;`, then
+<span class="lineNum">     189 </span>            :  * \code
+<span class="lineNum">     190 </span>            :  * using result = tmpl::integral_list&lt;int, 0, 0, 1&gt;;
+<span class="lineNum">     191 </span>            :  * \endcode
+<span class="lineNum">     192 </span>            :  */
+<span class="lineNum">     193 </span>            : template &lt;typename IndexList, typename TensorIndex&gt;
+<span class="lineNum">     194 </span><span class="lineCov">          2 : using increment_tensor_index = typename detail::increment_tensor_index_impl&lt;(</span>
+<span class="lineNum">     195 </span>            :     tmpl::at&lt;TensorIndex, tmpl::size_t&lt;0&gt;&gt;::value + 1 &gt;=
+<span class="lineNum">     196 </span>            :     tmpl::at&lt;IndexList, tmpl::size_t&lt;0&gt;&gt;::dim)&gt;::template type&lt;IndexList,
+<span class="lineNum">     197 </span>            :                                                                TensorIndex, 0&gt;;
+<span class="lineNum">     198 </span>            : 
+<span class="lineNum">     199 </span>            : // typename detail::increment_tensor_index_impl&lt;IndexList, TensorIndex,
+<span class="lineNum">     200 </span>            : // 0&gt;::type;
+<span class="lineNum">     201 </span>            : 
+<span class="lineNum">     202 </span>            : namespace detail {
+<span class="lineNum">     203 </span>            : template &lt;bool&gt;
+<span class="lineNum">     204 </span>            : struct tensor_index_to_swap_impl;
+<span class="lineNum">     205 </span>            : 
+<span class="lineNum">     206 </span>            : // Rank == Offset case
+<span class="lineNum">     207 </span>            : template &lt;&gt;
+<span class="lineNum">     208 </span>            : struct tensor_index_to_swap_impl&lt;true&gt; {
+<span class="lineNum">     209 </span>            :   template &lt;typename Symm, typename TensorIndex, typename Rank, typename I,
+<span class="lineNum">     210 </span>            :             typename Offset&gt;
+<span class="lineNum">     211 </span>            :   using type = I;
+<span class="lineNum">     212 </span>            : };
+<span class="lineNum">     213 </span>            : 
+<span class="lineNum">     214 </span>            : // Rank != Offset case
+<span class="lineNum">     215 </span>            : template &lt;&gt;
+<span class="lineNum">     216 </span>            : struct tensor_index_to_swap_impl&lt;false&gt; {
+<span class="lineNum">     217 </span>            :   template &lt;typename Symm, typename TensorIndex, typename Rank, typename I,
+<span class="lineNum">     218 </span>            :             typename Offset&gt;
+<span class="lineNum">     219 </span>            :   using type = tmpl::conditional_t&lt;
+<span class="lineNum">     220 </span>            :       (tmpl::and_&lt;
+<span class="lineNum">     221 </span>            :           tmpl::less&lt;tmpl::at&lt;TensorIndex, I&gt;, tmpl::at&lt;TensorIndex, Offset&gt;&gt;,
+<span class="lineNum">     222 </span>            :           tmpl::equal_to&lt;tmpl::at&lt;Symm, I&gt;, tmpl::at&lt;Symm, Offset&gt;&gt;&gt;::value),
+<span class="lineNum">     223 </span>            :       Offset,
+<span class="lineNum">     224 </span>            :       typename tensor_index_to_swap_impl&lt;Rank::value == Offset::value + 1&gt;::
+<span class="lineNum">     225 </span>            :           template type&lt;Symm, TensorIndex, Rank, I,
+<span class="lineNum">     226 </span>            :                         tmpl::size_t&lt;Offset::value + 1&gt;&gt;&gt;;
+<span class="lineNum">     227 </span>            : };
+<span class="lineNum">     228 </span>            : }  // namespace detail
+<span class="lineNum">     229 </span>            : 
+<span class="lineNum">     230 </span>            : /*!
+<span class="lineNum">     231 </span>            :  * \ingroup Tensor
+<span class="lineNum">     232 </span>            :  */
+<span class="lineNum">     233 </span>            : template &lt;typename Symm, typename TensorIndex, size_t Rank, size_t I,
+<span class="lineNum">     234 </span>            :           size_t Offset&gt;
+<span class="lineNum">     235 </span><span class="lineNoCov">          0 : using tensor_index_to_swap = typename detail::tensor_index_to_swap_impl&lt;</span>
+<span class="lineNum">     236 </span>            :     Rank == Offset + 1&gt;::template type&lt;Symm, TensorIndex, tmpl::size_t&lt;Rank&gt;,
+<span class="lineNum">     237 </span>            :                                        tmpl::size_t&lt;I&gt;, tmpl::size_t&lt;Offset&gt;&gt;;
+<span class="lineNum">     238 </span>            : 
+<span class="lineNum">     239 </span>            : namespace detail {
+<span class="lineNum">     240 </span>            : template &lt;bool&gt;
+<span class="lineNum">     241 </span>            : struct canonicalize_tensor_index_impl;
+<span class="lineNum">     242 </span>            : 
+<span class="lineNum">     243 </span>            : template &lt;&gt;
+<span class="lineNum">     244 </span>            : struct canonicalize_tensor_index_impl&lt;false&gt; {
+<span class="lineNum">     245 </span>            :   template &lt;typename Symm, typename IndexLs, typename TensorIndex, size_t Rank,
+<span class="lineNum">     246 </span>            :             size_t I&gt;
+<span class="lineNum">     247 </span>            :   using type = TensorIndex;
+<span class="lineNum">     248 </span>            : };
+<span class="lineNum">     249 </span>            : 
+<span class="lineNum">     250 </span>            : template &lt;&gt;
+<span class="lineNum">     251 </span>            : struct canonicalize_tensor_index_impl&lt;true&gt; {
+<span class="lineNum">     252 </span>            :   template &lt;typename Symm, typename IndexLs, typename TensorIndex, size_t Rank,
+<span class="lineNum">     253 </span>            :             size_t I&gt;
+<span class="lineNum">     254 </span>            :   using type =
+<span class="lineNum">     255 </span>            :       typename canonicalize_tensor_index_impl&lt;(Rank &gt; I + 1)&gt;::template type&lt;
+<span class="lineNum">     256 </span>            :           Symm, IndexLs,
+<span class="lineNum">     257 </span>            :           tmpl::swap_at&lt;TensorIndex, tmpl::size_t&lt;I&gt;,
+<span class="lineNum">     258 </span>            :                         ::TensorMetafunctions::tensor_index_to_swap&lt;
+<span class="lineNum">     259 </span>            :                             Symm, TensorIndex, Rank, I, I&gt;&gt;,
+<span class="lineNum">     260 </span>            :           Rank, I + 1&gt;;
+<span class="lineNum">     261 </span>            : };
+<span class="lineNum">     262 </span>            : }  // namespace detail
+<span class="lineNum">     263 </span>            : 
+<span class="lineNum">     264 </span>            : /*!
+<span class="lineNum">     265 </span>            :  * \ingroup Tensor
+<span class="lineNum">     266 </span>            :  */
+<span class="lineNum">     267 </span>            : template &lt;typename Symm, typename IndexLs, typename TensorIndex&gt;
+<span class="lineNum">     268 </span><span class="lineNoCov">          0 : using canonicalize_tensor_index =</span>
+<span class="lineNum">     269 </span>            :     typename detail::canonicalize_tensor_index_impl&lt;(
+<span class="lineNum">     270 </span>            :         tmpl::size&lt;IndexLs&gt;::value &gt;
+<span class="lineNum">     271 </span>            :         0)&gt;::template type&lt;Symm, IndexLs, TensorIndex,
+<span class="lineNum">     272 </span>            :                            tmpl::size&lt;IndexLs&gt;::value, 0&gt;;
+<span class="lineNum">     273 </span>            : 
+<span class="lineNum">     274 </span>            : namespace detail {
+<span class="lineNum">     275 </span>            : template &lt;bool IndicesRemaining&gt;
+<span class="lineNum">     276 </span>            : struct compute_collapsed_index_impl;
+<span class="lineNum">     277 </span>            : 
+<span class="lineNum">     278 </span>            : template &lt;&gt;
+<span class="lineNum">     279 </span>            : struct compute_collapsed_index_impl&lt;false&gt; {
+<span class="lineNum">     280 </span>            :   template &lt;typename TensorIndex, typename IndexLs&gt;
+<span class="lineNum">     281 </span>            :   using type = tmpl::front&lt;TensorIndex&gt;;
+<span class="lineNum">     282 </span>            : };
+<span class="lineNum">     283 </span>            : 
+<span class="lineNum">     284 </span>            : template &lt;&gt;
+<span class="lineNum">     285 </span>            : struct compute_collapsed_index_impl&lt;true&gt; {
+<span class="lineNum">     286 </span>            :   template &lt;typename TensorIndex, typename IndexLs&gt;
+<span class="lineNum">     287 </span>            :   using type =
+<span class="lineNum">     288 </span>            :       tmpl::plus&lt;tmpl::front&lt;TensorIndex&gt;,
+<span class="lineNum">     289 </span>            :                  tmpl::times&lt;tmpl::front&lt;IndexLs&gt;,
+<span class="lineNum">     290 </span>            :                              typename compute_collapsed_index_impl&lt;(
+<span class="lineNum">     291 </span>            :                                  tmpl::size&lt;TensorIndex&gt;::value &gt; 2)&gt;::
+<span class="lineNum">     292 </span>            :                                  template type&lt;tmpl::pop_front&lt;TensorIndex&gt;,
+<span class="lineNum">     293 </span>            :                                                tmpl::pop_front&lt;IndexLs&gt;&gt;&gt;&gt;;
+<span class="lineNum">     294 </span>            : };
+<span class="lineNum">     295 </span>            : }  // namespace detail
+<span class="lineNum">     296 </span>            : 
+<span class="lineNum">     297 </span>            : /*!
+<span class="lineNum">     298 </span>            :  * \ingroup Tensor
+<span class="lineNum">     299 </span>            :  *
+<span class="lineNum">     300 </span>            :  * \requires `is_a&lt;typelist, IndexLs&gt;::%value` is true, `tt::is_a&lt;typelist,
+<span class="lineNum">     301 </span>            :  * TensorIndex&gt;::%value` is true, and `tmpl::all&lt;TensorIndex,
+<span class="lineNum">     302 </span>            :  * is_a&lt;std::integral_constant, tmpl::_1&gt;&gt;::%value` is true
+<span class="lineNum">     303 </span>            :  */
+<span class="lineNum">     304 </span>            : template &lt;typename TensorIndex, typename IndexLs&gt;
+<span class="lineNum">     305 </span><span class="lineCov">          2 : using compute_collapsed_index = typename detail::compute_collapsed_index_impl&lt;(</span>
+<span class="lineNum">     306 </span>            :     tmpl::size&lt;TensorIndex&gt;::value &gt; 1)&gt;::template type&lt;TensorIndex, IndexLs&gt;;
+<span class="lineNum">     307 </span>            : 
+<span class="lineNum">     308 </span>            : namespace detail {
+<span class="lineNum">     309 </span>            : template &lt;bool&gt;
+<span class="lineNum">     310 </span>            : struct update_collapsed_to_storage_using_canonical_tensor_index_impl;
+<span class="lineNum">     311 </span>            : 
+<span class="lineNum">     312 </span>            : template &lt;&gt;
+<span class="lineNum">     313 </span>            : struct update_collapsed_to_storage_using_canonical_tensor_index_impl&lt;false&gt; {
+<span class="lineNum">     314 </span>            :   template &lt;typename IndexLs, typename CanonicalTensorIndex,
+<span class="lineNum">     315 </span>            :             typename TensorIndex, typename CollapsedToStorageLs, typename I,
+<span class="lineNum">     316 </span>            :             typename Count&gt;
+<span class="lineNum">     317 </span>            :   using type = tmpl::replace_at&lt;
+<span class="lineNum">     318 </span>            :       CollapsedToStorageLs, I,
+<span class="lineNum">     319 </span>            :       tmpl::at&lt;CollapsedToStorageLs,
+<span class="lineNum">     320 </span>            :                compute_collapsed_index&lt;CanonicalTensorIndex, IndexLs&gt;&gt;&gt;;
+<span class="lineNum">     321 </span>            : };
+<span class="lineNum">     322 </span>            : 
+<span class="lineNum">     323 </span>            : template &lt;&gt;
+<span class="lineNum">     324 </span>            : struct update_collapsed_to_storage_using_canonical_tensor_index_impl&lt;true&gt; {
+<span class="lineNum">     325 </span>            :   template &lt;typename IndexLs, typename CanonicalTensorIndex,
+<span class="lineNum">     326 </span>            :             typename TensorIndex, typename CollapsedToStorageLs, typename I,
+<span class="lineNum">     327 </span>            :             typename Count&gt;
+<span class="lineNum">     328 </span>            :   using type = tmpl::replace_at&lt;CollapsedToStorageLs, I, Count&gt;;
+<span class="lineNum">     329 </span>            : };
+<span class="lineNum">     330 </span>            : }  // namespace detail
+<span class="lineNum">     331 </span>            : 
+<span class="lineNum">     332 </span>            : /*! \ingroup Tensor
+<span class="lineNum">     333 </span>            :  *
+<span class="lineNum">     334 </span>            :  * \note Cannot use `std::conditional_t` because `typelist&lt;&gt;` will fail
+<span class="lineNum">     335 </span>            :  */
+<span class="lineNum">     336 </span>            : template &lt;typename IndexLs, typename CanonicalTensorIndex, typename TensorIndex,
+<span class="lineNum">     337 </span>            :           typename CollapsedToStorageLs, typename I, typename Count&gt;
+<span class="lineNum">     338 </span><span class="lineCov">          2 : using update_collapsed_to_storage_using_canonical_tensor_index =</span>
+<span class="lineNum">     339 </span>            :     typename detail::
+<span class="lineNum">     340 </span>            :         update_collapsed_to_storage_using_canonical_tensor_index_impl&lt;
+<span class="lineNum">     341 </span>            :             std::is_same&lt;CanonicalTensorIndex, TensorIndex&gt;::value&gt;::
+<span class="lineNum">     342 </span>            :             template type&lt;IndexLs, CanonicalTensorIndex, TensorIndex,
+<span class="lineNum">     343 </span>            :                           CollapsedToStorageLs, I, Count&gt;;
+<span class="lineNum">     344 </span>            : 
+<span class="lineNum">     345 </span>            : /*!
+<span class="lineNum">     346 </span>            :  * \ingroup Tensor
+<span class="lineNum">     347 </span>            :  * \brief given a `TensorIndex` checks if it is the canonical form, if so
+<span class="lineNum">     348 </span>            :  * returns `tmpl::plus&lt;Count, tmpl::size_t&lt;1&gt;&gt;` otherwise returns `Count`
+<span class="lineNum">     349 </span>            :  */
+<span class="lineNum">     350 </span>            : template &lt;typename CanonicalizeTensorIndex, typename TI, typename Count&gt;
+<span class="lineNum">     351 </span><span class="lineCov">          2 : using increase_count =</span>
+<span class="lineNum">     352 </span>            :     tmpl::conditional_t&lt;std::is_same&lt;CanonicalizeTensorIndex, TI&gt;::value,
+<span class="lineNum">     353 </span>            :                         tmpl::size_t&lt;Count::value + 1&gt;, Count&gt;;
+<span class="lineNum">     354 </span>            : 
+<span class="lineNum">     355 </span>            : namespace detail {
+<span class="lineNum">     356 </span>            : template &lt;bool&gt;
+<span class="lineNum">     357 </span>            : struct compute_collapsed_to_storage_impl;
+<span class="lineNum">     358 </span>            : 
+<span class="lineNum">     359 </span>            : template &lt;&gt;
+<span class="lineNum">     360 </span>            : struct compute_collapsed_to_storage_impl&lt;false&gt; {
+<span class="lineNum">     361 </span>            :   template &lt;typename CollapsedToStorageLs, typename IndexLs, typename Symm,
+<span class="lineNum">     362 </span>            :             typename TensorIndex, typename I, typename Count, typename NumComps&gt;
+<span class="lineNum">     363 </span>            :   using type = update_collapsed_to_storage_using_canonical_tensor_index&lt;
+<span class="lineNum">     364 </span>            :       IndexLs, canonicalize_tensor_index&lt;Symm, IndexLs, TensorIndex&gt;,
+<span class="lineNum">     365 </span>            :       TensorIndex, CollapsedToStorageLs, I, Count&gt;;
+<span class="lineNum">     366 </span>            : };
+<span class="lineNum">     367 </span>            : template &lt;&gt;
+<span class="lineNum">     368 </span>            : struct compute_collapsed_to_storage_impl&lt;true&gt; {
+<span class="lineNum">     369 </span>            :   template &lt;typename CollapsedToStorageLs, typename IndexLs, typename Symm,
+<span class="lineNum">     370 </span>            :             typename TensorIndex, typename I, typename Count, typename NumComps&gt;
+<span class="lineNum">     371 </span>            :   using type = typename compute_collapsed_to_storage_impl&lt;(
+<span class="lineNum">     372 </span>            :       I::value + 1 &lt; NumComps::value - 1)&gt;::
+<span class="lineNum">     373 </span>            :       template type&lt;
+<span class="lineNum">     374 </span>            :           update_collapsed_to_storage_using_canonical_tensor_index&lt;
+<span class="lineNum">     375 </span>            :               IndexLs, canonicalize_tensor_index&lt;Symm, IndexLs, TensorIndex&gt;,
+<span class="lineNum">     376 </span>            :               TensorIndex, CollapsedToStorageLs, I, Count&gt;,
+<span class="lineNum">     377 </span>            :           IndexLs, Symm,
+<span class="lineNum">     378 </span>            :           ::TensorMetafunctions::increment_tensor_index&lt;IndexLs, TensorIndex&gt;,
+<span class="lineNum">     379 </span>            :           tmpl::size_t&lt;I::value + 1&gt;,
+<span class="lineNum">     380 </span>            :           ::TensorMetafunctions::increase_count&lt;
+<span class="lineNum">     381 </span>            :               canonicalize_tensor_index&lt;Symm, IndexLs, TensorIndex&gt;,
+<span class="lineNum">     382 </span>            :               TensorIndex, Count&gt;,
+<span class="lineNum">     383 </span>            :           NumComps&gt;;
+<span class="lineNum">     384 </span>            : };
+<span class="lineNum">     385 </span>            : }  // namespace detail
+<span class="lineNum">     386 </span>            : 
+<span class="lineNum">     387 </span>            : /*!
+<span class="lineNum">     388 </span>            :  * \ingroup Tensor
+<span class="lineNum">     389 </span>            :  * \brief Compute the collapse index to storage index ::typelist
+<span class="lineNum">     390 </span>            :  */
+<span class="lineNum">     391 </span>            : template &lt;typename IndexLs, typename Symm, typename NumComps&gt;
+<span class="lineNum">     392 </span><span class="lineCov">          2 : using compute_collapsed_to_storage = typename detail::</span>
+<span class="lineNum">     393 </span>            :     compute_collapsed_to_storage_impl&lt;(0 &lt; NumComps::value - 1)&gt;::template type&lt;
+<span class="lineNum">     394 </span>            :         tmpl::filled_list&lt;tmpl::size_t&lt;0&gt;, NumComps::value&gt;, IndexLs, Symm,
+<span class="lineNum">     395 </span>            :         tmpl::filled_list&lt;tmpl::size_t&lt;0&gt;, tmpl::size&lt;IndexLs&gt;::value&gt;,
+<span class="lineNum">     396 </span>            :         tmpl::size_t&lt;0&gt;, tmpl::size_t&lt;0&gt;, NumComps&gt;;
+<span class="lineNum">     397 </span>            : 
+<span class="lineNum">     398 </span>            : namespace detail {
+<span class="lineNum">     399 </span>            : template &lt;unsigned&gt;
+<span class="lineNum">     400 </span>            : struct compute_storage_to_tensor_impl;
+<span class="lineNum">     401 </span>            : 
+<span class="lineNum">     402 </span>            : template &lt;&gt;
+<span class="lineNum">     403 </span>            : struct compute_storage_to_tensor_impl&lt;0&gt; {
+<span class="lineNum">     404 </span>            :   template &lt;typename Symm, typename IndexLs, typename CollapsedToStorageLs,
+<span class="lineNum">     405 </span>            :             typename TensorIndex, typename StorageToTensorLs&gt;
+<span class="lineNum">     406 </span>            :   using type = tmpl::replace_at&lt;StorageToTensorLs,
+<span class="lineNum">     407 </span>            :                                 tmpl::front&lt;CollapsedToStorageLs&gt;, TensorIndex&gt;;
+<span class="lineNum">     408 </span>            : };
+<span class="lineNum">     409 </span>            : 
+<span class="lineNum">     410 </span>            : // Case where
+<span class="lineNum">     411 </span>            : // std::is_same_v&lt;CollapsedToStorageLs, tmpl::list&lt;tmpl::size_t&lt;0&gt;&gt;&gt; == true
+<span class="lineNum">     412 </span>            : template &lt;&gt;
+<span class="lineNum">     413 </span>            : struct compute_storage_to_tensor_impl&lt;1&gt; {
+<span class="lineNum">     414 </span>            :   template &lt;typename Symm, typename IndexLs, typename CollapsedToStorageLs,
+<span class="lineNum">     415 </span>            :             typename TensorIndex, typename StorageToTensorLs&gt;
+<span class="lineNum">     416 </span>            :   using type = tmpl::list&lt;tmpl::integral_list&lt;std::size_t, 0&gt;&gt;;
+<span class="lineNum">     417 </span>            : };
+<span class="lineNum">     418 </span>            : 
+<span class="lineNum">     419 </span>            : // Case where:
+<span class="lineNum">     420 </span>            : // tmpl::size&lt;CollapsedToStorageLs&gt;::value &gt; 1 == true
+<span class="lineNum">     421 </span>            : template &lt;&gt;
+<span class="lineNum">     422 </span>            : struct compute_storage_to_tensor_impl&lt;2&gt; {
+<span class="lineNum">     423 </span>            :   template &lt;typename Symm, typename IndexLs, typename CollapsedToStorageLs,
+<span class="lineNum">     424 </span>            :             typename TensorIndex, typename StorageToTensorLs&gt;
+<span class="lineNum">     425 </span>            :   using type = typename compute_storage_to_tensor_impl&lt;
+<span class="lineNum">     426 </span>            :       (tmpl::size&lt;CollapsedToStorageLs&gt;::value &gt; 2)
+<span class="lineNum">     427 </span>            :           ? 2
+<span class="lineNum">     428 </span>            :           : ((tmpl::size&lt;CollapsedToStorageLs&gt;::value == 2 and
+<span class="lineNum">     429 </span>            :               std::is_same&lt;tmpl::back&lt;CollapsedToStorageLs&gt;,
+<span class="lineNum">     430 </span>            :                            tmpl::list&lt;tmpl::size_t&lt;0&gt;&gt;&gt;::value)
+<span class="lineNum">     431 </span>            :                  ? 1
+<span class="lineNum">     432 </span>            :                  : 0)&gt;::
+<span class="lineNum">     433 </span>            :       template type&lt;
+<span class="lineNum">     434 </span>            :           Symm, IndexLs, tmpl::pop_front&lt;CollapsedToStorageLs&gt;,
+<span class="lineNum">     435 </span>            :           ::TensorMetafunctions::increment_tensor_index&lt;IndexLs, TensorIndex&gt;,
+<span class="lineNum">     436 </span>            :           tmpl::replace_at&lt;
+<span class="lineNum">     437 </span>            :               StorageToTensorLs, tmpl::front&lt;CollapsedToStorageLs&gt;,
+<span class="lineNum">     438 </span>            :               canonicalize_tensor_index&lt;Symm, IndexLs, TensorIndex&gt;&gt;&gt;;
+<span class="lineNum">     439 </span>            : };
+<span class="lineNum">     440 </span>            : }  // namespace detail
+<span class="lineNum">     441 </span>            : 
+<span class="lineNum">     442 </span>            : /*!
+<span class="lineNum">     443 </span>            :  * \ingroup Tensor
+<span class="lineNum">     444 </span>            :  * \brief Compute a ::typelist holding the tensor index for each storage index
+<span class="lineNum">     445 </span>            :  */
+<span class="lineNum">     446 </span>            : template &lt;typename Symm, typename IndexLs, typename CollapsedToStorageLs,
+<span class="lineNum">     447 </span>            :           typename NumIndComps&gt;
+<span class="lineNum">     448 </span><span class="lineCov">          2 : using compute_storage_to_tensor =</span>
+<span class="lineNum">     449 </span>            :     typename detail::compute_storage_to_tensor_impl&lt;
+<span class="lineNum">     450 </span>            :         (tmpl::size&lt;CollapsedToStorageLs&gt;::value &gt; 1)
+<span class="lineNum">     451 </span>            :             ? 2
+<span class="lineNum">     452 </span>            :             : (tmpl::size&lt;CollapsedToStorageLs&gt;::value == 2 and
+<span class="lineNum">     453 </span>            :                std::is_same&lt;tmpl::back&lt;CollapsedToStorageLs&gt;,
+<span class="lineNum">     454 </span>            :                             tmpl::list&lt;tmpl::size_t&lt;0&gt;&gt;&gt;::value)
+<span class="lineNum">     455 </span>            :                   ? 1
+<span class="lineNum">     456 </span>            :                   : 0&gt;::
+<span class="lineNum">     457 </span>            :         template type&lt;
+<span class="lineNum">     458 </span>            :             Symm, IndexLs, CollapsedToStorageLs,
+<span class="lineNum">     459 </span>            :             tmpl::filled_list&lt;tmpl::size_t&lt;0&gt;, tmpl::size&lt;IndexLs&gt;::value&gt;,
+<span class="lineNum">     460 </span>            :             tmpl::filled_list&lt;tmpl::size_t&lt;0&gt;, NumIndComps::value&gt;&gt;;
+<span class="lineNum">     461 </span>            : 
+<span class="lineNum">     462 </span>            : namespace detail {
+<span class="lineNum">     463 </span>            : template &lt;bool&gt;
+<span class="lineNum">     464 </span>            : struct compute_multiplicity_impl;
+<span class="lineNum">     465 </span>            : 
+<span class="lineNum">     466 </span>            : template &lt;&gt;
+<span class="lineNum">     467 </span>            : struct compute_multiplicity_impl&lt;false&gt; {
+<span class="lineNum">     468 </span>            :   template &lt;typename CollapsedToStorageLs, typename MultiplicityLs&gt;
+<span class="lineNum">     469 </span>            :   using type = tmpl::replace_at&lt;
+<span class="lineNum">     470 </span>            :       MultiplicityLs, tmpl::front&lt;CollapsedToStorageLs&gt;,
+<span class="lineNum">     471 </span>            :       tmpl::size_t&lt;
+<span class="lineNum">     472 </span>            :           tmpl::at&lt;MultiplicityLs, tmpl::front&lt;CollapsedToStorageLs&gt;&gt;::value +
+<span class="lineNum">     473 </span>            :           1&gt;&gt;;
+<span class="lineNum">     474 </span>            : };
+<span class="lineNum">     475 </span>            : 
+<span class="lineNum">     476 </span>            : template &lt;&gt;
+<span class="lineNum">     477 </span>            : struct compute_multiplicity_impl&lt;true&gt; {
+<span class="lineNum">     478 </span>            :   template &lt;typename CollapsedToStorageLs, typename MultiplicityLs&gt;
+<span class="lineNum">     479 </span>            :   using type = typename compute_multiplicity_impl&lt;(
+<span class="lineNum">     480 </span>            :       tmpl::size&lt;CollapsedToStorageLs&gt;::value &gt; 2)&gt;::
+<span class="lineNum">     481 </span>            :       template type&lt;
+<span class="lineNum">     482 </span>            :           tmpl::pop_front&lt;CollapsedToStorageLs&gt;,
+<span class="lineNum">     483 </span>            :           tmpl::replace_at&lt;
+<span class="lineNum">     484 </span>            :               MultiplicityLs, tmpl::front&lt;CollapsedToStorageLs&gt;,
+<span class="lineNum">     485 </span>            :               tmpl::size_t&lt;tmpl::at&lt;MultiplicityLs,
+<span class="lineNum">     486 </span>            :                                     tmpl::front&lt;CollapsedToStorageLs&gt;&gt;::value +
+<span class="lineNum">     487 </span>            :                            1&gt;&gt;&gt;;
+<span class="lineNum">     488 </span>            : };
+<span class="lineNum">     489 </span>            : }  // namespace detail
+<span class="lineNum">     490 </span>            : 
+<span class="lineNum">     491 </span>            : /*!
+<span class="lineNum">     492 </span>            :  * \ingroup Tensor
+<span class="lineNum">     493 </span>            :  * \brief Compute ::typelist of the multiplicity of each storage index of a
+<span class="lineNum">     494 </span>            :  * Tensor
+<span class="lineNum">     495 </span>            :  *
+<span class="lineNum">     496 </span>            :  * \details
+<span class="lineNum">     497 </span>            :  * The multiplicity of a storage index is the number of tensor components it
+<span class="lineNum">     498 </span>            :  * represents. For example, if a tensor is symmetric then the multiplicity
+<span class="lineNum">     499 </span>            :  * for the storage index's representing symmetric terms have a multiplicity
+<span class="lineNum">     500 </span>            :  * of 2. Specifically, consider a rank-2 symmetric tensor \f$T_{ab}\f$, let
+<span class="lineNum">     501 </span>            :  * the storage of the \f$T_{02}\f$ component be `N`, for example. Then, since
+<span class="lineNum">     502 </span>            :  * \f$T_{20} = T_{02}\f$
+<span class="lineNum">     503 </span>            :  * \code
+<span class="lineNum">     504 </span>            :  * using result = tmpl::at&lt;ComputeMultiplicity&lt;ColToStor, NumIndComps&gt;,
+<span class="lineNum">     505 </span>            :  *                          tmpl::size_t&lt;5&gt;&gt; = tmpl::size_t&lt;2&gt;;
+<span class="lineNum">     506 </span>            :  * \endcode
+<span class="lineNum">     507 </span>            :  */
+<span class="lineNum">     508 </span>            : template &lt;typename CollapsedToStorageLs, typename NumIndComps&gt;
+<span class="lineNum">     509 </span><span class="lineCov">          2 : using compute_multiplicity = typename detail::compute_multiplicity_impl&lt;(</span>
+<span class="lineNum">     510 </span>            :     tmpl::size&lt;CollapsedToStorageLs&gt;::value &gt;
+<span class="lineNum">     511 </span>            :     1)&gt;::template type&lt;CollapsedToStorageLs,
+<span class="lineNum">     512 </span>            :                        tmpl::filled_list&lt;tmpl::size_t&lt;0&gt;, NumIndComps::value&gt;&gt;;
+<span class="lineNum">     513 </span>            : 
+<span class="lineNum">     514 </span>            : namespace detail {
+<span class="lineNum">     515 </span>            : template &lt;unsigned&gt;
+<span class="lineNum">     516 </span>            : struct check_index_symmetry_impl;
+<span class="lineNum">     517 </span>            : 
+<span class="lineNum">     518 </span>            : // empty typelist, done recursion
+<span class="lineNum">     519 </span>            : template &lt;&gt;
+<span class="lineNum">     520 </span>            : struct check_index_symmetry_impl&lt;0&gt; {
+<span class="lineNum">     521 </span>            :   template &lt;typename Symm, typename IndexLs, typename IndexSymm&gt;
+<span class="lineNum">     522 </span>            :   using type = std::true_type;
+<span class="lineNum">     523 </span>            : };
+<span class="lineNum">     524 </span>            : 
+<span class="lineNum">     525 </span>            : // found incorrect symmetric index
+<span class="lineNum">     526 </span>            : template &lt;&gt;
+<span class="lineNum">     527 </span>            : struct check_index_symmetry_impl&lt;1&gt; {
+<span class="lineNum">     528 </span>            :   template &lt;typename Symm, typename IndexLs, typename IndexSymm&gt;
+<span class="lineNum">     529 </span>            :   using type = std::false_type;
+<span class="lineNum">     530 </span>            : };
+<span class="lineNum">     531 </span>            : 
+<span class="lineNum">     532 </span>            : // recurse the list
+<span class="lineNum">     533 </span>            : template &lt;&gt;
+<span class="lineNum">     534 </span>            : struct check_index_symmetry_impl&lt;2&gt; {
+<span class="lineNum">     535 </span>            :   template &lt;typename Symm, typename IndexLs, typename IndexSymm&gt;
+<span class="lineNum">     536 </span>            :   using type = typename check_index_symmetry_impl&lt;
+<span class="lineNum">     537 </span>            :       tmpl::has_key&lt;IndexSymm, tmpl::front&lt;Symm&gt;&gt;::value and
+<span class="lineNum">     538 </span>            :               not std::is_same&lt;tmpl::front&lt;IndexLs&gt;,
+<span class="lineNum">     539 </span>            :                                tmpl::at&lt;IndexSymm, tmpl::front&lt;Symm&gt;&gt;&gt;::value
+<span class="lineNum">     540 </span>            :           ? 1
+<span class="lineNum">     541 </span>            :           : tmpl::size&lt;Symm&gt;::value == 1 ? 0 : 2&gt;::
+<span class="lineNum">     542 </span>            :       template type&lt;tmpl::pop_front&lt;Symm&gt;, tmpl::pop_front&lt;IndexLs&gt;,
+<span class="lineNum">     543 </span>            :                     tmpl::insert&lt;IndexSymm, tmpl::pair&lt;tmpl::front&lt;Symm&gt;,
+<span class="lineNum">     544 </span>            :                                                        tmpl::front&lt;IndexLs&gt;&gt;&gt;&gt;;
+<span class="lineNum">     545 </span>            : };
+<span class="lineNum">     546 </span>            : }  // namespace detail
+<span class="lineNum">     547 </span>            : 
+<span class="lineNum">     548 </span>            : /*!
+<span class="lineNum">     549 </span>            :  * \ingroup Tensor
+<span class="lineNum">     550 </span>            :  * \brief Check that each of symmetric indices is in the same frame and have the
+<span class="lineNum">     551 </span>            :  * same dimensionality.
+<span class="lineNum">     552 </span>            :  */
+<span class="lineNum">     553 </span>            : template &lt;typename Symm, typename IndexLs&gt;
+<span class="lineNum">     554 </span><span class="lineCov">          2 : using check_index_symmetry = typename detail::check_index_symmetry_impl&lt;</span>
+<span class="lineNum">     555 </span>            :     tmpl::size&lt;Symm&gt;::value == 0 ? 0 : 2&gt;::template type&lt;Symm, IndexLs,
+<span class="lineNum">     556 </span>            :                                                          tmpl::map&lt;&gt;&gt;;
+<span class="lineNum">     557 </span>            : template &lt;typename Symm, typename IndexLs&gt;
+<span class="lineNum">     558 </span><span class="lineNoCov">          0 : constexpr bool check_index_symmetry_v =</span>
+<span class="lineNum">     559 </span>            :     check_index_symmetry&lt;Symm, IndexLs&gt;::value;
+<span class="lineNum">     560 </span>            : 
+<span class="lineNum">     561 </span>            : /*!
+<span class="lineNum">     562 </span>            :  * \ingroup Tensor
+<span class="lineNum">     563 </span>            :  * \brief Add a spatial index to the from of a Tensor
+<span class="lineNum">     564 </span>            :  *
+<span class="lineNum">     565 </span>            :  * \tparam Tensor_t the tensor type to prepend
+<span class="lineNum">     566 </span>            :  * \tparam VolumeDim the volume dimension of the tensor index to prepend
+<span class="lineNum">     567 </span>            :  * \tparam Fr the ::Frame of the tensor index to prepend
+<span class="lineNum">     568 </span>            :  */
+<span class="lineNum">     569 </span>            : template &lt;typename Tensor_t, std::size_t VolumeDim, UpLo Ul,
+<span class="lineNum">     570 </span>            :           typename Fr = Frame::Grid&gt;
+<span class="lineNum">     571 </span><span class="lineCov">          2 : using prepend_spatial_index = Tensor&lt;</span>
+<span class="lineNum">     572 </span>            :     typename Tensor_t::type,
+<span class="lineNum">     573 </span>            :     tmpl::push_front&lt;
+<span class="lineNum">     574 </span>            :         typename Tensor_t::symmetry,
+<span class="lineNum">     575 </span>            :         tmpl::int32_t&lt;
+<span class="lineNum">     576 </span>            :             1 + tmpl::fold&lt;typename Tensor_t::symmetry, tmpl::int32_t&lt;0&gt;,
+<span class="lineNum">     577 </span>            :                            tmpl::max&lt;tmpl::_state, tmpl::_element&gt;&gt;::value&gt;&gt;,
+<span class="lineNum">     578 </span>            :     tmpl::push_front&lt;typename Tensor_t::index_list,
+<span class="lineNum">     579 </span>            :                      SpatialIndex&lt;VolumeDim, Ul, Fr&gt;&gt;&gt;;
+<span class="lineNum">     580 </span>            : 
+<span class="lineNum">     581 </span>            : /*!
+<span class="lineNum">     582 </span>            :  * \ingroup Tensor
+<span class="lineNum">     583 </span>            :  * \brief Add a spacetime index to the from of a Tensor
+<span class="lineNum">     584 </span>            :  *
+<span class="lineNum">     585 </span>            :  * \tparam Tensor_t the tensor type to prepend
+<span class="lineNum">     586 </span>            :  * \tparam VolumeDim the volume dimension of the tensor index to prepend
+<span class="lineNum">     587 </span>            :  * \tparam Fr the ::Frame of the tensor index to prepend
+<span class="lineNum">     588 </span>            :  */
+<span class="lineNum">     589 </span>            : template &lt;typename Tensor_t, std::size_t VolumeDim, UpLo Ul,
+<span class="lineNum">     590 </span>            :           typename Fr = Frame::Grid&gt;
+<span class="lineNum">     591 </span><span class="lineCov">          2 : using prepend_spacetime_index = Tensor&lt;</span>
+<span class="lineNum">     592 </span>            :     typename Tensor_t::type,
+<span class="lineNum">     593 </span>            :     tmpl::push_front&lt;
+<span class="lineNum">     594 </span>            :         typename Tensor_t::symmetry,
+<span class="lineNum">     595 </span>            :         tmpl::int32_t&lt;
+<span class="lineNum">     596 </span>            :             1 + tmpl::fold&lt;typename Tensor_t::symmetry, tmpl::int32_t&lt;0&gt;,
+<span class="lineNum">     597 </span>            :                            tmpl::max&lt;tmpl::_state, tmpl::_element&gt;&gt;::value&gt;&gt;,
+<span class="lineNum">     598 </span>            :     tmpl::push_front&lt;typename Tensor_t::index_list,
+<span class="lineNum">     599 </span>            :                      SpacetimeIndex&lt;VolumeDim, Ul, Fr&gt;&gt;&gt;;
+<span class="lineNum">     600 </span>            : }  // namespace TensorMetafunctions
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - 62204faed5c3285d61ace50f511c782e819e106e - Parallel/PupStlCpp11.hpp</title>
+  <title>LCOV - e5cbc5bb9c5aba2950342934cd01e8f137343a21 - Parallel/PupStlCpp11.hpp</title>
   <link rel="stylesheet" type="text/css" href="../gcov.css">
 </head>
 
@@ -28,7 +28,7 @@
           </tr>
           <tr>
             <td class="headerItem">Commit:</td>
-             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/62204faed5c3285d61ace50f511c782e819e106e">62204faed5c3285d61ace50f511c782e819e106e</a></td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/e5cbc5bb9c5aba2950342934cd01e8f137343a21">e5cbc5bb9c5aba2950342934cd01e8f137343a21</a></td>
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntry">74</td>
@@ -37,12 +37,12 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2017-06-19 01:57:49</td>
+            <td class="headerValue">2017-06-20 01:58:40</td>
             <td></td>
             <td class="headerItem">Functions:</td>
-            <td class="headerCovTableEntry">27</td>
-            <td class="headerCovTableEntry">33</td>
-            <td class="headerCovTableEntryMed">81.8 %</td>
+            <td class="headerCovTableEntry">30</td>
+            <td class="headerCovTableEntry">36</td>
+            <td class="headerCovTableEntryMed">83.3 %</td>
           </tr>
           <tr>
             <td class="headerItem">Legend:</td>
@@ -92,9 +92,9 @@
 <span class="lineNum">      22 </span>            : template &lt;
 <a name="23"><span class="lineNum">      23 </span>            :     typename T, std::size_t N,</a>
 <a name="24"><span class="lineNum">      24 </span>            :     typename std::enable_if_t&lt;not std::is_arithmetic&lt;T&gt;::value&gt;* = nullptr&gt;</a>
-<span class="lineNum">      25 </span><span class="lineCov">          3 : inline void pup(PUP::er&amp; p, std::array&lt;T, N&gt;&amp; a) {  // NOLINT</span>
-<span class="lineNum">      26 </span><span class="lineCov">          9 :   std::for_each(a.begin(), a.end(), [&amp;p](auto&amp; t) { p | t; });</span>
-<span class="lineNum">      27 </span><span class="lineCov">          3 : }</span>
+<span class="lineNum">      25 </span><span class="lineCov">          6 : inline void pup(PUP::er&amp; p, std::array&lt;T, N&gt;&amp; a) {  // NOLINT</span>
+<span class="lineNum">      26 </span><span class="lineCov">        132 :   std::for_each(a.begin(), a.end(), [&amp;p](auto&amp; t) { p | t; });</span>
+<span class="lineNum">      27 </span><span class="lineCov">          6 : }</span>
 <span class="lineNum">      28 </span>            : 
 <a name="29"><span class="lineNum">      29 </span>            : template &lt;typename T, std::size_t N,</a>
 <span class="lineNum">      30 </span>            :           typename std::enable_if_t&lt;std::is_arithmetic&lt;T&gt;::value&gt;* = nullptr&gt;
@@ -106,9 +106,9 @@
 <span class="lineNum">      36 </span>            : /// \ingroup Parallel
 <a name="37"><span class="lineNum">      37 </span>            : /// Serialization of std::array for Charm++</a>
 <span class="lineNum">      38 </span>            : template &lt;typename T, std::size_t N&gt;
-<span class="lineNum">      39 </span><span class="lineCov">          9 : inline void operator|(er&amp; p, std::array&lt;T, N&gt;&amp; a) {  // NOLINT</span>
-<span class="lineNum">      40 </span><span class="lineCov">          9 :   pup(p, a);</span>
-<span class="lineNum">      41 </span><span class="lineCov">          9 : }</span>
+<span class="lineNum">      39 </span><span class="lineCov">         12 : inline void operator|(er&amp; p, std::array&lt;T, N&gt;&amp; a) {  // NOLINT</span>
+<span class="lineNum">      40 </span><span class="lineCov">         12 :   pup(p, a);</span>
+<span class="lineNum">      41 </span><span class="lineCov">         12 : }</span>
 <span class="lineNum">      42 </span>            : 
 <span class="lineNum">      43 </span>            : /// \ingroup Parallel
 <span class="lineNum">      44 </span>            : /// Serialization of std::unordered_map for Charm++

@@ -1,0 +1,302 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - e5cbc5bb9c5aba2950342934cd01e8f137343a21 - DataStructures/Tensor/Expressions/Contract.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../../index.html">top level</a> - <a href="index.html">DataStructures/Tensor/Expressions</a> - Contract.hpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/e5cbc5bb9c5aba2950342934cd01e8f137343a21">e5cbc5bb9c5aba2950342934cd01e8f137343a21</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">1</td>
+            <td class="headerCovTableEntry">18</td>
+            <td class="headerCovTableEntryLo">5.6 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2017-06-20 01:58:59</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : /// \file
+<span class="lineNum">       5 </span>            : /// Defines Expression Templates for contracting tensor indices on a single
+<span class="lineNum">       6 </span>            : /// Tensor
+<span class="lineNum">       7 </span>            : 
+<span class="lineNum">       8 </span>            : #pragma once
+<span class="lineNum">       9 </span>            : 
+<span class="lineNum">      10 </span>            : #include &quot;DataStructures/Tensor/Expressions/TensorExpression.hpp&quot;
+<span class="lineNum">      11 </span>            : #include &quot;DataStructures/Tensor/Symmetry.hpp&quot;
+<span class="lineNum">      12 </span>            : 
+<span class="lineNum">      13 </span>            : /*!
+<span class="lineNum">      14 </span>            :  * \ingroup TensorExpressions
+<span class="lineNum">      15 </span>            :  * Holds all possible TensorExpressions currently implemented
+<span class="lineNum">      16 </span>            :  */
+<span class="lineNum">      17 </span>            : namespace TensorExpressions {
+<span class="lineNum">      18 </span>            : 
+<span class="lineNum">      19 </span>            : namespace detail {
+<span class="lineNum">      20 </span>            : 
+<span class="lineNum">      21 </span>            : template &lt;typename I1, typename I2&gt;
+<span class="lineNum">      22 </span>            : using indices_contractible =
+<span class="lineNum">      23 </span>            :     std::integral_constant&lt;bool,
+<span class="lineNum">      24 </span>            :                            I1::dim == I2::dim and I1::ul != I2::ul and
+<span class="lineNum">      25 </span>            :                                I1::fr == I2::fr and I1::index == I2::index&gt;;
+<span class="lineNum">      26 </span>            : 
+<span class="lineNum">      27 </span>            : template &lt;typename T, typename X, typename SymmLs, typename IndexLs,
+<span class="lineNum">      28 </span>            :           typename Args&gt;
+<span class="lineNum">      29 </span>            : struct ComputeContractedTypeImpl;
+<span class="lineNum">      30 </span>            : 
+<span class="lineNum">      31 </span>            : template &lt;typename T, typename X, template &lt;typename...&gt; class SymmLs,
+<span class="lineNum">      32 </span>            :           typename IndexLs, typename Args, typename... Symm&gt;
+<span class="lineNum">      33 </span>            : struct ComputeContractedTypeImpl&lt;T, X, SymmLs&lt;Symm...&gt;, IndexLs, Args&gt; {
+<span class="lineNum">      34 </span>            :   using type = TensorExpression&lt;T, X, Symmetry&lt;Symm::value...&gt;, IndexLs, Args&gt;;
+<span class="lineNum">      35 </span>            : };
+<span class="lineNum">      36 </span>            : 
+<span class="lineNum">      37 </span>            : template &lt;typename Index1, typename Index2, typename T, typename X,
+<span class="lineNum">      38 </span>            :           typename Symm, typename IndexLs, typename Args&gt;
+<span class="lineNum">      39 </span>            : using ComputeContractedType = typename ComputeContractedTypeImpl&lt;
+<span class="lineNum">      40 </span>            :     T, X, tmpl::erase&lt;tmpl::erase&lt;Symm, Index2&gt;, Index1&gt;,
+<span class="lineNum">      41 </span>            :     tmpl::erase&lt;tmpl::erase&lt;IndexLs, Index2&gt;, Index1&gt;,
+<span class="lineNum">      42 </span>            :     tmpl::erase&lt;tmpl::erase&lt;Args, Index2&gt;, Index1&gt;&gt;::type;
+<span class="lineNum">      43 </span>            : 
+<span class="lineNum">      44 </span>            : template &lt;int I, typename Index1, typename Index2&gt;
+<span class="lineNum">      45 </span>            : struct ComputeContractionImpl {
+<span class="lineNum">      46 </span>            :   template &lt;typename... LhsIndices, typename T, typename S&gt;
+<span class="lineNum">      47 </span>            :   static SPECTRE_ALWAYS_INLINE typename T::type apply(S tensor_index,
+<span class="lineNum">      48 </span>            :                                                       const T&amp; t1) {
+<span class="lineNum">      49 </span>            :     tensor_index[Index1::value] = I;
+<span class="lineNum">      50 </span>            :     tensor_index[Index2::value] = I;
+<span class="lineNum">      51 </span>            :     return t1.template get&lt;LhsIndices...&gt;(tensor_index) +
+<span class="lineNum">      52 </span>            :            ComputeContractionImpl&lt;I - 1, Index1, Index2&gt;::template apply&lt;
+<span class="lineNum">      53 </span>            :                LhsIndices...&gt;(tensor_index, t1);
+<span class="lineNum">      54 </span>            :   }
+<span class="lineNum">      55 </span>            : };
+<span class="lineNum">      56 </span>            : 
+<span class="lineNum">      57 </span>            : template &lt;typename Index1, typename Index2&gt;
+<span class="lineNum">      58 </span>            : struct ComputeContractionImpl&lt;0, Index1, Index2&gt; {
+<span class="lineNum">      59 </span>            :   template &lt;typename... LhsIndices, typename T, typename S&gt;
+<span class="lineNum">      60 </span>            :   static SPECTRE_ALWAYS_INLINE typename T::type apply(S tensor_index,
+<span class="lineNum">      61 </span>            :                                                       const T&amp; t1) {
+<span class="lineNum">      62 </span>            :     tensor_index[Index1::value] = 0;
+<span class="lineNum">      63 </span>            :     tensor_index[Index2::value] = 0;
+<span class="lineNum">      64 </span>            :     return t1.template get&lt;LhsIndices...&gt;(tensor_index);
+<span class="lineNum">      65 </span>            :   }
+<span class="lineNum">      66 </span>            : };
+<span class="lineNum">      67 </span>            : }  // namespace detail
+<span class="lineNum">      68 </span>            : 
+<span class="lineNum">      69 </span>            : /*!
+<span class="lineNum">      70 </span>            :  * \ingroup TensorExpressions
+<span class="lineNum">      71 </span>            :  */
+<span class="lineNum">      72 </span>            : template &lt;typename Index1, typename Index2, typename T, typename X,
+<span class="lineNum">      73 </span>            :           typename Symm, typename IndexLs, typename ArgsLs&gt;
+<span class="lineNum">      74 </span>            : struct TensorContract
+<span class="lineNum">      75 </span>            :     : public TensorExpression&lt;
+<span class="lineNum">      76 </span>            :           TensorContract&lt;Index1, Index2, T, X, Symm, IndexLs, ArgsLs&gt;, X,
+<span class="lineNum">      77 </span>            :           typename detail::ComputeContractedType&lt;Index1, Index2, T, X, Symm,
+<span class="lineNum">      78 </span>            :                                                  IndexLs, ArgsLs&gt;::symmetry,
+<span class="lineNum">      79 </span>            :           typename detail::ComputeContractedType&lt;Index1, Index2, T, X, Symm,
+<span class="lineNum">      80 </span>            :                                                  IndexLs, ArgsLs&gt;::index_list,
+<span class="lineNum">      81 </span>            :           typename detail::ComputeContractedType&lt;Index1, Index2, T, X, Symm,
+<span class="lineNum">      82 </span>            :                                                  IndexLs, ArgsLs&gt;::args_list&gt;,
+<span class="lineNum">      83 </span><span class="lineNoCov">          0 :       public Expression {</span>
+<span class="lineNum">      84 </span><span class="lineNoCov">          0 :   using CI1 = tmpl::at&lt;IndexLs, Index1&gt;;</span>
+<span class="lineNum">      85 </span><span class="lineNoCov">          0 :   using CI2 = tmpl::at&lt;IndexLs, Index2&gt;;</span>
+<span class="lineNum">      86 </span>            :   static_assert(tmpl::size&lt;Symm&gt;::value &gt; 1 and tmpl::size&lt;IndexLs&gt;::value &gt; 1,
+<span class="lineNum">      87 </span>            :                 &quot;Cannot contract indices on a Tensor with rank less than 2&quot;);
+<span class="lineNum">      88 </span>            :   static_assert(detail::indices_contractible&lt;CI1, CI2&gt;::value,
+<span class="lineNum">      89 </span>            :                 &quot;Cannot contract the requested indices.&quot;);
+<span class="lineNum">      90 </span>            : 
+<span class="lineNum">      91 </span><span class="lineNoCov">          0 :   using new_type = detail::ComputeContractedType&lt;Index1, Index2, T, X, Symm,</span>
+<span class="lineNum">      92 </span>            :                                                  IndexLs, ArgsLs&gt;;
+<span class="lineNum">      93 </span>            : 
+<span class="lineNum">      94 </span><span class="lineNoCov">          0 :   using type = X;</span>
+<span class="lineNum">      95 </span><span class="lineNoCov">          0 :   using symmetry = typename new_type::symmetry;</span>
+<span class="lineNum">      96 </span><span class="lineNoCov">          0 :   using index_list = typename new_type::index_list;</span>
+<span class="lineNum">      97 </span><span class="lineNoCov">          0 :   static constexpr auto num_tensor_indices =</span>
+<span class="lineNum">      98 </span>            :       tmpl::size&lt;index_list&gt;::value == 0 ? 1 : tmpl::size&lt;index_list&gt;::value;
+<span class="lineNum">      99 </span><span class="lineNoCov">          0 :   using args_list = tmpl::sort&lt;typename new_type::args_list&gt;;</span>
+<span class="lineNum">     100 </span>            : 
+<span class="lineNum">     101 </span><span class="lineNoCov">          0 :   explicit TensorContract(</span>
+<span class="lineNum">     102 </span>            :       const TensorExpression&lt;T, X, Symm, IndexLs, ArgsLs&gt;&amp; t)
+<span class="lineNum">     103 </span>            :       : t_(~t) {}
+<span class="lineNum">     104 </span>            : 
+<span class="lineNum">     105 </span>            :   template &lt;size_t I, size_t Rank,
+<span class="lineNum">     106 </span>            :             std::enable_if_t&lt;(I &lt;= Index1::value)&gt;* = nullptr&gt;
+<span class="lineNum">     107 </span><span class="lineNoCov">          0 :   SPECTRE_ALWAYS_INLINE void fill_contracting_tensor_index(</span>
+<span class="lineNum">     108 </span>            :       std::array&lt;int, Rank&gt;&amp; tensor_index_in,
+<span class="lineNum">     109 </span>            :       const std::array&lt;int, num_tensor_indices&gt;&amp; tensor_index) const {
+<span class="lineNum">     110 </span>            :     // -100 is for the slot that will be set later. Easy to debug.
+<span class="lineNum">     111 </span>            :     tensor_index_in[I] = I == Index1::value ? -100 : tensor_index[I];
+<span class="lineNum">     112 </span>            :     fill_contracting_tensor_index&lt;I + 1&gt;(tensor_index_in, tensor_index);
+<span class="lineNum">     113 </span>            :   }
+<span class="lineNum">     114 </span>            : 
+<span class="lineNum">     115 </span>            :   template &lt;size_t I, size_t Rank,
+<span class="lineNum">     116 </span>            :             std::enable_if_t&lt;(I &gt; Index1::value and I &lt;= Index2::value and
+<span class="lineNum">     117 </span>            :                               I &lt; Rank - 1)&gt;* = nullptr&gt;
+<span class="lineNum">     118 </span><span class="lineNoCov">          0 :   SPECTRE_ALWAYS_INLINE void fill_contracting_tensor_index(</span>
+<span class="lineNum">     119 </span>            :       std::array&lt;int, Rank&gt;&amp; tensor_index_in,
+<span class="lineNum">     120 </span>            :       const std::array&lt;int, Rank - 2&gt;&amp; tensor_index) const {
+<span class="lineNum">     121 </span>            :     // tensor_index is Rank - 2 since it shouldn't be called for Rank 2 case
+<span class="lineNum">     122 </span>            :     // -200 is for the slot that will be set later. Easy to debug.
+<span class="lineNum">     123 </span>            :     tensor_index_in[I] = I == Index2::value ? -200 : tensor_index[I - 1];
+<span class="lineNum">     124 </span>            :     fill_contracting_tensor_index&lt;I + 1&gt;(tensor_index_in, tensor_index);
+<span class="lineNum">     125 </span>            :   }
+<span class="lineNum">     126 </span>            : 
+<span class="lineNum">     127 </span>            :   template &lt;size_t I, size_t Rank,
+<span class="lineNum">     128 </span>            :             std::enable_if_t&lt;(I &gt; Index2::value and I &lt; Rank - 1)&gt;* = nullptr&gt;
+<span class="lineNum">     129 </span><span class="lineNoCov">          0 :   SPECTRE_ALWAYS_INLINE void fill_contracting_tensor_index(</span>
+<span class="lineNum">     130 </span>            :       std::array&lt;int, Rank&gt;&amp; tensor_index_in,
+<span class="lineNum">     131 </span>            :       const std::array&lt;int, Rank - 2&gt;&amp; tensor_index) const {
+<span class="lineNum">     132 </span>            :     // Left as Rank - 2 since it should never be called for the Rank 2 case
+<span class="lineNum">     133 </span>            :     tensor_index_in[I] = tensor_index[I - 2];
+<span class="lineNum">     134 </span>            :     fill_contracting_tensor_index&lt;I + 1&gt;(tensor_index_in, tensor_index);
+<span class="lineNum">     135 </span>            :   }
+<span class="lineNum">     136 </span>            : 
+<span class="lineNum">     137 </span>            :   template &lt;size_t I, size_t Rank, std::enable_if_t&lt;(I == Rank - 1)&gt;* = nullptr&gt;
+<span class="lineNum">     138 </span><span class="lineNoCov">          0 :   SPECTRE_ALWAYS_INLINE void fill_contracting_tensor_index(</span>
+<span class="lineNum">     139 </span>            :       std::array&lt;int, Rank&gt;&amp; tensor_index_in,
+<span class="lineNum">     140 </span>            :       const std::array&lt;int, num_tensor_indices&gt;&amp; tensor_index) const {
+<span class="lineNum">     141 </span>            :     tensor_index_in[I] = tensor_index[I - 2];
+<span class="lineNum">     142 </span>            :   }
+<span class="lineNum">     143 </span>            : 
+<span class="lineNum">     144 </span>            :   template &lt;typename... LhsIndices, typename U&gt;
+<span class="lineNum">     145 </span>            :   SPECTRE_ALWAYS_INLINE type
+<span class="lineNum">     146 </span><span class="lineNoCov">          0 :   get(const std::array&lt;U, num_tensor_indices&gt;&amp; new_tensor_index) const {</span>
+<span class="lineNum">     147 </span>            :     // new_tensor_index is the one with _fewer_ components, ie post-contraction
+<span class="lineNum">     148 </span>            :     std::array&lt;int, tmpl::size&lt;Symm&gt;::value&gt; tensor_index;
+<span class="lineNum">     149 </span>            :     // Manually unrolled for loops to compute the tensor_index from the
+<span class="lineNum">     150 </span>            :     // new_tensor_index
+<span class="lineNum">     151 </span>            :     fill_contracting_tensor_index&lt;0&gt;(tensor_index, new_tensor_index);
+<span class="lineNum">     152 </span>            :     return detail::ComputeContractionImpl&lt;CI1::dim - 1, Index1, Index2&gt;::
+<span class="lineNum">     153 </span>            :         template apply&lt;LhsIndices...&gt;(tensor_index, t_);
+<span class="lineNum">     154 </span>            :   }
+<span class="lineNum">     155 </span>            : 
+<span class="lineNum">     156 </span>            :  private:
+<span class="lineNum">     157 </span>            :   const std::conditional_t&lt;std::is_base_of&lt;Expression, T&gt;::value, T,
+<span class="lineNum">     158 </span>            :                            TensorExpression&lt;T, X, Symm, IndexLs, ArgsLs&gt;&gt;
+<span class="lineNum">     159 </span><span class="lineNoCov">          0 :       t_;</span>
+<span class="lineNum">     160 </span>            : };
+<span class="lineNum">     161 </span>            : 
+<span class="lineNum">     162 </span>            : /*!
+<span class="lineNum">     163 </span>            :  * \ingroup TensorExpressions
+<span class="lineNum">     164 </span>            :  */
+<span class="lineNum">     165 </span>            : template &lt;int Index1, int Index2, typename T, typename X, typename Symm,
+<span class="lineNum">     166 </span>            :           typename IndexLs, typename Args&gt;
+<span class="lineNum">     167 </span><span class="lineNoCov">          0 : SPECTRE_ALWAYS_INLINE auto contract(</span>
+<span class="lineNum">     168 </span>            :     const TensorExpression&lt;T, X, Symm, IndexLs, Args&gt;&amp; t) {
+<span class="lineNum">     169 </span>            :   return TensorContract&lt;tmpl::int32_t&lt;Index1&gt;, tmpl::int32_t&lt;Index2&gt;, T, X,
+<span class="lineNum">     170 </span>            :                         Symm, IndexLs, Args&gt;(~t);
+<span class="lineNum">     171 </span>            : }
+<span class="lineNum">     172 </span>            : 
+<span class="lineNum">     173 </span>            : namespace detail {
+<span class="lineNum">     174 </span>            : // Helper struct to allow contractions by using repeated indices in operator()
+<span class="lineNum">     175 </span>            : // calls to tensor.
+<span class="lineNum">     176 </span>            : template &lt;template &lt;typename&gt; class TE, typename ReplacedArgLs, typename I,
+<span class="lineNum">     177 </span>            :           typename TotalContracted&gt;
+<span class="lineNum">     178 </span>            : struct fully_contract_helper {
+<span class="lineNum">     179 </span>            :   template &lt;typename T&gt;
+<span class="lineNum">     180 </span>            :   SPECTRE_ALWAYS_INLINE static constexpr auto apply(const T&amp; t) -&gt; decltype(
+<span class="lineNum">     181 </span>            :       contract&lt;
+<span class="lineNum">     182 </span>            :           tmpl::index_of&lt;ReplacedArgLs, ti_contracted_t&lt;I::value&gt;&gt;::value,
+<span class="lineNum">     183 </span>            :           tmpl::index_of&lt;ReplacedArgLs, ti_contracted_t&lt;I::value + 1&gt;&gt;::value&gt;(
+<span class="lineNum">     184 </span>            :           fully_contract_helper&lt;TE, ReplacedArgLs, tmpl::next&lt;I&gt;,
+<span class="lineNum">     185 </span>            :                                 TotalContracted&gt;::apply(t))) {
+<span class="lineNum">     186 </span>            :     return contract&lt;
+<span class="lineNum">     187 </span>            :         tmpl::index_of&lt;ReplacedArgLs, ti_contracted_t&lt;I::value&gt;&gt;::value,
+<span class="lineNum">     188 </span>            :         tmpl::index_of&lt;ReplacedArgLs, ti_contracted_t&lt;I::value + 1&gt;&gt;::value&gt;(
+<span class="lineNum">     189 </span>            :         fully_contract_helper&lt;TE, ReplacedArgLs, tmpl::next&lt;I&gt;,
+<span class="lineNum">     190 </span>            :                               TotalContracted&gt;::apply(t));
+<span class="lineNum">     191 </span>            :   }
+<span class="lineNum">     192 </span>            : };
+<span class="lineNum">     193 </span>            : 
+<span class="lineNum">     194 </span>            : template &lt;template &lt;typename&gt; class TE, typename ReplacedArgLs,
+<span class="lineNum">     195 </span>            :           typename TotalContracted&gt;
+<span class="lineNum">     196 </span>            : struct fully_contract_helper&lt;TE, ReplacedArgLs,
+<span class="lineNum">     197 </span>            :                              tmpl::int32_t&lt;TotalContracted::value - 1&gt;,
+<span class="lineNum">     198 </span>            :                              TotalContracted&gt; {
+<span class="lineNum">     199 </span>            :   using I = tmpl::int32_t&lt;TotalContracted::value - 1&gt;;
+<span class="lineNum">     200 </span>            :   template &lt;typename T&gt;
+<span class="lineNum">     201 </span>            :   SPECTRE_ALWAYS_INLINE static constexpr auto apply(const T&amp; t) -&gt; decltype(
+<span class="lineNum">     202 </span>            :       contract&lt;
+<span class="lineNum">     203 </span>            :           tmpl::index_of&lt;ReplacedArgLs, ti_contracted_t&lt;I::value&gt;&gt;::value,
+<span class="lineNum">     204 </span>            :           tmpl::index_of&lt;ReplacedArgLs, ti_contracted_t&lt;I::value + 1&gt;&gt;::value&gt;(
+<span class="lineNum">     205 </span>            :           TE&lt;ReplacedArgLs&gt;(t))) {
+<span class="lineNum">     206 </span>            :     return contract&lt;
+<span class="lineNum">     207 </span>            :         tmpl::index_of&lt;ReplacedArgLs, ti_contracted_t&lt;I::value&gt;&gt;::value,
+<span class="lineNum">     208 </span>            :         tmpl::index_of&lt;ReplacedArgLs, ti_contracted_t&lt;I::value + 1&gt;&gt;::value&gt;(
+<span class="lineNum">     209 </span>            :         TE&lt;ReplacedArgLs&gt;(t));
+<span class="lineNum">     210 </span>            :   }
+<span class="lineNum">     211 </span>            : };
+<span class="lineNum">     212 </span>            : }  // namespace detail
+<span class="lineNum">     213 </span>            : 
+<span class="lineNum">     214 </span>            : /*!
+<span class="lineNum">     215 </span>            :  * \ingroup TensorExpressions
+<span class="lineNum">     216 </span>            :  * \brief Represents a fully contracted Tensor
+<span class="lineNum">     217 </span>            :  */
+<span class="lineNum">     218 </span>            : template &lt;template &lt;typename&gt; class TE, typename ReplacedArgLs, typename I,
+<span class="lineNum">     219 </span>            :           typename TotalContracted&gt;
+<span class="lineNum">     220 </span><span class="lineCov">          2 : using fully_contracted =</span>
+<span class="lineNum">     221 </span>            :     detail::fully_contract_helper&lt;TE, ReplacedArgLs, I, TotalContracted&gt;;
+<span class="lineNum">     222 </span>            : }  // namespace TensorExpressions
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

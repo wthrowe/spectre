@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - 62204faed5c3285d61ace50f511c782e819e106e - Utilities/TMPL.hpp</title>
+  <title>LCOV - e5cbc5bb9c5aba2950342934cd01e8f137343a21 - Utilities/TMPL.hpp</title>
   <link rel="stylesheet" type="text/css" href="../gcov.css">
 </head>
 
@@ -28,7 +28,7 @@
           </tr>
           <tr>
              <td class="headerItem">Commit:</td>
-             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/62204faed5c3285d61ace50f511c782e819e106e">62204faed5c3285d61ace50f511c782e819e106e</a></td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/e5cbc5bb9c5aba2950342934cd01e8f137343a21">e5cbc5bb9c5aba2950342934cd01e8f137343a21</a></td>
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntry">1</td>
@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2017-06-19 01:58:05</td>
+            <td class="headerValue">2017-06-20 01:58:59</td>
             <td></td>
           </tr>
           <tr>
@@ -488,12 +488,52 @@
 <span class="lineNum">     422 </span>            :     fold&lt;Ls, list&lt;&gt;, detail::remove_duplicates_helper&lt;_state, _element&gt;&gt;;
 <span class="lineNum">     423 </span>            : }
 <span class="lineNum">     424 </span>            : 
-<span class="lineNum">     425 </span>            : namespace tmpl = brigand;
-<span class="lineNum">     426 </span>            : 
-<span class="lineNum">     427 </span>            : /// \ingroup Utilities
-<span class="lineNum">     428 </span>            : /// \brief Construct a typelist of types `Ts`.
-<span class="lineNum">     429 </span>            : template &lt;typename... Ts&gt;
-<span class="lineNum">     430 </span><span class="lineCov">          2 : using typelist = tmpl::list&lt;Ts...&gt;;</span>
+<span class="lineNum">     425 </span>            : namespace brigand {
+<span class="lineNum">     426 </span>            : template &lt;bool&gt;
+<span class="lineNum">     427 </span>            : struct conditional;
+<span class="lineNum">     428 </span>            : 
+<span class="lineNum">     429 </span>            : template &lt;&gt;
+<span class="lineNum">     430 </span>            : struct conditional&lt;true&gt; {
+<span class="lineNum">     431 </span>            :   template &lt;typename T, typename F&gt;
+<span class="lineNum">     432 </span>            :   using type = T;
+<span class="lineNum">     433 </span>            : };
+<span class="lineNum">     434 </span>            : 
+<span class="lineNum">     435 </span>            : template &lt;&gt;
+<span class="lineNum">     436 </span>            : struct conditional&lt;false&gt; {
+<span class="lineNum">     437 </span>            :   template &lt;typename T, typename F&gt;
+<span class="lineNum">     438 </span>            :   using type = F;
+<span class="lineNum">     439 </span>            : };
+<span class="lineNum">     440 </span>            : 
+<span class="lineNum">     441 </span>            : template &lt;bool B, typename T, typename F&gt;
+<span class="lineNum">     442 </span>            : using conditional_t = typename conditional&lt;B&gt;::template type&lt;T, F&gt;;
+<span class="lineNum">     443 </span>            : }
+<span class="lineNum">     444 </span>            : 
+<span class="lineNum">     445 </span>            : namespace brigand {
+<span class="lineNum">     446 </span>            : template &lt;bool&gt;
+<span class="lineNum">     447 </span>            : struct branch_if;
+<span class="lineNum">     448 </span>            : 
+<span class="lineNum">     449 </span>            : template &lt;&gt;
+<span class="lineNum">     450 </span>            : struct branch_if&lt;true&gt; {
+<span class="lineNum">     451 </span>            :   template &lt;typename T, typename F&gt;
+<span class="lineNum">     452 </span>            :   using type = typename detail::apply&lt;T&gt;::type;
+<span class="lineNum">     453 </span>            : };
+<span class="lineNum">     454 </span>            : 
+<span class="lineNum">     455 </span>            : template &lt;&gt;
+<span class="lineNum">     456 </span>            : struct branch_if&lt;false&gt; {
+<span class="lineNum">     457 </span>            :   template &lt;typename T, typename F&gt;
+<span class="lineNum">     458 </span>            :   using type = typename detail::apply&lt;F&gt;::type;
+<span class="lineNum">     459 </span>            : };
+<span class="lineNum">     460 </span>            : 
+<span class="lineNum">     461 </span>            : template &lt;bool B, typename T, typename F&gt;
+<span class="lineNum">     462 </span>            : using branch_if_t = typename branch_if&lt;B&gt;::template type&lt;T, F&gt;;
+<span class="lineNum">     463 </span>            : }
+<span class="lineNum">     464 </span>            : 
+<span class="lineNum">     465 </span>            : namespace tmpl = brigand;
+<span class="lineNum">     466 </span>            : 
+<span class="lineNum">     467 </span>            : /// \ingroup Utilities
+<span class="lineNum">     468 </span>            : /// \brief Construct a typelist of types `Ts`.
+<span class="lineNum">     469 </span>            : template &lt;typename... Ts&gt;
+<span class="lineNum">     470 </span><span class="lineCov">          2 : using typelist = tmpl::list&lt;Ts...&gt;;</span>
 </pre>
       </td>
     </tr>

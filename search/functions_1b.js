@@ -74,6 +74,7 @@ var searchData=
   ['_7estrstream',['~strstream',['http://en.cppreference.com/w/cpp/io/strstream/~strstream.html',1,'std::strstream']]],
   ['_7estrstreambuf',['~strstreambuf',['http://en.cppreference.com/w/cpp/io/strstreambuf/~strstreambuf.html',1,'std::strstreambuf']]],
   ['_7esynchronized_5fpool_5fresource',['~synchronized_pool_resource',['http://en.cppreference.com/w/cpp/memory/synchronized_pool_resource.html',1,'std::pmr::synchronized_pool_resource']]],
+  ['_7etensor',['~Tensor',['../classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#a7eda26115055a9dfc08b148052ae7199',1,'Tensor&lt; X, Symm, IndexLs&lt; Indices... &gt; &gt;']]],
   ['_7ethread',['~thread',['http://en.cppreference.com/w/cpp/thread/thread/~thread.html',1,'std::thread']]],
   ['_7etime_5fget',['~time_get',['http://en.cppreference.com/w/cpp/locale/time_get/~time_get.html',1,'std::time_get']]],
   ['_7etime_5fget_5fbyname',['~time_get_byname',['http://en.cppreference.com/w/cpp/locale/time_get_byname.html',1,'std::time_get_byname']]],

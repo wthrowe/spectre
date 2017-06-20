@@ -213,9 +213,21 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtt_1_1is__string__like.html">is_string_like</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if type <code>T</code> is a <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/string/basic_string.html">std::string</a>, or a C-style string.  <a href="structtt_1_1is__string__like.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtt_1_1is__tensor__index.html">is_tensor_index</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a type <code>T</code> is a <a class="el" href="structTensorIndex.html" title="Represents the indices in a TensorExpression. ">TensorIndex</a> used in <a class="el" href="namespaceTensorExpressions.html">TensorExpressions</a>.  <a href="structtt_1_1is__tensor__index.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtt_1_1is__tensor__index_3_01TensorIndex_3_01I_01_4_01_4.html">is_tensor_index&lt; TensorIndex&lt; I &gt; &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtt_1_1is__tensor__index__type.html">is_tensor_index_type</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inherits from <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/integral_constant.html">std::true_type</a> if T is a <a class="el" href="group__Tensor.html#ga05c512b755e913cdbddce8634bdb4fa6">TensorIndexType</a>.  <a href="structtt_1_1is__tensor__index__type.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:a88451218fc2b89d76da1260db9b0cb7b"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a88451218fc2b89d76da1260db9b0cb7b"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacett.html#a88451218fc2b89d76da1260db9b0cb7b">is_tensor_index_type_t</a> = typename <a class="el" href="structtt_1_1is__tensor__index__type.html">is_tensor_index_type</a>&lt; T &gt;::type</td></tr>
+<tr class="separator:a88451218fc2b89d76da1260db9b0cb7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr class="memitem:gafb844f727c41f01d5f2f2b316b648c7a"><td class="memTemplParams" colspan="2">template&lt;typename Array &gt; </td></tr>
 <tr class="memitem:gafb844f727c41f01d5f2f2b316b648c7a"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__TypeTraits.html#gafb844f727c41f01d5f2f2b316b648c7a">array_size</a> = decltype(TypeTraits_details::array_size_impl(<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/utility/declval.html">std::declval</a>&lt; const Array &amp; &gt;()))</td></tr>
@@ -600,6 +612,23 @@ template&lt;typename T &gt; </div>
 
 </div>
 </div>
+<a id="a88451218fc2b89d76da1260db9b0cb7b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a88451218fc2b89d76da1260db9b0cb7b">&#9670;&nbsp;</a></span>is_tensor_index_type_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespacett.html#a88451218fc2b89d76da1260db9b0cb7b">tt::is_tensor_index_type_t</a> = typedef typename <a class="el" href="structtt_1_1is__tensor__index__type.html">is_tensor_index_type</a>&lt;T&gt;::type</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="structtt_1_1is__tensor__index__type.html" title="Inherits from std::true_type if T is a TensorIndexType. ">is_tensor_index_type</a> </dd></dl>
+
+</div>
+</div>
 <h2 class="groupheader">Variable Documentation</h2>
 <a id="a96da1701f4cc3bb0019a1d6b30164f1b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a96da1701f4cc3bb0019a1d6b30164f1b">&#9670;&nbsp;</a></span>has_clone_v</h2>
@@ -870,6 +899,8 @@ template&lt;typename S , typename T &gt; </div>
       </table>
 </div><div class="memdoc">
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="structtt_1_1is__streamable.html" title="Check if type T has operator&lt;&lt;(S, T) defined. ">is_streamable</a> </dd></dl>
+
+<p class="reference">Referenced by <a class="el" href="Tensor_8hpp.html#adede4c1e1fd61a5bd94d2dd17273f166">operator&lt;&lt;()</a>.</p>
 
 </div>
 </div>

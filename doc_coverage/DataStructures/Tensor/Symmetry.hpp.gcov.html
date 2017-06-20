@@ -1,0 +1,306 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - e5cbc5bb9c5aba2950342934cd01e8f137343a21 - DataStructures/Tensor/Symmetry.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../index.html">top level</a> - <a href="index.html">DataStructures/Tensor</a> - Symmetry.hpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/e5cbc5bb9c5aba2950342934cd01e8f137343a21">e5cbc5bb9c5aba2950342934cd01e8f137343a21</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">1</td>
+            <td class="headerCovTableEntry">1</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2017-06-20 01:58:59</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : /// \file
+<span class="lineNum">       5 </span>            : /// Defines metafunctions used to comute the Symmetry&lt;...&gt; for a Tensor
+<span class="lineNum">       6 </span>            : 
+<span class="lineNum">       7 </span>            : #pragma once
+<span class="lineNum">       8 </span>            : 
+<span class="lineNum">       9 </span>            : #include &lt;type_traits&gt;
+<span class="lineNum">      10 </span>            : 
+<span class="lineNum">      11 </span>            : #include &quot;Utilities/TMPL.hpp&quot;
+<span class="lineNum">      12 </span>            : 
+<span class="lineNum">      13 </span>            : namespace detail {
+<span class="lineNum">      14 </span>            : // @{
+<span class="lineNum">      15 </span>            : /// \ingroup Tensor
+<span class="lineNum">      16 </span>            : /// \brief Metafunction that computes the new sign map
+<span class="lineNum">      17 </span>            : ///
+<span class="lineNum">      18 </span>            : /// \details
+<span class="lineNum">      19 </span>            : /// Metafunction that computes the new sign map depending on whether or not the
+<span class="lineNum">      20 </span>            : /// `index` is already in the sign map. If the current index is _not_ in the
+<span class="lineNum">      21 </span>            : /// sign map then we just return the `sign_map`. If the `index` is in the sign
+<span class="lineNum">      22 </span>            : /// map then we remove it and re-add it but mapping to -1 instead of +1.
+<span class="lineNum">      23 </span>            : /// This is how we handle anti-symmetries where it is the first index in the
+<span class="lineNum">      24 </span>            : /// user list that has the negative sign rather than the second.
+<span class="lineNum">      25 </span>            : ///
+<span class="lineNum">      26 </span>            : /// \see compute_sign_map compute_sign
+<span class="lineNum">      27 </span>            : template &lt;bool&gt;
+<span class="lineNum">      28 </span>            : struct compute_sign_map_helper {
+<span class="lineNum">      29 </span>            :   /// \tparam SignMap the sign map to update
+<span class="lineNum">      30 </span>            :   /// \tparam Index the index whose sign to replace
+<span class="lineNum">      31 </span>            :   template &lt;typename SignMap, std::int32_t Index&gt;
+<span class="lineNum">      32 </span>            :   using type = SignMap;
+<span class="lineNum">      33 </span>            : };
+<span class="lineNum">      34 </span>            : 
+<span class="lineNum">      35 </span>            : template &lt;&gt;
+<span class="lineNum">      36 </span>            : struct compute_sign_map_helper&lt;true&gt; {
+<span class="lineNum">      37 </span>            :   /// \tparam SignMap the sign map to update
+<span class="lineNum">      38 </span>            :   /// \tparam Index the index whose sign to replace
+<span class="lineNum">      39 </span>            :   template &lt;typename SignMap, std::int32_t Index&gt;
+<span class="lineNum">      40 </span>            :   using type = tmpl::insert&lt;
+<span class="lineNum">      41 </span>            :       tmpl::erase&lt;SignMap,
+<span class="lineNum">      42 </span>            :                   tmpl::abs&lt;tmpl::int32_t&lt;static_cast&lt;std::int32_t&gt;(Index)&gt;&gt;&gt;,
+<span class="lineNum">      43 </span>            :       tmpl::pair&lt;tmpl::abs&lt;tmpl::int32_t&lt;Index&gt;&gt;, tmpl::int32_t&lt;-1&gt;&gt;&gt;;
+<span class="lineNum">      44 </span>            : };
+<span class="lineNum">      45 </span>            : // @}
+<span class="lineNum">      46 </span>            : 
+<span class="lineNum">      47 </span>            : // @{
+<span class="lineNum">      48 </span>            : /// \ingroup Tensor
+<span class="lineNum">      49 </span>            : /// Metafunction to compute the new `sign_map` which is a map between indices
+<span class="lineNum">      50 </span>            : /// and +/-1 depending on whether the index is symmetric (or has no symmetry) or
+<span class="lineNum">      51 </span>            : /// is anti-symmetric, respectively.
+<span class="lineNum">      52 </span>            : ///
+<span class="lineNum">      53 </span>            : /// Which metafunction implementation is called is determined by whether
+<span class="lineNum">      54 </span>            : /// `index` is already in the `sign_map` or not.
+<span class="lineNum">      55 </span>            : ///
+<span class="lineNum">      56 </span>            : /// If `index` is not in `sign_map` then we return a new `sign_map` with the
+<span class="lineNum">      57 </span>            : /// pair &lt;index, sign&lt;index&gt;&gt; added.
+<span class="lineNum">      58 </span>            : ///
+<span class="lineNum">      59 </span>            : /// In the case that `index` is in the `sign_map` we use
+<span class="lineNum">      60 </span>            : /// `compute_sign_map_helper` with the last parameter being true if the value
+<span class="lineNum">      61 </span>            : /// already in the `sign_map` is 1 AND the current index is less than 0,
+<span class="lineNum">      62 </span>            : /// otherwise it is false.
+<span class="lineNum">      63 </span>            : ///
+<span class="lineNum">      64 </span>            : /// the `bool` is
+<span class="lineNum">      65 </span>            : /// `tmpl::has_key&lt;SignMap, tmpl::abs&lt;tmpl::int32_t&lt;Index&gt;&gt;&gt;::value`
+<span class="lineNum">      66 </span>            : /// where `SignMap` and `Index` are the template parameters on the type alias
+<span class="lineNum">      67 </span>            : template &lt;bool&gt;
+<span class="lineNum">      68 </span>            : struct compute_sign_map;
+<span class="lineNum">      69 </span>            : /// \cond HIDDEN_SYMBOLS
+<span class="lineNum">      70 </span>            : template &lt;&gt;
+<span class="lineNum">      71 </span>            : struct compute_sign_map&lt;true&gt; {
+<span class="lineNum">      72 </span>            :   /// \tparam SignMap map between abs(Index) and +/- 1
+<span class="lineNum">      73 </span>            :   /// \tparam Index the index whose sign to possibly add to SignMap
+<span class="lineNum">      74 </span>            :   template &lt;typename SignMap, std::int32_t Index&gt;
+<span class="lineNum">      75 </span>            :   using type = typename compute_sign_map_helper&lt;
+<span class="lineNum">      76 </span>            :       tmpl::greater&lt;tmpl::at&lt;SignMap, tmpl::abs&lt;tmpl::int32_t&lt;Index&gt;&gt;&gt;,
+<span class="lineNum">      77 </span>            :                     tmpl::int32_t&lt;0&gt;&gt;::value and
+<span class="lineNum">      78 </span>            :       (Index &lt; 0)&gt;::template type&lt;SignMap, Index&gt;;
+<span class="lineNum">      79 </span>            : };
+<span class="lineNum">      80 </span>            : template &lt;&gt;
+<span class="lineNum">      81 </span>            : struct compute_sign_map&lt;false&gt; {
+<span class="lineNum">      82 </span>            :   /// \tparam SignMap map between abs(Index) and +/- 1
+<span class="lineNum">      83 </span>            :   /// \tparam Index the index whose sign to possibly add to SignMap
+<span class="lineNum">      84 </span>            :   template &lt;typename SignMap, std::int32_t Index&gt;
+<span class="lineNum">      85 </span>            :   using type =
+<span class="lineNum">      86 </span>            :       tmpl::insert&lt;SignMap, tmpl::pair&lt;tmpl::abs&lt;tmpl::int32_t&lt;Index&gt;&gt;,
+<span class="lineNum">      87 </span>            :                                        tmpl::sign&lt;tmpl::int32_t&lt;Index&gt;&gt;&gt;&gt;;
+<span class="lineNum">      88 </span>            : };
+<span class="lineNum">      89 </span>            : /// \endcond
+<span class="lineNum">      90 </span>            : // @}
+<span class="lineNum">      91 </span>            : 
+<span class="lineNum">      92 </span>            : // @{
+<span class="lineNum">      93 </span>            : /// \ingroup Tensor
+<span class="lineNum">      94 </span>            : /// A metafunction that, given the current and past SignMap, returns either 1
+<span class="lineNum">      95 </span>            : /// if the absolute value of index is not in the `PastSignMap` or returns the
+<span class="lineNum">      96 </span>            : /// signed value in the `CurrentSignMap` if the absolute value of index is in
+<span class="lineNum">      97 </span>            : /// the `PastSignMap` (and therefore also in the `CurrentSignMap`). The
+<span class="lineNum">      98 </span>            : /// reason why the sign from the map is returned is because it is always the
+<span class="lineNum">      99 </span>            : /// first instance of an index that has the negative sign, and since we compute
+<span class="lineNum">     100 </span>            : /// from right to left this algorithm achieves that.
+<span class="lineNum">     101 </span>            : ///
+<span class="lineNum">     102 </span>            : /// if `bool` is `true` then the `CurrentSignMap` has the value `abs&lt;Index&gt;` as
+<span class="lineNum">     103 </span>            : /// a key
+<span class="lineNum">     104 </span>            : template &lt;bool&gt;
+<span class="lineNum">     105 </span>            : struct compute_sign;
+<span class="lineNum">     106 </span>            : /// \cond HIDDEN_SYMBOLS
+<span class="lineNum">     107 </span>            : template &lt;&gt;
+<span class="lineNum">     108 </span>            : struct compute_sign&lt;true&gt; {
+<span class="lineNum">     109 </span>            :   /// \tparam CurrentSignMap current map between abs(Index) and +/- 1
+<span class="lineNum">     110 </span>            :   /// \tparam PastSignMap previous map between abs(Index) and +/- 1
+<span class="lineNum">     111 </span>            :   /// \tparam Index the index to find the sign of
+<span class="lineNum">     112 </span>            :   template &lt;typename CurrentSignMap, typename PastSignMap, std::int32_t Index&gt;
+<span class="lineNum">     113 </span>            :   using type = tmpl::at&lt;CurrentSignMap, tmpl::abs&lt;tmpl::int32_t&lt;Index&gt;&gt;&gt;;
+<span class="lineNum">     114 </span>            : };
+<span class="lineNum">     115 </span>            : 
+<span class="lineNum">     116 </span>            : template &lt;&gt;
+<span class="lineNum">     117 </span>            : struct compute_sign&lt;false&gt; {
+<span class="lineNum">     118 </span>            :   template &lt;typename CurrentSignMap, typename PastSignMap, std::int32_t Index&gt;
+<span class="lineNum">     119 </span>            :   using type = tmpl::int32_t&lt;1&gt;;
+<span class="lineNum">     120 </span>            : };
+<span class="lineNum">     121 </span>            : /// \endcond
+<span class="lineNum">     122 </span>            : // @}
+<span class="lineNum">     123 </span>            : 
+<span class="lineNum">     124 </span>            : /// \ingroup Tensor
+<span class="lineNum">     125 </span>            : /// Metafunction to compute the symmetry typelist. See the Symmetry type alias
+<span class="lineNum">     126 </span>            : /// for details of how to use.
+<span class="lineNum">     127 </span>            : template &lt;std::int32_t... T&gt;
+<span class="lineNum">     128 </span>            : struct symm;
+<span class="lineNum">     129 </span>            : 
+<span class="lineNum">     130 </span>            : /// \ingroup Tensor
+<span class="lineNum">     131 </span>            : /// Scalar tensor case
+<span class="lineNum">     132 </span>            : template &lt;&gt;
+<span class="lineNum">     133 </span>            : struct symm&lt;&gt; {
+<span class="lineNum">     134 </span>            :   using type = tmpl::integral_list&lt;std::int32_t&gt;;
+<span class="lineNum">     135 </span>            : };
+<span class="lineNum">     136 </span>            : 
+<span class="lineNum">     137 </span>            : /// \ingroup Tensor
+<span class="lineNum">     138 </span>            : /// Last index case to end recursion.
+<span class="lineNum">     139 </span>            : template &lt;std::int32_t index&gt;
+<span class="lineNum">     140 </span>            : struct symm&lt;index&gt; {
+<span class="lineNum">     141 </span>            :   static_assert(index &gt; 0, &quot;Anti-symmetries are currently not supported&quot;);
+<span class="lineNum">     142 </span>            :   using type = tmpl::integral_list&lt;std::int32_t, 1&gt;;
+<span class="lineNum">     143 </span>            :   using current_index_t = tmpl::int32_t&lt;1&gt;;
+<span class="lineNum">     144 </span>            :   using added_map =
+<span class="lineNum">     145 </span>            :       tmpl::map&lt;tmpl::pair&lt;tmpl::int32_t&lt;index&gt;, tmpl::int32_t&lt;1&gt;&gt;&gt;;
+<span class="lineNum">     146 </span>            :   using sign_map = tmpl::map&lt;
+<span class="lineNum">     147 </span>            :       tmpl::pair&lt;tmpl::int32_t&lt;index&gt;, tmpl::sign&lt;tmpl::int32_t&lt;index&gt;&gt;&gt;&gt;;
+<span class="lineNum">     148 </span>            : };
+<span class="lineNum">     149 </span>            : 
+<span class="lineNum">     150 </span>            : /// \ingroup Tensor
+<span class="lineNum">     151 </span>            : /// Metafunction that computes symmetry as a typelist of std::integral_constant.
+<span class="lineNum">     152 </span>            : /// The `added_map` is a typemap used to keep track of whether or not a
+<span class="lineNum">     153 </span>            : /// particular index has already been added to the list. If it or its negative
+<span class="lineNum">     154 </span>            : /// (to handle anti-symmetries) has not been added then we add to the map. This
+<span class="lineNum">     155 </span>            : /// conditional add is done using tmpl::conditional_t.
+<span class="lineNum">     156 </span>            : ///
+<span class="lineNum">     157 </span>            : /// The `current_index_t` is the current symmetry index, for example value 2 in
+<span class="lineNum">     158 </span>            : /// `Symmetry&lt;1, 2, 1&gt;`. If the current index is already in the `next_added_map`
+<span class="lineNum">     159 </span>            : /// then we just use that value, otherwise we check if `next_added_map` has the
+<span class="lineNum">     160 </span>            : /// negative of the `index`, then use that. Finally, if `index` is not in the
+<span class="lineNum">     161 </span>            : /// `next_added_map` we have a new index given by `current_index_t` in the
+<span class="lineNum">     162 </span>            : /// `next_symm` plus one.
+<span class="lineNum">     163 </span>            : ///
+<span class="lineNum">     164 </span>            : /// The `sign_map` is used to keep track of the positive and negative signs
+<span class="lineNum">     165 </span>            : /// needed for anti-symmetries. A helper metafunction, `compute_sign_map` is
+<span class="lineNum">     166 </span>            : /// used to compute the changes to the `sign_map`. The `sign_map` is a map
+<span class="lineNum">     167 </span>            : /// between the symmetry index that is in the typelist and either plus or minus
+<span class="lineNum">     168 </span>            : /// one, depending on whether the index is symmetric or anti-symmetric
+<span class="lineNum">     169 </span>            : /// respectively.
+<span class="lineNum">     170 </span>            : ///
+<span class="lineNum">     171 </span>            : /// \tparam index the current index to add to the typelist
+<span class="lineNum">     172 </span>            : /// \tparam T the remaining indices to add to the typelist
+<span class="lineNum">     173 </span>            : template &lt;std::int32_t index, std::int32_t... T&gt;
+<span class="lineNum">     174 </span>            : struct symm&lt;index, T...&gt; {
+<span class="lineNum">     175 </span>            :   static_assert(index &gt; 0, &quot;Anti-symmetries are currently not supported&quot;);
+<span class="lineNum">     176 </span>            :   using next_symm = symm&lt;T...&gt;;
+<span class="lineNum">     177 </span>            :   using next_added_map = typename next_symm::added_map;
+<span class="lineNum">     178 </span>            :   using next_sign_map = typename next_symm::sign_map;
+<span class="lineNum">     179 </span>            : 
+<span class="lineNum">     180 </span>            :   using added_map = tmpl::conditional_t&lt;
+<span class="lineNum">     181 </span>            :       (tmpl::has_key&lt;next_added_map, tmpl::int32_t&lt;index&gt;&gt;::value or
+<span class="lineNum">     182 </span>            :        tmpl::has_key&lt;next_added_map, tmpl::int32_t&lt;-index&gt;&gt;::value),
+<span class="lineNum">     183 </span>            :       next_added_map,
+<span class="lineNum">     184 </span>            :       tmpl::insert&lt;
+<span class="lineNum">     185 </span>            :           next_added_map,
+<span class="lineNum">     186 </span>            :           tmpl::pair&lt;tmpl::int32_t&lt;index&gt;,
+<span class="lineNum">     187 </span>            :                      tmpl::int32_t&lt;next_symm::current_index_t::value + 1&gt;&gt;&gt;&gt;;
+<span class="lineNum">     188 </span>            : 
+<span class="lineNum">     189 </span>            :   using current_index_t = tmpl::conditional_t&lt;
+<span class="lineNum">     190 </span>            :       tmpl::has_key&lt;next_added_map, tmpl::int32_t&lt;index&gt;&gt;::value,
+<span class="lineNum">     191 </span>            :       tmpl::at&lt;next_added_map, tmpl::int32_t&lt;index&gt;&gt;,
+<span class="lineNum">     192 </span>            :       tmpl::conditional_t&lt;
+<span class="lineNum">     193 </span>            :           tmpl::has_key&lt;next_added_map, tmpl::int32_t&lt;-index&gt;&gt;::value,
+<span class="lineNum">     194 </span>            :           tmpl::at&lt;next_added_map, tmpl::int32_t&lt;-index&gt;&gt;,
+<span class="lineNum">     195 </span>            :           tmpl::int32_t&lt;next_symm::current_index_t::value + 1&gt;&gt;&gt;;
+<span class="lineNum">     196 </span>            : 
+<span class="lineNum">     197 </span>            :   using sign_map = typename compute_sign_map&lt;
+<span class="lineNum">     198 </span>            :       tmpl::has_key&lt;next_sign_map, tmpl::abs&lt;tmpl::int32_t&lt;index&gt;&gt;&gt;::value&gt;::
+<span class="lineNum">     199 </span>            :       template type&lt;next_sign_map, index&gt;;
+<span class="lineNum">     200 </span>            : 
+<span class="lineNum">     201 </span>            :   using type = tmpl::push_front&lt;
+<span class="lineNum">     202 </span>            :       typename next_symm::type,
+<span class="lineNum">     203 </span>            :       tmpl::int32_t&lt;
+<span class="lineNum">     204 </span>            :           compute_sign&lt;
+<span class="lineNum">     205 </span>            :               tmpl::has_key&lt;sign_map, tmpl::abs&lt;tmpl::int32_t&lt;index&gt;&gt;&gt;::value&gt;::
+<span class="lineNum">     206 </span>            :               template type&lt;sign_map, next_sign_map, index&gt;::type::value *
+<span class="lineNum">     207 </span>            :           current_index_t::value&gt;&gt;;
+<span class="lineNum">     208 </span>            : };
+<span class="lineNum">     209 </span>            : }  // namespace detail
+<span class="lineNum">     210 </span>            : 
+<span class="lineNum">     211 </span>            : /// \ingroup Tensor
+<span class="lineNum">     212 </span>            : /// \brief Computes the canonical symmetry from the integers `T`
+<span class="lineNum">     213 </span>            : ///
+<span class="lineNum">     214 </span>            : /// \details
+<span class="lineNum">     215 </span>            : /// Compute the canonical symmetry typelist given a set of integers, T. The
+<span class="lineNum">     216 </span>            : /// resulting typelist is in descending order of the absolute value of the
+<span class="lineNum">     217 </span>            : /// integers. For example, the result of `Symmetry&lt;1, 2, 3&gt;` is
+<span class="lineNum">     218 </span>            : /// `integral_list&lt;int32_t, 3, 2, 1&gt;`. Anti-symmetries can be denoted with a
+<span class="lineNum">     219 </span>            : /// minus sign on either _or_ both indices. That is, `Symmetry&lt;-1, 2, 1&gt;` is
+<span class="lineNum">     220 </span>            : /// anti-symmetric in the first and last index and is the same as `Symmetry&lt;-1,
+<span class="lineNum">     221 </span>            : /// 2, -1&gt;`. Note: two minus signs are still anti-symmetric because it
+<span class="lineNum">     222 </span>            : /// simplifies the algorithm used to compute the canonical form of the symmetry.
+<span class="lineNum">     223 </span>            : ///
+<span class="lineNum">     224 </span>            : /// \tparam T the integers denoting the symmetry of the Tensor
+<span class="lineNum">     225 </span>            : template &lt;std::int32_t... T&gt;
+<span class="lineNum">     226 </span><span class="lineCov">          2 : using Symmetry = typename detail::symm&lt;T...&gt;::type;</span>
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

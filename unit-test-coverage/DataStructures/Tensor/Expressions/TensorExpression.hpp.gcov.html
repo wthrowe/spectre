@@ -1,0 +1,569 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - e5cbc5bb9c5aba2950342934cd01e8f137343a21 - DataStructures/Tensor/Expressions/TensorExpression.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">SpECTRE Unit Test Code Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../../index.html">top level</a> - <a href="index.html">DataStructures/Tensor/Expressions</a> - TensorExpression.hpp<span style="font-size: 80%;"> (source / <a href="TensorExpression.hpp.func-sort-c.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/e5cbc5bb9c5aba2950342934cd01e8f137343a21">e5cbc5bb9c5aba2950342934cd01e8f137343a21</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">10</td>
+            <td class="headerCovTableEntry">10</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2017-06-20 01:58:40</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">17</td>
+            <td class="headerCovTableEntry">17</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>            : // Distributed under the MIT License.</a>
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : /// \file
+<span class="lineNum">       5 </span>            : /// Defines class
+<span class="lineNum">       6 </span>            : 
+<span class="lineNum">       7 </span>            : #pragma once
+<span class="lineNum">       8 </span>            : 
+<span class="lineNum">       9 </span>            : #include &quot;ErrorHandling/Assert.hpp&quot;
+<span class="lineNum">      10 </span>            : #include &quot;Utilities/TMPL.hpp&quot;
+<span class="lineNum">      11 </span>            : #include &quot;Utilities/TypeTraits.hpp&quot;
+<span class="lineNum">      12 </span>            : 
+<span class="lineNum">      13 </span>            : /*! \ingroup TensorExpressions
+<span class="lineNum">      14 </span>            :  * \brief Represents the indices in a TensorExpression
+<span class="lineNum">      15 </span>            :  *
+<span class="lineNum">      16 </span>            :  * \details
+<span class="lineNum">      17 </span>            :  * Used to denote a tensor index in a tensor slot. This allows the following
+<span class="lineNum">      18 </span>            :  * type of expressions to work:
+<span class="lineNum">      19 </span>            :  * \code{.cpp}
+<span class="lineNum">      20 </span>            :  * auto T = evaluate&lt;ti_a_t, ti_b_t&gt;(F(ti_a, ti_b) + S(ti_b, ti_a));
+<span class="lineNum">      21 </span>            :  * \endcode
+<span class="lineNum">      22 </span>            :  * where `using ti_a_t = TensorIndex&lt;0&gt;;` and `TensorIndex&lt;0&gt; ti_a;`, that is,
+<span class="lineNum">      23 </span>            :  * `ti_a` and `ti_b` are place holders for objects of type `TensorIndex&lt;0&gt;` and
+<span class="lineNum">      24 </span>            :  * `TensorIndex&lt;1&gt;` respectively.
+<span class="lineNum">      25 </span>            :  */
+<span class="lineNum">      26 </span>            : template &lt;std::size_t I&gt;
+<span class="lineNum">      27 </span>            : struct TensorIndex {
+<span class="lineNum">      28 </span>            :   using value_type = std::size_t;
+<span class="lineNum">      29 </span>            :   using type = TensorIndex&lt;I&gt;;
+<span class="lineNum">      30 </span>            :   static constexpr value_type value = I;
+<span class="lineNum">      31 </span>            : };
+<span class="lineNum">      32 </span>            : 
+<span class="lineNum">      33 </span>            : /// \ingroup TensorExpressions
+<span class="lineNum">      34 </span>            : /// Given an `TensorIndex&lt;size_t&gt;` return `TensorIndex&lt;size_t + 1&gt;`
+<span class="lineNum">      35 </span>            : /// \tparam T the args to increment
+<span class="lineNum">      36 </span>            : template &lt;typename T&gt;
+<span class="lineNum">      37 </span>            : using next_tensor_index = TensorIndex&lt;T::value + 1&gt;;
+<span class="lineNum">      38 </span>            : 
+<span class="lineNum">      39 </span>            : /// \ingroup TensorExpressions
+<span class="lineNum">      40 </span>            : /// Metafunction to return the sum of two TensorIndex's
+<span class="lineNum">      41 </span>            : template &lt;typename A, typename B&gt;
+<span class="lineNum">      42 </span>            : using plus_tensor_index = TensorIndex&lt;A::value + B::value&gt;;
+<span class="lineNum">      43 </span>            : 
+<span class="lineNum">      44 </span>            : // @{
+<span class="lineNum">      45 </span>            : /*!
+<span class="lineNum">      46 </span>            :  * \ingroup TensorExpressions
+<span class="lineNum">      47 </span>            :  * \brief The available TensorIndex's to use in a TensorExpression
+<span class="lineNum">      48 </span>            :  *
+<span class="lineNum">      49 </span>            :  * Available tensor indices to use in a Tensor Expression.
+<span class="lineNum">      50 </span>            :  * \snippet TensorExpressions.cpp use_tensor_index
+<span class="lineNum">      51 </span>            :  *
+<span class="lineNum">      52 </span>            :  * \note Because these are never actually used as objects and only for type
+<span class="lineNum">      53 </span>            :  * manipulation they do not need to be instantiated anywhere.
+<span class="lineNum">      54 </span>            :  */
+<span class="lineNum">      55 </span>            : extern TensorIndex&lt;0&gt; ti_a;
+<span class="lineNum">      56 </span>            : extern TensorIndex&lt;0&gt; ti_A;
+<span class="lineNum">      57 </span>            : extern TensorIndex&lt;1&gt; ti_b;
+<span class="lineNum">      58 </span>            : extern TensorIndex&lt;1&gt; ti_B;
+<span class="lineNum">      59 </span>            : extern TensorIndex&lt;2&gt; ti_c;
+<span class="lineNum">      60 </span>            : extern TensorIndex&lt;2&gt; ti_C;
+<span class="lineNum">      61 </span>            : extern TensorIndex&lt;3&gt; ti_d;
+<span class="lineNum">      62 </span>            : extern TensorIndex&lt;3&gt; ti_D;
+<span class="lineNum">      63 </span>            : extern TensorIndex&lt;4&gt; ti_e;
+<span class="lineNum">      64 </span>            : extern TensorIndex&lt;4&gt; ti_E;
+<span class="lineNum">      65 </span>            : extern TensorIndex&lt;5&gt; ti_f;
+<span class="lineNum">      66 </span>            : extern TensorIndex&lt;5&gt; ti_F;
+<span class="lineNum">      67 </span>            : extern TensorIndex&lt;6&gt; ti_g;
+<span class="lineNum">      68 </span>            : extern TensorIndex&lt;6&gt; ti_G;
+<span class="lineNum">      69 </span>            : extern TensorIndex&lt;7&gt; ti_h;
+<span class="lineNum">      70 </span>            : extern TensorIndex&lt;7&gt; ti_H;
+<span class="lineNum">      71 </span>            : extern TensorIndex&lt;8&gt; ti_i;
+<span class="lineNum">      72 </span>            : extern TensorIndex&lt;8&gt; ti_I;
+<span class="lineNum">      73 </span>            : extern TensorIndex&lt;9&gt; ti_j;
+<span class="lineNum">      74 </span>            : extern TensorIndex&lt;9&gt; ti_J;
+<span class="lineNum">      75 </span>            : 
+<span class="lineNum">      76 </span>            : using ti_a_t = decltype(ti_a);
+<span class="lineNum">      77 </span>            : using ti_A_t = decltype(ti_A);
+<span class="lineNum">      78 </span>            : using ti_b_t = decltype(ti_b);
+<span class="lineNum">      79 </span>            : using ti_B_t = decltype(ti_B);
+<span class="lineNum">      80 </span>            : using ti_c_t = decltype(ti_c);
+<span class="lineNum">      81 </span>            : using ti_C_t = decltype(ti_C);
+<span class="lineNum">      82 </span>            : using ti_d_t = decltype(ti_d);
+<span class="lineNum">      83 </span>            : using ti_D_t = decltype(ti_D);
+<span class="lineNum">      84 </span>            : using ti_e_t = decltype(ti_e);
+<span class="lineNum">      85 </span>            : using ti_E_t = decltype(ti_E);
+<span class="lineNum">      86 </span>            : using ti_f_t = decltype(ti_f);
+<span class="lineNum">      87 </span>            : using ti_F_t = decltype(ti_F);
+<span class="lineNum">      88 </span>            : using ti_g_t = decltype(ti_g);
+<span class="lineNum">      89 </span>            : using ti_G_t = decltype(ti_G);
+<span class="lineNum">      90 </span>            : using ti_h_t = decltype(ti_h);
+<span class="lineNum">      91 </span>            : using ti_H_t = decltype(ti_H);
+<span class="lineNum">      92 </span>            : using ti_i_t = decltype(ti_i);
+<span class="lineNum">      93 </span>            : using ti_I_t = decltype(ti_I);
+<span class="lineNum">      94 </span>            : using ti_j_t = decltype(ti_j);
+<span class="lineNum">      95 </span>            : using ti_J_t = decltype(ti_J);
+<span class="lineNum">      96 </span>            : // @}
+<span class="lineNum">      97 </span>            : 
+<span class="lineNum">      98 </span>            : /// \cond HIDDEN_SYMBOLS
+<span class="lineNum">      99 </span>            : /// \ingroup TensorExpressions
+<span class="lineNum">     100 </span>            : /// Type alias used when Tensor Expressions manipulate indices. These are used
+<span class="lineNum">     101 </span>            : /// to denote contracted as opposed to free indices.
+<span class="lineNum">     102 </span>            : template &lt;int I&gt;
+<span class="lineNum">     103 </span>            : using ti_contracted_t = TensorIndex&lt;static_cast&lt;size_t&gt;(I + 1000)&gt;;
+<span class="lineNum">     104 </span>            : 
+<span class="lineNum">     105 </span>            : /// \ingroup TensorExpressions
+<span class="lineNum">     106 </span>            : template &lt;int I&gt;
+<span class="lineNum">     107 </span>            : TensorIndex&lt;static_cast&lt;size_t&gt;(I + 1000)&gt; ti_contracted();
+<span class="lineNum">     108 </span>            : /// \endcond
+<span class="lineNum">     109 </span>            : 
+<span class="lineNum">     110 </span>            : namespace tt {
+<span class="lineNum">     111 </span>            : /*! \ingroup TypeTraits TensorExpressions
+<span class="lineNum">     112 </span>            :  * \brief Check if a type `T` is a TensorIndex used in TensorExpressions
+<span class="lineNum">     113 </span>            :  */
+<span class="lineNum">     114 </span>            : template &lt;typename T&gt;
+<span class="lineNum">     115 </span>            : struct is_tensor_index : std::false_type {};
+<span class="lineNum">     116 </span>            : template &lt;size_t I&gt;
+<span class="lineNum">     117 </span>            : struct is_tensor_index&lt;TensorIndex&lt;I&gt;&gt; : std::true_type {};
+<span class="lineNum">     118 </span>            : }  // namespace tt
+<span class="lineNum">     119 </span>            : 
+<span class="lineNum">     120 </span>            : namespace detail {
+<span class="lineNum">     121 </span>            : template &lt;typename State, typename Element, typename LHS&gt;
+<span class="lineNum">     122 </span>            : struct rhs_elements_in_lhs_helper {
+<span class="lineNum">     123 </span>            :   using type = std::conditional_t&lt;not std::is_same&lt;tmpl::index_of&lt;LHS, Element&gt;,
+<span class="lineNum">     124 </span>            :                                                    tmpl::no_such_type_&gt;::value,
+<span class="lineNum">     125 </span>            :                                   tmpl::push_back&lt;State, Element&gt;, State&gt;;
+<span class="lineNum">     126 </span>            : };
+<span class="lineNum">     127 </span>            : }  // namespace detail
+<span class="lineNum">     128 </span>            : 
+<span class="lineNum">     129 </span>            : /// \ingroup TensorExpressions
+<span class="lineNum">     130 </span>            : /// Returns a list of all the elements in the typelist Rhs that are also in the
+<span class="lineNum">     131 </span>            : /// typelist Lhs.
+<span class="lineNum">     132 </span>            : ///
+<span class="lineNum">     133 </span>            : /// \details
+<span class="lineNum">     134 </span>            : /// Given two typelists `Lhs` and `Rhs`, returns a typelist of all the elements
+<span class="lineNum">     135 </span>            : /// in `Rhs` that are also in `Lhs` in the same order that they are in the
+<span class="lineNum">     136 </span>            : /// `Rhs`.
+<span class="lineNum">     137 </span>            : ///
+<span class="lineNum">     138 </span>            : /// ### Usage
+<span class="lineNum">     139 </span>            : /// For typelists `Ls1` and `Ls2`,
+<span class="lineNum">     140 </span>            : /// \code{.cpp}
+<span class="lineNum">     141 </span>            : /// using result = rhs_elements_in_lhs&lt;Ls1, Ls2&gt;;
+<span class="lineNum">     142 </span>            : /// \endcode
+<span class="lineNum">     143 </span>            : /// \metareturns
+<span class="lineNum">     144 </span>            : /// typelist
+<span class="lineNum">     145 </span>            : ///
+<span class="lineNum">     146 </span>            : /// \semantics
+<span class="lineNum">     147 </span>            : /// If `Lhs = typelist&lt;A, B, C, D&gt;` and `Rhs = typelist&lt;B, E, A&gt;`, then
+<span class="lineNum">     148 </span>            : /// \code{.cpp}
+<span class="lineNum">     149 </span>            : /// result = typelist&lt;B, A&gt;;
+<span class="lineNum">     150 </span>            : /// \endcode
+<span class="lineNum">     151 </span>            : template &lt;typename Lhs, typename Rhs&gt;
+<span class="lineNum">     152 </span>            : using rhs_elements_in_lhs =
+<span class="lineNum">     153 </span>            :     tmpl::fold&lt;Rhs, tmpl::list&lt;&gt;,
+<span class="lineNum">     154 </span>            :                detail::rhs_elements_in_lhs_helper&lt;tmpl::_state, tmpl::_element,
+<span class="lineNum">     155 </span>            :                                                   tmpl::pin&lt;Lhs&gt;&gt;&gt;;
+<span class="lineNum">     156 </span>            : 
+<span class="lineNum">     157 </span>            : namespace detail {
+<span class="lineNum">     158 </span>            : template &lt;typename Element, typename Iteration, typename Lhs, typename Rhs,
+<span class="lineNum">     159 </span>            :           typename RhsWithOnlyLhs, typename IndexInLhs&gt;
+<span class="lineNum">     160 </span>            : struct generate_transformation_helper {
+<span class="lineNum">     161 </span>            :   using tensor_index_to_find = tmpl::at&lt;RhsWithOnlyLhs, IndexInLhs&gt;;
+<span class="lineNum">     162 </span>            :   using index_to_replace_with = tmpl::index_of&lt;Rhs, tensor_index_to_find&gt;;
+<span class="lineNum">     163 </span>            :   using type = TensorIndex&lt;index_to_replace_with::value&gt;;
+<span class="lineNum">     164 </span>            : };
+<span class="lineNum">     165 </span>            : 
+<span class="lineNum">     166 </span>            : template &lt;typename Element, typename Iteration, typename Lhs, typename Rhs,
+<span class="lineNum">     167 </span>            :           typename RhsWithOnlyLhs&gt;
+<span class="lineNum">     168 </span>            : struct generate_transformation_helper&lt;Element, Iteration, Lhs, Rhs,
+<span class="lineNum">     169 </span>            :                                       RhsWithOnlyLhs, tmpl::no_such_type_&gt; {
+<span class="lineNum">     170 </span>            :   using type = TensorIndex&lt;Iteration::value&gt;;
+<span class="lineNum">     171 </span>            : };
+<span class="lineNum">     172 </span>            : 
+<span class="lineNum">     173 </span>            : template &lt;typename State, typename Element, typename Iteration, typename Lhs,
+<span class="lineNum">     174 </span>            :           typename Rhs, typename RhsWithOnlyLhs&gt;
+<span class="lineNum">     175 </span>            : struct generate_transformation_impl {
+<span class="lineNum">     176 </span>            :   using index_in_lhs = tmpl::index_of&lt;Lhs, Element&gt;;
+<span class="lineNum">     177 </span>            :   using type = tmpl::push_back&lt;State, typename generate_transformation_helper&lt;
+<span class="lineNum">     178 </span>            :                                           Element, Iteration, Lhs, Rhs,
+<span class="lineNum">     179 </span>            :                                           RhsWithOnlyLhs, index_in_lhs&gt;::type&gt;;
+<span class="lineNum">     180 </span>            : };
+<span class="lineNum">     181 </span>            : }  // namespace detail
+<span class="lineNum">     182 </span>            : 
+<span class="lineNum">     183 </span>            : /// \ingroup TensorExpressions
+<span class="lineNum">     184 </span>            : /// \brief Generate transformation to account for index order difference in RHS
+<span class="lineNum">     185 </span>            : /// and LHS.
+<span class="lineNum">     186 </span>            : ///
+<span class="lineNum">     187 </span>            : /// \details
+<span class="lineNum">     188 </span>            : /// Generates the transformation \f$\mathcal{T}\f$ that rearranges the Tensor
+<span class="lineNum">     189 </span>            : /// index array to account for index order differences between the LHS and RHS
+<span class="lineNum">     190 </span>            : /// of the tensor expression.
+<span class="lineNum">     191 </span>            : ///
+<span class="lineNum">     192 </span>            : /// ### Usage
+<span class="lineNum">     193 </span>            : /// For typelists `Rhs`, `Lhs` and `RhsOnyWithLhs`, where `RhsOnlyWithLhs` is
+<span class="lineNum">     194 </span>            : /// the result of the metafunction rhs_elements_in_lhs,
+<span class="lineNum">     195 </span>            : /// \code{.cpp}
+<span class="lineNum">     196 </span>            : /// using result = generate_transformation&lt;Rhs, Lhs, RhsOnlyWithLhs&gt;;
+<span class="lineNum">     197 </span>            : /// \endcode
+<span class="lineNum">     198 </span>            : /// \metareturns
+<span class="lineNum">     199 </span>            : /// typelist
+<span class="lineNum">     200 </span>            : template &lt;typename Rhs, typename Lhs, typename RhsOnyWithLhs&gt;
+<span class="lineNum">     201 </span>            : using generate_transformation = tmpl::enumerated_fold&lt;
+<span class="lineNum">     202 </span>            :     Rhs, tmpl::list&lt;&gt;,
+<span class="lineNum">     203 </span>            :     detail::generate_transformation_impl&lt;tmpl::_state, tmpl::_element, tmpl::_3,
+<span class="lineNum">     204 </span>            :                                          tmpl::pin&lt;Lhs&gt;, tmpl::pin&lt;Rhs&gt;,
+<span class="lineNum">     205 </span>            :                                          tmpl::pin&lt;RhsOnyWithLhs&gt;&gt;&gt;;
+<span class="lineNum">     206 </span>            : 
+<span class="lineNum">     207 </span>            : namespace detail {
+<span class="lineNum">     208 </span>            : template &lt;typename Seq, typename S, typename E&gt;
+<span class="lineNum">     209 </span>            : struct repeated_helper {
+<span class="lineNum">     210 </span>            :   using type = typename std::conditional&lt;
+<span class="lineNum">     211 </span>            :       std::is_same&lt;tmpl::count_if&lt;Seq, std::is_same&lt;E, tmpl::_1&gt;&gt;,
+<span class="lineNum">     212 </span>            :                    tmpl::size_t&lt;2&gt;&gt;::value and
+<span class="lineNum">     213 </span>            :           std::is_same&lt;tmpl::index_of&lt;S, E&gt;, tmpl::no_such_type_&gt;::value,
+<span class="lineNum">     214 </span>            :       tmpl::push_back&lt;S, E&gt;, S&gt;::type;
+<span class="lineNum">     215 </span>            : };
+<span class="lineNum">     216 </span>            : }  // namespace detail
+<span class="lineNum">     217 </span>            : 
+<span class="lineNum">     218 </span>            : /*! \ingroup TensorExpressions
+<span class="lineNum">     219 </span>            :  * Returns a list of all the types that occurred more than once in Ls.
+<span class="lineNum">     220 </span>            :  */
+<span class="lineNum">     221 </span>            : template &lt;typename Ls&gt;
+<span class="lineNum">     222 </span>            : using repeated = tmpl::fold&lt;
+<span class="lineNum">     223 </span>            :     Ls, tmpl::list&lt;&gt;,
+<span class="lineNum">     224 </span>            :     detail::repeated_helper&lt;tmpl::pin&lt;Ls&gt;, tmpl::_state, tmpl::_element&gt;&gt;;
+<span class="lineNum">     225 </span>            : 
+<span class="lineNum">     226 </span>            : namespace detail {
+<span class="lineNum">     227 </span>            : template &lt;typename Ls, typename Element, typename R&gt;
+<span class="lineNum">     228 </span>            : using index_replace = tmpl::replace_at&lt;
+<span class="lineNum">     229 </span>            :     tmpl::replace_at&lt;Ls, tmpl::index_of&lt;Ls, Element&gt;, R&gt;,
+<span class="lineNum">     230 </span>            :     tmpl::index_of&lt;tmpl::replace_at&lt;Ls, tmpl::index_of&lt;Ls, Element&gt;, R&gt;,
+<span class="lineNum">     231 </span>            :                    Element&gt;,
+<span class="lineNum">     232 </span>            :     next_tensor_index&lt;R&gt;&gt;;
+<span class="lineNum">     233 </span>            : 
+<span class="lineNum">     234 </span>            : /// \cond HIDDEN_SYMBOLS
+<span class="lineNum">     235 </span>            : template &lt;typename Ls, typename ReplaceLs, int I&gt;
+<span class="lineNum">     236 </span>            : struct replace_indices_impl
+<span class="lineNum">     237 </span>            :     : replace_indices_impl&lt;
+<span class="lineNum">     238 </span>            :           index_replace&lt;Ls, tmpl::front&lt;ReplaceLs&gt;, ti_contracted_t&lt;2 * I&gt;&gt;,
+<span class="lineNum">     239 </span>            :           tmpl::pop_front&lt;ReplaceLs&gt;, I + 1&gt; {};
+<span class="lineNum">     240 </span>            : /// \endcond
+<span class="lineNum">     241 </span>            : 
+<span class="lineNum">     242 </span>            : template &lt;typename Ls, int I&gt;
+<span class="lineNum">     243 </span>            : struct replace_indices_impl&lt;Ls, tmpl::list&lt;&gt;, I&gt; {
+<span class="lineNum">     244 </span>            :   using type = Ls;
+<span class="lineNum">     245 </span>            : };
+<span class="lineNum">     246 </span>            : }  // namespace detail
+<span class="lineNum">     247 </span>            : 
+<span class="lineNum">     248 </span>            : /*! \ingroup TensorExpressions
+<span class="lineNum">     249 </span>            :  *
+<span class="lineNum">     250 </span>            :  */
+<span class="lineNum">     251 </span>            : template &lt;typename Ls, typename ReplaceLs&gt;
+<span class="lineNum">     252 </span>            : using replace_indices =
+<span class="lineNum">     253 </span>            :     typename detail::replace_indices_impl&lt;Ls, ReplaceLs, 0&gt;::type;
+<span class="lineNum">     254 </span>            : 
+<span class="lineNum">     255 </span>            : /// \ingroup TensorExpressions
+<span class="lineNum">     256 </span>            : /// \brief Marks a class as being a TensorExpression
+<span class="lineNum">     257 </span>            : ///
+<span class="lineNum">     258 </span>            : /// \details
+<span class="lineNum">     259 </span>            : /// The empty base class that all TensorExpression`s must inherit from.
+<span class="lineNum">     260 </span>            : /// \derivedrequires
+<span class="lineNum">     261 </span>            : /// 1) The args_list will be the sorted args_list received as input
+<a name="262"><span class="lineNum">     262 </span>            : ///</a>
+<span class="lineNum">     263 </span>            : /// 2) The tensor indices will be swapped to conform with mathematical notation
+<span class="lineNum">     264 </span><span class="lineCov">         10 : struct Expression {};</span>
+<span class="lineNum">     265 </span>            : 
+<span class="lineNum">     266 </span>            : template &lt;typename DataType, typename Symm, typename IndexLs&gt;
+<span class="lineNum">     267 </span>            : class Tensor;
+<span class="lineNum">     268 </span>            : 
+<span class="lineNum">     269 </span>            : // @{
+<span class="lineNum">     270 </span>            : /// \ingroup TensorExpressions
+<span class="lineNum">     271 </span>            : /// \brief The base class all tensor expression implementations derive from
+<span class="lineNum">     272 </span>            : ///
+<span class="lineNum">     273 </span>            : /// \tparam Derived the derived class needed for
+<span class="lineNum">     274 </span>            : /// [CRTP](https://en.wikipedia.org/wiki/Curiously_recurring_template_pattern)
+<span class="lineNum">     275 </span>            : /// \tparam DataType the type of the data being stored in the ::Tensor's
+<span class="lineNum">     276 </span>            : /// \tparam Symm the ::Symmetry of the Derived class
+<span class="lineNum">     277 </span>            : /// \tparam IndexLs the list of \ref SpacetimeIndex &quot;TensorIndex&quot;'s
+<span class="lineNum">     278 </span>            : /// \tparam Args the tensor indices, e.g. `_a` and `_b` in `F(_a, _b)`
+<span class="lineNum">     279 </span>            : /// \cond HIDDEN_SYMBOLS
+<span class="lineNum">     280 </span>            : template &lt;typename Derived, typename DataType, typename Symm, typename IndexLs,
+<span class="lineNum">     281 </span>            :           typename Args = tmpl::list&lt;&gt;, typename ReducedArgs = tmpl::list&lt;&gt;&gt;
+<span class="lineNum">     282 </span>            : struct TensorExpression;
+<span class="lineNum">     283 </span>            : /// \endcond
+<span class="lineNum">     284 </span>            : 
+<span class="lineNum">     285 </span>            : template &lt;typename Derived, typename DataType, typename Symm, typename IndexLs,
+<span class="lineNum">     286 </span>            :           template &lt;typename...&gt; class ArgsLs, typename... Args&gt;
+<span class="lineNum">     287 </span>            : struct TensorExpression&lt;Derived, DataType, Symm, IndexLs, ArgsLs&lt;Args...&gt;&gt; {
+<span class="lineNum">     288 </span>            :   static_assert(sizeof...(Args) == 0 or
+<span class="lineNum">     289 </span>            :                     sizeof...(Args) == tmpl::size&lt;IndexLs&gt;::value,
+<span class="lineNum">     290 </span>            :                 &quot;the number of Tensor indices must match the number of &quot;
+<span class="lineNum">     291 </span>            :                 &quot;components specified in an expression.&quot;);
+<span class="lineNum">     292 </span>            :   using type = DataType;
+<span class="lineNum">     293 </span>            :   using symmetry = Symm;
+<span class="lineNum">     294 </span>            :   using index_list = IndexLs;
+<span class="lineNum">     295 </span>            :   static constexpr auto num_tensor_indices =
+<span class="lineNum">     296 </span>            :       tmpl::size&lt;index_list&gt;::value == 0 ? 1 : tmpl::size&lt;index_list&gt;::value;
+<span class="lineNum">     297 </span>            :   /// Typelist of the tensor indices, e.g. `_a_t` and `_b_t` in `F(_a, _b)`
+<span class="lineNum">     298 </span>            :   using args_list = ArgsLs&lt;Args...&gt;;
+<span class="lineNum">     299 </span>            : 
+<span class="lineNum">     300 </span>            :   // @{
+<span class="lineNum">     301 </span>            :   /// Cast down to the derived class. This is enabled by the
+<span class="lineNum">     302 </span>            :   /// [CRTP](https://en.wikipedia.org/wiki/Curiously_recurring_template_pattern)
+<span class="lineNum">     303 </span>            :   template &lt;
+<span class="lineNum">     304 </span>            :       typename V = Derived,
+<span class="lineNum">     305 </span>            :       typename std::enable_if&lt;not tt::is_a&lt;Tensor, V&gt;::value&gt;::type* = nullptr&gt;
+<span class="lineNum">     306 </span>            :   SPECTRE_ALWAYS_INLINE const Derived&amp; operator~() const {
+<span class="lineNum">     307 </span><span class="lineCov">          4 :     return static_cast&lt;const Derived&amp;&gt;(*this);</span>
+<span class="lineNum">     308 </span>            :   }
+<span class="lineNum">     309 </span>            :   // @}
+<span class="lineNum">     310 </span>            :   // @{
+<span class="lineNum">     311 </span>            :   /// If the Derived class is a Tensor return a const reference to a
+<span class="lineNum">     312 </span>            :   /// TensorExpression.
+<span class="lineNum">     313 </span>            :   ///
+<span class="lineNum">     314 </span>            :   /// Since Tensor is not derived from TensorExpression (because of
+<span class="lineNum">     315 </span>            :   /// complications arising from the indices being part of the expression,
+<span class="lineNum">     316 </span>            :   /// specifically Tensor may need to derive off of hundreds or thousands of
+<span class="lineNum">     317 </span>            :   /// base classes, which is not feasible), return a reference to a
+<span class="lineNum">     318 </span>            :   /// TensorExpression, which has a sufficient interface to evaluate the
+<span class="lineNum">     319 </span>            :   /// expression.
+<span class="lineNum">     320 </span>            :   /// \returns const TensorExpression&lt;Derived, DataType, Symm, IndexLs,
+<span class="lineNum">     321 </span>            :   /// ArgsLs&lt;Args...&gt;&gt;&amp;
+<span class="lineNum">     322 </span>            :   template &lt;
+<span class="lineNum">     323 </span>            :       typename V = Derived,
+<span class="lineNum">     324 </span>            :       typename std::enable_if&lt;tt::is_a&lt;Tensor, V&gt;::value&gt;::type* = nullptr&gt;
+<span class="lineNum">     325 </span>            :   SPECTRE_ALWAYS_INLINE auto operator~() const {
+<span class="lineNum">     326 </span>            :     return static_cast&lt;const TensorExpression&lt;Derived, DataType, Symm, IndexLs,
+<span class="lineNum">     327 </span><span class="lineCov">         10 :                                               ArgsLs&lt;Args...&gt;&gt;&amp;&gt;(*this);</span>
+<span class="lineNum">     328 </span>            :   }
+<span class="lineNum">     329 </span>            :   // @}
+<span class="lineNum">     330 </span>            : 
+<span class="lineNum">     331 </span>            :   // @{
+<span class="lineNum">     332 </span>            :   /// \cond HIDDEN_SYMBOLS
+<span class="lineNum">     333 </span>            :   /// \ingroup TensorExpressions
+<span class="lineNum">     334 </span>            :   /// Helper struct to compute the correct tensor index array from a
+<span class="lineNum">     335 </span>            :   /// typelist of std::integral_constant's indicating the ordering. This is
+<span class="lineNum">     336 </span>            :   /// needed for dealing with expressions such as \f$T_{ab} = F_{ba}\f$ and gets
+<span class="lineNum">     337 </span>            :   /// the ordering on the RHS to be correct compared with where the indices are
+<span class="lineNum">     338 </span>            :   /// on the LHS.
+<span class="lineNum">     339 </span>            :   template &lt;typename U&gt;
+<span class="lineNum">     340 </span>            :   struct ComputeCorrectTensorIndex;
+<span class="lineNum">     341 </span>            : 
+<span class="lineNum">     342 </span>            :   template &lt;template &lt;typename...&gt; class RedArgsLs, typename... RedArgs&gt;
+<span class="lineNum">     343 </span>            :   struct ComputeCorrectTensorIndex&lt;RedArgsLs&lt;RedArgs...&gt;&gt; {
+<span class="lineNum">     344 </span>            :     template &lt;typename U, std::size_t Size&gt;
+<span class="lineNum">     345 </span>            :     SPECTRE_ALWAYS_INLINE static constexpr std::array&lt;U, Size&gt; apply(
+<span class="lineNum">     346 </span>            :         const std::array&lt;U, Size&gt;&amp; tensor_index) {
+<span class="lineNum">     347 </span><span class="lineCov">        288 :       return std::array&lt;U, Size&gt;{{tensor_index[RedArgs::value]...}};</span>
+<span class="lineNum">     348 </span>            :     }
+<span class="lineNum">     349 </span>            :   };
+<span class="lineNum">     350 </span>            :   /// \endcond
+<span class="lineNum">     351 </span>            :   // @}
+<span class="lineNum">     352 </span>            : 
+<span class="lineNum">     353 </span>            :   /// \brief return the value of type DataType with tensor index `tensor_index`
+<span class="lineNum">     354 </span>            :   ///
+<span class="lineNum">     355 </span>            :   /// \details
+<span class="lineNum">     356 </span>            :   /// _Note:_ This version is selected if Derived is a Tensor
+<span class="lineNum">     357 </span>            :   ///
+<span class="lineNum">     358 </span>            :   /// One big challenge with a general Tensor Expression implementation is the
+<span class="lineNum">     359 </span>            :   /// ordering of the Indices on the RHS and LHS of the expression. This
+<span class="lineNum">     360 </span>            :   /// algorithm implemented in ::rhs_elements_in_lhs and
+<span class="lineNum">     361 </span>            :   /// ::generate_transformation handles the index sorting.
+<span class="lineNum">     362 </span>            :   ///
+<span class="lineNum">     363 </span>            :   /// Here are some examples of what the algorithm does:
+<span class="lineNum">     364 </span>            :   ///
+<span class="lineNum">     365 </span>            :   /// LhsIndices is the desired ordering.
+<span class="lineNum">     366 </span>            :   ///
+<span class="lineNum">     367 </span>            :   /// LHS:
+<span class="lineNum">     368 </span>            :   /// \code
+<span class="lineNum">     369 </span>            :   /// &lt;0, 1&gt;
+<span class="lineNum">     370 </span>            :   /// \endcode
+<span class="lineNum">     371 </span>            :   /// RHS:
+<span class="lineNum">     372 </span>            :   /// \code
+<span class="lineNum">     373 </span>            :   /// &lt;1, 2, 3, 0&gt; -Transform&gt; &lt;3, 1, 2, 0&gt;
+<span class="lineNum">     374 </span>            :   /// \endcode
+<span class="lineNum">     375 </span>            :   ///
+<span class="lineNum">     376 </span>            :   /// LHS:
+<span class="lineNum">     377 </span>            :   /// \code
+<span class="lineNum">     378 </span>            :   /// &lt;0, 1, 2&gt; &lt;a, b, c&gt;
+<span class="lineNum">     379 </span>            :   /// \endcode
+<span class="lineNum">     380 </span>            :   /// RHS:
+<span class="lineNum">     381 </span>            :   /// \code
+<span class="lineNum">     382 </span>            :   /// &lt;2, 0, 1&gt; -Transform&gt; &lt;2 , 1, 0&gt;
+<span class="lineNum">     383 </span>            :   /// \endcode
+<span class="lineNum">     384 </span>            :   ///
+<span class="lineNum">     385 </span>            :   /// Below is pseudo-code of the algorithm written in a non-functional way
+<span class="lineNum">     386 </span>            :   /// \verbatim
+<span class="lineNum">     387 </span>            :   /// for Element in RHS:
+<span class="lineNum">     388 </span>            :   ///   if (Element in LHS):
+<span class="lineNum">     389 </span>            :   ///     index_in_LHS = index_of&lt;LHS, Element&gt;
+<span class="lineNum">     390 </span>            :   ///     tensor_index_to_find = at&lt;RHS_with_only_LHS, index_in_LHS&gt;
+<span class="lineNum">     391 </span>            :   ///     index_to_replace_with = index_of&lt;RHS, tensor_index_to_find&gt;
+<span class="lineNum">     392 </span>            :   ///     T_RHS = push_back&lt;T_RHS, index_to_replace_with&gt;
+<span class="lineNum">     393 </span>            :   ///   else:
+<span class="lineNum">     394 </span>            :   ///     T_RHS = push_back&lt;T_RHS, iteration&gt;
+<span class="lineNum">     395 </span>            :   ///   endif
+<span class="lineNum">     396 </span>            :   /// end for
+<span class="lineNum">     397 </span>            :   /// \endverbatim
+<span class="lineNum">     398 </span>            :   ///
+<span class="lineNum">     399 </span>            :   /// \tparam LhsIndices the tensor indices on the LHS on the expression
+<span class="lineNum">     400 </span>            :   /// \tparam V used for SFINAE
+<span class="lineNum">     401 </span>            :   /// \param tensor_index the tensor component to retrieve
+<span class="lineNum">     402 </span>            :   /// \return the value of the DataType of component `tensor_index`
+<span class="lineNum">     403 </span>            :   template &lt;
+<span class="lineNum">     404 </span>            :       typename... LhsIndices, typename ArrayValueType, typename V = Derived,
+<span class="lineNum">     405 </span>            :       typename std::enable_if&lt;tt::is_a&lt;Tensor, V&gt;::value&gt;::type* = nullptr&gt;
+<span class="lineNum">     406 </span>            :   SPECTRE_ALWAYS_INLINE type
+<span class="lineNum">     407 </span>            :   get(const std::array&lt;ArrayValueType, num_tensor_indices&gt;&amp; tensor_index)
+<span class="lineNum">     408 </span>            :       const {
+<span class="lineNum">     409 </span><span class="lineCov">        288 :     ASSERT(t_ != nullptr,</span>
+<span class="lineNum">     410 </span>            :            &quot;A TensorExpression that should be holding a pointer to a Tensor &quot;
+<span class="lineNum">     411 </span>            :            &quot;is holding a nullptr.&quot;);
+<span class="lineNum">     412 </span>            :     using rhs = args_list;
+<span class="lineNum">     413 </span>            :     // To deal with Tensor products we need the ordering of only the subset of
+<span class="lineNum">     414 </span>            :     // tensor indices present in this term
+<span class="lineNum">     415 </span>            :     using lhs = rhs_elements_in_lhs&lt;rhs, tmpl::list&lt;LhsIndices...&gt;&gt;;
+<span class="lineNum">     416 </span>            :     using rhs_only_with_lhs = rhs_elements_in_lhs&lt;lhs, rhs&gt;;
+<span class="lineNum">     417 </span>            :     using transformation = generate_transformation&lt;rhs, lhs, rhs_only_with_lhs&gt;;
+<span class="lineNum">     418 </span><span class="lineCov">        288 :     return t_-&gt;get(</span>
+<span class="lineNum">     419 </span><span class="lineCov">        360 :         ComputeCorrectTensorIndex&lt;transformation&gt;::apply(tensor_index));</span>
+<span class="lineNum">     420 </span>            :   }
+<span class="lineNum">     421 </span>            : 
+<span class="lineNum">     422 </span>            :   /// \brief return the value of type DataType with tensor index `tensor_index`
+<span class="lineNum">     423 </span>            :   ///
+<span class="lineNum">     424 </span>            :   /// \details
+<span class="lineNum">     425 </span>            :   /// _Note:_ This version is selected if Derived is a TensorExpression
+<span class="lineNum">     426 </span>            :   ///
+<span class="lineNum">     427 </span>            :   /// Forward the tensor_index onwards to the next TensorExpression
+<span class="lineNum">     428 </span>            :   ///
+<span class="lineNum">     429 </span>            :   /// \tparam LhsIndices the tensor indices on the LHS on the expression
+<span class="lineNum">     430 </span>            :   /// \tparam V used for SFINAE
+<span class="lineNum">     431 </span>            :   /// \param tensor_index the tensor component to retrieve
+<span class="lineNum">     432 </span>            :   /// \return the value of the DataType of component `tensor_index`
+<span class="lineNum">     433 </span>            :   template &lt;
+<span class="lineNum">     434 </span>            :       typename... LhsIndices, typename ArrayValueType, typename V = Derived,
+<span class="lineNum">     435 </span>            :       typename std::enable_if&lt;not tt::is_a&lt;Tensor, V&gt;::value&gt;::type* = nullptr&gt;
+<span class="lineNum">     436 </span>            :   SPECTRE_ALWAYS_INLINE type
+<span class="lineNum">     437 </span>            :   get(const std::array&lt;ArrayValueType, num_tensor_indices&gt;&amp; tensor_index)
+<span class="lineNum">     438 </span>            :       const {
+<span class="lineNum">     439 </span>            :     ASSERT(t_ == nullptr,
+<span class="lineNum">     440 </span>            :            &quot;A TensorExpression that shouldn't be holding a pointer to a &quot;
+<span class="lineNum">     441 </span>            :            &quot;Tensor is holding one.&quot;);
+<span class="lineNum">     442 </span>            :     return static_cast&lt;const Derived&amp;&gt;(*this).template get&lt;LhsIndices...&gt;(
+<span class="lineNum">     443 </span>            :         tensor_index);
+<span class="lineNum">     444 </span>            :   }
+<span class="lineNum">     445 </span>            : 
+<span class="lineNum">     446 </span>            :   /// Retrieve the i'th entry of the Tensor being held
+<span class="lineNum">     447 </span>            :   template &lt;
+<span class="lineNum">     448 </span>            :       typename V = Derived,
+<span class="lineNum">     449 </span>            :       typename std::enable_if&lt;tt::is_a&lt;Tensor, V&gt;::value&gt;::type* = nullptr&gt;
+<span class="lineNum">     450 </span>            :   SPECTRE_ALWAYS_INLINE type operator[](const size_t i) const {
+<span class="lineNum">     451 </span>            :     return t_-&gt;operator[](i);
+<span class="lineNum">     452 </span>            :   }
+<span class="lineNum">     453 </span>            : 
+<span class="lineNum">     454 </span>            :   /// \brief Construct a TensorExpression from another TensorExpression.
+<span class="lineNum">     455 </span>            :   ///
+<span class="lineNum">     456 </span>            :   /// In this case we do not need to store a pointer to the TensorExpression
+<span class="lineNum">     457 </span>            :   /// since we can cast back to the derived class using operator~.
+<span class="lineNum">     458 </span>            :   template &lt;
+<a name="459"><span class="lineNum">     459 </span>            :       typename V = Derived,</a>
+<span class="lineNum">     460 </span>            :       typename std::enable_if&lt;not tt::is_a&lt;Tensor, V&gt;::value&gt;::type* = nullptr&gt;
+<span class="lineNum">     461 </span><span class="lineCov">         10 :   TensorExpression() {}  // NOLINT</span>
+<span class="lineNum">     462 </span>            : 
+<span class="lineNum">     463 </span>            :   /// \brief Construct a TensorExpression from a Tensor.
+<span class="lineNum">     464 </span>            :   ///
+<a name="465"><span class="lineNum">     465 </span>            :   /// We need to store a pointer to the Tensor in a member variable in order</a>
+<span class="lineNum">     466 </span>            :   /// to be able to access the data when later evaluating the tensor expression.
+<span class="lineNum">     467 </span><span class="lineCov">         16 :   explicit TensorExpression(const Tensor&lt;DataType, Symm, IndexLs&gt;&amp; t)</span>
+<span class="lineNum">     468 </span><span class="lineCov">         16 :       : t_(&amp;t) {}</span>
+<span class="lineNum">     469 </span>            : 
+<span class="lineNum">     470 </span>            :  private:
+<span class="lineNum">     471 </span>            :   /// Holds a pointer to a Tensor if the TensorExpression represents one.
+<span class="lineNum">     472 </span>            :   ///
+<span class="lineNum">     473 </span>            :   /// The pointer is needed so that the Tensor class need not derive from
+<span class="lineNum">     474 </span>            :   /// TensorExpression. The reason deriving off of TensorExpression is
+<span class="lineNum">     475 </span>            :   /// problematic for Tensor is that the index structure is part of the type
+<span class="lineNum">     476 </span>            :   /// of the TensorExpression, so every possible permutation and combination of
+<span class="lineNum">     477 </span>            :   /// indices must be derived from. For a rank-3 tensor this is already over 500
+<span class="lineNum">     478 </span>            :   /// base classes, which the Intel compiler takes too long to compile.
+<span class="lineNum">     479 </span>            :   ///
+<span class="lineNum">     480 </span>            :   /// Benchmarking shows that GCC 6 and Clang 3.9.0 can derive off of 672 base
+<span class="lineNum">     481 </span>            :   /// classes with compilation time of about 5 seconds, while the Intel compiler
+<span class="lineNum">     482 </span>            :   /// v16.3 takes around 8 minutes. These tests were done on a Haswell Core i5.
+<span class="lineNum">     483 </span>            :   const Derived* t_ = nullptr;
+<span class="lineNum">     484 </span>            : };
+<span class="lineNum">     485 </span>            : // @}
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

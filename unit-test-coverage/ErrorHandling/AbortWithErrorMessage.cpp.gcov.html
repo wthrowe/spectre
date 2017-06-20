@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - 62204faed5c3285d61ace50f511c782e819e106e - ErrorHandling/AbortWithErrorMessage.cpp</title>
+  <title>LCOV - e5cbc5bb9c5aba2950342934cd01e8f137343a21 - ErrorHandling/AbortWithErrorMessage.cpp</title>
   <link rel="stylesheet" type="text/css" href="../gcov.css">
 </head>
 
@@ -28,7 +28,7 @@
           </tr>
           <tr>
             <td class="headerItem">Commit:</td>
-             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/62204faed5c3285d61ace50f511c782e819e106e">62204faed5c3285d61ace50f511c782e819e106e</a></td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/e5cbc5bb9c5aba2950342934cd01e8f137343a21">e5cbc5bb9c5aba2950342934cd01e8f137343a21</a></td>
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntry">12</td>
@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2017-06-19 01:57:49</td>
+            <td class="headerValue">2017-06-20 01:58:40</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">2</td>
@@ -93,18 +93,18 @@
 <span class="lineNum">      23 </span><span class="lineCov">          5 :   Parallel::abort(os.str());</span>
 <a name="24"><span class="lineNum">      24 </span>            : }</a>
 <span class="lineNum">      25 </span>            : 
-<span class="lineNum">      26 </span><span class="lineCov">          4 : void abort_with_error_message(const char* file, const int line,</span>
+<span class="lineNum">      26 </span><span class="lineCov">          7 : void abort_with_error_message(const char* file, const int line,</span>
 <span class="lineNum">      27 </span>            :                               const std::string&amp; message) {
-<span class="lineNum">      28 </span><span class="lineCov">          4 :   std::ostringstream os;</span>
+<span class="lineNum">      28 </span><span class="lineCov">          7 :   std::ostringstream os;</span>
 <span class="lineNum">      29 </span>            :   os &lt;&lt; &quot;\n&quot;
 <span class="lineNum">      30 </span>            :      &lt;&lt; &quot;############ ERROR ############\n&quot;
-<span class="lineNum">      31 </span><span class="lineCov">          4 :      &lt;&lt; &quot;Node: &quot; &lt;&lt; Parallel::my_node() &lt;&lt; &quot; Proc: &quot; &lt;&lt; Parallel::my_proc()</span>
+<span class="lineNum">      31 </span><span class="lineCov">          7 :      &lt;&lt; &quot;Node: &quot; &lt;&lt; Parallel::my_node() &lt;&lt; &quot; Proc: &quot; &lt;&lt; Parallel::my_proc()</span>
 <span class="lineNum">      32 </span>            :      &lt;&lt; &quot;\n&quot;
-<span class="lineNum">      33 </span><span class="lineCov">          8 :      &lt;&lt; &quot;Line: &quot; &lt;&lt; line &lt;&lt; &quot; of &quot; &lt;&lt; file &lt;&lt; &quot;\n&quot;</span>
+<span class="lineNum">      33 </span><span class="lineCov">         14 :      &lt;&lt; &quot;Line: &quot; &lt;&lt; line &lt;&lt; &quot; of &quot; &lt;&lt; file &lt;&lt; &quot;\n&quot;</span>
 <span class="lineNum">      34 </span>            :      &lt;&lt; message &lt;&lt; &quot;\n&quot;
 <span class="lineNum">      35 </span>            :      &lt;&lt; &quot;############ ERROR ############\n&quot;
-<span class="lineNum">      36 </span><span class="lineCov">          4 :      &lt;&lt; &quot;\n&quot;;</span>
-<span class="lineNum">      37 </span><span class="lineCov">          4 :   Parallel::abort(os.str());</span>
+<span class="lineNum">      36 </span><span class="lineCov">          7 :      &lt;&lt; &quot;\n&quot;;</span>
+<span class="lineNum">      37 </span><span class="lineCov">          7 :   Parallel::abort(os.str());</span>
 <span class="lineNum">      38 </span>            : }
 </pre>
       </td>

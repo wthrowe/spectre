@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - 62204faed5c3285d61ace50f511c782e819e106e - Utilities/ConstantExpressions.hpp</title>
+  <title>LCOV - e5cbc5bb9c5aba2950342934cd01e8f137343a21 - Utilities/ConstantExpressions.hpp</title>
   <link rel="stylesheet" type="text/css" href="../gcov.css">
 </head>
 
@@ -28,16 +28,16 @@
           </tr>
           <tr>
              <td class="headerItem">Commit:</td>
-             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/62204faed5c3285d61ace50f511c782e819e106e">62204faed5c3285d61ace50f511c782e819e106e</a></td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/e5cbc5bb9c5aba2950342934cd01e8f137343a21">e5cbc5bb9c5aba2950342934cd01e8f137343a21</a></td>
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntry">11</td>
-            <td class="headerCovTableEntry">11</td>
-            <td class="headerCovTableEntryHi">100.0 %</td>
+            <td class="headerCovTableEntry">12</td>
+            <td class="headerCovTableEntryHi">91.7 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2017-06-19 01:58:05</td>
+            <td class="headerValue">2017-06-20 01:58:59</td>
             <td></td>
           </tr>
           <tr>
@@ -74,198 +74,208 @@
 <span class="lineNum">       8 </span>            : 
 <span class="lineNum">       9 </span>            : #include &lt;type_traits&gt;
 <span class="lineNum">      10 </span>            : 
-<span class="lineNum">      11 </span>            : #include &quot;Utilities/Blaze.hpp&quot;
-<span class="lineNum">      12 </span>            : #include &quot;Utilities/ForceInline.hpp&quot;
-<span class="lineNum">      13 </span>            : #include &quot;Utilities/TMPL.hpp&quot;
-<span class="lineNum">      14 </span>            : #include &quot;Utilities/TypeTraits.hpp&quot;
-<span class="lineNum">      15 </span>            : 
-<span class="lineNum">      16 </span>            : /// \ingroup ConstantExpressions
-<span class="lineNum">      17 </span>            : /// Compute 2 to the n for integral types.
-<span class="lineNum">      18 </span>            : ///
-<span class="lineNum">      19 </span>            : /// \param n the power of two to compute.
-<span class="lineNum">      20 </span>            : /// \return 2^n
-<span class="lineNum">      21 </span>            : template &lt;typename T,
-<span class="lineNum">      22 </span>            :           std::enable_if_t&lt;std::is_integral&lt;T&gt;::value and
-<span class="lineNum">      23 </span>            :                            not std::is_same&lt;bool, T&gt;::value&gt;* = nullptr&gt;
-<span class="lineNum">      24 </span><span class="lineCov">          2 : SPECTRE_ALWAYS_INLINE constexpr T two_to_the(T n) {</span>
-<span class="lineNum">      25 </span>            :   return static_cast&lt;T&gt;(1) &lt;&lt; n;
-<span class="lineNum">      26 </span>            : }
-<span class="lineNum">      27 </span>            : 
-<span class="lineNum">      28 </span>            : /// \ingroup ConstantExpressions
-<span class="lineNum">      29 </span>            : /// Get the nth bit from the right, counting from zero.
-<span class="lineNum">      30 </span>            : ///
-<span class="lineNum">      31 </span>            : /// \param i the value to be acted on.
-<span class="lineNum">      32 </span>            : /// \param N which place to extract the bit
-<span class="lineNum">      33 </span>            : /// \return the value of the bit at that place.
-<span class="lineNum">      34 </span><span class="lineCov">          2 : SPECTRE_ALWAYS_INLINE constexpr size_t get_nth_bit(const size_t i,</span>
-<span class="lineNum">      35 </span>            :                                                    const size_t N) {
-<span class="lineNum">      36 </span>            :   return (i &gt;&gt; N) % 2;
-<span class="lineNum">      37 </span>            : }
-<span class="lineNum">      38 </span>            : 
-<span class="lineNum">      39 </span>            : /// \ingroup ConstantExpressions
-<span class="lineNum">      40 </span>            : /// \brief Compute the square of `x`
-<span class="lineNum">      41 </span>            : template &lt;typename T&gt;
-<span class="lineNum">      42 </span><span class="lineCov">          2 : SPECTRE_ALWAYS_INLINE constexpr T square(const T&amp; x) {</span>
-<span class="lineNum">      43 </span>            :   return x * x;
-<span class="lineNum">      44 </span>            : }
-<span class="lineNum">      45 </span>            : 
-<span class="lineNum">      46 </span>            : /// \ingroup ConstantExpressions
-<span class="lineNum">      47 </span>            : /// \brief Compute the cube of `x`
-<span class="lineNum">      48 </span>            : template &lt;typename T&gt;
-<span class="lineNum">      49 </span><span class="lineCov">          2 : SPECTRE_ALWAYS_INLINE constexpr T cube(const T&amp; x) {</span>
-<span class="lineNum">      50 </span>            :   return x * x * x;
-<span class="lineNum">      51 </span>            : }
-<span class="lineNum">      52 </span>            : 
-<span class="lineNum">      53 </span>            : /// \ingroup ConstantExpressions
-<span class="lineNum">      54 </span>            : namespace ConstantExpressions_details {
-<span class="lineNum">      55 </span>            : template &lt;typename T, int N, typename U = void&gt;
-<span class="lineNum">      56 </span>            : struct pow;
-<span class="lineNum">      57 </span>            : 
-<span class="lineNum">      58 </span>            : template &lt;typename T, int N&gt;
-<span class="lineNum">      59 </span>            : struct pow&lt;T, N, typename std::enable_if&lt;(N &gt; 0)&gt;::type&gt; {
-<span class="lineNum">      60 </span>            :   SPECTRE_ALWAYS_INLINE static constexpr decltype(auto) apply(const T&amp; t) {
-<span class="lineNum">      61 </span>            :     return t * pow&lt;T, N - 1&gt;::apply(t);
-<span class="lineNum">      62 </span>            :   }
-<span class="lineNum">      63 </span>            : };
-<span class="lineNum">      64 </span>            : 
-<span class="lineNum">      65 </span>            : template &lt;typename T, int N&gt;
-<span class="lineNum">      66 </span>            : struct pow&lt;T, N, typename std::enable_if&lt;(N &lt; 0)&gt;::type&gt; {
-<span class="lineNum">      67 </span>            :   SPECTRE_ALWAYS_INLINE static constexpr decltype(auto) apply(const T&amp; t) {
-<span class="lineNum">      68 </span>            :     return static_cast&lt;T&gt;(1) / (t * pow&lt;T, -N - 1&gt;::apply(t));
-<span class="lineNum">      69 </span>            :   }
-<span class="lineNum">      70 </span>            : };
-<span class="lineNum">      71 </span>            : 
-<span class="lineNum">      72 </span>            : template &lt;typename T&gt;
-<span class="lineNum">      73 </span>            : struct pow&lt;T, 0,
-<span class="lineNum">      74 </span>            :            std::enable_if_t&lt;not std::is_base_of&lt;blaze::Expression, T&gt;::value&gt;&gt; {
-<span class="lineNum">      75 </span>            :   SPECTRE_ALWAYS_INLINE static constexpr T apply(const T&amp; /*t*/) {
-<span class="lineNum">      76 </span>            :     return static_cast&lt;T&gt;(1);
-<span class="lineNum">      77 </span>            :   }
-<span class="lineNum">      78 </span>            : };
-<span class="lineNum">      79 </span>            : }  // namespace ConstantExpressions_details
-<span class="lineNum">      80 </span>            : 
-<span class="lineNum">      81 </span>            : /// \ingroup ConstantExpressions
-<span class="lineNum">      82 </span>            : /// \brief Compute t^N where N is an integer (positive or negative)
-<span class="lineNum">      83 </span>            : ///
-<span class="lineNum">      84 </span>            : /// \warning If passing an integer this will do integer arithmatic, e.g.
-<span class="lineNum">      85 </span>            : /// pow&lt;-10&gt;(2) == 0
+<span class="lineNum">      11 </span>            : #include &quot;Utilities/ForceInline.hpp&quot;
+<span class="lineNum">      12 </span>            : #include &quot;Utilities/TMPL.hpp&quot;
+<span class="lineNum">      13 </span>            : #include &quot;Utilities/TypeTraits.hpp&quot;
+<span class="lineNum">      14 </span>            : 
+<span class="lineNum">      15 </span>            : namespace blaze {
+<span class="lineNum">      16 </span>            : struct Expression;
+<span class="lineNum">      17 </span>            : }  // namespace blaze
+<span class="lineNum">      18 </span>            : 
+<span class="lineNum">      19 </span>            : /// \ingroup ConstantExpressions
+<span class="lineNum">      20 </span>            : /// Compute 2 to the n for integral types.
+<span class="lineNum">      21 </span>            : ///
+<span class="lineNum">      22 </span>            : /// \param n the power of two to compute.
+<span class="lineNum">      23 </span>            : /// \return 2^n
+<span class="lineNum">      24 </span>            : template &lt;typename T,
+<span class="lineNum">      25 </span>            :           std::enable_if_t&lt;std::is_integral&lt;T&gt;::value and
+<span class="lineNum">      26 </span>            :                            not std::is_same&lt;bool, T&gt;::value&gt;* = nullptr&gt;
+<span class="lineNum">      27 </span><span class="lineCov">          2 : SPECTRE_ALWAYS_INLINE constexpr T two_to_the(T n) {</span>
+<span class="lineNum">      28 </span>            :   return static_cast&lt;T&gt;(1) &lt;&lt; n;
+<span class="lineNum">      29 </span>            : }
+<span class="lineNum">      30 </span>            : 
+<span class="lineNum">      31 </span>            : /// \ingroup ConstantExpressions
+<span class="lineNum">      32 </span>            : /// Get the nth bit from the right, counting from zero.
+<span class="lineNum">      33 </span>            : ///
+<span class="lineNum">      34 </span>            : /// \param i the value to be acted on.
+<span class="lineNum">      35 </span>            : /// \param N which place to extract the bit
+<span class="lineNum">      36 </span>            : /// \return the value of the bit at that place.
+<span class="lineNum">      37 </span><span class="lineCov">          2 : SPECTRE_ALWAYS_INLINE constexpr size_t get_nth_bit(const size_t i,</span>
+<span class="lineNum">      38 </span>            :                                                    const size_t N) {
+<span class="lineNum">      39 </span>            :   return (i &gt;&gt; N) % 2;
+<span class="lineNum">      40 </span>            : }
+<span class="lineNum">      41 </span>            : 
+<span class="lineNum">      42 </span>            : /// \ingroup ConstantExpressions
+<span class="lineNum">      43 </span>            : /// \brief Compute the square of `x`
+<span class="lineNum">      44 </span>            : template &lt;typename T&gt;
+<span class="lineNum">      45 </span><span class="lineCov">          2 : SPECTRE_ALWAYS_INLINE constexpr T square(const T&amp; x) {</span>
+<span class="lineNum">      46 </span>            :   return x * x;
+<span class="lineNum">      47 </span>            : }
+<span class="lineNum">      48 </span>            : 
+<span class="lineNum">      49 </span>            : /// \ingroup ConstantExpressions
+<span class="lineNum">      50 </span>            : /// \brief Compute the cube of `x`
+<span class="lineNum">      51 </span>            : template &lt;typename T&gt;
+<span class="lineNum">      52 </span><span class="lineCov">          2 : SPECTRE_ALWAYS_INLINE constexpr T cube(const T&amp; x) {</span>
+<span class="lineNum">      53 </span>            :   return x * x * x;
+<span class="lineNum">      54 </span>            : }
+<span class="lineNum">      55 </span>            : 
+<span class="lineNum">      56 </span>            : /// \ingroup ConstantExpressions
+<span class="lineNum">      57 </span>            : namespace ConstantExpressions_details {
+<span class="lineNum">      58 </span>            : template &lt;typename T, int N, typename U = void&gt;
+<span class="lineNum">      59 </span>            : struct pow;
+<span class="lineNum">      60 </span>            : 
+<span class="lineNum">      61 </span>            : template &lt;typename T, int N&gt;
+<span class="lineNum">      62 </span>            : struct pow&lt;T, N, typename std::enable_if&lt;(N &gt; 0)&gt;::type&gt; {
+<span class="lineNum">      63 </span>            :   SPECTRE_ALWAYS_INLINE static constexpr decltype(auto) apply(const T&amp; t) {
+<span class="lineNum">      64 </span>            :     return t * pow&lt;T, N - 1&gt;::apply(t);
+<span class="lineNum">      65 </span>            :   }
+<span class="lineNum">      66 </span>            : };
+<span class="lineNum">      67 </span>            : 
+<span class="lineNum">      68 </span>            : template &lt;typename T, int N&gt;
+<span class="lineNum">      69 </span>            : struct pow&lt;T, N, typename std::enable_if&lt;(N &lt; 0)&gt;::type&gt; {
+<span class="lineNum">      70 </span>            :   SPECTRE_ALWAYS_INLINE static constexpr decltype(auto) apply(const T&amp; t) {
+<span class="lineNum">      71 </span>            :     return static_cast&lt;T&gt;(1) / (t * pow&lt;T, -N - 1&gt;::apply(t));
+<span class="lineNum">      72 </span>            :   }
+<span class="lineNum">      73 </span>            : };
+<span class="lineNum">      74 </span>            : 
+<span class="lineNum">      75 </span>            : template &lt;typename T&gt;
+<span class="lineNum">      76 </span>            : struct pow&lt;T, 0,
+<span class="lineNum">      77 </span>            :            std::enable_if_t&lt;not std::is_base_of&lt;blaze::Expression, T&gt;::value&gt;&gt; {
+<span class="lineNum">      78 </span>            :   SPECTRE_ALWAYS_INLINE static constexpr T apply(const T&amp; /*t*/) {
+<span class="lineNum">      79 </span>            :     return static_cast&lt;T&gt;(1);
+<span class="lineNum">      80 </span>            :   }
+<span class="lineNum">      81 </span>            : };
+<span class="lineNum">      82 </span>            : }  // namespace ConstantExpressions_details
+<span class="lineNum">      83 </span>            : 
+<span class="lineNum">      84 </span>            : /// \ingroup ConstantExpressions
+<span class="lineNum">      85 </span>            : /// \brief Compute t^N where N is an integer (positive or negative)
 <span class="lineNum">      86 </span>            : ///
-<span class="lineNum">      87 </span>            : /// \tparam N the integer power being raised to in t^N
-<span class="lineNum">      88 </span>            : /// \param t the value being exponentiated
-<span class="lineNum">      89 </span>            : /// \return value t^N of type T
-<span class="lineNum">      90 </span>            : template &lt;int N, typename T&gt;
-<span class="lineNum">      91 </span><span class="lineCov">          2 : SPECTRE_ALWAYS_INLINE constexpr decltype(auto) pow(const T&amp; t) {</span>
-<span class="lineNum">      92 </span>            :   return ConstantExpressions_details::pow&lt;T, N&gt;::apply(t);
-<span class="lineNum">      93 </span>            : }
-<span class="lineNum">      94 </span>            : 
-<span class="lineNum">      95 </span>            : namespace detail {
-<span class="lineNum">      96 </span>            : template &lt;
-<span class="lineNum">      97 </span>            :     typename Ls, size_t... indices,
-<span class="lineNum">      98 </span>            :     std::enable_if_t&lt;not tt::is_a_v&lt;tmpl::list, tmpl::front&lt;Ls&gt;&gt;&gt;* = nullptr&gt;
-<span class="lineNum">      99 </span>            : inline constexpr std::array&lt;std::decay_t&lt;decltype(tmpl::front&lt;Ls&gt;::value)&gt;,
-<span class="lineNum">     100 </span>            :                             tmpl::size&lt;Ls&gt;::value&gt;
-<span class="lineNum">     101 </span>            : make_array_from_list_helper(
-<span class="lineNum">     102 </span>            :     std::integer_sequence&lt;size_t, indices...&gt; /*meta*/) {
-<span class="lineNum">     103 </span>            :   return std::array&lt;std::decay_t&lt;decltype(tmpl::front&lt;Ls&gt;::value)&gt;,
-<span class="lineNum">     104 </span>            :                     tmpl::size&lt;Ls&gt;::value&gt;{
-<span class="lineNum">     105 </span>            :       {tmpl::at&lt;Ls, tmpl::size_t&lt;indices&gt;&gt;::value...}};
-<span class="lineNum">     106 </span>            : }
-<span class="lineNum">     107 </span>            : }  // namespace detail
-<span class="lineNum">     108 </span>            : 
-<span class="lineNum">     109 </span>            : /// \ingroup ConstantExpressions
-<span class="lineNum">     110 </span>            : /// Make an array from a typelist that holds std::integral_constant's all of
-<span class="lineNum">     111 </span>            : /// which have the same `value_type`
-<span class="lineNum">     112 </span>            : ///
-<span class="lineNum">     113 </span>            : /// \tparam Ls the typelist of std::integral_constant's
-<span class="lineNum">     114 </span>            : /// \return array of integral values from the typelist
-<span class="lineNum">     115 </span>            : template &lt;
-<span class="lineNum">     116 </span>            :     typename Ls,
-<span class="lineNum">     117 </span>            :     std::enable_if_t&lt;not tt::is_a_v&lt;tmpl::list, tmpl::front&lt;Ls&gt;&gt;&gt;* = nullptr&gt;
-<span class="lineNum">     118 </span>            : inline constexpr std::array&lt;std::decay_t&lt;decltype(tmpl::front&lt;Ls&gt;::value)&gt;,
-<span class="lineNum">     119 </span>            :                             tmpl::size&lt;Ls&gt;::value&gt;
-<span class="lineNum">     120 </span><span class="lineCov">          2 : make_array_from_list() {</span>
-<span class="lineNum">     121 </span>            :   return detail::make_array_from_list_helper&lt;Ls&gt;(
-<span class="lineNum">     122 </span>            :       std::make_integer_sequence&lt;size_t, tmpl::size&lt;Ls&gt;::value&gt;{});
-<span class="lineNum">     123 </span>            : }
-<span class="lineNum">     124 </span>            : 
-<span class="lineNum">     125 </span>            : namespace detail {
-<span class="lineNum">     126 </span>            : template &lt;typename Ls, size_t... indices,
-<span class="lineNum">     127 </span>            :           typename std::enable_if&lt;
-<span class="lineNum">     128 </span>            :               tt::is_a&lt;tmpl::list, tmpl::front&lt;Ls&gt;&gt;::value&gt;::type* = nullptr&gt;
-<span class="lineNum">     129 </span>            : inline constexpr std::array&lt;
-<span class="lineNum">     130 </span>            :     std::decay_t&lt;
-<span class="lineNum">     131 </span>            :         decltype(make_array_from_list&lt;tmpl::at&lt;Ls, tmpl::size_t&lt;0&gt;&gt;&gt;())&gt;,
-<span class="lineNum">     132 </span>            :     tmpl::size&lt;Ls&gt;::value&gt;
-<span class="lineNum">     133 </span>            : make_array_from_list_helper(
-<span class="lineNum">     134 </span>            :     std::integer_sequence&lt;size_t, indices...&gt; /*unused*/) {
-<span class="lineNum">     135 </span>            :   return std::array&lt;std::decay_t&lt;decltype(
-<span class="lineNum">     136 </span>            :                         make_array_from_list&lt;tmpl::at&lt;Ls, tmpl::size_t&lt;0&gt;&gt;&gt;())&gt;,
-<span class="lineNum">     137 </span>            :                     tmpl::size&lt;Ls&gt;::value&gt;{
-<span class="lineNum">     138 </span>            :       {make_array_from_list_helper&lt;tmpl::at&lt;Ls, tmpl::size_t&lt;indices&gt;&gt;&gt;(
-<span class="lineNum">     139 </span>            :           std::make_integer_sequence&lt;
-<span class="lineNum">     140 </span>            :               size_t,
-<span class="lineNum">     141 </span>            :               tmpl::size&lt;tmpl::at&lt;Ls, tmpl::size_t&lt;indices&gt;&gt;&gt;::value&gt;{})...}};
-<span class="lineNum">     142 </span>            : }
-<span class="lineNum">     143 </span>            : }  // namespace detail
-<span class="lineNum">     144 </span>            : 
-<span class="lineNum">     145 </span>            : /// \ingroup ConstantExpressions
-<span class="lineNum">     146 </span>            : ///
-<span class="lineNum">     147 </span>            : /// Make an array of arrays from a typelist that holds typelists of
-<span class="lineNum">     148 </span>            : /// std::integral_constant's all of which have the same `value_type`
-<span class="lineNum">     149 </span>            : ///
-<span class="lineNum">     150 </span>            : /// \tparam Ls the typelist of typelists of std::integral_constant's
-<span class="lineNum">     151 </span>            : /// \return array of arrays of integral values from the typelists
-<span class="lineNum">     152 </span>            : template &lt;typename Ls,
-<span class="lineNum">     153 </span>            :           std::enable_if_t&lt;tt::is_a_v&lt;tmpl::list, tmpl::front&lt;Ls&gt;&gt;&gt;* = nullptr&gt;
-<span class="lineNum">     154 </span><span class="lineCov">          1 : inline constexpr auto make_array_from_list() {</span>
-<span class="lineNum">     155 </span>            :   return detail::make_array_from_list_helper&lt;Ls&gt;(
-<span class="lineNum">     156 </span>            :       std::make_integer_sequence&lt;size_t, tmpl::size&lt;Ls&gt;::value&gt;{});
-<span class="lineNum">     157 </span>            : }
-<span class="lineNum">     158 </span>            : 
-<span class="lineNum">     159 </span>            : /// \ingroup ConstantExpressions
-<span class="lineNum">     160 </span>            : /// \brief Compute the length of a const char* at compile time
-<span class="lineNum">     161 </span><span class="lineCov">          2 : SPECTRE_ALWAYS_INLINE constexpr size_t cstring_length(const char* str) {</span>
-<span class="lineNum">     162 </span>            :   return *str != 0 ? 1 + cstring_length(str + 1) : 0;  // NOLINT
-<span class="lineNum">     163 </span>            : }
-<span class="lineNum">     164 </span>            : 
-<span class="lineNum">     165 </span>            : /// \ingroup ConstantExpressions
-<span class="lineNum">     166 </span>            : /// \brief Compute a hash of a const char* at compile time
-<span class="lineNum">     167 </span><span class="lineCov">          2 : SPECTRE_ALWAYS_INLINE constexpr size_t cstring_hash(const char* str) {</span>
-<span class="lineNum">     168 </span>            :   return *str != 0
-<span class="lineNum">     169 </span>            :              ? (cstring_hash(str + 1) * 33) ^  // NOLINT
-<span class="lineNum">     170 </span>            :                    static_cast&lt;size_t&gt;(*str)
-<span class="lineNum">     171 </span>            :              : 5381;
-<span class="lineNum">     172 </span>            : }
-<span class="lineNum">     173 </span>            : 
-<span class="lineNum">     174 </span>            : namespace ConstantExpression_detail {
-<span class="lineNum">     175 </span>            : template &lt;typename T, size_t Size, size_t... I, size_t... J&gt;
-<span class="lineNum">     176 </span>            : inline constexpr std::array&lt;std::decay_t&lt;T&gt;, Size&gt; replace_at_helper(
-<span class="lineNum">     177 </span>            :     const std::array&lt;T, Size&gt;&amp; arr, const T&amp; value, const size_t i,
-<span class="lineNum">     178 </span>            :     std::integer_sequence&lt;size_t, I...&gt; /*unused*/,
-<span class="lineNum">     179 </span>            :     std::integer_sequence&lt;size_t, J...&gt; /*unused*/) {
-<span class="lineNum">     180 </span>            :   return std::array&lt;std::decay_t&lt;T&gt;, Size&gt;{{arr[I]..., value, arr[i + J]...}};
-<span class="lineNum">     181 </span>            : }
-<span class="lineNum">     182 </span>            : }  // namespace ConstantExpression_detail
+<span class="lineNum">      87 </span>            : /// \warning If passing an integer this will do integer arithmatic, e.g.
+<span class="lineNum">      88 </span>            : /// pow&lt;-10&gt;(2) == 0
+<span class="lineNum">      89 </span>            : ///
+<span class="lineNum">      90 </span>            : /// \tparam N the integer power being raised to in t^N
+<span class="lineNum">      91 </span>            : /// \param t the value being exponentiated
+<span class="lineNum">      92 </span>            : /// \return value t^N of type T
+<span class="lineNum">      93 </span>            : template &lt;int N, typename T&gt;
+<span class="lineNum">      94 </span><span class="lineCov">          2 : SPECTRE_ALWAYS_INLINE constexpr decltype(auto) pow(const T&amp; t) {</span>
+<span class="lineNum">      95 </span>            :   return ConstantExpressions_details::pow&lt;T, N&gt;::apply(t);
+<span class="lineNum">      96 </span>            : }
+<span class="lineNum">      97 </span>            : 
+<span class="lineNum">      98 </span>            : namespace detail {
+<span class="lineNum">      99 </span>            : template &lt;
+<span class="lineNum">     100 </span>            :     typename Ls, size_t... indices,
+<span class="lineNum">     101 </span>            :     std::enable_if_t&lt;not tt::is_a_v&lt;tmpl::list, tmpl::front&lt;Ls&gt;&gt;&gt;* = nullptr&gt;
+<span class="lineNum">     102 </span>            : inline constexpr std::array&lt;std::decay_t&lt;decltype(tmpl::front&lt;Ls&gt;::value)&gt;,
+<span class="lineNum">     103 </span>            :                             tmpl::size&lt;Ls&gt;::value&gt;
+<span class="lineNum">     104 </span>            : make_array_from_list_helper(
+<span class="lineNum">     105 </span>            :     std::integer_sequence&lt;size_t, indices...&gt; /*meta*/) {
+<span class="lineNum">     106 </span>            :   return std::array&lt;std::decay_t&lt;decltype(tmpl::front&lt;Ls&gt;::value)&gt;,
+<span class="lineNum">     107 </span>            :                     tmpl::size&lt;Ls&gt;::value&gt;{
+<span class="lineNum">     108 </span>            :       {tmpl::at&lt;Ls, tmpl::size_t&lt;indices&gt;&gt;::value...}};
+<span class="lineNum">     109 </span>            : }
+<span class="lineNum">     110 </span>            : }  // namespace detail
+<span class="lineNum">     111 </span>            : 
+<span class="lineNum">     112 </span>            : /// \ingroup ConstantExpressions
+<span class="lineNum">     113 </span>            : /// Make an array from a typelist that holds std::integral_constant's all of
+<span class="lineNum">     114 </span>            : /// which have the same `value_type`
+<span class="lineNum">     115 </span>            : ///
+<span class="lineNum">     116 </span>            : /// \tparam Ls the typelist of std::integral_constant's
+<span class="lineNum">     117 </span>            : /// \return array of integral values from the typelist
+<span class="lineNum">     118 </span>            : template &lt;
+<span class="lineNum">     119 </span>            :     typename Ls,
+<span class="lineNum">     120 </span>            :     std::enable_if_t&lt;not tt::is_a_v&lt;tmpl::list, tmpl::front&lt;Ls&gt;&gt;&gt;* = nullptr&gt;
+<span class="lineNum">     121 </span>            : inline constexpr std::array&lt;std::decay_t&lt;decltype(tmpl::front&lt;Ls&gt;::value)&gt;,
+<span class="lineNum">     122 </span>            :                             tmpl::size&lt;Ls&gt;::value&gt;
+<span class="lineNum">     123 </span><span class="lineCov">          2 : make_array_from_list() {</span>
+<span class="lineNum">     124 </span>            :   return detail::make_array_from_list_helper&lt;Ls&gt;(
+<span class="lineNum">     125 </span>            :       std::make_integer_sequence&lt;size_t, tmpl::size&lt;Ls&gt;::value&gt;{});
+<span class="lineNum">     126 </span>            : }
+<span class="lineNum">     127 </span>            : 
+<span class="lineNum">     128 </span>            : template &lt;typename TypeForZero,
+<span class="lineNum">     129 </span>            :           std::enable_if_t&lt;not tt::is_a_v&lt;tmpl::list, TypeForZero&gt;&gt;* = nullptr&gt;
+<span class="lineNum">     130 </span>            : inline constexpr std::array&lt;std::decay_t&lt;TypeForZero&gt;, 0&gt;
+<span class="lineNum">     131 </span><span class="lineNoCov">          0 : make_array_from_list() {</span>
+<span class="lineNum">     132 </span>            :   return std::array&lt;std::decay_t&lt;TypeForZero&gt;, 0&gt;{{}};
+<span class="lineNum">     133 </span>            : }
+<span class="lineNum">     134 </span>            : 
+<span class="lineNum">     135 </span>            : namespace detail {
+<span class="lineNum">     136 </span>            : template &lt;typename Ls, size_t... indices,
+<span class="lineNum">     137 </span>            :           typename std::enable_if&lt;
+<span class="lineNum">     138 </span>            :               tt::is_a&lt;tmpl::list, tmpl::front&lt;Ls&gt;&gt;::value&gt;::type* = nullptr&gt;
+<span class="lineNum">     139 </span>            : inline constexpr std::array&lt;
+<span class="lineNum">     140 </span>            :     std::decay_t&lt;
+<span class="lineNum">     141 </span>            :         decltype(make_array_from_list&lt;tmpl::at&lt;Ls, tmpl::size_t&lt;0&gt;&gt;&gt;())&gt;,
+<span class="lineNum">     142 </span>            :     tmpl::size&lt;Ls&gt;::value&gt;
+<span class="lineNum">     143 </span>            : make_array_from_list_helper(
+<span class="lineNum">     144 </span>            :     std::integer_sequence&lt;size_t, indices...&gt; /*unused*/) {
+<span class="lineNum">     145 </span>            :   return std::array&lt;std::decay_t&lt;decltype(
+<span class="lineNum">     146 </span>            :                         make_array_from_list&lt;tmpl::at&lt;Ls, tmpl::size_t&lt;0&gt;&gt;&gt;())&gt;,
+<span class="lineNum">     147 </span>            :                     tmpl::size&lt;Ls&gt;::value&gt;{
+<span class="lineNum">     148 </span>            :       {make_array_from_list_helper&lt;tmpl::at&lt;Ls, tmpl::size_t&lt;indices&gt;&gt;&gt;(
+<span class="lineNum">     149 </span>            :           std::make_integer_sequence&lt;
+<span class="lineNum">     150 </span>            :               size_t,
+<span class="lineNum">     151 </span>            :               tmpl::size&lt;tmpl::at&lt;Ls, tmpl::size_t&lt;indices&gt;&gt;&gt;::value&gt;{})...}};
+<span class="lineNum">     152 </span>            : }
+<span class="lineNum">     153 </span>            : }  // namespace detail
+<span class="lineNum">     154 </span>            : 
+<span class="lineNum">     155 </span>            : /// \ingroup ConstantExpressions
+<span class="lineNum">     156 </span>            : ///
+<span class="lineNum">     157 </span>            : /// Make an array of arrays from a typelist that holds typelists of
+<span class="lineNum">     158 </span>            : /// std::integral_constant's all of which have the same `value_type`
+<span class="lineNum">     159 </span>            : ///
+<span class="lineNum">     160 </span>            : /// \tparam Ls the typelist of typelists of std::integral_constant's
+<span class="lineNum">     161 </span>            : /// \return array of arrays of integral values from the typelists
+<span class="lineNum">     162 </span>            : template &lt;typename Ls,
+<span class="lineNum">     163 </span>            :           std::enable_if_t&lt;tt::is_a_v&lt;tmpl::list, tmpl::front&lt;Ls&gt;&gt;&gt;* = nullptr&gt;
+<span class="lineNum">     164 </span><span class="lineCov">          1 : inline constexpr auto make_array_from_list() {</span>
+<span class="lineNum">     165 </span>            :   return detail::make_array_from_list_helper&lt;Ls&gt;(
+<span class="lineNum">     166 </span>            :       std::make_integer_sequence&lt;size_t, tmpl::size&lt;Ls&gt;::value&gt;{});
+<span class="lineNum">     167 </span>            : }
+<span class="lineNum">     168 </span>            : 
+<span class="lineNum">     169 </span>            : /// \ingroup ConstantExpressions
+<span class="lineNum">     170 </span>            : /// \brief Compute the length of a const char* at compile time
+<span class="lineNum">     171 </span><span class="lineCov">          2 : SPECTRE_ALWAYS_INLINE constexpr size_t cstring_length(const char* str) {</span>
+<span class="lineNum">     172 </span>            :   return *str != 0 ? 1 + cstring_length(str + 1) : 0;  // NOLINT
+<span class="lineNum">     173 </span>            : }
+<span class="lineNum">     174 </span>            : 
+<span class="lineNum">     175 </span>            : /// \ingroup ConstantExpressions
+<span class="lineNum">     176 </span>            : /// \brief Compute a hash of a const char* at compile time
+<span class="lineNum">     177 </span><span class="lineCov">          2 : SPECTRE_ALWAYS_INLINE constexpr size_t cstring_hash(const char* str) {</span>
+<span class="lineNum">     178 </span>            :   return *str != 0
+<span class="lineNum">     179 </span>            :              ? (cstring_hash(str + 1) * 33) ^  // NOLINT
+<span class="lineNum">     180 </span>            :                    static_cast&lt;size_t&gt;(*str)
+<span class="lineNum">     181 </span>            :              : 5381;
+<span class="lineNum">     182 </span>            : }
 <span class="lineNum">     183 </span>            : 
-<span class="lineNum">     184 </span>            : /// \ingroup ConstantExpressions
-<span class="lineNum">     185 </span>            : /// Replace at compile time the `I`th entry in the array with `value`
-<span class="lineNum">     186 </span>            : template &lt;size_t I, typename T, size_t Size&gt;
-<span class="lineNum">     187 </span><span class="lineCov">          2 : inline constexpr std::array&lt;std::decay_t&lt;T&gt;, Size&gt; replace_at(</span>
-<span class="lineNum">     188 </span>            :     const std::array&lt;T, Size&gt;&amp; arr, T value) {
-<span class="lineNum">     189 </span>            :   return ConstantExpression_detail::replace_at_helper(
-<span class="lineNum">     190 </span>            :       arr, std::forward&lt;T&gt;(value), I + 1,
-<span class="lineNum">     191 </span>            :       std::make_integer_sequence&lt;size_t, I&gt;{},
-<span class="lineNum">     192 </span>            :       std::make_integer_sequence&lt;size_t, Size - I - 1&gt;{});
-<span class="lineNum">     193 </span>            : }
-<span class="lineNum">     194 </span>            : 
-<span class="lineNum">     195 </span>            : /// \ingroup ConstantExpressions
-<span class="lineNum">     196 </span>            : /// Check at compile time if two `std::array`s are equal
-<span class="lineNum">     197 </span>            : template &lt;typename T, typename S, size_t size&gt;
-<span class="lineNum">     198 </span><span class="lineCov">          2 : inline constexpr bool array_equal(const std::array&lt;T, size&gt;&amp; lhs,</span>
-<span class="lineNum">     199 </span>            :                                   const std::array&lt;S, size&gt;&amp; rhs,
-<span class="lineNum">     200 </span>            :                                   const size_t i = 0) {
-<span class="lineNum">     201 </span>            :   return i &lt; size ? (lhs[i] == rhs[i] and array_equal(lhs, rhs, i + 1)) : true;
-<span class="lineNum">     202 </span>            : }
+<span class="lineNum">     184 </span>            : namespace ConstantExpression_detail {
+<span class="lineNum">     185 </span>            : template &lt;typename T, size_t Size, size_t... I, size_t... J&gt;
+<span class="lineNum">     186 </span>            : inline constexpr std::array&lt;std::decay_t&lt;T&gt;, Size&gt; replace_at_helper(
+<span class="lineNum">     187 </span>            :     const std::array&lt;T, Size&gt;&amp; arr, const T&amp; value, const size_t i,
+<span class="lineNum">     188 </span>            :     std::integer_sequence&lt;size_t, I...&gt; /*unused*/,
+<span class="lineNum">     189 </span>            :     std::integer_sequence&lt;size_t, J...&gt; /*unused*/) {
+<span class="lineNum">     190 </span>            :   return std::array&lt;std::decay_t&lt;T&gt;, Size&gt;{{arr[I]..., value, arr[i + J]...}};
+<span class="lineNum">     191 </span>            : }
+<span class="lineNum">     192 </span>            : }  // namespace ConstantExpression_detail
+<span class="lineNum">     193 </span>            : 
+<span class="lineNum">     194 </span>            : /// \ingroup ConstantExpressions
+<span class="lineNum">     195 </span>            : /// Replace at compile time the `I`th entry in the array with `value`
+<span class="lineNum">     196 </span>            : template &lt;size_t I, typename T, size_t Size&gt;
+<span class="lineNum">     197 </span><span class="lineCov">          2 : inline constexpr std::array&lt;std::decay_t&lt;T&gt;, Size&gt; replace_at(</span>
+<span class="lineNum">     198 </span>            :     const std::array&lt;T, Size&gt;&amp; arr, T value) {
+<span class="lineNum">     199 </span>            :   return ConstantExpression_detail::replace_at_helper(
+<span class="lineNum">     200 </span>            :       arr, std::forward&lt;T&gt;(value), I + 1,
+<span class="lineNum">     201 </span>            :       std::make_integer_sequence&lt;size_t, I&gt;{},
+<span class="lineNum">     202 </span>            :       std::make_integer_sequence&lt;size_t, Size - I - 1&gt;{});
+<span class="lineNum">     203 </span>            : }
+<span class="lineNum">     204 </span>            : 
+<span class="lineNum">     205 </span>            : /// \ingroup ConstantExpressions
+<span class="lineNum">     206 </span>            : /// Check at compile time if two `std::array`s are equal
+<span class="lineNum">     207 </span>            : template &lt;typename T, typename S, size_t size&gt;
+<span class="lineNum">     208 </span><span class="lineCov">          2 : inline constexpr bool array_equal(const std::array&lt;T, size&gt;&amp; lhs,</span>
+<span class="lineNum">     209 </span>            :                                   const std::array&lt;S, size&gt;&amp; rhs,
+<span class="lineNum">     210 </span>            :                                   const size_t i = 0) {
+<span class="lineNum">     211 </span>            :   return i &lt; size ? (lhs[i] == rhs[i] and array_equal(lhs, rhs, i + 1)) : true;
+<span class="lineNum">     212 </span>            : }
 </pre>
       </td>
     </tr>
