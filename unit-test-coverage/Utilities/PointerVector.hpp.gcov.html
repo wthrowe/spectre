@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - e5cbc5bb9c5aba2950342934cd01e8f137343a21 - Utilities/PointerVector.hpp</title>
+  <title>LCOV - b098be82ff1e5fcf43614b8a865d0fcc0256ccc3 - Utilities/PointerVector.hpp</title>
   <link rel="stylesheet" type="text/css" href="../gcov.css">
 </head>
 
@@ -28,20 +28,20 @@
           </tr>
           <tr>
             <td class="headerItem">Commit:</td>
-             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/e5cbc5bb9c5aba2950342934cd01e8f137343a21">e5cbc5bb9c5aba2950342934cd01e8f137343a21</a></td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/b098be82ff1e5fcf43614b8a865d0fcc0256ccc3">b098be82ff1e5fcf43614b8a865d0fcc0256ccc3</a></td>
             <td></td>
             <td class="headerItem">Lines:</td>
-            <td class="headerCovTableEntry">163</td>
-            <td class="headerCovTableEntry">174</td>
-            <td class="headerCovTableEntryHi">93.7 %</td>
+            <td class="headerCovTableEntry">171</td>
+            <td class="headerCovTableEntry">179</td>
+            <td class="headerCovTableEntryHi">95.5 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2017-06-21 01:58:57</td>
+            <td class="headerValue">2017-06-22 01:59:47</td>
             <td></td>
             <td class="headerItem">Functions:</td>
-            <td class="headerCovTableEntry">49</td>
-            <td class="headerCovTableEntry">49</td>
+            <td class="headerCovTableEntry">56</td>
+            <td class="headerCovTableEntry">56</td>
             <td class="headerCovTableEntryHi">100.0 %</td>
           </tr>
           <tr>
@@ -241,8 +241,8 @@
 <span class="lineNum">     171 </span>            :   enum : bool { simdEnabled = blaze::IsVectorizable&lt;Type&gt;::value };
 <a name="172"><span class="lineNum">     172 </span>            :   enum : bool { smpAssignable = !blaze::IsSMPAssignable&lt;Type&gt;::value };</a>
 <a name="173"><span class="lineNum">     173 </span>            : </a>
-<span class="lineNum">     174 </span><span class="lineCov">         17 :   PointerVector() = default;</span>
-<span class="lineNum">     175 </span><span class="lineCov">        301 :   PointerVector(Type* ptr, size_t size) : v_(ptr), size_(size) {}</span>
+<span class="lineNum">     174 </span><span class="lineCov">        173 :   PointerVector() = default;</span>
+<span class="lineNum">     175 </span><span class="lineCov">        501 :   PointerVector(Type* ptr, size_t size) : v_(ptr), size_(size) {}</span>
 <span class="lineNum">     176 </span>            :   PointerVector(const PointerVector&amp; /*rhs*/) = default;
 <span class="lineNum">     177 </span>            :   PointerVector&amp; operator=(const PointerVector&amp; /*rhs*/) = default;
 <span class="lineNum">     178 </span>            :   PointerVector(PointerVector&amp;&amp; /*rhs*/) = default;
@@ -251,17 +251,17 @@
 <span class="lineNum">     181 </span>            : 
 <a name="182"><span class="lineNum">     182 </span>            :   /*!\name Data access functions */</a>
 <a name="183"><span class="lineNum">     183 </span>            :   //@{</a>
-<span class="lineNum">     184 </span><span class="lineCov">       1453 :   Type&amp; operator[](const size_t i) noexcept { return v_[i]; }</span>
-<span class="lineNum">     185 </span><span class="lineCov">       9120 :   const Type&amp; operator[](const size_t i) const noexcept { return v_[i]; }</span>
+<span class="lineNum">     184 </span><span class="lineCov">       1623 :   Type&amp; operator[](const size_t i) noexcept { return v_[i]; }</span>
+<span class="lineNum">     185 </span><span class="lineCov">       9308 :   const Type&amp; operator[](const size_t i) const noexcept { return v_[i]; }</span>
 <a name="186"><span class="lineNum">     186 </span>            :   inline Reference at(size_t index);</a>
-<span class="lineNum">     187 </span>            :   inline ConstReference at(size_t index) const;
-<a name="188"><span class="lineNum">     188 </span><span class="lineCov">         64 :   Pointer data() noexcept { return v_; }</span></a>
-<a name="189"><span class="lineNum">     189 </span>            :   ConstPointer data() const noexcept { return v_; }</a>
-<span class="lineNum">     190 </span><span class="lineCov">         10 :   Iterator begin() noexcept { return Iterator(v_); }</span>
-<a name="191"><span class="lineNum">     191 </span><span class="lineCov">         84 :   ConstIterator begin() const noexcept { return ConstIterator(v_); }</span></a>
+<a name="187"><span class="lineNum">     187 </span>            :   inline ConstReference at(size_t index) const;</a>
+<a name="188"><span class="lineNum">     188 </span><span class="lineCov">         72 :   Pointer data() noexcept { return v_; }</span></a>
+<a name="189"><span class="lineNum">     189 </span><span class="lineCov">        105 :   ConstPointer data() const noexcept { return v_; }</span></a>
+<span class="lineNum">     190 </span><span class="lineCov">         19 :   Iterator begin() noexcept { return Iterator(v_); }</span>
+<a name="191"><span class="lineNum">     191 </span><span class="lineCov">        156 :   ConstIterator begin() const noexcept { return ConstIterator(v_); }</span></a>
 <a name="192"><span class="lineNum">     192 </span>            :   ConstIterator cbegin() const noexcept { return ConstIterator(v_); }</a>
-<span class="lineNum">     193 </span><span class="lineCov">          7 :   Iterator end() noexcept { return Iterator(v_ + size_); }</span>
-<span class="lineNum">     194 </span><span class="lineCov">         45 :   ConstIterator end() const noexcept { return ConstIterator(v_ + size_); }</span>
+<span class="lineNum">     193 </span><span class="lineCov">         10 :   Iterator end() noexcept { return Iterator(v_ + size_); }</span>
+<span class="lineNum">     194 </span><span class="lineCov">        109 :   ConstIterator end() const noexcept { return ConstIterator(v_ + size_); }</span>
 <span class="lineNum">     195 </span>            :   ConstIterator cend() const noexcept { return ConstIterator(v_ + size_); }
 <span class="lineNum">     196 </span>            :   //@}
 <span class="lineNum">     197 </span>            : 
@@ -306,17 +306,17 @@
 <span class="lineNum">     236 </span>            : 
 <a name="237"><span class="lineNum">     237 </span>            :   size_t spacing() const noexcept { return size_; }</a>
 <span class="lineNum">     238 </span>            : 
-<span class="lineNum">     239 </span><span class="lineCov">        455 :   size_t size() const noexcept { return size_; }</span>
+<span class="lineNum">     239 </span><span class="lineCov">        560 :   size_t size() const noexcept { return size_; }</span>
 <span class="lineNum">     240 </span>            :   //@}
 <span class="lineNum">     241 </span>            : 
 <span class="lineNum">     242 </span>            :   /*!\name Resource management functions */
 <span class="lineNum">     243 </span>            :   //@{
-<span class="lineNum">     244 </span>            :   void reset() { clear(); }
+<a name="244"><span class="lineNum">     244 </span>            :   void reset() { clear(); }</a>
 <span class="lineNum">     245 </span>            : 
-<span class="lineNum">     246 </span>            :   inline void reset(Type* ptr, size_t n) {
-<span class="lineNum">     247 </span>            :     v_ = ptr;
-<span class="lineNum">     248 </span>            :     size_ = n;
-<span class="lineNum">     249 </span>            :   }
+<span class="lineNum">     246 </span><span class="lineCov">          5 :   inline void reset(Type* ptr, size_t n) {</span>
+<span class="lineNum">     247 </span><span class="lineCov">          5 :     v_ = ptr;</span>
+<span class="lineNum">     248 </span><span class="lineCov">          5 :     size_ = n;</span>
+<span class="lineNum">     249 </span><span class="lineCov">          5 :   }</span>
 <span class="lineNum">     250 </span>            :   //@}
 <span class="lineNum">     251 </span>            : 
 <span class="lineNum">     252 </span>            :  private:
@@ -485,34 +485,34 @@
 <span class="lineNum">     415 </span>            :   return *this;
 <span class="lineNum">     416 </span>            : }
 <span class="lineNum">     417 </span>            : 
-<span class="lineNum">     418 </span>            : template &lt;typename Type, bool AF, bool PF, bool TF&gt;
+<a name="418"><span class="lineNum">     418 </span>            : template &lt;typename Type, bool AF, bool PF, bool TF&gt;</a>
 <span class="lineNum">     419 </span>            : template &lt;typename VT&gt;
-<span class="lineNum">     420 </span><span class="lineCov">          7 : inline PointerVector&lt;Type, AF, PF, TF&gt;&amp; PointerVector&lt;Type, AF, PF, TF&gt;::</span>
+<span class="lineNum">     420 </span><span class="lineCov">          9 : inline PointerVector&lt;Type, AF, PF, TF&gt;&amp; PointerVector&lt;Type, AF, PF, TF&gt;::</span>
 <span class="lineNum">     421 </span>            : operator=(const blaze::Vector&lt;VT, TF&gt;&amp; rhs) {
-<span class="lineNum">     422 </span><span class="lineCov">          7 :   ASSERT((~rhs).size() == size_, &quot;Vector sizes do not match&quot;);</span>
+<span class="lineNum">     422 </span><span class="lineCov">          9 :   ASSERT((~rhs).size() == size_, &quot;Vector sizes do not match&quot;);</span>
 <span class="lineNum">     423 </span>            :   using namespace blaze;
-<span class="lineNum">     424 </span><span class="lineCov">          7 :   smpAssign(*this, ~rhs);</span>
-<span class="lineNum">     425 </span><span class="lineCov">          7 :   return *this;</span>
+<span class="lineNum">     424 </span><span class="lineCov">          9 :   smpAssign(*this, ~rhs);</span>
+<span class="lineNum">     425 </span><span class="lineCov">          9 :   return *this;</span>
 <span class="lineNum">     426 </span>            : }
 <span class="lineNum">     427 </span>            : 
-<span class="lineNum">     428 </span>            : template &lt;typename Type, bool AF, bool PF, bool TF&gt;
+<a name="428"><span class="lineNum">     428 </span>            : template &lt;typename Type, bool AF, bool PF, bool TF&gt;</a>
 <span class="lineNum">     429 </span>            : template &lt;typename VT&gt;
-<span class="lineNum">     430 </span><span class="lineCov">          2 : inline PointerVector&lt;Type, AF, PF, TF&gt;&amp; PointerVector&lt;Type, AF, PF, TF&gt;::</span>
+<span class="lineNum">     430 </span><span class="lineCov">          4 : inline PointerVector&lt;Type, AF, PF, TF&gt;&amp; PointerVector&lt;Type, AF, PF, TF&gt;::</span>
 <span class="lineNum">     431 </span>            : operator+=(const blaze::Vector&lt;VT, TF&gt;&amp; rhs) {
-<span class="lineNum">     432 </span><span class="lineCov">          2 :   ASSERT((~rhs).size() == size_, &quot;Vector sizes do not match&quot;);</span>
+<span class="lineNum">     432 </span><span class="lineCov">          4 :   ASSERT((~rhs).size() == size_, &quot;Vector sizes do not match&quot;);</span>
 <span class="lineNum">     433 </span>            :   using namespace blaze;
-<span class="lineNum">     434 </span><span class="lineCov">          2 :   smpAddAssign(*this, ~rhs);</span>
-<span class="lineNum">     435 </span><span class="lineCov">          2 :   return *this;</span>
+<span class="lineNum">     434 </span><span class="lineCov">          4 :   smpAddAssign(*this, ~rhs);</span>
+<span class="lineNum">     435 </span><span class="lineCov">          4 :   return *this;</span>
 <span class="lineNum">     436 </span>            : }
 <span class="lineNum">     437 </span>            : 
-<span class="lineNum">     438 </span>            : template &lt;typename Type, bool AF, bool PF, bool TF&gt;
+<a name="438"><span class="lineNum">     438 </span>            : template &lt;typename Type, bool AF, bool PF, bool TF&gt;</a>
 <span class="lineNum">     439 </span>            : template &lt;typename VT&gt;
-<span class="lineNum">     440 </span><span class="lineCov">          2 : inline PointerVector&lt;Type, AF, PF, TF&gt;&amp; PointerVector&lt;Type, AF, PF, TF&gt;::</span>
+<span class="lineNum">     440 </span><span class="lineCov">          4 : inline PointerVector&lt;Type, AF, PF, TF&gt;&amp; PointerVector&lt;Type, AF, PF, TF&gt;::</span>
 <span class="lineNum">     441 </span>            : operator-=(const blaze::Vector&lt;VT, TF&gt;&amp; rhs) {
-<span class="lineNum">     442 </span><span class="lineCov">          2 :   ASSERT((~rhs).size() == size_, &quot;Vector sizes do not match&quot;);</span>
+<span class="lineNum">     442 </span><span class="lineCov">          4 :   ASSERT((~rhs).size() == size_, &quot;Vector sizes do not match&quot;);</span>
 <span class="lineNum">     443 </span>            :   using namespace blaze;
-<span class="lineNum">     444 </span><span class="lineCov">          2 :   smpSubAssign(*this, ~rhs);</span>
-<span class="lineNum">     445 </span><span class="lineCov">          2 :   return *this;</span>
+<span class="lineNum">     444 </span><span class="lineCov">          4 :   smpSubAssign(*this, ~rhs);</span>
+<span class="lineNum">     445 </span><span class="lineCov">          4 :   return *this;</span>
 <span class="lineNum">     446 </span>            : }
 <span class="lineNum">     447 </span>            : 
 <span class="lineNum">     448 </span>            : template &lt;typename Type, bool AF, bool PF, bool TF&gt;
@@ -580,21 +580,21 @@
 <span class="lineNum">     510 </span>            : template &lt;typename Other&gt;
 <a name="511"><span class="lineNum">     511 </span>            : inline std::enable_if_t&lt;blaze::IsNumeric&lt;Other&gt;::value,</a>
 <span class="lineNum">     512 </span>            :                         PointerVector&lt;Type, AF, PF, TF&gt;&gt;&amp;
-<span class="lineNum">     513 </span><span class="lineCov">          1 : PointerVector&lt;Type, AF, PF, TF&gt;::operator*=(Other rhs) {</span>
+<span class="lineNum">     513 </span><span class="lineCov">          2 : PointerVector&lt;Type, AF, PF, TF&gt;::operator*=(Other rhs) {</span>
 <span class="lineNum">     514 </span>            :   using namespace blaze;
-<span class="lineNum">     515 </span><span class="lineCov">          1 :   smpAssign(*this, (*this) * rhs);</span>
-<span class="lineNum">     516 </span><span class="lineCov">          1 :   return *this;</span>
+<span class="lineNum">     515 </span><span class="lineCov">          2 :   smpAssign(*this, (*this) * rhs);</span>
+<span class="lineNum">     516 </span><span class="lineCov">          2 :   return *this;</span>
 <span class="lineNum">     517 </span>            : }
 <span class="lineNum">     518 </span>            : 
 <span class="lineNum">     519 </span>            : template &lt;typename Type, bool AF, bool PF, bool TF&gt;
 <span class="lineNum">     520 </span>            : template &lt;typename Other&gt;
 <a name="521"><span class="lineNum">     521 </span>            : inline std::enable_if_t&lt;blaze::IsNumeric&lt;Other&gt;::value,</a>
 <span class="lineNum">     522 </span>            :                         PointerVector&lt;Type, AF, PF, TF&gt;&gt;&amp;
-<span class="lineNum">     523 </span><span class="lineCov">          1 : PointerVector&lt;Type, AF, PF, TF&gt;::operator/=(Other rhs) {</span>
+<span class="lineNum">     523 </span><span class="lineCov">          2 : PointerVector&lt;Type, AF, PF, TF&gt;::operator/=(Other rhs) {</span>
 <span class="lineNum">     524 </span>            :   BLAZE_USER_ASSERT(rhs != Other(0), &quot;Division by zero detected&quot;);
 <span class="lineNum">     525 </span>            :   using namespace blaze;
-<span class="lineNum">     526 </span><span class="lineCov">          1 :   smpAssign(*this, (*this) / rhs);</span>
-<span class="lineNum">     527 </span><span class="lineCov">          1 :   return *this;</span>
+<span class="lineNum">     526 </span><span class="lineCov">          2 :   smpAssign(*this, (*this) / rhs);</span>
+<span class="lineNum">     527 </span><span class="lineCov">          2 :   return *this;</span>
 <span class="lineNum">     528 </span>            : }
 <span class="lineNum">     529 </span>            : 
 <span class="lineNum">     530 </span>            : template &lt;typename Type, bool AF, bool PF, bool TF&gt;
@@ -660,7 +660,7 @@
 <span class="lineNum">     590 </span>            :   BLAZE_INTERNAL_ASSERT(index + SIMDSIZE &lt;= size_,
 <span class="lineNum">     591 </span>            :                         &quot;Invalid vector access index&quot;);
 <span class="lineNum">     592 </span>            : 
-<span class="lineNum">     593 </span><span class="lineCov">         32 :   return loadu(v_ + index);</span>
+<span class="lineNum">     593 </span><span class="lineCov">         36 :   return loadu(v_ + index);</span>
 <span class="lineNum">     594 </span>            : }
 <span class="lineNum">     595 </span>            : 
 <span class="lineNum">     596 </span>            : template &lt;typename Type, bool AF, bool PF, bool TF&gt;
@@ -702,7 +702,7 @@
 <span class="lineNum">     632 </span>            :   BLAZE_INTERNAL_ASSERT(index + SIMDSIZE &lt;= size_,
 <span class="lineNum">     633 </span>            :                         &quot;Invalid vector access index&quot;);
 <span class="lineNum">     634 </span>            : 
-<span class="lineNum">     635 </span><span class="lineCov">         64 :   storeu(v_ + index, value);</span>
+<span class="lineNum">     635 </span><span class="lineCov">         72 :   storeu(v_ + index, value);</span>
 <span class="lineNum">     636 </span>            : }
 <span class="lineNum">     637 </span>            : 
 <span class="lineNum">     638 </span>            : template &lt;typename Type, bool AF, bool PF, bool TF&gt;
@@ -745,18 +745,18 @@
 <span class="lineNum">     675 </span>            : 
 <span class="lineNum">     676 </span>            : template &lt;typename Type, bool AF, bool PF, bool TF&gt;
 <span class="lineNum">     677 </span>            : template &lt;typename VT&gt;
-<span class="lineNum">     678 </span>            : inline std::enable_if_t&lt;(PointerVector&lt;Type, AF, PF, TF&gt;::BLAZE_TEMPLATE
+<a name="678"><span class="lineNum">     678 </span>            : inline std::enable_if_t&lt;(PointerVector&lt;Type, AF, PF, TF&gt;::BLAZE_TEMPLATE</a>
 <span class="lineNum">     679 </span>            :                              VectorizedAssign&lt;VT&gt;::value)&gt;
-<span class="lineNum">     680 </span><span class="lineCov">          8 : PointerVector&lt;Type, AF, PF, TF&gt;::assign(const blaze::DenseVector&lt;VT, TF&gt;&amp; rhs) {</span>
+<span class="lineNum">     680 </span><span class="lineCov">         12 : PointerVector&lt;Type, AF, PF, TF&gt;::assign(const blaze::DenseVector&lt;VT, TF&gt;&amp; rhs) {</span>
 <span class="lineNum">     681 </span>            :   BLAZE_CONSTRAINT_MUST_BE_VECTORIZABLE_TYPE(Type);
 <span class="lineNum">     682 </span>            : 
 <span class="lineNum">     683 </span>            :   BLAZE_INTERNAL_ASSERT(size_ == (~rhs).size(), &quot;Invalid vector sizes&quot;);
 <span class="lineNum">     684 </span>            : 
-<span class="lineNum">     685 </span><span class="lineCov">          8 :   const size_t ipos(size_ &amp; size_t(-SIMDSIZE));</span>
+<span class="lineNum">     685 </span><span class="lineCov">         12 :   const size_t ipos(size_ &amp; size_t(-SIMDSIZE));</span>
 <span class="lineNum">     686 </span>            :   BLAZE_INTERNAL_ASSERT((size_ - (size_ % SIMDSIZE)) == ipos,
 <span class="lineNum">     687 </span>            :                         &quot;Invalid end calculation&quot;);
 <span class="lineNum">     688 </span>            : 
-<span class="lineNum">     689 </span><span class="lineCov">          8 :   if (AF &amp;&amp; blaze::useStreaming &amp;&amp;</span>
+<span class="lineNum">     689 </span><span class="lineCov">         12 :   if (AF &amp;&amp; blaze::useStreaming &amp;&amp;</span>
 <span class="lineNum">     690 </span>            :       size_ &gt; (blaze::cacheSize / (sizeof(Type) * 3UL)) &amp;&amp;
 <span class="lineNum">     691 </span>            :       !(~rhs).isAliased(this)) {
 <span class="lineNum">     692 </span><span class="lineNoCov">          0 :     size_t i(0UL);</span>
@@ -768,15 +768,15 @@
 <span class="lineNum">     698 </span><span class="lineNoCov">          0 :       v_[i] = (~rhs)[i];</span>
 <span class="lineNum">     699 </span>            :     }
 <span class="lineNum">     700 </span>            :   } else {
-<span class="lineNum">     701 </span><span class="lineCov">          8 :     const size_t i4way(size_ &amp; size_t(-SIMDSIZE * 4));</span>
+<span class="lineNum">     701 </span><span class="lineCov">         12 :     const size_t i4way(size_ &amp; size_t(-SIMDSIZE * 4));</span>
 <span class="lineNum">     702 </span>            :     BLAZE_INTERNAL_ASSERT((size_ - (size_ % (SIMDSIZE * 4UL))) == i4way,
 <span class="lineNum">     703 </span>            :                           &quot;Invalid end calculation&quot;);
 <span class="lineNum">     704 </span>            :     BLAZE_INTERNAL_ASSERT(i4way &lt;= ipos, &quot;Invalid end calculation&quot;);
 <span class="lineNum">     705 </span>            : 
-<span class="lineNum">     706 </span><span class="lineCov">          8 :     size_t i(0UL);</span>
-<span class="lineNum">     707 </span><span class="lineCov">          8 :     blaze::ConstIterator_&lt;VT&gt; it((~rhs).begin());</span>
+<span class="lineNum">     706 </span><span class="lineCov">         12 :     size_t i(0UL);</span>
+<span class="lineNum">     707 </span><span class="lineCov">         12 :     blaze::ConstIterator_&lt;VT&gt; it((~rhs).begin());</span>
 <span class="lineNum">     708 </span>            : 
-<span class="lineNum">     709 </span><span class="lineCov">         24 :     for (; i &lt; i4way; i += SIMDSIZE * 4UL) {</span>
+<span class="lineNum">     709 </span><span class="lineCov">         28 :     for (; i &lt; i4way; i += SIMDSIZE * 4UL) {</span>
 <span class="lineNum">     710 </span><span class="lineCov">         16 :       store(i, it.load());</span>
 <span class="lineNum">     711 </span><span class="lineCov">          8 :       it += SIMDSIZE;</span>
 <span class="lineNum">     712 </span><span class="lineCov">         22 :       store(i + SIMDSIZE, it.load());</span>
@@ -786,14 +786,14 @@
 <span class="lineNum">     716 </span><span class="lineCov">         22 :       store(i + SIMDSIZE * 3UL, it.load());</span>
 <span class="lineNum">     717 </span><span class="lineCov">          8 :       it += SIMDSIZE;</span>
 <span class="lineNum">     718 </span>            :     }
-<span class="lineNum">     719 </span><span class="lineCov">          8 :     for (; i &lt; ipos; i += SIMDSIZE, it += SIMDSIZE) {</span>
-<span class="lineNum">     720 </span><span class="lineNoCov">          0 :       store(i, it.load());</span>
+<span class="lineNum">     719 </span><span class="lineCov">         20 :     for (; i &lt; ipos; i += SIMDSIZE, it += SIMDSIZE) {</span>
+<span class="lineNum">     720 </span><span class="lineCov">          8 :       store(i, it.load());</span>
 <span class="lineNum">     721 </span>            :     }
-<span class="lineNum">     722 </span><span class="lineCov">         56 :     for (; i &lt; size_; ++i, ++it) {</span>
-<span class="lineNum">     723 </span><span class="lineCov">         24 :       v_[i] = *it;</span>
+<span class="lineNum">     722 </span><span class="lineCov">         68 :     for (; i &lt; size_; ++i, ++it) {</span>
+<span class="lineNum">     723 </span><span class="lineCov">         28 :       v_[i] = *it;</span>
 <span class="lineNum">     724 </span>            :     }
 <span class="lineNum">     725 </span>            :   }
-<span class="lineNum">     726 </span><span class="lineCov">          8 : }</span>
+<span class="lineNum">     726 </span><span class="lineCov">         12 : }</span>
 <span class="lineNum">     727 </span>            : 
 <span class="lineNum">     728 </span>            : template &lt;typename Type, bool AF, bool PF, bool TF&gt;
 <span class="lineNum">     729 </span>            : template &lt;typename VT&gt;
@@ -819,27 +819,27 @@
 <span class="lineNum">     749 </span>            : 
 <span class="lineNum">     750 </span>            : template &lt;typename Type, bool AF, bool PF, bool TF&gt;
 <span class="lineNum">     751 </span>            : template &lt;typename VT&gt;
-<span class="lineNum">     752 </span>            : inline std::enable_if_t&lt;(PointerVector&lt;Type, AF, PF, TF&gt;::BLAZE_TEMPLATE
+<a name="752"><span class="lineNum">     752 </span>            : inline std::enable_if_t&lt;(PointerVector&lt;Type, AF, PF, TF&gt;::BLAZE_TEMPLATE</a>
 <span class="lineNum">     753 </span>            :                              VectorizedAddAssign&lt;VT&gt;::value)&gt;
-<span class="lineNum">     754 </span><span class="lineCov">          2 : PointerVector&lt;Type, AF, PF, TF&gt;::addAssign(</span>
+<span class="lineNum">     754 </span><span class="lineCov">          4 : PointerVector&lt;Type, AF, PF, TF&gt;::addAssign(</span>
 <span class="lineNum">     755 </span>            :     const blaze::DenseVector&lt;VT, TF&gt;&amp; rhs) {
 <span class="lineNum">     756 </span>            :   BLAZE_CONSTRAINT_MUST_BE_VECTORIZABLE_TYPE(Type);
 <span class="lineNum">     757 </span>            : 
 <span class="lineNum">     758 </span>            :   BLAZE_INTERNAL_ASSERT(size_ == (~rhs).size(), &quot;Invalid vector sizes&quot;);
 <span class="lineNum">     759 </span>            : 
-<span class="lineNum">     760 </span><span class="lineCov">          2 :   const size_t ipos(size_ &amp; size_t(-SIMDSIZE));</span>
+<span class="lineNum">     760 </span><span class="lineCov">          4 :   const size_t ipos(size_ &amp; size_t(-SIMDSIZE));</span>
 <span class="lineNum">     761 </span>            :   BLAZE_INTERNAL_ASSERT((size_ - (size_ % SIMDSIZE)) == ipos,
 <span class="lineNum">     762 </span>            :                         &quot;Invalid end calculation&quot;);
 <span class="lineNum">     763 </span>            : 
-<span class="lineNum">     764 </span><span class="lineCov">          2 :   const size_t i4way(size_ &amp; size_t(-SIMDSIZE * 4));</span>
+<span class="lineNum">     764 </span><span class="lineCov">          4 :   const size_t i4way(size_ &amp; size_t(-SIMDSIZE * 4));</span>
 <span class="lineNum">     765 </span>            :   BLAZE_INTERNAL_ASSERT((size_ - (size_ % (SIMDSIZE * 4UL))) == i4way,
 <span class="lineNum">     766 </span>            :                         &quot;Invalid end calculation&quot;);
 <span class="lineNum">     767 </span>            :   BLAZE_INTERNAL_ASSERT(i4way &lt;= ipos, &quot;Invalid end calculation&quot;);
 <span class="lineNum">     768 </span>            : 
-<span class="lineNum">     769 </span><span class="lineCov">          2 :   size_t i(0UL);</span>
-<span class="lineNum">     770 </span><span class="lineCov">          2 :   blaze::ConstIterator_&lt;VT&gt; it((~rhs).begin());</span>
+<span class="lineNum">     769 </span><span class="lineCov">          4 :   size_t i(0UL);</span>
+<span class="lineNum">     770 </span><span class="lineCov">          4 :   blaze::ConstIterator_&lt;VT&gt; it((~rhs).begin());</span>
 <span class="lineNum">     771 </span>            : 
-<span class="lineNum">     772 </span><span class="lineCov">          6 :   for (; i &lt; i4way; i += SIMDSIZE * 4UL) {</span>
+<span class="lineNum">     772 </span><span class="lineCov">          8 :   for (; i &lt; i4way; i += SIMDSIZE * 4UL) {</span>
 <span class="lineNum">     773 </span><span class="lineCov">          7 :     store(i, load(i) + it.load());</span>
 <span class="lineNum">     774 </span><span class="lineCov">          2 :     it += SIMDSIZE;</span>
 <span class="lineNum">     775 </span><span class="lineCov">          8 :     store(i + SIMDSIZE, load(i + SIMDSIZE) + it.load());</span>
@@ -849,13 +849,13 @@
 <span class="lineNum">     779 </span><span class="lineCov">          8 :     store(i + SIMDSIZE * 3UL, load(i + SIMDSIZE * 3UL) + it.load());</span>
 <span class="lineNum">     780 </span><span class="lineCov">          2 :     it += SIMDSIZE;</span>
 <span class="lineNum">     781 </span>            :   }
-<span class="lineNum">     782 </span><span class="lineCov">          2 :   for (; i &lt; ipos; i += SIMDSIZE, it += SIMDSIZE) {</span>
-<span class="lineNum">     783 </span><span class="lineNoCov">          0 :     store(i, load(i) + it.load());</span>
+<span class="lineNum">     782 </span><span class="lineCov">          8 :   for (; i &lt; ipos; i += SIMDSIZE, it += SIMDSIZE) {</span>
+<span class="lineNum">     783 </span><span class="lineCov">          7 :     store(i, load(i) + it.load());</span>
 <span class="lineNum">     784 </span>            :   }
-<span class="lineNum">     785 </span><span class="lineCov">         14 :   for (; i &lt; size_; ++i, ++it) {</span>
-<span class="lineNum">     786 </span><span class="lineCov">          6 :     v_[i] += *it;</span>
+<span class="lineNum">     785 </span><span class="lineCov">         20 :   for (; i &lt; size_; ++i, ++it) {</span>
+<span class="lineNum">     786 </span><span class="lineCov">          8 :     v_[i] += *it;</span>
 <span class="lineNum">     787 </span>            :   }
-<span class="lineNum">     788 </span><span class="lineCov">          2 : }</span>
+<span class="lineNum">     788 </span><span class="lineCov">          4 : }</span>
 <span class="lineNum">     789 </span>            : 
 <span class="lineNum">     790 </span>            : template &lt;typename Type, bool AF, bool PF, bool TF&gt;
 <span class="lineNum">     791 </span>            : template &lt;typename VT&gt;
@@ -893,27 +893,27 @@
 <span class="lineNum">     823 </span>            : 
 <span class="lineNum">     824 </span>            : template &lt;typename Type, bool AF, bool PF, bool TF&gt;
 <span class="lineNum">     825 </span>            : template &lt;typename VT&gt;
-<span class="lineNum">     826 </span>            : inline std::enable_if_t&lt;(PointerVector&lt;Type, AF, PF, TF&gt;::BLAZE_TEMPLATE
+<a name="826"><span class="lineNum">     826 </span>            : inline std::enable_if_t&lt;(PointerVector&lt;Type, AF, PF, TF&gt;::BLAZE_TEMPLATE</a>
 <span class="lineNum">     827 </span>            :                              VectorizedSubAssign&lt;VT&gt;::value)&gt;
-<span class="lineNum">     828 </span><span class="lineCov">          2 : PointerVector&lt;Type, AF, PF, TF&gt;::subAssign(</span>
+<span class="lineNum">     828 </span><span class="lineCov">          4 : PointerVector&lt;Type, AF, PF, TF&gt;::subAssign(</span>
 <span class="lineNum">     829 </span>            :     const blaze::DenseVector&lt;VT, TF&gt;&amp; rhs) {
 <span class="lineNum">     830 </span>            :   BLAZE_CONSTRAINT_MUST_BE_VECTORIZABLE_TYPE(Type);
 <span class="lineNum">     831 </span>            : 
 <span class="lineNum">     832 </span>            :   BLAZE_INTERNAL_ASSERT(size_ == (~rhs).size(), &quot;Invalid vector sizes&quot;);
 <span class="lineNum">     833 </span>            : 
-<span class="lineNum">     834 </span><span class="lineCov">          2 :   const size_t ipos(size_ &amp; size_t(-SIMDSIZE));</span>
+<span class="lineNum">     834 </span><span class="lineCov">          4 :   const size_t ipos(size_ &amp; size_t(-SIMDSIZE));</span>
 <span class="lineNum">     835 </span>            :   BLAZE_INTERNAL_ASSERT((size_ - (size_ % SIMDSIZE)) == ipos,
 <span class="lineNum">     836 </span>            :                         &quot;Invalid end calculation&quot;);
 <span class="lineNum">     837 </span>            : 
-<span class="lineNum">     838 </span><span class="lineCov">          2 :   const size_t i4way(size_ &amp; size_t(-SIMDSIZE * 4));</span>
+<span class="lineNum">     838 </span><span class="lineCov">          4 :   const size_t i4way(size_ &amp; size_t(-SIMDSIZE * 4));</span>
 <span class="lineNum">     839 </span>            :   BLAZE_INTERNAL_ASSERT((size_ - (size_ % (SIMDSIZE * 4UL))) == i4way,
 <span class="lineNum">     840 </span>            :                         &quot;Invalid end calculation&quot;);
 <span class="lineNum">     841 </span>            :   BLAZE_INTERNAL_ASSERT(i4way &lt;= ipos, &quot;Invalid end calculation&quot;);
 <span class="lineNum">     842 </span>            : 
-<span class="lineNum">     843 </span><span class="lineCov">          2 :   size_t i(0UL);</span>
-<span class="lineNum">     844 </span><span class="lineCov">          2 :   blaze::ConstIterator_&lt;VT&gt; it((~rhs).begin());</span>
+<span class="lineNum">     843 </span><span class="lineCov">          4 :   size_t i(0UL);</span>
+<span class="lineNum">     844 </span><span class="lineCov">          4 :   blaze::ConstIterator_&lt;VT&gt; it((~rhs).begin());</span>
 <span class="lineNum">     845 </span>            : 
-<span class="lineNum">     846 </span><span class="lineCov">          6 :   for (; i &lt; i4way; i += SIMDSIZE * 4UL) {</span>
+<span class="lineNum">     846 </span><span class="lineCov">          8 :   for (; i &lt; i4way; i += SIMDSIZE * 4UL) {</span>
 <span class="lineNum">     847 </span><span class="lineCov">          8 :     store(i, load(i) - it.load());</span>
 <span class="lineNum">     848 </span><span class="lineCov">          2 :     it += SIMDSIZE;</span>
 <span class="lineNum">     849 </span><span class="lineCov">          8 :     store(i + SIMDSIZE, load(i + SIMDSIZE) - it.load());</span>
@@ -923,13 +923,13 @@
 <span class="lineNum">     853 </span><span class="lineCov">          8 :     store(i + SIMDSIZE * 3UL, load(i + SIMDSIZE * 3UL) - it.load());</span>
 <span class="lineNum">     854 </span><span class="lineCov">          2 :     it += SIMDSIZE;</span>
 <span class="lineNum">     855 </span>            :   }
-<span class="lineNum">     856 </span><span class="lineCov">          2 :   for (; i &lt; ipos; i += SIMDSIZE, it += SIMDSIZE) {</span>
-<span class="lineNum">     857 </span><span class="lineNoCov">          0 :     store(i, load(i) - it.load());</span>
+<span class="lineNum">     856 </span><span class="lineCov">          8 :   for (; i &lt; ipos; i += SIMDSIZE, it += SIMDSIZE) {</span>
+<span class="lineNum">     857 </span><span class="lineCov">          8 :     store(i, load(i) - it.load());</span>
 <span class="lineNum">     858 </span>            :   }
-<span class="lineNum">     859 </span><span class="lineCov">         14 :   for (; i &lt; size_; ++i, ++it) {</span>
-<span class="lineNum">     860 </span><span class="lineCov">          6 :     v_[i] -= *it;</span>
+<span class="lineNum">     859 </span><span class="lineCov">         20 :   for (; i &lt; size_; ++i, ++it) {</span>
+<span class="lineNum">     860 </span><span class="lineCov">          8 :     v_[i] -= *it;</span>
 <span class="lineNum">     861 </span>            :   }
-<span class="lineNum">     862 </span><span class="lineCov">          2 : }</span>
+<span class="lineNum">     862 </span><span class="lineCov">          4 : }</span>
 <span class="lineNum">     863 </span>            : 
 <span class="lineNum">     864 </span>            : template &lt;typename Type, bool AF, bool PF, bool TF&gt;
 <span class="lineNum">     865 </span>            : template &lt;typename VT&gt;

@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - e5cbc5bb9c5aba2950342934cd01e8f137343a21 - DataStructures/Tensor/IndexType.hpp</title>
+  <title>LCOV - b098be82ff1e5fcf43614b8a865d0fcc0256ccc3 - DataStructures/Tensor/IndexType.hpp</title>
   <link rel="stylesheet" type="text/css" href="../../gcov.css">
 </head>
 
@@ -28,7 +28,7 @@
           </tr>
           <tr>
             <td class="headerItem">Commit:</td>
-             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/e5cbc5bb9c5aba2950342934cd01e8f137343a21">e5cbc5bb9c5aba2950342934cd01e8f137343a21</a></td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/b098be82ff1e5fcf43614b8a865d0fcc0256ccc3">b098be82ff1e5fcf43614b8a865d0fcc0256ccc3</a></td>
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntry">12</td>
@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2017-06-21 01:58:57</td>
+            <td class="headerValue">2017-06-22 01:59:47</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">6</td>
@@ -92,8 +92,8 @@
 <span class="lineNum">      22 </span>            : };
 <a name="23"><span class="lineNum">      23 </span>            : </a>
 <span class="lineNum">      24 </span>            : /// \cond HIDDEN_SYMBOLS
-<span class="lineNum">      25 </span><span class="lineCov">          7 : inline std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os, const UpLo&amp; ul) {</span>
-<span class="lineNum">      26 </span><span class="lineCov">          7 :   return os &lt;&lt; (ul == UpLo::Up ? &quot;Up&quot;s : &quot;Lo&quot;s);</span>
+<span class="lineNum">      25 </span><span class="lineCov">         20 : inline std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os, const UpLo&amp; ul) {</span>
+<span class="lineNum">      26 </span><span class="lineCov">         20 :   return os &lt;&lt; (ul == UpLo::Up ? &quot;Up&quot;s : &quot;Lo&quot;s);</span>
 <span class="lineNum">      27 </span>            : }
 <span class="lineNum">      28 </span>            : /// \endcond
 <span class="lineNum">      29 </span>            : 
@@ -112,8 +112,8 @@
 <span class="lineNum">      42 </span>            :                                 const Frame::Logical&amp; /*meta*/) {
 <a name="43"><span class="lineNum">      43 </span><span class="lineCov">          1 :   return os &lt;&lt; &quot;Logical&quot;;</span></a>
 <span class="lineNum">      44 </span>            : }
-<span class="lineNum">      45 </span><span class="lineCov">          8 : inline std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os, const Frame::Grid&amp; /*meta*/) {</span>
-<a name="46"><span class="lineNum">      46 </span><span class="lineCov">          8 :   return os &lt;&lt; &quot;Grid&quot;;</span></a>
+<span class="lineNum">      45 </span><span class="lineCov">         21 : inline std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os, const Frame::Grid&amp; /*meta*/) {</span>
+<a name="46"><span class="lineNum">      46 </span><span class="lineCov">         21 :   return os &lt;&lt; &quot;Grid&quot;;</span></a>
 <span class="lineNum">      47 </span>            : }
 <span class="lineNum">      48 </span><span class="lineCov">          1 : inline std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os,</span>
 <span class="lineNum">      49 </span>            :                                 const Frame::Inertial&amp; /*meta*/) {
@@ -136,8 +136,8 @@
 <span class="lineNum">      66 </span>            : };
 <a name="67"><span class="lineNum">      67 </span>            : </a>
 <span class="lineNum">      68 </span>            : /// \cond HIDDEN_SYMBOLS
-<span class="lineNum">      69 </span><span class="lineCov">          7 : inline std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os, const IndexType&amp; index_type) {</span>
-<span class="lineNum">      70 </span><span class="lineCov">          7 :   return os &lt;&lt; (index_type == IndexType::Spatial ? &quot;Spatial&quot; : &quot;Spacetime&quot;);</span>
+<span class="lineNum">      69 </span><span class="lineCov">         20 : inline std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os, const IndexType&amp; index_type) {</span>
+<span class="lineNum">      70 </span><span class="lineCov">         20 :   return os &lt;&lt; (index_type == IndexType::Spatial ? &quot;Spatial&quot; : &quot;Spacetime&quot;);</span>
 <span class="lineNum">      71 </span>            : }
 <span class="lineNum">      72 </span>            : /// \endcond
 <span class="lineNum">      73 </span>            : 

@@ -44,6 +44,7 @@ var searchData=
   ['null_5fmemory_5fresource',['null_memory_resource',['http://en.cppreference.com/w/cpp/memory/null_memory_resource.html',1,'std::pmr']]],
   ['num_5fget',['num_get',['http://en.cppreference.com/w/cpp/locale/num_get/num_get.html',1,'std::num_get']]],
   ['num_5fput',['num_put',['http://en.cppreference.com/w/cpp/locale/num_put/num_put.html',1,'std::num_put']]],
+  ['number_5fof_5fgrid_5fpoints',['number_of_grid_points',['../classVariables_3_01tmpl_1_1list_3_01Tags_8_8_8_01_4_01_4.html#aa7a324dba42b8df39e11c9ad3b258967',1,'Variables&lt; tmpl::list&lt; Tags... &gt; &gt;']]],
   ['number_5fof_5fnodes',['number_of_nodes',['../group__Parallel.html#gaf999b9700ece84fca6cb82bb1ee9f3f2',1,'Parallel']]],
   ['number_5fof_5fprocs',['number_of_procs',['../group__Parallel.html#ga537d2cc78336566826c93c49f82746a8',1,'Parallel']]],
   ['numpunct',['numpunct',['http://en.cppreference.com/w/cpp/locale/numpunct/numpunct.html',1,'std::numpunct']]],

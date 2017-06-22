@@ -37,11 +37,11 @@ var searchData=
   ['moneypunct',['moneypunct',['http://en.cppreference.com/w/cpp/locale/moneypunct.html',1,'std']]],
   ['moneypunct_5fbyname',['moneypunct_byname',['http://en.cppreference.com/w/cpp/locale/moneypunct_byname.html',1,'std']]],
   ['monostate',['monostate',['http://en.cppreference.com/w/cpp/utility/variant/monostate.html',1,'std']]],
-  ['monotonic_5fbuffer_5fresource',['monotonic_buffer_resource',['http://en.cppreference.com/w/cpp/memory/monotonic_buffer_resource.html',1,'std::pmr::monotonic_buffer_resource'],['http://en.cppreference.com/w/cpp/experimental/monotonic_buffer_resource.html',1,'std::experimental::pmr::monotonic_buffer_resource']]],
+  ['monotonic_5fbuffer_5fresource',['monotonic_buffer_resource',['http://en.cppreference.com/w/cpp/experimental/monotonic_buffer_resource.html',1,'std::experimental::pmr::monotonic_buffer_resource'],['http://en.cppreference.com/w/cpp/memory/monotonic_buffer_resource.html',1,'std::pmr::monotonic_buffer_resource']]],
   ['move_5fiterator',['move_iterator',['http://en.cppreference.com/w/cpp/iterator/move_iterator.html',1,'std']]],
   ['mt19937',['mt19937',['http://en.cppreference.com/w/cpp/numeric/random/mersenne_twister_engine.html',1,'std']]],
   ['mt19937_5f64',['mt19937_64',['http://en.cppreference.com/w/cpp/numeric/random/mersenne_twister_engine.html',1,'std']]],
-  ['multimap',['multimap',['http://en.cppreference.com/w/cpp/container/multimap.html',1,'std::multimap'],['http://en.cppreference.com/w/cpp/container/multimap.html',1,'std::pmr::multimap']]],
+  ['multimap',['multimap',['http://en.cppreference.com/w/cpp/container/multimap.html',1,'std::pmr::multimap'],['http://en.cppreference.com/w/cpp/container/multimap.html',1,'std::multimap']]],
   ['multiplies',['multiplies',['http://en.cppreference.com/w/cpp/utility/functional/multiplies.html',1,'std']]],
   ['multiset',['multiset',['http://en.cppreference.com/w/cpp/container/multiset.html',1,'std::multiset'],['http://en.cppreference.com/w/cpp/container/multiset.html',1,'std::pmr::multiset']]],
   ['mutex',['mutex',['http://en.cppreference.com/w/cpp/thread/mutex.html',1,'std']]]

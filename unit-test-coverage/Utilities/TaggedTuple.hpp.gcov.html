@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - e5cbc5bb9c5aba2950342934cd01e8f137343a21 - Utilities/TaggedTuple.hpp</title>
+  <title>LCOV - b098be82ff1e5fcf43614b8a865d0fcc0256ccc3 - Utilities/TaggedTuple.hpp</title>
   <link rel="stylesheet" type="text/css" href="../gcov.css">
 </head>
 
@@ -28,7 +28,7 @@
           </tr>
           <tr>
             <td class="headerItem">Commit:</td>
-             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/e5cbc5bb9c5aba2950342934cd01e8f137343a21">e5cbc5bb9c5aba2950342934cd01e8f137343a21</a></td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/b098be82ff1e5fcf43614b8a865d0fcc0256ccc3">b098be82ff1e5fcf43614b8a865d0fcc0256ccc3</a></td>
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntry">12</td>
@@ -37,11 +37,11 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2017-06-21 01:58:57</td>
+            <td class="headerValue">2017-06-22 01:59:47</td>
             <td></td>
             <td class="headerItem">Functions:</td>
-            <td class="headerCovTableEntry">12</td>
-            <td class="headerCovTableEntry">12</td>
+            <td class="headerCovTableEntry">25</td>
+            <td class="headerCovTableEntry">25</td>
             <td class="headerCovTableEntryHi">100.0 %</td>
           </tr>
           <tr>
@@ -94,7 +94,7 @@
 <span class="lineNum">      24 </span>            :  * \tparam Tags the tags of the objects to be placed in the tuple
 <a name="25"><span class="lineNum">      25 </span>            :  */</a>
 <span class="lineNum">      26 </span>            : template &lt;typename... Tags&gt;
-<span class="lineNum">      27 </span><span class="lineCov">          4 : struct TaggedTuple {</span>
+<span class="lineNum">      27 </span><span class="lineCov">         37 : struct TaggedTuple {</span>
 <span class="lineNum">      28 </span>            :   static_assert(tmpl::is_set&lt;Tags...&gt;::value,
 <span class="lineNum">      29 </span>            :                 &quot;Cannot create a TaggedTuple with duplicate Tags.&quot;);
 <span class="lineNum">      30 </span>            :   /*!
@@ -105,7 +105,7 @@
 <span class="lineNum">      35 </span>            :    * \snippet TaggedTuple.cpp construction_example
 <a name="36"><span class="lineNum">      36 </span>            :    */</a>
 <span class="lineNum">      37 </span>            :   template &lt;typename... Args&gt;
-<span class="lineNum">      38 </span><span class="lineCov">          2 :   explicit TaggedTuple(Args&amp;&amp;... args) : data_(std::forward&lt;Args&gt;(args)...) {}</span>
+<span class="lineNum">      38 </span><span class="lineCov">         34 :   explicit TaggedTuple(Args&amp;&amp;... args) : data_(std::forward&lt;Args&gt;(args)...) {}</span>
 <a name="39"><span class="lineNum">      39 </span>            : </a>
 <span class="lineNum">      40 </span>            :   /// Used for serialization with Charm++
 <span class="lineNum">      41 </span><span class="lineCov">          3 :   void pup(PUP::er&amp; p) { p | data_; }  // NOLINT</span>
@@ -124,7 +124,7 @@
 <span class="lineNum">      54 </span>            :    * \return reference to the object held in the tuple
 <a name="55"><span class="lineNum">      55 </span>            :    */</a>
 <span class="lineNum">      56 </span>            :   template &lt;typename Tag&gt;
-<span class="lineNum">      57 </span><span class="lineCov">          8 :   constexpr typename Tag::type&amp; get() noexcept {</span>
+<span class="lineNum">      57 </span><span class="lineCov">        105 :   constexpr typename Tag::type&amp; get() noexcept {</span>
 <span class="lineNum">      58 </span>            :     static_assert(
 <span class="lineNum">      59 </span>            :         not std::is_same&lt;tmpl::index_of&lt;tmpl::list&lt;Tags...&gt;, Tag&gt;,
 <span class="lineNum">      60 </span>            :                          tmpl::no_such_type_&gt;::value,
@@ -132,11 +132,11 @@
 <span class="lineNum">      62 </span>            :         &quot;parameter of the instantiation for what Tag is being &quot;
 <span class="lineNum">      63 </span>            :         &quot;retrieved and the remaining template parameters for what &quot;
 <span class="lineNum">      64 </span>            :         &quot;Tags are available.&quot;);
-<span class="lineNum">      65 </span><span class="lineCov">          8 :     return std::get&lt;tmpl::index_of&lt;tmpl::list&lt;Tags...&gt;, Tag&gt;::value&gt;(data_);</span>
+<span class="lineNum">      65 </span><span class="lineCov">        105 :     return std::get&lt;tmpl::index_of&lt;tmpl::list&lt;Tags...&gt;, Tag&gt;::value&gt;(data_);</span>
 <span class="lineNum">      66 </span>            :   }
 <a name="67"><span class="lineNum">      67 </span>            : </a>
 <span class="lineNum">      68 </span>            :   template &lt;typename Tag&gt;
-<span class="lineNum">      69 </span><span class="lineCov">          1 :   constexpr const typename Tag::type&amp; get() const noexcept {</span>
+<span class="lineNum">      69 </span><span class="lineCov">         36 :   constexpr const typename Tag::type&amp; get() const noexcept {</span>
 <span class="lineNum">      70 </span>            :     static_assert(
 <span class="lineNum">      71 </span>            :         not std::is_same&lt;tmpl::index_of&lt;tmpl::list&lt;Tags...&gt;, Tag&gt;,
 <span class="lineNum">      72 </span>            :                          tmpl::no_such_type_&gt;::value,
@@ -144,7 +144,7 @@
 <span class="lineNum">      74 </span>            :         &quot;parameter of the instantiation for what Tag is being &quot;
 <span class="lineNum">      75 </span>            :         &quot;retrieved and the remaining template parameters for what &quot;
 <span class="lineNum">      76 </span>            :         &quot;Tags are available.&quot;);
-<span class="lineNum">      77 </span><span class="lineCov">          1 :     return std::get&lt;tmpl::index_of&lt;tmpl::list&lt;Tags...&gt;, Tag&gt;::value&gt;(data_);</span>
+<span class="lineNum">      77 </span><span class="lineCov">         36 :     return std::get&lt;tmpl::index_of&lt;tmpl::list&lt;Tags...&gt;, Tag&gt;::value&gt;(data_);</span>
 <span class="lineNum">      78 </span>            :   }
 <span class="lineNum">      79 </span>            :   // @}
 <a name="80"><span class="lineNum">      80 </span>            : </a>

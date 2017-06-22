@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - e5cbc5bb9c5aba2950342934cd01e8f137343a21 - DataStructures/Tensor/Structure.hpp</title>
+  <title>LCOV - b098be82ff1e5fcf43614b8a865d0fcc0256ccc3 - DataStructures/Tensor/Structure.hpp</title>
   <link rel="stylesheet" type="text/css" href="../../gcov.css">
 </head>
 
@@ -28,7 +28,7 @@
           </tr>
           <tr>
             <td class="headerItem">Commit:</td>
-             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/e5cbc5bb9c5aba2950342934cd01e8f137343a21">e5cbc5bb9c5aba2950342934cd01e8f137343a21</a></td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/b098be82ff1e5fcf43614b8a865d0fcc0256ccc3">b098be82ff1e5fcf43614b8a865d0fcc0256ccc3</a></td>
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntry">61</td>
@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2017-06-21 01:58:57</td>
+            <td class="headerValue">2017-06-22 01:59:47</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">34</td>
@@ -96,7 +96,7 @@
 <span class="lineNum">      26 </span>            : template &lt;typename&gt;
 <span class="lineNum">      27 </span>            : SPECTRE_ALWAYS_INLINE constexpr auto compute_collapsed_index_impl(
 <span class="lineNum">      28 </span>            :     std::size_t i) noexcept {
-<span class="lineNum">      29 </span><span class="lineCov">        432 :   return i;</span>
+<span class="lineNum">      29 </span><span class="lineCov">        439 :   return i;</span>
 <span class="lineNum">      30 </span>            : }
 <a name="31"><span class="lineNum">      31 </span>            : </a>
 <span class="lineNum">      32 </span>            : template &lt;typename IndexList, typename... I&gt;
@@ -203,8 +203,8 @@
 <span class="lineNum">     133 </span>            :                 &quot;The number of tensor indices passed to &quot;
 <span class="lineNum">     134 </span>            :                 &quot;compute_collapsed_index does not match the rank of the &quot;
 <span class="lineNum">     135 </span>            :                 &quot;tensor.&quot;);
-<span class="lineNum">     136 </span><span class="lineCov">        294 :   return detail::compute_collapsed_index_impl&lt;IndexLs&gt;(</span>
-<span class="lineNum">     137 </span><span class="lineCov">        432 :       static_cast&lt;std::size_t&gt;(i)...);</span>
+<span class="lineNum">     136 </span><span class="lineCov">        301 :   return detail::compute_collapsed_index_impl&lt;IndexLs&gt;(</span>
+<span class="lineNum">     137 </span><span class="lineCov">        439 :       static_cast&lt;std::size_t&gt;(i)...);</span>
 <span class="lineNum">     138 </span>            : }
 <span class="lineNum">     139 </span>            : 
 <span class="lineNum">     140 </span>            : SPECTRE_ALWAYS_INLINE constexpr size_t compute_collapsed_index() noexcept {
@@ -295,7 +295,7 @@
 <span class="lineNum">     225 </span>            :   }
 <span class="lineNum">     226 </span>            : 
 <span class="lineNum">     227 </span>            :   SPECTRE_ALWAYS_INLINE static constexpr size_t size() noexcept {
-<span class="lineNum">     228 </span><span class="lineCov">        280 :     return NumberOfIndependentComponents::value;</span>
+<span class="lineNum">     228 </span><span class="lineCov">        810 :     return NumberOfIndependentComponents::value;</span>
 <span class="lineNum">     229 </span>            :   }
 <span class="lineNum">     230 </span>            : 
 <span class="lineNum">     231 </span>            :   SPECTRE_ALWAYS_INLINE static constexpr size_t
@@ -312,32 +312,32 @@
 <span class="lineNum">     242 </span><span class="lineCov">          2 :     return tmpl::at&lt;index_list, tmpl::int32_t&lt;I&gt;&gt;::value;</span>
 <a name="243"><span class="lineNum">     243 </span>            :   }</a>
 <span class="lineNum">     244 </span>            : 
-<span class="lineNum">     245 </span><span class="lineCov">        489 :   static constexpr std::array&lt;size_t, sizeof...(Indices)&gt; dims() noexcept {</span>
+<span class="lineNum">     245 </span><span class="lineCov">        524 :   static constexpr std::array&lt;size_t, sizeof...(Indices)&gt; dims() noexcept {</span>
 <span class="lineNum">     246 </span>            :     return make_array_from_list&lt;
-<span class="lineNum">     247 </span><span class="lineCov">        489 :         tmpl::conditional_t&lt;sizeof...(Indices) != 0, index_list, size_t&gt;&gt;();</span>
+<span class="lineNum">     247 </span><span class="lineCov">        524 :         tmpl::conditional_t&lt;sizeof...(Indices) != 0, index_list, size_t&gt;&gt;();</span>
 <span class="lineNum">     248 </span>            :   }
 <span class="lineNum">     249 </span>            : 
 <span class="lineNum">     250 </span>            :   SPECTRE_ALWAYS_INLINE static constexpr std::array&lt;int, sizeof...(Indices)&gt;
 <span class="lineNum">     251 </span>            :   symmetries() noexcept {
 <span class="lineNum">     252 </span>            :     return make_array_from_list&lt;
-<span class="lineNum">     253 </span><span class="lineCov">          5 :         tmpl::conditional_t&lt;0 != sizeof...(Indices), Symm, int&gt;&gt;();</span>
+<span class="lineNum">     253 </span><span class="lineCov">         40 :         tmpl::conditional_t&lt;0 != sizeof...(Indices), Symm, int&gt;&gt;();</span>
 <span class="lineNum">     254 </span>            :   }
 <span class="lineNum">     255 </span>            : 
 <span class="lineNum">     256 </span>            :   SPECTRE_ALWAYS_INLINE static constexpr std::array&lt;IndexType,
 <span class="lineNum">     257 </span>            :                                                     sizeof...(Indices)&gt;
 <span class="lineNum">     258 </span>            :   index_types() noexcept {
-<span class="lineNum">     259 </span><span class="lineCov">        225 :     return std::array&lt;IndexType, sizeof...(Indices)&gt;{{Indices::index_type...}};</span>
+<span class="lineNum">     259 </span><span class="lineCov">        238 :     return std::array&lt;IndexType, sizeof...(Indices)&gt;{{Indices::index_type...}};</span>
 <span class="lineNum">     260 </span>            :   }
 <span class="lineNum">     261 </span>            : 
 <span class="lineNum">     262 </span>            :   /// Return array of the valence of each index
 <span class="lineNum">     263 </span>            :   SPECTRE_ALWAYS_INLINE static constexpr std::array&lt;UpLo, sizeof...(Indices)&gt;
 <span class="lineNum">     264 </span>            :   index_valences() noexcept {
-<span class="lineNum">     265 </span><span class="lineCov">          3 :     return std::array&lt;UpLo, sizeof...(Indices)&gt;{{Indices::ul...}};</span>
+<span class="lineNum">     265 </span><span class="lineCov">         16 :     return std::array&lt;UpLo, sizeof...(Indices)&gt;{{Indices::ul...}};</span>
 <span class="lineNum">     266 </span>            :   }
 <span class="lineNum">     267 </span>            : 
 <span class="lineNum">     268 </span>            :   /// Return array of the frame of each index
 <span class="lineNum">     269 </span>            :   SPECTRE_ALWAYS_INLINE static constexpr auto index_frames() noexcept {
-<span class="lineNum">     270 </span><span class="lineCov">          3 :     return std::tuple&lt;typename Indices::Frame...&gt;{};</span>
+<span class="lineNum">     270 </span><span class="lineCov">         16 :     return std::tuple&lt;typename Indices::Frame...&gt;{};</span>
 <span class="lineNum">     271 </span>            :   }
 <span class="lineNum">     272 </span>            : 
 <span class="lineNum">     273 </span>            :   /*!
@@ -351,11 +351,11 @@
 <span class="lineNum">     281 </span>            :    */
 <span class="lineNum">     282 </span>            :   SPECTRE_ALWAYS_INLINE static constexpr auto get_canonical_tensor_index(
 <span class="lineNum">     283 </span>            :       const size_t storage_index) noexcept {
-<span class="lineNum">     284 </span><span class="lineCov">        411 :     return gsl::at(</span>
+<span class="lineNum">     284 </span><span class="lineCov">        472 :     return gsl::at(</span>
 <span class="lineNum">     285 </span>            :         make_array_from_list&lt;tmpl::conditional_t&lt;
 <span class="lineNum">     286 </span>            :             sizeof...(Indices) == 0, tmpl::list&lt;tmpl::list&lt;tmpl::size_t&lt;0&gt;&gt;&gt;,
-<span class="lineNum">     287 </span><span class="lineCov">        823 :             storage_to_tensor_index_list&gt;&gt;(),</span>
-<span class="lineNum">     288 </span><span class="lineCov">        411 :         storage_index);</span>
+<span class="lineNum">     287 </span><span class="lineCov">        945 :             storage_to_tensor_index_list&gt;&gt;(),</span>
+<span class="lineNum">     288 </span><span class="lineCov">        472 :         storage_index);</span>
 <span class="lineNum">     289 </span>            :   }
 <span class="lineNum">     290 </span>            : 
 <span class="lineNum">     291 </span>            :   /// Get storage_index
@@ -365,8 +365,8 @@
 <span class="lineNum">     295 </span>            :       const N... args) noexcept {
 <span class="lineNum">     296 </span>            :     static_assert(sizeof...(Indices) == sizeof...(N),
 <span class="lineNum">     297 </span>            :                   &quot;the number arguments must be equal to rank_&quot;);
-<span class="lineNum">     298 </span><span class="lineCov">       1296 :     return gsl::at(make_array_from_list&lt;collapsed_to_storage_list&gt;(),</span>
-<span class="lineNum">     299 </span><span class="lineCov">        432 :                    compute_collapsed_index&lt;index_list&gt;(args...));</span>
+<span class="lineNum">     298 </span><span class="lineCov">       1317 :     return gsl::at(make_array_from_list&lt;collapsed_to_storage_list&gt;(),</span>
+<span class="lineNum">     299 </span><span class="lineCov">        439 :                    compute_collapsed_index&lt;index_list&gt;(args...));</span>
 <span class="lineNum">     300 </span>            :   }
 <span class="lineNum">     301 </span>            :   /// Get storage_index
 <span class="lineNum">     302 </span>            :   /// \param tensor_index the tensor_index of which to get the storage_index
@@ -395,7 +395,7 @@
 <span class="lineNum">     325 </span>            :   /// \param storage_index the storage_index of which to get the multiplicity
 <span class="lineNum">     326 </span>            :   SPECTRE_ALWAYS_INLINE static constexpr size_t multiplicity(
 <span class="lineNum">     327 </span>            :       const size_t storage_index) noexcept {
-<span class="lineNum">     328 </span><span class="lineCov">        245 :     return gsl::at(make_array_from_list&lt;multiplicity_list&gt;(), storage_index);</span>
+<span class="lineNum">     328 </span><span class="lineCov">        367 :     return gsl::at(make_array_from_list&lt;multiplicity_list&gt;(), storage_index);</span>
 <span class="lineNum">     329 </span>            :   }
 <span class="lineNum">     330 </span>            : 
 <span class="lineNum">     331 </span>            :   /// Get the array of collapsed index to storage_index

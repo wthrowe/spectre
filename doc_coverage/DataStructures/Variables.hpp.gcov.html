@@ -1,0 +1,480 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - b098be82ff1e5fcf43614b8a865d0fcc0256ccc3 - DataStructures/Variables.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">DataStructures</a> - Variables.hpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/b098be82ff1e5fcf43614b8a865d0fcc0256ccc3">b098be82ff1e5fcf43614b8a865d0fcc0256ccc3</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">10</td>
+            <td class="headerCovTableEntry">51</td>
+            <td class="headerCovTableEntryLo">19.6 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2017-06-22 02:00:04</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : /// \file
+<span class="lineNum">       5 </span>            : /// Defines class Variables
+<span class="lineNum">       6 </span>            : 
+<span class="lineNum">       7 </span>            : #pragma once
+<span class="lineNum">       8 </span>            : 
+<span class="lineNum">       9 </span>            : // #include &quot;DataStructures/DataBoxTag.hpp&quot;
+<span class="lineNum">      10 </span>            : #include &quot;DataStructures/DataVector.hpp&quot;
+<span class="lineNum">      11 </span>            : #include &quot;DataStructures/Tensor/Tensor.hpp&quot;
+<span class="lineNum">      12 </span>            : #include &quot;Utilities/TMPL.hpp&quot;
+<span class="lineNum">      13 </span>            : #include &quot;Utilities/TaggedTuple.hpp&quot;
+<span class="lineNum">      14 </span>            : #include &quot;Utilities/TypeTraits.hpp&quot;
+<span class="lineNum">      15 </span>            : 
+<span class="lineNum">      16 </span>            : /// \cond
+<span class="lineNum">      17 </span>            : template &lt;typename X, typename Symm, typename IndexLs&gt;
+<span class="lineNum">      18 </span>            : class Tensor;
+<span class="lineNum">      19 </span>            : 
+<span class="lineNum">      20 </span>            : template &lt;typename TagsLs&gt;
+<span class="lineNum">      21 </span>            : class Variables;
+<span class="lineNum">      22 </span>            : /// \endcond
+<span class="lineNum">      23 </span>            : 
+<span class="lineNum">      24 </span>            : // namespace Tags {
+<span class="lineNum">      25 </span>            : // template &lt;typename TagsLs&gt;
+<span class="lineNum">      26 </span>            : // struct Variables : db::DataBoxTag {
+<span class="lineNum">      27 </span>            : //  static_assert(tt::is_a&lt;tmpl::list, TagsLs&gt;::value,
+<span class="lineNum">      28 </span>            : //                &quot;The TagsLs passed to Tags::Variables is not a typelist&quot;);
+<span class="lineNum">      29 </span>            : //  using tags_list = TagsLs;
+<span class="lineNum">      30 </span>            : //  using type = ::Variables&lt;TagsLs&gt;;
+<span class="lineNum">      31 </span>            : //  static constexpr db::DataBoxString_t label = &quot;Variables&quot;;
+<span class="lineNum">      32 </span>            : //};
+<span class="lineNum">      33 </span>            : //}  // namespace Tags
+<span class="lineNum">      34 </span>            : 
+<span class="lineNum">      35 </span>            : /// \cond
+<span class="lineNum">      36 </span>            : template &lt;typename TagsLs&gt;
+<span class="lineNum">      37 </span>            : class Variables;
+<span class="lineNum">      38 </span>            : /// \endcond
+<span class="lineNum">      39 </span>            : 
+<span class="lineNum">      40 </span>            : /*!
+<span class="lineNum">      41 </span>            :  * \ingroup DataStructures
+<span class="lineNum">      42 </span>            :  * \brief A Variables holds a contiguous memory block with Tensors (or other
+<span class="lineNum">      43 </span>            :  * containers) pointing into it
+<span class="lineNum">      44 </span>            :  */
+<span class="lineNum">      45 </span>            : template &lt;typename... Tags&gt;
+<span class="lineNum">      46 </span><span class="lineCov">          1 : class Variables&lt;tmpl::list&lt;Tags...&gt;&gt; {</span>
+<span class="lineNum">      47 </span>            :  public:
+<span class="lineNum">      48 </span><span class="lineNoCov">          0 :   using value_type = double;</span>
+<span class="lineNum">      49 </span><span class="lineNoCov">          0 :   using allocator_type = std::allocator&lt;value_type&gt;;</span>
+<span class="lineNum">      50 </span><span class="lineNoCov">          0 :   using size_type = size_t;</span>
+<span class="lineNum">      51 </span><span class="lineNoCov">          0 :   using difference_type = std::ptrdiff_t;</span>
+<span class="lineNum">      52 </span>            : 
+<span class="lineNum">      53 </span>            :   /// A typelist of the Tags whose variables are held
+<span class="lineNum">      54 </span><span class="lineCov">          1 :   using tags_list = tmpl::list&lt;Tags...&gt;;</span>
+<span class="lineNum">      55 </span>            : 
+<span class="lineNum">      56 </span>            :   /// The number of variables of the Variables object is holding. E.g.
+<span class="lineNum">      57 </span>            :   /// \f$\psi_{ab}\f$ would be counted as one variable.
+<span class="lineNum">      58 </span><span class="lineCov">          1 :   static constexpr auto number_of_variables = sizeof...(Tags);</span>
+<span class="lineNum">      59 </span>            : 
+<span class="lineNum">      60 </span>            :   /// \cond
+<span class="lineNum">      61 </span>            :   // If you encounter an error of the `size()` function not existing you are
+<span class="lineNum">      62 </span>            :   // not filling the Variables with Tensors. Variables can be generalized to
+<span class="lineNum">      63 </span>            :   // holding containers other than Tensor by having the contaiers have a
+<span class="lineNum">      64 </span>            :   // `size()` function that in most cases should return 1. For Tensors the
+<span class="lineNum">      65 </span>            :   // `size()` function returns the number of independent components.
+<span class="lineNum">      66 </span>            :   template &lt;typename State, typename Element&gt;
+<span class="lineNum">      67 </span>            :   struct number_of_independent_components_helper {
+<span class="lineNum">      68 </span>            :     using type =
+<span class="lineNum">      69 </span>            :         typename tmpl::plus&lt;State, tmpl::int32_t&lt;Element::type::size()&gt;&gt;::type;
+<span class="lineNum">      70 </span>            :   };
+<span class="lineNum">      71 </span>            :   /// \endcond
+<span class="lineNum">      72 </span>            : 
+<span class="lineNum">      73 </span>            :   /// The total number of independent components of all the variables. E.g.
+<span class="lineNum">      74 </span>            :   /// a rank-2 symmetric spacetime Tensor \f$\psi_{ab}\f$ in 3 spatial
+<span class="lineNum">      75 </span>            :   /// dimensions would have 10 independent components.
+<span class="lineNum">      76 </span><span class="lineCov">          1 :   static constexpr size_t number_of_independent_components =</span>
+<span class="lineNum">      77 </span>            :       tmpl::fold&lt;tmpl::list&lt;Tags...&gt;, tmpl::int32_t&lt;0&gt;,
+<span class="lineNum">      78 </span>            :                  number_of_independent_components_helper&lt;
+<span class="lineNum">      79 </span>            :                      tmpl::_state, tmpl::_element&gt;&gt;::value;
+<span class="lineNum">      80 </span>            : 
+<span class="lineNum">      81 </span>            :   /// Default construct an empty Variables class, Charm++ needs this
+<span class="lineNum">      82 </span><span class="lineCov">          1 :   Variables() = default;</span>
+<span class="lineNum">      83 </span>            : 
+<span class="lineNum">      84 </span><span class="lineNoCov">          0 :   explicit Variables(</span>
+<span class="lineNum">      85 </span>            :       size_t number_of_grid_points,
+<span class="lineNum">      86 </span>            :       double value = std::numeric_limits&lt;double&gt;::signaling_NaN());
+<span class="lineNum">      87 </span>            : 
+<span class="lineNum">      88 </span><span class="lineNoCov">          0 :   Variables(Variables&amp;&amp; rhs) noexcept = default;   // NOLINT</span>
+<span class="lineNum">      89 </span><span class="lineNoCov">          0 :   Variables&amp; operator=(Variables&amp;&amp; rhs) noexcept;  // NOLINT</span>
+<span class="lineNum">      90 </span>            : 
+<span class="lineNum">      91 </span><span class="lineNoCov">          0 :   Variables(const Variables&amp; rhs);</span>
+<span class="lineNum">      92 </span><span class="lineNoCov">          0 :   Variables&amp; operator=(const Variables&amp; rhs);</span>
+<span class="lineNum">      93 </span>            : 
+<span class="lineNum">      94 </span>            :   /// \cond HIDDEN_SYMBOLS
+<span class="lineNum">      95 </span>            :   ~Variables() noexcept = default;
+<span class="lineNum">      96 </span>            :   /// \endcond
+<span class="lineNum">      97 </span>            : 
+<span class="lineNum">      98 </span><span class="lineNoCov">          0 :   constexpr size_t number_of_grid_points() const noexcept {</span>
+<span class="lineNum">      99 </span>            :     return number_of_grid_points_;
+<span class="lineNum">     100 </span>            :   }
+<span class="lineNum">     101 </span>            : 
+<span class="lineNum">     102 </span>            :   /// Number of grid points * number of independent components
+<span class="lineNum">     103 </span><span class="lineCov">          1 :   constexpr size_type size() const noexcept { return size_; }</span>
+<span class="lineNum">     104 </span>            : 
+<span class="lineNum">     105 </span>            :   //{@
+<span class="lineNum">     106 </span>            :   /// Access pointer to underlying data
+<span class="lineNum">     107 </span><span class="lineCov">          1 :   double* data() noexcept { return variable_data_.data(); }</span>
+<span class="lineNum">     108 </span><span class="lineNoCov">          0 :   const double* data() const noexcept { return variable_data_.data(); }</span>
+<span class="lineNum">     109 </span>            :   //@}
+<span class="lineNum">     110 </span>            : 
+<span class="lineNum">     111 </span>            :   // {@
+<span class="lineNum">     112 </span>            :   /*!
+<span class="lineNum">     113 </span>            :    *  \brief Return Tag::type pointing into the contiguous array
+<span class="lineNum">     114 </span>            :    *
+<span class="lineNum">     115 </span>            :    *  \tparam Tag the variable to return
+<span class="lineNum">     116 </span>            :    */
+<span class="lineNum">     117 </span>            :   template &lt;typename Tag&gt;
+<span class="lineNum">     118 </span><span class="lineCov">          1 :   constexpr auto&amp; get() noexcept {</span>
+<span class="lineNum">     119 </span>            :     return reference_variable_data_.template get&lt;Tag&gt;();
+<span class="lineNum">     120 </span>            :   }
+<span class="lineNum">     121 </span>            :   template &lt;typename Tag&gt;
+<span class="lineNum">     122 </span><span class="lineNoCov">          0 :   constexpr const auto&amp; get() const noexcept {</span>
+<span class="lineNum">     123 </span>            :     return reference_variable_data_.template get&lt;Tag&gt;();
+<span class="lineNum">     124 </span>            :   }
+<span class="lineNum">     125 </span>            :   // @}
+<span class="lineNum">     126 </span>            : 
+<span class="lineNum">     127 </span>            :   /// Serialization for Charm++.
+<span class="lineNum">     128 </span><span class="lineCov">          1 :   void pup(PUP::er&amp; p);  // NOLINT</span>
+<span class="lineNum">     129 </span>            : 
+<span class="lineNum">     130 </span>            :   template &lt;typename VT, bool VF&gt;
+<span class="lineNum">     131 </span><span class="lineNoCov">          0 :   Variables(const blaze::Vector&lt;VT, VF&gt;&amp; expression);</span>
+<span class="lineNum">     132 </span>            : 
+<span class="lineNum">     133 </span>            :   template &lt;typename VT, bool VF&gt;
+<span class="lineNum">     134 </span><span class="lineNoCov">          0 :   Variables&amp; operator=(const blaze::Vector&lt;VT, VF&gt;&amp; expression);</span>
+<span class="lineNum">     135 </span>            : 
+<span class="lineNum">     136 </span><span class="lineNoCov">          0 :   Variables&amp; operator+=(const Variables&amp; rhs) {</span>
+<span class="lineNum">     137 </span>            :     variable_data_ += rhs.variable_data_;
+<span class="lineNum">     138 </span>            :     return *this;
+<span class="lineNum">     139 </span>            :   }
+<span class="lineNum">     140 </span>            :   template &lt;typename VT, bool VF&gt;
+<span class="lineNum">     141 </span><span class="lineNoCov">          0 :   Variables&amp; operator+=(const blaze::Vector&lt;VT, VF&gt;&amp; rhs) {</span>
+<span class="lineNum">     142 </span>            :     variable_data_ += rhs;
+<span class="lineNum">     143 </span>            :     return *this;
+<span class="lineNum">     144 </span>            :   }
+<span class="lineNum">     145 </span>            : 
+<span class="lineNum">     146 </span><span class="lineNoCov">          0 :   Variables&amp; operator-=(const Variables&amp; rhs) {</span>
+<span class="lineNum">     147 </span>            :     variable_data_ -= rhs.variable_data_;
+<span class="lineNum">     148 </span>            :     return *this;
+<span class="lineNum">     149 </span>            :   }
+<span class="lineNum">     150 </span>            :   template &lt;typename VT, bool VF&gt;
+<span class="lineNum">     151 </span><span class="lineNoCov">          0 :   Variables&amp; operator-=(const blaze::Vector&lt;VT, VF&gt;&amp; rhs) {</span>
+<span class="lineNum">     152 </span>            :     variable_data_ -= rhs;
+<span class="lineNum">     153 </span>            :     return *this;
+<span class="lineNum">     154 </span>            :   }
+<span class="lineNum">     155 </span>            : 
+<span class="lineNum">     156 </span><span class="lineNoCov">          0 :   Variables&amp; operator*=(const double&amp; rhs) {</span>
+<span class="lineNum">     157 </span>            :     variable_data_ *= rhs;
+<span class="lineNum">     158 </span>            :     return *this;
+<span class="lineNum">     159 </span>            :   }
+<span class="lineNum">     160 </span>            : 
+<span class="lineNum">     161 </span><span class="lineNoCov">          0 :   Variables&amp; operator/=(const double&amp; rhs) {</span>
+<span class="lineNum">     162 </span>            :     variable_data_ /= rhs;
+<span class="lineNum">     163 </span>            :     return *this;
+<span class="lineNum">     164 </span>            :   }
+<span class="lineNum">     165 </span>            : 
+<span class="lineNum">     166 </span><span class="lineNoCov">          0 :   friend decltype(auto) operator+(const Variables&amp; lhs, const Variables&amp; rhs) {</span>
+<span class="lineNum">     167 </span>            :     return lhs.variable_data_ + rhs.variable_data_;
+<span class="lineNum">     168 </span>            :   }
+<span class="lineNum">     169 </span>            :   template &lt;typename VT, bool VF&gt;
+<span class="lineNum">     170 </span><span class="lineNoCov">          0 :   friend decltype(auto) operator+(const blaze::Vector&lt;VT, VF&gt;&amp; lhs,</span>
+<span class="lineNum">     171 </span>            :                                   const Variables&amp; rhs) {
+<span class="lineNum">     172 </span>            :     return ~lhs + rhs.variable_data_;
+<span class="lineNum">     173 </span>            :   }
+<span class="lineNum">     174 </span>            :   template &lt;typename VT, bool VF&gt;
+<span class="lineNum">     175 </span><span class="lineNoCov">          0 :   friend decltype(auto) operator+(const Variables&amp; lhs,</span>
+<span class="lineNum">     176 </span>            :                                   const blaze::Vector&lt;VT, VF&gt;&amp; rhs) {
+<span class="lineNum">     177 </span>            :     return lhs.variable_data_ + ~rhs;
+<span class="lineNum">     178 </span>            :   }
+<span class="lineNum">     179 </span>            : 
+<span class="lineNum">     180 </span><span class="lineNoCov">          0 :   friend decltype(auto) operator-(const Variables&amp; lhs, const Variables&amp; rhs) {</span>
+<span class="lineNum">     181 </span>            :     return lhs.variable_data_ - rhs.variable_data_;
+<span class="lineNum">     182 </span>            :   }
+<span class="lineNum">     183 </span>            :   template &lt;typename VT, bool VF&gt;
+<span class="lineNum">     184 </span><span class="lineNoCov">          0 :   friend decltype(auto) operator-(const blaze::Vector&lt;VT, VF&gt;&amp; lhs,</span>
+<span class="lineNum">     185 </span>            :                                   const Variables&amp; rhs) {
+<span class="lineNum">     186 </span>            :     return ~lhs - rhs.variable_data_;
+<span class="lineNum">     187 </span>            :   }
+<span class="lineNum">     188 </span>            :   template &lt;typename VT, bool VF&gt;
+<span class="lineNum">     189 </span><span class="lineNoCov">          0 :   friend decltype(auto) operator-(const Variables&amp; lhs,</span>
+<span class="lineNum">     190 </span>            :                                   const blaze::Vector&lt;VT, VF&gt;&amp; rhs) {
+<span class="lineNum">     191 </span>            :     return lhs.variable_data_ - ~rhs;
+<span class="lineNum">     192 </span>            :   }
+<span class="lineNum">     193 </span>            : 
+<span class="lineNum">     194 </span><span class="lineNoCov">          0 :   friend decltype(auto) operator*(const Variables&amp; lhs, const double&amp; rhs) {</span>
+<span class="lineNum">     195 </span>            :     return lhs.variable_data_ * rhs;
+<span class="lineNum">     196 </span>            :   }
+<span class="lineNum">     197 </span><span class="lineNoCov">          0 :   friend decltype(auto) operator*(const double&amp; lhs, const Variables&amp; rhs) {</span>
+<span class="lineNum">     198 </span>            :     return lhs * rhs.variable_data_;
+<span class="lineNum">     199 </span>            :   }
+<span class="lineNum">     200 </span>            : 
+<span class="lineNum">     201 </span><span class="lineNoCov">          0 :   friend decltype(auto) operator/(const Variables&amp; lhs, const double&amp; rhs) {</span>
+<span class="lineNum">     202 </span>            :     return lhs.variable_data_ / rhs;
+<span class="lineNum">     203 </span>            :   }
+<span class="lineNum">     204 </span>            : 
+<span class="lineNum">     205 </span>            :  private:
+<span class="lineNum">     206 </span>            :   //{@
+<span class="lineNum">     207 </span>            :   /*!
+<span class="lineNum">     208 </span>            :    * \brief Subscript operator
+<span class="lineNum">     209 </span>            :    *
+<span class="lineNum">     210 </span>            :    * The subscript operator is private since it should not be used directly.
+<span class="lineNum">     211 </span>            :    * Mathematical operations should be done using the math operators provided.
+<span class="lineNum">     212 </span>            :    * Since the internal ordering of variables is implementation defined there
+<span class="lineNum">     213 </span>            :    * is no safe way to perform any operation that is not a linear combination of
+<span class="lineNum">     214 </span>            :    * Variables. Retrieving a Tensor must be done via the `get()` function.
+<span class="lineNum">     215 </span>            :    *
+<span class="lineNum">     216 </span>            :    *  \requires `i &gt;= 0 and i &lt; size()`
+<span class="lineNum">     217 </span>            :    */
+<span class="lineNum">     218 </span><span class="lineCov">          1 :   double&amp; operator[](const size_type i) noexcept { return variable_data_[i]; }</span>
+<span class="lineNum">     219 </span><span class="lineNoCov">          0 :   const double&amp; operator[](const size_type i) const noexcept {</span>
+<span class="lineNum">     220 </span>            :     return variable_data_[i];
+<span class="lineNum">     221 </span>            :   }
+<span class="lineNum">     222 </span>            :   //@}
+<span class="lineNum">     223 </span>            : 
+<span class="lineNum">     224 </span><span class="lineNoCov">          0 :   static SPECTRE_ALWAYS_INLINE void constexpr add_reference_variable_data(</span>
+<span class="lineNum">     225 </span>            :       typelist&lt;&gt; /*unused*/, const size_t /*variable_offset*/ = 0) {
+<span class="lineNum">     226 </span>            :     CASSERT(sizeof...(Tags) &gt; 0,
+<span class="lineNum">     227 </span>            :             &quot;This ASSERT is triggered if you try to construct a Variables &quot;
+<span class="lineNum">     228 </span>            :             &quot;with no Tags. A Variables with no Tags is a valid type, but &quot;
+<span class="lineNum">     229 </span>            :             &quot;cannot be used in a meaningful way.&quot;);
+<span class="lineNum">     230 </span>            :   }
+<span class="lineNum">     231 </span>            : 
+<span class="lineNum">     232 </span>            :   template &lt;typename TagToAdd, typename... Rest,
+<span class="lineNum">     233 </span>            :             std::enable_if_t&lt;
+<span class="lineNum">     234 </span>            :                 tt::is_a&lt;Tensor, typename TagToAdd::type&gt;::value&gt;* = nullptr&gt;
+<span class="lineNum">     235 </span><span class="lineNoCov">          0 :   void add_reference_variable_data(typelist&lt;TagToAdd, Rest...&gt; /*unused*/,</span>
+<span class="lineNum">     236 </span>            :                                    const size_t variable_offset = 0);
+<span class="lineNum">     237 </span>            : 
+<span class="lineNum">     238 </span>            :   template &lt;typename TagsListLocal&gt;
+<span class="lineNum">     239 </span>            :   friend bool operator==(const Variables&lt;TagsListLocal&gt;&amp; lhs,  // NOLINT
+<span class="lineNum">     240 </span>            :                          const Variables&lt;TagsListLocal&gt;&amp; rhs);
+<span class="lineNum">     241 </span>            : 
+<span class="lineNum">     242 </span><span class="lineNoCov">          0 :   std::vector&lt;double, allocator_type&gt; variable_data_impl_;</span>
+<span class="lineNum">     243 </span>            :   // variable_data_ is only used to plug into the Blaze expression templates
+<span class="lineNum">     244 </span><span class="lineNoCov">          0 :   PointerVector&lt;double&gt; variable_data_;</span>
+<span class="lineNum">     245 </span><span class="lineNoCov">          0 :   size_t size_ = 0;</span>
+<span class="lineNum">     246 </span><span class="lineNoCov">          0 :   size_t number_of_grid_points_ = 0;</span>
+<span class="lineNum">     247 </span><span class="lineNoCov">          0 :   TaggedTuple&lt;Tags...&gt; reference_variable_data_;</span>
+<span class="lineNum">     248 </span>            : };
+<span class="lineNum">     249 </span>            : 
+<span class="lineNum">     250 </span>            : template &lt;typename... Tags&gt;
+<span class="lineNum">     251 </span>            : Variables&lt;tmpl::list&lt;Tags...&gt;&gt;::Variables(const size_t number_of_grid_points,
+<span class="lineNum">     252 </span>            :                                           const double value)
+<span class="lineNum">     253 </span>            :     : variable_data_impl_(
+<span class="lineNum">     254 </span>            :           number_of_grid_points * number_of_independent_components, value),
+<span class="lineNum">     255 </span>            :       variable_data_(variable_data_impl_.data(), variable_data_impl_.size()),
+<span class="lineNum">     256 </span>            :       size_(number_of_grid_points * number_of_independent_components),
+<span class="lineNum">     257 </span>            :       number_of_grid_points_(number_of_grid_points) {
+<span class="lineNum">     258 </span>            :   add_reference_variable_data(typelist&lt;Tags...&gt;{});
+<span class="lineNum">     259 </span>            : }
+<span class="lineNum">     260 </span>            : 
+<span class="lineNum">     261 </span>            : /// \cond HIDDEN_SYMBOLS
+<span class="lineNum">     262 </span>            : template &lt;typename... Tags&gt;
+<span class="lineNum">     263 </span>            : Variables&lt;tmpl::list&lt;Tags...&gt;&gt;::Variables(
+<span class="lineNum">     264 </span>            :     const Variables&lt;tmpl::list&lt;Tags...&gt;&gt;&amp; rhs)
+<span class="lineNum">     265 </span>            :     : variable_data_impl_(rhs.variable_data_impl_),
+<span class="lineNum">     266 </span>            :       variable_data_(variable_data_impl_.data(), variable_data_impl_.size()),
+<span class="lineNum">     267 </span>            :       size_(rhs.size_),
+<span class="lineNum">     268 </span>            :       number_of_grid_points_(rhs.number_of_grid_points()) {
+<span class="lineNum">     269 </span>            :   add_reference_variable_data(typelist&lt;Tags...&gt;{});
+<span class="lineNum">     270 </span>            : }
+<span class="lineNum">     271 </span>            : 
+<span class="lineNum">     272 </span>            : template &lt;typename... Tags&gt;
+<span class="lineNum">     273 </span>            : Variables&lt;tmpl::list&lt;Tags...&gt;&gt;&amp; Variables&lt;tmpl::list&lt;Tags...&gt;&gt;::operator=(
+<span class="lineNum">     274 </span>            :     const Variables&lt;tmpl::list&lt;Tags...&gt;&gt;&amp; rhs) {
+<span class="lineNum">     275 </span>            :   if (&amp;rhs == this) {
+<span class="lineNum">     276 </span>            :     return *this;  // NOLINT
+<span class="lineNum">     277 </span>            :   }
+<span class="lineNum">     278 </span>            :   variable_data_impl_ = rhs.variable_data_impl_;
+<span class="lineNum">     279 </span>            :   variable_data_.reset(variable_data_impl_.data(), variable_data_impl_.size());
+<span class="lineNum">     280 </span>            :   size_ = rhs.size_;
+<span class="lineNum">     281 </span>            :   number_of_grid_points_ = rhs.number_of_grid_points();
+<span class="lineNum">     282 </span>            :   add_reference_variable_data(typelist&lt;Tags...&gt;{});
+<span class="lineNum">     283 </span>            :   return *this;  // NOLINT
+<span class="lineNum">     284 </span>            : }
+<span class="lineNum">     285 </span>            : 
+<span class="lineNum">     286 </span>            : template &lt;typename... Tags&gt;
+<span class="lineNum">     287 </span>            : Variables&lt;tmpl::list&lt;Tags...&gt;&gt;&amp; Variables&lt;tmpl::list&lt;Tags...&gt;&gt;::operator=(
+<span class="lineNum">     288 </span>            :     Variables&lt;tmpl::list&lt;Tags...&gt;&gt;&amp;&amp; rhs) noexcept {
+<span class="lineNum">     289 </span>            :   if (this == &amp;rhs) {
+<span class="lineNum">     290 </span>            :     return *this;  // NOLINT
+<span class="lineNum">     291 </span>            :   }
+<span class="lineNum">     292 </span>            :   variable_data_impl_ = std::move(rhs.variable_data_impl_);
+<span class="lineNum">     293 </span>            :   variable_data_.reset(variable_data_impl_.data(), variable_data_impl_.size());
+<span class="lineNum">     294 </span>            :   size_ = rhs.size_;
+<span class="lineNum">     295 </span>            :   number_of_grid_points_ = std::move(rhs.number_of_grid_points_);
+<span class="lineNum">     296 </span>            :   add_reference_variable_data(typelist&lt;Tags...&gt;{});
+<span class="lineNum">     297 </span>            :   return *this;
+<span class="lineNum">     298 </span>            : }
+<span class="lineNum">     299 </span>            : /// \endcond
+<span class="lineNum">     300 </span>            : 
+<span class="lineNum">     301 </span>            : template &lt;typename... Tags&gt;
+<span class="lineNum">     302 </span>            : void Variables&lt;tmpl::list&lt;Tags...&gt;&gt;::pup(PUP::er&amp; p) {
+<span class="lineNum">     303 </span>            :   p | variable_data_impl_;
+<span class="lineNum">     304 </span>            :   p | size_;
+<span class="lineNum">     305 </span>            :   p | number_of_grid_points_;
+<span class="lineNum">     306 </span>            :   if (p.isUnpacking()) {
+<span class="lineNum">     307 </span>            :     variable_data_.reset(variable_data_impl_.data(),
+<span class="lineNum">     308 </span>            :                          variable_data_impl_.size());
+<span class="lineNum">     309 </span>            :     add_reference_variable_data(typelist&lt;Tags...&gt;{});
+<span class="lineNum">     310 </span>            :   }
+<span class="lineNum">     311 </span>            : }
+<span class="lineNum">     312 </span>            : 
+<span class="lineNum">     313 </span>            : template &lt;typename... Tags&gt;
+<span class="lineNum">     314 </span>            : template &lt;typename VT, bool VF&gt;
+<span class="lineNum">     315 </span>            : Variables&lt;tmpl::list&lt;Tags...&gt;&gt;::Variables(
+<span class="lineNum">     316 </span>            :     const blaze::Vector&lt;VT, VF&gt;&amp; expression)
+<span class="lineNum">     317 </span>            :     : variable_data_impl_((~expression).size()),
+<span class="lineNum">     318 </span>            :       variable_data_(variable_data_impl_.data(), variable_data_impl_.size()),
+<span class="lineNum">     319 </span>            :       size_((~expression).size()),
+<span class="lineNum">     320 </span>            :       number_of_grid_points_(size_ / number_of_independent_components) {
+<span class="lineNum">     321 </span>            :   variable_data_ = expression;
+<span class="lineNum">     322 </span>            :   add_reference_variable_data(typelist&lt;Tags...&gt;{});
+<span class="lineNum">     323 </span>            : }
+<span class="lineNum">     324 </span>            : 
+<span class="lineNum">     325 </span>            : template &lt;typename... Tags&gt;
+<span class="lineNum">     326 </span>            : template &lt;typename VT, bool VF&gt;
+<span class="lineNum">     327 </span><span class="lineNoCov">          0 : Variables&lt;tmpl::list&lt;Tags...&gt;&gt;&amp; Variables&lt;tmpl::list&lt;Tags...&gt;&gt;::operator=(</span>
+<span class="lineNum">     328 </span>            :     const blaze::Vector&lt;VT, VF&gt;&amp; expression) {
+<span class="lineNum">     329 </span>            :   size_ = (~expression).size();
+<span class="lineNum">     330 </span>            :   number_of_grid_points_ = size_ / number_of_independent_components;
+<span class="lineNum">     331 </span>            :   variable_data_impl_.resize(size_);
+<span class="lineNum">     332 </span>            :   variable_data_.reset(variable_data_impl_.data(), variable_data_impl_.size());
+<span class="lineNum">     333 </span>            :   variable_data_ = expression;
+<span class="lineNum">     334 </span>            :   add_reference_variable_data(typelist&lt;Tags...&gt;{});
+<span class="lineNum">     335 </span>            :   return *this;
+<span class="lineNum">     336 </span>            : }
+<span class="lineNum">     337 </span>            : 
+<span class="lineNum">     338 </span>            : /// \cond HIDDEN_SYMBOLS
+<span class="lineNum">     339 </span>            : template &lt;typename... Tags&gt;
+<span class="lineNum">     340 </span>            : template &lt;typename TagToAdd, typename... Rest,
+<span class="lineNum">     341 </span>            :           typename std::enable_if_t&lt;
+<span class="lineNum">     342 </span>            :               tt::is_a&lt;Tensor, typename TagToAdd::type&gt;::value&gt;*&gt;
+<span class="lineNum">     343 </span>            : void Variables&lt;tmpl::list&lt;Tags...&gt;&gt;::add_reference_variable_data(
+<span class="lineNum">     344 </span>            :     typelist&lt;TagToAdd, Rest...&gt; /*unused*/, const size_t variable_offset) {
+<span class="lineNum">     345 </span>            :   CASSERT(size_ &gt; (variable_offset + TagToAdd::type::size() - 1) *
+<span class="lineNum">     346 </span>            :                       number_of_grid_points_,
+<span class="lineNum">     347 </span>            :           &quot;This ASSERT is typically triggered because a Variables class was &quot;
+<span class="lineNum">     348 </span>            :           &quot;default constructed. The only reason the Variables class has a &quot;
+<span class="lineNum">     349 </span>            :           &quot;default constructor is because Charm++ uses it, you are not &quot;
+<span class="lineNum">     350 </span>            :           &quot;supposed to use it otherwise.&quot;);
+<span class="lineNum">     351 </span>            :   typename TagToAdd::type&amp; var =
+<span class="lineNum">     352 </span>            :       reference_variable_data_.template get&lt;TagToAdd&gt;();
+<span class="lineNum">     353 </span>            :   for (size_t i = 0; i &lt; TagToAdd::type::size(); ++i) {
+<span class="lineNum">     354 </span>            :     var[i].set_data_ref(
+<span class="lineNum">     355 </span>            :         &amp;variable_data_[(variable_offset + i) * number_of_grid_points_],
+<span class="lineNum">     356 </span>            :         number_of_grid_points_);
+<span class="lineNum">     357 </span>            :   }
+<span class="lineNum">     358 </span>            :   add_reference_variable_data(typelist&lt;Rest...&gt;{},
+<span class="lineNum">     359 </span>            :                               variable_offset + TagToAdd::type::size());
+<span class="lineNum">     360 </span>            : }
+<span class="lineNum">     361 </span>            : /// \endcond
+<span class="lineNum">     362 </span>            : 
+<span class="lineNum">     363 </span>            : namespace Variables_detail {
+<span class="lineNum">     364 </span>            : template &lt;typename TagsLs&gt;
+<span class="lineNum">     365 </span>            : std::ostream&amp; print_helper(std::ostream&amp; os, const Variables&lt;TagsLs&gt;&amp; /*d*/,
+<span class="lineNum">     366 </span>            :                            typelist&lt;&gt; /*meta*/) {
+<span class="lineNum">     367 </span>            :   return os &lt;&lt; &quot;Variables is empty!&quot;;
+<span class="lineNum">     368 </span>            : }
+<span class="lineNum">     369 </span>            : 
+<span class="lineNum">     370 </span>            : template &lt;typename Tag, typename TagsLs&gt;
+<span class="lineNum">     371 </span>            : std::ostream&amp; print_helper(std::ostream&amp; os, const Variables&lt;TagsLs&gt;&amp; d,
+<span class="lineNum">     372 </span>            :                            typelist&lt;Tag&gt; /*meta*/) {
+<span class="lineNum">     373 </span>            :   return os &lt;&lt; d.template get&lt;Tag&gt;();
+<span class="lineNum">     374 </span>            : }
+<span class="lineNum">     375 </span>            : template &lt;typename Tag, typename SecondTag, typename... RemainingTags,
+<span class="lineNum">     376 </span>            :           typename TagsLs&gt;
+<span class="lineNum">     377 </span>            : std::ostream&amp; print_helper(
+<span class="lineNum">     378 </span>            :     std::ostream&amp; os, const Variables&lt;TagsLs&gt;&amp; d,
+<span class="lineNum">     379 </span>            :     typelist&lt;Tag, SecondTag, RemainingTags...&gt; /*meta*/) {
+<span class="lineNum">     380 </span>            :   os &lt;&lt; d.template get&lt;Tag&gt;() &lt;&lt; '\n';
+<span class="lineNum">     381 </span>            :   print_helper(os, d, typelist&lt;SecondTag, RemainingTags...&gt;{});
+<span class="lineNum">     382 </span>            :   return os;
+<span class="lineNum">     383 </span>            : }
+<span class="lineNum">     384 </span>            : }  // namespace Variables_detail
+<span class="lineNum">     385 </span>            : 
+<span class="lineNum">     386 </span>            : template &lt;typename TagsLs&gt;
+<span class="lineNum">     387 </span><span class="lineNoCov">          0 : std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os, const Variables&lt;TagsLs&gt;&amp; d) {</span>
+<span class="lineNum">     388 </span>            :   return Variables_detail::print_helper(os, d, TagsLs{});
+<span class="lineNum">     389 </span>            : }
+<span class="lineNum">     390 </span>            : 
+<span class="lineNum">     391 </span>            : template &lt;typename TagsLsLocal&gt;
+<span class="lineNum">     392 </span><span class="lineNoCov">          0 : bool operator==(const Variables&lt;TagsLsLocal&gt;&amp; lhs,</span>
+<span class="lineNum">     393 </span>            :                 const Variables&lt;TagsLsLocal&gt;&amp; rhs) {
+<span class="lineNum">     394 </span>            :   return lhs.variable_data_ == rhs.variable_data_;
+<span class="lineNum">     395 </span>            : }
+<span class="lineNum">     396 </span>            : 
+<span class="lineNum">     397 </span>            : template &lt;typename TagsLs&gt;
+<span class="lineNum">     398 </span><span class="lineNoCov">          0 : bool operator!=(const Variables&lt;TagsLs&gt;&amp; lhs, const Variables&lt;TagsLs&gt;&amp; rhs) {</span>
+<span class="lineNum">     399 </span>            :   return not(lhs == rhs);
+<span class="lineNum">     400 </span>            : }
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

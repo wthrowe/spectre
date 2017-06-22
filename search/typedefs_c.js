@@ -1,7 +1,7 @@
 var searchData=
 [
   ['scalar',['Scalar',['../group__Tensor.html#ga06ebcb38a1f13c246e53378b9e8959ce',1,'TypeAliases.hpp']]],
-  ['size_5ftype',['size_type',['../classDataVector.html#a5b9ef4e180eb681043ad15f667e95da7',1,'DataVector']]],
+  ['size_5ftype',['size_type',['../classDataVector.html#a5b9ef4e180eb681043ad15f667e95da7',1,'DataVector::size_type()'],['../classVariables_3_01tmpl_1_1list_3_01Tags_8_8_8_01_4_01_4.html#ab8f25e89f076a46eb0cc88a3f4fa19b9',1,'Variables&lt; tmpl::list&lt; Tags... &gt; &gt;::size_type()']]],
   ['spacetimeindex',['SpacetimeIndex',['../group__Tensor.html#ga05c512b755e913cdbddce8634bdb4fa6',1,'IndexType.hpp']]],
   ['spatialindex',['SpatialIndex',['../group__Tensor.html#ga557beda9bce6c7f236213ec8b24b3ff3',1,'IndexType.hpp']]],
   ['storage_5ftype',['storage_type',['../classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html#a6a94cd52e9e523e6efd869a1a4dd6a64',1,'Tensor&lt; X, Symm, IndexLs&lt; Indices... &gt; &gt;']]],

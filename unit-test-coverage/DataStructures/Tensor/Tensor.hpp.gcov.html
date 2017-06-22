@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - e5cbc5bb9c5aba2950342934cd01e8f137343a21 - DataStructures/Tensor/Tensor.hpp</title>
+  <title>LCOV - b098be82ff1e5fcf43614b8a865d0fcc0256ccc3 - DataStructures/Tensor/Tensor.hpp</title>
   <link rel="stylesheet" type="text/css" href="../../gcov.css">
 </head>
 
@@ -28,20 +28,20 @@
           </tr>
           <tr>
             <td class="headerItem">Commit:</td>
-             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/e5cbc5bb9c5aba2950342934cd01e8f137343a21">e5cbc5bb9c5aba2950342934cd01e8f137343a21</a></td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/b098be82ff1e5fcf43614b8a865d0fcc0256ccc3">b098be82ff1e5fcf43614b8a865d0fcc0256ccc3</a></td>
             <td></td>
             <td class="headerItem">Lines:</td>
-            <td class="headerCovTableEntry">66</td>
-            <td class="headerCovTableEntry">66</td>
+            <td class="headerCovTableEntry">68</td>
+            <td class="headerCovTableEntry">68</td>
             <td class="headerCovTableEntryHi">100.0 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2017-06-21 01:58:57</td>
+            <td class="headerValue">2017-06-22 01:59:47</td>
             <td></td>
             <td class="headerItem">Functions:</td>
-            <td class="headerCovTableEntry">80</td>
-            <td class="headerCovTableEntry">80</td>
+            <td class="headerCovTableEntry">96</td>
+            <td class="headerCovTableEntry">96</td>
             <td class="headerCovTableEntryHi">100.0 %</td>
           </tr>
           <tr>
@@ -139,9 +139,9 @@
 <span class="lineNum">      69 </span>            :  * \tparam Symm the ::Symmetry of the indices
 <span class="lineNum">      70 </span>            :  * \tparam IndexLs a typelist of \ref SpacetimeIndex &quot;TensorIndexType&quot;'s
 <span class="lineNum">      71 </span>            :  */
-<span class="lineNum">      72 </span>            : template &lt;typename X, typename Symm, template &lt;typename...&gt; class IndexLs,
+<a name="72"><span class="lineNum">      72 </span>            : template &lt;typename X, typename Symm, template &lt;typename...&gt; class IndexLs,</a>
 <span class="lineNum">      73 </span>            :           typename... Indices&gt;
-<span class="lineNum">      74 </span>            : class Tensor&lt;X, Symm, IndexLs&lt;Indices...&gt;&gt; {
+<span class="lineNum">      74 </span><span class="lineCov">          3 : class Tensor&lt;X, Symm, IndexLs&lt;Indices...&gt;&gt; {</span>
 <span class="lineNum">      75 </span>            :   /// The number of \ref SpacetimeIndex &quot;TensorIndexType&quot;'s
 <span class="lineNum">      76 </span>            :   ///
 <span class="lineNum">      77 </span>            :   /// Note: Scalars need to have 1 so we can still store their data.
@@ -178,10 +178,10 @@
 <span class="lineNum">     108 </span>            :   using TE = TensorExpression&lt;Tensor&lt;X, Symm, tmpl::list&lt;Indices...&gt;&gt;, X, Symm,
 <a name="109"><span class="lineNum">     109 </span>            :                               tmpl::list&lt;Indices...&gt;, ArgsLs&gt;;</a>
 <a name="110"><span class="lineNum">     110 </span>            : </a>
-<span class="lineNum">     111 </span><span class="lineCov">          2 :   Tensor() = default;</span>
-<span class="lineNum">     112 </span><span class="lineCov">         10 :   ~Tensor() = default;</span>
+<span class="lineNum">     111 </span><span class="lineCov">         86 :   Tensor() = default;</span>
+<a name="112"><span class="lineNum">     112 </span><span class="lineCov">         94 :   ~Tensor() = default;</span></a>
 <span class="lineNum">     113 </span>            :   Tensor(const Tensor&amp;) = default;
-<span class="lineNum">     114 </span>            :   Tensor(Tensor&amp;&amp;) noexcept = default;  // NOLINT
+<span class="lineNum">     114 </span><span class="lineCov">          1 :   Tensor(Tensor&amp;&amp;) noexcept = default;  // NOLINT</span>
 <span class="lineNum">     115 </span>            :   Tensor&amp; operator=(const Tensor&amp;) = default;
 <span class="lineNum">     116 </span>            :   Tensor&amp; operator=(Tensor&amp;&amp;) noexcept = default;  // NOLINT
 <span class="lineNum">     117 </span>            : 
@@ -279,20 +279,20 @@
 <span class="lineNum">     209 </span>            :   /// Then `get(0, 2, 1)` returns the \f$T_{0 2 1}\f$ component.
 <a name="210"><span class="lineNum">     210 </span>            :   /// \param n the index at which to get the data</a>
 <span class="lineNum">     211 </span>            :   template &lt;typename... N&gt;
-<span class="lineNum">     212 </span><span class="lineCov">        429 :   constexpr reference get(N... n) {</span>
+<span class="lineNum">     212 </span><span class="lineCov">        435 :   constexpr reference get(N... n) {</span>
 <span class="lineNum">     213 </span>            :     static_assert(
 <span class="lineNum">     214 </span>            :         sizeof...(Indices) == sizeof...(N),
 <span class="lineNum">     215 </span>            :         &quot;the number of tensor indices specified must match the rank of &quot;
 <span class="lineNum">     216 </span>            :         &quot;the tensor&quot;);
-<span class="lineNum">     217 </span><span class="lineCov">       1287 :     return gsl::at(data_, structure::get_storage_index(n...));</span>
+<span class="lineNum">     217 </span><span class="lineCov">       1305 :     return gsl::at(data_, structure::get_storage_index(n...));</span>
 <a name="218"><span class="lineNum">     218 </span>            :   }</a>
 <span class="lineNum">     219 </span>            :   template &lt;typename... N&gt;
-<span class="lineNum">     220 </span><span class="lineCov">          3 :   constexpr const_reference get(N... n) const {</span>
+<span class="lineNum">     220 </span><span class="lineCov">          4 :   constexpr const_reference get(N... n) const {</span>
 <span class="lineNum">     221 </span>            :     static_assert(
 <span class="lineNum">     222 </span>            :         sizeof...(Indices) == sizeof...(N),
 <span class="lineNum">     223 </span>            :         &quot;the number of tensor indices specified must match the rank of &quot;
 <span class="lineNum">     224 </span>            :         &quot;the tensor&quot;);
-<span class="lineNum">     225 </span><span class="lineCov">          9 :     return gsl::at(data_, structure::get_storage_index(n...));</span>
+<span class="lineNum">     225 </span><span class="lineCov">         12 :     return gsl::at(data_, structure::get_storage_index(n...));</span>
 <span class="lineNum">     226 </span>            :   }
 <span class="lineNum">     227 </span>            :   // @}
 <span class="lineNum">     228 </span>            : 
@@ -343,11 +343,11 @@
 <span class="lineNum">     273 </span>            : 
 <a name="274"><span class="lineNum">     274 </span>            :   // @{</a>
 <span class="lineNum">     275 </span>            :   /// Return i'th component of storage vector
-<span class="lineNum">     276 </span><span class="lineCov">        321 :   constexpr reference operator[](const size_t storage_index) {</span>
-<a name="277"><span class="lineNum">     277 </span><span class="lineCov">        961 :     return gsl::at(data_, storage_index);</span></a>
+<span class="lineNum">     276 </span><span class="lineCov">        485 :   constexpr reference operator[](const size_t storage_index) {</span>
+<a name="277"><span class="lineNum">     277 </span><span class="lineCov">       1453 :     return gsl::at(data_, storage_index);</span></a>
 <span class="lineNum">     278 </span>            :   }
-<span class="lineNum">     279 </span><span class="lineCov">         85 :   constexpr const_reference operator[](const size_t storage_index) const {</span>
-<span class="lineNum">     280 </span><span class="lineCov">        253 :     return gsl::at(data_, storage_index);</span>
+<span class="lineNum">     279 </span><span class="lineCov">        146 :   constexpr const_reference operator[](const size_t storage_index) const {</span>
+<span class="lineNum">     280 </span><span class="lineCov">        436 :     return gsl::at(data_, storage_index);</span>
 <span class="lineNum">     281 </span>            :   }
 <span class="lineNum">     282 </span>            :   // @}
 <span class="lineNum">     283 </span>            : 
@@ -359,7 +359,7 @@
 <span class="lineNum">     289 </span>            :   /// rank-2 symmetric tensor, then the number of independent components is
 <span class="lineNum">     290 </span>            :   /// \f$n(n+1)/2\f$.
 <span class="lineNum">     291 </span>            :   SPECTRE_ALWAYS_INLINE static constexpr size_t size() noexcept {
-<span class="lineNum">     292 </span><span class="lineCov">        280 :     return structure::size();</span>
+<span class="lineNum">     292 </span><span class="lineCov">        810 :     return structure::size();</span>
 <span class="lineNum">     293 </span>            :   }
 <span class="lineNum">     294 </span>            : 
 <span class="lineNum">     295 </span>            :   /// Returns the rank of the Tensor
@@ -398,7 +398,7 @@
 <span class="lineNum">     328 </span>            :   }
 <span class="lineNum">     329 </span>            :   SPECTRE_ALWAYS_INLINE static constexpr size_t multiplicity(
 <span class="lineNum">     330 </span>            :       const size_t storage_index) noexcept {
-<span class="lineNum">     331 </span><span class="lineCov">        104 :     return structure::multiplicity(storage_index);</span>
+<span class="lineNum">     331 </span><span class="lineCov">        165 :     return structure::multiplicity(storage_index);</span>
 <span class="lineNum">     332 </span>            :   }
 <span class="lineNum">     333 </span>            :   // @}
 <span class="lineNum">     334 </span>            : 
@@ -447,7 +447,7 @@
 <span class="lineNum">     377 </span>            :   /// Return array of dimensionality of each index
 <span class="lineNum">     378 </span>            :   SPECTRE_ALWAYS_INLINE static constexpr std::array&lt;size_t, sizeof...(Indices)&gt;
 <span class="lineNum">     379 </span>            :   index_dims() noexcept {
-<span class="lineNum">     380 </span><span class="lineCov">          4 :     return structure::dims();</span>
+<span class="lineNum">     380 </span><span class="lineCov">         39 :     return structure::dims();</span>
 <span class="lineNum">     381 </span>            :   }
 <span class="lineNum">     382 </span>            :   //@}
 <span class="lineNum">     383 </span>            : 
@@ -515,8 +515,8 @@
 <span class="lineNum">     445 </span>            :         cpp17::disjunction_v&lt;std::is_same&lt;Tensor&lt;X, Symm, IndexLs&lt;Indices...&gt;&gt;,
 <a name="446"><span class="lineNum">     446 </span>            :                                           std::decay_t&lt;Args&gt;&gt;...&gt; and</a>
 <span class="lineNum">     447 </span>            :         sizeof...(Args) == 1)&gt;*&gt;
-<span class="lineNum">     448 </span><span class="lineCov">         13 : Tensor&lt;X, Symm, IndexLs&lt;Indices...&gt;&gt;::Tensor(Args&amp;&amp;... args)</span>
-<span class="lineNum">     449 </span><span class="lineCov">         26 :     : data_(make_array&lt;size()&gt;(X(std::forward&lt;Args&gt;(args)...))) {}</span>
+<span class="lineNum">     448 </span><span class="lineCov">         16 : Tensor&lt;X, Symm, IndexLs&lt;Indices...&gt;&gt;::Tensor(Args&amp;&amp;... args)</span>
+<span class="lineNum">     449 </span><span class="lineCov">         32 :     : data_(make_array&lt;size()&gt;(X(std::forward&lt;Args&gt;(args)...))) {}</span>
 <span class="lineNum">     450 </span>            : 
 <span class="lineNum">     451 </span>            : template &lt;typename X, typename Symm, template &lt;typename...&gt; class IndexLs,
 <a name="452"><span class="lineNum">     452 </span>            :           typename... Indices&gt;</a>
@@ -548,25 +548,25 @@
 <span class="lineNum">     478 </span>            : // explicitly instantiated.
 <a name="479"><span class="lineNum">     479 </span>            : template &lt;typename X, typename Symm, template &lt;typename...&gt; class IndexLs,</a>
 <span class="lineNum">     480 </span>            :           typename... Indices&gt;
-<span class="lineNum">     481 </span><span class="lineCov">          4 : std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os,</span>
+<span class="lineNum">     481 </span><span class="lineCov">         39 : std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os,</span>
 <span class="lineNum">     482 </span>            :                          const Tensor&lt;X, Symm, IndexLs&lt;Indices...&gt;&gt;&amp; x) {
 <span class="lineNum">     483 </span>            :   static_assert(tt::is_streamable_v&lt;decltype(os), X&gt;,
 <span class="lineNum">     484 </span>            :                 &quot;operator&lt;&lt; is not defined for the type you are trying to &quot;
 <span class="lineNum">     485 </span>            :                 &quot;stream in Tensor&quot;);
-<span class="lineNum">     486 </span><span class="lineCov">          4 :   os &lt;&lt; &quot;--Symmetry:  &quot; &lt;&lt; x.symmetries() &lt;&lt; &quot;\n&quot;;</span>
-<span class="lineNum">     487 </span><span class="lineCov">          4 :   os &lt;&lt; &quot;--Types:     &quot; &lt;&lt; x.index_types() &lt;&lt; &quot;\n&quot;;</span>
-<span class="lineNum">     488 </span><span class="lineCov">          4 :   os &lt;&lt; &quot;--Dims:      &quot; &lt;&lt; x.index_dims() &lt;&lt; &quot;\n&quot;;</span>
-<span class="lineNum">     489 </span><span class="lineCov">          4 :   os &lt;&lt; &quot;--Locations: &quot; &lt;&lt; x.index_valences() &lt;&lt; &quot;\n&quot;;</span>
-<span class="lineNum">     490 </span><span class="lineCov">          4 :   os &lt;&lt; &quot;--Frames:    &quot; &lt;&lt; x.index_frames() &lt;&lt; &quot;\n&quot;;</span>
-<span class="lineNum">     491 </span><span class="lineCov">        168 :   for (size_t i = 0; i &lt; x.size() - 1; ++i) {</span>
-<span class="lineNum">     492 </span><span class="lineCov">        240 :     os &lt;&lt; &quot; T&quot; &lt;&lt; x.get_tensor_index(i) &lt;&lt; &quot;=&quot; &lt;&lt; x[i]</span>
-<span class="lineNum">     493 </span><span class="lineCov">        160 :        &lt;&lt; &quot;\n     Multiplicity: &quot; &lt;&lt; x.multiplicity(i) &lt;&lt; &quot; Index: &quot; &lt;&lt; i</span>
+<span class="lineNum">     486 </span><span class="lineCov">         39 :   os &lt;&lt; &quot;--Symmetry:  &quot; &lt;&lt; x.symmetries() &lt;&lt; &quot;\n&quot;;</span>
+<span class="lineNum">     487 </span><span class="lineCov">         39 :   os &lt;&lt; &quot;--Types:     &quot; &lt;&lt; x.index_types() &lt;&lt; &quot;\n&quot;;</span>
+<span class="lineNum">     488 </span><span class="lineCov">         39 :   os &lt;&lt; &quot;--Dims:      &quot; &lt;&lt; x.index_dims() &lt;&lt; &quot;\n&quot;;</span>
+<span class="lineNum">     489 </span><span class="lineCov">         39 :   os &lt;&lt; &quot;--Locations: &quot; &lt;&lt; x.index_valences() &lt;&lt; &quot;\n&quot;;</span>
+<span class="lineNum">     490 </span><span class="lineCov">         39 :   os &lt;&lt; &quot;--Frames:    &quot; &lt;&lt; x.index_frames() &lt;&lt; &quot;\n&quot;;</span>
+<span class="lineNum">     491 </span><span class="lineCov">        290 :   for (size_t i = 0; i &lt; x.size() - 1; ++i) {</span>
+<span class="lineNum">     492 </span><span class="lineCov">        318 :     os &lt;&lt; &quot; T&quot; &lt;&lt; x.get_tensor_index(i) &lt;&lt; &quot;=&quot; &lt;&lt; x[i]</span>
+<span class="lineNum">     493 </span><span class="lineCov">        212 :        &lt;&lt; &quot;\n     Multiplicity: &quot; &lt;&lt; x.multiplicity(i) &lt;&lt; &quot; Index: &quot; &lt;&lt; i</span>
 <span class="lineNum">     494 </span>            :        &lt;&lt; &quot;\n&quot;;
 <span class="lineNum">     495 </span>            :   }
-<span class="lineNum">     496 </span><span class="lineCov">          4 :   size_t i = x.size() - 1;</span>
-<span class="lineNum">     497 </span><span class="lineCov">         12 :   os &lt;&lt; &quot; T&quot; &lt;&lt; x.get_tensor_index(i) &lt;&lt; &quot;=&quot; &lt;&lt; x[i]</span>
-<span class="lineNum">     498 </span><span class="lineCov">          8 :      &lt;&lt; &quot;\n     Multiplicity: &quot; &lt;&lt; x.multiplicity(i) &lt;&lt; &quot; Index: &quot; &lt;&lt; i;</span>
-<span class="lineNum">     499 </span><span class="lineCov">          4 :   return os;</span>
+<span class="lineNum">     496 </span><span class="lineCov">         39 :   size_t i = x.size() - 1;</span>
+<span class="lineNum">     497 </span><span class="lineCov">        117 :   os &lt;&lt; &quot; T&quot; &lt;&lt; x.get_tensor_index(i) &lt;&lt; &quot;=&quot; &lt;&lt; x[i]</span>
+<span class="lineNum">     498 </span><span class="lineCov">         78 :      &lt;&lt; &quot;\n     Multiplicity: &quot; &lt;&lt; x.multiplicity(i) &lt;&lt; &quot; Index: &quot; &lt;&lt; i;</span>
+<span class="lineNum">     499 </span><span class="lineCov">         39 :   return os;</span>
 <span class="lineNum">     500 </span>            : }
 </pre>
       </td>

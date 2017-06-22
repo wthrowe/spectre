@@ -1,6 +1,7 @@
 var searchData=
 [
   ['taggedtuple',['TaggedTuple',['../structTaggedTuple.html',1,'']]],
+  ['taggedtuple_3c_20tags_2e_2e_2e_20_3e',['TaggedTuple&lt; Tags... &gt;',['../structTaggedTuple.html',1,'']]],
   ['tensor',['Tensor',['../classTensor.html',1,'']]],
   ['tensor_3c_20x_2c_20symm_2c_20indexls_3c_20indices_2e_2e_2e_20_3e_20_3e',['Tensor&lt; X, Symm, IndexLs&lt; Indices... &gt; &gt;',['../classTensor_3_01X_00_01Symm_00_01IndexLs_3_01Indices_8_8_8_01_4_01_4.html',1,'']]],
   ['tensorcontract',['TensorContract',['../structTensorExpressions_1_1TensorContract.html',1,'TensorExpressions']]],

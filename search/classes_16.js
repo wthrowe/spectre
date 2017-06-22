@@ -27,7 +27,7 @@ var searchData=
   ['wssub_5fmatch',['wssub_match',['http://en.cppreference.com/w/cpp/regex/sub_match.html',1,'std']]],
   ['wstreambuf',['wstreambuf',['http://en.cppreference.com/w/cpp/io/basic_streambuf.html',1,'std']]],
   ['wstreampos',['wstreampos',['http://en.cppreference.com/w/cpp/io/fpos.html',1,'std']]],
-  ['wstring',['wstring',['http://en.cppreference.com/w/cpp/string/basic_string.html',1,'std::pmr::wstring'],['http://en.cppreference.com/w/cpp/string/basic_string.html',1,'std::wstring']]],
+  ['wstring',['wstring',['http://en.cppreference.com/w/cpp/string/basic_string.html',1,'std::wstring'],['http://en.cppreference.com/w/cpp/string/basic_string.html',1,'std::pmr::wstring']]],
   ['wstring_5fconvert',['wstring_convert',['http://en.cppreference.com/w/cpp/locale/wstring_convert.html',1,'std']]],
   ['wstring_5fview',['wstring_view',['http://en.cppreference.com/w/cpp/experimental/basic_string_view.html',1,'std::experimental::wstring_view'],['http://en.cppreference.com/w/cpp/string/basic_string_view.html',1,'std::wstring_view']]],
   ['wstringbuf',['wstringbuf',['http://en.cppreference.com/w/cpp/io/basic_stringbuf.html',1,'std']]],
