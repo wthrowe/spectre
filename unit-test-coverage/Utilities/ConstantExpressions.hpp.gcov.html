@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - b098be82ff1e5fcf43614b8a865d0fcc0256ccc3 - Utilities/ConstantExpressions.hpp</title>
+  <title>LCOV - 9f08a470964fcb574dd396387de54a0b88dfe0b4 - Utilities/ConstantExpressions.hpp</title>
   <link rel="stylesheet" type="text/css" href="../gcov.css">
 </head>
 
@@ -28,7 +28,7 @@
           </tr>
           <tr>
             <td class="headerItem">Commit:</td>
-             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/b098be82ff1e5fcf43614b8a865d0fcc0256ccc3">b098be82ff1e5fcf43614b8a865d0fcc0256ccc3</a></td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/9f08a470964fcb574dd396387de54a0b88dfe0b4">9f08a470964fcb574dd396387de54a0b88dfe0b4</a></td>
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntry">16</td>
@@ -37,12 +37,12 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2017-06-22 01:59:47</td>
+            <td class="headerValue">2017-06-23 01:58:27</td>
             <td></td>
             <td class="headerItem">Functions:</td>
-            <td class="headerCovTableEntry">78</td>
             <td class="headerCovTableEntry">80</td>
-            <td class="headerCovTableEntryHi">97.5 %</td>
+            <td class="headerCovTableEntry">82</td>
+            <td class="headerCovTableEntryHi">97.6 %</td>
           </tr>
           <tr>
             <td class="headerItem">Legend:</td>
@@ -171,11 +171,11 @@
 <span class="lineNum">     101 </span>            :     std::enable_if_t&lt;not tt::is_a_v&lt;tmpl::list, tmpl::front&lt;Ls&gt;&gt;&gt;* = nullptr&gt;
 <a name="102"><span class="lineNum">     102 </span>            : inline constexpr std::array&lt;std::decay_t&lt;decltype(tmpl::front&lt;Ls&gt;::value)&gt;,</a>
 <span class="lineNum">     103 </span>            :                             tmpl::size&lt;Ls&gt;::value&gt;
-<span class="lineNum">     104 </span><span class="lineCov">       1625 : make_array_from_list_helper(</span>
+<span class="lineNum">     104 </span><span class="lineCov">       1626 : make_array_from_list_helper(</span>
 <span class="lineNum">     105 </span>            :     std::integer_sequence&lt;size_t, indices...&gt; /*meta*/) {
 <span class="lineNum">     106 </span>            :   return std::array&lt;std::decay_t&lt;decltype(tmpl::front&lt;Ls&gt;::value)&gt;,
 <span class="lineNum">     107 </span>            :                     tmpl::size&lt;Ls&gt;::value&gt;{
-<span class="lineNum">     108 </span><span class="lineCov">       1625 :       {tmpl::at&lt;Ls, tmpl::size_t&lt;indices&gt;&gt;::value...}};</span>
+<span class="lineNum">     108 </span><span class="lineCov">       1626 :       {tmpl::at&lt;Ls, tmpl::size_t&lt;indices&gt;&gt;::value...}};</span>
 <span class="lineNum">     109 </span>            : }
 <span class="lineNum">     110 </span>            : }  // namespace detail
 <span class="lineNum">     111 </span>            : 
@@ -190,9 +190,9 @@
 <span class="lineNum">     120 </span>            :     std::enable_if_t&lt;not tt::is_a_v&lt;tmpl::list, tmpl::front&lt;Ls&gt;&gt;&gt;* = nullptr&gt;
 <a name="121"><span class="lineNum">     121 </span>            : inline constexpr std::array&lt;std::decay_t&lt;decltype(tmpl::front&lt;Ls&gt;::value)&gt;,</a>
 <span class="lineNum">     122 </span>            :                             tmpl::size&lt;Ls&gt;::value&gt;
-<span class="lineNum">     123 </span><span class="lineCov">       1625 : make_array_from_list() {</span>
-<span class="lineNum">     124 </span><span class="lineCov">       1625 :   return detail::make_array_from_list_helper&lt;Ls&gt;(</span>
-<span class="lineNum">     125 </span><span class="lineCov">       3250 :       std::make_integer_sequence&lt;size_t, tmpl::size&lt;Ls&gt;::value&gt;{});</span>
+<span class="lineNum">     123 </span><span class="lineCov">       1626 : make_array_from_list() {</span>
+<span class="lineNum">     124 </span><span class="lineCov">       1626 :   return detail::make_array_from_list_helper&lt;Ls&gt;(</span>
+<span class="lineNum">     125 </span><span class="lineCov">       3252 :       std::make_integer_sequence&lt;size_t, tmpl::size&lt;Ls&gt;::value&gt;{});</span>
 <span class="lineNum">     126 </span>            : }
 <span class="lineNum">     127 </span>            : 
 <span class="lineNum">     128 </span>            : template &lt;typename TypeForZero,

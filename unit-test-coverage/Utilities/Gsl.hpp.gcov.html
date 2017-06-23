@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - b098be82ff1e5fcf43614b8a865d0fcc0256ccc3 - Utilities/Gsl.hpp</title>
+  <title>LCOV - 9f08a470964fcb574dd396387de54a0b88dfe0b4 - Utilities/Gsl.hpp</title>
   <link rel="stylesheet" type="text/css" href="../gcov.css">
 </head>
 
@@ -28,7 +28,7 @@
           </tr>
           <tr>
             <td class="headerItem">Commit:</td>
-             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/b098be82ff1e5fcf43614b8a865d0fcc0256ccc3">b098be82ff1e5fcf43614b8a865d0fcc0256ccc3</a></td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/9f08a470964fcb574dd396387de54a0b88dfe0b4">9f08a470964fcb574dd396387de54a0b88dfe0b4</a></td>
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntry">5</td>
@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2017-06-22 01:59:47</td>
+            <td class="headerValue">2017-06-23 01:58:27</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">0</td>
@@ -143,7 +143,7 @@
 <span class="lineNum">      73 </span>            :  */
 <span class="lineNum">      74 </span>            : template &lt;class T, class U&gt;
 <span class="lineNum">      75 </span>            : SPECTRE_ALWAYS_INLINE constexpr T narrow_cast(U&amp;&amp; u) noexcept {
-<span class="lineNum">      76 </span><span class="lineCov">       3680 :   return static_cast&lt;T&gt;(std::forward&lt;U&gt;(u));</span>
+<span class="lineNum">      76 </span><span class="lineCov">       3682 :   return static_cast&lt;T&gt;(std::forward&lt;U&gt;(u));</span>
 <span class="lineNum">      77 </span>            : }
 <span class="lineNum">      78 </span>            : 
 <span class="lineNum">      79 </span>            : namespace details {
@@ -181,15 +181,15 @@
 <span class="lineNum">     111 </span>            :  */
 <span class="lineNum">     112 </span>            : template &lt;class T, std::size_t N, typename Size&gt;
 <span class="lineNum">     113 </span>            : SPECTRE_ALWAYS_INLINE constexpr T&amp; at(std::array&lt;T, N&gt;&amp; arr, Size index) {
-<span class="lineNum">     114 </span><span class="lineCov">       2106 :   Expects(index &gt;= 0 and index &lt; narrow_cast&lt;Size&gt;(N));</span>
-<span class="lineNum">     115 </span><span class="lineCov">       1052 :   return arr[static_cast&lt;std::size_t&gt;(index)];</span>
+<span class="lineNum">     114 </span><span class="lineCov">       2108 :   Expects(index &gt;= 0 and index &lt; narrow_cast&lt;Size&gt;(N));</span>
+<span class="lineNum">     115 </span><span class="lineCov">       1053 :   return arr[static_cast&lt;std::size_t&gt;(index)];</span>
 <span class="lineNum">     116 </span>            : }
 <span class="lineNum">     117 </span>            : 
 <span class="lineNum">     118 </span>            : template &lt;class Cont, typename Size&gt;
 <span class="lineNum">     119 </span>            : SPECTRE_ALWAYS_INLINE constexpr const typename Cont::value_type&amp; at(
 <span class="lineNum">     120 </span>            :     const Cont&amp; cont, Size index) {
-<span class="lineNum">     121 </span><span class="lineCov">       4882 :   Expects(index &gt;= 0 and index &lt; narrow_cast&lt;Size&gt;(cont.size()));</span>
-<span class="lineNum">     122 </span><span class="lineCov">       2438 :   return cont[static_cast&lt;typename Cont::size_type&gt;(index)];</span>
+<span class="lineNum">     121 </span><span class="lineCov">       4884 :   Expects(index &gt;= 0 and index &lt; narrow_cast&lt;Size&gt;(cont.size()));</span>
+<span class="lineNum">     122 </span><span class="lineCov">       2439 :   return cont[static_cast&lt;typename Cont::size_type&gt;(index)];</span>
 <span class="lineNum">     123 </span>            : }
 <span class="lineNum">     124 </span>            : 
 <span class="lineNum">     125 </span>            : template &lt;class T, typename Size&gt;

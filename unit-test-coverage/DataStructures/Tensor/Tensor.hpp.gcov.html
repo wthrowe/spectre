@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - b098be82ff1e5fcf43614b8a865d0fcc0256ccc3 - DataStructures/Tensor/Tensor.hpp</title>
+  <title>LCOV - 9f08a470964fcb574dd396387de54a0b88dfe0b4 - DataStructures/Tensor/Tensor.hpp</title>
   <link rel="stylesheet" type="text/css" href="../../gcov.css">
 </head>
 
@@ -28,7 +28,7 @@
           </tr>
           <tr>
             <td class="headerItem">Commit:</td>
-             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/b098be82ff1e5fcf43614b8a865d0fcc0256ccc3">b098be82ff1e5fcf43614b8a865d0fcc0256ccc3</a></td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/9f08a470964fcb574dd396387de54a0b88dfe0b4">9f08a470964fcb574dd396387de54a0b88dfe0b4</a></td>
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntry">68</td>
@@ -37,11 +37,11 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2017-06-22 01:59:47</td>
+            <td class="headerValue">2017-06-23 01:58:27</td>
             <td></td>
             <td class="headerItem">Functions:</td>
-            <td class="headerCovTableEntry">96</td>
-            <td class="headerCovTableEntry">96</td>
+            <td class="headerCovTableEntry">97</td>
+            <td class="headerCovTableEntry">97</td>
             <td class="headerCovTableEntryHi">100.0 %</td>
           </tr>
           <tr>
@@ -303,7 +303,7 @@
 <span class="lineNum">     233 </span>            :     static_assert(sizeof...(Indices) == sizeof...(N),
 <span class="lineNum">     234 </span>            :                   &quot;the number of tensor indices specified must match the rank &quot;
 <span class="lineNum">     235 </span>            :                   &quot;of the tensor&quot;);
-<span class="lineNum">     236 </span><span class="lineCov">          6 :     return gsl::at(data_, structure::template get_storage_index&lt;N...&gt;());</span>
+<span class="lineNum">     236 </span><span class="lineCov">          8 :     return gsl::at(data_, structure::template get_storage_index&lt;N...&gt;());</span>
 <span class="lineNum">     237 </span>            :   }
 <span class="lineNum">     238 </span>            :   template &lt;int... N&gt;
 <span class="lineNum">     239 </span>            :   SPECTRE_ALWAYS_INLINE constexpr const_reference get() const {
@@ -515,8 +515,8 @@
 <span class="lineNum">     445 </span>            :         cpp17::disjunction_v&lt;std::is_same&lt;Tensor&lt;X, Symm, IndexLs&lt;Indices...&gt;&gt;,
 <a name="446"><span class="lineNum">     446 </span>            :                                           std::decay_t&lt;Args&gt;&gt;...&gt; and</a>
 <span class="lineNum">     447 </span>            :         sizeof...(Args) == 1)&gt;*&gt;
-<span class="lineNum">     448 </span><span class="lineCov">         16 : Tensor&lt;X, Symm, IndexLs&lt;Indices...&gt;&gt;::Tensor(Args&amp;&amp;... args)</span>
-<span class="lineNum">     449 </span><span class="lineCov">         32 :     : data_(make_array&lt;size()&gt;(X(std::forward&lt;Args&gt;(args)...))) {}</span>
+<span class="lineNum">     448 </span><span class="lineCov">         17 : Tensor&lt;X, Symm, IndexLs&lt;Indices...&gt;&gt;::Tensor(Args&amp;&amp;... args)</span>
+<span class="lineNum">     449 </span><span class="lineCov">         34 :     : data_(make_array&lt;size()&gt;(X(std::forward&lt;Args&gt;(args)...))) {}</span>
 <span class="lineNum">     450 </span>            : 
 <span class="lineNum">     451 </span>            : template &lt;typename X, typename Symm, template &lt;typename...&gt; class IndexLs,
 <a name="452"><span class="lineNum">     452 </span>            :           typename... Indices&gt;</a>
