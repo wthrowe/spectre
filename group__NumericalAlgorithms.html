@@ -151,7 +151,8 @@ $(function() {
 
 <div class="header">
   <div class="summary">
-<a href="#namespaces">Namespaces</a>  </div>
+<a href="#namespaces">Namespaces</a> &#124;
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">Numerical Algorithms</div>  </div>
 </div><!--header-->
@@ -168,9 +169,68 @@ Namespaces</h2></td></tr>
 <tr class="memitem:namespaceBasis_1_1lgl"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceBasis_1_1lgl.html">Basis::lgl</a></td></tr>
 <tr class="memdesc:namespaceBasis_1_1lgl"><td class="mdescLeft">&#160;</td><td class="mdescRight">Functions for using Legendre-Gauss-Lobatto basis. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:gaed0152a61ac0aaf1d50fa4fea8d44501"><td class="memTemplParams" colspan="2">template&lt;size_t Dim&gt; </td></tr>
+<tr class="memitem:gaed0152a61ac0aaf1d50fa4fea8d44501"><td class="memTemplItemLeft" align="right" valign="top">double&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__NumericalAlgorithms.html#gaed0152a61ac0aaf1d50fa4fea8d44501">Basis::lgl::definite_integral</a> (const <a class="el" href="group__Tensor.html#ga06ebcb38a1f13c246e53378b9e8959ce">Scalar</a>&lt; <a class="el" href="classDataVector.html">DataVector</a> &gt; &amp;integrand, const <a class="el" href="classIndex.html">Index</a>&lt; Dim &gt; &amp;extents) noexcept</td></tr>
+<tr class="memdesc:gaed0152a61ac0aaf1d50fa4fea8d44501"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the definite integral of a grid-function over a manifold.  <a href="group__NumericalAlgorithms.html#gaed0152a61ac0aaf1d50fa4fea8d44501">More...</a><br /></td></tr>
+<tr class="separator:gaed0152a61ac0aaf1d50fa4fea8d44501"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>Generic numerical algorithms. </p>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="gaed0152a61ac0aaf1d50fa4fea8d44501"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaed0152a61ac0aaf1d50fa4fea8d44501">&#9670;&nbsp;</a></span>definite_integral()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;size_t Dim&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double Basis::lgl::definite_integral </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="group__Tensor.html#ga06ebcb38a1f13c246e53378b9e8959ce">Scalar</a>&lt; <a class="el" href="classDataVector.html">DataVector</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>integrand</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classIndex.html">Index</a>&lt; Dim &gt; &amp;&#160;</td>
+          <td class="paramname"><em>extents</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Compute the definite integral of a grid-function over a manifold. </p>
+<p>The integral is computed on the reference element by multiplying the <a class="el" href="classDataVector.html" title="A class for storing data on a mesh. ">DataVector</a> with the <a class="el" href="namespaceBasis_1_1lgl.html" title="Functions for using Legendre-Gauss-Lobatto basis. ">Basis::lgl</a> integration weights in that dimension. </p>
+<p><em>Requires:</em> number of points in <code>integrand</code> and <code>extents</code> are equal. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">integrand</td><td>the grid function to integrate. </td></tr>
+    <tr><td class="paramname">extents</td><td>the extents of the manifold on which <code>integrand</code> is located. </td></tr>
+  </table>
+  </dd>
+</dl>
+<p><em>Returns:</em> the definite integral of <code>integrand</code> on the manifold. </p>
+
+<p class="reference">References <a class="el" href="group__ErrorHandling.html#gaf170f3984e3d0f809b2558dbd981ca35">ASSERT</a>, <a class="el" href="classIndex.html#af3d4b4b5b4ef42bdf14787295c331add">Index&lt; Dim &gt;::product()</a>, <a class="el" href="classDataVector.html#a39a9ecdd962c142bee87c6c55be825a4">DataVector::size()</a>, and <a class="el" href="classIndex.html#a9b6ad7896736a317a819da3d576802b6">Index&lt; Dim &gt;::slice_away()</a>.</p>
+
+</div>
+</div>
 </div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->

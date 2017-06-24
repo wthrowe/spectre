@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - 9f08a470964fcb574dd396387de54a0b88dfe0b4 - DataStructures/Tensor/Structure.hpp</title>
+  <title>LCOV - 0142ebf629e3c69e839ed71593dd766b420b09cc - DataStructures/Tensor/Structure.hpp</title>
   <link rel="stylesheet" type="text/css" href="../../gcov.css">
 </head>
 
@@ -28,7 +28,7 @@
           </tr>
           <tr>
             <td class="headerItem">Commit:</td>
-             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/9f08a470964fcb574dd396387de54a0b88dfe0b4">9f08a470964fcb574dd396387de54a0b88dfe0b4</a></td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/0142ebf629e3c69e839ed71593dd766b420b09cc">0142ebf629e3c69e839ed71593dd766b420b09cc</a></td>
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntry">63</td>
@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2017-06-23 01:58:27</td>
+            <td class="headerValue">2017-06-24 02:00:18</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">34</td>
@@ -95,7 +95,7 @@
 <span class="lineNum">      25 </span>            : namespace detail {
 <span class="lineNum">      26 </span>            : template &lt;typename = void&gt;
 <span class="lineNum">      27 </span>            : SPECTRE_ALWAYS_INLINE constexpr auto compute_collapsed_index_impl() noexcept {
-<span class="lineNum">      28 </span><span class="lineCov">          1 :   return 0;</span>
+<span class="lineNum">      28 </span><span class="lineCov">    3020322 :   return 0;</span>
 <span class="lineNum">      29 </span>            : }
 <span class="lineNum">      30 </span>            : 
 <span class="lineNum">      31 </span>            : template &lt;typename&gt;
@@ -208,8 +208,8 @@
 <span class="lineNum">     138 </span>            :                 &quot;The number of tensor indices passed to &quot;
 <span class="lineNum">     139 </span>            :                 &quot;compute_collapsed_index does not match the rank of the &quot;
 <span class="lineNum">     140 </span>            :                 &quot;tensor.&quot;);
-<span class="lineNum">     141 </span><span class="lineCov">          1 :   return static_cast&lt;size_t&gt;(detail::compute_collapsed_index_impl&lt;IndexLs&gt;(</span>
-<span class="lineNum">     142 </span><span class="lineCov">        440 :       static_cast&lt;std::size_t&gt;(i)...));</span>
+<span class="lineNum">     141 </span><span class="lineCov">    3020322 :   return static_cast&lt;size_t&gt;(detail::compute_collapsed_index_impl&lt;IndexLs&gt;(</span>
+<span class="lineNum">     142 </span><span class="lineCov">    3020761 :       static_cast&lt;std::size_t&gt;(i)...));</span>
 <span class="lineNum">     143 </span>            : }
 <span class="lineNum">     144 </span>            : 
 <span class="lineNum">     145 </span>            : /// \ingroup Tensor
@@ -366,9 +366,9 @@
 <span class="lineNum">     296 </span>            :       const N... args) noexcept {
 <span class="lineNum">     297 </span>            :     static_assert(sizeof...(Indices) == sizeof...(N),
 <span class="lineNum">     298 </span>            :                   &quot;the number arguments must be equal to rank_&quot;);
-<span class="lineNum">     299 </span><span class="lineCov">       1181 :     return gsl::at(</span>
-<span class="lineNum">     300 </span><span class="lineCov">        880 :         make_array_from_list&lt;collapsed_to_storage_list&gt;(),</span>
-<span class="lineNum">     301 </span><span class="lineCov">        440 :         compute_collapsed_index&lt;index_list&gt;(static_cast&lt;size_t&gt;(args)...));</span>
+<span class="lineNum">     299 </span><span class="lineCov">    6041823 :     return gsl::at(</span>
+<span class="lineNum">     300 </span><span class="lineCov">    6041522 :         make_array_from_list&lt;collapsed_to_storage_list&gt;(),</span>
+<span class="lineNum">     301 </span><span class="lineCov">    3020761 :         compute_collapsed_index&lt;index_list&gt;(static_cast&lt;size_t&gt;(args)...));</span>
 <span class="lineNum">     302 </span>            :   }
 <span class="lineNum">     303 </span>            :   /// Get storage_index
 <span class="lineNum">     304 </span>            :   /// \param tensor_index the tensor_index of which to get the storage_index

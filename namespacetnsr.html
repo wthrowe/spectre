@@ -306,6 +306,12 @@ Typedefs</h2></td></tr>
 <tr class="memitem:ad7aff1447a7c8dbe8b2834ceef1defb2"><td class="memTemplParams" colspan="2">template&lt;typename DataType , size_t SpatialDim, typename Fr &gt; </td></tr>
 <tr class="memitem:ad7aff1447a7c8dbe8b2834ceef1defb2"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacetnsr.html#ad7aff1447a7c8dbe8b2834ceef1defb2">iAA</a> = <a class="el" href="classTensor.html">Tensor</a>&lt; DataType, tmpl::integral_list&lt; <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/integer.html">std::int32_t</a>, 2, 1, 1 &gt;, <a class="el" href="IndexType_8hpp.html#aed089afaa0428b29bb5a9b9e77c81927">index_list</a>&lt; <a class="el" href="group__Tensor.html#ga557beda9bce6c7f236213ec8b24b3ff3">SpatialIndex</a>&lt; SpatialDim, <a class="el" href="group__Tensor.html#ggaab1181edf2ab2b664b0f174223f08c28aff50b4aa1c9cc2197ef898436641c911">UpLo::Lo</a>, Fr &gt;, <a class="el" href="group__Tensor.html#ga05c512b755e913cdbddce8634bdb4fa6">SpacetimeIndex</a>&lt; SpatialDim, <a class="el" href="group__Tensor.html#ggaab1181edf2ab2b664b0f174223f08c28a258f49887ef8d14ac268c92b02503aaa">UpLo::Up</a>, Fr &gt;, <a class="el" href="group__Tensor.html#ga05c512b755e913cdbddce8634bdb4fa6">SpacetimeIndex</a>&lt; SpatialDim, <a class="el" href="group__Tensor.html#ggaab1181edf2ab2b664b0f174223f08c28a258f49887ef8d14ac268c92b02503aaa">UpLo::Up</a>, Fr &gt; &gt;&gt;</td></tr>
 <tr class="separator:ad7aff1447a7c8dbe8b2834ceef1defb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af925baf25c9f109aa95c85873b84b26e"><td class="memTemplParams" colspan="2">template&lt;size_t Dim, typename Frame1 , typename Frame2 &gt; </td></tr>
+<tr class="memitem:af925baf25c9f109aa95c85873b84b26e"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacetnsr.html#af925baf25c9f109aa95c85873b84b26e">InverseJacobian</a> = typename detail::inverse_jacobian_impl&lt; Dim, Frame1, Frame2 &gt;::type</td></tr>
+<tr class="separator:af925baf25c9f109aa95c85873b84b26e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad66f14733a0b39f6eaac9ff832493ec1"><td class="memTemplParams" colspan="2">template&lt;typename DataType , size_t SpatialDim, typename Fr &gt; </td></tr>
+<tr class="memitem:ad66f14733a0b39f6eaac9ff832493ec1"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacetnsr.html#ad66f14733a0b39f6eaac9ff832493ec1">Point</a> = <a class="el" href="classTensor.html">Tensor</a>&lt; DataType, tmpl::integral_list&lt; <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/integer.html">std::int32_t</a>, 1 &gt;, <a class="el" href="IndexType_8hpp.html#aed089afaa0428b29bb5a9b9e77c81927">index_list</a>&lt; <a class="el" href="group__Tensor.html#ga557beda9bce6c7f236213ec8b24b3ff3">SpatialIndex</a>&lt; SpatialDim, <a class="el" href="group__Tensor.html#ggaab1181edf2ab2b664b0f174223f08c28a258f49887ef8d14ac268c92b02503aaa">UpLo::Up</a>, Fr &gt; &gt;&gt;</td></tr>
+<tr class="separator:ad66f14733a0b39f6eaac9ff832493ec1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Type aliases to construct common Tensors. </p>
@@ -1073,6 +1079,38 @@ template&lt;typename DataType , size_t SpatialDim, typename Fr &gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">using <a class="el" href="namespacetnsr.html#a43febcb416e8dab1603173a88de19f92">tnsr::IJK</a> = typedef <a class="el" href="classTensor.html">Tensor</a>&lt;DataType, tmpl::integral_list&lt;<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/integer.html">std::int32_t</a>, 3, 2, 1&gt;, <a class="el" href="IndexType_8hpp.html#aed089afaa0428b29bb5a9b9e77c81927">index_list</a>&lt;<a class="el" href="group__Tensor.html#ga557beda9bce6c7f236213ec8b24b3ff3">SpatialIndex</a>&lt;SpatialDim, <a class="el" href="group__Tensor.html#ggaab1181edf2ab2b664b0f174223f08c28a258f49887ef8d14ac268c92b02503aaa">UpLo::Up</a>, Fr&gt;, <a class="el" href="group__Tensor.html#ga557beda9bce6c7f236213ec8b24b3ff3">SpatialIndex</a>&lt;SpatialDim, <a class="el" href="group__Tensor.html#ggaab1181edf2ab2b664b0f174223f08c28a258f49887ef8d14ac268c92b02503aaa">UpLo::Up</a>, Fr&gt;, <a class="el" href="group__Tensor.html#ga557beda9bce6c7f236213ec8b24b3ff3">SpatialIndex</a>&lt;SpatialDim, <a class="el" href="group__Tensor.html#ggaab1181edf2ab2b664b0f174223f08c28a258f49887ef8d14ac268c92b02503aaa">UpLo::Up</a>, Fr&gt; &gt;&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af925baf25c9f109aa95c85873b84b26e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af925baf25c9f109aa95c85873b84b26e">&#9670;&nbsp;</a></span>InverseJacobian</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;size_t Dim, typename Frame1 , typename Frame2 &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespacetnsr.html#af925baf25c9f109aa95c85873b84b26e">tnsr::InverseJacobian</a> = typedef typename detail::inverse_jacobian_impl&lt;Dim, Frame1, Frame2&gt;::type</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad66f14733a0b39f6eaac9ff832493ec1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad66f14733a0b39f6eaac9ff832493ec1">&#9670;&nbsp;</a></span>Point</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename DataType , size_t SpatialDim, typename Fr &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespacetnsr.html#ad66f14733a0b39f6eaac9ff832493ec1">tnsr::Point</a> = typedef <a class="el" href="classTensor.html">Tensor</a>&lt;DataType, tmpl::integral_list&lt;<a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/integer.html">std::int32_t</a>, 1&gt;, <a class="el" href="IndexType_8hpp.html#aed089afaa0428b29bb5a9b9e77c81927">index_list</a>&lt;<a class="el" href="group__Tensor.html#ga557beda9bce6c7f236213ec8b24b3ff3">SpatialIndex</a>&lt;SpatialDim, <a class="el" href="group__Tensor.html#ggaab1181edf2ab2b664b0f174223f08c28a258f49887ef8d14ac268c92b02503aaa">UpLo::Up</a>, Fr&gt; &gt;&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">

@@ -58,7 +58,6 @@ var searchData=
   ['blaze_2ehpp',['Blaze.hpp',['../Blaze_8hpp.html',1,'']]],
   ['bool_5fconstant',['bool_constant',['http://en.cppreference.com/w/cpp/types/integral_constant.html',1,'std::bool_constant'],['../group__TypeTraits.html#ga81cbbca00f78e3672f73f32ffbd0081e',1,'cpp17::bool_constant()']]],
   ['boolalpha',['boolalpha',['http://en.cppreference.com/w/cpp/io/manip/boolalpha.html',1,'std']]],
-  ['boosthelpers_2ecpp',['BoostHelpers.cpp',['../BoostHelpers_8cpp.html',1,'']]],
   ['boosthelpers_2ehpp',['BoostHelpers.hpp',['../BoostHelpers_8hpp.html',1,'']]],
   ['boundary_20conditions',['Boundary Conditions',['../group__BoundaryConditions.html',1,'']]],
   ['boyer_5fmoore_5fhorspool_5fsearcher',['boyer_moore_horspool_searcher',['http://en.cppreference.com/w/cpp/utility/functional/boyer_moore_horspool_searcher.html',1,'std::boyer_moore_horspool_searcher'],['http://en.cppreference.com/w/cpp/experimental/boyer_moore_horspool_searcher.html',1,'std::experimental::boyer_moore_horspool_searcher'],['http://en.cppreference.com/w/cpp/utility/functional/boyer_moore_horspool_searcher.html',1,'std::boyer_moore_horspool_searcher::boyer_moore_horspool_searcher()']]],

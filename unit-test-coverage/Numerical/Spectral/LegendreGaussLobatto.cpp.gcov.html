@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - 9f08a470964fcb574dd396387de54a0b88dfe0b4 - Numerical/Spectral/LegendreGaussLobatto.cpp</title>
+  <title>LCOV - 0142ebf629e3c69e839ed71593dd766b420b09cc - Numerical/Spectral/LegendreGaussLobatto.cpp</title>
   <link rel="stylesheet" type="text/css" href="../../gcov.css">
 </head>
 
@@ -28,7 +28,7 @@
           </tr>
           <tr>
             <td class="headerItem">Commit:</td>
-             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/9f08a470964fcb574dd396387de54a0b88dfe0b4">9f08a470964fcb574dd396387de54a0b88dfe0b4</a></td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/0142ebf629e3c69e839ed71593dd766b420b09cc">0142ebf629e3c69e839ed71593dd766b420b09cc</a></td>
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntry">212</td>
@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2017-06-23 01:58:27</td>
+            <td class="headerValue">2017-06-24 02:00:18</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">27</td>
@@ -91,9 +91,9 @@
 <span class="lineNum">      21 </span>            :   /// for details
 <a name="22"><span class="lineNum">      22 </span>            :   LglQp(size_t poly_degree, double x);</a>
 <a name="23"><span class="lineNum">      23 </span>            : </a>
-<a name="24"><span class="lineNum">      24 </span><span class="lineCov">        448 :   double q() const noexcept { return q_; }</span></a>
-<span class="lineNum">      25 </span><span class="lineCov">        448 :   double q_prime() const noexcept { return q_prime_; }</span>
-<span class="lineNum">      26 </span><span class="lineCov">        240 :   double p() const noexcept { return p_; }</span>
+<a name="24"><span class="lineNum">      24 </span><span class="lineCov">        560 :   double q() const noexcept { return q_; }</span></a>
+<span class="lineNum">      25 </span><span class="lineCov">        560 :   double q_prime() const noexcept { return q_prime_; }</span>
+<span class="lineNum">      26 </span><span class="lineCov">        300 :   double p() const noexcept { return p_; }</span>
 <span class="lineNum">      27 </span>            : 
 <span class="lineNum">      28 </span>            :  private:
 <span class="lineNum">      29 </span>            :   double q_;
@@ -101,44 +101,44 @@
 <span class="lineNum">      31 </span>            :   double p_;
 <a name="32"><span class="lineNum">      32 </span>            : };</a>
 <span class="lineNum">      33 </span>            : 
-<span class="lineNum">      34 </span><span class="lineCov">        568 : LglQp::LglQp(const size_t poly_degree, const double x) {</span>
+<span class="lineNum">      34 </span><span class="lineCov">        710 : LglQp::LglQp(const size_t poly_degree, const double x) {</span>
 <span class="lineNum">      35 </span>            :   // Algorithm 24 from Kopriva's book, p. 65
 <span class="lineNum">      36 </span>            :   // Note: Book has errors in last 4 lines. Corrected in errata on website
-<span class="lineNum">      37 </span><span class="lineCov">        568 :   ASSERT(poly_degree &gt; 1, &quot;polynomial degree must be greater than one&quot;);</span>
+<span class="lineNum">      37 </span><span class="lineCov">        710 :   ASSERT(poly_degree &gt; 1, &quot;polynomial degree must be greater than one&quot;);</span>
 <span class="lineNum">      38 </span>            : 
 <span class="lineNum">      39 </span>            :   // Evaluate P_n(x), q(x) = P_(n+1) - P_(n-1), and q'(x) for n &gt;= 2
-<span class="lineNum">      40 </span><span class="lineCov">        568 :   double p_n_minus_2 = 1.0;</span>
-<span class="lineNum">      41 </span><span class="lineCov">        568 :   double p_n_minus_1 = x;</span>
-<span class="lineNum">      42 </span><span class="lineCov">        568 :   double p_prime_n_minus_2 = 0.0;</span>
-<span class="lineNum">      43 </span><span class="lineCov">        568 :   double p_prime_n_minus_1 = 1.0;</span>
-<span class="lineNum">      44 </span><span class="lineCov">        568 :   double p_n = std::numeric_limits&lt;double&gt;::signaling_NaN();</span>
-<span class="lineNum">      45 </span><span class="lineCov">       4604 :   for (size_t k = 2; k &lt;= poly_degree; k++) {</span>
+<span class="lineNum">      40 </span><span class="lineCov">        710 :   double p_n_minus_2 = 1.0;</span>
+<span class="lineNum">      41 </span><span class="lineCov">        710 :   double p_n_minus_1 = x;</span>
+<span class="lineNum">      42 </span><span class="lineCov">        710 :   double p_prime_n_minus_2 = 0.0;</span>
+<span class="lineNum">      43 </span><span class="lineCov">        710 :   double p_prime_n_minus_1 = 1.0;</span>
+<span class="lineNum">      44 </span><span class="lineCov">        710 :   double p_n = std::numeric_limits&lt;double&gt;::signaling_NaN();</span>
+<span class="lineNum">      45 </span><span class="lineCov">       5755 :   for (size_t k = 2; k &lt;= poly_degree; k++) {</span>
 <span class="lineNum">      46 </span>            :     // recurrence relation
-<span class="lineNum">      47 </span><span class="lineCov">       4036 :     p_n = ((2 * k - 1) * x * p_n_minus_1 - (k - 1) * p_n_minus_2) / k;</span>
-<span class="lineNum">      48 </span><span class="lineCov">       4036 :     const double p_prime_n = p_prime_n_minus_2 + (2 * k - 1) * p_n_minus_1;</span>
-<span class="lineNum">      49 </span><span class="lineCov">       4036 :     p_n_minus_2 = p_n_minus_1;</span>
-<span class="lineNum">      50 </span><span class="lineCov">       4036 :     p_n_minus_1 = p_n;</span>
-<span class="lineNum">      51 </span><span class="lineCov">       4036 :     p_prime_n_minus_2 = p_prime_n_minus_1;</span>
-<span class="lineNum">      52 </span><span class="lineCov">       4036 :     p_prime_n_minus_1 = p_prime_n;</span>
+<span class="lineNum">      47 </span><span class="lineCov">       5045 :     p_n = ((2 * k - 1) * x * p_n_minus_1 - (k - 1) * p_n_minus_2) / k;</span>
+<span class="lineNum">      48 </span><span class="lineCov">       5045 :     const double p_prime_n = p_prime_n_minus_2 + (2 * k - 1) * p_n_minus_1;</span>
+<span class="lineNum">      49 </span><span class="lineCov">       5045 :     p_n_minus_2 = p_n_minus_1;</span>
+<span class="lineNum">      50 </span><span class="lineCov">       5045 :     p_n_minus_1 = p_n;</span>
+<span class="lineNum">      51 </span><span class="lineCov">       5045 :     p_prime_n_minus_2 = p_prime_n_minus_1;</span>
+<span class="lineNum">      52 </span><span class="lineCov">       5045 :     p_prime_n_minus_1 = p_prime_n;</span>
 <span class="lineNum">      53 </span>            :   }
-<span class="lineNum">      54 </span><span class="lineCov">        568 :   const size_t k = poly_degree + 1;</span>
-<span class="lineNum">      55 </span><span class="lineCov">        568 :   const double p_n_plus_1 = ((2 * k - 1) * x * p_n - (k - 1) * p_n_minus_2) / k;</span>
-<span class="lineNum">      56 </span><span class="lineCov">        568 :   const double p_prime_n_plus_1 = p_prime_n_minus_2 + (2 * k - 1) * p_n_minus_1;</span>
+<span class="lineNum">      54 </span><span class="lineCov">        710 :   const size_t k = poly_degree + 1;</span>
+<span class="lineNum">      55 </span><span class="lineCov">        710 :   const double p_n_plus_1 = ((2 * k - 1) * x * p_n - (k - 1) * p_n_minus_2) / k;</span>
+<span class="lineNum">      56 </span><span class="lineCov">        710 :   const double p_prime_n_plus_1 = p_prime_n_minus_2 + (2 * k - 1) * p_n_minus_1;</span>
 <span class="lineNum">      57 </span>            : 
-<span class="lineNum">      58 </span><span class="lineCov">        568 :   q_ = p_n_plus_1 - p_n_minus_2;</span>
-<span class="lineNum">      59 </span><span class="lineCov">        568 :   q_prime_ = p_prime_n_plus_1 - p_prime_n_minus_2;</span>
-<span class="lineNum">      60 </span><span class="lineCov">        568 :   p_ = p_n;</span>
-<a name="61"><span class="lineNum">      61 </span><span class="lineCov">        568 : }</span></a>
+<span class="lineNum">      58 </span><span class="lineCov">        710 :   q_ = p_n_plus_1 - p_n_minus_2;</span>
+<span class="lineNum">      59 </span><span class="lineCov">        710 :   q_prime_ = p_prime_n_plus_1 - p_prime_n_minus_2;</span>
+<span class="lineNum">      60 </span><span class="lineCov">        710 :   p_ = p_n;</span>
+<a name="61"><span class="lineNum">      61 </span><span class="lineCov">        710 : }</span></a>
 <span class="lineNum">      62 </span>            : 
-<span class="lineNum">      63 </span><span class="lineCov">         44 : class CollocationPointsAndWeights {</span>
+<span class="lineNum">      63 </span><span class="lineCov">         55 : class CollocationPointsAndWeights {</span>
 <span class="lineNum">      64 </span>            :  public:
 <a name="65"><span class="lineNum">      65 </span>            :   explicit CollocationPointsAndWeights(size_t number_of_pts);</a>
 <span class="lineNum">      66 </span>            : 
-<span class="lineNum">      67 </span><span class="lineCov">         66 :   const DataVector&amp; collocation_pts() const noexcept {</span>
-<a name="68"><span class="lineNum">      68 </span><span class="lineCov">         66 :     return collocation_pts_;</span></a>
+<span class="lineNum">      67 </span><span class="lineCov">        927 :   const DataVector&amp; collocation_pts() const noexcept {</span>
+<a name="68"><span class="lineNum">      68 </span><span class="lineCov">        927 :     return collocation_pts_;</span></a>
 <span class="lineNum">      69 </span>            :   }
-<span class="lineNum">      70 </span><span class="lineCov">         12 :   const DataVector&amp; quadrature_weights() const noexcept {</span>
-<a name="71"><span class="lineNum">      71 </span><span class="lineCov">         12 :     return quadrature_weights_;</span></a>
+<span class="lineNum">      70 </span><span class="lineCov">      66799 :   const DataVector&amp; quadrature_weights() const noexcept {</span>
+<a name="71"><span class="lineNum">      71 </span><span class="lineCov">      66799 :     return quadrature_weights_;</span></a>
 <span class="lineNum">      72 </span>            :   }
 <span class="lineNum">      73 </span><span class="lineCov">         19 :   const DataVector&amp; barycentric_weights() const noexcept {</span>
 <span class="lineNum">      74 </span><span class="lineCov">         19 :     return barycentric_weights_;</span>
@@ -150,76 +150,76 @@
 <span class="lineNum">      80 </span>            :   DataVector barycentric_weights_;
 <a name="81"><span class="lineNum">      81 </span>            : };</a>
 <span class="lineNum">      82 </span>            : 
-<span class="lineNum">      83 </span><span class="lineCov">         44 : CollocationPointsAndWeights::CollocationPointsAndWeights(</span>
-<span class="lineNum">      84 </span><span class="lineCov">         44 :     const size_t number_of_pts)</span>
+<span class="lineNum">      83 </span><span class="lineCov">         55 : CollocationPointsAndWeights::CollocationPointsAndWeights(</span>
+<span class="lineNum">      84 </span><span class="lineCov">         55 :     const size_t number_of_pts)</span>
 <span class="lineNum">      85 </span>            :     : collocation_pts_(number_of_pts),
 <span class="lineNum">      86 </span>            :       quadrature_weights_(number_of_pts),
-<span class="lineNum">      87 </span><span class="lineCov">         44 :       barycentric_weights_(number_of_pts) {</span>
+<span class="lineNum">      87 </span><span class="lineCov">         55 :       barycentric_weights_(number_of_pts) {</span>
 <span class="lineNum">      88 </span>            :   // Algorithm 25 from Kopriva's book, p.66
-<span class="lineNum">      89 </span><span class="lineCov">         44 :   ASSERT(number_of_pts &gt; 1, &quot;Must have more than one collocation point&quot;);</span>
-<span class="lineNum">      90 </span><span class="lineCov">         44 :   size_t poly_degree = number_of_pts - 1;</span>
+<span class="lineNum">      89 </span><span class="lineCov">         55 :   ASSERT(number_of_pts &gt; 1, &quot;Must have more than one collocation point&quot;);</span>
+<span class="lineNum">      90 </span><span class="lineCov">         55 :   size_t poly_degree = number_of_pts - 1;</span>
 <span class="lineNum">      91 </span>            : 
-<span class="lineNum">      92 </span><span class="lineCov">         44 :   collocation_pts_[0] = -1.0;</span>
-<span class="lineNum">      93 </span><span class="lineCov">         44 :   collocation_pts_[poly_degree] = 1.0;</span>
-<span class="lineNum">      94 </span><span class="lineCov">         88 :   quadrature_weights_[0] = quadrature_weights_[poly_degree] =</span>
-<span class="lineNum">      95 </span><span class="lineCov">         44 :       2.0 / (poly_degree * (poly_degree + 1));</span>
-<span class="lineNum">      96 </span><span class="lineCov">         44 :   const size_t maxit = 50;</span>
-<span class="lineNum">      97 </span><span class="lineCov">         44 :   constexpr double tolerance = 4.0 * std::numeric_limits&lt;double&gt;::epsilon();</span>
-<span class="lineNum">      98 </span><span class="lineCov">        144 :   for (size_t j = 1; j &lt; (poly_degree + 1) / 2; j++) {</span>
+<span class="lineNum">      92 </span><span class="lineCov">         55 :   collocation_pts_[0] = -1.0;</span>
+<span class="lineNum">      93 </span><span class="lineCov">         55 :   collocation_pts_[poly_degree] = 1.0;</span>
+<span class="lineNum">      94 </span><span class="lineCov">        110 :   quadrature_weights_[0] = quadrature_weights_[poly_degree] =</span>
+<span class="lineNum">      95 </span><span class="lineCov">         55 :       2.0 / (poly_degree * (poly_degree + 1));</span>
+<span class="lineNum">      96 </span><span class="lineCov">         55 :   const size_t maxit = 50;</span>
+<span class="lineNum">      97 </span><span class="lineCov">         55 :   constexpr double tolerance = 4.0 * std::numeric_limits&lt;double&gt;::epsilon();</span>
+<span class="lineNum">      98 </span><span class="lineCov">        180 :   for (size_t j = 1; j &lt; (poly_degree + 1) / 2; j++) {</span>
 <span class="lineNum">      99 </span>            :     // initial guess for Newton-Raphson iteration:
-<span class="lineNum">     100 </span><span class="lineCov">        200 :     double logical_coord = -cos((j + 0.25) * M_PI / poly_degree -</span>
-<span class="lineNum">     101 </span><span class="lineCov">        200 :                                 0.375 / (poly_degree * M_PI * (j + 0.25)));</span>
-<span class="lineNum">     102 </span><span class="lineCov">        100 :     size_t iteration = 0;</span>
+<span class="lineNum">     100 </span><span class="lineCov">        250 :     double logical_coord = -cos((j + 0.25) * M_PI / poly_degree -</span>
+<span class="lineNum">     101 </span><span class="lineCov">        250 :                                 0.375 / (poly_degree * M_PI * (j + 0.25)));</span>
+<span class="lineNum">     102 </span><span class="lineCov">        125 :     size_t iteration = 0;</span>
 <span class="lineNum">     103 </span>            :     double delta;
-<span class="lineNum">     104 </span><span class="lineCov">        448 :     do {</span>
-<span class="lineNum">     105 </span><span class="lineCov">        448 :       const LglQp q_and_p(poly_degree, logical_coord);</span>
-<span class="lineNum">     106 </span><span class="lineCov">        448 :       delta = -q_and_p.q() / q_and_p.q_prime();</span>
-<span class="lineNum">     107 </span><span class="lineCov">        448 :       logical_coord += delta;</span>
-<span class="lineNum">     108 </span><span class="lineCov">        448 :       iteration++;</span>
-<span class="lineNum">     109 </span><span class="lineCov">        448 :       if (iteration &gt; maxit) {</span>
+<span class="lineNum">     104 </span><span class="lineCov">        560 :     do {</span>
+<span class="lineNum">     105 </span><span class="lineCov">        560 :       const LglQp q_and_p(poly_degree, logical_coord);</span>
+<span class="lineNum">     106 </span><span class="lineCov">        560 :       delta = -q_and_p.q() / q_and_p.q_prime();</span>
+<span class="lineNum">     107 </span><span class="lineCov">        560 :       logical_coord += delta;</span>
+<span class="lineNum">     108 </span><span class="lineCov">        560 :       iteration++;</span>
+<span class="lineNum">     109 </span><span class="lineCov">        560 :       if (iteration &gt; maxit) {</span>
 <span class="lineNum">     110 </span><span class="lineNoCov">          0 :         ERROR(</span>
 <span class="lineNum">     111 </span>            :             &quot;Legendre-Gauss-Lobatto computing collocation points exceeded &quot;
 <span class="lineNum">     112 </span>            :             &quot;maximum number of iterations (&quot;
 <span class="lineNum">     113 </span>            :             &lt;&lt; maxit &lt;&lt; &quot;) \n&quot;);
 <span class="lineNum">     114 </span>            :       }
-<span class="lineNum">     115 </span><span class="lineCov">        448 :     } while (std::abs(delta) &gt; tolerance * std::abs(logical_coord));</span>
+<span class="lineNum">     115 </span><span class="lineCov">        560 :     } while (std::abs(delta) &gt; tolerance * std::abs(logical_coord));</span>
 <span class="lineNum">     116 </span>            : 
-<span class="lineNum">     117 </span><span class="lineCov">        100 :     const LglQp q_and_p(poly_degree, logical_coord);</span>
-<span class="lineNum">     118 </span><span class="lineCov">        100 :     collocation_pts_[j] = logical_coord;</span>
-<span class="lineNum">     119 </span><span class="lineCov">        100 :     collocation_pts_[poly_degree - j] = -logical_coord;</span>
-<span class="lineNum">     120 </span><span class="lineCov">        200 :     quadrature_weights_[j] = quadrature_weights_[poly_degree - j] =</span>
-<span class="lineNum">     121 </span><span class="lineCov">        100 :         2.0 / (poly_degree * (poly_degree + 1) * q_and_p.p() * q_and_p.p());</span>
+<span class="lineNum">     117 </span><span class="lineCov">        125 :     const LglQp q_and_p(poly_degree, logical_coord);</span>
+<span class="lineNum">     118 </span><span class="lineCov">        125 :     collocation_pts_[j] = logical_coord;</span>
+<span class="lineNum">     119 </span><span class="lineCov">        125 :     collocation_pts_[poly_degree - j] = -logical_coord;</span>
+<span class="lineNum">     120 </span><span class="lineCov">        250 :     quadrature_weights_[j] = quadrature_weights_[poly_degree - j] =</span>
+<span class="lineNum">     121 </span><span class="lineCov">        125 :         2.0 / (poly_degree * (poly_degree + 1) * q_and_p.p() * q_and_p.p());</span>
 <span class="lineNum">     122 </span>            :   }
 <span class="lineNum">     123 </span>            : 
-<span class="lineNum">     124 </span><span class="lineCov">         44 :   if (poly_degree % 2 == 0) {</span>
+<span class="lineNum">     124 </span><span class="lineCov">         55 :   if (poly_degree % 2 == 0) {</span>
 <span class="lineNum">     125 </span>            :     // The origin (0.0) is a collocation point if poly_degree (N) is even
-<span class="lineNum">     126 </span><span class="lineCov">         20 :     const LglQp q_and_p(poly_degree, 0.0);</span>
-<span class="lineNum">     127 </span><span class="lineCov">         20 :     collocation_pts_[poly_degree / 2] = 0.0;</span>
-<span class="lineNum">     128 </span><span class="lineCov">         40 :     quadrature_weights_[poly_degree / 2] =</span>
-<span class="lineNum">     129 </span><span class="lineCov">         20 :         2.0 / (poly_degree * (poly_degree + 1) * q_and_p.p() * q_and_p.p());</span>
+<span class="lineNum">     126 </span><span class="lineCov">         25 :     const LglQp q_and_p(poly_degree, 0.0);</span>
+<span class="lineNum">     127 </span><span class="lineCov">         25 :     collocation_pts_[poly_degree / 2] = 0.0;</span>
+<span class="lineNum">     128 </span><span class="lineCov">         50 :     quadrature_weights_[poly_degree / 2] =</span>
+<span class="lineNum">     129 </span><span class="lineCov">         25 :         2.0 / (poly_degree * (poly_degree + 1) * q_and_p.p() * q_and_p.p());</span>
 <span class="lineNum">     130 </span>            :   }
 <span class="lineNum">     131 </span>            : 
 <span class="lineNum">     132 </span>            :   // use closed form expression for Legendre-Gauss-Lobatto barycentric weights
-<span class="lineNum">     133 </span><span class="lineCov">        352 :   for (size_t i = 0; i &lt; number_of_pts; i++) {</span>
-<span class="lineNum">     134 </span><span class="lineCov">        452 :     barycentric_weights_[i] = i % 2 == 0 ? sqrt(quadrature_weights_[i])</span>
-<span class="lineNum">     135 </span><span class="lineCov">        144 :                                          : -sqrt(quadrature_weights_[i]);</span>
+<span class="lineNum">     133 </span><span class="lineCov">        440 :   for (size_t i = 0; i &lt; number_of_pts; i++) {</span>
+<span class="lineNum">     134 </span><span class="lineCov">        565 :     barycentric_weights_[i] = i % 2 == 0 ? sqrt(quadrature_weights_[i])</span>
+<span class="lineNum">     135 </span><span class="lineCov">        180 :                                          : -sqrt(quadrature_weights_[i]);</span>
 <span class="lineNum">     136 </span>            :   }
-<a name="137"><span class="lineNum">     137 </span><span class="lineCov">         44 : }</span></a>
+<a name="137"><span class="lineNum">     137 </span><span class="lineCov">         55 : }</span></a>
 <span class="lineNum">     138 </span>            : 
-<span class="lineNum">     139 </span><span class="lineCov">         97 : const CollocationPointsAndWeights&amp; collocation_points_and_weights(</span>
+<span class="lineNum">     139 </span><span class="lineCov">      67745 : const CollocationPointsAndWeights&amp; collocation_points_and_weights(</span>
 <span class="lineNum">     140 </span>            :     const size_t number_of_pts) {
-<span class="lineNum">     141 </span><span class="lineCov">         97 :   ASSERT(number_of_pts &gt; 1, &quot;Must have at least two collocation points&quot;);</span>
-<a name="142"><span class="lineNum">     142 </span><span class="lineCov">         97 :   ASSERT(number_of_pts &lt;= ::Basis::lgl::maximum_number_of_pts,</span></a>
+<span class="lineNum">     141 </span><span class="lineCov">      67745 :   ASSERT(number_of_pts &gt; 1, &quot;Must have at least two collocation points&quot;);</span>
+<a name="142"><span class="lineNum">     142 </span><span class="lineCov">      67745 :   ASSERT(number_of_pts &lt;= ::Basis::lgl::maximum_number_of_pts,</span></a>
 <span class="lineNum">     143 </span>            :          &quot;Exceeded maximum number of collocation points.&quot;);
-<span class="lineNum">     144 </span><span class="lineCov">          4 :   static const auto collo_pts_and_weights = []() {</span>
-<span class="lineNum">     145 </span><span class="lineCov">          4 :     std::vector&lt;CollocationPointsAndWeights&gt; local_collo_pts;</span>
-<span class="lineNum">     146 </span><span class="lineCov">          4 :     local_collo_pts.reserve(::Basis::lgl::maximum_number_of_pts - 1);</span>
-<span class="lineNum">     147 </span><span class="lineCov">         48 :     for (size_t n = 2; n &lt;= Basis::lgl::maximum_number_of_pts; ++n) {</span>
-<span class="lineNum">     148 </span><span class="lineCov">         44 :       local_collo_pts.emplace_back(n);</span>
+<span class="lineNum">     144 </span><span class="lineCov">          5 :   static const auto collo_pts_and_weights = []() {</span>
+<span class="lineNum">     145 </span><span class="lineCov">          5 :     std::vector&lt;CollocationPointsAndWeights&gt; local_collo_pts;</span>
+<span class="lineNum">     146 </span><span class="lineCov">          5 :     local_collo_pts.reserve(::Basis::lgl::maximum_number_of_pts - 1);</span>
+<span class="lineNum">     147 </span><span class="lineCov">         60 :     for (size_t n = 2; n &lt;= Basis::lgl::maximum_number_of_pts; ++n) {</span>
+<span class="lineNum">     148 </span><span class="lineCov">         55 :       local_collo_pts.emplace_back(n);</span>
 <span class="lineNum">     149 </span>            :     }
-<span class="lineNum">     150 </span><span class="lineCov">          4 :     return local_collo_pts;</span>
-<span class="lineNum">     151 </span><span class="lineCov">         97 :   }();</span>
-<span class="lineNum">     152 </span><span class="lineCov">         97 :   return collo_pts_and_weights[number_of_pts - 2];</span>
+<span class="lineNum">     150 </span><span class="lineCov">          5 :     return local_collo_pts;</span>
+<span class="lineNum">     151 </span><span class="lineCov">      67745 :   }();</span>
+<span class="lineNum">     152 </span><span class="lineCov">      67745 :   return collo_pts_and_weights[number_of_pts - 2];</span>
 <a name="153"><span class="lineNum">     153 </span>            : }</a>
 <span class="lineNum">     154 </span>            : 
 <span class="lineNum">     155 </span><span class="lineCov">         11 : Matrix differentiation_matrix(const size_t number_of_pts) {</span>
@@ -300,14 +300,14 @@
 <span class="lineNum">     230 </span>            : }
 <a name="231"><span class="lineNum">     231 </span>            : }  // namespace detail</a>
 <span class="lineNum">     232 </span>            : 
-<span class="lineNum">     233 </span><span class="lineCov">         25 : const DataVector&amp; collocation_points(const size_t number_of_pts) {</span>
-<span class="lineNum">     234 </span><span class="lineCov">         25 :   return detail::collocation_points_and_weights(number_of_pts)</span>
-<span class="lineNum">     235 </span><span class="lineCov">         25 :       .collocation_pts();</span>
+<span class="lineNum">     233 </span><span class="lineCov">        886 : const DataVector&amp; collocation_points(const size_t number_of_pts) {</span>
+<span class="lineNum">     234 </span><span class="lineCov">        886 :   return detail::collocation_points_and_weights(number_of_pts)</span>
+<span class="lineNum">     235 </span><span class="lineCov">        886 :       .collocation_pts();</span>
 <a name="236"><span class="lineNum">     236 </span>            : }</a>
 <span class="lineNum">     237 </span>            : 
-<span class="lineNum">     238 </span><span class="lineCov">          1 : const DataVector&amp; quadrature_weights(const size_t number_of_pts) {</span>
-<span class="lineNum">     239 </span><span class="lineCov">          1 :   return detail::collocation_points_and_weights(number_of_pts)</span>
-<span class="lineNum">     240 </span><span class="lineCov">          1 :       .quadrature_weights();</span>
+<span class="lineNum">     238 </span><span class="lineCov">      66788 : const DataVector&amp; quadrature_weights(const size_t number_of_pts) {</span>
+<span class="lineNum">     239 </span><span class="lineCov">      66788 :   return detail::collocation_points_and_weights(number_of_pts)</span>
+<span class="lineNum">     240 </span><span class="lineCov">      66788 :       .quadrature_weights();</span>
 <a name="241"><span class="lineNum">     241 </span>            : }</a>
 <span class="lineNum">     242 </span>            : 
 <span class="lineNum">     243 </span><span class="lineCov">          5 : const Matrix&amp; differentiation_matrix(const size_t number_of_pts) {</span>
@@ -436,7 +436,7 @@
 <span class="lineNum">     366 </span>            :     const size_t num_collocation_points, const DataVector&amp; target_points);
 <a name="367"><span class="lineNum">     367 </span>            : template Matrix Basis::lgl::interpolation_matrix(</a>
 <span class="lineNum">     368 </span>            :     const size_t num_collocation_points,
-<span class="lineNum">     369 </span><span class="lineCov">        216 :     const std::vector&lt;double&gt;&amp; target_points);</span>
+<span class="lineNum">     369 </span><span class="lineCov">        234 :     const std::vector&lt;double&gt;&amp; target_points);</span>
 <span class="lineNum">     370 </span>            : /// \endcond
 </pre>
       </td>

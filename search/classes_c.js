@@ -41,8 +41,8 @@ var searchData=
   ['move_5fiterator',['move_iterator',['http://en.cppreference.com/w/cpp/iterator/move_iterator.html',1,'std']]],
   ['mt19937',['mt19937',['http://en.cppreference.com/w/cpp/numeric/random/mersenne_twister_engine.html',1,'std']]],
   ['mt19937_5f64',['mt19937_64',['http://en.cppreference.com/w/cpp/numeric/random/mersenne_twister_engine.html',1,'std']]],
-  ['multimap',['multimap',['http://en.cppreference.com/w/cpp/container/multimap.html',1,'std::pmr::multimap'],['http://en.cppreference.com/w/cpp/container/multimap.html',1,'std::multimap']]],
+  ['multimap',['multimap',['http://en.cppreference.com/w/cpp/container/multimap.html',1,'std::multimap'],['http://en.cppreference.com/w/cpp/container/multimap.html',1,'std::pmr::multimap']]],
   ['multiplies',['multiplies',['http://en.cppreference.com/w/cpp/utility/functional/multiplies.html',1,'std']]],
-  ['multiset',['multiset',['http://en.cppreference.com/w/cpp/container/multiset.html',1,'std::multiset'],['http://en.cppreference.com/w/cpp/container/multiset.html',1,'std::pmr::multiset']]],
+  ['multiset',['multiset',['http://en.cppreference.com/w/cpp/container/multiset.html',1,'std::pmr::multiset'],['http://en.cppreference.com/w/cpp/container/multiset.html',1,'std::multiset']]],
   ['mutex',['mutex',['http://en.cppreference.com/w/cpp/thread/mutex.html',1,'std']]]
 ];

@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - 9f08a470964fcb574dd396387de54a0b88dfe0b4 - DataStructures/IndexIterator.hpp</title>
+  <title>LCOV - 0142ebf629e3c69e839ed71593dd766b420b09cc - DataStructures/IndexIterator.hpp</title>
   <link rel="stylesheet" type="text/css" href="../gcov.css">
 </head>
 
@@ -28,7 +28,7 @@
           </tr>
           <tr>
             <td class="headerItem">Commit:</td>
-             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/9f08a470964fcb574dd396387de54a0b88dfe0b4">9f08a470964fcb574dd396387de54a0b88dfe0b4</a></td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/0142ebf629e3c69e839ed71593dd766b420b09cc">0142ebf629e3c69e839ed71593dd766b420b09cc</a></td>
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntry">4</td>
@@ -37,12 +37,12 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2017-06-23 01:58:27</td>
+            <td class="headerValue">2017-06-24 02:00:18</td>
             <td></td>
             <td class="headerItem">Functions:</td>
-            <td class="headerCovTableEntry">5</td>
+            <td class="headerCovTableEntry">8</td>
             <td class="headerCovTableEntry">16</td>
-            <td class="headerCovTableEntryLo">31.2 %</td>
+            <td class="headerCovTableEntryLo">50.0 %</td>
           </tr>
           <tr>
             <td class="headerItem">Legend:</td>
@@ -82,7 +82,7 @@
 <span class="lineNum">      12 </span>            : /// IndexIterator iterates over a unique set of Index.
 <span class="lineNum">      13 </span>            : ///
 <span class="lineNum">      14 </span>            : /// \example
-<span class="lineNum">      15 </span>            : /// \snippet IndexIterator.cpp index_iterator_example
+<span class="lineNum">      15 </span>            : /// \snippet Test_IndexIterator.cpp index_iterator_example
 <span class="lineNum">      16 </span>            : ///
 <span class="lineNum">      17 </span>            : /// Each integer of the Index will vary from 0 to extents[d] - 1,
 <span class="lineNum">      18 </span>            : /// with the lowest dimension varying the fastest.
@@ -105,7 +105,7 @@
 <span class="lineNum">      35 </span>            :   /// \endcond
 <a name="36"><span class="lineNum">      36 </span>            : </a>
 <span class="lineNum">      37 </span>            :   /// Returns false if the end of the Index iteration is reached
-<span class="lineNum">      38 </span><span class="lineCov">         16 :   operator bool() const noexcept { return valid_; }</span>
+<span class="lineNum">      38 </span><span class="lineCov">    2891196 :   operator bool() const noexcept { return valid_; }</span>
 <span class="lineNum">      39 </span>            : 
 <span class="lineNum">      40 </span>            :   /// Advance to next Index.
 <a name="41"><span class="lineNum">      41 </span>            :   IndexIterator&lt;Dim&gt;&amp; operator++();</a>
@@ -114,11 +114,11 @@
 <span class="lineNum">      44 </span>            : 
 <a name="45"><span class="lineNum">      45 </span>            :   /// Returns an index representing the (i, j, ...)th values that the iterator</a>
 <span class="lineNum">      46 </span>            :   /// currently represents
-<span class="lineNum">      47 </span><span class="lineCov">         18 :   const Index&lt;Dim&gt;&amp; operator()() const noexcept { return index_; }</span>
+<span class="lineNum">      47 </span><span class="lineCov">    8274098 :   const Index&lt;Dim&gt;&amp; operator()() const noexcept { return index_; }</span>
 <span class="lineNum">      48 </span>            : 
 <a name="49"><span class="lineNum">      49 </span>            :   /// Get the offset into a 1D array whose first dimension is assumed to vary</a>
 <span class="lineNum">      50 </span>            :   /// fastest
-<span class="lineNum">      51 </span><span class="lineCov">          6 :   size_t offset() const noexcept { return offset_; }</span>
+<span class="lineNum">      51 </span><span class="lineCov">    2867281 :   size_t offset() const noexcept { return offset_; }</span>
 <span class="lineNum">      52 </span>            : 
 <span class="lineNum">      53 </span>            :  private:
 <span class="lineNum">      54 </span>            :   const Index&lt;Dim&gt; extents_{};

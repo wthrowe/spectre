@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - 9f08a470964fcb574dd396387de54a0b88dfe0b4 - Utilities/TypeTraits.hpp</title>
+  <title>LCOV - 0142ebf629e3c69e839ed71593dd766b420b09cc - Utilities/TypeTraits.hpp</title>
   <link rel="stylesheet" type="text/css" href="../gcov.css">
 </head>
 
@@ -28,7 +28,7 @@
           </tr>
           <tr>
              <td class="headerItem">Commit:</td>
-             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/9f08a470964fcb574dd396387de54a0b88dfe0b4">9f08a470964fcb574dd396387de54a0b88dfe0b4</a></td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/0142ebf629e3c69e839ed71593dd766b420b09cc">0142ebf629e3c69e839ed71593dd766b420b09cc</a></td>
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntry">59</td>
@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2017-06-23 01:58:54</td>
+            <td class="headerValue">2017-06-24 02:00:39</td>
             <td></td>
           </tr>
           <tr>
@@ -148,7 +148,7 @@
 <span class="lineNum">      82 </span>            : /// \endcode
 <span class="lineNum">      83 </span>            : ///
 <span class="lineNum">      84 </span>            : /// \example
-<span class="lineNum">      85 </span>            : /// \snippet TypeTraits.cpp conjunction_example
+<span class="lineNum">      85 </span>            : /// \snippet Test_TypeTraits.cpp conjunction_example
 <span class="lineNum">      86 </span>            : /// \see std::conjunction, disjunction, std::disjunction
 <span class="lineNum">      87 </span>            : template &lt;class...&gt;
 <span class="lineNum">      88 </span><span class="lineCov">          1 : struct conjunction : std::true_type {};</span>
@@ -195,7 +195,7 @@
 <span class="lineNum">     129 </span>            : /// \endcode
 <span class="lineNum">     130 </span>            : ///
 <span class="lineNum">     131 </span>            : /// \example
-<span class="lineNum">     132 </span>            : /// \snippet TypeTraits.cpp disjunction_example
+<span class="lineNum">     132 </span>            : /// \snippet Test_TypeTraits.cpp disjunction_example
 <span class="lineNum">     133 </span>            : /// \see std::disjunction, conjunction, std::conjunction
 <span class="lineNum">     134 </span>            : template &lt;class...&gt;
 <span class="lineNum">     135 </span><span class="lineCov">          1 : struct disjunction : std::false_type {};</span>
@@ -233,7 +233,7 @@
 <span class="lineNum">     167 </span>            : /// \endcode
 <span class="lineNum">     168 </span>            : ///
 <span class="lineNum">     169 </span>            : /// \example
-<span class="lineNum">     170 </span>            : /// \snippet TypeTraits.cpp negation_example
+<span class="lineNum">     170 </span>            : /// \snippet Test_TypeTraits.cpp negation_example
 <span class="lineNum">     171 </span>            : /// \see std::negation
 <span class="lineNum">     172 </span>            : /// \tparam B the ::bool_constant to negate
 <span class="lineNum">     173 </span>            : template &lt;class B&gt;
@@ -262,7 +262,7 @@
 <span class="lineNum">     196 </span>            : /// \endcode
 <span class="lineNum">     197 </span>            : ///
 <span class="lineNum">     198 </span>            : /// \example
-<span class="lineNum">     199 </span>            : /// \snippet TypeTraits.cpp void_t_example
+<span class="lineNum">     199 </span>            : /// \snippet Test_TypeTraits.cpp void_t_example
 <span class="lineNum">     200 </span>            : /// \see std::void_t
 <span class="lineNum">     201 </span>            : /// \tparam Ts the set of types
 <span class="lineNum">     202 </span>            : template &lt;typename... Ts&gt;
@@ -308,7 +308,7 @@
 <span class="lineNum">     242 </span>            : /// \endcode
 <span class="lineNum">     243 </span>            : ///
 <span class="lineNum">     244 </span>            : /// \example
-<span class="lineNum">     245 </span>            : /// \snippet TypeTraits.cpp is_std_array_example
+<span class="lineNum">     245 </span>            : /// \snippet Test_TypeTraits.cpp is_std_array_example
 <span class="lineNum">     246 </span>            : /// \see is_a
 <span class="lineNum">     247 </span>            : /// \tparam T the type to check
 <span class="lineNum">     248 </span>            : template &lt;typename T&gt;
@@ -353,7 +353,7 @@
 <span class="lineNum">     287 </span>            : /// \endcode
 <span class="lineNum">     288 </span>            : ///
 <span class="lineNum">     289 </span>            : /// \example
-<span class="lineNum">     290 </span>            : /// \snippet TypeTraits.cpp is_a_example
+<span class="lineNum">     290 </span>            : /// \snippet Test_TypeTraits.cpp is_a_example
 <span class="lineNum">     291 </span>            : /// \see is_std_array
 <span class="lineNum">     292 </span>            : /// \tparam T type to check
 <span class="lineNum">     293 </span>            : /// \tparam U the type that T might be a template specialization of
@@ -400,7 +400,7 @@
 <span class="lineNum">     334 </span>            : /// \endcode
 <span class="lineNum">     335 </span>            : ///
 <span class="lineNum">     336 </span>            : /// \example
-<span class="lineNum">     337 </span>            : /// \snippet TypeTraits.cpp is_iterable_example
+<span class="lineNum">     337 </span>            : /// \snippet Test_TypeTraits.cpp is_iterable_example
 <span class="lineNum">     338 </span>            : /// \see has_size
 <span class="lineNum">     339 </span>            : /// \tparam T the type to check
 <span class="lineNum">     340 </span>            : template &lt;typename T, typename = cpp17::void_t&lt;&gt;&gt;
@@ -449,7 +449,7 @@
 <span class="lineNum">     383 </span>            : /// \endcode
 <span class="lineNum">     384 </span>            : ///
 <span class="lineNum">     385 </span>            : /// \example
-<span class="lineNum">     386 </span>            : /// \snippet TypeTraits.cpp is_comparable_example
+<span class="lineNum">     386 </span>            : /// \snippet Test_TypeTraits.cpp is_comparable_example
 <span class="lineNum">     387 </span>            : /// \see has_equivalence has_inequivalence
 <span class="lineNum">     388 </span>            : /// \tparam T the type to check
 <span class="lineNum">     389 </span>            : template &lt;typename T, typename = cpp17::void_t&lt;&gt;&gt;
@@ -505,7 +505,7 @@
 <span class="lineNum">     439 </span>            : /// \endcode
 <span class="lineNum">     440 </span>            : ///
 <span class="lineNum">     441 </span>            : /// \example
-<span class="lineNum">     442 </span>            : /// \snippet TypeTraits.cpp array_size_example
+<span class="lineNum">     442 </span>            : /// \snippet Test_TypeTraits.cpp array_size_example
 <span class="lineNum">     443 </span>            : /// \tparam Array the whose size should be stored in value of array_size
 <span class="lineNum">     444 </span>            : template &lt;typename Array&gt;
 <span class="lineNum">     445 </span><span class="lineCov">          2 : using array_size =</span>
@@ -540,7 +540,7 @@
 <span class="lineNum">     474 </span>            : /// \endcode
 <span class="lineNum">     475 </span>            : ///
 <span class="lineNum">     476 </span>            : /// \example
-<span class="lineNum">     477 </span>            : /// \snippet TypeTraits.cpp has_equivalence_example
+<span class="lineNum">     477 </span>            : /// \snippet Test_TypeTraits.cpp has_equivalence_example
 <span class="lineNum">     478 </span>            : /// \see is_comparable has_inequivalence
 <span class="lineNum">     479 </span>            : /// \tparam T the type we want to know if it has operator==
 <span class="lineNum">     480 </span>            : template &lt;typename T, typename = cpp17::void_t&lt;&gt;&gt;
@@ -588,7 +588,7 @@
 <span class="lineNum">     522 </span>            : /// \endcode
 <span class="lineNum">     523 </span>            : ///
 <span class="lineNum">     524 </span>            : /// \example
-<span class="lineNum">     525 </span>            : /// \snippet TypeTraits.cpp has_equivalence_example
+<span class="lineNum">     525 </span>            : /// \snippet Test_TypeTraits.cpp has_equivalence_example
 <span class="lineNum">     526 </span>            : /// \see is_comparable has_equivalence
 <span class="lineNum">     527 </span>            : /// \tparam T the type we want to know if it has operator!=
 <span class="lineNum">     528 </span>            : template &lt;typename T, typename U = void&gt;
@@ -636,7 +636,7 @@
 <span class="lineNum">     570 </span>            : /// \endcode
 <span class="lineNum">     571 </span>            : ///
 <span class="lineNum">     572 </span>            : /// \example
-<span class="lineNum">     573 </span>            : /// \snippet TypeTraits.cpp is_callable_example
+<span class="lineNum">     573 </span>            : /// \snippet Test_TypeTraits.cpp is_callable_example
 <span class="lineNum">     574 </span>            : /// \see std::is_callable
 <span class="lineNum">     575 </span>            : /// \tparam TT the class to check
 <span class="lineNum">     576 </span>            : /// \tparam TArgs the args passed to operator()
@@ -701,7 +701,7 @@
 <span class="lineNum">     635 </span>            : /// \endcode
 <span class="lineNum">     636 </span>            : ///
 <span class="lineNum">     637 </span>            : /// \example
-<span class="lineNum">     638 </span>            : /// \snippet TypeTraits.cpp is_hashable_example
+<span class="lineNum">     638 </span>            : /// \snippet Test_TypeTraits.cpp is_hashable_example
 <span class="lineNum">     639 </span>            : /// \see std::hash std::equal_to
 <span class="lineNum">     640 </span>            : /// \tparam T type to check
 <span class="lineNum">     641 </span>            : template &lt;typename T, typename = cpp17::void_t&lt;&gt;&gt;
@@ -752,7 +752,7 @@
 <span class="lineNum">     686 </span>            : /// \endcode
 <span class="lineNum">     687 </span>            : ///
 <span class="lineNum">     688 </span>            : /// \example
-<span class="lineNum">     689 </span>            : /// \snippet TypeTraits.cpp is_maplike_example
+<span class="lineNum">     689 </span>            : /// \snippet Test_TypeTraits.cpp is_maplike_example
 <span class="lineNum">     690 </span>            : /// \see std::map std::unordered_map is_a
 <span class="lineNum">     691 </span>            : /// \tparam T the type to check
 <span class="lineNum">     692 </span>            : template &lt;typename T, typename = cpp17::void_t&lt;&gt;&gt;
@@ -803,7 +803,7 @@
 <span class="lineNum">     737 </span>            : /// \endcode
 <span class="lineNum">     738 </span>            : ///
 <span class="lineNum">     739 </span>            : /// \example
-<span class="lineNum">     740 </span>            : /// \snippet TypeTraits.cpp is_streamable_example
+<span class="lineNum">     740 </span>            : /// \snippet Test_TypeTraits.cpp is_streamable_example
 <span class="lineNum">     741 </span>            : /// \see std::cout std::ifstream std::sstream std::ostream
 <span class="lineNum">     742 </span>            : /// \tparam S the stream type, e.g. std::stringstream or std::ostream
 <span class="lineNum">     743 </span>            : /// \tparam T the type we want to know if it has operator&lt;&lt;
@@ -855,7 +855,7 @@
 <span class="lineNum">     789 </span>            : /// \endcode
 <span class="lineNum">     790 </span>            : ///
 <span class="lineNum">     791 </span>            : /// \example
-<span class="lineNum">     792 </span>            : /// \snippet TypeTraits.cpp is_string_like_example
+<span class="lineNum">     792 </span>            : /// \snippet Test_TypeTraits.cpp is_string_like_example
 <span class="lineNum">     793 </span>            : /// \see std::string std::is_same
 <span class="lineNum">     794 </span>            : /// \tparam T the type to check
 <span class="lineNum">     795 </span>            : template &lt;typename T, typename = cpp17::void_t&lt;&gt;&gt;
@@ -906,7 +906,7 @@
 <span class="lineNum">     840 </span>            : /// \endcode
 <span class="lineNum">     841 </span>            : ///
 <span class="lineNum">     842 </span>            : /// \example
-<span class="lineNum">     843 </span>            : /// \snippet TypeTraits.cpp has_pup_member_example
+<span class="lineNum">     843 </span>            : /// \snippet Test_TypeTraits.cpp has_pup_member_example
 <span class="lineNum">     844 </span>            : /// \see is_pupable
 <span class="lineNum">     845 </span>            : /// \tparam T the type to check
 <span class="lineNum">     846 </span>            : template &lt;typename T, typename = cpp17::void_t&lt;&gt;&gt;
@@ -954,7 +954,7 @@
 <span class="lineNum">     888 </span>            : /// \endcode
 <span class="lineNum">     889 </span>            : ///
 <span class="lineNum">     890 </span>            : /// \example
-<span class="lineNum">     891 </span>            : /// \snippet TypeTraits.cpp is_pupable_example
+<span class="lineNum">     891 </span>            : /// \snippet Test_TypeTraits.cpp is_pupable_example
 <span class="lineNum">     892 </span>            : /// \see has_pup_member
 <span class="lineNum">     893 </span>            : /// \tparam T the type to check
 <span class="lineNum">     894 </span>            : template &lt;typename T, typename U = void&gt;
@@ -1002,7 +1002,7 @@
 <span class="lineNum">     936 </span>            : /// \endcode
 <span class="lineNum">     937 </span>            : ///
 <span class="lineNum">     938 </span>            : /// \example
-<span class="lineNum">     939 </span>            : /// \snippet TypeTraits.cpp has_get_clone_example
+<span class="lineNum">     939 </span>            : /// \snippet Test_TypeTraits.cpp has_get_clone_example
 <span class="lineNum">     940 </span>            : /// \see has_clone
 <span class="lineNum">     941 </span>            : /// \tparam T the type to check
 <span class="lineNum">     942 </span>            : template &lt;typename T, typename = cpp17::void_t&lt;&gt;, typename = void&gt;
@@ -1062,7 +1062,7 @@
 <span class="lineNum">     996 </span>            : /// \endcode
 <span class="lineNum">     997 </span>            : ///
 <span class="lineNum">     998 </span>            : /// \example
-<span class="lineNum">     999 </span>            : /// \snippet TypeTraits.cpp has_clone_example
+<span class="lineNum">     999 </span>            : /// \snippet Test_TypeTraits.cpp has_clone_example
 <span class="lineNum">    1000 </span>            : /// \see has_get_clone
 <span class="lineNum">    1001 </span>            : /// \tparam T the type to check
 <span class="lineNum">    1002 </span>            : template &lt;typename T, typename = cpp17::void_t&lt;&gt;, typename = void&gt;
@@ -1117,7 +1117,7 @@
 <span class="lineNum">    1051 </span>            : /// \endcode
 <span class="lineNum">    1052 </span>            : ///
 <span class="lineNum">    1053 </span>            : /// \example
-<span class="lineNum">    1054 </span>            : /// \snippet TypeTraits.cpp has_size_example
+<span class="lineNum">    1054 </span>            : /// \snippet Test_TypeTraits.cpp has_size_example
 <span class="lineNum">    1055 </span>            : /// \see is_iterable
 <span class="lineNum">    1056 </span>            : /// \tparam T the type to check
 <span class="lineNum">    1057 </span>            : template &lt;typename T, typename = cpp17::void_t&lt;&gt;&gt;
@@ -1156,7 +1156,7 @@
 <span class="lineNum">    1090 </span>            :  * cpp17::bool_constant
 <span class="lineNum">    1091 </span>            :  *
 <span class="lineNum">    1092 </span>            :  * \example
-<span class="lineNum">    1093 </span>            :  * \snippet TypeTraits.cpp is_integer_example
+<span class="lineNum">    1093 </span>            :  * \snippet Test_TypeTraits.cpp is_integer_example
 <span class="lineNum">    1094 </span>            :  * \see std::is_integral std::is_arithmetic std::is_floating_point
 <span class="lineNum">    1095 </span>            :  */
 <span class="lineNum">    1096 </span>            : template &lt;typename I&gt;

@@ -14,7 +14,7 @@ var searchData=
   ['derivedinpupstlcpp11',['DerivedInPupStlCpp11',['../structDerivedInPupStlCpp11.html',1,'']]],
   ['detected_5for',['detected_or',['http://en.cppreference.com/w/cpp/experimental/is_detected.html',1,'std::experimental']]],
   ['detected_5for_5ft',['detected_or_t',['http://en.cppreference.com/w/cpp/experimental/is_detected.html',1,'std::experimental']]],
-  ['directory_5fentry',['directory_entry',['http://en.cppreference.com/w/cpp/experimental/fs/directory_entry.html',1,'std::experimental::filesystem::directory_entry'],['http://en.cppreference.com/w/cpp/filesystem/directory_entry.html',1,'std::filesystem::directory_entry']]],
+  ['directory_5fentry',['directory_entry',['http://en.cppreference.com/w/cpp/filesystem/directory_entry.html',1,'std::filesystem::directory_entry'],['http://en.cppreference.com/w/cpp/experimental/fs/directory_entry.html',1,'std::experimental::filesystem::directory_entry']]],
   ['directory_5fiterator',['directory_iterator',['http://en.cppreference.com/w/cpp/experimental/fs/directory_iterator.html',1,'std::experimental::filesystem::directory_iterator'],['http://en.cppreference.com/w/cpp/filesystem/directory_iterator.html',1,'std::filesystem::directory_iterator']]],
   ['directory_5foptions',['directory_options',['http://en.cppreference.com/w/cpp/experimental/fs/directory_options.html',1,'std::experimental::filesystem::directory_options'],['http://en.cppreference.com/w/cpp/filesystem/directory_options.html',1,'std::filesystem::directory_options']]],
   ['discard_5fblock_5fengine',['discard_block_engine',['http://en.cppreference.com/w/cpp/numeric/random/discard_block_engine.html',1,'std']]],

@@ -1,0 +1,140 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 0142ebf629e3c69e839ed71593dd766b420b09cc - Numerical/Spectral/DefiniteIntegral.cpp</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../index.html">top level</a> - <a href="index.html">Numerical/Spectral</a> - DefiniteIntegral.cpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/0142ebf629e3c69e839ed71593dd766b420b09cc">0142ebf629e3c69e839ed71593dd766b420b09cc</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">1</td>
+            <td class="headerCovTableEntry">2</td>
+            <td class="headerCovTableEntryLo">50.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2017-06-24 02:00:39</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : #include &quot;Numerical/Spectral/DefiniteIntegral.hpp&quot;
+<span class="lineNum">       5 </span>            : 
+<span class="lineNum">       6 </span>            : #include &quot;DataStructures/DataVector.hpp&quot;
+<span class="lineNum">       7 </span>            : #include &quot;DataStructures/Index.hpp&quot;
+<span class="lineNum">       8 </span>            : #include &quot;ErrorHandling/Assert.hpp&quot;
+<span class="lineNum">       9 </span>            : #include &quot;Numerical/Spectral/LegendreGaussLobatto.hpp&quot;
+<span class="lineNum">      10 </span>            : #include &quot;Utilities/Blas.hpp&quot;
+<span class="lineNum">      11 </span>            : 
+<span class="lineNum">      12 </span>            : namespace {
+<span class="lineNum">      13 </span>            : 
+<span class="lineNum">      14 </span>            : template &lt;size_t Dim&gt;
+<span class="lineNum">      15 </span>            : Scalar&lt;DataVector&gt; integrate_over_last_dimension(const DataVector&amp; integrand,
+<span class="lineNum">      16 </span>            :                                                  const Index&lt;Dim&gt;&amp; extents) {
+<span class="lineNum">      17 </span>            :   static_assert(Dim &gt; 1, &quot;Expect dimension to be at least 2.&quot;);
+<span class="lineNum">      18 </span>            :   const size_t extents_in_last_dim = extents[Dim - 1];
+<span class="lineNum">      19 </span>            :   const DataVector&amp; weights =
+<span class="lineNum">      20 </span>            :       Basis::lgl::quadrature_weights(extents_in_last_dim);
+<span class="lineNum">      21 </span>            :   const size_t reduced_size = extents.template product&lt;Dim - 1&gt;();
+<span class="lineNum">      22 </span>            :   Scalar&lt;DataVector&gt; integrated_data(reduced_size, 0.);
+<span class="lineNum">      23 </span>            :   dgemv_('N', reduced_size, extents_in_last_dim, 1., integrand.data(),
+<span class="lineNum">      24 </span>            :          reduced_size, weights.data(), 1, 0., integrated_data.get().data(), 1);
+<span class="lineNum">      25 </span>            :   return integrated_data;
+<span class="lineNum">      26 </span>            : }
+<span class="lineNum">      27 </span>            : }  // namespace
+<span class="lineNum">      28 </span>            : 
+<span class="lineNum">      29 </span>            : namespace Basis {
+<span class="lineNum">      30 </span>            : namespace lgl {
+<span class="lineNum">      31 </span>            : 
+<span class="lineNum">      32 </span>            : template &lt;size_t Dim&gt;
+<span class="lineNum">      33 </span><span class="lineCov">          2 : double definite_integral(const Scalar&lt;DataVector&gt;&amp; integrand,</span>
+<span class="lineNum">      34 </span>            :                          const Index&lt;Dim&gt;&amp; extents) noexcept {
+<span class="lineNum">      35 </span>            :   ASSERT(integrand.get().size() == extents.product(),
+<span class="lineNum">      36 </span>            :          &quot;size = &quot; &lt;&lt; integrand.size() &lt;&lt; &quot;, product = &quot; &lt;&lt; extents.product());
+<span class="lineNum">      37 </span>            :   return definite_integral(
+<span class="lineNum">      38 </span>            :       integrate_over_last_dimension(integrand.get(), extents),
+<span class="lineNum">      39 </span>            :       extents.slice_away(Dim - 1));
+<span class="lineNum">      40 </span>            : }
+<span class="lineNum">      41 </span>            : 
+<span class="lineNum">      42 </span>            : template &lt;&gt;
+<span class="lineNum">      43 </span><span class="lineNoCov">          0 : double definite_integral&lt;1&gt;(const Scalar&lt;DataVector&gt;&amp; integrand,</span>
+<span class="lineNum">      44 </span>            :                             const Index&lt;1&gt;&amp; extents) noexcept {
+<span class="lineNum">      45 </span>            :   const size_t num_points = integrand.begin()-&gt;size();
+<span class="lineNum">      46 </span>            :   ASSERT(num_points == extents.product(),
+<span class="lineNum">      47 </span>            :          &quot;num_points = &quot; &lt;&lt; num_points &lt;&lt; &quot;, product = &quot; &lt;&lt; extents.product());
+<span class="lineNum">      48 </span>            :   const DataVector&amp; weights = Basis::lgl::quadrature_weights(num_points);
+<span class="lineNum">      49 </span>            :   return ddot_(num_points, weights.data(), 1, integrand.get().data(), 1);
+<span class="lineNum">      50 </span>            : }
+<span class="lineNum">      51 </span>            : 
+<span class="lineNum">      52 </span>            : }  // namespace lgl
+<span class="lineNum">      53 </span>            : }  // namespace Basis
+<span class="lineNum">      54 </span>            : 
+<span class="lineNum">      55 </span>            : /// \cond
+<span class="lineNum">      56 </span>            : template double Basis::lgl::definite_integral&lt;2&gt;(const Scalar&lt;DataVector&gt;&amp;,
+<span class="lineNum">      57 </span>            :                                                  const Index&lt;2&gt;&amp;);
+<span class="lineNum">      58 </span>            : template double Basis::lgl::definite_integral&lt;3&gt;(const Scalar&lt;DataVector&gt;&amp;,
+<span class="lineNum">      59 </span>            :                                                  const Index&lt;3&gt;&amp;);
+<span class="lineNum">      60 </span>            : /// \endcond
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

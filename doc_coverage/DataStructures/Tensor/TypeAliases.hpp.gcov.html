@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - 9f08a470964fcb574dd396387de54a0b88dfe0b4 - DataStructures/Tensor/TypeAliases.hpp</title>
+  <title>LCOV - 0142ebf629e3c69e839ed71593dd766b420b09cc - DataStructures/Tensor/TypeAliases.hpp</title>
   <link rel="stylesheet" type="text/css" href="../../gcov.css">
 </head>
 
@@ -28,16 +28,16 @@
           </tr>
           <tr>
              <td class="headerItem">Commit:</td>
-             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/9f08a470964fcb574dd396387de54a0b88dfe0b4">9f08a470964fcb574dd396387de54a0b88dfe0b4</a></td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/0142ebf629e3c69e839ed71593dd766b420b09cc">0142ebf629e3c69e839ed71593dd766b420b09cc</a></td>
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntry">1</td>
-            <td class="headerCovTableEntry">49</td>
+            <td class="headerCovTableEntry">51</td>
             <td class="headerCovTableEntryLo">2.0 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2017-06-23 01:58:54</td>
+            <td class="headerValue">2017-06-24 02:00:39</td>
             <td></td>
           </tr>
           <tr>
@@ -381,7 +381,27 @@
 <span class="lineNum">     315 </span>            :                    index_list&lt;SpatialIndex&lt;SpatialDim, UpLo::Lo, Fr&gt;,
 <span class="lineNum">     316 </span>            :                               SpacetimeIndex&lt;SpatialDim, UpLo::Up, Fr&gt;,
 <span class="lineNum">     317 </span>            :                               SpacetimeIndex&lt;SpatialDim, UpLo::Up, Fr&gt;&gt;&gt;;
-<span class="lineNum">     318 </span>            : }  // namespace tnsr
+<span class="lineNum">     318 </span>            : 
+<span class="lineNum">     319 </span>            : namespace detail {
+<span class="lineNum">     320 </span>            : template &lt;size_t Dim, typename Frame1, typename Frame2&gt;
+<span class="lineNum">     321 </span>            : struct inverse_jacobian_impl {
+<span class="lineNum">     322 </span>            :   static_assert(tmpl::index_of&lt;Frame::ordered_frame_list, Frame1&gt;::value &lt;
+<span class="lineNum">     323 </span>            :                     tmpl::index_of&lt;Frame::ordered_frame_list, Frame2&gt;::value,
+<span class="lineNum">     324 </span>            :                 &quot;Inverse Jacobian must go other direction.&quot;);
+<span class="lineNum">     325 </span>            :   using type = Tensor&lt;DataVector, tmpl::integral_list&lt;std::int32_t, 2, 1&gt;,
+<span class="lineNum">     326 </span>            :                       typelist&lt;SpatialIndex&lt;Dim, UpLo::Up, Frame1&gt;,
+<span class="lineNum">     327 </span>            :                                SpatialIndex&lt;Dim, UpLo::Lo, Frame2&gt;&gt;&gt;;
+<span class="lineNum">     328 </span>            : };
+<span class="lineNum">     329 </span>            : }  // namespace detail
+<span class="lineNum">     330 </span>            : 
+<span class="lineNum">     331 </span>            : template &lt;size_t Dim, typename Frame1, typename Frame2&gt;
+<span class="lineNum">     332 </span><span class="lineNoCov">          0 : using InverseJacobian =</span>
+<span class="lineNum">     333 </span>            :     typename detail::inverse_jacobian_impl&lt;Dim, Frame1, Frame2&gt;::type;
+<span class="lineNum">     334 </span>            : 
+<span class="lineNum">     335 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr&gt;
+<span class="lineNum">     336 </span><span class="lineNoCov">          0 : using Point = Tensor&lt;DataType, tmpl::integral_list&lt;std::int32_t, 1&gt;,</span>
+<span class="lineNum">     337 </span>            :                      index_list&lt;SpatialIndex&lt;SpatialDim, UpLo::Up, Fr&gt;&gt;&gt;;
+<span class="lineNum">     338 </span>            : }  // namespace tnsr
 </pre>
       </td>
     </tr>

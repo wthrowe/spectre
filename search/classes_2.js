@@ -28,7 +28,7 @@ var searchData=
   ['conditional_5ft',['conditional_t',['http://en.cppreference.com/w/cpp/types/conditional.html',1,'std']]],
   ['conditional_5ft_3c_20std_3a_3ais_5fbase_5fof_3c_20expression_2c_20t_20_3e_3a_3avalue_2c_20t_2c_20tensorexpression_3c_20t_2c_20x_2c_20symm_2c_20indexls_2c_20argsls_20_3e_20_3e',['conditional_t&lt; std::is_base_of&lt; Expression, T &gt;::value, T, TensorExpression&lt; T, X, Symm, IndexLs, ArgsLs &gt; &gt;',['http://en.cppreference.com/w/cpp/types/conditional.html',1,'std']]],
   ['conjunction',['conjunction',['../structcpp17_1_1conjunction.html',1,'cpp17::conjunction&lt;... &gt;'],['http://en.cppreference.com/w/cpp/types/conjunction.html',1,'std::conjunction']]],
-  ['copy_5foptions',['copy_options',['http://en.cppreference.com/w/cpp/filesystem/copy_options.html',1,'std::filesystem::copy_options'],['http://en.cppreference.com/w/cpp/experimental/fs/copy_options.html',1,'std::experimental::filesystem::copy_options']]],
+  ['copy_5foptions',['copy_options',['http://en.cppreference.com/w/cpp/experimental/fs/copy_options.html',1,'std::experimental::filesystem::copy_options'],['http://en.cppreference.com/w/cpp/filesystem/copy_options.html',1,'std::filesystem::copy_options']]],
   ['cout',['cout',['http://en.cppreference.com/w/cpp/io/cout.html',1,'std']]],
   ['cregex_5fiterator',['cregex_iterator',['http://en.cppreference.com/w/cpp/regex/regex_iterator.html',1,'std']]],
   ['cregex_5ftoken_5fiterator',['cregex_token_iterator',['http://en.cppreference.com/w/cpp/regex/regex_token_iterator.html',1,'std']]],
