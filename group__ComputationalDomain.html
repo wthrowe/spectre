@@ -150,6 +150,8 @@ $(function() {
 </div>
 
 <div class="header">
+  <div class="summary">
+<a href="#enum-members">Enumerations</a>  </div>
   <div class="headertitle">
 <div class="title">Computational Domain</div>  </div>
 </div><!--header-->
@@ -157,9 +159,49 @@ $(function() {
 
 <p>The building blocks used to describe the computational domain.  
 <a href="#details">More...</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:ga8c0137d7160ad71b6ed265c53c99ed00"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__ComputationalDomain.html#ga8c0137d7160ad71b6ed265c53c99ed00">Side</a> { <a class="el" href="group__ComputationalDomain.html#gga8c0137d7160ad71b6ed265c53c99ed00ab75fcdd2d72d9e000beab48622402d93">Side::Lower</a>, 
+<a class="el" href="group__ComputationalDomain.html#gga8c0137d7160ad71b6ed265c53c99ed00a19de5b94f7b83900d4b296d9fa491aec">Side::Upper</a>
+ }<tr class="memdesc:ga8c0137d7160ad71b6ed265c53c99ed00"><td class="mdescLeft">&#160;</td><td class="mdescRight">A label for the side of a manifold.  <a href="group__ComputationalDomain.html#ga8c0137d7160ad71b6ed265c53c99ed00">More...</a><br /></td></tr>
+</td></tr>
+<tr class="separator:ga8c0137d7160ad71b6ed265c53c99ed00"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>The building blocks used to describe the computational domain. </p>
 <h3>Description</h3>
 <p>The VolumeDim-dimensional computational Domain is constructed from a set of non-overlapping Blocks. Each Block is a distorted VolumeDim-dimensional hyperrcube Each codimension-1 boundary of a Block is either part of the external boundary of the computational domain, or is identical to a boundary of one other Block. Each Block is subdivided into one or more Elements that may be changed dynamically if AMR is enabled. </p>
+<h2 class="groupheader">Enumeration Type Documentation</h2>
+<a id="ga8c0137d7160ad71b6ed265c53c99ed00"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga8c0137d7160ad71b6ed265c53c99ed00">&#9670;&nbsp;</a></span>Side</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="group__ComputationalDomain.html#ga8c0137d7160ad71b6ed265c53c99ed00">Side</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>A label for the side of a manifold. </p>
+<p>Lower and Upper are with respect to the logical coordinate whose axis is normal to the side, i.e. beyond the Upper (Lower) side, the logical coordinate is increasing (decreasing). </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga8c0137d7160ad71b6ed265c53c99ed00ab75fcdd2d72d9e000beab48622402d93"></a>Lower&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="gga8c0137d7160ad71b6ed265c53c99ed00a19de5b94f7b83900d4b296d9fa491aec"></a>Upper&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
 </div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.10-->
 <!-- start footer part -->

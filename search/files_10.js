@@ -22,6 +22,7 @@ var searchData=
   ['test_5fparallel_2ecpp',['Test_Parallel.cpp',['../Test__Parallel_8cpp.html',1,'']]],
   ['test_5fprettytype_2ecpp',['Test_PrettyType.cpp',['../Test__PrettyType_8cpp.html',1,'']]],
   ['test_5fpupstlcpp11_2ecpp',['Test_PupStlCpp11.cpp',['../Test__PupStlCpp11_8cpp.html',1,'']]],
+  ['test_5fside_2ecpp',['Test_Side.cpp',['../Test__Side_8cpp.html',1,'']]],
   ['test_5fsliceiterator_2ecpp',['Test_SliceIterator.cpp',['../Test__SliceIterator_8cpp.html',1,'']]],
   ['test_5fstdhelpers_2ecpp',['Test_StdHelpers.cpp',['../Test__StdHelpers_8cpp.html',1,'']]],
   ['test_5fstripeiterator_2ecpp',['Test_StripeIterator.cpp',['../Test__StripeIterator_8cpp.html',1,'']]],

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['uplo',['UpLo',['../group__Tensor.html#gaab1181edf2ab2b664b0f174223f08c28',1,'IndexType.hpp']]]
+  ['side',['Side',['../group__ComputationalDomain.html#ga8c0137d7160ad71b6ed265c53c99ed00',1,'Side.hpp']]]
 ];
