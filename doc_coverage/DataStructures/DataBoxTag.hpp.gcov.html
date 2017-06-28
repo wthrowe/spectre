@@ -1,0 +1,444 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 4ffdce72d0ef483ec80fe51966b9a10b34b0e13e - DataStructures/DataBoxTag.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">DataStructures</a> - DataBoxTag.hpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/4ffdce72d0ef483ec80fe51966b9a10b34b0e13e">4ffdce72d0ef483ec80fe51966b9a10b34b0e13e</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">10</td>
+            <td class="headerCovTableEntry">10</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2017-06-28 02:03:34</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : /// \file
+<span class="lineNum">       5 </span>            : /// Defines classes DataBoxTag, DataBoxPrefix, ComputeItemTag and several
+<span class="lineNum">       6 </span>            : /// functions for retrieving tag info
+<span class="lineNum">       7 </span>            : 
+<span class="lineNum">       8 </span>            : #pragma once
+<span class="lineNum">       9 </span>            : 
+<span class="lineNum">      10 </span>            : #include &lt;ostream&gt;
+<span class="lineNum">      11 </span>            : #include &lt;string&gt;
+<span class="lineNum">      12 </span>            : 
+<span class="lineNum">      13 </span>            : #include &quot;ErrorHandling/Assert.hpp&quot;
+<span class="lineNum">      14 </span>            : #include &quot;Utilities/ConstantExpressions.hpp&quot;
+<span class="lineNum">      15 </span>            : #include &quot;Utilities/ForceInline.hpp&quot;
+<span class="lineNum">      16 </span>            : #include &quot;Utilities/PrettyType.hpp&quot;
+<span class="lineNum">      17 </span>            : #include &quot;Utilities/TMPL.hpp&quot;
+<span class="lineNum">      18 </span>            : 
+<span class="lineNum">      19 </span>            : /// \cond
+<span class="lineNum">      20 </span>            : template &lt;typename TagsLs&gt;
+<span class="lineNum">      21 </span>            : class Variables;
+<span class="lineNum">      22 </span>            : 
+<span class="lineNum">      23 </span>            : namespace Tags {
+<span class="lineNum">      24 </span>            : template &lt;typename TagsLs&gt;
+<span class="lineNum">      25 </span>            : struct Variables;
+<span class="lineNum">      26 </span>            : }  // namespace Tags
+<span class="lineNum">      27 </span>            : /// \endcond
+<span class="lineNum">      28 </span>            : 
+<span class="lineNum">      29 </span>            : namespace db {
+<span class="lineNum">      30 </span>            : 
+<span class="lineNum">      31 </span>            : /*!
+<span class="lineNum">      32 </span>            :  * \ingroup DataBoxGroup
+<span class="lineNum">      33 </span>            :  * \brief The string used to give a runtime name to a DataBoxTag
+<span class="lineNum">      34 </span>            :  */
+<span class="lineNum">      35 </span><span class="lineCov">          2 : using DataBoxString_t = const char* const;</span>
+<span class="lineNum">      36 </span>            : 
+<span class="lineNum">      37 </span>            : /*!
+<span class="lineNum">      38 </span>            :  * \ingroup DataBoxGroup
+<span class="lineNum">      39 </span>            :  * \brief Tags for the DataBox inherit from this type
+<span class="lineNum">      40 </span>            :  *
+<span class="lineNum">      41 </span>            :  * \details
+<span class="lineNum">      42 </span>            :  * Used to mark a type as being a DataBoxTag so that it can be used in a
+<span class="lineNum">      43 </span>            :  * DataBox.
+<span class="lineNum">      44 </span>            :  *
+<span class="lineNum">      45 </span>            :  * \derivedrequires
+<span class="lineNum">      46 </span>            :  * - type alias `type` of the type this DataBoxTag represents
+<span class="lineNum">      47 </span>            :  * - `static constexpr DataBoxString_t` that is the same as the type name
+<span class="lineNum">      48 </span>            :  *    and named `label`
+<span class="lineNum">      49 </span>            :  *
+<span class="lineNum">      50 </span>            :  * \example
+<span class="lineNum">      51 </span>            :  * \snippet Test_DataBox.cpp databox_tag_example
+<span class="lineNum">      52 </span>            :  *
+<span class="lineNum">      53 </span>            :  * \see DataBox DataBoxPrefix DataBoxString_t get_tag_name
+<span class="lineNum">      54 </span>            :  */
+<span class="lineNum">      55 </span><span class="lineCov">          1 : struct DataBoxTag {};</span>
+<span class="lineNum">      56 </span>            : 
+<span class="lineNum">      57 </span>            : /*!
+<span class="lineNum">      58 </span>            :  * \ingroup DataBoxGroup
+<span class="lineNum">      59 </span>            :  * \brief Marks an item as being a prefix to another tag
+<span class="lineNum">      60 </span>            :  *
+<span class="lineNum">      61 </span>            :  * \details
+<span class="lineNum">      62 </span>            :  * Used to mark a type as being a DataBoxTag where the `label` is a prefix to
+<span class="lineNum">      63 </span>            :  * the DataBoxTag that is a member type alias `tag`. A prefix tag must contain a
+<span class="lineNum">      64 </span>            :  * type alias named `type` with the type of the Tag it is a prefix to, as well
+<span class="lineNum">      65 </span>            :  * as a type alias `tag` that is the type of the Tag that this prefix tag is
+<span class="lineNum">      66 </span>            :  * a prefix for. A prefix tag must also have a `label` equal to the name of
+<span class="lineNum">      67 </span>            :  * the struct (tag).
+<span class="lineNum">      68 </span>            :  *
+<span class="lineNum">      69 </span>            :  * \derivedrequires
+<span class="lineNum">      70 </span>            :  * - type alias `tag` of the DataBoxTag that this tag is a prefix to
+<span class="lineNum">      71 </span>            :  * - type alias `type` that is the type that this DataBoxPrefix holds
+<span class="lineNum">      72 </span>            :  * - DataBoxString_t `label` that is the prefix to the `tag`
+<span class="lineNum">      73 </span>            :  *
+<span class="lineNum">      74 </span>            :  * \example
+<span class="lineNum">      75 </span>            :  * A DataBoxPrefix tag has the structure:
+<span class="lineNum">      76 </span>            :  * \snippet Test_DataBox.cpp databox_prefix_tag_example
+<span class="lineNum">      77 </span>            :  *
+<span class="lineNum">      78 </span>            :  * The name used to retrieve a prefix tag from the DataBox is:
+<span class="lineNum">      79 </span>            :  * \snippet Test_DataBox.cpp databox_name_prefix
+<span class="lineNum">      80 </span>            :  *
+<span class="lineNum">      81 </span>            :  *
+<span class="lineNum">      82 </span>            :  * \see DataBox DataBoxTag DataBoxString_t get_tag_name ComputeItemTag
+<span class="lineNum">      83 </span>            :  */
+<span class="lineNum">      84 </span><span class="lineCov">          1 : struct DataBoxPrefix : DataBoxTag {};</span>
+<span class="lineNum">      85 </span>            : 
+<span class="lineNum">      86 </span>            : /*! \ingroup DataBoxGroup
+<span class="lineNum">      87 </span>            :  * \brief Marks a DataBoxTag as being a compute item that executes a function
+<span class="lineNum">      88 </span>            :  *
+<span class="lineNum">      89 </span>            :  * \details
+<span class="lineNum">      90 </span>            :  * A compute item tag contains a member named `function` that is either a
+<span class="lineNum">      91 </span>            :  * function pointer, or a static constexpr function. The compute item tag
+<span class="lineNum">      92 </span>            :  * must also have a `label`, same as the DataBox tags, and a type alias
+<span class="lineNum">      93 </span>            :  * `argument_tags` that is a typelist of the tags that will
+<span class="lineNum">      94 </span>            :  * be retrieved from the DataBox and whose data will be passed to the function
+<span class="lineNum">      95 </span>            :  * (pointer).
+<span class="lineNum">      96 </span>            :  *
+<span class="lineNum">      97 </span>            :  * \example
+<span class="lineNum">      98 </span>            :  * Most compute item tags will look similar to:
+<span class="lineNum">      99 </span>            :  * \snippet Test_DataBox.cpp databox_compute_item_tag_example
+<span class="lineNum">     100 </span>            :  * Note that the arguments can be empty:
+<span class="lineNum">     101 </span>            :  * \snippet Test_DataBox.cpp compute_item_tag_no_tags
+<span class="lineNum">     102 </span>            :  *
+<span class="lineNum">     103 </span>            :  * You can also have `function` be a function instead of a function pointer,
+<span class="lineNum">     104 </span>            :  * which offers a lot of simplicity for very simple compute items.
+<span class="lineNum">     105 </span>            :  * \snippet Test_DataBox.cpp compute_item_tag_function
+<span class="lineNum">     106 </span>            :  *
+<span class="lineNum">     107 </span>            :  * \see DataBox DataBoxTag DataBoxString_t get_tag_name DataBoxPrefix
+<span class="lineNum">     108 </span>            :  */
+<span class="lineNum">     109 </span><span class="lineCov">          1 : struct ComputeItemTag : DataBoxTag {};</span>
+<span class="lineNum">     110 </span>            : 
+<span class="lineNum">     111 </span>            : namespace detail {
+<span class="lineNum">     112 </span>            : // @{
+<span class="lineNum">     113 </span>            : /*!
+<span class="lineNum">     114 </span>            :  * \ingroup DataBoxGroup
+<span class="lineNum">     115 </span>            :  * \brief Check if a Tag has a label
+<span class="lineNum">     116 </span>            :  *
+<span class="lineNum">     117 </span>            :  * \details
+<span class="lineNum">     118 </span>            :  * Check if a type `T` has a static member variable named `label`.
+<span class="lineNum">     119 </span>            :  *
+<span class="lineNum">     120 </span>            :  * \usage
+<span class="lineNum">     121 </span>            :  * For any type `T`
+<span class="lineNum">     122 </span>            :  * \code
+<span class="lineNum">     123 </span>            :  * using result = db::detail::tag_has_label&lt;T&gt;;
+<span class="lineNum">     124 </span>            :  * \endcode
+<span class="lineNum">     125 </span>            :  * \metareturns
+<span class="lineNum">     126 </span>            :  * cpp17::bool_constant
+<span class="lineNum">     127 </span>            :  *
+<span class="lineNum">     128 </span>            :  * \see tag_label_correct_type
+<span class="lineNum">     129 </span>            :  * \tparam T the type to check
+<span class="lineNum">     130 </span>            :  */
+<span class="lineNum">     131 </span>            : template &lt;typename T, typename = void&gt;
+<span class="lineNum">     132 </span>            : struct tag_has_label : std::false_type {};
+<span class="lineNum">     133 </span>            : /// \cond HIDDEN_SYMBOLS
+<span class="lineNum">     134 </span>            : template &lt;typename T&gt;
+<span class="lineNum">     135 </span>            : struct tag_has_label&lt;T, cpp17::void_t&lt;decltype(T::label)&gt;&gt; : std::true_type {};
+<span class="lineNum">     136 </span>            : /// \endcond
+<span class="lineNum">     137 </span>            : // @}
+<span class="lineNum">     138 </span>            : 
+<span class="lineNum">     139 </span>            : // @{
+<span class="lineNum">     140 </span>            : /*!
+<span class="lineNum">     141 </span>            :  * \ingroup DataBoxGroup
+<span class="lineNum">     142 </span>            :  * \brief Check if a Tag label has type DataBoxString_t
+<span class="lineNum">     143 </span>            :  *
+<span class="lineNum">     144 </span>            :  * \details
+<span class="lineNum">     145 </span>            :  * For a type `T`, check that the static member variable named `label` has type
+<span class="lineNum">     146 </span>            :  * DataBoxString_t
+<span class="lineNum">     147 </span>            :  *
+<span class="lineNum">     148 </span>            :  * \usage
+<span class="lineNum">     149 </span>            :  * For any type `T`
+<span class="lineNum">     150 </span>            :  * \code
+<span class="lineNum">     151 </span>            :  * using result = db::tag_label_correct_type&lt;T&gt;;
+<span class="lineNum">     152 </span>            :  * \endcode
+<span class="lineNum">     153 </span>            :  * \metareturns
+<span class="lineNum">     154 </span>            :  * cpp17::bool_constant
+<span class="lineNum">     155 </span>            :  *
+<span class="lineNum">     156 </span>            :  * \tparam T the type to check
+<span class="lineNum">     157 </span>            :  */
+<span class="lineNum">     158 </span>            : template &lt;typename T, typename = void&gt;
+<span class="lineNum">     159 </span>            : struct tag_label_correct_type : std::false_type {};
+<span class="lineNum">     160 </span>            : /// \cond HIDDEN_SYMBOLS
+<span class="lineNum">     161 </span>            : template &lt;typename T&gt;
+<span class="lineNum">     162 </span>            : struct tag_label_correct_type&lt;
+<span class="lineNum">     163 </span>            :     T,
+<span class="lineNum">     164 </span>            :     std::enable_if_t&lt;std::is_same&lt;DataBoxString_t, decltype(T::label)&gt;::value&gt;&gt;
+<span class="lineNum">     165 </span>            :     : std::true_type {};
+<span class="lineNum">     166 </span>            : /// \endcond
+<span class="lineNum">     167 </span>            : // @}
+<span class="lineNum">     168 </span>            : 
+<span class="lineNum">     169 </span>            : struct check_tag_labels {
+<span class="lineNum">     170 </span>            :   using value_type = bool;
+<span class="lineNum">     171 </span>            :   value_type value{false};
+<span class="lineNum">     172 </span>            :   template &lt;typename T&gt;
+<span class="lineNum">     173 </span>            :   void operator()(tmpl::type_&lt;T&gt; /*meta*/) {
+<span class="lineNum">     174 </span>            :     bool correct = pretty_type::get_name&lt;T&gt;().find(std::string(T::label)) !=
+<span class="lineNum">     175 </span>            :                    std::string::npos;
+<span class="lineNum">     176 </span>            :     value |= correct;
+<span class="lineNum">     177 </span>            :     ASSERT(correct,
+<span class="lineNum">     178 </span>            :            &quot;Failed to match the Tag label &quot; &lt;&lt; std::string(T::label)
+<span class="lineNum">     179 </span>            :                                             &lt;&lt; &quot; with its type name &quot;
+<span class="lineNum">     180 </span>            :                                             &lt;&lt; pretty_type::get_name&lt;T&gt;());
+<span class="lineNum">     181 </span>            :   }
+<span class="lineNum">     182 </span>            : };
+<span class="lineNum">     183 </span>            : }  // namespace detail
+<span class="lineNum">     184 </span>            : 
+<span class="lineNum">     185 </span>            : // @{
+<span class="lineNum">     186 </span>            : /*!
+<span class="lineNum">     187 </span>            :  * \ingroup DataBoxGroup
+<span class="lineNum">     188 </span>            :  * \brief Get the name of a DataBoxTag, including prefixes
+<span class="lineNum">     189 </span>            :  *
+<span class="lineNum">     190 </span>            :  * \details
+<span class="lineNum">     191 </span>            :  * Given a DataBoxTag returns the name of the DataBoxTag as a std::string. If
+<span class="lineNum">     192 </span>            :  * the DataBoxTag is also a DataBoxPrefix then the prefix is added.
+<span class="lineNum">     193 </span>            :  *
+<span class="lineNum">     194 </span>            :  * \tparam Tag the DataBoxTag whose name to get
+<span class="lineNum">     195 </span>            :  * \return string holding the DataBoxTag's name
+<span class="lineNum">     196 </span>            :  */
+<span class="lineNum">     197 </span>            : template &lt;
+<span class="lineNum">     198 </span>            :     typename Tag,
+<span class="lineNum">     199 </span>            :     std::enable_if_t&lt;not std::is_base_of&lt;DataBoxPrefix, Tag&gt;::value&gt;* = nullptr&gt;
+<span class="lineNum">     200 </span><span class="lineCov">          2 : std::string get_tag_name() {</span>
+<span class="lineNum">     201 </span>            :   return std::string(Tag::label);
+<span class="lineNum">     202 </span>            : }
+<span class="lineNum">     203 </span>            : /// \cond HIDDEN_SYMBOLS
+<span class="lineNum">     204 </span>            : template &lt;
+<span class="lineNum">     205 </span>            :     typename Tag,
+<span class="lineNum">     206 </span>            :     std::enable_if_t&lt;std::is_base_of&lt;DataBoxPrefix, Tag&gt;::value&gt;* = nullptr&gt;
+<span class="lineNum">     207 </span>            : std::string get_tag_name() {
+<span class="lineNum">     208 </span>            :   return std::string(Tag::label) + get_tag_name&lt;typename Tag::tag&gt;();
+<span class="lineNum">     209 </span>            : }
+<span class="lineNum">     210 </span>            : /// \endcond
+<span class="lineNum">     211 </span>            : // @}
+<span class="lineNum">     212 </span>            : 
+<span class="lineNum">     213 </span>            : namespace detail {
+<span class="lineNum">     214 </span>            : // @{
+<span class="lineNum">     215 </span>            : /*!
+<span class="lineNum">     216 </span>            :  * \ingroup DataBoxGroup
+<span class="lineNum">     217 </span>            :  * \brief Compute a hash of the `label` of a DataBoxTag
+<span class="lineNum">     218 </span>            :  *
+<span class="lineNum">     219 </span>            :  * \details
+<span class="lineNum">     220 </span>            :  * Given a DataBoxTag returns a `value` of type `value_type` which is the hash
+<span class="lineNum">     221 </span>            :  * of the label of the DataBoxTag, including any prefix. The hashing algorithm
+<span class="lineNum">     222 </span>            :  * is based on what is used for std::typeinfo in libcxx v3.9.0.
+<span class="lineNum">     223 </span>            :  *
+<span class="lineNum">     224 </span>            :  * \tparam Tag the DataBoxTag whose name to get
+<span class="lineNum">     225 </span>            :  * \metareturns
+<span class="lineNum">     226 </span>            :  * value member of type `value_type` representing the hash of the DataBoxTag
+<span class="lineNum">     227 </span>            :  */
+<span class="lineNum">     228 </span>            : template &lt;typename Tag, typename = void&gt;
+<span class="lineNum">     229 </span>            : struct hash_databox_tag {
+<span class="lineNum">     230 </span>            :   using value_type = size_t;
+<span class="lineNum">     231 </span>            :   static constexpr value_type value = cstring_hash(Tag::label);
+<span class="lineNum">     232 </span>            :   using type = std::integral_constant&lt;value_type, value&gt;;
+<span class="lineNum">     233 </span>            : };
+<span class="lineNum">     234 </span>            : /// \cond HIDDEN_SYMBOLS
+<span class="lineNum">     235 </span>            : template &lt;typename Tag&gt;
+<span class="lineNum">     236 </span>            : struct hash_databox_tag&lt;
+<span class="lineNum">     237 </span>            :     Tag, std::enable_if_t&lt;std::is_base_of&lt;DataBoxPrefix, Tag&gt;::value&gt;&gt; {
+<span class="lineNum">     238 </span>            :   using value_type = size_t;
+<span class="lineNum">     239 </span>            :   static constexpr value_type value =
+<span class="lineNum">     240 </span>            :       cstring_hash(Tag::label) * hash_databox_tag&lt;typename Tag::tag&gt;::value;
+<span class="lineNum">     241 </span>            :   using type = std::integral_constant&lt;value_type, value&gt;;
+<span class="lineNum">     242 </span>            : };
+<span class="lineNum">     243 </span>            : 
+<span class="lineNum">     244 </span>            : template &lt;typename Tag&gt;
+<span class="lineNum">     245 </span>            : struct hash_databox_tag&lt;
+<span class="lineNum">     246 </span>            :     Tag, std::enable_if_t&lt;tt::is_a&lt;::Tags::Variables, Tag&gt;::value&gt;&gt; {
+<span class="lineNum">     247 </span>            :   using value_type = size_t;
+<span class="lineNum">     248 </span>            :   using reduced_hash = tmpl::fold&lt;
+<span class="lineNum">     249 </span>            :       typename Tag::type::tags_list, tmpl::size_t&lt;0&gt;,
+<span class="lineNum">     250 </span>            :       tmpl::bind&lt;tmpl::plus, tmpl::_state, hash_databox_tag&lt;tmpl::_element&gt;&gt;&gt;;
+<span class="lineNum">     251 </span>            :   static constexpr value_type value =
+<span class="lineNum">     252 </span>            :       cstring_hash(Tag::label) * reduced_hash::value;
+<span class="lineNum">     253 </span>            :   using type = std::integral_constant&lt;value_type, value&gt;;
+<span class="lineNum">     254 </span>            : };
+<span class="lineNum">     255 </span>            : /// \endcond
+<span class="lineNum">     256 </span>            : // @}
+<span class="lineNum">     257 </span>            : 
+<span class="lineNum">     258 </span>            : /*!
+<span class="lineNum">     259 </span>            :  * \ingroup DataBoxGroup
+<span class="lineNum">     260 </span>            :  *
+<span class="lineNum">     261 </span>            :  * \details
+<span class="lineNum">     262 </span>            :  * Predicate that inherits from std::true_type if
+<span class="lineNum">     263 </span>            :  * `hash_databox_tag&lt;DataBoxTag1&gt;::value &lt;
+<span class="lineNum">     264 </span>            :  * hash_databox_tag&lt;DataBoxTag2&gt;::value` otherwise inherits from
+<span class="lineNum">     265 </span>            :  * std::false_type.
+<span class="lineNum">     266 </span>            :  *
+<span class="lineNum">     267 </span>            :  * \tparam DataBoxTag1 the left operand
+<span class="lineNum">     268 </span>            :  * \tparam DataBoxTag2 the right operand
+<span class="lineNum">     269 </span>            :  */
+<span class="lineNum">     270 </span>            : template &lt;typename DataBoxTag1, typename DataBoxTag2&gt;
+<span class="lineNum">     271 </span>            : struct databox_tag_less : tmpl::bool_&lt;(hash_databox_tag&lt;DataBoxTag1&gt;::value &lt;
+<span class="lineNum">     272 </span>            :                                        hash_databox_tag&lt;DataBoxTag2&gt;::value)&gt; {
+<span class="lineNum">     273 </span>            : };
+<span class="lineNum">     274 </span>            : }  // namespace detail
+<span class="lineNum">     275 </span>            : 
+<span class="lineNum">     276 </span>            : /*!
+<span class="lineNum">     277 </span>            :  * \ingroup DataBoxGroup
+<span class="lineNum">     278 </span>            :  * \brief Check if `T` derives off of db::ComputeItemTag
+<span class="lineNum">     279 </span>            :  */
+<span class="lineNum">     280 </span>            : template &lt;typename T, typename = void&gt;
+<span class="lineNum">     281 </span><span class="lineCov">          1 : struct is_compute_item : std::false_type {};</span>
+<span class="lineNum">     282 </span>            : /// \cond HIDDEN_SYMBOLS
+<span class="lineNum">     283 </span>            : template &lt;typename T&gt;
+<span class="lineNum">     284 </span>            : struct is_compute_item&lt;
+<span class="lineNum">     285 </span>            :     T, std::enable_if_t&lt;std::is_base_of&lt;db::ComputeItemTag, T&gt;::value&gt;&gt;
+<span class="lineNum">     286 </span>            :     : std::true_type {};
+<span class="lineNum">     287 </span>            : /// \endcond
+<span class="lineNum">     288 </span>            : 
+<span class="lineNum">     289 </span>            : /*!
+<span class="lineNum">     290 </span>            :  * \ingroup DataBoxGroup
+<span class="lineNum">     291 </span>            :  * \brief Check if `T` derives off of db::ComputeItemTag
+<span class="lineNum">     292 </span>            :  */
+<span class="lineNum">     293 </span>            : template &lt;typename T&gt;
+<span class="lineNum">     294 </span><span class="lineCov">          2 : constexpr bool is_compute_item_v = is_compute_item&lt;T&gt;::value;</span>
+<span class="lineNum">     295 </span>            : 
+<span class="lineNum">     296 </span>            : namespace detail {
+<span class="lineNum">     297 </span>            : template &lt;typename Tag, typename = void&gt;
+<span class="lineNum">     298 </span>            : struct compute_item_result_impl;
+<span class="lineNum">     299 </span>            : 
+<span class="lineNum">     300 </span>            : template &lt;typename Tag, typename ArgsLs&gt;
+<span class="lineNum">     301 </span>            : struct compute_item_result_helper;
+<span class="lineNum">     302 </span>            : 
+<span class="lineNum">     303 </span>            : template &lt;typename Tag, template &lt;typename...&gt; class ArgumentsLs,
+<span class="lineNum">     304 </span>            :           typename... Args&gt;
+<span class="lineNum">     305 </span>            : struct compute_item_result_helper&lt;Tag, ArgumentsLs&lt;Args...&gt;&gt; {
+<span class="lineNum">     306 </span>            :   static_assert(
+<span class="lineNum">     307 </span>            :       tt::is_callable&lt;decltype(Tag::function),
+<span class="lineNum">     308 </span>            :                       typename compute_item_result_impl&lt;Args&gt;::type...&gt;::value,
+<span class="lineNum">     309 </span>            :       &quot;The compute item is not callable with the types that the tags hold. The &quot;
+<span class="lineNum">     310 </span>            :       &quot;compute item tag that is the problem should be shown in the first line &quot;
+<span class="lineNum">     311 </span>            :       &quot;after the static assert error: &quot;
+<span class="lineNum">     312 </span>            :       R&quot;(&quot;detail::compute_item_result_helper&lt;TheItemThatsFailingToBeCalled,)&quot;
+<span class="lineNum">     313 </span>            :       R&quot;(list&lt;PassedTags...&gt; &gt;&quot;)&quot;);
+<span class="lineNum">     314 </span>            :   using type =
+<span class="lineNum">     315 </span>            :       decltype(std::declval&lt;std::remove_pointer_t&lt;decltype(Tag::function)&gt;&gt;()(
+<span class="lineNum">     316 </span>            :           std::declval&lt;typename compute_item_result_impl&lt;Args&gt;::type&gt;()...));
+<span class="lineNum">     317 </span>            : };
+<span class="lineNum">     318 </span>            : 
+<span class="lineNum">     319 </span>            : template &lt;typename Tag&gt;
+<span class="lineNum">     320 </span>            : struct compute_item_result_impl&lt;Tag,
+<span class="lineNum">     321 </span>            :                                 std::enable_if_t&lt;is_compute_item&lt;Tag&gt;::value&gt;&gt; {
+<span class="lineNum">     322 </span>            :   using type =
+<span class="lineNum">     323 </span>            :       typename compute_item_result_helper&lt;Tag,
+<span class="lineNum">     324 </span>            :                                           typename Tag::argument_tags&gt;::type;
+<span class="lineNum">     325 </span>            : };
+<span class="lineNum">     326 </span>            : 
+<span class="lineNum">     327 </span>            : template &lt;typename Tag&gt;
+<span class="lineNum">     328 </span>            : struct compute_item_result_impl&lt;
+<span class="lineNum">     329 </span>            :     Tag, std::enable_if_t&lt;not is_compute_item&lt;Tag&gt;::value&gt;&gt; {
+<span class="lineNum">     330 </span>            :   using type = typename Tag::type;
+<span class="lineNum">     331 </span>            : };
+<span class="lineNum">     332 </span>            : }  // namespace detail
+<span class="lineNum">     333 </span>            : 
+<span class="lineNum">     334 </span>            : /*!
+<span class="lineNum">     335 </span>            :  * \ingroup DataBoxGroup
+<span class="lineNum">     336 </span>            :  * \brief Get the type that is returned by a Compute Item
+<span class="lineNum">     337 </span>            :  */
+<span class="lineNum">     338 </span>            : template &lt;typename T&gt;
+<span class="lineNum">     339 </span><span class="lineCov">          2 : using item_type = typename detail::compute_item_result_impl&lt;T&gt;::type;</span>
+<span class="lineNum">     340 </span>            : 
+<span class="lineNum">     341 </span>            : /*!
+<span class="lineNum">     342 </span>            :  * \ingroup DataBoxGroup
+<span class="lineNum">     343 </span>            :  * \brief Check if a Compute Item is &quot;simple&quot;
+<span class="lineNum">     344 </span>            :  */
+<span class="lineNum">     345 </span>            : template &lt;typename T, typename = void&gt;
+<span class="lineNum">     346 </span><span class="lineCov">          1 : struct is_simple_compute_item : std::false_type {};</span>
+<span class="lineNum">     347 </span>            : template &lt;typename T&gt;
+<span class="lineNum">     348 </span>            : struct is_simple_compute_item&lt;
+<span class="lineNum">     349 </span>            :     T, std::enable_if_t&lt;is_compute_item&lt;T&gt;::value and
+<span class="lineNum">     350 </span>            :                         not tt::is_a&lt;Variables, item_type&lt;T&gt;&gt;::value&gt;&gt;
+<span class="lineNum">     351 </span>            :     : std::true_type {};
+<span class="lineNum">     352 </span>            : 
+<span class="lineNum">     353 </span>            : /*!
+<span class="lineNum">     354 </span>            :  * \ingroup DataBoxGroup
+<span class="lineNum">     355 </span>            :  * \brief Check if a Compute Item returns a Variables class
+<span class="lineNum">     356 </span>            :  */
+<span class="lineNum">     357 </span>            : template &lt;typename T, typename = void&gt;
+<span class="lineNum">     358 </span><span class="lineCov">          1 : struct is_variables_compute_item : std::false_type {};</span>
+<span class="lineNum">     359 </span>            : template &lt;typename T&gt;
+<span class="lineNum">     360 </span>            : struct is_variables_compute_item&lt;
+<span class="lineNum">     361 </span>            :     T, std::enable_if_t&lt;is_compute_item&lt;T&gt;::value and
+<span class="lineNum">     362 </span>            :                         tt::is_a&lt;Variables, item_type&lt;T&gt;&gt;::value&gt;&gt;
+<span class="lineNum">     363 </span>            :     : std::true_type {};
+<span class="lineNum">     364 </span>            : }  // namespace db
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

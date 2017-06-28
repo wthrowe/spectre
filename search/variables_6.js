@@ -11,6 +11,7 @@ var searchData=
   ['is_5fclass_5fv',['is_class_v',['http://en.cppreference.com/w/cpp/types/is_class.html',1,'std::is_class_v()'],['http://en.cppreference.com/w/cpp/experimental/type_trait_variable_templates.html',1,'std::experimental::is_class_v()']]],
   ['is_5fcomparable_5fv',['is_comparable_v',['../namespacett.html#ad21661929315b8bcde1f4c9b6d60c0aa',1,'tt']]],
   ['is_5fcompound_5fv',['is_compound_v',['http://en.cppreference.com/w/cpp/types/is_compound.html',1,'std::is_compound_v()'],['http://en.cppreference.com/w/cpp/experimental/type_trait_variable_templates.html',1,'std::experimental::is_compound_v()']]],
+  ['is_5fcompute_5fitem_5fv',['is_compute_item_v',['../group__DataBoxGroup.html#gab3b35754fdc5faa3ab18029eac90eb86',1,'db']]],
   ['is_5fconst_5fv',['is_const_v',['http://en.cppreference.com/w/cpp/types/is_const.html',1,'std::is_const_v()'],['http://en.cppreference.com/w/cpp/experimental/type_trait_variable_templates.html',1,'std::experimental::is_const_v()']]],
   ['is_5fconstructible_5fv',['is_constructible_v',['http://en.cppreference.com/w/cpp/types/is_constructible.html',1,'std::is_constructible_v()'],['http://en.cppreference.com/w/cpp/experimental/type_trait_variable_templates.html',1,'std::experimental::is_constructible_v()']]],
   ['is_5fconvertible_5fv',['is_convertible_v',['http://en.cppreference.com/w/cpp/types/is_convertible.html',1,'std::is_convertible_v()'],['http://en.cppreference.com/w/cpp/experimental/type_trait_variable_templates.html',1,'std::experimental::is_convertible_v()']]],

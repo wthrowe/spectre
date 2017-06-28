@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - aab6277d89c7523211d43aca4ffaa372882d864f - Utilities/PrettyType.hpp</title>
+  <title>LCOV - 4ffdce72d0ef483ec80fe51966b9a10b34b0e13e - Utilities/PrettyType.hpp</title>
   <link rel="stylesheet" type="text/css" href="../gcov.css">
 </head>
 
@@ -28,7 +28,7 @@
           </tr>
           <tr>
             <td class="headerItem">Commit:</td>
-             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/aab6277d89c7523211d43aca4ffaa372882d864f">aab6277d89c7523211d43aca4ffaa372882d864f</a></td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/4ffdce72d0ef483ec80fe51966b9a10b34b0e13e">4ffdce72d0ef483ec80fe51966b9a10b34b0e13e</a></td>
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntry">142</td>
@@ -37,12 +37,12 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2017-06-27 02:01:04</td>
+            <td class="headerValue">2017-06-28 02:03:04</td>
             <td></td>
             <td class="headerItem">Functions:</td>
-            <td class="headerCovTableEntry">172</td>
-            <td class="headerCovTableEntry">175</td>
-            <td class="headerCovTableEntryHi">98.3 %</td>
+            <td class="headerCovTableEntry">192</td>
+            <td class="headerCovTableEntry">195</td>
+            <td class="headerCovTableEntryHi">98.5 %</td>
           </tr>
           <tr>
             <td class="headerItem">Legend:</td>
@@ -282,14 +282,14 @@
 <span class="lineNum">     212 </span>            :             tmpl::find&lt;typename KT::template template_list&lt;std::decay_t&lt;
 <a name="213"><span class="lineNum">     213 </span>            :                            std::remove_reference_t&lt;std::remove_pointer_t&lt;T&gt;&gt;&gt;&gt;,</a>
 <span class="lineNum">     214 </span>            :                        std::is_base_of&lt;std::true_type, tmpl::_1&gt;&gt;&gt;::value&gt;&gt; {
-<span class="lineNum">     215 </span><span class="lineCov">          1 :   static std::string get() {</span>
-<span class="lineNum">     216 </span><span class="lineCov">          2 :     std::stringstream ss;</span>
+<span class="lineNum">     215 </span><span class="lineCov">         80 :   static std::string get() {</span>
+<span class="lineNum">     216 </span><span class="lineCov">        160 :     std::stringstream ss;</span>
 <span class="lineNum">     217 </span>            : #if defined(PRETTY_TYPE_USE_BOOST)
-<span class="lineNum">     218 </span><span class="lineCov">          1 :     ss &lt;&lt; boost::core::demangle(typeid(T).name());</span>
+<span class="lineNum">     218 </span><span class="lineCov">         80 :     ss &lt;&lt; boost::core::demangle(typeid(T).name());</span>
 <span class="lineNum">     219 </span>            : #else
 <span class="lineNum">     220 </span>            :     ss &lt;&lt; typeid(T).name();
 <span class="lineNum">     221 </span>            : #endif
-<span class="lineNum">     222 </span><span class="lineCov">          2 :     return ss.str();</span>
+<span class="lineNum">     222 </span><span class="lineCov">        160 :     return ss.str();</span>
 <span class="lineNum">     223 </span>            :   }
 <span class="lineNum">     224 </span>            : };
 <span class="lineNum">     225 </span>            : 
@@ -737,8 +737,8 @@
 <span class="lineNum">     667 </span>            :  */
 <a name="668"><span class="lineNum">     668 </span>            : template &lt;typename T, typename Map = basics_map,</a>
 <span class="lineNum">     669 </span>            :           typename KnownTemplates = stl_templates&gt;
-<span class="lineNum">     670 </span><span class="lineCov">         73 : std::string get_name() {</span>
-<span class="lineNum">     671 </span><span class="lineCov">         73 :   return detail::construct_name&lt;T, Map, KnownTemplates&gt;::get();</span>
+<span class="lineNum">     670 </span><span class="lineCov">        152 : std::string get_name() {</span>
+<span class="lineNum">     671 </span><span class="lineCov">        152 :   return detail::construct_name&lt;T, Map, KnownTemplates&gt;::get();</span>
 <span class="lineNum">     672 </span>            : }
 <span class="lineNum">     673 </span>            : 
 <span class="lineNum">     674 </span>            : /*!

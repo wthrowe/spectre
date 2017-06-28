@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - aab6277d89c7523211d43aca4ffaa372882d864f - DataStructures/SliceIterator.cpp</title>
+  <title>LCOV - 4ffdce72d0ef483ec80fe51966b9a10b34b0e13e - DataStructures/SliceIterator.cpp</title>
   <link rel="stylesheet" type="text/css" href="../gcov.css">
 </head>
 
@@ -28,7 +28,7 @@
           </tr>
           <tr>
             <td class="headerItem">Commit:</td>
-             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/aab6277d89c7523211d43aca4ffaa372882d864f">aab6277d89c7523211d43aca4ffaa372882d864f</a></td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/4ffdce72d0ef483ec80fe51966b9a10b34b0e13e">4ffdce72d0ef483ec80fe51966b9a10b34b0e13e</a></td>
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntry">16</td>
@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2017-06-27 02:01:04</td>
+            <td class="headerValue">2017-06-28 02:03:04</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">3</td>
@@ -80,23 +80,23 @@
 <span class="lineNum">      10 </span>            : #include &quot;Utilities/Literals.hpp&quot;
 <a name="11"><span class="lineNum">      11 </span>            : </a>
 <span class="lineNum">      12 </span>            : template &lt;size_t Dim&gt;
-<span class="lineNum">      13 </span><span class="lineCov">          2 : SliceIterator::SliceIterator(const Index&lt;Dim&gt;&amp; extents, const size_t fixed_dim,</span>
+<span class="lineNum">      13 </span><span class="lineCov">          5 : SliceIterator::SliceIterator(const Index&lt;Dim&gt;&amp; extents, const size_t fixed_dim,</span>
 <span class="lineNum">      14 </span>            :                              const size_t fixed_index)
 <span class="lineNum">      15 </span>            :     : size_(extents.product()),
-<span class="lineNum">      16 </span><span class="lineCov">          4 :       stride_(std::accumulate(extents.begin(), extents.begin() + fixed_dim,</span>
+<span class="lineNum">      16 </span><span class="lineCov">         10 :       stride_(std::accumulate(extents.begin(), extents.begin() + fixed_dim,</span>
 <span class="lineNum">      17 </span>            :                               1_st, std::multiplies&lt;size_t&gt;())),
-<span class="lineNum">      18 </span><span class="lineCov">          2 :       jump_((extents[fixed_dim] - 1) * stride_),</span>
-<span class="lineNum">      19 </span><span class="lineCov">          2 :       initial_offset_(fixed_index * stride_),</span>
-<span class="lineNum">      20 </span><span class="lineCov">          2 :       volume_offset_(initial_offset_),</span>
-<a name="21"><span class="lineNum">      21 </span><span class="lineCov">         10 :       slice_offset_(0) {}</span></a>
+<span class="lineNum">      18 </span><span class="lineCov">          5 :       jump_((extents[fixed_dim] - 1) * stride_),</span>
+<span class="lineNum">      19 </span><span class="lineCov">          5 :       initial_offset_(fixed_index * stride_),</span>
+<span class="lineNum">      20 </span><span class="lineCov">          5 :       volume_offset_(initial_offset_),</span>
+<a name="21"><span class="lineNum">      21 </span><span class="lineCov">         25 :       slice_offset_(0) {}</span></a>
 <span class="lineNum">      22 </span>            : 
-<span class="lineNum">      23 </span><span class="lineCov">         42 : SliceIterator&amp; SliceIterator::operator++() {</span>
-<span class="lineNum">      24 </span><span class="lineCov">         42 :   ++volume_offset_;</span>
-<span class="lineNum">      25 </span><span class="lineCov">         42 :   ++slice_offset_;</span>
-<span class="lineNum">      26 </span><span class="lineCov">         42 :   if (0 == (volume_offset_ % stride_)) {</span>
-<span class="lineNum">      27 </span><span class="lineCov">         11 :     volume_offset_ += jump_;</span>
+<span class="lineNum">      23 </span><span class="lineCov">         68 : SliceIterator&amp; SliceIterator::operator++() {</span>
+<span class="lineNum">      24 </span><span class="lineCov">         68 :   ++volume_offset_;</span>
+<span class="lineNum">      25 </span><span class="lineCov">         68 :   ++slice_offset_;</span>
+<span class="lineNum">      26 </span><span class="lineCov">         68 :   if (0 == (volume_offset_ % stride_)) {</span>
+<span class="lineNum">      27 </span><span class="lineCov">         28 :     volume_offset_ += jump_;</span>
 <span class="lineNum">      28 </span>            :   }
-<span class="lineNum">      29 </span><span class="lineCov">         42 :   return *this;</span>
+<span class="lineNum">      29 </span><span class="lineCov">         68 :   return *this;</span>
 <a name="30"><span class="lineNum">      30 </span>            : }</a>
 <span class="lineNum">      31 </span>            : 
 <span class="lineNum">      32 </span><span class="lineCov">          1 : void SliceIterator::reset() {</span>

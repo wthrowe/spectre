@@ -1,5 +1,8 @@
 var searchData=
 [
+  ['databox_3c_20tagsls_3c_20tags_2e_2e_2e_20_3e_20_3e',['DataBox&lt; TagsLs&lt; Tags... &gt; &gt;',['../classdb_1_1DataBox_3_01TagsLs_3_01Tags_8_8_8_01_4_01_4.html',1,'db']]],
+  ['databoxprefix',['DataBoxPrefix',['../structdb_1_1DataBoxPrefix.html',1,'db']]],
+  ['databoxtag',['DataBoxTag',['../structdb_1_1DataBoxTag.html',1,'db']]],
   ['datavector',['DataVector',['../classDataVector.html',1,'']]],
   ['deca',['deca',['http://en.cppreference.com/w/cpp/numeric/ratio/ratio.html',1,'std']]],
   ['decay',['decay',['http://en.cppreference.com/w/cpp/types/decay.html',1,'std']]],
@@ -14,7 +17,7 @@ var searchData=
   ['derivedinpupstlcpp11',['DerivedInPupStlCpp11',['../structDerivedInPupStlCpp11.html',1,'']]],
   ['detected_5for',['detected_or',['http://en.cppreference.com/w/cpp/experimental/is_detected.html',1,'std::experimental']]],
   ['detected_5for_5ft',['detected_or_t',['http://en.cppreference.com/w/cpp/experimental/is_detected.html',1,'std::experimental']]],
-  ['directory_5fentry',['directory_entry',['http://en.cppreference.com/w/cpp/filesystem/directory_entry.html',1,'std::filesystem::directory_entry'],['http://en.cppreference.com/w/cpp/experimental/fs/directory_entry.html',1,'std::experimental::filesystem::directory_entry']]],
+  ['directory_5fentry',['directory_entry',['http://en.cppreference.com/w/cpp/experimental/fs/directory_entry.html',1,'std::experimental::filesystem::directory_entry'],['http://en.cppreference.com/w/cpp/filesystem/directory_entry.html',1,'std::filesystem::directory_entry']]],
   ['directory_5fiterator',['directory_iterator',['http://en.cppreference.com/w/cpp/experimental/fs/directory_iterator.html',1,'std::experimental::filesystem::directory_iterator'],['http://en.cppreference.com/w/cpp/filesystem/directory_iterator.html',1,'std::filesystem::directory_iterator']]],
   ['directory_5foptions',['directory_options',['http://en.cppreference.com/w/cpp/experimental/fs/directory_options.html',1,'std::experimental::filesystem::directory_options'],['http://en.cppreference.com/w/cpp/filesystem/directory_options.html',1,'std::filesystem::directory_options']]],
   ['discard_5fblock_5fengine',['discard_block_engine',['http://en.cppreference.com/w/cpp/numeric/random/discard_block_engine.html',1,'std']]],

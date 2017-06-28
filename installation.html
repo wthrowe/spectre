@@ -154,52 +154,70 @@ $(function() {
 <div class="title">Installation </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h3>Requirements:</h3>
+<div class="textblock"><h3>Dependencies</h3>
+<h4>Required:</h4>
 <ul>
 <li><a href="https://gcc.gnu.org/">GCC</a> 5.2 or later, <a href="https://clang.llvm.org/">Clang</a> 3.6 or later, or AppleClang 6.0 or later</li>
 <li><a href="https://cmake.org/">CMake</a> 3.3.2 or later</li>
 <li><a href="http://charm.cs.illinois.edu/">Charm++</a> (must be compiled from source)</li>
 <li><a href="https://git-scm.com/">Git</a></li>
-<li>BLAS</li>
+<li>BLAS (e.g. <a href="http://www.openblas.net">OpenBLAS</a>)</li>
 <li><a href="https://bitbucket.org/blaze-lib/blaze/overview">Blaze</a></li>
 <li><a href="http://www.boost.org/">Boost</a></li>
 <li><a href="https://github.com/edouarda/brigand">Brigand</a></li>
-<li><a href="https://github.com/philsquared/Catch">Catch</a> (v1.6.1 or older)</li>
+<li><a href="https://github.com/philsquared/Catch">Catch</a> v1.6.1 or older</li>
+<li><a href="https://www.gnu.org/software/gsl/">GSL</a></li>
 <li><a href="https://support.hdfgroup.org/HDF5/">HDF5</a> (non-mpi version on macOS)</li>
 <li><a href="https://github.com/jemalloc/jemalloc">jemalloc</a></li>
 <li><a href="https://github.com/hfp/libxsmm">LIBXSMM</a></li>
 <li><a href="https://github.com/jbeder/yaml-cpp">yaml-cpp</a></li>
 </ul>
-<h3>Optional:</h3>
+<h4>Optional:</h4>
 <ul>
-<li><a href="http://www.stack.nl/~dimitri/doxygen/index.html">Doxygen</a> for documentation generation</li>
-<li><a href="http://ltp.sourceforge.net/coverage/lcov.php">LCOV</a> and <a href="https://gcc.gnu.org/onlinedocs/gcc/Gcov.html">gcov</a> for checking code coverage</li>
-<li><a href="https://github.com/psycofdj/coverxygen">coverxygen</a> for checking documentation coverage</li>
-<li><a href="http://icl.utk.edu/papi/">PAPI</a></li>
-<li><a href="https://clang.llvm.org/docs/ClangFormat.html">ClangFormat</a></li>
-<li><a href="http://clang.llvm.org/extra/clang-tidy/">Clang-Tidy</a></li>
-<li><a href="http://cppcheck.sourceforge.net/">Cppcheck</a></li>
+<li><a href="http://www.stack.nl/~dimitri/doxygen/index.html">Doxygen</a> — to generate documentation</li>
+<li><a href="http://ltp.sourceforge.net/coverage/lcov.php">LCOV</a> and <a href="https://gcc.gnu.org/onlinedocs/gcc/Gcov.html">gcov</a> — to check code test coverage</li>
+<li><a href="https://github.com/psycofdj/coverxygen">coverxygen</a> — to check documentation coverage</li>
+<li><a href="http://icl.utk.edu/papi/">PAPI</a> — to access hardware performance counters</li>
+<li><a href="https://clang.llvm.org/docs/ClangFormat.html">ClangFormat</a> — to format C++ code in a clear and consistent fashion</li>
+<li><a href="http://clang.llvm.org/extra/clang-tidy/">Clang-Tidy</a> — to "lint" C++ code</li>
+<li><a href="http://cppcheck.sourceforge.net/">Cppcheck</a> — to analyze C++ code</li>
 </ul>
-<h3>Using Docker to Compile SpECTRE</h3>
+<h4>Using Docker to Compile SpECTRE</h4>
 <p>A <a href="https://www.docker.com/">Docker</a> image is available from <a href="https://hub.docker.com/r/sxscollaboration/spectrebuildenv/">DockerHub</a> and can be used to build SpECTRE on a personal machine. To retrieve the Docker image run</p>
 <div class="fragment"><div class="line">docker pull sxscollaboration/spectrebuildenv:latest</div></div><!-- fragment --><p>The image already has Charm++ configured, all that needs to be done is to clone SpECTRE and compile it.</p>
 <p><b>Note</b>: The Docker image is the recommended way of using SpECTRE on a personal Linux machine. Because of the wide variety of operating systems available today it is not possible for us to support all configurations. However, using Spack as outlined below is a supported alternative to Docker images.</p>
-<h3>Installing Dependencies Using Spack</h3>
-<p>All the dependencies of SpECTRE can be installed from Spack. To setup Spack, first install LMod on your system. On macOS LMod can be installed via <a href="https://brew.sh/">brew</a> and then sourcing the LMod shell script in your <code>~/.bash_profile</code> by adding <code>. /usr/local/Cellar/lmod/YOUR_VERSION_NUMBER/init/sh</code>. On Ubuntu LMod can be installed by running <code>sudo apt-get install -y lmod</code> and then adding <code>. /etc/profile.d/lmod.sh</code> to your <code>~/.bashrc</code> file. On Arch Linux run <code>yaourt -Sy lmod</code> and add <code>. /etc/profile.d/lmod.sh</code> to your <code>~/.bashrc</code>. Instructions for other Linux distros are available online.</p>
-<p>Clone <a href="https://github.com/LLNL/spack">Spack</a> and add <code>spack/bin</code> to your path. Run <code>openssl version</code> and note the version number, for example <code>1.1.0e</code>. Next run <code>which openssl</code> and note the path, for example <code>/usr/bin</code>. Open <code>~/.spack/package.yaml</code> (you may need to create it) in your favourite text editor and add </p><div class="fragment"><div class="line">packages:</div><div class="line">    openssl:</div><div class="line">        paths:</div><div class="line">            openssl@1.1.0e: /usr</div><div class="line">        buildable: False</div></div><!-- fragment --><p> substituting your version number and path in.</p>
-<p>Once you have Spack installed and configured with OpenSSL and LMod you can install the dependencies using </p><div class="fragment"><div class="line">spack install blaze</div><div class="line">spack install brigand@master</div><div class="line">spack install catch@1.6.1</div><div class="line">spack install jemalloc # or from your package manager</div><div class="line">spack install libxsmm</div><div class="line">spack install yaml-cpp@develop</div></div><!-- fragment --><p>Next, run <code>ls spack/share/spack/modules</code> add one entry of </p><div class="fragment"><div class="line">module use /path/to/spack/share/spack/modules/YOUR_OS_VERSION_INFO</div></div><!-- fragment --><p> for each <code>YOUR_OS_VERSION_INFO</code> inside <code>spack/share/spack/modules</code> to your <code>~/.bash_profile</code> or <code>~.bashrc</code>.</p>
-<p>You can also install CMake, OpenBLAS, Boost, and HDF5 from Spack. To load the packages you've installed from Spack run <code>spack load PACKAGE</code>, or use the <code>module load</code> command. Spack allows very flexible configurations and it is recommended you read the <a href="https://spack.readthedocs.io">documentation</a> if you require features such as packages installed with different compilers.</p>
+<h4>Installing Dependencies Using Spack</h4>
+<p>SpECTRE's dependencies can be installed with <a href="https://github.com/LLNL/spack">Spack</a>, a package manager tailored for HPC use. Install Spack by cloning it into <code>SPACK_DIR</code> (a directory of your choice), then add <code>SPACK_DIR/bin</code> to your <code>PATH</code>.</p>
+<p>For security, it is good practice to make Spack use the system's OpenSLL rather than allow it to install a new copy — see Spack's documentation for <a href="https://spack.readthedocs.io/en/latest/getting_started.html#openssl">instructions</a>.</p>
+<p>Spack works well with a module environment. We recommend <a href="https://github.com/TACC/Lmod">LMod</a>, which is available on many systems:</p><ul>
+<li>On macOS, install LMod from <a href="https://brew.sh/">brew</a>, then source the LMod shell script by adding <code>. /usr/local/Cellar/lmod/YOUR_VERSION_NUMBER/init/sh</code> to your <code>.bash_profile</code>.</li>
+<li>On Ubuntu, run <code>sudo apt-get install -y lmod</code> and add <code>. /etc/profile.d/lmod.sh</code> to your <code>.bashrc</code>.</li>
+<li>On Arch Linux, run <code>yaourt -Sy lmod</code> and add <code>. /etc/profile.d/lmod.sh</code> to your <code>.bashrc</code>,</li>
+<li>On Fedora/RHEL, GNU Environment Modules comes out-of-the-box and works equally well.</li>
+<li>Instructions for other Linux distros are available online.</li>
+</ul>
+<p>To use modules with Spack, enable Spack's shell support by adding <code>. SPACK_DIR/share/spack/setup-env.sh</code> to your <code>.bash_profile</code> or <code>.bashrc</code>.</p>
+<p>Once you have Spack installed and configured with OpenSSL and LMod, you can install the SpECTRE dependencies using </p><div class="fragment"><div class="line">spack install blaze</div><div class="line">spack install brigand@master</div><div class="line">spack install catch@1.6.1</div><div class="line">spack install gsl</div><div class="line">spack install jemalloc # or from your package manager</div><div class="line">spack install libxsmm</div><div class="line">spack install yaml-cpp@develop</div></div><!-- fragment --><p> You can also install CMake, OpenBLAS, Boost, and HDF5 from Spack. To load the packages you've installed from Spack run <code>spack load PACKAGE</code>, or (equivalently) use the <code>module load</code> command.</p>
+<p><b>Note</b>: Spack allows very flexible configurations and it is recommended you read the <a href="https://spack.readthedocs.io">documentation</a> if you require features such as packages installed with different compilers.</p>
 <h3>Building SpECTRE</h3>
-<ul>
-<li>Ensure you have all dependencies installed. See "Installing Dependencies Using Spack" for one method.</li>
-<li>Install <a href="http://charm.cs.illinois.edu/software">Charm++</a> for your machine. Further details <a href="http://charm.cs.illinois.edu/manuals/html/charm++/A.html">here</a></li>
-<li>Clone <a href="https://github.com/sxs-collaboration/spectre">SpECTRE</a></li>
-<li>Apply the Charm++ patch for your version <em>after</em> building Charm++ by running <code>git apply SPECTRE_ROOT/support/Charm/vx.y.z.patch</code> in the Charm++ directory</li>
-<li><code>mkdir build &amp;&amp; cd build</code></li>
-<li>The compiler used for Charm++ and SpECTRE must be the same, otherwise you will receive undefined references errors during linking. You will only need to worry about this if you explicitly specified a compiler when building Charm++. When compiling SpECTRE you can specify the compiler to CMake using, for example <div class="fragment"><div class="line">cmake -D CMAKE_CXX_COMPILER=clang++ \</div><div class="line">      -D CMAKE_C_COMPILER=clang \</div><div class="line">      -D CMAKE_Fortran_COMPILER=gfortran \</div><div class="line">      -D CHARM_ROOT=/path/to/charm/BUILD_DIR SPECTRE_ROOT</div></div><!-- fragment --></li>
-<li><code>cmake -D CHARM_ROOT=/path/to/charm/BUILD_DIR SPECTRE_ROOT</code></li>
-<li><code>make list</code> to see all available targets</li>
-<li>Run tests by running <code>make RunTests &amp;&amp; ctest</code></li>
+<p>After the dependencies have been installed, Charm++ and SpECTRE can be compiled. Follow these steps:</p>
+<ol type="1">
+<li>Clone <a href="https://github.com/sxs-collaboration/spectre">SpECTRE</a> into <code>SPECTRE_ROOT</code>, a directory of your choice.</li>
+<li>Install Charm++:<ul>
+<li>Clone <a href="http://charm.cs.illinois.edu/software">Charm++</a> into <code>CHARM_DIR</code>, again a directory of your choice.</li>
+<li>In <code>CHARM_DIR</code>, run <code>git checkout v6.7.1</code> to switch to a supported, stable release of Charm++.</li>
+<li>Charm++ is compiled by running <code>./build charm++ ARCH OPTIONS</code>. To figure out the correct target architecture and options, you can simply run <code>./build</code>; the script will then ask you questions to guide you towards the correct settings (see notes below for additional details). Then compile Charm++. The Charm++ build will be located in a new directory, <code>CHARM_DIR/ARCH_OPTS</code>, whose name may (or may not) have some of the options appended to the architecture.</li>
+<li>The SpECTRE repo contains a patch that must be applied to Charm++ <em>after</em> Charm++ has been compiled. While still in <code>CHARM_DIR</code>, apply this patch by running <code>git apply SPECTRE_ROOT/support/Charm/v6.7.patch</code>.</li>
+</ul>
+</li>
+<li>Return to <code>SPECTRE_ROOT</code>, and create a build dir by running <code>mkdir build &amp;&amp; cd build</code></li>
+<li>Build SpECTRE with <code>cmake -D CHARM_ROOT=CHARM_DIR/ARCH_OPTS SPECTRE_ROOT</code> then <code>make -jN</code> to compile the code.</li>
+<li>Run the tests with <code>make RunTests &amp;&amp; ctest</code>.</li>
+</ol>
+<p><b>Notes</b>:</p><ul>
+<li>For more details on building Charm++, see the directions <a href="http://charm.cs.illinois.edu/manuals/html/charm++/A.html">here</a> The correct target is <code>charm++</code> and, for a personal machine, the correct target architecture is likely to be <code>multicore-linux64</code> (or <code>multicore-darwin-x86_64</code> on macOS). On an HPC system, the correct Charm++ target architecture depends on the machine's inter-node communication architecture. We will be providing specific instructions for various HPC systems.</li>
+<li>Both Charm++ and SpECTRE must be compiled using the same compiler, otherwise you will receive undefined reference errors while linking SpECTRE. When compiling Charm++ you can specify the compiler using, for example, <div class="fragment"><div class="line">./build charm++ ARCH clang</div></div><!-- fragment --> When compiling SpECTRE you can specify the compiler to CMake using, for example, <div class="fragment"><div class="line">cmake -D CMAKE_CXX_COMPILER=clang++ \</div><div class="line">      -D CMAKE_C_COMPILER=clang \</div><div class="line">      -D CMAKE_Fortran_COMPILER=gfortran \</div><div class="line">      -D CHARM_ROOT=CHARM_DIR/ARCH_OPTS SPECTRE_ROOT</div></div><!-- fragment --></li>
+<li>Inside the SpECTRE build directory, use <code>make list</code> to see all available targets. This list can be refreshed by running CMake again.</li>
 </ul>
 <h3>Code Coverage Analysis</h3>
 <p>For any coverage analysis you will need to have LCOV installed on the system. For documentation coverage analysis you will also need to install <a href="https://github.com/psycofdj/coverxygen">coverxygen</a> and for test coverage analysis <a href="https://gcc.gnu.org/onlinedocs/gcc/Gcov.html">gcov</a>. </p>

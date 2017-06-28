@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['frame',['Frame',['../namespaceFrame.html',1,'']]]
+  ['db',['db',['../namespacedb.html',1,'']]]
 ];

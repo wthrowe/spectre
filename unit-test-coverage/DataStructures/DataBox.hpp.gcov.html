@@ -1,0 +1,1072 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 4ffdce72d0ef483ec80fe51966b9a10b34b0e13e - DataStructures/DataBox.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">SpECTRE Unit Test Code Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">DataStructures</a> - DataBox.hpp<span style="font-size: 80%;"> (source / <a href="DataBox.hpp.func-sort-c.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/4ffdce72d0ef483ec80fe51966b9a10b34b0e13e">4ffdce72d0ef483ec80fe51966b9a10b34b0e13e</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">66</td>
+            <td class="headerCovTableEntry">66</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2017-06-28 02:03:04</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">208</td>
+            <td class="headerCovTableEntry">228</td>
+            <td class="headerCovTableEntryHi">91.2 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>            : // Distributed under the MIT License.</a>
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : /// \file
+<span class="lineNum">       5 </span>            : /// Defines classes and functions used for manipulating DataBox's
+<span class="lineNum">       6 </span>            : 
+<span class="lineNum">       7 </span>            : #pragma once
+<span class="lineNum">       8 </span>            : 
+<span class="lineNum">       9 </span>            : #include &lt;algorithm&gt;
+<span class="lineNum">      10 </span>            : #include &lt;cassert&gt;
+<span class="lineNum">      11 </span>            : #include &lt;functional&gt;
+<span class="lineNum">      12 </span>            : #include &lt;type_traits&gt;
+<span class="lineNum">      13 </span>            : #include &lt;unordered_map&gt;
+<span class="lineNum">      14 </span>            : 
+<span class="lineNum">      15 </span>            : #include &quot;DataStructures/DataBoxTag.hpp&quot;
+<span class="lineNum">      16 </span>            : #include &quot;ErrorHandling/Assert.hpp&quot;
+<span class="lineNum">      17 </span>            : #include &quot;ErrorHandling/Error.hpp&quot;
+<span class="lineNum">      18 </span>            : #include &quot;Utilities/Deferred.hpp&quot;
+<span class="lineNum">      19 </span>            : #include &quot;Utilities/ForceInline.hpp&quot;
+<span class="lineNum">      20 </span>            : #include &quot;Utilities/TMPL.hpp&quot;
+<span class="lineNum">      21 </span>            : #include &quot;Utilities/TypeTraits.hpp&quot;
+<span class="lineNum">      22 </span>            : 
+<span class="lineNum">      23 </span>            : /*!
+<span class="lineNum">      24 </span>            :  * \ingroup DataBoxGroup
+<span class="lineNum">      25 </span>            :  * \brief Namespace for DataBox related things
+<span class="lineNum">      26 </span>            :  */
+<span class="lineNum">      27 </span>            : namespace db {
+<span class="lineNum">      28 </span>            : 
+<span class="lineNum">      29 </span>            : /*!
+<span class="lineNum">      30 </span>            :  * \ingroup DataBoxGroup
+<span class="lineNum">      31 </span>            :  * \brief Compute the canonical typelist used in the DataBox
+<span class="lineNum">      32 </span>            :  * \note The result is architecture-dependent.
+<span class="lineNum">      33 </span>            :  *
+<span class="lineNum">      34 </span>            :  * \requires `tt::is_a&lt;typelist, Ls&gt;::``value` is true
+<span class="lineNum">      35 </span>            :  * \metareturns `typelist` of all elements in `Ls` but ordered for the
+<span class="lineNum">      36 </span>            :  * db::DataBox
+<span class="lineNum">      37 </span>            :  */
+<span class="lineNum">      38 </span>            : template &lt;typename Ls&gt;
+<span class="lineNum">      39 </span>            : using get_databox_list =
+<span class="lineNum">      40 </span>            :     tmpl::sort&lt;Ls, db::detail::databox_tag_less&lt;tmpl::_1, tmpl::_2&gt;&gt;;
+<span class="lineNum">      41 </span>            : 
+<span class="lineNum">      42 </span>            : // Forward declarations
+<span class="lineNum">      43 </span>            : /// \cond
+<span class="lineNum">      44 </span>            : template &lt;typename TagsLs&gt;
+<span class="lineNum">      45 </span>            : class DataBox;
+<span class="lineNum">      46 </span>            : /// \endcond
+<span class="lineNum">      47 </span>            : 
+<span class="lineNum">      48 </span>            : namespace detail {
+<span class="lineNum">      49 </span>            : template &lt;typename PoppedTagLs, typename FullTagLs&gt;
+<span class="lineNum">      50 </span>            : struct DataBoxAddHelper;
+<span class="lineNum">      51 </span>            : 
+<span class="lineNum">      52 </span>            : template &lt;typename DependencyGraph, typename Vertices&gt;
+<span class="lineNum">      53 </span>            : struct ResetComputeItems;
+<span class="lineNum">      54 </span>            : }  // namespace detail
+<span class="lineNum">      55 </span>            : 
+<span class="lineNum">      56 </span>            : // @{
+<span class="lineNum">      57 </span>            : /*!
+<span class="lineNum">      58 </span>            :  * \ingroup TypeTraits DataBox
+<span class="lineNum">      59 </span>            :  * \brief Determines if a type `T` is as db::DataBox
+<span class="lineNum">      60 </span>            :  *
+<span class="lineNum">      61 </span>            :  * \effects Inherits from std::true_type if `T` is a specialization of
+<span class="lineNum">      62 </span>            :  * db::DataBox, otherwise inherits from std::false_type
+<span class="lineNum">      63 </span>            :  * \example
+<span class="lineNum">      64 </span>            :  */
+<span class="lineNum">      65 </span>            : // \snippet Test_DataBox.cpp
+<span class="lineNum">      66 </span>            : template &lt;typename T&gt;
+<span class="lineNum">      67 </span>            : struct is_databox : std::false_type {};
+<span class="lineNum">      68 </span>            : /// \cond HIDDEN_SYMBOLS
+<span class="lineNum">      69 </span>            : template &lt;typename... Tags&gt;
+<span class="lineNum">      70 </span>            : struct is_databox&lt;DataBox&lt;tmpl::list&lt;Tags...&gt;&gt;&gt; : std::true_type {};
+<span class="lineNum">      71 </span>            : /// \endcond
+<span class="lineNum">      72 </span>            : // @}
+<span class="lineNum">      73 </span>            : 
+<span class="lineNum">      74 </span>            : namespace detail {
+<span class="lineNum">      75 </span>            : /*!
+<span class="lineNum">      76 </span>            :  * \ingroup DataBoxGroup
+<span class="lineNum">      77 </span>            :  * \brief TaggedTuple of objects or lazily evaluated functions
+<span class="lineNum">      78 </span>            :  * \tparam Tags the tags of the objects to be placed in the tuple
+<a name="79"><span class="lineNum">      79 </span>            :  */</a>
+<span class="lineNum">      80 </span>            : template &lt;typename... Tags&gt;
+<span class="lineNum">      81 </span><span class="lineCov">         14 : struct TaggedDeferredTuple {</span>
+<span class="lineNum">      82 </span>            :   static_assert(tmpl::is_set&lt;Tags...&gt;::value,
+<a name="83"><span class="lineNum">      83 </span>            :                 &quot;Cannot have repeated Tags in a DataBox.&quot;);</a>
+<span class="lineNum">      84 </span>            :   template &lt;typename... Args&gt;
+<span class="lineNum">      85 </span><span class="lineCov">         16 :   constexpr explicit TaggedDeferredTuple(Args&amp;&amp;... args)</span>
+<span class="lineNum">      86 </span><span class="lineCov">         16 :       : data_(std::forward&lt;Args&gt;(args)...) {}</span>
+<span class="lineNum">      87 </span>            :   static constexpr size_t size = sizeof...(Tags);
+<span class="lineNum">      88 </span>            : 
+<span class="lineNum">      89 </span>            :   // @{
+<span class="lineNum">      90 </span>            :   /*!
+<span class="lineNum">      91 </span>            :    * \ingroup DataBoxGroup
+<span class="lineNum">      92 </span>            :    * \brief Retrieve on object from a TaggedDeferredTuple
+<span class="lineNum">      93 </span>            :    *
+<span class="lineNum">      94 </span>            :    * \tparam T the tag of the object to retrieve
+<span class="lineNum">      95 </span>            :    * \return reference to the object held in the tuple
+<a name="96"><span class="lineNum">      96 </span>            :    */</a>
+<span class="lineNum">      97 </span>            :   template &lt;typename T&gt;
+<span class="lineNum">      98 </span><span class="lineCov">        131 :   constexpr Deferred&lt;item_type&lt;T&gt;&gt;&amp; get() noexcept {</span>
+<span class="lineNum">      99 </span>            :     static_assert(not std::is_same&lt;tmpl::index_of&lt;tmpl::list&lt;Tags...&gt;, T&gt;,
+<span class="lineNum">     100 </span>            :                                    tmpl::no_such_type_&gt;::value,
+<span class="lineNum">     101 </span>            :                   &quot;Could not retrieve Tag from DataBox. See the first template &quot;
+<span class="lineNum">     102 </span>            :                   &quot;parameter of the instantiation for what Tag is being &quot;
+<span class="lineNum">     103 </span>            :                   &quot;retrieved and the remaining template parameters for what &quot;
+<span class="lineNum">     104 </span>            :                   &quot;takes are available.&quot;);
+<span class="lineNum">     105 </span><span class="lineCov">        131 :     return std::get&lt;tmpl::index_of&lt;tmpl::list&lt;Tags...&gt;, T&gt;::value&gt;(data_);</span>
+<span class="lineNum">     106 </span>            :   }
+<a name="107"><span class="lineNum">     107 </span>            : </a>
+<span class="lineNum">     108 </span>            :   template &lt;typename T&gt;
+<span class="lineNum">     109 </span><span class="lineCov">         68 :   constexpr const Deferred&lt;item_type&lt;T&gt;&gt;&amp; get() const noexcept {</span>
+<span class="lineNum">     110 </span>            :     static_assert(not std::is_same&lt;tmpl::index_of&lt;tmpl::list&lt;Tags...&gt;, T&gt;,
+<span class="lineNum">     111 </span>            :                                    tmpl::no_such_type_&gt;::value,
+<span class="lineNum">     112 </span>            :                   &quot;Could not retrieve Tag from DataBox. See the first template &quot;
+<span class="lineNum">     113 </span>            :                   &quot;parameter of the instantiation for what Tag is being &quot;
+<span class="lineNum">     114 </span>            :                   &quot;retrieved and the remaining template parameters for what &quot;
+<span class="lineNum">     115 </span>            :                   &quot;takes are available.&quot;);
+<span class="lineNum">     116 </span><span class="lineCov">         68 :     return std::get&lt;tmpl::index_of&lt;tmpl::list&lt;Tags...&gt;, T&gt;::value&gt;(data_);</span>
+<span class="lineNum">     117 </span>            :   }
+<span class="lineNum">     118 </span>            :   // @}
+<span class="lineNum">     119 </span>            : 
+<span class="lineNum">     120 </span>            :  private:
+<span class="lineNum">     121 </span>            :   std::tuple&lt;Deferred&lt;item_type&lt;Tags&gt;&gt;...&gt; data_;
+<span class="lineNum">     122 </span>            : };
+<span class="lineNum">     123 </span>            : 
+<span class="lineNum">     124 </span>            : template &lt;typename Element, typename = void&gt;
+<span class="lineNum">     125 </span>            : struct extract_dependent_items {
+<span class="lineNum">     126 </span>            :   using type = typelist&lt;Element&gt;;
+<span class="lineNum">     127 </span>            : };
+<span class="lineNum">     128 </span>            : 
+<span class="lineNum">     129 </span>            : template &lt;typename Element&gt;
+<span class="lineNum">     130 </span>            : struct extract_dependent_items&lt;
+<span class="lineNum">     131 </span>            :     Element, std::enable_if_t&lt;tt::is_a&lt;Variables, item_type&lt;Element&gt;&gt;::value&gt;&gt; {
+<span class="lineNum">     132 </span>            :   using type =
+<span class="lineNum">     133 </span>            :       tmpl::append&lt;typelist&lt;Element&gt;, typename item_type&lt;Element&gt;::tags_list&gt;;
+<span class="lineNum">     134 </span>            : };
+<span class="lineNum">     135 </span>            : 
+<span class="lineNum">     136 </span>            : template &lt;typename Caller, typename Callee, typename List, typename = void&gt;
+<span class="lineNum">     137 </span>            : struct create_dependency_graph {
+<span class="lineNum">     138 </span>            :   using new_edge = tmpl::edge&lt;Callee, Caller&gt;;
+<span class="lineNum">     139 </span>            :   using type = tmpl::conditional_t&lt;
+<span class="lineNum">     140 </span>            :       tmpl::found&lt;List, std::is_same&lt;tmpl::_1, tmpl::pin&lt;new_edge&gt;&gt;&gt;::value,
+<span class="lineNum">     141 </span>            :       List, tmpl::push_back&lt;List, new_edge&gt;&gt;;
+<span class="lineNum">     142 </span>            : };
+<span class="lineNum">     143 </span>            : 
+<span class="lineNum">     144 </span>            : template &lt;typename Caller, typename Callee, typename List&gt;
+<span class="lineNum">     145 </span>            : struct create_dependency_graph&lt;
+<span class="lineNum">     146 </span>            :     Caller, Callee, List,
+<span class="lineNum">     147 </span>            :     std::enable_if_t&lt;is_simple_compute_item&lt;Callee&gt;::value&gt;&gt; {
+<span class="lineNum">     148 </span>            :   using sub_tree =
+<span class="lineNum">     149 </span>            :       tmpl::fold&lt;typename Callee::argument_tags, List,
+<span class="lineNum">     150 </span>            :                  create_dependency_graph&lt;Callee, tmpl::_element, tmpl::_state&gt;&gt;;
+<span class="lineNum">     151 </span>            :   using type = tmpl::conditional_t&lt;
+<span class="lineNum">     152 </span>            :       std::is_same&lt;void, Caller&gt;::value, sub_tree,
+<span class="lineNum">     153 </span>            :       tmpl::push_back&lt;sub_tree, tmpl::edge&lt;Callee, Caller&gt;&gt;&gt;;
+<span class="lineNum">     154 </span>            : };
+<span class="lineNum">     155 </span>            : 
+<span class="lineNum">     156 </span>            : template &lt;typename Caller, typename Callee, typename List&gt;
+<span class="lineNum">     157 </span>            : struct create_dependency_graph&lt;
+<span class="lineNum">     158 </span>            :     Caller, Callee, List,
+<span class="lineNum">     159 </span>            :     std::enable_if_t&lt;is_variables_compute_item&lt;Callee&gt;::value&gt;&gt; {
+<span class="lineNum">     160 </span>            :   using partial_sub_tree = tmpl::fold&lt;
+<span class="lineNum">     161 </span>            :       typename Callee::argument_tags, List,
+<span class="lineNum">     162 </span>            :       create_dependency_graph&lt;tmpl::pin&lt;Callee&gt;, tmpl::_element, tmpl::_state&gt;&gt;;
+<span class="lineNum">     163 </span>            :   using variables_tags_dependency = tmpl::fold&lt;
+<span class="lineNum">     164 </span>            :       typename item_type&lt;Callee&gt;::tags_list, tmpl::list&lt;&gt;,
+<span class="lineNum">     165 </span>            :       tmpl::bind&lt;tmpl::push_back, tmpl::_state,
+<span class="lineNum">     166 </span>            :                  tmpl::bind&lt;tmpl::edge, tmpl::pin&lt;Callee&gt;, tmpl::_element&gt;&gt;&gt;;
+<span class="lineNum">     167 </span>            :   using sub_tree = tmpl::append&lt;partial_sub_tree, variables_tags_dependency&gt;;
+<span class="lineNum">     168 </span>            :   using type = tmpl::conditional_t&lt;
+<span class="lineNum">     169 </span>            :       std::is_same&lt;void, Caller&gt;::value, sub_tree,
+<span class="lineNum">     170 </span>            :       tmpl::push_back&lt;sub_tree, tmpl::edge&lt;Callee, Caller&gt;&gt;&gt;;
+<span class="lineNum">     171 </span>            : };
+<span class="lineNum">     172 </span>            : }  // namespace detail
+<span class="lineNum">     173 </span>            : 
+<span class="lineNum">     174 </span>            : /*!
+<span class="lineNum">     175 </span>            :  * \ingroup DataBoxGroup
+<span class="lineNum">     176 </span>            :  * \brief A DataBox stores objects that can be retrieved by using Tags
+<span class="lineNum">     177 </span>            :  * \warning
+<span class="lineNum">     178 </span>            :  * The order of the tags in DataBoxes returned by create and create_from depends
+<span class="lineNum">     179 </span>            :  * on implementation-defined behavior, and therefore should not be
+<span class="lineNum">     180 </span>            :  * specified in source files. If explicitly naming a DataBox type is
+<span class="lineNum">     181 </span>            :  * necessary they should be generated using get_databox_list.
+<span class="lineNum">     182 </span>            :  *
+<span class="lineNum">     183 </span>            :  * @tparam TagsLs a metasequence
+<span class="lineNum">     184 </span>            :  * @tparam Tags list of DataBoxTag's
+<span class="lineNum">     185 </span>            :  */
+<span class="lineNum">     186 </span>            : template &lt;template &lt;typename...&gt; class TagsLs, typename... Tags&gt;
+<span class="lineNum">     187 </span>            : class DataBox&lt;TagsLs&lt;Tags...&gt;&gt; {
+<span class="lineNum">     188 </span>            :   static_assert(
+<span class="lineNum">     189 </span>            :       cpp17::conjunction&lt;std::is_base_of&lt;db::DataBoxTag, Tags&gt;...&gt;::value,
+<span class="lineNum">     190 </span>            :       &quot;All structs used to Tag (compute) items in a DataBox must derive off of &quot;
+<span class="lineNum">     191 </span>            :       &quot;db::DataBoxTag&quot;);
+<span class="lineNum">     192 </span>            :   static_assert(cpp17::conjunction&lt;detail::tag_has_label&lt;Tags&gt;...&gt;::value,
+<span class="lineNum">     193 </span>            :                 &quot;Missing a label on a Tag&quot;);
+<span class="lineNum">     194 </span>            :   static_assert(
+<span class="lineNum">     195 </span>            :       cpp17::conjunction&lt;detail::tag_label_correct_type&lt;Tags&gt;...&gt;::value,
+<span class="lineNum">     196 </span>            :       &quot;One of the labels of the Tags in a DataBox has the incorrect &quot;
+<span class="lineNum">     197 </span>            :       &quot;type. It should be a DataBoxString_t.&quot;);
+<span class="lineNum">     198 </span>            : 
+<span class="lineNum">     199 </span>            :  public:
+<span class="lineNum">     200 </span>            :   /*!
+<span class="lineNum">     201 </span>            :    * \brief A ::typelist of Tags that the DataBox holds
+<span class="lineNum">     202 </span>            :    */
+<span class="lineNum">     203 </span>            :   using tags_list = typelist&lt;Tags...&gt;;
+<span class="lineNum">     204 </span>            : 
+<span class="lineNum">     205 </span>            :   /// \cond HIDDEN_SYMBOLS
+<span class="lineNum">     206 </span>            :   /*!
+<span class="lineNum">     207 </span>            :    * \note the default constructor is only used for serialization
+<span class="lineNum">     208 </span>            :    */
+<span class="lineNum">     209 </span>            :   DataBox() = default;
+<span class="lineNum">     210 </span>            :   DataBox(DataBox&amp;&amp; rhs) noexcept = default;             // NOLINT
+<span class="lineNum">     211 </span>            :   DataBox&amp; operator=(DataBox&amp;&amp; rhs) noexcept = default;  // NOLINT
+<a name="212"><span class="lineNum">     212 </span>            :   DataBox(const DataBox&amp; rhs) = default;</a>
+<span class="lineNum">     213 </span>            :   DataBox&amp; operator=(const DataBox&amp; rhs) = default;
+<span class="lineNum">     214 </span><span class="lineCov">         14 :   ~DataBox() = default;</span>
+<span class="lineNum">     215 </span>            :   /// \endcond
+<span class="lineNum">     216 </span>            : 
+<span class="lineNum">     217 </span>            :   /// @cond HIDDEN_SYMBOLS
+<span class="lineNum">     218 </span>            :   /*!
+<span class="lineNum">     219 </span>            :    * \brief Helper function called by db::create to call the constructor
+<span class="lineNum">     220 </span>            :    *
+<span class="lineNum">     221 </span>            :    * \requires `tt::is_a&lt;::typelist, AddTags&gt;::value` is true,
+<span class="lineNum">     222 </span>            :    * `tt::is_a&lt;::typelist, AddComputeItems&gt;::value` is true,
+<span class="lineNum">     223 </span>            :    * `tmpl::all&lt;AddComputeItems, is_compute_item&lt;tmpl::_1&gt;&gt;::value` is true, and
+<span class="lineNum">     224 </span>            :    * `std::conjunction&lt;std::is_same&lt;item_type&lt;AddTags&gt;, Args&gt;...&gt;::value` is
+<span class="lineNum">     225 </span>            :    * true
+<span class="lineNum">     226 </span>            :    *
+<span class="lineNum">     227 </span>            :    * \return A DataBox with items described by Tags in `AddTags` and
+<span class="lineNum">     228 </span>            :    * values `args...`, and compute items described by Tags in `AddComputeItems`
+<span class="lineNum">     229 </span>            :    */
+<span class="lineNum">     230 </span>            :   template &lt;typename AddTags, typename AddComputeItems, typename... Args&gt;
+<span class="lineNum">     231 </span>            :   static constexpr auto create(Args&amp;&amp;... args);
+<span class="lineNum">     232 </span>            : 
+<span class="lineNum">     233 </span>            :   /*!
+<span class="lineNum">     234 </span>            :    * \brief Helper function called by db::create_from to call the constructor
+<span class="lineNum">     235 </span>            :    *
+<span class="lineNum">     236 </span>            :    * \requires `tt::is_a&lt;::typelist, AddTags&gt;::value` is true,
+<span class="lineNum">     237 </span>            :    * `tt::is_a&lt;::typelist, AddComputeItems&gt;::value` is true,
+<span class="lineNum">     238 </span>            :    * `tmpl::all&lt;AddComputeItems, is_compute_item&lt;tmpl::_1&gt;&gt;::value` is true,
+<span class="lineNum">     239 </span>            :    * `std::conjunction&lt;std::is_same&lt;item_type&lt;AddTags&gt;, Args&gt;...&gt;::value` is
+<span class="lineNum">     240 </span>            :    * true and `tt::is_a&lt;DataBox, Box&gt;::value` is true
+<span class="lineNum">     241 </span>            :    *
+<span class="lineNum">     242 </span>            :    * \return A DataBox with items described by Tags in `AddTags` and
+<span class="lineNum">     243 </span>            :    * values `args...`, (compute) items in `Box` that are not in the
+<span class="lineNum">     244 </span>            :    * `RemoveTags`, and compute items described by Tags in `AddComputeItems`
+<span class="lineNum">     245 </span>            :    */
+<span class="lineNum">     246 </span>            :   template &lt;typename RemoveTags, typename AddTags, typename AddComputeItems,
+<span class="lineNum">     247 </span>            :             typename Box, typename... Args&gt;
+<span class="lineNum">     248 </span>            :   static constexpr auto create_from(const Box&amp; box, Args&amp;&amp;... args);
+<span class="lineNum">     249 </span>            :   /// @endcond
+<span class="lineNum">     250 </span>            : 
+<span class="lineNum">     251 </span>            :   /*!
+<span class="lineNum">     252 </span>            :    * \requires Type `T` is one of the Tags corresponding to an object stored in
+<span class="lineNum">     253 </span>            :    * the DataBox
+<span class="lineNum">     254 </span>            :    *
+<span class="lineNum">     255 </span>            :    * \return The object corresponding to the Tag `T`
+<a name="256"><span class="lineNum">     256 </span>            :    */</a>
+<span class="lineNum">     257 </span>            :   template &lt;typename T&gt;
+<span class="lineNum">     258 </span><span class="lineCov">         40 :   constexpr const item_type&lt;T&gt;&amp; get() const noexcept {</span>
+<span class="lineNum">     259 </span><span class="lineCov">         40 :     return data_.template get&lt;T&gt;().get();</span>
+<span class="lineNum">     260 </span>            :   }
+<span class="lineNum">     261 </span>            : 
+<span class="lineNum">     262 </span>            :   /// \cond HIDDEN_SYMBOLS
+<span class="lineNum">     263 </span>            :   /*!
+<span class="lineNum">     264 </span>            :    * \requires Type `T` is one of the Tags corresponding to an object stored in
+<span class="lineNum">     265 </span>            :    * the DataBox
+<span class="lineNum">     266 </span>            :    *
+<span class="lineNum">     267 </span>            :    * \note This should not be used outside of implementation details
+<span class="lineNum">     268 </span>            :    *
+<span class="lineNum">     269 </span>            :    * @return The lazy object corresponding to the Tag `T`
+<a name="270"><span class="lineNum">     270 </span>            :    */</a>
+<span class="lineNum">     271 </span>            :   template &lt;typename T&gt;
+<span class="lineNum">     272 </span><span class="lineCov">         28 :   constexpr const Deferred&lt;item_type&lt;T&gt;&gt;&amp; get_lazy() const noexcept {</span>
+<span class="lineNum">     273 </span><span class="lineCov">         28 :     return data_.template get&lt;T&gt;();</span>
+<span class="lineNum">     274 </span>            :   }
+<span class="lineNum">     275 </span>            :   /// \endcond
+<span class="lineNum">     276 </span>            : 
+<span class="lineNum">     277 </span>            :   /*!
+<span class="lineNum">     278 </span>            :    * \requires Type `T` is one of the Tags corresponding to an object stored in
+<span class="lineNum">     279 </span>            :    * the DataBox
+<span class="lineNum">     280 </span>            :    *
+<span class="lineNum">     281 </span>            :    * `mutate()` is similar to get, however it allows altering the value of the
+<span class="lineNum">     282 </span>            :    * item in the DataBox.
+<span class="lineNum">     283 </span>            :    * \return The object corresponding to the Tag `T`
+<span class="lineNum">     284 </span>            :    */
+<span class="lineNum">     285 </span>            :   template &lt;typename T&gt;
+<span class="lineNum">     286 </span>            :   constexpr item_type&lt;T&gt;&amp; mutate() noexcept {
+<span class="lineNum">     287 </span>            :     static_assert(not db::is_compute_item_v&lt;T&gt;, &quot;Cannot mutate a compute item&quot;);
+<span class="lineNum">     288 </span>            :     return data_.template get&lt;T&gt;().mutate();
+<span class="lineNum">     289 </span>            :   }
+<span class="lineNum">     290 </span>            : 
+<span class="lineNum">     291 </span>            :  private:
+<span class="lineNum">     292 </span>            :   template &lt;typename... TagsInArgsOrder, typename... FullItems,
+<span class="lineNum">     293 </span>            :             typename... ComputeItemTags, typename... FullComputeItems,
+<span class="lineNum">     294 </span>            :             typename... Args,
+<span class="lineNum">     295 </span>            :             std::enable_if_t&lt;not cpp17::disjunction&lt;
+<span class="lineNum">     296 </span>            :                 db::is_databox&lt;std::decay_t&lt;Args&gt;&gt;...&gt;::value&gt;* = nullptr&gt;
+<span class="lineNum">     297 </span>            :   constexpr DataBox(typelist&lt;TagsInArgsOrder...&gt; /*meta*/,
+<span class="lineNum">     298 </span>            :                     typelist&lt;FullItems...&gt; /*meta*/,
+<span class="lineNum">     299 </span>            :                     typelist&lt;ComputeItemTags...&gt; /*meta*/,
+<span class="lineNum">     300 </span>            :                     typelist&lt;FullComputeItems...&gt; /*meta*/, Args&amp;&amp;... args);
+<span class="lineNum">     301 </span>            : 
+<span class="lineNum">     302 </span>            :   template &lt;typename OldTags, typename... KeepTags, typename... NewTags,
+<span class="lineNum">     303 </span>            :             typename... NewComputeItems, typename ComputeItemsToKeep,
+<span class="lineNum">     304 </span>            :             typename... Args&gt;
+<span class="lineNum">     305 </span>            :   constexpr DataBox(const DataBox&lt;OldTags&gt;&amp; old_box,
+<span class="lineNum">     306 </span>            :                     typelist&lt;KeepTags...&gt; /*meta*/,
+<span class="lineNum">     307 </span>            :                     typelist&lt;NewTags...&gt; /*meta*/,
+<span class="lineNum">     308 </span>            :                     typelist&lt;NewComputeItems...&gt; /*meta*/,
+<span class="lineNum">     309 </span>            :                     ComputeItemsToKeep /*meta*/, Args&amp;&amp;... args);
+<span class="lineNum">     310 </span>            : 
+<span class="lineNum">     311 </span>            :   SPECTRE_ALWAYS_INLINE void check_tags() const {
+<span class="lineNum">     312 </span>            : #ifdef SPECTRE_DEBUG
+<span class="lineNum">     313 </span><span class="lineCov">         16 :     ASSERT(tmpl::size&lt;tags_list&gt;::value == 0 or</span>
+<span class="lineNum">     314 </span>            :                tmpl::for_each&lt;tags_list&gt;(detail::check_tag_labels{}).value,
+<span class="lineNum">     315 </span>            :            &quot;Could not match one of the Tag labels with the Tag type. That is, &quot;
+<span class="lineNum">     316 </span>            :            &quot;the label of a Tag must be the same as the Tag.&quot;);
+<span class="lineNum">     317 </span>            : #endif
+<span class="lineNum">     318 </span>            :   }
+<span class="lineNum">     319 </span>            : 
+<span class="lineNum">     320 </span>            :   detail::TaggedDeferredTuple&lt;Tags...&gt; data_;
+<span class="lineNum">     321 </span>            : };
+<span class="lineNum">     322 </span>            : 
+<span class="lineNum">     323 </span>            : /// \cond HIDDEN_SYMBOLS
+<span class="lineNum">     324 </span>            : template &lt;template &lt;typename...&gt; class TagsLs, typename... Tags&gt;
+<span class="lineNum">     325 </span>            : template &lt;typename... TagsInArgsOrder, typename... FullItems,
+<span class="lineNum">     326 </span>            :           typename... ComputeItemTags, typename... FullComputeItems,
+<a name="327"><span class="lineNum">     327 </span>            :           typename... Args, std::enable_if_t&lt;not cpp17::disjunction&lt;</a>
+<span class="lineNum">     328 </span>            :                                 is_databox&lt;std::decay_t&lt;Args&gt;&gt;...&gt;::value&gt;*&gt;
+<span class="lineNum">     329 </span><span class="lineCov">         10 : constexpr DataBox&lt;TagsLs&lt;Tags...&gt;&gt;::DataBox(</span>
+<span class="lineNum">     330 </span>            :     typelist&lt;TagsInArgsOrder...&gt; /*meta*/, typelist&lt;FullItems...&gt; /*meta*/,
+<span class="lineNum">     331 </span>            :     typelist&lt;ComputeItemTags...&gt; /*meta*/,
+<span class="lineNum">     332 </span><span class="lineCov">         10 :     typelist&lt;FullComputeItems...&gt; /*meta*/, Args&amp;&amp;... args) {</span>
+<span class="lineNum">     333 </span>            :   check_tags();
+<span class="lineNum">     334 </span>            :   static_assert(
+<span class="lineNum">     335 </span>            :       sizeof...(Tags) == sizeof...(FullItems) + sizeof...(FullComputeItems),
+<span class="lineNum">     336 </span>            :       &quot;Must pass in as many (compute) items as there are Tags.&quot;);
+<span class="lineNum">     337 </span>            :   static_assert(sizeof...(TagsInArgsOrder) == sizeof...(Args),
+<span class="lineNum">     338 </span>            :                 &quot;Must pass in as many arguments as AddTags&quot;);
+<span class="lineNum">     339 </span>            :   static_assert(
+<span class="lineNum">     340 </span>            :       cpp17::conjunction&lt;std::is_same&lt;typename TagsInArgsOrder::type,
+<span class="lineNum">     341 </span>            :                                       std::decay_t&lt;Args&gt;&gt;...&gt;::value,
+<span class="lineNum">     342 </span>            :       &quot;The type of each Tag must be the same as the type being passed into &quot;
+<span class="lineNum">     343 </span>            :       &quot;the function creating the new DataBox.&quot;);
+<span class="lineNum">     344 </span><span class="lineCov">         20 :   std::tuple&lt;Args...&gt; args_tuple(std::forward&lt;Args&gt;(args)...);</span>
+<span class="lineNum">     345 </span>            :   using full_tags_list =
+<span class="lineNum">     346 </span>            :       tmpl::append&lt;typelist&lt;TagsInArgsOrder...&gt;, typelist&lt;ComputeItemTags...&gt;&gt;;
+<span class="lineNum">     347 </span>            :   using complete_tags_list =
+<span class="lineNum">     348 </span>            :       tmpl::append&lt;typelist&lt;FullItems...&gt;, typelist&lt;FullComputeItems...&gt;&gt;;
+<span class="lineNum">     349 </span>            :   detail::DataBoxAddHelper&lt;full_tags_list, complete_tags_list&gt;::
+<span class="lineNum">     350 </span><span class="lineCov">         10 :       template add_items_to_box&lt;0&gt;(args_tuple, data_);</span>
+<span class="lineNum">     351 </span><span class="lineCov">         10 : }</span>
+<span class="lineNum">     352 </span>            : 
+<span class="lineNum">     353 </span>            : template &lt;template &lt;typename...&gt; class TagsLs, typename... Tags&gt;
+<span class="lineNum">     354 </span>            : template &lt;typename OldTags, typename... KeepTags, typename... NewTags,
+<a name="355"><span class="lineNum">     355 </span>            :           typename... NewComputeItems, typename ComputeItemsToKeep,</a>
+<span class="lineNum">     356 </span>            :           typename... Args&gt;
+<span class="lineNum">     357 </span><span class="lineCov">          6 : constexpr DataBox&lt;TagsLs&lt;Tags...&gt;&gt;::DataBox(</span>
+<span class="lineNum">     358 </span>            :     const DataBox&lt;OldTags&gt;&amp; old_box, typelist&lt;KeepTags...&gt; /*meta*/,
+<span class="lineNum">     359 </span>            :     typelist&lt;NewTags...&gt; /*meta*/, typelist&lt;NewComputeItems...&gt; /*meta*/,
+<span class="lineNum">     360 </span><span class="lineCov">          6 :     ComputeItemsToKeep /*meta*/, Args&amp;&amp;... args) {</span>
+<span class="lineNum">     361 </span>            :   static_assert(sizeof...(NewTags) == sizeof...(Args),
+<span class="lineNum">     362 </span>            :                 &quot;Must pass in as many arguments as AddTags&quot;);
+<span class="lineNum">     363 </span>            :   static_assert(
+<span class="lineNum">     364 </span>            :       cpp17::conjunction&lt;
+<span class="lineNum">     365 </span>            :           std::is_same&lt;typename NewTags::type, std::decay_t&lt;Args&gt;&gt;...&gt;::value,
+<span class="lineNum">     366 </span>            :       &quot;The type of each Tag must be the same as the type being passed into &quot;
+<span class="lineNum">     367 </span>            :       &quot;the function creating the new DataBox.&quot;);
+<span class="lineNum">     368 </span>            :   // Create dependency graph between compute items and items being reset
+<span class="lineNum">     369 </span>            :   using edge_list = tmpl::fold&lt;
+<span class="lineNum">     370 </span>            :       ComputeItemsToKeep, typelist&lt;&gt;,
+<span class="lineNum">     371 </span>            :       detail::create_dependency_graph&lt;void, tmpl::_element, tmpl::_state&gt;&gt;;
+<span class="lineNum">     372 </span>            :   using DependencyGraph = tmpl::digraph&lt;edge_list&gt;;
+<span class="lineNum">     373 </span>            : 
+<span class="lineNum">     374 </span>            :   check_tags();
+<span class="lineNum">     375 </span>            :   // Merge old tags, including all ComputeItems even though they might be
+<span class="lineNum">     376 </span>            :   // reset.
+<span class="lineNum">     377 </span>            :   detail::DataBoxAddHelper&lt;typelist&lt;KeepTags...&gt;, typelist&lt;KeepTags...&gt;&gt;::
+<span class="lineNum">     378 </span><span class="lineCov">          6 :       template merge_old_box(old_box, data_);</span>
+<span class="lineNum">     379 </span>            : 
+<span class="lineNum">     380 </span><span class="lineCov">          6 :   std::tuple&lt;Args...&gt; args_tuple(std::forward&lt;Args&gt;(args)...);</span>
+<span class="lineNum">     381 </span>            :   detail::DataBoxAddHelper&lt;typelist&lt;NewTags...&gt;, typelist&lt;NewTags...&gt;&gt;::
+<span class="lineNum">     382 </span><span class="lineCov">          6 :       template add_items_to_box&lt;0&gt;(args_tuple, data_);</span>
+<span class="lineNum">     383 </span>            : 
+<span class="lineNum">     384 </span><span class="lineCov">          6 :   detail::ResetComputeItems&lt;DependencyGraph, ComputeItemsToKeep&gt;::apply(data_);</span>
+<span class="lineNum">     385 </span>            : 
+<span class="lineNum">     386 </span>            :   // Add new compute items
+<span class="lineNum">     387 </span>            :   detail::DataBoxAddHelper&lt;
+<span class="lineNum">     388 </span>            :       typelist&lt;NewComputeItems...&gt;,
+<span class="lineNum">     389 </span>            :       typelist&lt;KeepTags..., NewTags..., NewComputeItems...&gt;&gt;::
+<span class="lineNum">     390 </span><span class="lineCov">          6 :       template add_items_to_box&lt;0&gt;(args_tuple, data_);</span>
+<span class="lineNum">     391 </span><span class="lineCov">          6 : }</span>
+<span class="lineNum">     392 </span>            : 
+<a name="393"><span class="lineNum">     393 </span>            : template &lt;template &lt;typename...&gt; class TagsLs, typename... Tags&gt;</a>
+<span class="lineNum">     394 </span>            : template &lt;typename AddTags, typename AddComputeItems, typename... Args&gt;
+<span class="lineNum">     395 </span><span class="lineCov">         10 : constexpr auto DataBox&lt;TagsLs&lt;Tags...&gt;&gt;::create(Args&amp;&amp;... args) {</span>
+<span class="lineNum">     396 </span>            :   static_assert(tt::is_a&lt;tmpl::list, AddComputeItems&gt;::value,
+<span class="lineNum">     397 </span>            :                 &quot;AddComputeItems must by a typelist&quot;);
+<span class="lineNum">     398 </span>            :   static_assert(tt::is_a&lt;tmpl::list, AddTags&gt;::value,
+<span class="lineNum">     399 </span>            :                 &quot;AddTags must by a typelist&quot;);
+<span class="lineNum">     400 </span>            :   static_assert(
+<span class="lineNum">     401 </span>            :       not tmpl::any&lt;AddTags, is_compute_item&lt;tmpl::_1&gt;&gt;::value,
+<span class="lineNum">     402 </span>            :       &quot;Cannot add any ComputeItemTag in the AddTags list, must use the &quot;
+<span class="lineNum">     403 </span>            :       &quot;AddComputeItems list.&quot;);
+<span class="lineNum">     404 </span>            :   static_assert(tmpl::all&lt;AddComputeItems, is_compute_item&lt;tmpl::_1&gt;&gt;::value,
+<span class="lineNum">     405 </span>            :                 &quot;Cannot add any Tags in the AddComputeItems list, must use the &quot;
+<span class="lineNum">     406 </span>            :                 &quot;AddTags list.&quot;);
+<span class="lineNum">     407 </span>            :   using full_items =
+<span class="lineNum">     408 </span>            :       tmpl::fold&lt;AddTags, tmpl::list&lt;&gt;,
+<span class="lineNum">     409 </span>            :                  tmpl::bind&lt;tmpl::append, tmpl::_state,
+<span class="lineNum">     410 </span>            :                             detail::extract_dependent_items&lt;tmpl::_element&gt;&gt;&gt;;
+<span class="lineNum">     411 </span>            :   using full_compute_items =
+<span class="lineNum">     412 </span>            :       tmpl::fold&lt;AddComputeItems, tmpl::list&lt;&gt;,
+<span class="lineNum">     413 </span>            :                  tmpl::bind&lt;tmpl::append, tmpl::_state,
+<span class="lineNum">     414 </span>            :                             detail::extract_dependent_items&lt;tmpl::_element&gt;&gt;&gt;;
+<span class="lineNum">     415 </span>            :   using sorted_tags =
+<span class="lineNum">     416 </span>            :       ::db::get_databox_list&lt;tmpl::append&lt;full_items, full_compute_items&gt;&gt;;
+<span class="lineNum">     417 </span>            :   return DataBox&lt;sorted_tags&gt;(AddTags{}, full_items{}, AddComputeItems{},
+<span class="lineNum">     418 </span>            :                               full_compute_items{},
+<span class="lineNum">     419 </span><span class="lineCov">         10 :                               std::forward&lt;Args&gt;(args)...);</span>
+<span class="lineNum">     420 </span>            : }
+<span class="lineNum">     421 </span>            : 
+<span class="lineNum">     422 </span>            : template &lt;template &lt;typename...&gt; class TagsLs, typename... Tags&gt;
+<a name="423"><span class="lineNum">     423 </span>            : template &lt;typename RemoveTags, typename AddTags, typename AddComputeItems,</a>
+<span class="lineNum">     424 </span>            :           typename Box, typename... Args&gt;
+<span class="lineNum">     425 </span><span class="lineCov">          6 : constexpr auto DataBox&lt;TagsLs&lt;Tags...&gt;&gt;::create_from(const Box&amp; box,</span>
+<span class="lineNum">     426 </span>            :                                                      Args&amp;&amp;... args) {
+<span class="lineNum">     427 </span>            :   static_assert(tt::is_a_v&lt;::db::DataBox, Box&gt;,
+<span class="lineNum">     428 </span>            :                 &quot;create_from must receive a DataBox as its first argument&quot;);
+<span class="lineNum">     429 </span>            :   static_assert(tt::is_a_v&lt;tmpl::list, RemoveTags&gt;,
+<span class="lineNum">     430 </span>            :                 &quot;RemoveTags must by a typelist&quot;);
+<span class="lineNum">     431 </span>            :   static_assert(tt::is_a_v&lt;tmpl::list, AddTags&gt;, &quot;AddTags must by a typelist&quot;);
+<span class="lineNum">     432 </span>            :   static_assert(tt::is_a_v&lt;tmpl::list, AddComputeItems&gt;,
+<span class="lineNum">     433 </span>            :                 &quot;AddComputeItems must by a typelist&quot;);
+<span class="lineNum">     434 </span>            :   static_assert(
+<span class="lineNum">     435 </span>            :       tmpl::all&lt;AddComputeItems, is_compute_item&lt;tmpl::_1&gt;&gt;::value,
+<span class="lineNum">     436 </span>            :       &quot;Cannot add any ComputeItemTag in the AddTags list, must use the &quot;
+<span class="lineNum">     437 </span>            :       &quot;AddComputeItems list.&quot;);
+<span class="lineNum">     438 </span>            :   using old_tags_list = typename Box::tags_list;
+<span class="lineNum">     439 </span>            : 
+<span class="lineNum">     440 </span>            :   // Build list of compute items in Box::tags_list that are not in RemoveTags
+<span class="lineNum">     441 </span>            :   using compute_items_to_keep = tmpl::filter&lt;
+<span class="lineNum">     442 </span>            :       old_tags_list,
+<span class="lineNum">     443 </span>            :       tmpl::and_&lt;
+<span class="lineNum">     444 </span>            :           db::is_compute_item&lt;tmpl::_1&gt;,
+<span class="lineNum">     445 </span>            :           tmpl::not_&lt;tmpl::bind&lt;tmpl::found, tmpl::pin&lt;RemoveTags&gt;,
+<span class="lineNum">     446 </span>            :                                 tmpl::bind&lt;std::is_same, tmpl::parent&lt;tmpl::_1&gt;,
+<span class="lineNum">     447 </span>            :                                            tmpl::bind&lt;tmpl::pin, tmpl::_1&gt;&gt;&gt;&gt;&gt;&gt;;
+<span class="lineNum">     448 </span>            : 
+<span class="lineNum">     449 </span>            :   // Build list of tags where we expand the tags inside Variables&lt;Tags...&gt;
+<span class="lineNum">     450 </span>            :   // objects. This is needed since we actually want those tags to be part of the
+<span class="lineNum">     451 </span>            :   // DataBox type as well
+<span class="lineNum">     452 </span>            :   using full_remove_tags =
+<span class="lineNum">     453 </span>            :       tmpl::fold&lt;RemoveTags, tmpl::list&lt;&gt;,
+<span class="lineNum">     454 </span>            :                  tmpl::bind&lt;tmpl::append, tmpl::_state,
+<span class="lineNum">     455 </span>            :                             detail::extract_dependent_items&lt;tmpl::_element&gt;&gt;&gt;;
+<span class="lineNum">     456 </span>            :   using full_items =
+<span class="lineNum">     457 </span>            :       tmpl::fold&lt;AddTags, tmpl::list&lt;&gt;,
+<span class="lineNum">     458 </span>            :                  tmpl::bind&lt;tmpl::append, tmpl::_state,
+<span class="lineNum">     459 </span>            :                             detail::extract_dependent_items&lt;tmpl::_element&gt;&gt;&gt;;
+<span class="lineNum">     460 </span>            :   using full_compute_items =
+<span class="lineNum">     461 </span>            :       tmpl::fold&lt;AddComputeItems, tmpl::list&lt;&gt;,
+<span class="lineNum">     462 </span>            :                  tmpl::bind&lt;tmpl::append, tmpl::_state,
+<span class="lineNum">     463 </span>            :                             detail::extract_dependent_items&lt;tmpl::_element&gt;&gt;&gt;;
+<span class="lineNum">     464 </span>            :   using remaining_tags =
+<span class="lineNum">     465 </span>            :       tmpl::fold&lt;full_remove_tags, old_tags_list,
+<span class="lineNum">     466 </span>            :                  tmpl::bind&lt;tmpl::remove, tmpl::_state, tmpl::_element&gt;&gt;;
+<span class="lineNum">     467 </span>            :   using new_tags = tmpl::append&lt;remaining_tags, full_items, full_compute_items&gt;;
+<span class="lineNum">     468 </span>            :   using sorted_tags = ::db::get_databox_list&lt;new_tags&gt;;
+<span class="lineNum">     469 </span>            :   return DataBox&lt;sorted_tags&gt;(box, remaining_tags{}, AddTags{},
+<span class="lineNum">     470 </span>            :                               AddComputeItems{}, compute_items_to_keep{},
+<span class="lineNum">     471 </span><span class="lineCov">          6 :                               std::forward&lt;Args&gt;(args)...);</span>
+<span class="lineNum">     472 </span>            : }
+<span class="lineNum">     473 </span>            : /// \endcond
+<span class="lineNum">     474 </span>            : 
+<span class="lineNum">     475 </span>            : namespace detail {
+<span class="lineNum">     476 </span>            : template &lt;typename PoppedTagLs, typename FullTagLs&gt;
+<span class="lineNum">     477 </span>            : struct DataBoxAddHelper {
+<span class="lineNum">     478 </span>            :   template &lt;typename ComputeItem, typename... Tags, typename... ComputeItemTags&gt;
+<span class="lineNum">     479 </span>            :   SPECTRE_ALWAYS_INLINE static constexpr void add_compute_item_to_box(
+<span class="lineNum">     480 </span>            :       detail::TaggedDeferredTuple&lt;Tags...&gt;&amp; data,
+<span class="lineNum">     481 </span>            :       tmpl::list&lt;ComputeItemTags...&gt; /*typelist*/) {
+<span class="lineNum">     482 </span>            :     static_assert(
+<span class="lineNum">     483 </span>            :         cpp17::conjunction&lt;
+<span class="lineNum">     484 </span>            :             std::is_base_of&lt;db::DataBoxTag, ComputeItemTags&gt;...&gt;::value,
+<span class="lineNum">     485 </span>            :         &quot;Cannot have non-DataBoxTag arguments to a ComputeItem. Please make &quot;
+<span class="lineNum">     486 </span>            :         &quot;sure all the specified argument_tags in the ComputeItem derive from &quot;
+<span class="lineNum">     487 </span>            :         &quot;db::DataBoxTag.&quot;);
+<span class="lineNum">     488 </span>            :     using index = tmpl::index_of&lt;FullTagLs, ComputeItem&gt;;
+<span class="lineNum">     489 </span>            :     static_assert(not cpp17::disjunction&lt;
+<span class="lineNum">     490 </span>            :                       std::is_same&lt;ComputeItemTags, ComputeItem&gt;...&gt;::value,
+<span class="lineNum">     491 </span>            :                   &quot;A ComputeItem cannot take its own Tag as an argument.&quot;);
+<span class="lineNum">     492 </span>            :     static_assert(
+<span class="lineNum">     493 </span>            :         cpp17::conjunction&lt;tmpl::less&lt;
+<span class="lineNum">     494 </span>            :             tmpl::index_of&lt;FullTagLs, ComputeItemTags&gt;, index&gt;...&gt;::value,
+<span class="lineNum">     495 </span>            :         &quot;The dependencies of a ComputeItem must be added before the &quot;
+<span class="lineNum">     496 </span>            :         &quot;ComputeItem itself. This is done to ensure no cyclic &quot;
+<span class="lineNum">     497 </span>            :         &quot;dependencies arise.&quot;);
+<span class="lineNum">     498 </span>            : 
+<span class="lineNum">     499 </span><span class="lineCov">         19 :     data.template get&lt;ComputeItem&gt;() = make_deferred(</span>
+<span class="lineNum">     500 </span>            :         ComputeItem::function, data.template get&lt;ComputeItemTags&gt;()...);
+<span class="lineNum">     501 </span>            :   }
+<span class="lineNum">     502 </span>            : 
+<span class="lineNum">     503 </span>            :   template &lt;int ArgsIndex, typename... T, typename... Tags,
+<span class="lineNum">     504 </span>            :             typename ItemsLs = PoppedTagLs,
+<span class="lineNum">     505 </span>            :             std::enable_if_t&lt;
+<span class="lineNum">     506 </span>            :                 is_simple_compute_item&lt;tmpl::front&lt;ItemsLs&gt;&gt;::value&gt;* = nullptr&gt;
+<span class="lineNum">     507 </span>            :   SPECTRE_ALWAYS_INLINE static constexpr void add_items_to_box(
+<span class="lineNum">     508 </span>            :       std::tuple&lt;T...&gt;&amp; tuple, detail::TaggedDeferredTuple&lt;Tags...&gt;&amp; data) {
+<span class="lineNum">     509 </span>            :     using ls_pop = tmpl::pop_front&lt;PoppedTagLs&gt;;
+<span class="lineNum">     510 </span>            :     using compute_item = tmpl::front&lt;PoppedTagLs&gt;;
+<span class="lineNum">     511 </span><span class="lineCov">         17 :     add_compute_item_to_box&lt;compute_item&gt;(</span>
+<span class="lineNum">     512 </span>            :         data, typename compute_item::argument_tags{});
+<span class="lineNum">     513 </span>            :     DataBoxAddHelper&lt;ls_pop,
+<span class="lineNum">     514 </span>            :                      FullTagLs&gt;::template add_items_to_box&lt;ArgsIndex + 1&gt;(tuple,
+<span class="lineNum">     515 </span>            :                                                                           data);
+<span class="lineNum">     516 </span>            :   }
+<span class="lineNum">     517 </span>            : 
+<span class="lineNum">     518 </span>            :   template &lt;typename VariablesTag, typename... Tags&gt;
+<span class="lineNum">     519 </span>            :   SPECTRE_ALWAYS_INLINE static constexpr void add_variables_compute_tags_to_box(
+<span class="lineNum">     520 </span>            :       detail::TaggedDeferredTuple&lt;Tags...&gt;&amp; /*data*/, typelist&lt;&gt; /*unused*/) {}
+<span class="lineNum">     521 </span>            : 
+<span class="lineNum">     522 </span>            :   template &lt;typename VariablesTag, typename T, typename... Ts, typename... Tags&gt;
+<span class="lineNum">     523 </span>            :   SPECTRE_ALWAYS_INLINE static void add_variables_compute_tags_to_box(
+<span class="lineNum">     524 </span>            :       detail::TaggedDeferredTuple&lt;Tags...&gt;&amp; data,
+<span class="lineNum">     525 </span>            :       typelist&lt;T, Ts...&gt; /*unused*/) {
+<span class="lineNum">     526 </span>            :     data.template get&lt;T&gt;() =
+<span class="lineNum">     527 </span>            :         make_deferred([lazy_function = data.template get&lt;VariablesTag&gt;()]() {
+<span class="lineNum">     528 </span>            :           return lazy_function.get().template get&lt;T&gt;();
+<span class="lineNum">     529 </span>            :         });
+<span class="lineNum">     530 </span>            :     add_variables_compute_tags_to_box&lt;VariablesTag&gt;(data, typelist&lt;Ts...&gt;{});
+<span class="lineNum">     531 </span>            :   }
+<span class="lineNum">     532 </span>            : 
+<span class="lineNum">     533 </span>            :   // add_variables_tags_to_box is used to add the Tensor's inside a Variables
+<span class="lineNum">     534 </span>            :   // object into the DataBox. If the Tag does not hold a Variables then we
+<span class="lineNum">     535 </span>            :   // have nothing to add, otherwise we recurse through the Tensors we need
+<span class="lineNum">     536 </span>            :   // added. Currently this uses the same infrastructure as the ComputeItems that
+<span class="lineNum">     537 </span>            :   // return variables, but it would be more efficient to not deal with it that
+<span class="lineNum">     538 </span>            :   // way and just add them directly. However, then there could be issues with
+<span class="lineNum">     539 </span>            :   // dependencies that will need to be checked carefully.
+<span class="lineNum">     540 </span>            :   template &lt;typename Tag, typename... Tags,
+<span class="lineNum">     541 </span>            :             typename std::enable_if_t&lt;
+<span class="lineNum">     542 </span>            :                 not tt::is_a&lt;Variables, typename Tag::type&gt;::value&gt;* = nullptr&gt;
+<span class="lineNum">     543 </span>            :   SPECTRE_ALWAYS_INLINE static void add_variables_tags_to_box_helper(
+<span class="lineNum">     544 </span>            :       detail::TaggedDeferredTuple&lt;Tags...&gt;&amp; /*data*/) {}
+<span class="lineNum">     545 </span>            : 
+<span class="lineNum">     546 </span>            :   template &lt;typename Tag, typename... Tags,
+<span class="lineNum">     547 </span>            :             typename std::enable_if_t&lt;
+<span class="lineNum">     548 </span>            :                 tt::is_a&lt;Variables, item_type&lt;Tag&gt;&gt;::value&gt;* = nullptr&gt;
+<span class="lineNum">     549 </span>            :   SPECTRE_ALWAYS_INLINE static constexpr void add_variables_tags_to_box_helper(
+<span class="lineNum">     550 </span>            :       detail::TaggedDeferredTuple&lt;Tags...&gt;&amp; data) {
+<span class="lineNum">     551 </span>            :     add_variables_compute_tags_to_box&lt;Tag&gt;(
+<span class="lineNum">     552 </span>            :         data, typename item_type&lt;Tag&gt;::tags_list{});
+<span class="lineNum">     553 </span>            :   }
+<span class="lineNum">     554 </span>            : 
+<span class="lineNum">     555 </span>            :   template &lt;int ArgsIndex, typename... T, typename... Tags,
+<span class="lineNum">     556 </span>            :             typename ItemsLs = PoppedTagLs,
+<span class="lineNum">     557 </span>            :             std::enable_if_t&lt;is_variables_compute_item&lt;
+<span class="lineNum">     558 </span>            :                 tmpl::front&lt;ItemsLs&gt;&gt;::value&gt;* = nullptr&gt;
+<span class="lineNum">     559 </span>            :   SPECTRE_ALWAYS_INLINE static constexpr void add_items_to_box(
+<span class="lineNum">     560 </span>            :       std::tuple&lt;T...&gt;&amp; tuple, detail::TaggedDeferredTuple&lt;Tags...&gt;&amp; data) {
+<span class="lineNum">     561 </span>            :     using ls_pop = tmpl::pop_front&lt;PoppedTagLs&gt;;
+<span class="lineNum">     562 </span>            :     using compute_item = tmpl::front&lt;PoppedTagLs&gt;;
+<span class="lineNum">     563 </span>            :     add_compute_item_to_box&lt;compute_item&gt;(
+<span class="lineNum">     564 </span>            :         data, typename compute_item::argument_tags{});
+<span class="lineNum">     565 </span>            :     add_variables_compute_tags_to_box&lt;compute_item&gt;(
+<span class="lineNum">     566 </span>            :         data, typename item_type&lt;compute_item&gt;::tags_list{});
+<span class="lineNum">     567 </span>            :     DataBoxAddHelper&lt;ls_pop,
+<span class="lineNum">     568 </span>            :                      FullTagLs&gt;::template add_items_to_box&lt;ArgsIndex + 1&gt;(tuple,
+<span class="lineNum">     569 </span>            :                                                                           data);
+<span class="lineNum">     570 </span>            :   }
+<span class="lineNum">     571 </span>            : 
+<span class="lineNum">     572 </span>            :   // Add a tag that isn't a compute item
+<span class="lineNum">     573 </span>            :   template &lt;int ArgsIndex, typename... T, typename... Tags,
+<span class="lineNum">     574 </span>            :             typename ItemsLs = PoppedTagLs,
+<span class="lineNum">     575 </span>            :             std::enable_if_t&lt;
+<span class="lineNum">     576 </span>            :                 not is_compute_item&lt;tmpl::front&lt;ItemsLs&gt;&gt;::value&gt;* = nullptr&gt;
+<span class="lineNum">     577 </span>            :   SPECTRE_ALWAYS_INLINE static constexpr void add_items_to_box(
+<span class="lineNum">     578 </span>            :       std::tuple&lt;T...&gt;&amp; tuple, detail::TaggedDeferredTuple&lt;Tags...&gt;&amp; data) {
+<span class="lineNum">     579 </span>            :     using ls_pop = tmpl::pop_front&lt;PoppedTagLs&gt;;
+<span class="lineNum">     580 </span>            :     using tag = tmpl::front&lt;PoppedTagLs&gt;;
+<span class="lineNum">     581 </span>            :     static_assert(not tt::is_a&lt;Deferred, tmpl::front&lt;PoppedTagLs&gt;&gt;::value,
+<span class="lineNum">     582 </span>            :                   &quot;Cannot pass a Deferred into the DataBox as an Item. This &quot;
+<span class="lineNum">     583 </span>            :                   &quot;functionally can trivially be added, however it is &quot;
+<span class="lineNum">     584 </span>            :                   &quot;intentionally omitted because users of DataBox are not &quot;
+<span class="lineNum">     585 </span>            :                   &quot;supposed to deal with Deferred.&quot;);
+<span class="lineNum">     586 </span><span class="lineCov">         34 :     data.template get&lt;tag&gt;() =</span>
+<span class="lineNum">     587 </span><span class="lineCov">         34 :         Deferred&lt;item_type&lt;tag&gt;&gt;(std::move(std::get&lt;ArgsIndex&gt;(tuple)));</span>
+<span class="lineNum">     588 </span>            :     // If `tag` holds a Variables then add the contained Tensor's
+<span class="lineNum">     589 </span>            :     add_variables_tags_to_box_helper&lt;tag&gt;(data);
+<span class="lineNum">     590 </span>            :     DataBoxAddHelper&lt;ls_pop,
+<span class="lineNum">     591 </span>            :                      FullTagLs&gt;::template add_items_to_box&lt;ArgsIndex + 1&gt;(tuple,
+<span class="lineNum">     592 </span>            :                                                                           data);
+<span class="lineNum">     593 </span>            :   }
+<span class="lineNum">     594 </span>            : 
+<span class="lineNum">     595 </span>            :   template &lt;typename OldTags, typename... Tags&gt;
+<span class="lineNum">     596 </span>            :   SPECTRE_ALWAYS_INLINE static constexpr void merge_old_box(
+<span class="lineNum">     597 </span>            :       const DataBox&lt;OldTags&gt;&amp; old_box,
+<span class="lineNum">     598 </span>            :       detail::TaggedDeferredTuple&lt;Tags...&gt;&amp; data) {
+<span class="lineNum">     599 </span>            :     using tag = tmpl::front&lt;PoppedTagLs&gt;;
+<span class="lineNum">     600 </span><span class="lineCov">          6 :     data.template get&lt;tag&gt;() = old_box.template get_lazy&lt;tag&gt;();</span>
+<span class="lineNum">     601 </span>            :     DataBoxAddHelper&lt;tmpl::pop_front&lt;PoppedTagLs&gt;, FullTagLs&gt;::merge_old_box(
+<span class="lineNum">     602 </span>            :         old_box, data);
+<span class="lineNum">     603 </span>            :   }
+<span class="lineNum">     604 </span>            : };
+<span class="lineNum">     605 </span>            : 
+<span class="lineNum">     606 </span>            : // Base case used to end recursion
+<span class="lineNum">     607 </span>            : template &lt;template &lt;typename...&gt; class TagLs, typename FullTagLs&gt;
+<span class="lineNum">     608 </span>            : struct DataBoxAddHelper&lt;TagLs&lt;&gt;, FullTagLs&gt; {
+<span class="lineNum">     609 </span>            :   template &lt;typename OldTags, typename... Tags&gt;
+<span class="lineNum">     610 </span>            :   SPECTRE_ALWAYS_INLINE static constexpr void merge_old_box(
+<span class="lineNum">     611 </span>            :       const DataBox&lt;OldTags&gt;&amp; /*old_box*/,
+<span class="lineNum">     612 </span>            :       detail::TaggedDeferredTuple&lt;Tags...&gt;&amp; /*data*/) {}
+<span class="lineNum">     613 </span>            : 
+<span class="lineNum">     614 </span>            :   template &lt;int ArgsIndex, typename... T, typename... Tags&gt;
+<span class="lineNum">     615 </span>            :   SPECTRE_ALWAYS_INLINE static constexpr void add_items_to_box(
+<span class="lineNum">     616 </span>            :       std::tuple&lt;T...&gt;&amp; /*tuple*/,
+<span class="lineNum">     617 </span>            :       detail::TaggedDeferredTuple&lt;Tags...&gt;&amp; /*data*/) {}
+<span class="lineNum">     618 </span>            : };
+<span class="lineNum">     619 </span>            : 
+<span class="lineNum">     620 </span>            : template &lt;typename DependencyGraph, typename Vertices&gt;
+<span class="lineNum">     621 </span>            : struct ResetComputeItems {
+<span class="lineNum">     622 </span>            :   template &lt;typename ComputeItem, typename... Tags, typename... ComputeItemTags&gt;
+<span class="lineNum">     623 </span>            :   SPECTRE_ALWAYS_INLINE static constexpr void add_compute_item_to_box(
+<span class="lineNum">     624 </span>            :       detail::TaggedDeferredTuple&lt;Tags...&gt;&amp; data,
+<span class="lineNum">     625 </span>            :       tmpl::list&lt;ComputeItemTags...&gt; /*meta*/) {
+<span class="lineNum">     626 </span><span class="lineCov">         15 :     data.template get&lt;ComputeItem&gt;() = make_deferred(</span>
+<span class="lineNum">     627 </span>            :         ComputeItem::function, data.template get&lt;ComputeItemTags&gt;()...);
+<span class="lineNum">     628 </span>            :   }
+<span class="lineNum">     629 </span>            : 
+<span class="lineNum">     630 </span>            :   template &lt;
+<span class="lineNum">     631 </span>            :       typename Tag, typename... Tags,
+<span class="lineNum">     632 </span>            :       typename std::enable_if_t&lt;not is_compute_item&lt;Tag&gt;::value&gt;* = nullptr&gt;
+<span class="lineNum">     633 </span>            :   SPECTRE_ALWAYS_INLINE static constexpr void reset_compute_item(
+<span class="lineNum">     634 </span>            :       detail::TaggedDeferredTuple&lt;Tags...&gt;&amp; /*data*/) {}
+<span class="lineNum">     635 </span>            : 
+<span class="lineNum">     636 </span>            :   template &lt;
+<span class="lineNum">     637 </span>            :       typename Tag, typename... Tags,
+<span class="lineNum">     638 </span>            :       typename std::enable_if_t&lt;is_simple_compute_item&lt;Tag&gt;::value&gt;* = nullptr&gt;
+<span class="lineNum">     639 </span>            :   SPECTRE_ALWAYS_INLINE static constexpr void reset_compute_item(
+<span class="lineNum">     640 </span>            :       detail::TaggedDeferredTuple&lt;Tags...&gt;&amp; data) {
+<span class="lineNum">     641 </span><span class="lineCov">         15 :     add_compute_item_to_box&lt;Tag&gt;(data, typename Tag::argument_tags{});</span>
+<span class="lineNum">     642 </span>            :   }
+<span class="lineNum">     643 </span>            :   template &lt;typename Tag, typename... Tags,
+<span class="lineNum">     644 </span>            :             typename std::enable_if_t&lt;is_variables_compute_item&lt;Tag&gt;::value&gt;* =
+<span class="lineNum">     645 </span>            :                 nullptr&gt;
+<span class="lineNum">     646 </span>            :   SPECTRE_ALWAYS_INLINE static constexpr void reset_compute_item(
+<span class="lineNum">     647 </span>            :       detail::TaggedDeferredTuple&lt;Tags...&gt;&amp; data) {
+<span class="lineNum">     648 </span>            :     add_compute_item_to_box&lt;Tag&gt;(data, typename Tag::argument_tags{});
+<span class="lineNum">     649 </span>            :     DataBoxAddHelper&lt;typelist&lt;int&gt;, typelist&lt;int&gt;&gt;::
+<span class="lineNum">     650 </span>            :         add_variables_compute_tags_to_box&lt;Tag&gt;(
+<span class="lineNum">     651 </span>            :             data, typename item_type&lt;Tag&gt;::tags_list{});
+<span class="lineNum">     652 </span>            :   }
+<a name="653"><span class="lineNum">     653 </span>            : </a>
+<span class="lineNum">     654 </span>            :   template &lt;typename... Tags&gt;
+<span class="lineNum">     655 </span><span class="lineCov">         15 :   static constexpr void apply(detail::TaggedDeferredTuple&lt;Tags...&gt;&amp; data) {</span>
+<span class="lineNum">     656 </span>            :     using current_vertex = tmpl::front&lt;Vertices&gt;;
+<span class="lineNum">     657 </span>            :     // Reset me first
+<span class="lineNum">     658 </span>            :     reset_compute_item&lt;current_vertex&gt;(data);
+<span class="lineNum">     659 </span>            :     // Reset what depends on me next
+<span class="lineNum">     660 </span>            :     using outgoing_edges = tmpl::branch_if_t&lt;
+<span class="lineNum">     661 </span>            :         tmpl::size&lt;typename current_vertex::argument_tags&gt;::value == 0,
+<span class="lineNum">     662 </span>            :         tmpl::list&lt;&gt;,
+<span class="lineNum">     663 </span>            :         tmpl::bind&lt;tmpl::outgoing_edges, DependencyGraph, current_vertex&gt;&gt;;
+<span class="lineNum">     664 </span>            :     using next_vertices =
+<span class="lineNum">     665 </span>            :         tmpl::transform&lt;outgoing_edges, tmpl::get_destination&lt;tmpl::_1&gt;&gt;;
+<span class="lineNum">     666 </span><span class="lineCov">          3 :     ResetComputeItems&lt;DependencyGraph, next_vertices&gt;::apply(data);</span>
+<span class="lineNum">     667 </span>            :     // Reset next item in current list (level)
+<span class="lineNum">     668 </span><span class="lineCov">          9 :     ResetComputeItems&lt;DependencyGraph, tmpl::pop_front&lt;Vertices&gt;&gt;::apply(data);</span>
+<span class="lineNum">     669 </span><span class="lineCov">         15 :   }</span>
+<span class="lineNum">     670 </span>            : };
+<span class="lineNum">     671 </span>            : 
+<span class="lineNum">     672 </span>            : template &lt;typename DependencyGraph, template &lt;typename...&gt; class Vertices&gt;
+<span class="lineNum">     673 </span>            : struct ResetComputeItems&lt;DependencyGraph, Vertices&lt;&gt;&gt; {
+<span class="lineNum">     674 </span>            :   template &lt;typename... Tags&gt;
+<span class="lineNum">     675 </span>            :   SPECTRE_ALWAYS_INLINE static constexpr void apply(
+<span class="lineNum">     676 </span>            :       detail::TaggedDeferredTuple&lt;Tags...&gt;&amp; /*data*/) {}
+<span class="lineNum">     677 </span>            : };
+<span class="lineNum">     678 </span>            : }  // namespace detail
+<span class="lineNum">     679 </span>            : 
+<span class="lineNum">     680 </span>            : /*!
+<span class="lineNum">     681 </span>            :  * \ingroup DataBoxGroup
+<span class="lineNum">     682 </span>            :  * \brief List of Tags to remove from the DataBox
+<span class="lineNum">     683 </span>            :  */
+<span class="lineNum">     684 </span>            : template &lt;typename... Tags&gt;
+<span class="lineNum">     685 </span>            : using RemoveTags = tmpl::flatten&lt;typelist&lt;Tags...&gt;&gt;;
+<span class="lineNum">     686 </span>            : 
+<span class="lineNum">     687 </span>            : /*!
+<span class="lineNum">     688 </span>            :  * \ingroup DataBoxGroup
+<span class="lineNum">     689 </span>            :  * \brief List of Tags to add to the DataBox
+<span class="lineNum">     690 </span>            :  */
+<span class="lineNum">     691 </span>            : template &lt;typename... Tags&gt;
+<span class="lineNum">     692 </span>            : using AddTags = tmpl::flatten&lt;typelist&lt;Tags...&gt;&gt;;
+<span class="lineNum">     693 </span>            : 
+<span class="lineNum">     694 </span>            : /*!
+<span class="lineNum">     695 </span>            :  * \ingroup DataBoxGroup
+<span class="lineNum">     696 </span>            :  * \brief List of Compute Item Tags to add to the DataBox
+<span class="lineNum">     697 </span>            :  */
+<span class="lineNum">     698 </span>            : template &lt;typename... Tags&gt;
+<span class="lineNum">     699 </span>            : using AddComputeItemsTags = tmpl::flatten&lt;typelist&lt;Tags...&gt;&gt;;
+<span class="lineNum">     700 </span>            : 
+<span class="lineNum">     701 </span>            : /*!
+<span class="lineNum">     702 </span>            :  * \ingroup DataBoxGroup
+<span class="lineNum">     703 </span>            :  * \brief Create a new DataBox
+<span class="lineNum">     704 </span>            :  *
+<span class="lineNum">     705 </span>            :  * \details
+<span class="lineNum">     706 </span>            :  * Creates a new DataBox holding types Tags::type filled with the arguments
+<span class="lineNum">     707 </span>            :  * passed to the function. Compute items must be added so that the dependencies
+<span class="lineNum">     708 </span>            :  * of a compute item are added before the compute item. For example, say you
+<span class="lineNum">     709 </span>            :  * have compute items `A` and `B` where `B` depends on `A`, then you must
+<span class="lineNum">     710 </span>            :  * add them using `db::AddComputeItemsTags&lt;A, B&gt;`.
+<span class="lineNum">     711 </span>            :  *
+<span class="lineNum">     712 </span>            :  * \example
+<span class="lineNum">     713 </span>            :  * \snippet Test_DataBox.cpp create_databox
+<span class="lineNum">     714 </span>            :  *
+<span class="lineNum">     715 </span>            :  * \see create_from get_tags_from_box
+<span class="lineNum">     716 </span>            :  *
+<span class="lineNum">     717 </span>            :  * \tparam AddTags the tags of the args being added
+<span class="lineNum">     718 </span>            :  * \tparam AddComputeItems list of \ref ComputeItemTag &quot;compute item tags&quot; to
+<span class="lineNum">     719 </span>            :  * add to the DataBox
+<span class="lineNum">     720 </span>            :  *  \param args the data to be added to the DataBox
+<span class="lineNum">     721 </span>            :  */
+<span class="lineNum">     722 </span>            : template &lt;typename AddTags, typename AddComputeItems = typelist&lt;&gt;,
+<span class="lineNum">     723 </span>            :           typename... Args&gt;
+<span class="lineNum">     724 </span>            : SPECTRE_ALWAYS_INLINE constexpr auto create(Args&amp;&amp;... args) {
+<span class="lineNum">     725 </span>            :   return DataBox&lt;::db::get_databox_list&lt;tmpl::append&lt;
+<span class="lineNum">     726 </span>            :       tmpl::fold&lt;AddTags, tmpl::list&lt;&gt;,
+<span class="lineNum">     727 </span>            :                  tmpl::bind&lt;tmpl::append, tmpl::_state,
+<span class="lineNum">     728 </span>            :                             detail::extract_dependent_items&lt;tmpl::_element&gt;&gt;&gt;,
+<span class="lineNum">     729 </span>            :       tmpl::fold&lt;
+<span class="lineNum">     730 </span>            :           AddComputeItems, tmpl::list&lt;&gt;,
+<span class="lineNum">     731 </span>            :           tmpl::bind&lt;tmpl::append, tmpl::_state,
+<span class="lineNum">     732 </span>            :                      detail::extract_dependent_items&lt;tmpl::_element&gt;&gt;&gt;&gt;&gt;&gt;::
+<span class="lineNum">     733 </span><span class="lineCov">         10 :       template create&lt;AddTags, AddComputeItems&gt;(std::forward&lt;Args&gt;(args)...);</span>
+<span class="lineNum">     734 </span>            : }
+<span class="lineNum">     735 </span>            : 
+<span class="lineNum">     736 </span>            : /*!
+<span class="lineNum">     737 </span>            :  * \ingroup DataBoxGroup
+<span class="lineNum">     738 </span>            :  * \brief Create a new DataBox from an existing one adding or removing items
+<span class="lineNum">     739 </span>            :  * and compute items
+<span class="lineNum">     740 </span>            :  *
+<span class="lineNum">     741 </span>            :  * \example
+<span class="lineNum">     742 </span>            :  * Removing an item or compute item is done using:
+<span class="lineNum">     743 </span>            :  * \snippet Test_DataBox.cpp create_from_remove
+<span class="lineNum">     744 </span>            :  * Adding an item is done using:
+<span class="lineNum">     745 </span>            :  * \snippet Test_DataBox.cpp create_from_add_item
+<span class="lineNum">     746 </span>            :  * Adding a compute item is done using:
+<span class="lineNum">     747 </span>            :  * \snippet Test_DataBox.cpp create_from_add_item
+<span class="lineNum">     748 </span>            :  *
+<span class="lineNum">     749 </span>            :  * \see create DataBox get_tags_from_box
+<span class="lineNum">     750 </span>            :  *
+<span class="lineNum">     751 </span>            :  * \tparam RemoveTags typelist of Tags to remove
+<span class="lineNum">     752 </span>            :  * \tparam AddTags typelist of Tags corresponding to the arguments to be added
+<span class="lineNum">     753 </span>            :  * \tparam AddComputeItems list of \ref ComputeItemTag &quot;compute item tags&quot; to
+<span class="lineNum">     754 </span>            :  * add to the DataBox
+<span class="lineNum">     755 </span>            :  * \param box the DataBox the new box should be based off
+<span class="lineNum">     756 </span>            :  * \param args the values for the items to add to the DataBox
+<span class="lineNum">     757 </span>            :  * \return DataBox like `box` but altered by RemoveTags and AddTags
+<span class="lineNum">     758 </span>            :  */
+<span class="lineNum">     759 </span>            : template &lt;typename RemoveTags, typename AddTags = typelist&lt;&gt;,
+<span class="lineNum">     760 </span>            :           typename AddComputeItems = typelist&lt;&gt;, typename Box, typename... Args&gt;
+<span class="lineNum">     761 </span>            : SPECTRE_ALWAYS_INLINE constexpr auto create_from(const Box&amp; box,
+<span class="lineNum">     762 </span>            :                                                  Args&amp;&amp;... args) {
+<span class="lineNum">     763 </span>            :   return DataBox&lt;::db::get_databox_list&lt;tmpl::append&lt;
+<span class="lineNum">     764 </span>            :       tmpl::fold&lt;tmpl::fold&lt;RemoveTags, tmpl::list&lt;&gt;,
+<span class="lineNum">     765 </span>            :                             tmpl::lazy::append&lt;tmpl::_state,
+<span class="lineNum">     766 </span>            :                                                detail::extract_dependent_items&lt;
+<span class="lineNum">     767 </span>            :                                                    tmpl::_element&gt;&gt;&gt;,
+<span class="lineNum">     768 </span>            :                  typename Box::tags_list,
+<span class="lineNum">     769 </span>            :                  tmpl::bind&lt;tmpl::remove, tmpl::_state, tmpl::_element&gt;&gt;,
+<span class="lineNum">     770 </span>            :       tmpl::fold&lt;
+<span class="lineNum">     771 </span>            :           tmpl::append&lt;AddTags, AddComputeItems&gt;, tmpl::list&lt;&gt;,
+<span class="lineNum">     772 </span>            :           tmpl::bind&lt;tmpl::append, tmpl::_state,
+<span class="lineNum">     773 </span>            :                      detail::extract_dependent_items&lt;tmpl::_element&gt;&gt;&gt;&gt;&gt;&gt;::
+<span class="lineNum">     774 </span>            :       template create_from&lt;RemoveTags, AddTags, AddComputeItems&gt;(
+<span class="lineNum">     775 </span><span class="lineCov">          6 :           box, std::forward&lt;Args&gt;(args)...);</span>
+<span class="lineNum">     776 </span>            : }
+<span class="lineNum">     777 </span>            : 
+<span class="lineNum">     778 </span>            : namespace detail {
+<span class="lineNum">     779 </span>            : template &lt;typename Type, typename Tags, typename TagLs,
+<span class="lineNum">     780 </span>            :           std::enable_if_t&lt;(tmpl::size&lt;Tags&gt;::value == 0)&gt;* = nullptr&gt;
+<span class="lineNum">     781 </span>            : [[noreturn]] const Type&amp; get_item_from_box(const DataBox&lt;TagLs&gt;&amp; /*box*/,
+<span class="lineNum">     782 </span>            :                                            const std::string&amp; /*tag_name*/) {
+<span class="lineNum">     783 </span>            :   static_assert(tmpl::size&lt;Tags&gt;::value != 0,
+<span class="lineNum">     784 </span>            :                 &quot;No items with the requested type were found in the DataBox&quot;);
+<span class="lineNum">     785 </span>            :   ERROR(&quot;Cannot ever reach this function.&quot;);
+<span class="lineNum">     786 </span>            : }
+<span class="lineNum">     787 </span>            : 
+<a name="788"><span class="lineNum">     788 </span>            : template &lt;typename Type, typename Tags, typename TagLs,</a>
+<span class="lineNum">     789 </span>            :           std::enable_if_t&lt;(tmpl::size&lt;Tags&gt;::value == 1)&gt;* = nullptr&gt;
+<span class="lineNum">     790 </span><span class="lineCov">          3 : const Type&amp; get_item_from_box(const DataBox&lt;TagLs&gt;&amp; box,</span>
+<span class="lineNum">     791 </span>            :                               const std::string&amp; tag_name) {
+<span class="lineNum">     792 </span>            :   using Tag = tmpl::front&lt;Tags&gt;;
+<a name="793"><span class="lineNum">     793 </span><span class="lineCov">          3 :   if (get_tag_name&lt;Tag&gt;() != tag_name) {</span></a>
+<span class="lineNum">     794 </span><span class="lineCov">          1 :     std::stringstream tags_in_box;</span>
+<span class="lineNum">     795 </span><span class="lineCov">          6 :     tmpl::for_each&lt;TagLs&gt;([&amp;tags_in_box](auto t) {</span>
+<span class="lineNum">     796 </span><span class="lineCov">          5 :       tags_in_box &lt;&lt; &quot;  &quot; &lt;&lt; decltype(t)::type::label &lt;&lt; &quot;\n&quot;;</span>
+<span class="lineNum">     797 </span><span class="lineCov">          5 :     });</span>
+<span class="lineNum">     798 </span><span class="lineCov">          1 :     ERROR(&quot;Could not find the tag named \&quot;&quot;</span>
+<span class="lineNum">     799 </span>            :           &lt;&lt; tag_name &lt;&lt; &quot;\&quot; in the DataBox. Available tags are:\n&quot;
+<span class="lineNum">     800 </span>            :           &lt;&lt; tags_in_box.str());
+<span class="lineNum">     801 </span>            :   }
+<span class="lineNum">     802 </span><span class="lineCov">          2 :   return box.template get&lt;Tag&gt;();</span>
+<span class="lineNum">     803 </span>            : }
+<span class="lineNum">     804 </span>            : 
+<a name="805"><span class="lineNum">     805 </span>            : template &lt;typename Type, typename Tags, typename TagLs,</a>
+<span class="lineNum">     806 </span>            :           std::enable_if_t&lt;(tmpl::size&lt;Tags&gt;::value &gt; 1)&gt;* = nullptr&gt;
+<span class="lineNum">     807 </span><span class="lineCov">          5 : constexpr const Type&amp; get_item_from_box(const DataBox&lt;TagLs&gt;&amp; box,</span>
+<span class="lineNum">     808 </span>            :                                         const std::string&amp; tag_name) {
+<span class="lineNum">     809 </span>            :   using Tag = tmpl::front&lt;Tags&gt;;
+<span class="lineNum">     810 </span><span class="lineCov">          9 :   return get_tag_name&lt;Tag&gt;() == tag_name</span>
+<span class="lineNum">     811 </span><span class="lineCov">          5 :              ? box.template get&lt;Tag&gt;()</span>
+<span class="lineNum">     812 </span><span class="lineCov">          8 :              : get_item_from_box&lt;Type, tmpl::pop_front&lt;Tags&gt;&gt;(box, tag_name);</span>
+<span class="lineNum">     813 </span>            : }
+<span class="lineNum">     814 </span>            : }  // namespace detail
+<span class="lineNum">     815 </span>            : 
+<span class="lineNum">     816 </span>            : /*!
+<span class="lineNum">     817 </span>            :  * \ingroup DataBoxGroup
+<span class="lineNum">     818 </span>            :  * \brief Retrieve an item from the DataBox that has a tag with label `tag_name`
+<span class="lineNum">     819 </span>            :  * and type `Type`
+<span class="lineNum">     820 </span>            :  *
+<span class="lineNum">     821 </span>            :  * \details
+<span class="lineNum">     822 </span>            :  * The type that the tag represents must be of the type `Type`, and the tag must
+<span class="lineNum">     823 </span>            :  * have the label `tag_name`. The function iterates over all tags in the DataBox
+<span class="lineNum">     824 </span>            :  * `box` that have the type `Type` searching linearly for one whose `label`
+<span class="lineNum">     825 </span>            :  * matches `tag_name`.
+<span class="lineNum">     826 </span>            :  *
+<span class="lineNum">     827 </span>            :  * \example
+<span class="lineNum">     828 </span>            :  * \snippet Test_DataBox.cpp get_item_from_box
+<span class="lineNum">     829 </span>            :  *
+<span class="lineNum">     830 </span>            :  * \tparam Type the type of the tag with the `label` `tag_name`
+<span class="lineNum">     831 </span>            :  * \param box the DataBox through which to search
+<span class="lineNum">     832 </span>            :  * \param tag_name the `label` of the tag to retrieve
+<a name="833"><span class="lineNum">     833 </span>            :  */</a>
+<span class="lineNum">     834 </span>            : template &lt;typename Type, typename TagLs&gt;
+<span class="lineNum">     835 </span><span class="lineCov">          4 : constexpr const Type&amp; get_item_from_box(const DataBox&lt;TagLs&gt;&amp; box,</span>
+<span class="lineNum">     836 </span>            :                                         const std::string&amp; tag_name) {
+<span class="lineNum">     837 </span>            :   using tags = tmpl::filter&lt;
+<span class="lineNum">     838 </span>            :       TagLs, std::is_same&lt;tmpl::bind&lt;item_type, tmpl::_1&gt;, tmpl::pin&lt;Type&gt;&gt;&gt;;
+<span class="lineNum">     839 </span><span class="lineCov">          4 :   return detail::get_item_from_box&lt;Type, tags&gt;(box, tag_name);</span>
+<span class="lineNum">     840 </span>            : }
+<span class="lineNum">     841 </span>            : 
+<span class="lineNum">     842 </span>            : namespace detail {
+<span class="lineNum">     843 </span>            : template &lt;typename TagsLs&gt;
+<span class="lineNum">     844 </span>            : struct Apply;
+<span class="lineNum">     845 </span>            : 
+<span class="lineNum">     846 </span>            : template &lt;template &lt;typename...&gt; class TagsLs, typename... Tags&gt;
+<a name="847"><span class="lineNum">     847 </span>            : struct Apply&lt;TagsLs&lt;Tags...&gt;&gt; {</a>
+<span class="lineNum">     848 </span>            :   template &lt;typename F, typename... BoxTags, typename... Args&gt;
+<span class="lineNum">     849 </span><span class="lineCov">          2 :   static constexpr auto apply(F f, const DataBox&lt;BoxTags...&gt;&amp; box,</span>
+<span class="lineNum">     850 </span>            :                               Args&amp;&amp;... args) {
+<span class="lineNum">     851 </span>            :     static_assert(tt::is_callable&lt;std::remove_pointer_t&lt;F&gt;, item_type&lt;Tags&gt;...,
+<span class="lineNum">     852 </span>            :                                   Args...&gt;::value,
+<span class="lineNum">     853 </span>            :                   &quot;Cannot call the function f with the list of tags and &quot;
+<span class="lineNum">     854 </span>            :                   &quot;arguments specified. Check that the Tags::type and the &quot;
+<span class="lineNum">     855 </span>            :                   &quot;types of the Args match the function f.&quot;);
+<span class="lineNum">     856 </span><span class="lineCov">          2 :     return f(box.template get&lt;Tags&gt;()..., std::forward&lt;Args&gt;(args)...);</span>
+<span class="lineNum">     857 </span>            :   }
+<a name="858"><span class="lineNum">     858 </span>            : </a>
+<span class="lineNum">     859 </span>            :   template &lt;typename F, typename... BoxTags, typename... Args&gt;
+<span class="lineNum">     860 </span><span class="lineCov">          2 :   static constexpr auto apply_with_box(F f, const DataBox&lt;BoxTags...&gt;&amp; box,</span>
+<span class="lineNum">     861 </span>            :                                        Args&amp;&amp;... args) {
+<span class="lineNum">     862 </span>            :     static_assert(tt::is_callable&lt;F, DataBox&lt;BoxTags...&gt;, item_type&lt;Tags&gt;...,
+<span class="lineNum">     863 </span>            :                                   Args...&gt;::value,
+<span class="lineNum">     864 </span>            :                   &quot;Cannot call the function f with the list of tags and &quot;
+<span class="lineNum">     865 </span>            :                   &quot;arguments specified. Check that the Tags::type and the &quot;
+<span class="lineNum">     866 </span>            :                   &quot;types of the Args match the function f and that f is &quot;
+<span class="lineNum">     867 </span>            :                   &quot;receiving the correct type of DataBox.&quot;);
+<span class="lineNum">     868 </span><span class="lineCov">          2 :     return f(box, box.template get&lt;Tags&gt;()..., std::forward&lt;Args&gt;(args)...);</span>
+<span class="lineNum">     869 </span>            :   }
+<span class="lineNum">     870 </span>            : };
+<span class="lineNum">     871 </span>            : }  // namespace detail
+<span class="lineNum">     872 </span>            : 
+<span class="lineNum">     873 </span>            : /*!
+<span class="lineNum">     874 </span>            :  *  \ingroup DataBoxGroup
+<span class="lineNum">     875 </span>            :  *  \brief Apply the function `f` with argument Tags `TagLs` from DataBox `box`
+<span class="lineNum">     876 </span>            :  *
+<span class="lineNum">     877 </span>            :  *  \details
+<span class="lineNum">     878 </span>            :  *  Apply the function `f` with arguments that are of type `Tags::type` where
+<span class="lineNum">     879 </span>            :  *  `Tags` is defined as `TagLs&lt;Tags...&gt;`. The arguments to `f` are retrieved
+<span class="lineNum">     880 </span>            :  *  from the DataBox `box`.
+<span class="lineNum">     881 </span>            :  *
+<span class="lineNum">     882 </span>            :  *  \usage
+<span class="lineNum">     883 </span>            :  *  Given a function `func` that takes arguments of types
+<span class="lineNum">     884 </span>            :  *  `T1`, `T2`, `A1` and `A2`. Let the Tags for the quantities of types `T1` and
+<span class="lineNum">     885 </span>            :  *  `T2` in the DataBox `box` be `Tag1` and `Tag2`, and objects `a1` of type
+<span class="lineNum">     886 </span>            :  *  `A1` and `a2` of type `A2`, then
+<span class="lineNum">     887 </span>            :  *  \code
+<span class="lineNum">     888 </span>            :  *  auto result = apply&lt;typelist&lt;Tag1, Tag2&gt;&gt;(func, box, a1, a2);
+<span class="lineNum">     889 </span>            :  *  \endcode
+<span class="lineNum">     890 </span>            :  *  \return `decltype(func(box.get&lt;Tag1&gt;(), box.get&lt;Tag2&gt;(), a1, a2))`
+<span class="lineNum">     891 </span>            :  *
+<span class="lineNum">     892 </span>            :  *  \semantics
+<span class="lineNum">     893 </span>            :  *  For tags `Tags...` in a DataBox `box`, and a function `func` that takes
+<span class="lineNum">     894 </span>            :  *  `sizeof...(Tags)` arguments of types `typename Tags::type...`,  and
+<span class="lineNum">     895 </span>            :  *  `sizeof...(Args)` arguments of types `Args...`,
+<span class="lineNum">     896 </span>            :  *  \code
+<span class="lineNum">     897 </span>            :  *  result = func(box, box.get&lt;Tags&gt;()..., args...);
+<span class="lineNum">     898 </span>            :  *  \endcode
+<span class="lineNum">     899 </span>            :  *
+<span class="lineNum">     900 </span>            :  *  \example
+<span class="lineNum">     901 </span>            :  *  \snippet Test_DataBox.cpp apply_example
+<span class="lineNum">     902 </span>            :  *
+<span class="lineNum">     903 </span>            :  *  \see apply_with_box DataBox
+<span class="lineNum">     904 </span>            :  *  \tparam TagsLs typelist of Tags in the order that they are to be passed to
+<span class="lineNum">     905 </span>            :  *  `f`
+<span class="lineNum">     906 </span>            :  *  \param f the function to apply
+<span class="lineNum">     907 </span>            :  *  \param box the DataBox out of which to retrieve the Tags and to pass to `f`
+<span class="lineNum">     908 </span>            :  *  \param args the arguments to pass to the function that are not in the
+<span class="lineNum">     909 </span>            :  *  DataBox, `box`
+<a name="910"><span class="lineNum">     910 </span>            :  */</a>
+<span class="lineNum">     911 </span>            : template &lt;typename TagsLs, typename F, typename... BoxTags, typename... Args&gt;
+<span class="lineNum">     912 </span><span class="lineCov">          2 : inline constexpr auto apply(F f, const DataBox&lt;BoxTags...&gt;&amp; box,</span>
+<span class="lineNum">     913 </span>            :                             Args&amp;&amp;... args) {
+<span class="lineNum">     914 </span><span class="lineCov">          2 :   return detail::Apply&lt;TagsLs&gt;::apply(f, box, std::forward&lt;Args&gt;(args)...);</span>
+<span class="lineNum">     915 </span>            : }
+<span class="lineNum">     916 </span>            : 
+<span class="lineNum">     917 </span>            : /*!
+<span class="lineNum">     918 </span>            :  * \ingroup DataBoxGroup
+<span class="lineNum">     919 </span>            :  * \brief Apply the function `f` with argument Tags `TagLs` from DataBox `box`
+<span class="lineNum">     920 </span>            :  *  and `box` as the first argument
+<span class="lineNum">     921 </span>            :  *
+<span class="lineNum">     922 </span>            :  *  \details
+<span class="lineNum">     923 </span>            :  *  Apply the function `f` with arguments that are of type `Tags::type` where
+<span class="lineNum">     924 </span>            :  *  `Tags` is defined as `TagLs&lt;Tags...&gt;`. The arguments to `f` are retrieved
+<span class="lineNum">     925 </span>            :  *  from the DataBox `box` and the first argument passed to `f` is the DataBox.
+<span class="lineNum">     926 </span>            :  *
+<span class="lineNum">     927 </span>            :  *  \usage
+<span class="lineNum">     928 </span>            :  *  Given a function `func` that takes arguments of types `DataBox&lt;Tags...&gt;`,
+<span class="lineNum">     929 </span>            :  *  `T1`, `T2`, `A1` and `A2`. Let the Tags for the quantities of types `T1` and
+<span class="lineNum">     930 </span>            :  *  `T2` in the DataBox `box` be `Tag1` and `Tag2`, and objects `a1` of type
+<span class="lineNum">     931 </span>            :  *  `A1` and `a2` of type `A2`, then
+<span class="lineNum">     932 </span>            :  *  \code
+<span class="lineNum">     933 </span>            :  *  auto result = apply_with_box&lt;typelist&lt;Tag1, Tag2&gt;&gt;(func, box, a1, a2);
+<span class="lineNum">     934 </span>            :  *  \endcode
+<span class="lineNum">     935 </span>            :  *  \return `decltype(func(box, box.get&lt;Tag1&gt;(), box.get&lt;Tag2&gt;(), a1, a2))`
+<span class="lineNum">     936 </span>            :  *
+<span class="lineNum">     937 </span>            :  *  \semantics
+<span class="lineNum">     938 </span>            :  *  For tags `Tags...` in a DataBox `box`, and a function `func` that takes as
+<span class="lineNum">     939 </span>            :  *  its first argument a value of type`decltype(box)`,
+<span class="lineNum">     940 </span>            :  *  `sizeof...(Tags)` arguments of types `typename Tags::type...`, and
+<span class="lineNum">     941 </span>            :  *  `sizeof...(Args)` arguments of types `Args...`,
+<span class="lineNum">     942 </span>            :  *  \code
+<span class="lineNum">     943 </span>            :  *  result = func(box, box.get&lt;Tags&gt;()..., args...);
+<span class="lineNum">     944 </span>            :  *  \endcode
+<span class="lineNum">     945 </span>            :  *
+<span class="lineNum">     946 </span>            :  *  \example
+<span class="lineNum">     947 </span>            :  *  \snippet Test_DataBox.cpp apply_with_box_example
+<span class="lineNum">     948 </span>            :  *
+<span class="lineNum">     949 </span>            :  *  \see apply DataBox
+<span class="lineNum">     950 </span>            :  *  \tparam TagsLs typelist of Tags in the order that they are to be passed to
+<span class="lineNum">     951 </span>            :  *  `f`
+<span class="lineNum">     952 </span>            :  *  \param f the function to apply
+<span class="lineNum">     953 </span>            :  *  \param box the DataBox out of which to retrieve the Tags and to pass to `f`
+<span class="lineNum">     954 </span>            :  *  \param args the arguments to pass to the function that are not in the
+<span class="lineNum">     955 </span>            :  *  DataBox, `box`
+<a name="956"><span class="lineNum">     956 </span>            :  */</a>
+<span class="lineNum">     957 </span>            : template &lt;typename TagsLs, typename F, typename... BoxTags, typename... Args&gt;
+<span class="lineNum">     958 </span><span class="lineCov">          2 : inline constexpr auto apply_with_box(F f, const DataBox&lt;BoxTags...&gt;&amp; box,</span>
+<span class="lineNum">     959 </span>            :                                      Args&amp;&amp;... args) {
+<span class="lineNum">     960 </span><span class="lineCov">          1 :   return detail::Apply&lt;TagsLs&gt;::apply_with_box(f, box,</span>
+<span class="lineNum">     961 </span><span class="lineCov">          2 :                                                std::forward&lt;Args&gt;(args)...);</span>
+<span class="lineNum">     962 </span>            : }
+<span class="lineNum">     963 </span>            : 
+<span class="lineNum">     964 </span>            : namespace detail {
+<span class="lineNum">     965 </span>            : template &lt;typename Seq, typename Element&gt;
+<span class="lineNum">     966 </span>            : struct filter_helper {
+<span class="lineNum">     967 </span>            :   using type =
+<span class="lineNum">     968 </span>            :       tmpl::not_&lt;tmpl::found&lt;Seq, std::is_same&lt;tmpl::_1, tmpl::pin&lt;Element&gt;&gt;&gt;&gt;;
+<span class="lineNum">     969 </span>            : };
+<span class="lineNum">     970 </span>            : }  // namespace detail
+<span class="lineNum">     971 </span>            : 
+<span class="lineNum">     972 </span>            : /*!
+<span class="lineNum">     973 </span>            :  * \ingroup DataBoxGroup
+<span class="lineNum">     974 </span>            :  * \brief Get typelist of tags to remove from a DataBox so as to keep only
+<span class="lineNum">     975 </span>            :  * desired tags
+<span class="lineNum">     976 </span>            :  *
+<span class="lineNum">     977 </span>            :  * \metareturns a typelist of tags that need to be removed from the DataBox with
+<span class="lineNum">     978 </span>            :  * tags `DataBoxTagsLs` in order to keep the tags in `KeepTagsLs`
+<span class="lineNum">     979 </span>            :  *
+<span class="lineNum">     980 </span>            :  * \example
+<span class="lineNum">     981 </span>            :  * \snippet Test_DataBox.cpp remove_tags_from_keep_tags
+<span class="lineNum">     982 </span>            :  */
+<span class="lineNum">     983 </span>            : template &lt;typename DataBoxTagsLs, typename KeepTagsLs&gt;
+<span class="lineNum">     984 </span>            : using remove_tags_from_keep_tags =
+<span class="lineNum">     985 </span>            :     tmpl::filter&lt;DataBoxTagsLs,
+<span class="lineNum">     986 </span>            :                  detail::filter_helper&lt;tmpl::pin&lt;KeepTagsLs&gt;, tmpl::_1&gt;&gt;;
+<span class="lineNum">     987 </span>            : 
+<span class="lineNum">     988 </span>            : }  // namespace db
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

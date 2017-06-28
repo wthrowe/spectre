@@ -420,7 +420,7 @@ end for
 </dl>
 <p><em>Returns:</em> the value of the DataType of component <code>tensor_index</code> </p>
 
-<p class="reference">References <a class="el" href="group__ErrorHandling.html#gaf170f3984e3d0f809b2558dbd981ca35">ASSERT</a>, and <a class="el" href="group__Utilities.html#ga9d571cd642604cb7bd87bb039ca3760f">SPECTRE_ALWAYS_INLINE</a>.</p>
+<p class="reference">References <a class="el" href="group__DataBoxGroup.html#ga18ab344b7599c78f3866fd2d2bb4687c">db::apply()</a>, <a class="el" href="group__ErrorHandling.html#gaf170f3984e3d0f809b2558dbd981ca35">ASSERT</a>, and <a class="el" href="group__Utilities.html#ga9d571cd642604cb7bd87bb039ca3760f">SPECTRE_ALWAYS_INLINE</a>.</p>
 
 </div>
 </div>
@@ -569,7 +569,7 @@ template&lt;typename V  = Derived, typename std::enable_if&lt; tt::is_a&lt; Tens
 <p>Since <a class="el" href="classTensor.html">Tensor</a> is not derived from TensorExpression (because of complications arising from the indices being part of the expression, specifically <a class="el" href="classTensor.html">Tensor</a> may need to derive off of hundreds or thousands of base classes, which is not feasible), return a reference to a TensorExpression, which has a sufficient interface to evaluate the expression. </p>
 <p><em>Returns:</em> const TensorExpression&lt;Derived, DataType, Symm, IndexLs, ArgsLs&lt;Args...&gt;&gt;&amp; </p>
 
-<p class="reference">References <a class="el" href="group__Utilities.html#ga9d571cd642604cb7bd87bb039ca3760f">SPECTRE_ALWAYS_INLINE</a>.</p>
+<p class="reference">References <a class="el" href="group__DataBoxGroup.html#ga18ab344b7599c78f3866fd2d2bb4687c">db::apply()</a>, and <a class="el" href="group__Utilities.html#ga9d571cd642604cb7bd87bb039ca3760f">SPECTRE_ALWAYS_INLINE</a>.</p>
 
 </div>
 </div>

@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - aab6277d89c7523211d43aca4ffaa372882d864f - DataStructures/DataVector.hpp</title>
+  <title>LCOV - 4ffdce72d0ef483ec80fe51966b9a10b34b0e13e - DataStructures/DataVector.hpp</title>
   <link rel="stylesheet" type="text/css" href="../gcov.css">
 </head>
 
@@ -28,7 +28,7 @@
           </tr>
           <tr>
             <td class="headerItem">Commit:</td>
-             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/aab6277d89c7523211d43aca4ffaa372882d864f">aab6277d89c7523211d43aca4ffaa372882d864f</a></td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/4ffdce72d0ef483ec80fe51966b9a10b34b0e13e">4ffdce72d0ef483ec80fe51966b9a10b34b0e13e</a></td>
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntry">143</td>
@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2017-06-27 02:01:04</td>
+            <td class="headerValue">2017-06-28 02:03:04</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">80</td>
@@ -136,9 +136,9 @@
 <span class="lineNum">      66 </span>            :   DataVector(std::initializer_list&lt;double&gt; list);
 <a name="67"><span class="lineNum">      67 </span>            : </a>
 <span class="lineNum">      68 </span>            :   /// Empty DataVector
-<a name="69"><span class="lineNum">      69 </span><span class="lineCov">        160 :   DataVector() = default;</span></a>
+<a name="69"><span class="lineNum">      69 </span><span class="lineCov">        181 :   DataVector() = default;</span></a>
 <span class="lineNum">      70 </span>            :   /// \cond HIDDEN_SYMBOLS
-<span class="lineNum">      71 </span><span class="lineCov">      86757 :   ~DataVector() = default;</span>
+<span class="lineNum">      71 </span><span class="lineCov">      86778 :   ~DataVector() = default;</span>
 <a name="72"><span class="lineNum">      72 </span>            : </a>
 <span class="lineNum">      73 </span>            :   DataVector(const DataVector&amp; rhs);
 <span class="lineNum">      74 </span><span class="lineCov">      43148 :   DataVector(DataVector&amp;&amp; rhs) noexcept = default;  // NOLINT</span>
@@ -185,12 +185,12 @@
 <a name="115"><span class="lineNum">     115 </span>            :   // @{</a>
 <a name="116"><span class="lineNum">     116 </span>            :   /// Returns iterator to beginning of data</a>
 <span class="lineNum">     117 </span><span class="lineCov">         19 :   decltype(auto) begin() { return data_.begin(); }</span>
-<span class="lineNum">     118 </span><span class="lineCov">        124 :   decltype(auto) begin() const { return data_.begin(); }</span>
+<span class="lineNum">     118 </span><span class="lineCov">        142 :   decltype(auto) begin() const { return data_.begin(); }</span>
 <span class="lineNum">     119 </span>            :   // @}
 <a name="120"><span class="lineNum">     120 </span>            :   // @{</a>
 <a name="121"><span class="lineNum">     121 </span>            :   /// Returns iterator to end of data</a>
 <span class="lineNum">     122 </span><span class="lineCov">         10 :   decltype(auto) end() { return data_.end(); }</span>
-<span class="lineNum">     123 </span><span class="lineCov">        109 :   decltype(auto) end() const { return data_.end(); }</span>
+<span class="lineNum">     123 </span><span class="lineCov">        127 :   decltype(auto) end() const { return data_.end(); }</span>
 <span class="lineNum">     124 </span>            :   // @}
 <span class="lineNum">     125 </span>            : 
 <span class="lineNum">     126 </span>            :   /// Serialization for Charm++

@@ -161,7 +161,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>A Variables holds a contiguous memory block with Tensors (or other containers) pointing into it.  
+<p>A Variables holds a contiguous memory block with Tensors pointing into it.  
  <a href="classVariables_3_01tmpl_1_1list_3_01Tags_8_8_8_01_4_01_4.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="Variables_8hpp_source.html">Variables.hpp</a>&gt;</code></p>
@@ -177,7 +177,7 @@ Public Types</h2></td></tr>
 <tr class="memitem:a558f1ac85ff8c26ea5ecde9d8466c048"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVariables_3_01tmpl_1_1list_3_01Tags_8_8_8_01_4_01_4.html#a558f1ac85ff8c26ea5ecde9d8466c048">difference_type</a> = <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/ptrdiff_t.html">std::ptrdiff_t</a></td></tr>
 <tr class="separator:a558f1ac85ff8c26ea5ecde9d8466c048"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab990b77f0448c268cd5c18395e1edfbf"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVariables_3_01tmpl_1_1list_3_01Tags_8_8_8_01_4_01_4.html#ab990b77f0448c268cd5c18395e1edfbf">tags_list</a> = tmpl::list&lt; Tags... &gt;</td></tr>
-<tr class="memdesc:ab990b77f0448c268cd5c18395e1edfbf"><td class="mdescLeft">&#160;</td><td class="mdescRight">A typelist of the Tags whose variables are held.  <a href="#ab990b77f0448c268cd5c18395e1edfbf">More...</a><br /></td></tr>
+<tr class="memdesc:ab990b77f0448c268cd5c18395e1edfbf"><td class="mdescLeft">&#160;</td><td class="mdescRight">A typelist of the <a class="el" href="namespaceTags.html">Tags</a> whose variables are held.  <a href="#ab990b77f0448c268cd5c18395e1edfbf">More...</a><br /></td></tr>
 <tr class="separator:ab990b77f0448c268cd5c18395e1edfbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -257,9 +257,6 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a49c8cd96d6e27303acfb7922fe8464fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5136d2a917b95cfb92ed10c74e851ab0"><td class="memItemLeft" align="right" valign="top">decltype(auto) friend&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVariables_3_01tmpl_1_1list_3_01Tags_8_8_8_01_4_01_4.html#a5136d2a917b95cfb92ed10c74e851ab0">operator/</a> (const <a class="el" href="classVariables_3_01tmpl_1_1list_3_01Tags_8_8_8_01_4_01_4.html#a8f9fc58967b364580cfe2b449f0d8bc8">Variables</a> &amp;lhs, const double &amp;rhs)</td></tr>
 <tr class="separator:a5136d2a917b95cfb92ed10c74e851ab0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aebbb9d1d6714662c6293d62a924c2de1"><td class="memTemplParams" colspan="2">template&lt;typename VT , bool VF&gt; </td></tr>
-<tr class="memitem:aebbb9d1d6714662c6293d62a924c2de1"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classVariables_3_01tmpl_1_1list_3_01Tags_8_8_8_01_4_01_4.html#a8f9fc58967b364580cfe2b449f0d8bc8">Variables</a>&lt; tmpl::list&lt; Tags... &gt; &gt; &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classVariables_3_01tmpl_1_1list_3_01Tags_8_8_8_01_4_01_4.html#aebbb9d1d6714662c6293d62a924c2de1">operator=</a> (const blaze::Vector&lt; VT, VF &gt; &amp;expression)</td></tr>
-<tr class="separator:aebbb9d1d6714662c6293d62a924c2de1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
@@ -280,7 +277,7 @@ Friends</h2></td></tr>
 <div class="textblock"><h3>template&lt;typename... Tags&gt;<br />
 class Variables&lt; tmpl::list&lt; Tags... &gt; &gt;</h3>
 
-<p>A Variables holds a contiguous memory block with Tensors (or other containers) pointing into it. </p>
+<p>A Variables holds a contiguous memory block with Tensors pointing into it. </p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="aa1deadfb48a4962a4019816efa0baaa3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa1deadfb48a4962a4019816efa0baaa3">&#9670;&nbsp;</a></span>allocator_type</h2>
@@ -344,7 +341,7 @@ template&lt;typename... Tags&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>A typelist of the Tags whose variables are held. </p>
+<p>A typelist of the <a class="el" href="namespaceTags.html">Tags</a> whose variables are held. </p>
 
 </div>
 </div>
@@ -499,6 +496,8 @@ template&lt;typename VT , bool VF&gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="reference">References <a class="el" href="group__ErrorHandling.html#ga43ee0d6e9c0381c6140d8b87d927c726">CASSERT</a>.</p>
 
 </div>
 </div>
@@ -1177,7 +1176,7 @@ template&lt;typename... Tags&gt; </div>
 </div>
 </div>
 <a id="ae4c98f0d85e4cdd19a1d2dd705d6ddec"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae4c98f0d85e4cdd19a1d2dd705d6ddec">&#9670;&nbsp;</a></span>operator=() <span class="overload">[1/4]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ae4c98f0d85e4cdd19a1d2dd705d6ddec">&#9670;&nbsp;</a></span>operator=() <span class="overload">[1/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1205,7 +1204,7 @@ template&lt;typename... Tags&gt; </div>
 </div>
 </div>
 <a id="a51fe106e0c6f2ab207e603e2ceeb08c4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a51fe106e0c6f2ab207e603e2ceeb08c4">&#9670;&nbsp;</a></span>operator=() <span class="overload">[2/4]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a51fe106e0c6f2ab207e603e2ceeb08c4">&#9670;&nbsp;</a></span>operator=() <span class="overload">[2/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1225,7 +1224,7 @@ template&lt;typename... Tags&gt; </div>
 </div>
 </div>
 <a id="affc784248a25da925d58b5677dabe5c0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#affc784248a25da925d58b5677dabe5c0">&#9670;&nbsp;</a></span>operator=() <span class="overload">[3/4]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#affc784248a25da925d58b5677dabe5c0">&#9670;&nbsp;</a></span>operator=() <span class="overload">[3/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1243,30 +1242,6 @@ template&lt;typename VT , bool VF&gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-
-</div>
-</div>
-<a id="aebbb9d1d6714662c6293d62a924c2de1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aebbb9d1d6714662c6293d62a924c2de1">&#9670;&nbsp;</a></span>operator=() <span class="overload">[4/4]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename... Tags&gt; </div>
-<div class="memtemplate">
-template&lt;typename VT , bool VF&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classVariables_3_01tmpl_1_1list_3_01Tags_8_8_8_01_4_01_4.html#a8f9fc58967b364580cfe2b449f0d8bc8">Variables</a>&lt;tmpl::list&lt;Tags...&gt; &gt;&amp; <a class="el" href="classVariables_3_01tmpl_1_1list_3_01Tags_8_8_8_01_4_01_4.html#a8f9fc58967b364580cfe2b449f0d8bc8">Variables</a>&lt; tmpl::list&lt; Tags... &gt; &gt;::operator= </td>
-          <td>(</td>
-          <td class="paramtype">const blaze::Vector&lt; VT, VF &gt; &amp;&#160;</td>
-          <td class="paramname"><em>expression</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="reference">References <a class="el" href="group__ErrorHandling.html#ga43ee0d6e9c0381c6140d8b87d927c726">CASSERT</a>.</p>
 
 </div>
 </div>
@@ -1384,7 +1359,7 @@ template&lt;typename... Tags&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">=</div><div class="line">      tmpl::fold&lt;tmpl::list&lt;Tags...&gt;, tmpl::int32_t&lt;0&gt;,</div><div class="line">                 number_of_independent_components_helper&lt;</div><div class="line">                     tmpl::_state, tmpl::_element&gt;&gt;::value</div></div><!-- fragment -->
+<b>Initial value:</b><div class="fragment"><div class="line">=</div><div class="line">      tmpl::fold&lt;tmpl::list&lt;<a class="code" href="namespaceTags.html">Tags</a>...&gt;, tmpl::int32_t&lt;0&gt;,</div><div class="line">                 number_of_independent_components_helper&lt;</div><div class="line">                     tmpl::_state, tmpl::_element&gt;&gt;::value</div></div><!-- fragment -->
 <p>The total number of independent components of all the variables. E.g. a rank-2 symmetric spacetime <a class="el" href="classTensor.html">Tensor</a> \(\psi_{ab}\) in 3 spatial dimensions would have 10 independent components. </p>
 
 </div>

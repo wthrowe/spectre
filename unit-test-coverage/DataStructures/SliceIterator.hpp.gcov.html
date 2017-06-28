@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - aab6277d89c7523211d43aca4ffaa372882d864f - DataStructures/SliceIterator.hpp</title>
+  <title>LCOV - 4ffdce72d0ef483ec80fe51966b9a10b34b0e13e - DataStructures/SliceIterator.hpp</title>
   <link rel="stylesheet" type="text/css" href="../gcov.css">
 </head>
 
@@ -28,7 +28,7 @@
           </tr>
           <tr>
             <td class="headerItem">Commit:</td>
-             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/aab6277d89c7523211d43aca4ffaa372882d864f">aab6277d89c7523211d43aca4ffaa372882d864f</a></td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/4ffdce72d0ef483ec80fe51966b9a10b34b0e13e">4ffdce72d0ef483ec80fe51966b9a10b34b0e13e</a></td>
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntry">3</td>
@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2017-06-27 02:01:04</td>
+            <td class="headerValue">2017-06-28 02:03:04</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">3</td>
@@ -102,7 +102,7 @@
 <span class="lineNum">      32 </span>            :   SliceIterator() = delete;
 <a name="33"><span class="lineNum">      33 </span>            : </a>
 <span class="lineNum">      34 </span>            :   /// Returns `true` if the iterator is valid
-<span class="lineNum">      35 </span><span class="lineCov">         75 :   operator bool() const noexcept { return volume_offset_ &lt; size_; }</span>
+<span class="lineNum">      35 </span><span class="lineCov">        104 :   operator bool() const noexcept { return volume_offset_ &lt; size_; }</span>
 <span class="lineNum">      36 </span>            : 
 <span class="lineNum">      37 </span>            :   /// Step to the next grid point
 <span class="lineNum">      38 </span>            :   SliceIterator&amp; operator++();
@@ -110,12 +110,12 @@
 <span class="lineNum">      40 </span>            :   /// Offset into a Dim-dimensional Data at the current gridpoint.
 <a name="41"><span class="lineNum">      41 </span>            :   /// Note that the size of the Data is assumed to be that of the Mesh</a>
 <span class="lineNum">      42 </span>            :   /// used to construct this SliceIterator
-<span class="lineNum">      43 </span><span class="lineCov">         42 :   size_t volume_offset() const noexcept { return volume_offset_; }</span>
+<span class="lineNum">      43 </span><span class="lineCov">        120 :   size_t volume_offset() const noexcept { return volume_offset_; }</span>
 <span class="lineNum">      44 </span>            : 
 <span class="lineNum">      45 </span>            :   /// Offset into a (Dim-1)-dimensional Data at the current gridpoint.
 <a name="46"><span class="lineNum">      46 </span>            :   /// Note that the size of the Data is assumed to be that of a Mesh</a>
 <span class="lineNum">      47 </span>            :   /// used to construct this SliceIterator with its fixedDim sliced away.
-<span class="lineNum">      48 </span><span class="lineCov">         42 :   size_t slice_offset() const noexcept { return slice_offset_; }</span>
+<span class="lineNum">      48 </span><span class="lineCov">        120 :   size_t slice_offset() const noexcept { return slice_offset_; }</span>
 <span class="lineNum">      49 </span>            : 
 <span class="lineNum">      50 </span>            :   /// Reset the iterator
 <span class="lineNum">      51 </span>            :   void reset();

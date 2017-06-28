@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - aab6277d89c7523211d43aca4ffaa372882d864f - DataStructures/Index.hpp</title>
+  <title>LCOV - 4ffdce72d0ef483ec80fe51966b9a10b34b0e13e - DataStructures/Index.hpp</title>
   <link rel="stylesheet" type="text/css" href="../gcov.css">
 </head>
 
@@ -28,7 +28,7 @@
           </tr>
           <tr>
             <td class="headerItem">Commit:</td>
-             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/aab6277d89c7523211d43aca4ffaa372882d864f">aab6277d89c7523211d43aca4ffaa372882d864f</a></td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/4ffdce72d0ef483ec80fe51966b9a10b34b0e13e">4ffdce72d0ef483ec80fe51966b9a10b34b0e13e</a></td>
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntry">35</td>
@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2017-06-27 02:01:04</td>
+            <td class="headerValue">2017-06-28 02:03:04</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">35</td>
@@ -102,18 +102,18 @@
 <span class="lineNum">      32 </span>            : 
 <a name="33"><span class="lineNum">      33 </span>            :   /// Construct specifying value in each dimension</a>
 <span class="lineNum">      34 </span>            :   template &lt;typename... I, std::enable_if_t&lt;(sizeof...(I) &gt; 1)&gt;* = nullptr&gt;
-<span class="lineNum">      35 </span><span class="lineCov">        668 :   explicit Index(I... i) : indices_(make_array(static_cast&lt;size_t&gt;(i)...)) {</span>
+<span class="lineNum">      35 </span><span class="lineCov">        670 :   explicit Index(I... i) : indices_(make_array(static_cast&lt;size_t&gt;(i)...)) {</span>
 <span class="lineNum">      36 </span>            :     static_assert(cpp17::conjunction_v&lt;tt::is_integer&lt;I&gt;...&gt;,
 <span class="lineNum">      37 </span>            :                   &quot;You must pass in a set of size_t's to Index.&quot;);
 <span class="lineNum">      38 </span>            :     static_assert(Dim == sizeof...(I),
 <span class="lineNum">      39 </span>            :                   &quot;The number of indices given to Index must be the same as &quot;
 <span class="lineNum">      40 </span>            :                   &quot;the dimensionality of the Index.&quot;);
-<a name="41"><span class="lineNum">      41 </span><span class="lineCov">        334 :   }</span></a>
+<a name="41"><span class="lineNum">      41 </span><span class="lineCov">        335 :   }</span></a>
 <span class="lineNum">      42 </span>            : 
-<a name="43"><span class="lineNum">      43 </span><span class="lineCov">      42816 :   explicit Index(std::array&lt;size_t, Dim&gt; i) : indices_(std::move(i)) {}</span></a>
+<a name="43"><span class="lineNum">      43 </span><span class="lineCov">      42819 :   explicit Index(std::array&lt;size_t, Dim&gt; i) : indices_(std::move(i)) {}</span></a>
 <span class="lineNum">      44 </span>            : 
-<span class="lineNum">      45 </span><span class="lineCov">   11897921 :   size_t operator[](const size_t d) const noexcept {</span>
-<a name="46"><span class="lineNum">      46 </span><span class="lineCov">   35693763 :     return gsl::at(indices_, d);  // NOLINT</span></a>
+<span class="lineNum">      45 </span><span class="lineCov">   11897924 :   size_t operator[](const size_t d) const noexcept {</span>
+<a name="46"><span class="lineNum">      46 </span><span class="lineCov">   35693772 :     return gsl::at(indices_, d);  // NOLINT</span></a>
 <span class="lineNum">      47 </span>            :   }
 <span class="lineNum">      48 </span><span class="lineCov">    7897082 :   size_t&amp; operator[](const size_t d) noexcept {</span>
 <span class="lineNum">      49 </span><span class="lineCov">   23691246 :     return gsl::at(indices_, d);  // NOLINT</span>
@@ -122,8 +122,8 @@
 <span class="lineNum">      52 </span><span class="lineCov">          1 :   typename std::array&lt;size_t, Dim&gt;::iterator begin() {</span>
 <a name="53"><span class="lineNum">      53 </span><span class="lineCov">          1 :     return indices_.begin();</span></a>
 <span class="lineNum">      54 </span>            :   }
-<span class="lineNum">      55 </span><span class="lineCov">         38 :   typename std::array&lt;size_t, Dim&gt;::const_iterator begin() const {</span>
-<span class="lineNum">      56 </span><span class="lineCov">         38 :     return indices_.begin();</span>
+<span class="lineNum">      55 </span><span class="lineCov">         44 :   typename std::array&lt;size_t, Dim&gt;::const_iterator begin() const {</span>
+<span class="lineNum">      56 </span><span class="lineCov">         44 :     return indices_.begin();</span>
 <a name="57"><span class="lineNum">      57 </span>            :   }</a>
 <a name="58"><span class="lineNum">      58 </span>            : </a>
 <span class="lineNum">      59 </span><span class="lineCov">          1 :   typename std::array&lt;size_t, Dim&gt;::iterator end() { return indices_.end(); }</span>
@@ -134,14 +134,14 @@
 <span class="lineNum">      64 </span>            :   /// The product of the indices.
 <a name="65"><span class="lineNum">      65 </span>            :   /// If Dim = 0, the product is defined as 1.</a>
 <span class="lineNum">      66 </span>            :   template &lt;int N = Dim, std::enable_if_t&lt;(N &gt; 0)&gt;* = nullptr&gt;
-<span class="lineNum">      67 </span><span class="lineCov">     191074 :   constexpr size_t product() const noexcept {</span>
-<span class="lineNum">      68 </span><span class="lineCov">     191074 :     return indices_[N - 1] * product&lt;N - 1&gt;();</span>
+<span class="lineNum">      67 </span><span class="lineCov">     191215 :   constexpr size_t product() const noexcept {</span>
+<span class="lineNum">      68 </span><span class="lineCov">     191215 :     return indices_[N - 1] * product&lt;N - 1&gt;();</span>
 <span class="lineNum">      69 </span>            :   }
 <span class="lineNum">      70 </span>            :   /// \cond
 <a name="71"><span class="lineNum">      71 </span>            :   // Specialization for N = 0 to stop recursion</a>
 <span class="lineNum">      72 </span>            :   template &lt;int N = Dim, std::enable_if_t&lt;(N == 0)&gt;* = nullptr&gt;
-<span class="lineNum">      73 </span><span class="lineCov">     109924 :   constexpr size_t product() const noexcept {</span>
-<span class="lineNum">      74 </span><span class="lineCov">     109924 :     return 1;</span>
+<span class="lineNum">      73 </span><span class="lineCov">     109972 :   constexpr size_t product() const noexcept {</span>
+<span class="lineNum">      74 </span><span class="lineCov">     109972 :     return 1;</span>
 <span class="lineNum">      75 </span>            :   }
 <span class="lineNum">      76 </span>            :   /// \endcond
 <span class="lineNum">      77 </span>            : 
@@ -149,16 +149,16 @@
 <span class="lineNum">      79 </span>            :   ///
 <a name="80"><span class="lineNum">      80 </span>            :   /// \param d the element to remove.</a>
 <span class="lineNum">      81 </span>            :   template &lt;size_t N = Dim, std::enable_if_t&lt;(N &gt; 0)&gt;* = nullptr&gt;
-<span class="lineNum">      82 </span><span class="lineCov">      42816 :   Index&lt;Dim - 1&gt; slice_away(const size_t d) const {</span>
-<span class="lineNum">      83 </span><span class="lineCov">      42816 :     std::array&lt;size_t, Dim - 1&gt; t{};</span>
-<span class="lineNum">      84 </span><span class="lineCov">     147357 :     for (size_t i = 0; i &lt; Dim; ++i) {</span>
-<span class="lineNum">      85 </span><span class="lineCov">     104541 :       if (i &lt; d) {</span>
-<span class="lineNum">      86 </span><span class="lineCov">     123430 :         gsl::at(t, i) = gsl::at(indices_, i);</span>
-<span class="lineNum">      87 </span><span class="lineCov">      42826 :       } else if (i &gt; d) {</span>
-<span class="lineNum">      88 </span><span class="lineCov">         30 :         gsl::at(t, i - 1) = gsl::at(indices_, i);</span>
+<span class="lineNum">      82 </span><span class="lineCov">      42819 :   Index&lt;Dim - 1&gt; slice_away(const size_t d) const {</span>
+<span class="lineNum">      83 </span><span class="lineCov">      42819 :     std::array&lt;size_t, Dim - 1&gt; t{};</span>
+<span class="lineNum">      84 </span><span class="lineCov">     147369 :     for (size_t i = 0; i &lt; Dim; ++i) {</span>
+<span class="lineNum">      85 </span><span class="lineCov">     104550 :       if (i &lt; d) {</span>
+<span class="lineNum">      86 </span><span class="lineCov">     123436 :         gsl::at(t, i) = gsl::at(indices_, i);</span>
+<span class="lineNum">      87 </span><span class="lineCov">      42832 :       } else if (i &gt; d) {</span>
+<span class="lineNum">      88 </span><span class="lineCov">         39 :         gsl::at(t, i - 1) = gsl::at(indices_, i);</span>
 <span class="lineNum">      89 </span>            :       }
 <span class="lineNum">      90 </span>            :     }
-<span class="lineNum">      91 </span><span class="lineCov">      42816 :     return Index&lt;Dim - 1&gt;(t);</span>
+<span class="lineNum">      91 </span><span class="lineCov">      42819 :     return Index&lt;Dim - 1&gt;(t);</span>
 <span class="lineNum">      92 </span>            :   }
 <a name="93"><span class="lineNum">      93 </span>            : </a>
 <span class="lineNum">      94 </span>            :   /// \cond

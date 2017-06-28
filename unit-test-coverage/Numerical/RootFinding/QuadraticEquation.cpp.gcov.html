@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 4ffdce72d0ef483ec80fe51966b9a10b34b0e13e - Numerical/RootFinding/QuadraticEquation.cpp</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">SpECTRE Unit Test Code Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../index.html">top level</a> - <a href="index.html">Numerical/RootFinding</a> - QuadraticEquation.cpp<span style="font-size: 80%;"> (source / <a href="QuadraticEquation.cpp.func-sort-c.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/4ffdce72d0ef483ec80fe51966b9a10b34b0e13e">4ffdce72d0ef483ec80fe51966b9a10b34b0e13e</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">13</td>
+            <td class="headerCovTableEntry">13</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2017-06-28 02:03:04</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">2</td>
+            <td class="headerCovTableEntry">2</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>            : // Distributed under the MIT License.</a>
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : #include &quot;Numerical/RootFinding/QuadraticEquation.hpp&quot;
+<span class="lineNum">       5 </span>            : 
+<span class="lineNum">       6 </span>            : #include &lt;limits&gt;
+<span class="lineNum">       7 </span>            : #include &lt;gsl/gsl_poly.h&gt;
+<span class="lineNum">       8 </span>            : 
+<span class="lineNum">       9 </span>            : #include &quot;ErrorHandling/Assert.hpp&quot;
+<a name="10"><span class="lineNum">      10 </span>            : #include &quot;ErrorHandling/ExpectsAndEnsures.hpp&quot;</a>
+<span class="lineNum">      11 </span>            : 
+<span class="lineNum">      12 </span><span class="lineCov">          3 : double positive_root(const double a, const double b, const double c) {</span>
+<span class="lineNum">      13 </span><span class="lineCov">          3 :   double x0 = std::numeric_limits&lt;double&gt;::signaling_NaN();</span>
+<span class="lineNum">      14 </span><span class="lineCov">          3 :   double x1 = std::numeric_limits&lt;double&gt;::signaling_NaN();</span>
+<span class="lineNum">      15 </span><span class="lineCov">          3 :   int num_real_roots = gsl_poly_solve_quadratic(a, b, c, &amp;x0, &amp;x1);</span>
+<span class="lineNum">      16 </span><span class="lineCov">          3 :   ASSERT(num_real_roots == 2, &quot;Assumes that there are two real roots&quot;);</span>
+<span class="lineNum">      17 </span><span class="lineCov">          2 :   Ensures(x0 &lt;= 0.0 and x1 &gt;= 0.0);</span>
+<span class="lineNum">      18 </span><span class="lineCov">          1 :   return x1;</span>
+<a name="19"><span class="lineNum">      19 </span>            : }</a>
+<span class="lineNum">      20 </span>            : 
+<span class="lineNum">      21 </span><span class="lineCov">          2 : std::array&lt;double, 2&gt; real_roots(const double a, const double b,</span>
+<span class="lineNum">      22 </span>            :                                  const double c) {
+<span class="lineNum">      23 </span><span class="lineCov">          2 :   double x0 = std::numeric_limits&lt;double&gt;::signaling_NaN();</span>
+<span class="lineNum">      24 </span><span class="lineCov">          2 :   double x1 = std::numeric_limits&lt;double&gt;::signaling_NaN();</span>
+<span class="lineNum">      25 </span><span class="lineCov">          2 :   int num_real_roots = gsl_poly_solve_quadratic(a, b, c, &amp;x0, &amp;x1);</span>
+<span class="lineNum">      26 </span><span class="lineCov">          2 :   ASSERT(num_real_roots == 2, &quot;Assumes that there are two real roots&quot;);</span>
+<span class="lineNum">      27 </span><span class="lineCov">          1 :   return {{x0, x1}};</span>
+<span class="lineNum">      28 </span>            : }
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

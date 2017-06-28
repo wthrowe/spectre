@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['catalog',['catalog',['http://en.cppreference.com/w/cpp/locale/messages_base.html',1,'std::messages_base::catalog'],['http://en.cppreference.com/w/cpp/locale/messages_base.html',1,'std::messages_byname::catalog'],['http://en.cppreference.com/w/cpp/locale/messages_base.html',1,'std::messages::catalog']]],
+  ['catalog',['catalog',['http://en.cppreference.com/w/cpp/locale/messages_base.html',1,'std::messages_byname::catalog'],['http://en.cppreference.com/w/cpp/locale/messages_base.html',1,'std::messages_base::catalog'],['http://en.cppreference.com/w/cpp/locale/messages_base.html',1,'std::messages::catalog']]],
   ['cauchy_5fdistribution',['cauchy_distribution',['http://en.cppreference.com/w/cpp/numeric/random/cauchy_distribution.html',1,'std']]],
   ['centi',['centi',['http://en.cppreference.com/w/cpp/numeric/ratio/ratio.html',1,'std']]],
   ['cerr',['cerr',['http://en.cppreference.com/w/cpp/io/cerr.html',1,'std']]],
@@ -22,6 +22,11 @@ var searchData=
   ['common_5ftype',['common_type',['http://en.cppreference.com/w/cpp/types/common_type.html',1,'std']]],
   ['common_5ftype_5ft',['common_type_t',['http://en.cppreference.com/w/cpp/types/common_type.html',1,'std']]],
   ['complex',['complex',['http://en.cppreference.com/w/cpp/numeric/complex.html',1,'std']]],
+  ['computeitemtag',['ComputeItemTag',['../structdb_1_1ComputeItemTag.html',1,'db']]],
+  ['computelambda0',['ComputeLambda0',['../structtest__databox__tags_1_1ComputeLambda0.html',1,'test_databox_tags']]],
+  ['computelambda1',['ComputeLambda1',['../structtest__databox__tags_1_1ComputeLambda1.html',1,'test_databox_tags']]],
+  ['computetag0',['ComputeTag0',['../structtest__databox__tags_1_1ComputeTag0.html',1,'test_databox_tags']]],
+  ['computetag1',['ComputeTag1',['../structtest__databox__tags_1_1ComputeTag1.html',1,'test_databox_tags']]],
   ['condition_5fvariable',['condition_variable',['http://en.cppreference.com/w/cpp/thread/condition_variable.html',1,'std']]],
   ['condition_5fvariable_5fany',['condition_variable_any',['http://en.cppreference.com/w/cpp/thread/condition_variable_any.html',1,'std']]],
   ['conditional',['conditional',['http://en.cppreference.com/w/cpp/types/conditional.html',1,'std']]],

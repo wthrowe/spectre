@@ -1,0 +1,214 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 4ffdce72d0ef483ec80fe51966b9a10b34b0e13e - DataStructures/DataBoxHelpers.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title"> SpECTRE Documentation Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">DataStructures</a> - DataBoxHelpers.hpp</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+             <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/4ffdce72d0ef483ec80fe51966b9a10b34b0e13e">4ffdce72d0ef483ec80fe51966b9a10b34b0e13e</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">6</td>
+            <td class="headerCovTableEntryLo">0.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2017-06-28 02:03:34</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<span class="lineNum">       1 </span>            : // Distributed under the MIT License.
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : /// \file
+<span class="lineNum">       5 </span>            : /// Defines helper classes and functions for manipulating DataBox's and items
+<span class="lineNum">       6 </span>            : 
+<span class="lineNum">       7 </span>            : #pragma once
+<span class="lineNum">       8 </span>            : 
+<span class="lineNum">       9 </span>            : #include &quot;DataStructures/DataBox.hpp&quot;
+<span class="lineNum">      10 </span>            : #include &quot;Utilities/BoostHelpers.hpp&quot;
+<span class="lineNum">      11 </span>            : 
+<span class="lineNum">      12 </span>            : /// \cond
+<span class="lineNum">      13 </span>            : template &lt;typename X, typename Symm, typename IndexLs&gt;
+<span class="lineNum">      14 </span>            : class Tensor;
+<span class="lineNum">      15 </span>            : 
+<span class="lineNum">      16 </span>            : class DataVector;
+<span class="lineNum">      17 </span>            : /// \endcond
+<span class="lineNum">      18 </span>            : 
+<span class="lineNum">      19 </span>            : template &lt;typename Tag, typename = void&gt;
+<span class="lineNum">      20 </span><span class="lineNoCov">          0 : struct get_item_from_variant_databox;</span>
+<span class="lineNum">      21 </span>            : 
+<span class="lineNum">      22 </span>            : template &lt;typename Tag&gt;
+<span class="lineNum">      23 </span>            : struct get_item_from_variant_databox&lt;
+<span class="lineNum">      24 </span>            :     Tag, std::enable_if_t&lt;std::is_base_of&lt;db::DataBoxTag, Tag&gt;::value&gt;&gt;
+<span class="lineNum">      25 </span>            :     : boost::static_visitor&lt;db::item_type&lt;Tag&gt;&gt; {
+<span class="lineNum">      26 </span>            :   template &lt;typename DataBox_t&gt;
+<span class="lineNum">      27 </span>            :   constexpr db::item_type&lt;Tag&gt; operator()(DataBox_t&amp; box) const {
+<span class="lineNum">      28 </span>            :     return box.template get&lt;Tag&gt;();
+<span class="lineNum">      29 </span>            :   }
+<span class="lineNum">      30 </span>            : };
+<span class="lineNum">      31 </span>            : 
+<span class="lineNum">      32 </span>            : template &lt;typename TagType&gt;
+<span class="lineNum">      33 </span>            : struct get_item_from_variant_databox&lt;
+<span class="lineNum">      34 </span>            :     TagType,
+<span class="lineNum">      35 </span>            :     std::enable_if_t&lt;not std::is_base_of&lt;db::DataBoxTag, TagType&gt;::value&gt;&gt;
+<span class="lineNum">      36 </span>            :     : boost::static_visitor&lt;TagType&gt; {
+<span class="lineNum">      37 </span>            :   explicit get_item_from_variant_databox(std::string name)
+<span class="lineNum">      38 </span>            :       : var_name(std::move(name)) {}
+<span class="lineNum">      39 </span>            :   template &lt;typename DataBox_t&gt;
+<span class="lineNum">      40 </span>            :   constexpr TagType operator()(DataBox_t&amp; box) const {
+<span class="lineNum">      41 </span>            :     return db::get_item_from_box&lt;TagType&gt;(box, var_name);
+<span class="lineNum">      42 </span>            :   }
+<span class="lineNum">      43 </span>            : 
+<span class="lineNum">      44 </span>            :  private:
+<span class="lineNum">      45 </span>            :   const std::string var_name;
+<span class="lineNum">      46 </span>            : };
+<span class="lineNum">      47 </span>            : 
+<span class="lineNum">      48 </span>            : namespace DataBoxHelpers_detail {
+<span class="lineNum">      49 </span>            : template &lt;typename Tags, typename TagLs,
+<span class="lineNum">      50 </span>            :           std::enable_if_t&lt;(tmpl::size&lt;Tags&gt;::value == 1)&gt;* = nullptr&gt;
+<span class="lineNum">      51 </span>            : auto get_tensor_from_box(const db::DataBox&lt;TagLs&gt;&amp; box,
+<span class="lineNum">      52 </span>            :                          const std::string&amp; tag_name) {
+<span class="lineNum">      53 </span>            :   using tag = tmpl::front&lt;Tags&gt;;
+<span class="lineNum">      54 </span>            :   if (db::get_tag_name&lt;tag&gt;() != tag_name) {
+<span class="lineNum">      55 </span>            :     ERROR(&quot;Could not find the tag named \&quot;&quot; &lt;&lt; tag_name &lt;&lt; &quot;\&quot; in the DataBox&quot;);
+<span class="lineNum">      56 </span>            :   }
+<span class="lineNum">      57 </span>            :   return box.template get&lt;tag&gt;().get_vector_of_data();
+<span class="lineNum">      58 </span>            : }
+<span class="lineNum">      59 </span>            : 
+<span class="lineNum">      60 </span>            : template &lt;typename Tags, typename TagLs,
+<span class="lineNum">      61 </span>            :           std::enable_if_t&lt;(tmpl::size&lt;Tags&gt;::value &gt; 1)&gt;* = nullptr&gt;
+<span class="lineNum">      62 </span>            : auto get_tensor_from_box(const db::DataBox&lt;TagLs&gt;&amp; box,
+<span class="lineNum">      63 </span>            :                          const std::string&amp; tag_name) {
+<span class="lineNum">      64 </span>            :   using tag = tmpl::front&lt;Tags&gt;;
+<span class="lineNum">      65 </span>            :   return db::get_tag_name&lt;tag&gt;() == tag_name
+<span class="lineNum">      66 </span>            :              ? box.template get&lt;tag&gt;().serialize()
+<span class="lineNum">      67 </span>            :              : get_tensor_from_box&lt;tmpl::pop_front&lt;Tags&gt;&gt;(box, tag_name);
+<span class="lineNum">      68 </span>            : }
+<span class="lineNum">      69 </span>            : 
+<span class="lineNum">      70 </span>            : template &lt;typename T&gt;
+<span class="lineNum">      71 </span>            : using is_a_tensor = tt::is_a&lt;Tensor, T&gt;;
+<span class="lineNum">      72 </span>            : }  // namespace DataBoxHelpers_detail
+<span class="lineNum">      73 </span>            : 
+<span class="lineNum">      74 </span>            : template &lt;typename TagsLs&gt;
+<span class="lineNum">      75 </span><span class="lineNoCov">          0 : auto get_tensor_from_box(const db::DataBox&lt;TagsLs&gt;&amp; box,</span>
+<span class="lineNum">      76 </span>            :                          const std::string&amp; tag_name) {
+<span class="lineNum">      77 </span>            :   using tags =
+<span class="lineNum">      78 </span>            :       tmpl::filter&lt;TagsLs, tmpl::bind&lt;DataBoxHelpers_detail::is_a_tensor,
+<span class="lineNum">      79 </span>            :                                       tmpl::bind&lt;db::item_type, tmpl::_1&gt;&gt;&gt;;
+<span class="lineNum">      80 </span>            :   return DataBoxHelpers_detail::get_tensor_from_box&lt;tags&gt;(box, tag_name);
+<span class="lineNum">      81 </span>            : }
+<span class="lineNum">      82 </span>            : 
+<span class="lineNum">      83 </span>            : // namespace DataBoxHelpers_detail {
+<span class="lineNum">      84 </span>            : // template &lt;typename Tags, typename TagsLs,
+<span class="lineNum">      85 </span>            : //          std::enable_if_t&lt;(tmpl::size&lt;Tags&gt;::value == 1)&gt;* = nullptr&gt;
+<span class="lineNum">      86 </span>            : // auto get_tensor_norm_from_box(
+<span class="lineNum">      87 </span>            : //    const db::DataBox&lt;TagsLs&gt;&amp; box,
+<span class="lineNum">      88 </span>            : //    const std::pair&lt;std::string, TypeOfNorm&gt;&amp; tag_name) {
+<span class="lineNum">      89 </span>            : //  using tag = tmpl::front&lt;Tags&gt;;
+<span class="lineNum">      90 </span>            : //  if (db::get_tag_name&lt;tag&gt;() != tag_name.first) {
+<span class="lineNum">      91 </span>            : //    ERROR(&quot;Could not find the tag named \&quot;&quot; &lt;&lt; tag_name.first
+<span class="lineNum">      92 </span>            : //                                            &lt;&lt; &quot;\&quot; in the DataBox&quot;);
+<span class="lineNum">      93 </span>            : //  }
+<span class="lineNum">      94 </span>            : //  return compute_norm_core(box.template get&lt;tag&gt;(), tag_name.second);
+<span class="lineNum">      95 </span>            : //}
+<span class="lineNum">      96 </span>            : //
+<span class="lineNum">      97 </span>            : // template &lt;typename Tags, typename TagsLs,
+<span class="lineNum">      98 </span>            : //          std::enable_if_t&lt;(tmpl::size&lt;Tags&gt;::value &gt; 1)&gt;* = nullptr&gt;
+<span class="lineNum">      99 </span>            : // auto get_tensor_norm_from_box(
+<span class="lineNum">     100 </span>            : //    const db::DataBox&lt;TagsLs&gt;&amp; box,
+<span class="lineNum">     101 </span>            : //    const std::pair&lt;std::string, TypeOfNorm&gt;&amp; tag_name) {
+<span class="lineNum">     102 </span>            : //  using tag = tmpl::front&lt;Tags&gt;;
+<span class="lineNum">     103 </span>            : //  if (db::get_tag_name&lt;tag&gt;() != tag_name.first) {
+<span class="lineNum">     104 </span>            : //    return get_tensor_norm_from_box&lt;tmpl::pop_front&lt;Tags&gt;&gt;(box, tag_name);
+<span class="lineNum">     105 </span>            : //  }
+<span class="lineNum">     106 </span>            : //  return compute_norm_core(box.template get&lt;tag&gt;(), tag_name.second);
+<span class="lineNum">     107 </span>            : //}
+<span class="lineNum">     108 </span>            : //}  // namespace DataBoxHelpers_detail
+<span class="lineNum">     109 </span>            : 
+<span class="lineNum">     110 </span>            : // template &lt;typename TagsLs&gt;
+<span class="lineNum">     111 </span>            : // auto get_tensor_norm_from_box(
+<span class="lineNum">     112 </span>            : //    const db::DataBox&lt;TagsLs&gt;&amp; box,
+<span class="lineNum">     113 </span>            : //    const std::pair&lt;std::string, TypeOfNorm&gt;&amp; tag_name) {
+<span class="lineNum">     114 </span>            : //  using tags =
+<span class="lineNum">     115 </span>            : //      tmpl::filter&lt;TagsLs, tmpl::bind&lt;DataBoxHelpers_detail::is_a_tensor,
+<span class="lineNum">     116 </span>            : //                                      tmpl::bind&lt;db::item_type, tmpl::_1&gt;&gt;&gt;;
+<span class="lineNum">     117 </span>            : //
+<span class="lineNum">     118 </span>            : //  return DataBoxHelpers_detail::get_tensor_norm_from_box&lt;tags&gt;(box, tag_name);
+<span class="lineNum">     119 </span>            : //}
+<span class="lineNum">     120 </span>            : 
+<span class="lineNum">     121 </span>            : struct get_tensor_from_variant_box
+<span class="lineNum">     122 </span>            :     : boost::static_visitor&lt;
+<span class="lineNum">     123 </span><span class="lineNoCov">          0 :           std::pair&lt;std::vector&lt;std::string&gt;, std::vector&lt;DataVector&gt;&gt;&gt; {</span>
+<span class="lineNum">     124 </span><span class="lineNoCov">          0 :   explicit get_tensor_from_variant_box(std::string name)</span>
+<span class="lineNum">     125 </span>            :       : var_name(std::move(name)) {}
+<span class="lineNum">     126 </span>            :   template &lt;typename DataBox_t&gt;
+<span class="lineNum">     127 </span><span class="lineNoCov">          0 :   std::pair&lt;std::vector&lt;std::string&gt;, std::vector&lt;DataVector&gt;&gt; operator()(</span>
+<span class="lineNum">     128 </span>            :       DataBox_t&amp; box) const {
+<span class="lineNum">     129 </span>            :     return get_tensor_from_box(box, var_name);
+<span class="lineNum">     130 </span>            :   }
+<span class="lineNum">     131 </span>            : 
+<span class="lineNum">     132 </span>            :  private:
+<span class="lineNum">     133 </span><span class="lineNoCov">          0 :   const std::string var_name;</span>
+<span class="lineNum">     134 </span>            : };
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

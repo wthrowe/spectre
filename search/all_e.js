@@ -14,7 +14,7 @@ var searchData=
   ['nearbyint',['nearbyint',['http://en.cppreference.com/w/cpp/numeric/math/nearbyint.html',1,'std']]],
   ['neg_5fformat',['neg_format',['http://en.cppreference.com/w/cpp/locale/moneypunct/pos_format.html',1,'std::moneypunct::neg_format()'],['http://en.cppreference.com/w/cpp/locale/moneypunct/pos_format.html',1,'std::moneypunct_byname::neg_format()']]],
   ['negate',['negate',['http://en.cppreference.com/w/cpp/utility/functional/negate.html',1,'std']]],
-  ['negation',['negation',['http://en.cppreference.com/w/cpp/types/negation.html',1,'std::negation'],['../structcpp17_1_1negation.html',1,'cpp17::negation&lt; B &gt;']]],
+  ['negation',['negation',['../structcpp17_1_1negation.html',1,'cpp17::negation&lt; B &gt;'],['http://en.cppreference.com/w/cpp/types/negation.html',1,'std::negation']]],
   ['negation_5fv',['negation_v',['http://en.cppreference.com/w/cpp/types/negation.html',1,'std']]],
   ['negative_5fbinomial_5fdistribution',['negative_binomial_distribution',['http://en.cppreference.com/w/cpp/numeric/random/negative_binomial_distribution.html',1,'std::negative_binomial_distribution'],['http://en.cppreference.com/w/cpp/numeric/random/negative_binomial_distribution/negative_binomial_distribution.html',1,'std::negative_binomial_distribution::negative_binomial_distribution()']]],
   ['negative_5fsign',['negative_sign',['http://en.cppreference.com/w/cpp/locale/moneypunct/positive_sign.html',1,'std::moneypunct::negative_sign()'],['http://en.cppreference.com/w/cpp/locale/moneypunct/positive_sign.html',1,'std::moneypunct_byname::negative_sign()']]],
