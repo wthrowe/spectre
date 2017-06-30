@@ -10,5 +10,7 @@ var searchData=
   ['definiteintegral_2ehpp',['DefiniteIntegral.hpp',['../DefiniteIntegral_8hpp.html',1,'']]],
   ['deque',['deque',['http://en.cppreference.com/w/cpp/header/deque.html',1,'']]],
   ['devguide_2emd',['DevGuide.md',['../DevGuide_8md.html',1,'']]],
-  ['digraph_2ehpp',['Digraph.hpp',['../Digraph_8hpp.html',1,'']]]
+  ['digraph_2ehpp',['Digraph.hpp',['../Digraph_8hpp.html',1,'']]],
+  ['direction_2ecpp',['Direction.cpp',['../Direction_8cpp.html',1,'']]],
+  ['direction_2ehpp',['Direction.hpp',['../Direction_8hpp.html',1,'']]]
 ];

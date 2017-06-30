@@ -250,7 +250,7 @@ template&lt;typename... Args&gt; </div>
 </div><div class="memdoc">
 
 <p>Construct a <a class="el" href="structTaggedTuple.html" title="An associative container that is indexed by structs. ">TaggedTuple</a> with Args. </p>
-<p><em>Requires:</em> <code><a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/types/is_convertible.html">std::is_convertible_v</a>&lt;Args, typename Tags::type&gt;...</code> is <code>true</code></p>
+<p><em>Requires:</em> <code>std::is_convertible_v&lt;Args, typename Tags::type&gt;...</code> is <code>true</code></p>
 <h3>Example</h3>
 <div class="fragment"><div class="line">  <a class="code" href="TaggedTuple_8hpp.html#aacddb1e80457fbff9419f0c1618faa16">TaggedTupleTypelist&lt;typelist&lt;name, age, email&gt;</a>&gt; test(<span class="stringliteral">&quot;bla&quot;</span>, 17,</div><div class="line">                                                       <span class="stringliteral">&quot;bla@bla.bla&quot;</span>);</div></div><!-- fragment -->
 </div>
