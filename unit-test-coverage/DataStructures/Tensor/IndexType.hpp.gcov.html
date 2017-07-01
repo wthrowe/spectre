@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - 1161850ffd7aa69f59a838ff748e5ac8bb405152 - DataStructures/Tensor/IndexType.hpp</title>
+  <title>LCOV - 0ddd6405eef1e57de1d0a765aa4f6cfbc83c9f15 - DataStructures/Tensor/IndexType.hpp</title>
   <link rel="stylesheet" type="text/css" href="../../gcov.css">
 </head>
 
@@ -28,7 +28,7 @@
           </tr>
           <tr>
             <td class="headerItem">Commit:</td>
-             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/1161850ffd7aa69f59a838ff748e5ac8bb405152">1161850ffd7aa69f59a838ff748e5ac8bb405152</a></td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/0ddd6405eef1e57de1d0a765aa4f6cfbc83c9f15">0ddd6405eef1e57de1d0a765aa4f6cfbc83c9f15</a></td>
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntry">12</td>
@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2017-06-30 02:02:21</td>
+            <td class="headerValue">2017-07-01 02:02:36</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">6</td>
@@ -78,165 +78,166 @@
 <span class="lineNum">       8 </span>            : 
 <span class="lineNum">       9 </span>            : #include &lt;ostream&gt;
 <span class="lineNum">      10 </span>            : 
-<span class="lineNum">      11 </span>            : #include &quot;Utilities/TMPL.hpp&quot;
-<span class="lineNum">      12 </span>            : #include &quot;Utilities/TypeTraits.hpp&quot;
-<span class="lineNum">      13 </span>            : 
-<span class="lineNum">      14 </span>            : /// \ingroup Tensor
-<span class="lineNum">      15 </span>            : /// Whether a \ref SpacetimeIndex &quot;TensorIndexType&quot; is covariant or
-<span class="lineNum">      16 </span>            : /// contravariant
-<span class="lineNum">      17 </span>            : enum class UpLo {
-<span class="lineNum">      18 </span>            :   /// Contravariant, or Upper index
-<span class="lineNum">      19 </span>            :   Up,
-<span class="lineNum">      20 </span>            :   /// Covariant, or Lower index
-<span class="lineNum">      21 </span>            :   Lo
-<span class="lineNum">      22 </span>            : };
-<a name="23"><span class="lineNum">      23 </span>            : </a>
-<span class="lineNum">      24 </span>            : /// \cond HIDDEN_SYMBOLS
-<span class="lineNum">      25 </span><span class="lineCov">         26 : inline std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os, const UpLo&amp; ul) {</span>
-<span class="lineNum">      26 </span><span class="lineCov">         26 :   return os &lt;&lt; (ul == UpLo::Up ? &quot;Up&quot;s : &quot;Lo&quot;s);</span>
-<span class="lineNum">      27 </span>            : }
-<span class="lineNum">      28 </span>            : /// \endcond
-<span class="lineNum">      29 </span>            : 
-<span class="lineNum">      30 </span>            : /// \ingroup Tensor
-<span class="lineNum">      31 </span>            : /// Indicates the ::Frame that a \ref SpacetimeIndex &quot;TensorIndexType&quot;
-<span class="lineNum">      32 </span>            : /// is in.
-<span class="lineNum">      33 </span>            : namespace Frame {
-<span class="lineNum">      34 </span>            : struct Logical {};
-<span class="lineNum">      35 </span>            : struct Grid {};
-<span class="lineNum">      36 </span>            : struct Inertial {};
-<span class="lineNum">      37 </span>            : struct Distorted {};
-<span class="lineNum">      38 </span>            : 
-<span class="lineNum">      39 </span>            : /// This ordered list is needed to determine the ordering of frames
-<span class="lineNum">      40 </span>            : /// for jacobians.
-<span class="lineNum">      41 </span>            : using ordered_frame_list = typelist&lt;Logical, Grid, Inertial, Distorted&gt;;
-<span class="lineNum">      42 </span>            : 
-<span class="lineNum">      43 </span>            : }  // namespace Frame
-<a name="44"><span class="lineNum">      44 </span>            : </a>
-<span class="lineNum">      45 </span>            : /// \cond HIDDEN_SYMBOLS
-<span class="lineNum">      46 </span><span class="lineCov">          1 : inline std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os,</span>
-<span class="lineNum">      47 </span>            :                                 const Frame::Logical&amp; /*meta*/) {
-<a name="48"><span class="lineNum">      48 </span><span class="lineCov">          1 :   return os &lt;&lt; &quot;Logical&quot;;</span></a>
-<span class="lineNum">      49 </span>            : }
-<span class="lineNum">      50 </span><span class="lineCov">         27 : inline std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os, const Frame::Grid&amp; /*meta*/) {</span>
-<a name="51"><span class="lineNum">      51 </span><span class="lineCov">         27 :   return os &lt;&lt; &quot;Grid&quot;;</span></a>
-<span class="lineNum">      52 </span>            : }
-<span class="lineNum">      53 </span><span class="lineCov">          1 : inline std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os,</span>
-<span class="lineNum">      54 </span>            :                                 const Frame::Inertial&amp; /*meta*/) {
-<a name="55"><span class="lineNum">      55 </span><span class="lineCov">          1 :   return os &lt;&lt; &quot;Inertial&quot;;</span></a>
-<span class="lineNum">      56 </span>            : }
-<span class="lineNum">      57 </span><span class="lineCov">          1 : inline std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os,</span>
-<span class="lineNum">      58 </span>            :                                 const Frame::Distorted&amp; /*meta*/) {
-<span class="lineNum">      59 </span><span class="lineCov">          1 :   return os &lt;&lt; &quot;Distorted&quot;;</span>
-<span class="lineNum">      60 </span>            : }
-<span class="lineNum">      61 </span>            : /// \endcond
-<span class="lineNum">      62 </span>            : 
-<span class="lineNum">      63 </span>            : /// \ingroup Tensor
-<span class="lineNum">      64 </span>            : /// Indicates whether the \ref SpacetimeIndex &quot;TensorIndexType&quot; is
-<span class="lineNum">      65 </span>            : /// Spatial or Spacetime
-<span class="lineNum">      66 </span>            : enum class IndexType : char {
-<span class="lineNum">      67 </span>            :   /// The \ref SpatialIndex &quot;TensorIndexType&quot; is purely spatial
-<span class="lineNum">      68 </span>            :   Spatial,
-<span class="lineNum">      69 </span>            :   /// The \ref SpacetimeIndex &quot;TensorIndexType&quot; is a spacetime index
-<span class="lineNum">      70 </span>            :   Spacetime
-<span class="lineNum">      71 </span>            : };
-<a name="72"><span class="lineNum">      72 </span>            : </a>
-<span class="lineNum">      73 </span>            : /// \cond HIDDEN_SYMBOLS
-<span class="lineNum">      74 </span><span class="lineCov">         26 : inline std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os, const IndexType&amp; index_type) {</span>
-<span class="lineNum">      75 </span><span class="lineCov">         26 :   return os &lt;&lt; (index_type == IndexType::Spatial ? &quot;Spatial&quot; : &quot;Spacetime&quot;);</span>
-<span class="lineNum">      76 </span>            : }
-<span class="lineNum">      77 </span>            : /// \endcond
-<span class="lineNum">      78 </span>            : 
-<span class="lineNum">      79 </span>            : namespace Tensor_detail {
-<span class="lineNum">      80 </span>            : /// \ingroup Tensor
-<span class="lineNum">      81 </span>            : /// A ::TensorIndexType holds information about what type of index an index of a
-<span class="lineNum">      82 </span>            : /// Tensor is. It holds the information about the number of spatial dimensions,
-<span class="lineNum">      83 </span>            : /// whether the index is covariant or contravariant (::UpLo), the ::Frame the
-<span class="lineNum">      84 </span>            : /// index is in, and whether the Index is Spatial or Spacetime.
-<span class="lineNum">      85 </span>            : /// \tparam SpatialDim the spatial dimensionality of the TensorIndex
-<span class="lineNum">      86 </span>            : /// \tparam Ul either UpLo::Up or UpLo::Lo for contra or covariant
-<span class="lineNum">      87 </span>            : /// \tparam Fr the Frame the TensorIndex is in
-<span class="lineNum">      88 </span>            : /// \tparam Index either IndexType::Spatial or IndexType::Spacetime
-<span class="lineNum">      89 </span>            : template &lt;size_t SpatialDim, UpLo Ul, typename Fr, IndexType Index&gt;
-<span class="lineNum">      90 </span>            : struct TensorIndexType {
-<span class="lineNum">      91 </span>            :   static_assert(SpatialDim &gt; 0,
-<span class="lineNum">      92 </span>            :                 &quot;Cannot have a spatial dimensionality less than 1 (one) in a &quot;
-<span class="lineNum">      93 </span>            :                 &quot;TensorIndexType&quot;);
-<span class="lineNum">      94 </span>            :   using value_type = decltype(SpatialDim);
-<span class="lineNum">      95 </span>            :   static constexpr value_type dim =
-<span class="lineNum">      96 </span>            :       Index == IndexType::Spatial ? SpatialDim
-<span class="lineNum">      97 </span>            :                                   : SpatialDim + static_cast&lt;value_type&gt;(1);
-<span class="lineNum">      98 </span>            :   // value is here just so that some generic metafunctions can retrieve the dim
-<span class="lineNum">      99 </span>            :   // easily
-<span class="lineNum">     100 </span>            :   static constexpr value_type value = dim;
-<span class="lineNum">     101 </span>            :   static constexpr UpLo ul = Ul;
-<span class="lineNum">     102 </span>            :   using Frame = Fr;
-<span class="lineNum">     103 </span>            :   static constexpr IndexType index_type = Index;
-<span class="lineNum">     104 </span>            : };
-<span class="lineNum">     105 </span>            : }  // namespace Tensor_detail
-<span class="lineNum">     106 </span>            : 
-<span class="lineNum">     107 </span>            : /// \ingroup Tensor
-<span class="lineNum">     108 </span>            : /// A SpatialIndex holds information about the number of spatial
-<span class="lineNum">     109 </span>            : /// dimensions, whether the index is covariant or contravariant (::UpLo), and
-<span class="lineNum">     110 </span>            : /// the ::Frame the index is in.
-<span class="lineNum">     111 </span>            : /// \tparam SpatialDim the spatial dimensionality of the \ref
-<span class="lineNum">     112 </span>            : /// SpatialIndex &quot;TensorIndexType&quot;
-<span class="lineNum">     113 </span>            : /// \tparam Ul either UpLo::Up or UpLo::Lo for contra or covariant
-<span class="lineNum">     114 </span>            : /// \tparam Fr the ::Frame the \ref SpatialIndex &quot;TensorIndexType&quot;
-<span class="lineNum">     115 </span>            : /// is in
-<span class="lineNum">     116 </span>            : template &lt;size_t SpatialDim, UpLo Ul, typename Fr&gt;
-<span class="lineNum">     117 </span>            : using SpatialIndex =
-<span class="lineNum">     118 </span>            :     Tensor_detail::TensorIndexType&lt;SpatialDim, Ul, Fr, IndexType::Spatial&gt;;
-<span class="lineNum">     119 </span>            : 
-<span class="lineNum">     120 </span>            : /// \ingroup Tensor
-<span class="lineNum">     121 </span>            : /// A SpacetimeIndex holds information about the number of spatial
-<span class="lineNum">     122 </span>            : /// dimensions, whether the index is covariant or contravariant (::UpLo), and
-<span class="lineNum">     123 </span>            : /// the ::Frame the index is in.
-<span class="lineNum">     124 </span>            : ///
-<span class="lineNum">     125 </span>            : /// \tparam SpatialDim the spatial dimensionality of the \ref
-<span class="lineNum">     126 </span>            : /// SpacetimeIndex &quot;TensorIndexType&quot;
-<span class="lineNum">     127 </span>            : /// \tparam Ul either UpLo::Up or UpLo::Lo for contra or covariant
-<span class="lineNum">     128 </span>            : /// \tparam Fr the ::Frame the \ref SpacetimeIndex &quot;TensorIndexType&quot;
-<span class="lineNum">     129 </span>            : /// is in
-<span class="lineNum">     130 </span>            : template &lt;size_t SpatialDim, UpLo Ul, typename Fr&gt;
-<span class="lineNum">     131 </span>            : using SpacetimeIndex =
-<span class="lineNum">     132 </span>            :     Tensor_detail::TensorIndexType&lt;SpatialDim, Ul, Fr, IndexType::Spacetime&gt;;
-<span class="lineNum">     133 </span>            : 
-<span class="lineNum">     134 </span>            : namespace tt {
-<span class="lineNum">     135 </span>            : // @{
-<span class="lineNum">     136 </span>            : /// \ingroup Tensor TypeTraits
-<span class="lineNum">     137 </span>            : /// Inherits from std::true_type if T is a \ref SpacetimeIndex
-<span class="lineNum">     138 </span>            : /// &quot;TensorIndexType&quot;
-<span class="lineNum">     139 </span>            : /// \tparam T the type to check
-<span class="lineNum">     140 </span>            : template &lt;typename T&gt;
-<span class="lineNum">     141 </span>            : struct is_tensor_index_type : std::false_type {};
-<span class="lineNum">     142 </span>            : /// \cond HIDDEN_SYMBOLS
-<span class="lineNum">     143 </span>            : template &lt;size_t SpatialDim, UpLo Ul, typename Fr, IndexType Index&gt;
-<span class="lineNum">     144 </span>            : struct is_tensor_index_type&lt;
-<span class="lineNum">     145 </span>            :     Tensor_detail::TensorIndexType&lt;SpatialDim, Ul, Fr, Index&gt;&gt;
-<span class="lineNum">     146 </span>            :     : std::true_type {};
-<span class="lineNum">     147 </span>            : /// \endcond
-<span class="lineNum">     148 </span>            : /// \see is_tensor_index_type
-<span class="lineNum">     149 </span>            : template &lt;typename T&gt;
-<span class="lineNum">     150 </span>            : using is_tensor_index_type_t = typename is_tensor_index_type&lt;T&gt;::type;
-<span class="lineNum">     151 </span>            : // @}
-<span class="lineNum">     152 </span>            : }  // namespace tt
-<span class="lineNum">     153 </span>            : 
-<span class="lineNum">     154 </span>            : /// \ingroup Tensor
-<span class="lineNum">     155 </span>            : /// Change the \ref SpacetimeIndex &quot;TensorIndexType&quot; to be covariant
-<span class="lineNum">     156 </span>            : /// if it's contravariant and vice-versa
-<span class="lineNum">     157 </span>            : ///
-<span class="lineNum">     158 </span>            : /// Here is an example of how to use ::change_index_up_lo
-<span class="lineNum">     159 </span>            : /// \snippet Test_Tensor.cpp change_up_lo
-<span class="lineNum">     160 </span>            : ///
-<span class="lineNum">     161 </span>            : /// \tparam Index the \ref SpacetimeIndex &quot;TensorIndexType&quot; to change
-<span class="lineNum">     162 </span>            : template &lt;typename Index&gt;
-<span class="lineNum">     163 </span>            : using change_index_up_lo = Tensor_detail::TensorIndexType&lt;
-<span class="lineNum">     164 </span>            :     Index::index_type == IndexType::Spatial ? Index::value : Index::value - 1,
-<span class="lineNum">     165 </span>            :     Index::ul == UpLo::Up ? UpLo::Lo : UpLo::Up, typename Index::Frame,
-<span class="lineNum">     166 </span>            :     Index::index_type&gt;;
-<span class="lineNum">     167 </span>            : 
-<span class="lineNum">     168 </span>            : template &lt;typename... Ts&gt;
-<span class="lineNum">     169 </span>            : using index_list = typelist&lt;Ts...&gt;;
+<span class="lineNum">      11 </span>            : #include &quot;Utilities/Literals.hpp&quot;
+<span class="lineNum">      12 </span>            : #include &quot;Utilities/TMPL.hpp&quot;
+<span class="lineNum">      13 </span>            : #include &quot;Utilities/TypeTraits.hpp&quot;
+<span class="lineNum">      14 </span>            : 
+<span class="lineNum">      15 </span>            : /// \ingroup Tensor
+<span class="lineNum">      16 </span>            : /// Whether a \ref SpacetimeIndex &quot;TensorIndexType&quot; is covariant or
+<span class="lineNum">      17 </span>            : /// contravariant
+<span class="lineNum">      18 </span>            : enum class UpLo {
+<span class="lineNum">      19 </span>            :   /// Contravariant, or Upper index
+<span class="lineNum">      20 </span>            :   Up,
+<span class="lineNum">      21 </span>            :   /// Covariant, or Lower index
+<span class="lineNum">      22 </span>            :   Lo
+<span class="lineNum">      23 </span>            : };
+<a name="24"><span class="lineNum">      24 </span>            : </a>
+<span class="lineNum">      25 </span>            : /// \cond HIDDEN_SYMBOLS
+<span class="lineNum">      26 </span><span class="lineCov">         34 : inline std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os, const UpLo&amp; ul) {</span>
+<span class="lineNum">      27 </span><span class="lineCov">         34 :   return os &lt;&lt; (ul == UpLo::Up ? &quot;Up&quot;s : &quot;Lo&quot;s);</span>
+<span class="lineNum">      28 </span>            : }
+<span class="lineNum">      29 </span>            : /// \endcond
+<span class="lineNum">      30 </span>            : 
+<span class="lineNum">      31 </span>            : /// \ingroup Tensor
+<span class="lineNum">      32 </span>            : /// Indicates the ::Frame that a \ref SpacetimeIndex &quot;TensorIndexType&quot;
+<span class="lineNum">      33 </span>            : /// is in.
+<span class="lineNum">      34 </span>            : namespace Frame {
+<span class="lineNum">      35 </span>            : struct Logical {};
+<span class="lineNum">      36 </span>            : struct Grid {};
+<span class="lineNum">      37 </span>            : struct Inertial {};
+<span class="lineNum">      38 </span>            : struct Distorted {};
+<span class="lineNum">      39 </span>            : 
+<span class="lineNum">      40 </span>            : /// This ordered list is needed to determine the ordering of frames
+<span class="lineNum">      41 </span>            : /// for jacobians.
+<span class="lineNum">      42 </span>            : using ordered_frame_list = typelist&lt;Logical, Grid, Inertial, Distorted&gt;;
+<span class="lineNum">      43 </span>            : 
+<span class="lineNum">      44 </span>            : }  // namespace Frame
+<a name="45"><span class="lineNum">      45 </span>            : </a>
+<span class="lineNum">      46 </span>            : /// \cond HIDDEN_SYMBOLS
+<span class="lineNum">      47 </span><span class="lineCov">          5 : inline std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os,</span>
+<span class="lineNum">      48 </span>            :                                 const Frame::Logical&amp; /*meta*/) {
+<a name="49"><span class="lineNum">      49 </span><span class="lineCov">          5 :   return os &lt;&lt; &quot;Logical&quot;;</span></a>
+<span class="lineNum">      50 </span>            : }
+<span class="lineNum">      51 </span><span class="lineCov">         31 : inline std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os, const Frame::Grid&amp; /*meta*/) {</span>
+<a name="52"><span class="lineNum">      52 </span><span class="lineCov">         31 :   return os &lt;&lt; &quot;Grid&quot;;</span></a>
+<span class="lineNum">      53 </span>            : }
+<span class="lineNum">      54 </span><span class="lineCov">          1 : inline std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os,</span>
+<span class="lineNum">      55 </span>            :                                 const Frame::Inertial&amp; /*meta*/) {
+<a name="56"><span class="lineNum">      56 </span><span class="lineCov">          1 :   return os &lt;&lt; &quot;Inertial&quot;;</span></a>
+<span class="lineNum">      57 </span>            : }
+<span class="lineNum">      58 </span><span class="lineCov">          1 : inline std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os,</span>
+<span class="lineNum">      59 </span>            :                                 const Frame::Distorted&amp; /*meta*/) {
+<span class="lineNum">      60 </span><span class="lineCov">          1 :   return os &lt;&lt; &quot;Distorted&quot;;</span>
+<span class="lineNum">      61 </span>            : }
+<span class="lineNum">      62 </span>            : /// \endcond
+<span class="lineNum">      63 </span>            : 
+<span class="lineNum">      64 </span>            : /// \ingroup Tensor
+<span class="lineNum">      65 </span>            : /// Indicates whether the \ref SpacetimeIndex &quot;TensorIndexType&quot; is
+<span class="lineNum">      66 </span>            : /// Spatial or Spacetime
+<span class="lineNum">      67 </span>            : enum class IndexType : char {
+<span class="lineNum">      68 </span>            :   /// The \ref SpatialIndex &quot;TensorIndexType&quot; is purely spatial
+<span class="lineNum">      69 </span>            :   Spatial,
+<span class="lineNum">      70 </span>            :   /// The \ref SpacetimeIndex &quot;TensorIndexType&quot; is a spacetime index
+<span class="lineNum">      71 </span>            :   Spacetime
+<span class="lineNum">      72 </span>            : };
+<a name="73"><span class="lineNum">      73 </span>            : </a>
+<span class="lineNum">      74 </span>            : /// \cond HIDDEN_SYMBOLS
+<span class="lineNum">      75 </span><span class="lineCov">         34 : inline std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os, const IndexType&amp; index_type) {</span>
+<span class="lineNum">      76 </span><span class="lineCov">         34 :   return os &lt;&lt; (index_type == IndexType::Spatial ? &quot;Spatial&quot; : &quot;Spacetime&quot;);</span>
+<span class="lineNum">      77 </span>            : }
+<span class="lineNum">      78 </span>            : /// \endcond
+<span class="lineNum">      79 </span>            : 
+<span class="lineNum">      80 </span>            : namespace Tensor_detail {
+<span class="lineNum">      81 </span>            : /// \ingroup Tensor
+<span class="lineNum">      82 </span>            : /// A ::TensorIndexType holds information about what type of index an index of a
+<span class="lineNum">      83 </span>            : /// Tensor is. It holds the information about the number of spatial dimensions,
+<span class="lineNum">      84 </span>            : /// whether the index is covariant or contravariant (::UpLo), the ::Frame the
+<span class="lineNum">      85 </span>            : /// index is in, and whether the Index is Spatial or Spacetime.
+<span class="lineNum">      86 </span>            : /// \tparam SpatialDim the spatial dimensionality of the TensorIndex
+<span class="lineNum">      87 </span>            : /// \tparam Ul either UpLo::Up or UpLo::Lo for contra or covariant
+<span class="lineNum">      88 </span>            : /// \tparam Fr the Frame the TensorIndex is in
+<span class="lineNum">      89 </span>            : /// \tparam Index either IndexType::Spatial or IndexType::Spacetime
+<span class="lineNum">      90 </span>            : template &lt;size_t SpatialDim, UpLo Ul, typename Fr, IndexType Index&gt;
+<span class="lineNum">      91 </span>            : struct TensorIndexType {
+<span class="lineNum">      92 </span>            :   static_assert(SpatialDim &gt; 0,
+<span class="lineNum">      93 </span>            :                 &quot;Cannot have a spatial dimensionality less than 1 (one) in a &quot;
+<span class="lineNum">      94 </span>            :                 &quot;TensorIndexType&quot;);
+<span class="lineNum">      95 </span>            :   using value_type = decltype(SpatialDim);
+<span class="lineNum">      96 </span>            :   static constexpr value_type dim =
+<span class="lineNum">      97 </span>            :       Index == IndexType::Spatial ? SpatialDim
+<span class="lineNum">      98 </span>            :                                   : SpatialDim + static_cast&lt;value_type&gt;(1);
+<span class="lineNum">      99 </span>            :   // value is here just so that some generic metafunctions can retrieve the dim
+<span class="lineNum">     100 </span>            :   // easily
+<span class="lineNum">     101 </span>            :   static constexpr value_type value = dim;
+<span class="lineNum">     102 </span>            :   static constexpr UpLo ul = Ul;
+<span class="lineNum">     103 </span>            :   using Frame = Fr;
+<span class="lineNum">     104 </span>            :   static constexpr IndexType index_type = Index;
+<span class="lineNum">     105 </span>            : };
+<span class="lineNum">     106 </span>            : }  // namespace Tensor_detail
+<span class="lineNum">     107 </span>            : 
+<span class="lineNum">     108 </span>            : /// \ingroup Tensor
+<span class="lineNum">     109 </span>            : /// A SpatialIndex holds information about the number of spatial
+<span class="lineNum">     110 </span>            : /// dimensions, whether the index is covariant or contravariant (::UpLo), and
+<span class="lineNum">     111 </span>            : /// the ::Frame the index is in.
+<span class="lineNum">     112 </span>            : /// \tparam SpatialDim the spatial dimensionality of the \ref
+<span class="lineNum">     113 </span>            : /// SpatialIndex &quot;TensorIndexType&quot;
+<span class="lineNum">     114 </span>            : /// \tparam Ul either UpLo::Up or UpLo::Lo for contra or covariant
+<span class="lineNum">     115 </span>            : /// \tparam Fr the ::Frame the \ref SpatialIndex &quot;TensorIndexType&quot;
+<span class="lineNum">     116 </span>            : /// is in
+<span class="lineNum">     117 </span>            : template &lt;size_t SpatialDim, UpLo Ul, typename Fr&gt;
+<span class="lineNum">     118 </span>            : using SpatialIndex =
+<span class="lineNum">     119 </span>            :     Tensor_detail::TensorIndexType&lt;SpatialDim, Ul, Fr, IndexType::Spatial&gt;;
+<span class="lineNum">     120 </span>            : 
+<span class="lineNum">     121 </span>            : /// \ingroup Tensor
+<span class="lineNum">     122 </span>            : /// A SpacetimeIndex holds information about the number of spatial
+<span class="lineNum">     123 </span>            : /// dimensions, whether the index is covariant or contravariant (::UpLo), and
+<span class="lineNum">     124 </span>            : /// the ::Frame the index is in.
+<span class="lineNum">     125 </span>            : ///
+<span class="lineNum">     126 </span>            : /// \tparam SpatialDim the spatial dimensionality of the \ref
+<span class="lineNum">     127 </span>            : /// SpacetimeIndex &quot;TensorIndexType&quot;
+<span class="lineNum">     128 </span>            : /// \tparam Ul either UpLo::Up or UpLo::Lo for contra or covariant
+<span class="lineNum">     129 </span>            : /// \tparam Fr the ::Frame the \ref SpacetimeIndex &quot;TensorIndexType&quot;
+<span class="lineNum">     130 </span>            : /// is in
+<span class="lineNum">     131 </span>            : template &lt;size_t SpatialDim, UpLo Ul, typename Fr&gt;
+<span class="lineNum">     132 </span>            : using SpacetimeIndex =
+<span class="lineNum">     133 </span>            :     Tensor_detail::TensorIndexType&lt;SpatialDim, Ul, Fr, IndexType::Spacetime&gt;;
+<span class="lineNum">     134 </span>            : 
+<span class="lineNum">     135 </span>            : namespace tt {
+<span class="lineNum">     136 </span>            : // @{
+<span class="lineNum">     137 </span>            : /// \ingroup Tensor TypeTraits
+<span class="lineNum">     138 </span>            : /// Inherits from std::true_type if T is a \ref SpacetimeIndex
+<span class="lineNum">     139 </span>            : /// &quot;TensorIndexType&quot;
+<span class="lineNum">     140 </span>            : /// \tparam T the type to check
+<span class="lineNum">     141 </span>            : template &lt;typename T&gt;
+<span class="lineNum">     142 </span>            : struct is_tensor_index_type : std::false_type {};
+<span class="lineNum">     143 </span>            : /// \cond HIDDEN_SYMBOLS
+<span class="lineNum">     144 </span>            : template &lt;size_t SpatialDim, UpLo Ul, typename Fr, IndexType Index&gt;
+<span class="lineNum">     145 </span>            : struct is_tensor_index_type&lt;
+<span class="lineNum">     146 </span>            :     Tensor_detail::TensorIndexType&lt;SpatialDim, Ul, Fr, Index&gt;&gt;
+<span class="lineNum">     147 </span>            :     : std::true_type {};
+<span class="lineNum">     148 </span>            : /// \endcond
+<span class="lineNum">     149 </span>            : /// \see is_tensor_index_type
+<span class="lineNum">     150 </span>            : template &lt;typename T&gt;
+<span class="lineNum">     151 </span>            : using is_tensor_index_type_t = typename is_tensor_index_type&lt;T&gt;::type;
+<span class="lineNum">     152 </span>            : // @}
+<span class="lineNum">     153 </span>            : }  // namespace tt
+<span class="lineNum">     154 </span>            : 
+<span class="lineNum">     155 </span>            : /// \ingroup Tensor
+<span class="lineNum">     156 </span>            : /// Change the \ref SpacetimeIndex &quot;TensorIndexType&quot; to be covariant
+<span class="lineNum">     157 </span>            : /// if it's contravariant and vice-versa
+<span class="lineNum">     158 </span>            : ///
+<span class="lineNum">     159 </span>            : /// Here is an example of how to use ::change_index_up_lo
+<span class="lineNum">     160 </span>            : /// \snippet Test_Tensor.cpp change_up_lo
+<span class="lineNum">     161 </span>            : ///
+<span class="lineNum">     162 </span>            : /// \tparam Index the \ref SpacetimeIndex &quot;TensorIndexType&quot; to change
+<span class="lineNum">     163 </span>            : template &lt;typename Index&gt;
+<span class="lineNum">     164 </span>            : using change_index_up_lo = Tensor_detail::TensorIndexType&lt;
+<span class="lineNum">     165 </span>            :     Index::index_type == IndexType::Spatial ? Index::value : Index::value - 1,
+<span class="lineNum">     166 </span>            :     Index::ul == UpLo::Up ? UpLo::Lo : UpLo::Up, typename Index::Frame,
+<span class="lineNum">     167 </span>            :     Index::index_type&gt;;
+<span class="lineNum">     168 </span>            : 
+<span class="lineNum">     169 </span>            : template &lt;typename... Ts&gt;
+<span class="lineNum">     170 </span>            : using index_list = typelist&lt;Ts...&gt;;
 </pre>
       </td>
     </tr>

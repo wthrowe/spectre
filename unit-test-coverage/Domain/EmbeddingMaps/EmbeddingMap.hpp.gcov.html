@@ -1,0 +1,158 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 0ddd6405eef1e57de1d0a765aa4f6cfbc83c9f15 - Domain/EmbeddingMaps/EmbeddingMap.hpp</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">SpECTRE Unit Test Code Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../index.html">top level</a> - <a href="index.html">Domain/EmbeddingMaps</a> - EmbeddingMap.hpp<span style="font-size: 80%;"> (source / <a href="EmbeddingMap.hpp.func-sort-c.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/0ddd6405eef1e57de1d0a765aa4f6cfbc83c9f15">0ddd6405eef1e57de1d0a765aa4f6cfbc83c9f15</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">2</td>
+            <td class="headerCovTableEntry">2</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2017-07-01 02:02:36</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">4</td>
+            <td class="headerCovTableEntry">6</td>
+            <td class="headerCovTableEntryLo">66.7 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>            : // Distributed under the MIT License.</a>
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : /// \file
+<span class="lineNum">       5 </span>            : /// Defines the abstract base class EmbeddingMap.
+<span class="lineNum">       6 </span>            : 
+<span class="lineNum">       7 </span>            : #pragma once
+<span class="lineNum">       8 </span>            : 
+<span class="lineNum">       9 </span>            : #include &lt;memory&gt;
+<span class="lineNum">      10 </span>            : 
+<span class="lineNum">      11 </span>            : #include &quot;DataStructures/Tensor/Tensor.hpp&quot;
+<span class="lineNum">      12 </span>            : #include &quot;Parallel/CharmPupable.hpp&quot;
+<span class="lineNum">      13 </span>            : 
+<span class="lineNum">      14 </span>            : /// Contains all embedding maps.
+<span class="lineNum">      15 </span>            : namespace EmbeddingMaps {}
+<span class="lineNum">      16 </span>            : 
+<span class="lineNum">      17 </span>            : /// \ingroup ComputationalDomain
+<span class="lineNum">      18 </span>            : /// Base class representing a coordinate mapping from a
+<span class="lineNum">      19 </span>            : /// `DimOfDomain`-dimensional space (coordinates \f$\xi^I\f$) to a
+<span class="lineNum">      20 </span>            : /// `DimOfRange`-dimensional space (coordinates \f$x^i\f$).
+<span class="lineNum">      21 </span>            : template &lt;size_t DimOfDomain, size_t DimOfRange&gt;
+<span class="lineNum">      22 </span>            : class EmbeddingMap : public PUP::able {
+<span class="lineNum">      23 </span>            :   static_assert(DimOfRange &gt;= DimOfDomain,
+<span class="lineNum">      24 </span>            :                 &quot;EmbeddingMap DimOfDomain &gt; DimOfRange&quot;);
+<span class="lineNum">      25 </span>            : 
+<span class="lineNum">      26 </span>            :  public:
+<a name="27"><span class="lineNum">      27 </span>            :   WRAPPED_PUPable_abstract(EmbeddingMap);  // NOLINT</a>
+<a name="28"><span class="lineNum">      28 </span>            : </a>
+<span class="lineNum">      29 </span><span class="lineCov">          2 :   EmbeddingMap() = default;</span>
+<span class="lineNum">      30 </span><span class="lineCov">          2 :   ~EmbeddingMap() override = default;</span>
+<span class="lineNum">      31 </span>            :   EmbeddingMap(const EmbeddingMap&lt;DimOfDomain, DimOfRange&gt;&amp;) = delete;
+<span class="lineNum">      32 </span>            :   EmbeddingMap(EmbeddingMap&lt;DimOfDomain,  // NOLINT
+<span class="lineNum">      33 </span>            :                             DimOfRange&gt;&amp;&amp;) noexcept = default;
+<span class="lineNum">      34 </span>            :   EmbeddingMap&lt;DimOfDomain, DimOfRange&gt;&amp; operator=(
+<span class="lineNum">      35 </span>            :       const EmbeddingMap&lt;DimOfDomain, DimOfRange&gt;&amp;) = delete;
+<span class="lineNum">      36 </span>            :   EmbeddingMap&lt;DimOfDomain, DimOfRange&gt;&amp; operator=(
+<span class="lineNum">      37 </span>            :       EmbeddingMap&lt;DimOfDomain, DimOfRange&gt;&amp;&amp;) noexcept = default;
+<span class="lineNum">      38 </span>            : 
+<span class="lineNum">      39 </span>            :   /// Return a copy of the concrete EmbeddingMap.
+<span class="lineNum">      40 </span>            :   virtual std::unique_ptr&lt;EmbeddingMap&lt;DimOfDomain, DimOfRange&gt;&gt; get_clone()
+<span class="lineNum">      41 </span>            :       const = 0;
+<span class="lineNum">      42 </span>            : 
+<span class="lineNum">      43 </span>            :   /// Apply the mapping (i.e. compute \f$x^i(\xi^I)\f$).
+<span class="lineNum">      44 </span>            :   ///
+<span class="lineNum">      45 </span>            :   /// \return the point \f$x^i\f$ in the range of the mapping.
+<span class="lineNum">      46 </span>            :   /// \param xi the point \f$\xi^I\f$ in the domain of the mapping.
+<span class="lineNum">      47 </span>            :   virtual Point&lt;DimOfRange, Frame::Grid&gt; operator()(
+<span class="lineNum">      48 </span>            :       const Point&lt;DimOfDomain, Frame::Logical&gt;&amp; xi) const = 0;
+<span class="lineNum">      49 </span>            : 
+<span class="lineNum">      50 </span>            :   /// Apply the inverse mapping (i.e. compute \f$\xi^I(x^i)\f$).
+<span class="lineNum">      51 </span>            :   ///
+<span class="lineNum">      52 </span>            :   /// \return the point \f$\xi^I\f$ in the domain of the mapping.
+<span class="lineNum">      53 </span>            :   /// \param x the point \f$x^i\f$ in the range of the mapping.
+<span class="lineNum">      54 </span>            :   virtual Point&lt;DimOfDomain, Frame::Logical&gt; inverse(
+<span class="lineNum">      55 </span>            :       const Point&lt;DimOfRange, Frame::Grid&gt;&amp; x) const = 0;
+<span class="lineNum">      56 </span>            : 
+<span class="lineNum">      57 </span>            :   /*!
+<span class="lineNum">      58 </span>            :    * Compute a component of the Jacobian at the given domain point
+<span class="lineNum">      59 </span>            :    * (i.e. compute \f$\frac{\partial x^{ud}}{\partial \xi^{ld}}\f$).
+<span class="lineNum">      60 </span>            :    * \param xi the point \f$\Xi^I\f$ in the domain of the mapping.
+<span class="lineNum">      61 </span>            :    * \param ud the upper index of the Jacobian (a range index).
+<span class="lineNum">      62 </span>            :    * \param ld the lower index of the Jacobian (a domain index).
+<span class="lineNum">      63 </span>            :    */
+<span class="lineNum">      64 </span>            :   virtual double jacobian(const Point&lt;DimOfDomain, Frame::Logical&gt;&amp; xi,
+<span class="lineNum">      65 </span>            :                           size_t ud, size_t ld) const = 0;
+<span class="lineNum">      66 </span>            : 
+<span class="lineNum">      67 </span>            :   /// (i.e. compute \f$\frac{\partial \xi^{ud}}{\partial x^{ld}}\f$).
+<span class="lineNum">      68 </span>            :   ///
+<span class="lineNum">      69 </span>            :   /// \param xi the point \f$\xi^I\f$ in the domain of the mapping.
+<span class="lineNum">      70 </span>            :   /// \param ud the upper index of the inverse Jacobian (a domain index).
+<span class="lineNum">      71 </span>            :   /// \param ld the lower index of the inverse Jacobian (a range index).
+<span class="lineNum">      72 </span>            :   virtual double inv_jacobian(const Point&lt;DimOfDomain, Frame::Logical&gt;&amp; xi,
+<span class="lineNum">      73 </span>            :                               size_t ud, size_t ld) const = 0;
+<span class="lineNum">      74 </span>            : };
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

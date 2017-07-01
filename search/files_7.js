@@ -1,5 +1,7 @@
 var searchData=
 [
+  ['identity_2ecpp',['Identity.cpp',['../Identity_8cpp.html',1,'']]],
+  ['identity_2ehpp',['Identity.hpp',['../Identity_8hpp.html',1,'']]],
   ['index_2ecpp',['Index.cpp',['../Index_8cpp.html',1,'']]],
   ['index_2ehpp',['Index.hpp',['../Index_8hpp.html',1,'']]],
   ['indexiterator_2ecpp',['IndexIterator.cpp',['../IndexIterator_8cpp.html',1,'']]],

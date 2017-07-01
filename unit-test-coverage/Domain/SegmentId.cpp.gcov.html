@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - 0ddd6405eef1e57de1d0a765aa4f6cfbc83c9f15 - Domain/SegmentId.cpp</title>
+  <link rel="stylesheet" type="text/css" href="../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">SpECTRE Unit Test Code Coverage Report</td></tr>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">Domain</a> - SegmentId.cpp<span style="font-size: 80%;"> (source / <a href="SegmentId.cpp.func-sort-c.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Commit:</td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/0ddd6405eef1e57de1d0a765aa4f6cfbc83c9f15">0ddd6405eef1e57de1d0a765aa4f6cfbc83c9f15</a></td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">11</td>
+            <td class="headerCovTableEntry">11</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2017-07-01 02:02:36</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">3</td>
+            <td class="headerCovTableEntry">3</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+          <tr><td><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>            : // Distributed under the MIT License.</a>
+<span class="lineNum">       2 </span>            : // See LICENSE.txt for details.
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : #include &quot;Domain/SegmentId.hpp&quot;
+<span class="lineNum">       5 </span>            : 
+<span class="lineNum">       6 </span>            : #include &lt;boost/functional/hash.hpp&gt;
+<span class="lineNum">       7 </span>            : #include &lt;limits&gt;
+<a name="8"><span class="lineNum">       8 </span>            : #include &lt;ostream&gt;</a>
+<span class="lineNum">       9 </span>            : 
+<span class="lineNum">      10 </span><span class="lineCov">        216 : SegmentId::SegmentId(const size_t refinement_level, const size_t index)</span>
+<span class="lineNum">      11 </span><span class="lineCov">        216 :     : refinement_level_(refinement_level), index_(index) {</span>
+<span class="lineNum">      12 </span><span class="lineCov">        216 :   ASSERT(index &lt; two_to_the(refinement_level),</span>
+<span class="lineNum">      13 </span>            :          &quot;index = &quot; &lt;&lt; index &lt;&lt; &quot;, refinement_level = &quot; &lt;&lt; refinement_level);
+<a name="14"><span class="lineNum">      14 </span><span class="lineCov">        216 : }</span></a>
+<span class="lineNum">      15 </span>            : 
+<span class="lineNum">      16 </span><span class="lineCov">          3 : void SegmentId::pup(PUP::er&amp; p) {</span>
+<span class="lineNum">      17 </span><span class="lineCov">          3 :   p | refinement_level_;</span>
+<span class="lineNum">      18 </span><span class="lineCov">          3 :   p | index_;</span>
+<a name="19"><span class="lineNum">      19 </span><span class="lineCov">          3 : }</span></a>
+<span class="lineNum">      20 </span>            : 
+<span class="lineNum">      21 </span><span class="lineCov">        189 : std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os, const SegmentId&amp; id) {</span>
+<span class="lineNum">      22 </span><span class="lineCov">        189 :   os &lt;&lt; 'L' &lt;&lt; id.refinement_level() &lt;&lt; 'I' &lt;&lt; id.index();</span>
+<span class="lineNum">      23 </span><span class="lineCov">        189 :   return os;</span>
+<span class="lineNum">      24 </span>            : }
+<span class="lineNum">      25 </span>            : 
+<span class="lineNum">      26 </span>            : // LCOV_EXCL_START
+<span class="lineNum">      27 </span>            : size_t hash_value(const SegmentId&amp; s) noexcept {
+<span class="lineNum">      28 </span>            :   size_t h = 0;
+<span class="lineNum">      29 </span>            :   boost::hash_combine(h, s.refinement_level());
+<span class="lineNum">      30 </span>            :   boost::hash_combine(h, s.index());
+<span class="lineNum">      31 </span>            :   return h;
+<span class="lineNum">      32 </span>            : }
+<span class="lineNum">      33 </span>            : // LCOV_EXCL_STOP
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

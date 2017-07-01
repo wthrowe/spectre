@@ -1,6 +1,8 @@
 var searchData=
 [
   ['scoped_5fallocator',['scoped_allocator',['http://en.cppreference.com/w/cpp/header/scoped_allocator.html',1,'']]],
+  ['segmentid_2ecpp',['SegmentId.cpp',['../SegmentId_8cpp.html',1,'']]],
+  ['segmentid_2ehpp',['SegmentId.hpp',['../SegmentId_8hpp.html',1,'']]],
   ['serialize_2ehpp',['Serialize.hpp',['../Serialize_8hpp.html',1,'']]],
   ['set',['set',['http://en.cppreference.com/w/cpp/header/set.html',1,'']]],
   ['shared_5fmutex',['shared_mutex',['http://en.cppreference.com/w/cpp/header/shared_mutex.html',1,'']]],

@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - 1161850ffd7aa69f59a838ff748e5ac8bb405152 - DataStructures/Tensor/TypeAliases.hpp</title>
+  <title>LCOV - 0ddd6405eef1e57de1d0a765aa4f6cfbc83c9f15 - DataStructures/Tensor/TypeAliases.hpp</title>
   <link rel="stylesheet" type="text/css" href="../../gcov.css">
 </head>
 
@@ -28,7 +28,7 @@
           </tr>
           <tr>
              <td class="headerItem">Commit:</td>
-             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/1161850ffd7aa69f59a838ff748e5ac8bb405152">1161850ffd7aa69f59a838ff748e5ac8bb405152</a></td>
+             <td class="headerValue"><a target="_blank" href="https://github.com/sxs-collaboration/spectre/commit/0ddd6405eef1e57de1d0a765aa4f6cfbc83c9f15">0ddd6405eef1e57de1d0a765aa4f6cfbc83c9f15</a></td>
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntry">1</td>
@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2017-06-30 02:02:44</td>
+            <td class="headerValue">2017-07-01 02:02:57</td>
             <td></td>
           </tr>
           <tr>
@@ -75,7 +75,7 @@
 <span class="lineNum">       9 </span>            : #include &quot;DataStructures/Tensor/IndexType.hpp&quot;
 <span class="lineNum">      10 </span>            : #include &quot;DataStructures/Tensor/Symmetry.hpp&quot;
 <span class="lineNum">      11 </span>            : 
-<span class="lineNum">      12 </span>            : class Data;
+<span class="lineNum">      12 </span>            : class DataVector;
 <span class="lineNum">      13 </span>            : template &lt;typename X, typename Symm, typename IndexLs&gt;
 <span class="lineNum">      14 </span>            : class Tensor;
 <span class="lineNum">      15 </span>            : 
@@ -84,324 +84,327 @@
 <span class="lineNum">      18 </span>            : template &lt;typename T&gt;
 <span class="lineNum">      19 </span><span class="lineCov">          2 : using Scalar = Tensor&lt;T, Symmetry&lt;&gt;, index_list&lt;&gt;&gt;;</span>
 <span class="lineNum">      20 </span>            : 
-<span class="lineNum">      21 </span>            : /*!
-<span class="lineNum">      22 </span>            :  * \ingroup Tensor
-<span class="lineNum">      23 </span>            :  * \brief Type aliases to construct common Tensors
-<span class="lineNum">      24 </span>            :  *
-<span class="lineNum">      25 </span>            :  * Lower case letters represent covariant indices and upper case letters
-<span class="lineNum">      26 </span>            :  * represent contravariant indices. Letters a, b, c, d represent spacetime
-<span class="lineNum">      27 </span>            :  * indices and i, j, k, l represent spatial indices.
-<span class="lineNum">      28 </span>            :  */
-<span class="lineNum">      29 </span>            : namespace tnsr {
-<span class="lineNum">      30 </span>            : // Rank 1
-<span class="lineNum">      31 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr,
-<span class="lineNum">      32 </span>            :           IndexType Index = IndexType::Spacetime&gt;
-<span class="lineNum">      33 </span><span class="lineNoCov">          0 : using a = Tensor&lt;DataType, tmpl::integral_list&lt;std::int32_t, 1&gt;,</span>
-<span class="lineNum">      34 </span>            :                  index_list&lt;Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Lo,
-<span class="lineNum">      35 </span>            :                                                            Fr, Index&gt;&gt;&gt;;
-<span class="lineNum">      36 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr,
-<span class="lineNum">      37 </span>            :           IndexType Index = IndexType::Spacetime&gt;
-<span class="lineNum">      38 </span><span class="lineNoCov">          0 : using A = Tensor&lt;DataType, tmpl::integral_list&lt;std::int32_t, 1&gt;,</span>
-<span class="lineNum">      39 </span>            :                  index_list&lt;Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Up,
-<span class="lineNum">      40 </span>            :                                                            Fr, Index&gt;&gt;&gt;;
-<span class="lineNum">      41 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr&gt;
-<span class="lineNum">      42 </span><span class="lineNoCov">          0 : using i = Tensor&lt;DataType, tmpl::integral_list&lt;std::int32_t, 1&gt;,</span>
-<span class="lineNum">      43 </span>            :                  index_list&lt;SpatialIndex&lt;SpatialDim, UpLo::Lo, Fr&gt;&gt;&gt;;
-<span class="lineNum">      44 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr&gt;
-<span class="lineNum">      45 </span><span class="lineNoCov">          0 : using I = Tensor&lt;DataType, tmpl::integral_list&lt;std::int32_t, 1&gt;,</span>
-<span class="lineNum">      46 </span>            :                  index_list&lt;SpatialIndex&lt;SpatialDim, UpLo::Up, Fr&gt;&gt;&gt;;
-<span class="lineNum">      47 </span>            : 
-<span class="lineNum">      48 </span>            : // Rank 2
-<span class="lineNum">      49 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr,
-<span class="lineNum">      50 </span>            :           IndexType Index = IndexType::Spacetime&gt;
-<span class="lineNum">      51 </span><span class="lineNoCov">          0 : using ab = Tensor&lt;</span>
-<span class="lineNum">      52 </span>            :     DataType, tmpl::integral_list&lt;std::int32_t, 2, 1&gt;,
-<span class="lineNum">      53 </span>            :     index_list&lt;
-<span class="lineNum">      54 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Lo, Fr, Index&gt;,
-<span class="lineNum">      55 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Lo, Fr, Index&gt;&gt;&gt;;
-<span class="lineNum">      56 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr,
-<span class="lineNum">      57 </span>            :           IndexType Index = IndexType::Spacetime&gt;
-<span class="lineNum">      58 </span><span class="lineNoCov">          0 : using Ab = Tensor&lt;</span>
-<span class="lineNum">      59 </span>            :     DataType, tmpl::integral_list&lt;std::int32_t, 2, 1&gt;,
-<span class="lineNum">      60 </span>            :     index_list&lt;
-<span class="lineNum">      61 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Up, Fr, Index&gt;,
-<span class="lineNum">      62 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Lo, Fr, Index&gt;&gt;&gt;;
-<span class="lineNum">      63 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr,
-<span class="lineNum">      64 </span>            :           IndexType Index = IndexType::Spacetime&gt;
-<span class="lineNum">      65 </span><span class="lineNoCov">          0 : using aB = Tensor&lt;</span>
-<span class="lineNum">      66 </span>            :     DataType, tmpl::integral_list&lt;std::int32_t, 2, 1&gt;,
-<span class="lineNum">      67 </span>            :     index_list&lt;
-<span class="lineNum">      68 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Lo, Fr, Index&gt;,
-<span class="lineNum">      69 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Up, Fr, Index&gt;&gt;&gt;;
-<span class="lineNum">      70 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr,
-<span class="lineNum">      71 </span>            :           IndexType Index = IndexType::Spacetime&gt;
-<span class="lineNum">      72 </span><span class="lineNoCov">          0 : using AB = Tensor&lt;</span>
-<span class="lineNum">      73 </span>            :     DataType, tmpl::integral_list&lt;std::int32_t, 2, 1&gt;,
-<span class="lineNum">      74 </span>            :     index_list&lt;
-<span class="lineNum">      75 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Up, Fr, Index&gt;,
-<span class="lineNum">      76 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Up, Fr, Index&gt;&gt;&gt;;
-<span class="lineNum">      77 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr&gt;
-<span class="lineNum">      78 </span><span class="lineNoCov">          0 : using ij = Tensor&lt;DataType, tmpl::integral_list&lt;std::int32_t, 2, 1&gt;,</span>
-<span class="lineNum">      79 </span>            :                   index_list&lt;SpatialIndex&lt;SpatialDim, UpLo::Lo, Fr&gt;,
-<span class="lineNum">      80 </span>            :                              SpatialIndex&lt;SpatialDim, UpLo::Lo, Fr&gt;&gt;&gt;;
-<span class="lineNum">      81 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr&gt;
-<span class="lineNum">      82 </span><span class="lineNoCov">          0 : using iJ = Tensor&lt;DataType, tmpl::integral_list&lt;std::int32_t, 2, 1&gt;,</span>
-<span class="lineNum">      83 </span>            :                   index_list&lt;SpatialIndex&lt;SpatialDim, UpLo::Lo, Fr&gt;,
-<span class="lineNum">      84 </span>            :                              SpatialIndex&lt;SpatialDim, UpLo::Up, Fr&gt;&gt;&gt;;
-<span class="lineNum">      85 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr&gt;
-<span class="lineNum">      86 </span><span class="lineNoCov">          0 : using Ij = Tensor&lt;DataType, tmpl::integral_list&lt;std::int32_t, 2, 1&gt;,</span>
-<span class="lineNum">      87 </span>            :                   index_list&lt;SpatialIndex&lt;SpatialDim, UpLo::Up, Fr&gt;,
-<span class="lineNum">      88 </span>            :                              SpatialIndex&lt;SpatialDim, UpLo::Lo, Fr&gt;&gt;&gt;;
-<span class="lineNum">      89 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr&gt;
-<span class="lineNum">      90 </span><span class="lineNoCov">          0 : using IJ = Tensor&lt;DataType, tmpl::integral_list&lt;std::int32_t, 2, 1&gt;,</span>
-<span class="lineNum">      91 </span>            :                   index_list&lt;SpatialIndex&lt;SpatialDim, UpLo::Up, Fr&gt;,
-<span class="lineNum">      92 </span>            :                              SpatialIndex&lt;SpatialDim, UpLo::Up, Fr&gt;&gt;&gt;;
-<span class="lineNum">      93 </span>            : 
-<span class="lineNum">      94 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr,
-<span class="lineNum">      95 </span>            :           IndexType Index = IndexType::Spacetime&gt;
-<span class="lineNum">      96 </span><span class="lineNoCov">          0 : using aa = Tensor&lt;</span>
-<span class="lineNum">      97 </span>            :     DataType, tmpl::integral_list&lt;std::int32_t, 1, 1&gt;,
-<span class="lineNum">      98 </span>            :     index_list&lt;
-<span class="lineNum">      99 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Lo, Fr, Index&gt;,
-<span class="lineNum">     100 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Lo, Fr, Index&gt;&gt;&gt;;
-<span class="lineNum">     101 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr,
-<span class="lineNum">     102 </span>            :           IndexType Index = IndexType::Spacetime&gt;
-<span class="lineNum">     103 </span><span class="lineNoCov">          0 : using AA = Tensor&lt;</span>
-<span class="lineNum">     104 </span>            :     DataType, tmpl::integral_list&lt;std::int32_t, 1, 1&gt;,
-<span class="lineNum">     105 </span>            :     index_list&lt;
-<span class="lineNum">     106 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Up, Fr, Index&gt;,
-<span class="lineNum">     107 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Up, Fr, Index&gt;&gt;&gt;;
-<span class="lineNum">     108 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr&gt;
-<span class="lineNum">     109 </span><span class="lineNoCov">          0 : using ii = Tensor&lt;DataType, tmpl::integral_list&lt;std::int32_t, 1, 1&gt;,</span>
-<span class="lineNum">     110 </span>            :                   index_list&lt;SpatialIndex&lt;SpatialDim, UpLo::Lo, Fr&gt;,
-<span class="lineNum">     111 </span>            :                              SpatialIndex&lt;SpatialDim, UpLo::Lo, Fr&gt;&gt;&gt;;
-<span class="lineNum">     112 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr&gt;
-<span class="lineNum">     113 </span><span class="lineNoCov">          0 : using II = Tensor&lt;DataType, tmpl::integral_list&lt;std::int32_t, 1, 1&gt;,</span>
-<span class="lineNum">     114 </span>            :                   index_list&lt;SpatialIndex&lt;SpatialDim, UpLo::Up, Fr&gt;,
-<span class="lineNum">     115 </span>            :                              SpatialIndex&lt;SpatialDim, UpLo::Up, Fr&gt;&gt;&gt;;
-<span class="lineNum">     116 </span>            : 
-<span class="lineNum">     117 </span>            : // Rank 3 - spacetime
-<span class="lineNum">     118 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr,
-<span class="lineNum">     119 </span>            :           IndexType Index = IndexType::Spacetime&gt;
-<span class="lineNum">     120 </span><span class="lineNoCov">          0 : using abc = Tensor&lt;</span>
-<span class="lineNum">     121 </span>            :     DataType, tmpl::integral_list&lt;std::int32_t, 3, 2, 1&gt;,
-<span class="lineNum">     122 </span>            :     index_list&lt;
-<span class="lineNum">     123 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Lo, Fr, Index&gt;,
-<span class="lineNum">     124 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Lo, Fr, Index&gt;,
-<span class="lineNum">     125 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Lo, Fr, Index&gt;&gt;&gt;;
-<span class="lineNum">     126 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr,
-<span class="lineNum">     127 </span>            :           IndexType Index = IndexType::Spacetime&gt;
-<span class="lineNum">     128 </span><span class="lineNoCov">          0 : using abC = Tensor&lt;</span>
-<span class="lineNum">     129 </span>            :     DataType, tmpl::integral_list&lt;std::int32_t, 3, 2, 1&gt;,
-<span class="lineNum">     130 </span>            :     index_list&lt;
-<span class="lineNum">     131 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Lo, Fr, Index&gt;,
-<span class="lineNum">     132 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Lo, Fr, Index&gt;,
-<span class="lineNum">     133 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Up, Fr, Index&gt;&gt;&gt;;
-<span class="lineNum">     134 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr,
-<span class="lineNum">     135 </span>            :           IndexType Index = IndexType::Spacetime&gt;
-<span class="lineNum">     136 </span><span class="lineNoCov">          0 : using aBc = Tensor&lt;</span>
-<span class="lineNum">     137 </span>            :     DataType, tmpl::integral_list&lt;std::int32_t, 3, 2, 1&gt;,
-<span class="lineNum">     138 </span>            :     index_list&lt;
-<span class="lineNum">     139 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Lo, Fr, Index&gt;,
-<span class="lineNum">     140 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Up, Fr, Index&gt;,
-<span class="lineNum">     141 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Lo, Fr, Index&gt;&gt;&gt;;
-<span class="lineNum">     142 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr,
-<span class="lineNum">     143 </span>            :           IndexType Index = IndexType::Spacetime&gt;
-<span class="lineNum">     144 </span><span class="lineNoCov">          0 : using Abc = Tensor&lt;</span>
-<span class="lineNum">     145 </span>            :     DataType, tmpl::integral_list&lt;std::int32_t, 3, 2, 1&gt;,
-<span class="lineNum">     146 </span>            :     index_list&lt;
-<span class="lineNum">     147 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Up, Fr, Index&gt;,
-<span class="lineNum">     148 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Lo, Fr, Index&gt;,
-<span class="lineNum">     149 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Lo, Fr, Index&gt;&gt;&gt;;
-<span class="lineNum">     150 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr,
-<span class="lineNum">     151 </span>            :           IndexType Index = IndexType::Spacetime&gt;
-<span class="lineNum">     152 </span><span class="lineNoCov">          0 : using aBC = Tensor&lt;</span>
-<span class="lineNum">     153 </span>            :     DataType, tmpl::integral_list&lt;std::int32_t, 3, 2, 1&gt;,
-<span class="lineNum">     154 </span>            :     index_list&lt;
-<span class="lineNum">     155 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Lo, Fr, Index&gt;,
-<span class="lineNum">     156 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Up, Fr, Index&gt;,
-<span class="lineNum">     157 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Up, Fr, Index&gt;&gt;&gt;;
-<span class="lineNum">     158 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr,
-<span class="lineNum">     159 </span>            :           IndexType Index = IndexType::Spacetime&gt;
-<span class="lineNum">     160 </span><span class="lineNoCov">          0 : using AbC = Tensor&lt;</span>
-<span class="lineNum">     161 </span>            :     DataType, tmpl::integral_list&lt;std::int32_t, 3, 2, 1&gt;,
-<span class="lineNum">     162 </span>            :     index_list&lt;
-<span class="lineNum">     163 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Up, Fr, Index&gt;,
-<span class="lineNum">     164 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Lo, Fr, Index&gt;,
-<span class="lineNum">     165 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Up, Fr, Index&gt;&gt;&gt;;
-<span class="lineNum">     166 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr,
-<span class="lineNum">     167 </span>            :           IndexType Index = IndexType::Spacetime&gt;
-<span class="lineNum">     168 </span><span class="lineNoCov">          0 : using ABc = Tensor&lt;</span>
-<span class="lineNum">     169 </span>            :     DataType, tmpl::integral_list&lt;std::int32_t, 3, 2, 1&gt;,
-<span class="lineNum">     170 </span>            :     index_list&lt;
-<span class="lineNum">     171 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Up, Fr, Index&gt;,
-<span class="lineNum">     172 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Up, Fr, Index&gt;,
-<span class="lineNum">     173 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Lo, Fr, Index&gt;&gt;&gt;;
-<span class="lineNum">     174 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr,
-<span class="lineNum">     175 </span>            :           IndexType Index = IndexType::Spacetime&gt;
-<span class="lineNum">     176 </span><span class="lineNoCov">          0 : using ABC = Tensor&lt;</span>
-<span class="lineNum">     177 </span>            :     DataType, tmpl::integral_list&lt;std::int32_t, 3, 2, 1&gt;,
-<span class="lineNum">     178 </span>            :     index_list&lt;
-<span class="lineNum">     179 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Up, Fr, Index&gt;,
-<span class="lineNum">     180 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Up, Fr, Index&gt;,
-<span class="lineNum">     181 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Up, Fr, Index&gt;&gt;&gt;;
-<span class="lineNum">     182 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr,
-<span class="lineNum">     183 </span>            :           IndexType Index = IndexType::Spacetime&gt;
-<span class="lineNum">     184 </span><span class="lineNoCov">          0 : using abb = Tensor&lt;</span>
-<span class="lineNum">     185 </span>            :     DataType, tmpl::integral_list&lt;std::int32_t, 2, 1, 1&gt;,
-<span class="lineNum">     186 </span>            :     index_list&lt;
-<span class="lineNum">     187 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Lo, Fr, Index&gt;,
-<span class="lineNum">     188 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Lo, Fr, Index&gt;,
-<span class="lineNum">     189 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Lo, Fr, Index&gt;&gt;&gt;;
-<span class="lineNum">     190 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr,
-<span class="lineNum">     191 </span>            :           IndexType Index = IndexType::Spacetime&gt;
-<span class="lineNum">     192 </span><span class="lineNoCov">          0 : using Abb = Tensor&lt;</span>
-<span class="lineNum">     193 </span>            :     DataType, tmpl::integral_list&lt;std::int32_t, 2, 1, 1&gt;,
-<span class="lineNum">     194 </span>            :     index_list&lt;
-<span class="lineNum">     195 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Up, Fr, Index&gt;,
-<span class="lineNum">     196 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Lo, Fr, Index&gt;,
-<span class="lineNum">     197 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Lo, Fr, Index&gt;&gt;&gt;;
-<span class="lineNum">     198 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr,
-<span class="lineNum">     199 </span>            :           IndexType Index = IndexType::Spacetime&gt;
-<span class="lineNum">     200 </span><span class="lineNoCov">          0 : using aBB = Tensor&lt;</span>
-<span class="lineNum">     201 </span>            :     DataType, tmpl::integral_list&lt;std::int32_t, 2, 1, 1&gt;,
-<span class="lineNum">     202 </span>            :     index_list&lt;
-<span class="lineNum">     203 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Lo, Fr, Index&gt;,
-<span class="lineNum">     204 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Up, Fr, Index&gt;,
-<span class="lineNum">     205 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Up, Fr, Index&gt;&gt;&gt;;
-<span class="lineNum">     206 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr,
-<span class="lineNum">     207 </span>            :           IndexType Index = IndexType::Spacetime&gt;
-<span class="lineNum">     208 </span><span class="lineNoCov">          0 : using ABB = Tensor&lt;</span>
-<span class="lineNum">     209 </span>            :     DataType, tmpl::integral_list&lt;std::int32_t, 2, 1, 1&gt;,
-<span class="lineNum">     210 </span>            :     index_list&lt;
-<span class="lineNum">     211 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Up, Fr, Index&gt;,
-<span class="lineNum">     212 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Up, Fr, Index&gt;,
-<span class="lineNum">     213 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Up, Fr, Index&gt;&gt;&gt;;
-<span class="lineNum">     214 </span>            : 
-<span class="lineNum">     215 </span>            : // Rank 3 - spatial
-<span class="lineNum">     216 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr&gt;
-<span class="lineNum">     217 </span><span class="lineNoCov">          0 : using iii = Tensor&lt;DataType, tmpl::integral_list&lt;std::int32_t, 1, 1, 1&gt;,</span>
-<span class="lineNum">     218 </span>            :                    index_list&lt;SpatialIndex&lt;SpatialDim, UpLo::Lo, Fr&gt;,
-<span class="lineNum">     219 </span>            :                               SpatialIndex&lt;SpatialDim, UpLo::Lo, Fr&gt;,
-<span class="lineNum">     220 </span>            :                               SpatialIndex&lt;SpatialDim, UpLo::Lo, Fr&gt;&gt;&gt;;
-<span class="lineNum">     221 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr&gt;
-<span class="lineNum">     222 </span><span class="lineNoCov">          0 : using ijk = Tensor&lt;DataType, tmpl::integral_list&lt;std::int32_t, 3, 2, 1&gt;,</span>
-<span class="lineNum">     223 </span>            :                    index_list&lt;SpatialIndex&lt;SpatialDim, UpLo::Lo, Fr&gt;,
-<span class="lineNum">     224 </span>            :                               SpatialIndex&lt;SpatialDim, UpLo::Lo, Fr&gt;,
-<span class="lineNum">     225 </span>            :                               SpatialIndex&lt;SpatialDim, UpLo::Lo, Fr&gt;&gt;&gt;;
-<span class="lineNum">     226 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr&gt;
-<span class="lineNum">     227 </span><span class="lineNoCov">          0 : using ijK = Tensor&lt;DataType, tmpl::integral_list&lt;std::int32_t, 3, 2, 1&gt;,</span>
-<span class="lineNum">     228 </span>            :                    index_list&lt;SpatialIndex&lt;SpatialDim, UpLo::Lo, Fr&gt;,
-<span class="lineNum">     229 </span>            :                               SpatialIndex&lt;SpatialDim, UpLo::Lo, Fr&gt;,
-<span class="lineNum">     230 </span>            :                               SpatialIndex&lt;SpatialDim, UpLo::Up, Fr&gt;&gt;&gt;;
-<span class="lineNum">     231 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr&gt;
-<span class="lineNum">     232 </span><span class="lineNoCov">          0 : using iJk = Tensor&lt;DataType, tmpl::integral_list&lt;std::int32_t, 3, 2, 1&gt;,</span>
-<span class="lineNum">     233 </span>            :                    index_list&lt;SpatialIndex&lt;SpatialDim, UpLo::Lo, Fr&gt;,
-<span class="lineNum">     234 </span>            :                               SpatialIndex&lt;SpatialDim, UpLo::Up, Fr&gt;,
-<span class="lineNum">     235 </span>            :                               SpatialIndex&lt;SpatialDim, UpLo::Lo, Fr&gt;&gt;&gt;;
-<span class="lineNum">     236 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr&gt;
-<span class="lineNum">     237 </span><span class="lineNoCov">          0 : using Ijk = Tensor&lt;DataType, tmpl::integral_list&lt;std::int32_t, 3, 2, 1&gt;,</span>
-<span class="lineNum">     238 </span>            :                    index_list&lt;SpatialIndex&lt;SpatialDim, UpLo::Up, Fr&gt;,
-<span class="lineNum">     239 </span>            :                               SpatialIndex&lt;SpatialDim, UpLo::Lo, Fr&gt;,
-<span class="lineNum">     240 </span>            :                               SpatialIndex&lt;SpatialDim, UpLo::Lo, Fr&gt;&gt;&gt;;
-<span class="lineNum">     241 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr&gt;
-<span class="lineNum">     242 </span><span class="lineNoCov">          0 : using iJK = Tensor&lt;DataType, tmpl::integral_list&lt;std::int32_t, 3, 2, 1&gt;,</span>
-<span class="lineNum">     243 </span>            :                    index_list&lt;SpatialIndex&lt;SpatialDim, UpLo::Lo, Fr&gt;,
-<span class="lineNum">     244 </span>            :                               SpatialIndex&lt;SpatialDim, UpLo::Up, Fr&gt;,
-<span class="lineNum">     245 </span>            :                               SpatialIndex&lt;SpatialDim, UpLo::Up, Fr&gt;&gt;&gt;;
-<span class="lineNum">     246 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr&gt;
-<span class="lineNum">     247 </span><span class="lineNoCov">          0 : using IjK = Tensor&lt;DataType, tmpl::integral_list&lt;std::int32_t, 3, 2, 1&gt;,</span>
-<span class="lineNum">     248 </span>            :                    index_list&lt;SpatialIndex&lt;SpatialDim, UpLo::Up, Fr&gt;,
-<span class="lineNum">     249 </span>            :                               SpatialIndex&lt;SpatialDim, UpLo::Lo, Fr&gt;,
-<span class="lineNum">     250 </span>            :                               SpatialIndex&lt;SpatialDim, UpLo::Up, Fr&gt;&gt;&gt;;
-<span class="lineNum">     251 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr&gt;
-<span class="lineNum">     252 </span><span class="lineNoCov">          0 : using IJk = Tensor&lt;DataType, tmpl::integral_list&lt;std::int32_t, 3, 2, 1&gt;,</span>
-<span class="lineNum">     253 </span>            :                    index_list&lt;SpatialIndex&lt;SpatialDim, UpLo::Up, Fr&gt;,
-<span class="lineNum">     254 </span>            :                               SpatialIndex&lt;SpatialDim, UpLo::Up, Fr&gt;,
-<span class="lineNum">     255 </span>            :                               SpatialIndex&lt;SpatialDim, UpLo::Lo, Fr&gt;&gt;&gt;;
-<span class="lineNum">     256 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr&gt;
-<span class="lineNum">     257 </span><span class="lineNoCov">          0 : using IJK = Tensor&lt;DataType, tmpl::integral_list&lt;std::int32_t, 3, 2, 1&gt;,</span>
-<span class="lineNum">     258 </span>            :                    index_list&lt;SpatialIndex&lt;SpatialDim, UpLo::Up, Fr&gt;,
-<span class="lineNum">     259 </span>            :                               SpatialIndex&lt;SpatialDim, UpLo::Up, Fr&gt;,
-<span class="lineNum">     260 </span>            :                               SpatialIndex&lt;SpatialDim, UpLo::Up, Fr&gt;&gt;&gt;;
-<span class="lineNum">     261 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr&gt;
-<span class="lineNum">     262 </span><span class="lineNoCov">          0 : using ijj = Tensor&lt;DataType, tmpl::integral_list&lt;std::int32_t, 2, 1, 1&gt;,</span>
-<span class="lineNum">     263 </span>            :                    index_list&lt;SpatialIndex&lt;SpatialDim, UpLo::Lo, Fr&gt;,
-<span class="lineNum">     264 </span>            :                               SpatialIndex&lt;SpatialDim, UpLo::Lo, Fr&gt;,
-<span class="lineNum">     265 </span>            :                               SpatialIndex&lt;SpatialDim, UpLo::Lo, Fr&gt;&gt;&gt;;
-<span class="lineNum">     266 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr&gt;
-<span class="lineNum">     267 </span><span class="lineNoCov">          0 : using Ijj = Tensor&lt;DataType, tmpl::integral_list&lt;std::int32_t, 2, 1, 1&gt;,</span>
-<span class="lineNum">     268 </span>            :                    index_list&lt;SpatialIndex&lt;SpatialDim, UpLo::Up, Fr&gt;,
-<span class="lineNum">     269 </span>            :                               SpatialIndex&lt;SpatialDim, UpLo::Lo, Fr&gt;,
-<span class="lineNum">     270 </span>            :                               SpatialIndex&lt;SpatialDim, UpLo::Lo, Fr&gt;&gt;&gt;;
-<span class="lineNum">     271 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr&gt;
-<span class="lineNum">     272 </span><span class="lineNoCov">          0 : using iJJ = Tensor&lt;DataType, tmpl::integral_list&lt;std::int32_t, 2, 1, 1&gt;,</span>
-<span class="lineNum">     273 </span>            :                    index_list&lt;SpatialIndex&lt;SpatialDim, UpLo::Lo, Fr&gt;,
-<span class="lineNum">     274 </span>            :                               SpatialIndex&lt;SpatialDim, UpLo::Up, Fr&gt;,
-<span class="lineNum">     275 </span>            :                               SpatialIndex&lt;SpatialDim, UpLo::Up, Fr&gt;&gt;&gt;;
-<span class="lineNum">     276 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr&gt;
-<span class="lineNum">     277 </span><span class="lineNoCov">          0 : using IJJ = Tensor&lt;DataType, tmpl::integral_list&lt;std::int32_t, 2, 1, 1&gt;,</span>
-<span class="lineNum">     278 </span>            :                    index_list&lt;SpatialIndex&lt;SpatialDim, UpLo::Up, Fr&gt;,
-<span class="lineNum">     279 </span>            :                               SpatialIndex&lt;SpatialDim, UpLo::Up, Fr&gt;,
-<span class="lineNum">     280 </span>            :                               SpatialIndex&lt;SpatialDim, UpLo::Up, Fr&gt;&gt;&gt;;
-<span class="lineNum">     281 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr&gt;
-<span class="lineNum">     282 </span><span class="lineNoCov">          0 : using III = Tensor&lt;DataType, tmpl::integral_list&lt;std::int32_t, 1, 1, 1&gt;,</span>
-<span class="lineNum">     283 </span>            :                    index_list&lt;SpatialIndex&lt;SpatialDim, UpLo::Up, Fr&gt;,
-<span class="lineNum">     284 </span>            :                               SpatialIndex&lt;SpatialDim, UpLo::Up, Fr&gt;,
-<span class="lineNum">     285 </span>            :                               SpatialIndex&lt;SpatialDim, UpLo::Up, Fr&gt;&gt;&gt;;
-<span class="lineNum">     286 </span>            : 
-<span class="lineNum">     287 </span>            : // Rank 3 - mixed spacetime spatial
-<span class="lineNum">     288 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr&gt;
-<span class="lineNum">     289 </span><span class="lineNoCov">          0 : using iab = Tensor&lt;DataType, tmpl::integral_list&lt;std::int32_t, 3, 2, 1&gt;,</span>
-<span class="lineNum">     290 </span>            :                    index_list&lt;SpatialIndex&lt;SpatialDim, UpLo::Lo, Fr&gt;,
-<span class="lineNum">     291 </span>            :                               SpacetimeIndex&lt;SpatialDim, UpLo::Lo, Fr&gt;,
-<span class="lineNum">     292 </span>            :                               SpacetimeIndex&lt;SpatialDim, UpLo::Lo, Fr&gt;&gt;&gt;;
-<span class="lineNum">     293 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr&gt;
-<span class="lineNum">     294 </span><span class="lineNoCov">          0 : using iaB = Tensor&lt;DataType, tmpl::integral_list&lt;std::int32_t, 3, 2, 1&gt;,</span>
-<span class="lineNum">     295 </span>            :                    index_list&lt;SpatialIndex&lt;SpatialDim, UpLo::Lo, Fr&gt;,
-<span class="lineNum">     296 </span>            :                               SpacetimeIndex&lt;SpatialDim, UpLo::Lo, Fr&gt;,
-<span class="lineNum">     297 </span>            :                               SpacetimeIndex&lt;SpatialDim, UpLo::Up, Fr&gt;&gt;&gt;;
-<span class="lineNum">     298 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr&gt;
-<span class="lineNum">     299 </span><span class="lineNoCov">          0 : using iAb = Tensor&lt;DataType, tmpl::integral_list&lt;std::int32_t, 3, 2, 1&gt;,</span>
-<span class="lineNum">     300 </span>            :                    index_list&lt;SpatialIndex&lt;SpatialDim, UpLo::Lo, Fr&gt;,
-<span class="lineNum">     301 </span>            :                               SpacetimeIndex&lt;SpatialDim, UpLo::Up, Fr&gt;,
-<span class="lineNum">     302 </span>            :                               SpacetimeIndex&lt;SpatialDim, UpLo::Lo, Fr&gt;&gt;&gt;;
-<span class="lineNum">     303 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr&gt;
-<span class="lineNum">     304 </span><span class="lineNoCov">          0 : using iAB = Tensor&lt;DataType, tmpl::integral_list&lt;std::int32_t, 3, 2, 1&gt;,</span>
-<span class="lineNum">     305 </span>            :                    index_list&lt;SpatialIndex&lt;SpatialDim, UpLo::Lo, Fr&gt;,
-<span class="lineNum">     306 </span>            :                               SpacetimeIndex&lt;SpatialDim, UpLo::Up, Fr&gt;,
-<span class="lineNum">     307 </span>            :                               SpacetimeIndex&lt;SpatialDim, UpLo::Up, Fr&gt;&gt;&gt;;
-<span class="lineNum">     308 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr&gt;
-<span class="lineNum">     309 </span><span class="lineNoCov">          0 : using iaa = Tensor&lt;DataType, tmpl::integral_list&lt;std::int32_t, 2, 1, 1&gt;,</span>
-<span class="lineNum">     310 </span>            :                    index_list&lt;SpatialIndex&lt;SpatialDim, UpLo::Lo, Fr&gt;,
-<span class="lineNum">     311 </span>            :                               SpacetimeIndex&lt;SpatialDim, UpLo::Lo, Fr&gt;,
-<span class="lineNum">     312 </span>            :                               SpacetimeIndex&lt;SpatialDim, UpLo::Lo, Fr&gt;&gt;&gt;;
-<span class="lineNum">     313 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr&gt;
-<span class="lineNum">     314 </span><span class="lineNoCov">          0 : using iAA = Tensor&lt;DataType, tmpl::integral_list&lt;std::int32_t, 2, 1, 1&gt;,</span>
-<span class="lineNum">     315 </span>            :                    index_list&lt;SpatialIndex&lt;SpatialDim, UpLo::Lo, Fr&gt;,
-<span class="lineNum">     316 </span>            :                               SpacetimeIndex&lt;SpatialDim, UpLo::Up, Fr&gt;,
-<span class="lineNum">     317 </span>            :                               SpacetimeIndex&lt;SpatialDim, UpLo::Up, Fr&gt;&gt;&gt;;
-<span class="lineNum">     318 </span>            : 
-<span class="lineNum">     319 </span>            : namespace detail {
-<span class="lineNum">     320 </span>            : template &lt;size_t Dim, typename Frame1, typename Frame2&gt;
-<span class="lineNum">     321 </span>            : struct inverse_jacobian_impl {
-<span class="lineNum">     322 </span>            :   static_assert(tmpl::index_of&lt;Frame::ordered_frame_list, Frame1&gt;::value &lt;
-<span class="lineNum">     323 </span>            :                     tmpl::index_of&lt;Frame::ordered_frame_list, Frame2&gt;::value,
-<span class="lineNum">     324 </span>            :                 &quot;Inverse Jacobian must go other direction.&quot;);
-<span class="lineNum">     325 </span>            :   using type = Tensor&lt;DataVector, tmpl::integral_list&lt;std::int32_t, 2, 1&gt;,
-<span class="lineNum">     326 </span>            :                       typelist&lt;SpatialIndex&lt;Dim, UpLo::Up, Frame1&gt;,
-<span class="lineNum">     327 </span>            :                                SpatialIndex&lt;Dim, UpLo::Lo, Frame2&gt;&gt;&gt;;
-<span class="lineNum">     328 </span>            : };
-<span class="lineNum">     329 </span>            : }  // namespace detail
-<span class="lineNum">     330 </span>            : 
-<span class="lineNum">     331 </span>            : template &lt;size_t Dim, typename Frame1, typename Frame2&gt;
-<span class="lineNum">     332 </span><span class="lineNoCov">          0 : using InverseJacobian =</span>
-<span class="lineNum">     333 </span>            :     typename detail::inverse_jacobian_impl&lt;Dim, Frame1, Frame2&gt;::type;
+<span class="lineNum">      21 </span>            : 
+<span class="lineNum">      22 </span>            : 
+<span class="lineNum">      23 </span>            : /*!
+<span class="lineNum">      24 </span>            :  * \ingroup Tensor
+<span class="lineNum">      25 </span>            :  * \brief Type aliases to construct common Tensors
+<span class="lineNum">      26 </span>            :  *
+<span class="lineNum">      27 </span>            :  * Lower case letters represent covariant indices and upper case letters
+<span class="lineNum">      28 </span>            :  * represent contravariant indices. Letters a, b, c, d represent spacetime
+<span class="lineNum">      29 </span>            :  * indices and i, j, k, l represent spatial indices.
+<span class="lineNum">      30 </span>            :  */
+<span class="lineNum">      31 </span>            : namespace tnsr {
+<span class="lineNum">      32 </span>            : // Rank 1
+<span class="lineNum">      33 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr,
+<span class="lineNum">      34 </span>            :           IndexType Index = IndexType::Spacetime&gt;
+<span class="lineNum">      35 </span><span class="lineNoCov">          0 : using a = Tensor&lt;DataType, tmpl::integral_list&lt;std::int32_t, 1&gt;,</span>
+<span class="lineNum">      36 </span>            :                  index_list&lt;Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Lo,
+<span class="lineNum">      37 </span>            :                                                            Fr, Index&gt;&gt;&gt;;
+<span class="lineNum">      38 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr,
+<span class="lineNum">      39 </span>            :           IndexType Index = IndexType::Spacetime&gt;
+<span class="lineNum">      40 </span><span class="lineNoCov">          0 : using A = Tensor&lt;DataType, tmpl::integral_list&lt;std::int32_t, 1&gt;,</span>
+<span class="lineNum">      41 </span>            :                  index_list&lt;Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Up,
+<span class="lineNum">      42 </span>            :                                                            Fr, Index&gt;&gt;&gt;;
+<span class="lineNum">      43 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr&gt;
+<span class="lineNum">      44 </span><span class="lineNoCov">          0 : using i = Tensor&lt;DataType, tmpl::integral_list&lt;std::int32_t, 1&gt;,</span>
+<span class="lineNum">      45 </span>            :                  index_list&lt;SpatialIndex&lt;SpatialDim, UpLo::Lo, Fr&gt;&gt;&gt;;
+<span class="lineNum">      46 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr&gt;
+<span class="lineNum">      47 </span><span class="lineNoCov">          0 : using I = Tensor&lt;DataType, tmpl::integral_list&lt;std::int32_t, 1&gt;,</span>
+<span class="lineNum">      48 </span>            :                  index_list&lt;SpatialIndex&lt;SpatialDim, UpLo::Up, Fr&gt;&gt;&gt;;
+<span class="lineNum">      49 </span>            : 
+<span class="lineNum">      50 </span>            : // Rank 2
+<span class="lineNum">      51 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr,
+<span class="lineNum">      52 </span>            :           IndexType Index = IndexType::Spacetime&gt;
+<span class="lineNum">      53 </span><span class="lineNoCov">          0 : using ab = Tensor&lt;</span>
+<span class="lineNum">      54 </span>            :     DataType, tmpl::integral_list&lt;std::int32_t, 2, 1&gt;,
+<span class="lineNum">      55 </span>            :     index_list&lt;
+<span class="lineNum">      56 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Lo, Fr, Index&gt;,
+<span class="lineNum">      57 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Lo, Fr, Index&gt;&gt;&gt;;
+<span class="lineNum">      58 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr,
+<span class="lineNum">      59 </span>            :           IndexType Index = IndexType::Spacetime&gt;
+<span class="lineNum">      60 </span><span class="lineNoCov">          0 : using Ab = Tensor&lt;</span>
+<span class="lineNum">      61 </span>            :     DataType, tmpl::integral_list&lt;std::int32_t, 2, 1&gt;,
+<span class="lineNum">      62 </span>            :     index_list&lt;
+<span class="lineNum">      63 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Up, Fr, Index&gt;,
+<span class="lineNum">      64 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Lo, Fr, Index&gt;&gt;&gt;;
+<span class="lineNum">      65 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr,
+<span class="lineNum">      66 </span>            :           IndexType Index = IndexType::Spacetime&gt;
+<span class="lineNum">      67 </span><span class="lineNoCov">          0 : using aB = Tensor&lt;</span>
+<span class="lineNum">      68 </span>            :     DataType, tmpl::integral_list&lt;std::int32_t, 2, 1&gt;,
+<span class="lineNum">      69 </span>            :     index_list&lt;
+<span class="lineNum">      70 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Lo, Fr, Index&gt;,
+<span class="lineNum">      71 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Up, Fr, Index&gt;&gt;&gt;;
+<span class="lineNum">      72 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr,
+<span class="lineNum">      73 </span>            :           IndexType Index = IndexType::Spacetime&gt;
+<span class="lineNum">      74 </span><span class="lineNoCov">          0 : using AB = Tensor&lt;</span>
+<span class="lineNum">      75 </span>            :     DataType, tmpl::integral_list&lt;std::int32_t, 2, 1&gt;,
+<span class="lineNum">      76 </span>            :     index_list&lt;
+<span class="lineNum">      77 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Up, Fr, Index&gt;,
+<span class="lineNum">      78 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Up, Fr, Index&gt;&gt;&gt;;
+<span class="lineNum">      79 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr&gt;
+<span class="lineNum">      80 </span><span class="lineNoCov">          0 : using ij = Tensor&lt;DataType, tmpl::integral_list&lt;std::int32_t, 2, 1&gt;,</span>
+<span class="lineNum">      81 </span>            :                   index_list&lt;SpatialIndex&lt;SpatialDim, UpLo::Lo, Fr&gt;,
+<span class="lineNum">      82 </span>            :                              SpatialIndex&lt;SpatialDim, UpLo::Lo, Fr&gt;&gt;&gt;;
+<span class="lineNum">      83 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr&gt;
+<span class="lineNum">      84 </span><span class="lineNoCov">          0 : using iJ = Tensor&lt;DataType, tmpl::integral_list&lt;std::int32_t, 2, 1&gt;,</span>
+<span class="lineNum">      85 </span>            :                   index_list&lt;SpatialIndex&lt;SpatialDim, UpLo::Lo, Fr&gt;,
+<span class="lineNum">      86 </span>            :                              SpatialIndex&lt;SpatialDim, UpLo::Up, Fr&gt;&gt;&gt;;
+<span class="lineNum">      87 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr&gt;
+<span class="lineNum">      88 </span><span class="lineNoCov">          0 : using Ij = Tensor&lt;DataType, tmpl::integral_list&lt;std::int32_t, 2, 1&gt;,</span>
+<span class="lineNum">      89 </span>            :                   index_list&lt;SpatialIndex&lt;SpatialDim, UpLo::Up, Fr&gt;,
+<span class="lineNum">      90 </span>            :                              SpatialIndex&lt;SpatialDim, UpLo::Lo, Fr&gt;&gt;&gt;;
+<span class="lineNum">      91 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr&gt;
+<span class="lineNum">      92 </span><span class="lineNoCov">          0 : using IJ = Tensor&lt;DataType, tmpl::integral_list&lt;std::int32_t, 2, 1&gt;,</span>
+<span class="lineNum">      93 </span>            :                   index_list&lt;SpatialIndex&lt;SpatialDim, UpLo::Up, Fr&gt;,
+<span class="lineNum">      94 </span>            :                              SpatialIndex&lt;SpatialDim, UpLo::Up, Fr&gt;&gt;&gt;;
+<span class="lineNum">      95 </span>            : 
+<span class="lineNum">      96 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr,
+<span class="lineNum">      97 </span>            :           IndexType Index = IndexType::Spacetime&gt;
+<span class="lineNum">      98 </span><span class="lineNoCov">          0 : using aa = Tensor&lt;</span>
+<span class="lineNum">      99 </span>            :     DataType, tmpl::integral_list&lt;std::int32_t, 1, 1&gt;,
+<span class="lineNum">     100 </span>            :     index_list&lt;
+<span class="lineNum">     101 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Lo, Fr, Index&gt;,
+<span class="lineNum">     102 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Lo, Fr, Index&gt;&gt;&gt;;
+<span class="lineNum">     103 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr,
+<span class="lineNum">     104 </span>            :           IndexType Index = IndexType::Spacetime&gt;
+<span class="lineNum">     105 </span><span class="lineNoCov">          0 : using AA = Tensor&lt;</span>
+<span class="lineNum">     106 </span>            :     DataType, tmpl::integral_list&lt;std::int32_t, 1, 1&gt;,
+<span class="lineNum">     107 </span>            :     index_list&lt;
+<span class="lineNum">     108 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Up, Fr, Index&gt;,
+<span class="lineNum">     109 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Up, Fr, Index&gt;&gt;&gt;;
+<span class="lineNum">     110 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr&gt;
+<span class="lineNum">     111 </span><span class="lineNoCov">          0 : using ii = Tensor&lt;DataType, tmpl::integral_list&lt;std::int32_t, 1, 1&gt;,</span>
+<span class="lineNum">     112 </span>            :                   index_list&lt;SpatialIndex&lt;SpatialDim, UpLo::Lo, Fr&gt;,
+<span class="lineNum">     113 </span>            :                              SpatialIndex&lt;SpatialDim, UpLo::Lo, Fr&gt;&gt;&gt;;
+<span class="lineNum">     114 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr&gt;
+<span class="lineNum">     115 </span><span class="lineNoCov">          0 : using II = Tensor&lt;DataType, tmpl::integral_list&lt;std::int32_t, 1, 1&gt;,</span>
+<span class="lineNum">     116 </span>            :                   index_list&lt;SpatialIndex&lt;SpatialDim, UpLo::Up, Fr&gt;,
+<span class="lineNum">     117 </span>            :                              SpatialIndex&lt;SpatialDim, UpLo::Up, Fr&gt;&gt;&gt;;
+<span class="lineNum">     118 </span>            : 
+<span class="lineNum">     119 </span>            : // Rank 3 - spacetime
+<span class="lineNum">     120 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr,
+<span class="lineNum">     121 </span>            :           IndexType Index = IndexType::Spacetime&gt;
+<span class="lineNum">     122 </span><span class="lineNoCov">          0 : using abc = Tensor&lt;</span>
+<span class="lineNum">     123 </span>            :     DataType, tmpl::integral_list&lt;std::int32_t, 3, 2, 1&gt;,
+<span class="lineNum">     124 </span>            :     index_list&lt;
+<span class="lineNum">     125 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Lo, Fr, Index&gt;,
+<span class="lineNum">     126 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Lo, Fr, Index&gt;,
+<span class="lineNum">     127 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Lo, Fr, Index&gt;&gt;&gt;;
+<span class="lineNum">     128 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr,
+<span class="lineNum">     129 </span>            :           IndexType Index = IndexType::Spacetime&gt;
+<span class="lineNum">     130 </span><span class="lineNoCov">          0 : using abC = Tensor&lt;</span>
+<span class="lineNum">     131 </span>            :     DataType, tmpl::integral_list&lt;std::int32_t, 3, 2, 1&gt;,
+<span class="lineNum">     132 </span>            :     index_list&lt;
+<span class="lineNum">     133 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Lo, Fr, Index&gt;,
+<span class="lineNum">     134 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Lo, Fr, Index&gt;,
+<span class="lineNum">     135 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Up, Fr, Index&gt;&gt;&gt;;
+<span class="lineNum">     136 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr,
+<span class="lineNum">     137 </span>            :           IndexType Index = IndexType::Spacetime&gt;
+<span class="lineNum">     138 </span><span class="lineNoCov">          0 : using aBc = Tensor&lt;</span>
+<span class="lineNum">     139 </span>            :     DataType, tmpl::integral_list&lt;std::int32_t, 3, 2, 1&gt;,
+<span class="lineNum">     140 </span>            :     index_list&lt;
+<span class="lineNum">     141 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Lo, Fr, Index&gt;,
+<span class="lineNum">     142 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Up, Fr, Index&gt;,
+<span class="lineNum">     143 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Lo, Fr, Index&gt;&gt;&gt;;
+<span class="lineNum">     144 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr,
+<span class="lineNum">     145 </span>            :           IndexType Index = IndexType::Spacetime&gt;
+<span class="lineNum">     146 </span><span class="lineNoCov">          0 : using Abc = Tensor&lt;</span>
+<span class="lineNum">     147 </span>            :     DataType, tmpl::integral_list&lt;std::int32_t, 3, 2, 1&gt;,
+<span class="lineNum">     148 </span>            :     index_list&lt;
+<span class="lineNum">     149 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Up, Fr, Index&gt;,
+<span class="lineNum">     150 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Lo, Fr, Index&gt;,
+<span class="lineNum">     151 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Lo, Fr, Index&gt;&gt;&gt;;
+<span class="lineNum">     152 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr,
+<span class="lineNum">     153 </span>            :           IndexType Index = IndexType::Spacetime&gt;
+<span class="lineNum">     154 </span><span class="lineNoCov">          0 : using aBC = Tensor&lt;</span>
+<span class="lineNum">     155 </span>            :     DataType, tmpl::integral_list&lt;std::int32_t, 3, 2, 1&gt;,
+<span class="lineNum">     156 </span>            :     index_list&lt;
+<span class="lineNum">     157 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Lo, Fr, Index&gt;,
+<span class="lineNum">     158 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Up, Fr, Index&gt;,
+<span class="lineNum">     159 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Up, Fr, Index&gt;&gt;&gt;;
+<span class="lineNum">     160 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr,
+<span class="lineNum">     161 </span>            :           IndexType Index = IndexType::Spacetime&gt;
+<span class="lineNum">     162 </span><span class="lineNoCov">          0 : using AbC = Tensor&lt;</span>
+<span class="lineNum">     163 </span>            :     DataType, tmpl::integral_list&lt;std::int32_t, 3, 2, 1&gt;,
+<span class="lineNum">     164 </span>            :     index_list&lt;
+<span class="lineNum">     165 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Up, Fr, Index&gt;,
+<span class="lineNum">     166 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Lo, Fr, Index&gt;,
+<span class="lineNum">     167 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Up, Fr, Index&gt;&gt;&gt;;
+<span class="lineNum">     168 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr,
+<span class="lineNum">     169 </span>            :           IndexType Index = IndexType::Spacetime&gt;
+<span class="lineNum">     170 </span><span class="lineNoCov">          0 : using ABc = Tensor&lt;</span>
+<span class="lineNum">     171 </span>            :     DataType, tmpl::integral_list&lt;std::int32_t, 3, 2, 1&gt;,
+<span class="lineNum">     172 </span>            :     index_list&lt;
+<span class="lineNum">     173 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Up, Fr, Index&gt;,
+<span class="lineNum">     174 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Up, Fr, Index&gt;,
+<span class="lineNum">     175 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Lo, Fr, Index&gt;&gt;&gt;;
+<span class="lineNum">     176 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr,
+<span class="lineNum">     177 </span>            :           IndexType Index = IndexType::Spacetime&gt;
+<span class="lineNum">     178 </span><span class="lineNoCov">          0 : using ABC = Tensor&lt;</span>
+<span class="lineNum">     179 </span>            :     DataType, tmpl::integral_list&lt;std::int32_t, 3, 2, 1&gt;,
+<span class="lineNum">     180 </span>            :     index_list&lt;
+<span class="lineNum">     181 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Up, Fr, Index&gt;,
+<span class="lineNum">     182 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Up, Fr, Index&gt;,
+<span class="lineNum">     183 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Up, Fr, Index&gt;&gt;&gt;;
+<span class="lineNum">     184 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr,
+<span class="lineNum">     185 </span>            :           IndexType Index = IndexType::Spacetime&gt;
+<span class="lineNum">     186 </span><span class="lineNoCov">          0 : using abb = Tensor&lt;</span>
+<span class="lineNum">     187 </span>            :     DataType, tmpl::integral_list&lt;std::int32_t, 2, 1, 1&gt;,
+<span class="lineNum">     188 </span>            :     index_list&lt;
+<span class="lineNum">     189 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Lo, Fr, Index&gt;,
+<span class="lineNum">     190 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Lo, Fr, Index&gt;,
+<span class="lineNum">     191 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Lo, Fr, Index&gt;&gt;&gt;;
+<span class="lineNum">     192 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr,
+<span class="lineNum">     193 </span>            :           IndexType Index = IndexType::Spacetime&gt;
+<span class="lineNum">     194 </span><span class="lineNoCov">          0 : using Abb = Tensor&lt;</span>
+<span class="lineNum">     195 </span>            :     DataType, tmpl::integral_list&lt;std::int32_t, 2, 1, 1&gt;,
+<span class="lineNum">     196 </span>            :     index_list&lt;
+<span class="lineNum">     197 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Up, Fr, Index&gt;,
+<span class="lineNum">     198 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Lo, Fr, Index&gt;,
+<span class="lineNum">     199 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Lo, Fr, Index&gt;&gt;&gt;;
+<span class="lineNum">     200 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr,
+<span class="lineNum">     201 </span>            :           IndexType Index = IndexType::Spacetime&gt;
+<span class="lineNum">     202 </span><span class="lineNoCov">          0 : using aBB = Tensor&lt;</span>
+<span class="lineNum">     203 </span>            :     DataType, tmpl::integral_list&lt;std::int32_t, 2, 1, 1&gt;,
+<span class="lineNum">     204 </span>            :     index_list&lt;
+<span class="lineNum">     205 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Lo, Fr, Index&gt;,
+<span class="lineNum">     206 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Up, Fr, Index&gt;,
+<span class="lineNum">     207 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Up, Fr, Index&gt;&gt;&gt;;
+<span class="lineNum">     208 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr,
+<span class="lineNum">     209 </span>            :           IndexType Index = IndexType::Spacetime&gt;
+<span class="lineNum">     210 </span><span class="lineNoCov">          0 : using ABB = Tensor&lt;</span>
+<span class="lineNum">     211 </span>            :     DataType, tmpl::integral_list&lt;std::int32_t, 2, 1, 1&gt;,
+<span class="lineNum">     212 </span>            :     index_list&lt;
+<span class="lineNum">     213 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Up, Fr, Index&gt;,
+<span class="lineNum">     214 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Up, Fr, Index&gt;,
+<span class="lineNum">     215 </span>            :         Tensor_detail::TensorIndexType&lt;SpatialDim, UpLo::Up, Fr, Index&gt;&gt;&gt;;
+<span class="lineNum">     216 </span>            : 
+<span class="lineNum">     217 </span>            : // Rank 3 - spatial
+<span class="lineNum">     218 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr&gt;
+<span class="lineNum">     219 </span><span class="lineNoCov">          0 : using iii = Tensor&lt;DataType, tmpl::integral_list&lt;std::int32_t, 1, 1, 1&gt;,</span>
+<span class="lineNum">     220 </span>            :                    index_list&lt;SpatialIndex&lt;SpatialDim, UpLo::Lo, Fr&gt;,
+<span class="lineNum">     221 </span>            :                               SpatialIndex&lt;SpatialDim, UpLo::Lo, Fr&gt;,
+<span class="lineNum">     222 </span>            :                               SpatialIndex&lt;SpatialDim, UpLo::Lo, Fr&gt;&gt;&gt;;
+<span class="lineNum">     223 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr&gt;
+<span class="lineNum">     224 </span><span class="lineNoCov">          0 : using ijk = Tensor&lt;DataType, tmpl::integral_list&lt;std::int32_t, 3, 2, 1&gt;,</span>
+<span class="lineNum">     225 </span>            :                    index_list&lt;SpatialIndex&lt;SpatialDim, UpLo::Lo, Fr&gt;,
+<span class="lineNum">     226 </span>            :                               SpatialIndex&lt;SpatialDim, UpLo::Lo, Fr&gt;,
+<span class="lineNum">     227 </span>            :                               SpatialIndex&lt;SpatialDim, UpLo::Lo, Fr&gt;&gt;&gt;;
+<span class="lineNum">     228 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr&gt;
+<span class="lineNum">     229 </span><span class="lineNoCov">          0 : using ijK = Tensor&lt;DataType, tmpl::integral_list&lt;std::int32_t, 3, 2, 1&gt;,</span>
+<span class="lineNum">     230 </span>            :                    index_list&lt;SpatialIndex&lt;SpatialDim, UpLo::Lo, Fr&gt;,
+<span class="lineNum">     231 </span>            :                               SpatialIndex&lt;SpatialDim, UpLo::Lo, Fr&gt;,
+<span class="lineNum">     232 </span>            :                               SpatialIndex&lt;SpatialDim, UpLo::Up, Fr&gt;&gt;&gt;;
+<span class="lineNum">     233 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr&gt;
+<span class="lineNum">     234 </span><span class="lineNoCov">          0 : using iJk = Tensor&lt;DataType, tmpl::integral_list&lt;std::int32_t, 3, 2, 1&gt;,</span>
+<span class="lineNum">     235 </span>            :                    index_list&lt;SpatialIndex&lt;SpatialDim, UpLo::Lo, Fr&gt;,
+<span class="lineNum">     236 </span>            :                               SpatialIndex&lt;SpatialDim, UpLo::Up, Fr&gt;,
+<span class="lineNum">     237 </span>            :                               SpatialIndex&lt;SpatialDim, UpLo::Lo, Fr&gt;&gt;&gt;;
+<span class="lineNum">     238 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr&gt;
+<span class="lineNum">     239 </span><span class="lineNoCov">          0 : using Ijk = Tensor&lt;DataType, tmpl::integral_list&lt;std::int32_t, 3, 2, 1&gt;,</span>
+<span class="lineNum">     240 </span>            :                    index_list&lt;SpatialIndex&lt;SpatialDim, UpLo::Up, Fr&gt;,
+<span class="lineNum">     241 </span>            :                               SpatialIndex&lt;SpatialDim, UpLo::Lo, Fr&gt;,
+<span class="lineNum">     242 </span>            :                               SpatialIndex&lt;SpatialDim, UpLo::Lo, Fr&gt;&gt;&gt;;
+<span class="lineNum">     243 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr&gt;
+<span class="lineNum">     244 </span><span class="lineNoCov">          0 : using iJK = Tensor&lt;DataType, tmpl::integral_list&lt;std::int32_t, 3, 2, 1&gt;,</span>
+<span class="lineNum">     245 </span>            :                    index_list&lt;SpatialIndex&lt;SpatialDim, UpLo::Lo, Fr&gt;,
+<span class="lineNum">     246 </span>            :                               SpatialIndex&lt;SpatialDim, UpLo::Up, Fr&gt;,
+<span class="lineNum">     247 </span>            :                               SpatialIndex&lt;SpatialDim, UpLo::Up, Fr&gt;&gt;&gt;;
+<span class="lineNum">     248 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr&gt;
+<span class="lineNum">     249 </span><span class="lineNoCov">          0 : using IjK = Tensor&lt;DataType, tmpl::integral_list&lt;std::int32_t, 3, 2, 1&gt;,</span>
+<span class="lineNum">     250 </span>            :                    index_list&lt;SpatialIndex&lt;SpatialDim, UpLo::Up, Fr&gt;,
+<span class="lineNum">     251 </span>            :                               SpatialIndex&lt;SpatialDim, UpLo::Lo, Fr&gt;,
+<span class="lineNum">     252 </span>            :                               SpatialIndex&lt;SpatialDim, UpLo::Up, Fr&gt;&gt;&gt;;
+<span class="lineNum">     253 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr&gt;
+<span class="lineNum">     254 </span><span class="lineNoCov">          0 : using IJk = Tensor&lt;DataType, tmpl::integral_list&lt;std::int32_t, 3, 2, 1&gt;,</span>
+<span class="lineNum">     255 </span>            :                    index_list&lt;SpatialIndex&lt;SpatialDim, UpLo::Up, Fr&gt;,
+<span class="lineNum">     256 </span>            :                               SpatialIndex&lt;SpatialDim, UpLo::Up, Fr&gt;,
+<span class="lineNum">     257 </span>            :                               SpatialIndex&lt;SpatialDim, UpLo::Lo, Fr&gt;&gt;&gt;;
+<span class="lineNum">     258 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr&gt;
+<span class="lineNum">     259 </span><span class="lineNoCov">          0 : using IJK = Tensor&lt;DataType, tmpl::integral_list&lt;std::int32_t, 3, 2, 1&gt;,</span>
+<span class="lineNum">     260 </span>            :                    index_list&lt;SpatialIndex&lt;SpatialDim, UpLo::Up, Fr&gt;,
+<span class="lineNum">     261 </span>            :                               SpatialIndex&lt;SpatialDim, UpLo::Up, Fr&gt;,
+<span class="lineNum">     262 </span>            :                               SpatialIndex&lt;SpatialDim, UpLo::Up, Fr&gt;&gt;&gt;;
+<span class="lineNum">     263 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr&gt;
+<span class="lineNum">     264 </span><span class="lineNoCov">          0 : using ijj = Tensor&lt;DataType, tmpl::integral_list&lt;std::int32_t, 2, 1, 1&gt;,</span>
+<span class="lineNum">     265 </span>            :                    index_list&lt;SpatialIndex&lt;SpatialDim, UpLo::Lo, Fr&gt;,
+<span class="lineNum">     266 </span>            :                               SpatialIndex&lt;SpatialDim, UpLo::Lo, Fr&gt;,
+<span class="lineNum">     267 </span>            :                               SpatialIndex&lt;SpatialDim, UpLo::Lo, Fr&gt;&gt;&gt;;
+<span class="lineNum">     268 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr&gt;
+<span class="lineNum">     269 </span><span class="lineNoCov">          0 : using Ijj = Tensor&lt;DataType, tmpl::integral_list&lt;std::int32_t, 2, 1, 1&gt;,</span>
+<span class="lineNum">     270 </span>            :                    index_list&lt;SpatialIndex&lt;SpatialDim, UpLo::Up, Fr&gt;,
+<span class="lineNum">     271 </span>            :                               SpatialIndex&lt;SpatialDim, UpLo::Lo, Fr&gt;,
+<span class="lineNum">     272 </span>            :                               SpatialIndex&lt;SpatialDim, UpLo::Lo, Fr&gt;&gt;&gt;;
+<span class="lineNum">     273 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr&gt;
+<span class="lineNum">     274 </span><span class="lineNoCov">          0 : using iJJ = Tensor&lt;DataType, tmpl::integral_list&lt;std::int32_t, 2, 1, 1&gt;,</span>
+<span class="lineNum">     275 </span>            :                    index_list&lt;SpatialIndex&lt;SpatialDim, UpLo::Lo, Fr&gt;,
+<span class="lineNum">     276 </span>            :                               SpatialIndex&lt;SpatialDim, UpLo::Up, Fr&gt;,
+<span class="lineNum">     277 </span>            :                               SpatialIndex&lt;SpatialDim, UpLo::Up, Fr&gt;&gt;&gt;;
+<span class="lineNum">     278 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr&gt;
+<span class="lineNum">     279 </span><span class="lineNoCov">          0 : using IJJ = Tensor&lt;DataType, tmpl::integral_list&lt;std::int32_t, 2, 1, 1&gt;,</span>
+<span class="lineNum">     280 </span>            :                    index_list&lt;SpatialIndex&lt;SpatialDim, UpLo::Up, Fr&gt;,
+<span class="lineNum">     281 </span>            :                               SpatialIndex&lt;SpatialDim, UpLo::Up, Fr&gt;,
+<span class="lineNum">     282 </span>            :                               SpatialIndex&lt;SpatialDim, UpLo::Up, Fr&gt;&gt;&gt;;
+<span class="lineNum">     283 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr&gt;
+<span class="lineNum">     284 </span><span class="lineNoCov">          0 : using III = Tensor&lt;DataType, tmpl::integral_list&lt;std::int32_t, 1, 1, 1&gt;,</span>
+<span class="lineNum">     285 </span>            :                    index_list&lt;SpatialIndex&lt;SpatialDim, UpLo::Up, Fr&gt;,
+<span class="lineNum">     286 </span>            :                               SpatialIndex&lt;SpatialDim, UpLo::Up, Fr&gt;,
+<span class="lineNum">     287 </span>            :                               SpatialIndex&lt;SpatialDim, UpLo::Up, Fr&gt;&gt;&gt;;
+<span class="lineNum">     288 </span>            : 
+<span class="lineNum">     289 </span>            : // Rank 3 - mixed spacetime spatial
+<span class="lineNum">     290 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr&gt;
+<span class="lineNum">     291 </span><span class="lineNoCov">          0 : using iab = Tensor&lt;DataType, tmpl::integral_list&lt;std::int32_t, 3, 2, 1&gt;,</span>
+<span class="lineNum">     292 </span>            :                    index_list&lt;SpatialIndex&lt;SpatialDim, UpLo::Lo, Fr&gt;,
+<span class="lineNum">     293 </span>            :                               SpacetimeIndex&lt;SpatialDim, UpLo::Lo, Fr&gt;,
+<span class="lineNum">     294 </span>            :                               SpacetimeIndex&lt;SpatialDim, UpLo::Lo, Fr&gt;&gt;&gt;;
+<span class="lineNum">     295 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr&gt;
+<span class="lineNum">     296 </span><span class="lineNoCov">          0 : using iaB = Tensor&lt;DataType, tmpl::integral_list&lt;std::int32_t, 3, 2, 1&gt;,</span>
+<span class="lineNum">     297 </span>            :                    index_list&lt;SpatialIndex&lt;SpatialDim, UpLo::Lo, Fr&gt;,
+<span class="lineNum">     298 </span>            :                               SpacetimeIndex&lt;SpatialDim, UpLo::Lo, Fr&gt;,
+<span class="lineNum">     299 </span>            :                               SpacetimeIndex&lt;SpatialDim, UpLo::Up, Fr&gt;&gt;&gt;;
+<span class="lineNum">     300 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr&gt;
+<span class="lineNum">     301 </span><span class="lineNoCov">          0 : using iAb = Tensor&lt;DataType, tmpl::integral_list&lt;std::int32_t, 3, 2, 1&gt;,</span>
+<span class="lineNum">     302 </span>            :                    index_list&lt;SpatialIndex&lt;SpatialDim, UpLo::Lo, Fr&gt;,
+<span class="lineNum">     303 </span>            :                               SpacetimeIndex&lt;SpatialDim, UpLo::Up, Fr&gt;,
+<span class="lineNum">     304 </span>            :                               SpacetimeIndex&lt;SpatialDim, UpLo::Lo, Fr&gt;&gt;&gt;;
+<span class="lineNum">     305 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr&gt;
+<span class="lineNum">     306 </span><span class="lineNoCov">          0 : using iAB = Tensor&lt;DataType, tmpl::integral_list&lt;std::int32_t, 3, 2, 1&gt;,</span>
+<span class="lineNum">     307 </span>            :                    index_list&lt;SpatialIndex&lt;SpatialDim, UpLo::Lo, Fr&gt;,
+<span class="lineNum">     308 </span>            :                               SpacetimeIndex&lt;SpatialDim, UpLo::Up, Fr&gt;,
+<span class="lineNum">     309 </span>            :                               SpacetimeIndex&lt;SpatialDim, UpLo::Up, Fr&gt;&gt;&gt;;
+<span class="lineNum">     310 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr&gt;
+<span class="lineNum">     311 </span><span class="lineNoCov">          0 : using iaa = Tensor&lt;DataType, tmpl::integral_list&lt;std::int32_t, 2, 1, 1&gt;,</span>
+<span class="lineNum">     312 </span>            :                    index_list&lt;SpatialIndex&lt;SpatialDim, UpLo::Lo, Fr&gt;,
+<span class="lineNum">     313 </span>            :                               SpacetimeIndex&lt;SpatialDim, UpLo::Lo, Fr&gt;,
+<span class="lineNum">     314 </span>            :                               SpacetimeIndex&lt;SpatialDim, UpLo::Lo, Fr&gt;&gt;&gt;;
+<span class="lineNum">     315 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr&gt;
+<span class="lineNum">     316 </span><span class="lineNoCov">          0 : using iAA = Tensor&lt;DataType, tmpl::integral_list&lt;std::int32_t, 2, 1, 1&gt;,</span>
+<span class="lineNum">     317 </span>            :                    index_list&lt;SpatialIndex&lt;SpatialDim, UpLo::Lo, Fr&gt;,
+<span class="lineNum">     318 </span>            :                               SpacetimeIndex&lt;SpatialDim, UpLo::Up, Fr&gt;,
+<span class="lineNum">     319 </span>            :                               SpacetimeIndex&lt;SpatialDim, UpLo::Up, Fr&gt;&gt;&gt;;
+<span class="lineNum">     320 </span>            : 
+<span class="lineNum">     321 </span>            : namespace detail {
+<span class="lineNum">     322 </span>            : template &lt;size_t Dim, typename Frame1, typename Frame2&gt;
+<span class="lineNum">     323 </span>            : struct inverse_jacobian_impl {
+<span class="lineNum">     324 </span>            :   static_assert(tmpl::index_of&lt;Frame::ordered_frame_list, Frame1&gt;::value &lt;
+<span class="lineNum">     325 </span>            :                     tmpl::index_of&lt;Frame::ordered_frame_list, Frame2&gt;::value,
+<span class="lineNum">     326 </span>            :                 &quot;Inverse Jacobian must go other direction.&quot;);
+<span class="lineNum">     327 </span>            :   using type = Tensor&lt;DataVector, tmpl::integral_list&lt;std::int32_t, 2, 1&gt;,
+<span class="lineNum">     328 </span>            :                       typelist&lt;SpatialIndex&lt;Dim, UpLo::Up, Frame1&gt;,
+<span class="lineNum">     329 </span>            :                                SpatialIndex&lt;Dim, UpLo::Lo, Frame2&gt;&gt;&gt;;
+<span class="lineNum">     330 </span>            : };
+<span class="lineNum">     331 </span>            : }  // namespace detail
+<span class="lineNum">     332 </span>            : 
+<span class="lineNum">     333 </span>            : }  // namespace tnsr
 <span class="lineNum">     334 </span>            : 
-<span class="lineNum">     335 </span>            : template &lt;typename DataType, size_t SpatialDim, typename Fr&gt;
-<span class="lineNum">     336 </span><span class="lineNoCov">          0 : using Point = Tensor&lt;DataType, tmpl::integral_list&lt;std::int32_t, 1&gt;,</span>
-<span class="lineNum">     337 </span>            :                      index_list&lt;SpatialIndex&lt;SpatialDim, UpLo::Up, Fr&gt;&gt;&gt;;
-<span class="lineNum">     338 </span>            : }  // namespace tnsr
+<span class="lineNum">     335 </span>            : template &lt;size_t Dim, typename Frame1, typename Frame2&gt;
+<span class="lineNum">     336 </span><span class="lineNoCov">          0 : using InverseJacobian =</span>
+<span class="lineNum">     337 </span>            :     typename tnsr::detail::inverse_jacobian_impl&lt;Dim, Frame1, Frame2&gt;::type;
+<span class="lineNum">     338 </span>            : 
+<span class="lineNum">     339 </span>            : template &lt;size_t SpatialDim, typename Fr&gt;
+<span class="lineNum">     340 </span><span class="lineNoCov">          0 : using Point = Tensor&lt;double, tmpl::integral_list&lt;std::int32_t, 1&gt;,</span>
+<span class="lineNum">     341 </span>            :                      index_list&lt;SpatialIndex&lt;SpatialDim, UpLo::Up, Fr&gt;&gt;&gt;;
 </pre>
       </td>
     </tr>

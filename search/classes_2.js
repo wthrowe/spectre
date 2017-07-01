@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['catalog',['catalog',['http://en.cppreference.com/w/cpp/locale/messages_base.html',1,'std::messages_byname::catalog'],['http://en.cppreference.com/w/cpp/locale/messages_base.html',1,'std::messages_base::catalog'],['http://en.cppreference.com/w/cpp/locale/messages_base.html',1,'std::messages::catalog']]],
+  ['catalog',['catalog',['http://en.cppreference.com/w/cpp/locale/messages_base.html',1,'std::messages_base::catalog'],['http://en.cppreference.com/w/cpp/locale/messages_base.html',1,'std::messages_byname::catalog'],['http://en.cppreference.com/w/cpp/locale/messages_base.html',1,'std::messages::catalog']]],
   ['cauchy_5fdistribution',['cauchy_distribution',['http://en.cppreference.com/w/cpp/numeric/random/cauchy_distribution.html',1,'std']]],
   ['centi',['centi',['http://en.cppreference.com/w/cpp/numeric/ratio/ratio.html',1,'std']]],
   ['cerr',['cerr',['http://en.cppreference.com/w/cpp/io/cerr.html',1,'std']]],

@@ -23,6 +23,7 @@ var searchData=
   ['recursive_5fmutex',['recursive_mutex',['http://en.cppreference.com/w/cpp/thread/recursive_mutex/recursive_mutex.html',1,'std::recursive_mutex']]],
   ['recursive_5ftimed_5fmutex',['recursive_timed_mutex',['http://en.cppreference.com/w/cpp/thread/recursive_timed_mutex/recursive_timed_mutex.html',1,'std::recursive_timed_mutex']]],
   ['reference_5fwrapper',['reference_wrapper',['http://en.cppreference.com/w/cpp/utility/functional/reference_wrapper/reference_wrapper.html',1,'std::reference_wrapper']]],
+  ['refinement_5flevel',['refinement_level',['../classSegmentId.html#a45ec28c278c373562c731d822976b6cf',1,'SegmentId']]],
   ['regex',['regex',['http://en.cppreference.com/w/cpp/regex/basic_regex/basic_regex.html',1,'std::regex']]],
   ['regex_5ferror',['regex_error',['http://en.cppreference.com/w/cpp/regex/regex_error/regex_error.html',1,'std::regex_error']]],
   ['regex_5fiterator',['regex_iterator',['http://en.cppreference.com/w/cpp/regex/regex_iterator/regex_iterator.html',1,'std::regex_iterator']]],

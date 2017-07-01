@@ -1,0 +1,613 @@
+<!-- HTML header for doxygen 1.8.10-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="SXS Collaboration">
+    <meta name="generator" content="Doxygen 1.8.13"/>
+    <style>
+        /*!
+         * IE10 viewport hack for Surface/desktop Windows 8 bug
+         * Copyright 2014-2015 Twitter, Inc.
+         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+         */
+        @-webkit-viewport { width: device-width; }
+        @-moz-viewport    { width: device-width; }
+        @-ms-viewport     { width: device-width; }
+        @-o-viewport      { width: device-width; }
+        @viewport         { width: device-width; }
+      </style>
+  <title>SpECTRE: EmbeddingMap&lt; DimOfDomain, DimOfRange &gt; Class Template Reference</title>
+  <link href="tabs.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="dynsections.js"></script>
+  <link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
+  <link href="octicons.css" rel="stylesheet">
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="doxygen.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="bootstrap.min.js"></script>
+  <script type="text/javascript" src="spectre.js"></script>
+  </head>
+  <body>
+  <div id="top" class="navbar-fixed-top"><!-- do not remove this div, it is closed by doxygen! -->
+  <!-- BEGIN TITLEAREA -->
+  <div id="titlearea">
+  <script type="text/javascript">
+  var searchBox = new SearchBox("searchBox", "search",false,'Search');
+  </script>
+  <div id="main-nav">
+    <ul class="sm sm-dox" id="main-menu">
+      <li>
+      <a href="https://github.com/sxs-collaboration/spectre" target="_blank">
+      SpECTRE &#160;
+        <span id="projectnumber">v0.0.0</span>
+      </a>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-book"></i><span>Documentation</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 135px;">
+            <a href="index.html">
+            <i class="octicon octicon-book"></i><span>Documentation</span></a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="tutorials.html">
+              <i class="octicon octicon-mortar-board"></i><span>Tutorials</span>
+            </a>
+          </li>
+          <li style="min-width: 135px;">
+            <a href="dev_guide.html">
+              <i class="octicon octicon-gist-secret"></i><span>Dev Guide</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown" style="min-width: 150px;">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="selected">
+          <span id="selected">
+            <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+          </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li style="min-width: 130px;">
+            <a href="modules.html">
+              <i class="octicon octicon-code"></i>
+              <span>Reference</span>
+            </a>
+          </li>
+          <li style="min-width: 130px;">
+            <a href="namespaces.html">
+              <i class="octicon octicon-gist"></i>
+              <span>Namespaces</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="files.html">
+          <i class="octicon octicon-file-directory"></i><span>Files</span>
+        </a>
+      </li>
+      <!--The Search <li> is added by doxygen later-->
+    </ul>
+  </div><!-- main-nav -->
+  </div><!-- titlearea -->
+  <!-- window showing the filter options -->
+  <div id="MSearchSelectWindow"  style="position: fixed;"
+       onmouseover="return searchBox.OnSearchSelectShow()"
+       onmouseout="return searchBox.OnSearchSelectHide()"
+       onkeydown="return searchBox.OnSearchSelectKey(event)">
+  </div>
+  <!-- iframe showing the search results (closed by default) -->
+  <div id="MSearchResultsWindow"  style="position: fixed;">
+  <iframe src="javascript:void(0)" frameborder="0"
+          name="MSearchResults" id="MSearchResults">
+  </iframe>
+  </div><!-- Generated by Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Search');
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="classEmbeddingMap-members.html">List of all members</a>  </div>
+  <div class="headertitle">
+<div class="title">EmbeddingMap&lt; DimOfDomain, DimOfRange &gt; Class Template Reference<span class="mlabels"><span class="mlabel">abstract</span></span><div class="ingroups"><a class="el" href="group__ComputationalDomain.html">Computational Domain</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Base class representing a coordinate mapping from a <code>DimOfDomain</code>-dimensional space (coordinates \(\xi^I\)) to a <code>DimOfRange</code>-dimensional space (coordinates \(x^i\)).  
+ <a href="classEmbeddingMap.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="EmbeddingMap_8hpp_source.html">EmbeddingMap.hpp</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a98772fc9c3bd4c70c9be389c9d9f85af"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEmbeddingMap.html#a98772fc9c3bd4c70c9be389c9d9f85af">WRAPPED_PUPable_abstract</a> (<a class="el" href="classEmbeddingMap.html">EmbeddingMap</a>)</td></tr>
+<tr class="separator:a98772fc9c3bd4c70c9be389c9d9f85af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa9820c10dbf521140c64d985f79935ce"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEmbeddingMap.html#aa9820c10dbf521140c64d985f79935ce">EmbeddingMap</a> ()=default</td></tr>
+<tr class="separator:aa9820c10dbf521140c64d985f79935ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a98775c14be1f9030b25a965778423b42"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEmbeddingMap.html#a98775c14be1f9030b25a965778423b42">~EmbeddingMap</a> () override=default</td></tr>
+<tr class="separator:a98775c14be1f9030b25a965778423b42"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaeee24b7d27b04617a888b93384fbd47"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEmbeddingMap.html#aaeee24b7d27b04617a888b93384fbd47">EmbeddingMap</a> (const <a class="el" href="classEmbeddingMap.html">EmbeddingMap</a>&lt; DimOfDomain, DimOfRange &gt; &amp;)=delete</td></tr>
+<tr class="separator:aaeee24b7d27b04617a888b93384fbd47"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ad62c3b6dcddbc033956e68559c341d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEmbeddingMap.html#a3ad62c3b6dcddbc033956e68559c341d">EmbeddingMap</a> (<a class="el" href="classEmbeddingMap.html">EmbeddingMap</a>&lt; DimOfDomain, DimOfRange &gt; &amp;&amp;) noexcept=default</td></tr>
+<tr class="separator:a3ad62c3b6dcddbc033956e68559c341d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a69a04d25440340f1df725679be5db3e7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classEmbeddingMap.html">EmbeddingMap</a>&lt; DimOfDomain, DimOfRange &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEmbeddingMap.html#a69a04d25440340f1df725679be5db3e7">operator=</a> (const <a class="el" href="classEmbeddingMap.html">EmbeddingMap</a>&lt; DimOfDomain, DimOfRange &gt; &amp;)=delete</td></tr>
+<tr class="separator:a69a04d25440340f1df725679be5db3e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a48f8b0d151a57912731684fc5679cb58"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classEmbeddingMap.html">EmbeddingMap</a>&lt; DimOfDomain, DimOfRange &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEmbeddingMap.html#a48f8b0d151a57912731684fc5679cb58">operator=</a> (<a class="el" href="classEmbeddingMap.html">EmbeddingMap</a>&lt; DimOfDomain, DimOfRange &gt; &amp;&amp;) noexcept=default</td></tr>
+<tr class="separator:a48f8b0d151a57912731684fc5679cb58"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77b0301099af3827ed8789ce7858049c"><td class="memItemLeft" align="right" valign="top">virtual <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/memory/unique_ptr.html">std::unique_ptr</a>&lt; <a class="el" href="classEmbeddingMap.html">EmbeddingMap</a>&lt; DimOfDomain, DimOfRange &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEmbeddingMap.html#a77b0301099af3827ed8789ce7858049c">get_clone</a> () const =0</td></tr>
+<tr class="memdesc:a77b0301099af3827ed8789ce7858049c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a copy of the concrete <a class="el" href="classEmbeddingMap.html" title="Base class representing a coordinate mapping from a DimOfDomain-dimensional space (coordinates ) to a...">EmbeddingMap</a>.  <a href="#a77b0301099af3827ed8789ce7858049c">More...</a><br /></td></tr>
+<tr class="separator:a77b0301099af3827ed8789ce7858049c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c8a4f1394d594213180b6841c4b3d14"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="TypeAliases_8hpp.html#aeb7f31b93cdf9ca6495082e6a639f1ea">Point</a>&lt; DimOfRange, <a class="el" href="structFrame_1_1Grid.html">Frame::Grid</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEmbeddingMap.html#a9c8a4f1394d594213180b6841c4b3d14">operator()</a> (const <a class="el" href="TypeAliases_8hpp.html#aeb7f31b93cdf9ca6495082e6a639f1ea">Point</a>&lt; DimOfDomain, <a class="el" href="structFrame_1_1Logical.html">Frame::Logical</a> &gt; &amp;xi) const =0</td></tr>
+<tr class="memdesc:a9c8a4f1394d594213180b6841c4b3d14"><td class="mdescLeft">&#160;</td><td class="mdescRight">Apply the mapping (i.e. compute \(x^i(\xi^I)\)).  <a href="#a9c8a4f1394d594213180b6841c4b3d14">More...</a><br /></td></tr>
+<tr class="separator:a9c8a4f1394d594213180b6841c4b3d14"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aedbb199f2b3e3e8532dc5f9fd2d854e8"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="TypeAliases_8hpp.html#aeb7f31b93cdf9ca6495082e6a639f1ea">Point</a>&lt; DimOfDomain, <a class="el" href="structFrame_1_1Logical.html">Frame::Logical</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEmbeddingMap.html#aedbb199f2b3e3e8532dc5f9fd2d854e8">inverse</a> (const <a class="el" href="TypeAliases_8hpp.html#aeb7f31b93cdf9ca6495082e6a639f1ea">Point</a>&lt; DimOfRange, <a class="el" href="structFrame_1_1Grid.html">Frame::Grid</a> &gt; &amp;x) const =0</td></tr>
+<tr class="memdesc:aedbb199f2b3e3e8532dc5f9fd2d854e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Apply the inverse mapping (i.e. compute \(\xi^I(x^i)\)).  <a href="#aedbb199f2b3e3e8532dc5f9fd2d854e8">More...</a><br /></td></tr>
+<tr class="separator:aedbb199f2b3e3e8532dc5f9fd2d854e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a075e3521acad41e2aeeea9386c8bfc19"><td class="memItemLeft" align="right" valign="top">virtual double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEmbeddingMap.html#a075e3521acad41e2aeeea9386c8bfc19">jacobian</a> (const <a class="el" href="TypeAliases_8hpp.html#aeb7f31b93cdf9ca6495082e6a639f1ea">Point</a>&lt; DimOfDomain, <a class="el" href="structFrame_1_1Logical.html">Frame::Logical</a> &gt; &amp;xi, size_t ud, size_t ld) const =0</td></tr>
+<tr class="separator:a075e3521acad41e2aeeea9386c8bfc19"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d248b22b7fc68079e4eaa31b56a59d4"><td class="memItemLeft" align="right" valign="top">virtual double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEmbeddingMap.html#a8d248b22b7fc68079e4eaa31b56a59d4">inv_jacobian</a> (const <a class="el" href="TypeAliases_8hpp.html#aeb7f31b93cdf9ca6495082e6a639f1ea">Point</a>&lt; DimOfDomain, <a class="el" href="structFrame_1_1Logical.html">Frame::Logical</a> &gt; &amp;xi, size_t ud, size_t ld) const =0</td></tr>
+<tr class="memdesc:a8d248b22b7fc68079e4eaa31b56a59d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">(i.e. compute \(\frac{\partial \xi^{ud}}{\partial x^{ld}}\)).  <a href="#a8d248b22b7fc68079e4eaa31b56a59d4">More...</a><br /></td></tr>
+<tr class="separator:a8d248b22b7fc68079e4eaa31b56a59d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><h3>template&lt;size_t DimOfDomain, size_t DimOfRange&gt;<br />
+class EmbeddingMap&lt; DimOfDomain, DimOfRange &gt;</h3>
+
+<p>Base class representing a coordinate mapping from a <code>DimOfDomain</code>-dimensional space (coordinates \(\xi^I\)) to a <code>DimOfRange</code>-dimensional space (coordinates \(x^i\)). </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="aa9820c10dbf521140c64d985f79935ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa9820c10dbf521140c64d985f79935ce">&#9670;&nbsp;</a></span>EmbeddingMap() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;size_t DimOfDomain, size_t DimOfRange&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classEmbeddingMap.html">EmbeddingMap</a>&lt; DimOfDomain, DimOfRange &gt;::<a class="el" href="classEmbeddingMap.html">EmbeddingMap</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a98775c14be1f9030b25a965778423b42"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a98775c14be1f9030b25a965778423b42">&#9670;&nbsp;</a></span>~EmbeddingMap()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;size_t DimOfDomain, size_t DimOfRange&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classEmbeddingMap.html">EmbeddingMap</a>&lt; DimOfDomain, DimOfRange &gt;::~<a class="el" href="classEmbeddingMap.html">EmbeddingMap</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aaeee24b7d27b04617a888b93384fbd47"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaeee24b7d27b04617a888b93384fbd47">&#9670;&nbsp;</a></span>EmbeddingMap() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;size_t DimOfDomain, size_t DimOfRange&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classEmbeddingMap.html">EmbeddingMap</a>&lt; DimOfDomain, DimOfRange &gt;::<a class="el" href="classEmbeddingMap.html">EmbeddingMap</a> </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classEmbeddingMap.html">EmbeddingMap</a>&lt; DimOfDomain, DimOfRange &gt; &amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">delete</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3ad62c3b6dcddbc033956e68559c341d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3ad62c3b6dcddbc033956e68559c341d">&#9670;&nbsp;</a></span>EmbeddingMap() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;size_t DimOfDomain, size_t DimOfRange&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classEmbeddingMap.html">EmbeddingMap</a>&lt; DimOfDomain, DimOfRange &gt;::<a class="el" href="classEmbeddingMap.html">EmbeddingMap</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classEmbeddingMap.html">EmbeddingMap</a>&lt; DimOfDomain, DimOfRange &gt; &amp;&amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a77b0301099af3827ed8789ce7858049c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a77b0301099af3827ed8789ce7858049c">&#9670;&nbsp;</a></span>get_clone()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;size_t DimOfDomain, size_t DimOfRange&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="elRef" doxygen="/work/spectre/docs/config/cppreference-doxygen-web.tag.xml:http://en.cppreference.com/w/" href="http://en.cppreference.com/w/cpp/memory/unique_ptr.html">std::unique_ptr</a>&lt;<a class="el" href="classEmbeddingMap.html">EmbeddingMap</a>&lt;DimOfDomain, DimOfRange&gt; &gt; <a class="el" href="classEmbeddingMap.html">EmbeddingMap</a>&lt; DimOfDomain, DimOfRange &gt;::get_clone </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Return a copy of the concrete <a class="el" href="classEmbeddingMap.html" title="Base class representing a coordinate mapping from a DimOfDomain-dimensional space (coordinates ) to a...">EmbeddingMap</a>. </p>
+
+<p>Implemented in <a class="el" href="classEmbeddingMaps_1_1Identity.html#ad6050c58c00f94532af73550912cd58e">EmbeddingMaps::Identity&lt; Dim &gt;</a>.</p>
+
+</div>
+</div>
+<a id="a8d248b22b7fc68079e4eaa31b56a59d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d248b22b7fc68079e4eaa31b56a59d4">&#9670;&nbsp;</a></span>inv_jacobian()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;size_t DimOfDomain, size_t DimOfRange&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual double <a class="el" href="classEmbeddingMap.html">EmbeddingMap</a>&lt; DimOfDomain, DimOfRange &gt;::inv_jacobian </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="TypeAliases_8hpp.html#aeb7f31b93cdf9ca6495082e6a639f1ea">Point</a>&lt; DimOfDomain, <a class="el" href="structFrame_1_1Logical.html">Frame::Logical</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>xi</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>ud</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>ld</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>(i.e. compute \(\frac{\partial \xi^{ud}}{\partial x^{ld}}\)). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">xi</td><td>the point \(\xi^I\) in the domain of the mapping. </td></tr>
+    <tr><td class="paramname">ud</td><td>the upper index of the inverse Jacobian (a domain index). </td></tr>
+    <tr><td class="paramname">ld</td><td>the lower index of the inverse Jacobian (a range index). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aedbb199f2b3e3e8532dc5f9fd2d854e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aedbb199f2b3e3e8532dc5f9fd2d854e8">&#9670;&nbsp;</a></span>inverse()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;size_t DimOfDomain, size_t DimOfRange&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="TypeAliases_8hpp.html#aeb7f31b93cdf9ca6495082e6a639f1ea">Point</a>&lt;DimOfDomain, <a class="el" href="structFrame_1_1Logical.html">Frame::Logical</a>&gt; <a class="el" href="classEmbeddingMap.html">EmbeddingMap</a>&lt; DimOfDomain, DimOfRange &gt;::inverse </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="TypeAliases_8hpp.html#aeb7f31b93cdf9ca6495082e6a639f1ea">Point</a>&lt; DimOfRange, <a class="el" href="structFrame_1_1Grid.html">Frame::Grid</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>x</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Apply the inverse mapping (i.e. compute \(\xi^I(x^i)\)). </p>
+<p><em>Returns:</em> the point \(\xi^I\) in the domain of the mapping. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>the point \(x^i\) in the range of the mapping. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a075e3521acad41e2aeeea9386c8bfc19"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a075e3521acad41e2aeeea9386c8bfc19">&#9670;&nbsp;</a></span>jacobian()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;size_t DimOfDomain, size_t DimOfRange&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual double <a class="el" href="classEmbeddingMap.html">EmbeddingMap</a>&lt; DimOfDomain, DimOfRange &gt;::jacobian </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="TypeAliases_8hpp.html#aeb7f31b93cdf9ca6495082e6a639f1ea">Point</a>&lt; DimOfDomain, <a class="el" href="structFrame_1_1Logical.html">Frame::Logical</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>xi</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>ud</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>ld</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Compute a component of the Jacobian at the given domain point (i.e. compute \(\frac{\partial x^{ud}}{\partial \xi^{ld}}\)). </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">xi</td><td>the point \(\Xi^I\) in the domain of the mapping. </td></tr>
+    <tr><td class="paramname">ud</td><td>the upper index of the Jacobian (a range index). </td></tr>
+    <tr><td class="paramname">ld</td><td>the lower index of the Jacobian (a domain index). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a9c8a4f1394d594213180b6841c4b3d14"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c8a4f1394d594213180b6841c4b3d14">&#9670;&nbsp;</a></span>operator()()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;size_t DimOfDomain, size_t DimOfRange&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="TypeAliases_8hpp.html#aeb7f31b93cdf9ca6495082e6a639f1ea">Point</a>&lt;DimOfRange, <a class="el" href="structFrame_1_1Grid.html">Frame::Grid</a>&gt; <a class="el" href="classEmbeddingMap.html">EmbeddingMap</a>&lt; DimOfDomain, DimOfRange &gt;::operator() </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="TypeAliases_8hpp.html#aeb7f31b93cdf9ca6495082e6a639f1ea">Point</a>&lt; DimOfDomain, <a class="el" href="structFrame_1_1Logical.html">Frame::Logical</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>xi</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Apply the mapping (i.e. compute \(x^i(\xi^I)\)). </p>
+<p><em>Returns:</em> the point \(x^i\) in the range of the mapping. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">xi</td><td>the point \(\xi^I\) in the domain of the mapping. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a69a04d25440340f1df725679be5db3e7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a69a04d25440340f1df725679be5db3e7">&#9670;&nbsp;</a></span>operator=() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;size_t DimOfDomain, size_t DimOfRange&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classEmbeddingMap.html">EmbeddingMap</a>&lt;DimOfDomain, DimOfRange&gt;&amp; <a class="el" href="classEmbeddingMap.html">EmbeddingMap</a>&lt; DimOfDomain, DimOfRange &gt;::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classEmbeddingMap.html">EmbeddingMap</a>&lt; DimOfDomain, DimOfRange &gt; &amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">delete</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a48f8b0d151a57912731684fc5679cb58"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a48f8b0d151a57912731684fc5679cb58">&#9670;&nbsp;</a></span>operator=() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;size_t DimOfDomain, size_t DimOfRange&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classEmbeddingMap.html">EmbeddingMap</a>&lt;DimOfDomain, DimOfRange&gt;&amp; <a class="el" href="classEmbeddingMap.html">EmbeddingMap</a>&lt; DimOfDomain, DimOfRange &gt;::operator= </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classEmbeddingMap.html">EmbeddingMap</a>&lt; DimOfDomain, DimOfRange &gt; &amp;&amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a98772fc9c3bd4c70c9be389c9d9f85af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a98772fc9c3bd4c70c9be389c9d9f85af">&#9670;&nbsp;</a></span>WRAPPED_PUPable_abstract()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;size_t DimOfDomain, size_t DimOfRange&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classEmbeddingMap.html">EmbeddingMap</a>&lt; DimOfDomain, DimOfRange &gt;::WRAPPED_PUPable_abstract </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classEmbeddingMap.html">EmbeddingMap</a>&lt; DimOfDomain, DimOfRange &gt;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>src/Domain/EmbeddingMaps/<a class="el" href="EmbeddingMap_8hpp_source.html">EmbeddingMap.hpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.10-->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+&copy; Copyright 2017
+<a href="https://black-holes.org">SXS Collaboration</a>,
+<a href="LICENSE.txt" target="_blank">
+<span class="hidden-xs">Distributed under the</span>
+MIT License</a>
+</small></address>
+</body>
+</html>

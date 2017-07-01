@@ -165,7 +165,7 @@ $(function() {
 <li><a href="https://bitbucket.org/blaze-lib/blaze/overview">Blaze</a></li>
 <li><a href="http://www.boost.org/">Boost</a></li>
 <li><a href="https://github.com/edouarda/brigand">Brigand</a></li>
-<li><a href="https://github.com/philsquared/Catch">Catch</a> v1.6.1 or older</li>
+<li><a href="https://github.com/philsquared/Catch">Catch</a></li>
 <li><a href="https://www.gnu.org/software/gsl/">GSL</a></li>
 <li><a href="https://support.hdfgroup.org/HDF5/">HDF5</a> (non-mpi version on macOS)</li>
 <li><a href="https://github.com/jemalloc/jemalloc">jemalloc</a></li>
@@ -197,7 +197,7 @@ $(function() {
 <li>Instructions for other Linux distros are available online.</li>
 </ul>
 <p>To use modules with Spack, enable Spack's shell support by adding <code>. SPACK_DIR/share/spack/setup-env.sh</code> to your <code>.bash_profile</code> or <code>.bashrc</code>.</p>
-<p>Once you have Spack installed and configured with OpenSSL and LMod, you can install the SpECTRE dependencies using </p><div class="fragment"><div class="line">spack install blaze</div><div class="line">spack install brigand@master</div><div class="line">spack install catch@1.6.1</div><div class="line">spack install gsl</div><div class="line">spack install jemalloc # or from your package manager</div><div class="line">spack install libxsmm</div><div class="line">spack install yaml-cpp@develop</div></div><!-- fragment --><p> You can also install CMake, OpenBLAS, Boost, and HDF5 from Spack. To load the packages you've installed from Spack run <code>spack load PACKAGE</code>, or (equivalently) use the <code>module load</code> command.</p>
+<p>Once you have Spack installed and configured with OpenSSL and LMod, you can install the SpECTRE dependencies using </p><div class="fragment"><div class="line">spack install blaze</div><div class="line">spack install brigand@master</div><div class="line">spack install catch</div><div class="line">spack install gsl</div><div class="line">spack install jemalloc # or from your package manager</div><div class="line">spack install libxsmm</div><div class="line">spack install yaml-cpp@develop</div></div><!-- fragment --><p> You can also install CMake, OpenBLAS, Boost, and HDF5 from Spack. To load the packages you've installed from Spack run <code>spack load PACKAGE</code>, or (equivalently) use the <code>module load</code> command.</p>
 <p><b>Note</b>: Spack allows very flexible configurations and it is recommended you read the <a href="https://spack.readthedocs.io">documentation</a> if you require features such as packages installed with different compilers.</p>
 <h3>Building SpECTRE</h3>
 <p>After the dependencies have been installed, Charm++ and SpECTRE can be compiled. Follow these steps:</p>

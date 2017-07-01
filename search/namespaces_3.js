@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['frame',['Frame',['../namespaceFrame.html',1,'']]]
+  ['embeddingmaps',['EmbeddingMaps',['../namespaceEmbeddingMaps.html',1,'']]]
 ];

@@ -163,7 +163,10 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:ga4439208ed8accb2887ff47388e91e58b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__TestingFramework.html#ga4439208ed8accb2887ff47388e91e58b">ASSERTION_TEST</a>()&#160;&#160;&#160;<a class="el" href="group__Parallel.html#gaccc68e564135958d18110d2847dcc1b3">Parallel::abort</a>(&quot;### No <a class="el" href="group__ErrorHandling.html#gaf170f3984e3d0f809b2558dbd981ca35">ASSERT</a> tests in release mode ###&quot;)</td></tr>
+<tr class="memitem:gaf962c28abc1a1f014f2a6b32c6f01680"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__TestingFramework.html#gaf962c28abc1a1f014f2a6b32c6f01680">ERROR_TEST</a>()</td></tr>
+<tr class="memdesc:gaf962c28abc1a1f014f2a6b32c6f01680"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mark a test as checking a call to ERROR.  <a href="#gaf962c28abc1a1f014f2a6b32c6f01680">More...</a><br /></td></tr>
+<tr class="separator:gaf962c28abc1a1f014f2a6b32c6f01680"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4439208ed8accb2887ff47388e91e58b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__TestingFramework.html#ga4439208ed8accb2887ff47388e91e58b">ASSERTION_TEST</a>()</td></tr>
 <tr class="memdesc:ga4439208ed8accb2887ff47388e91e58b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mark a test to be checking an ASSERT.  <a href="#ga4439208ed8accb2887ff47388e91e58b">More...</a><br /></td></tr>
 <tr class="separator:ga4439208ed8accb2887ff47388e91e58b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -209,11 +212,12 @@ Functions</h2></td></tr>
           <td class="memname">#define ASSERTION_TEST</td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td>&#160;&#160;&#160;<a class="el" href="group__Parallel.html#gaccc68e564135958d18110d2847dcc1b3">Parallel::abort</a>(&quot;### No <a class="el" href="group__ErrorHandling.html#gaf170f3984e3d0f809b2558dbd981ca35">ASSERT</a> tests in release mode ###&quot;)</td>
+          <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-
+<b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">do</span> {                                                          \</div><div class="line">    ERROR_TEST();                                               <a class="code" href="group__Parallel.html#gaccc68e564135958d18110d2847dcc1b3">\</a></div><div class="line"><a class="code" href="group__Parallel.html#gaccc68e564135958d18110d2847dcc1b3">    Parallel::abort</a>(<span class="stringliteral">&quot;### No ASSERT tests in release mode ###&quot;</span>); \</div><div class="line">  } <span class="keywordflow">while</span> (<span class="keyword">false</span>)</div><div class="ttc" id="group__Parallel_html_gaccc68e564135958d18110d2847dcc1b3"><div class="ttname"><a href="group__Parallel.html#gaccc68e564135958d18110d2847dcc1b3">Parallel::abort</a></div><div class="ttdeci">void abort(const std::string &amp;message)</div><div class="ttdoc">Abort the program with an error message. </div><div class="ttdef"><b>Definition:</b> Abort.hpp:17</div></div>
+</div><!-- fragment -->
 <p>Mark a test to be checking an ASSERT. </p>
 <h3>Details</h3>
 <p>Testing error handling is just as important as testing functionality. Tests that are supposed to exit with an error must be annotated with the attribute </p><div class="fragment"><div class="line"><span class="comment">// [[OutputRegex, The regex that should be found in the output]]</span></div></div><!-- fragment --><p> Note that the regex only needs to be a sub-expression of the error message, that is, there are implicit wildcards before and after the string.</p>
@@ -221,6 +225,28 @@ Functions</h2></td></tr>
 <h3>Example</h3>
 <p>snippet Test_Time.cpp example_of_error_test </p>
 
+</div>
+</div>
+<a id="gaf962c28abc1a1f014f2a6b32c6f01680"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf962c28abc1a1f014f2a6b32c6f01680">&#9670;&nbsp;</a></span>ERROR_TEST</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ERROR_TEST</td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">do</span> {                                                    \</div><div class="line">    std::signal(SIGABRT, spectre_testing_signal_handler); \</div><div class="line">  } <span class="keywordflow">while</span> (<span class="keyword">false</span>)</div></div><!-- fragment -->
+<p>Mark a test as checking a call to ERROR. </p>
+<h3>Details</h3>
+<p>In order to properly handle aborting with Catch versions newer than 1.6.1 we must install a signal handler after Catch does, which means inside the TEST_CASE itself. The <a class="el" href="group__TestingFramework.html#gaf962c28abc1a1f014f2a6b32c6f01680" title="Mark a test as checking a call to ERROR. ">ERROR_TEST()</a> macro should be the first line in the TEST_CASE.</p>
+<h3>Example</h3>
+<div class="fragment"><div class="line"><span class="comment">// [[OutputRegex, I failed]]</span></div><div class="line">TEST_CASE(<span class="stringliteral">&quot;TestFramework.Abort&quot;</span>, <span class="stringliteral">&quot;[Unit]&quot;</span>) {</div><div class="line">  <a class="code" href="group__TestingFramework.html#gaf962c28abc1a1f014f2a6b32c6f01680">ERROR_TEST</a>();</div></div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
