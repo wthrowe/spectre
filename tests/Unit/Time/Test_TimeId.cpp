@@ -41,6 +41,28 @@ void check(const bool time_runs_forward) noexcept {
   CHECK(TimeId(time_runs_forward, 4, start).is_at_slab_boundary());
   CHECK(TimeId(time_runs_forward, 4, end).is_at_slab_boundary());
 
+  {
+    TimeId id(time_runs_forward, 5, start);
+    id.canonicalize();
+    CHECK(id == TimeId(time_runs_forward, 5, start));
+    CHECK(id.time().slab() == slab);
+
+    id = TimeId(time_runs_forward, 5, start + step / 2);
+    id.canonicalize();
+    CHECK(id == TimeId(time_runs_forward, 5, start + step / 2));
+    CHECK(id.time().slab() == slab);
+
+    id = TimeId(time_runs_forward, 5, end);
+    id.canonicalize();
+    CHECK(id == TimeId(time_runs_forward, 6, end));
+    CHECK(id.time().slab() == slab.advance_towards(step));
+
+    id = TimeId(time_runs_forward, 5, end, 1, end);
+    id.canonicalize();
+    CHECK(id == TimeId(time_runs_forward, 5, end, 1, end));
+    CHECK(id.time().slab() == slab);
+  }
+
   const TimeId id(time_runs_forward, 4, start + step / 3, 2, start + step / 2);
 
   CHECK(id == id);

@@ -57,6 +57,11 @@ class TimeId {
     return substep_ == 0 and time_.is_at_slab_boundary();
   }
 
+  /// If this object represents the (evolution-direction) end of a
+  /// slab advance the slab, increase the slab number, and transfer
+  /// the time to the new slab.
+  void canonicalize() noexcept;
+
   // clang-tidy: google-runtime-references
   void pup(PUP::er& p) noexcept;  // NOLINT
 
