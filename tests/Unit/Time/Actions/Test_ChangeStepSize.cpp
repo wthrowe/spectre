@@ -81,8 +81,16 @@ void check(const bool time_runs_forward,
   box = std::get<0>(runner.apply<component, change_step_size>(box, 0));
 
   CHECK(db::get<Tags::TimeStep>(box) == expected_step);
-  CHECK(db::get<Tags::Next<Tags::TimeId>>(box) ==
-        TimeId(time_runs_forward, 0, time + expected_step));
+  if ((time + expected_step).is_at_slab_boundary()) {
+    CHECK(db::get<Tags::Next<Tags::TimeId>>(box) ==
+          TimeId(time_runs_forward, 1, time + expected_step));
+    CHECK(db::get<Tags::Next<Tags::TimeId>>(box).time().slab() ==
+          time.slab().advance_towards(expected_step));
+  } else {
+    CHECK(db::get<Tags::Next<Tags::TimeId>>(box) ==
+          TimeId(time_runs_forward, 0, time + expected_step));
+    CHECK(db::get<Tags::Next<Tags::TimeId>>(box).time().slab() == time.slab());
+  }
 }
 }  // namespace
 

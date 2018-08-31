@@ -90,8 +90,8 @@ struct ChangeStepSize {
     const auto new_step =
         step_controller.choose_step(time_id.time(), desired_step);
     if (new_step != current_step) {
-      const auto new_next_time_id =
-          time_stepper.next_time_id(time_id, new_step);
+      auto new_next_time_id = time_stepper.next_time_id(time_id, new_step);
+      new_next_time_id.canonicalize();
 
       db::mutate<Tags::Next<Tags::TimeId>, Tags::TimeStep>(
           make_not_null(&box),
