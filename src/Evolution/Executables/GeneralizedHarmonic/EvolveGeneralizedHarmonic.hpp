@@ -147,7 +147,9 @@ struct EvolutionMetavars {
   // A tmpl::list of tags to be added to the ConstGlobalCache by the
   // metavariables
   using const_global_cache_tags = tmpl::list<
-      initial_data_tag, Tags::TimeStepper<TimeStepper>,
+      initial_data_tag,
+      Tags::TimeStepper<tmpl::conditional_t<local_time_stepping, LtsTimeStepper,
+                                            TimeStepper>>,
       GeneralizedHarmonic::Tags::GaugeHRollOnStartTime,
       GeneralizedHarmonic::Tags::GaugeHRollOnTimeWindow,
       GeneralizedHarmonic::Tags::GaugeHSpatialWeightDecayWidth<frame>,
@@ -168,7 +170,12 @@ struct EvolutionMetavars {
           domain::Tags::BoundaryDirectionsInterior<volume_dim>>,
       dg::Actions::ImposeDirichletBoundaryConditions<EvolutionMetavars>,
       dg::Actions::ReceiveDataForFluxes<EvolutionMetavars>,
-      dg::Actions::ApplyFluxes, Actions::RecordTimeStepperData<>,
+      tmpl::conditional_t<local_time_stepping, tmpl::list<>,
+                          dg::Actions::ApplyFluxes>,
+      Actions::RecordTimeStepperData<>,
+      tmpl::conditional_t<local_time_stepping,
+                          dg::Actions::ApplyBoundaryFluxesLocalTimeStepping,
+                          tmpl::list<>>,
       Actions::UpdateU<>>>;
 
   enum class Phase {
@@ -254,9 +261,12 @@ struct EvolutionMetavars {
                              Parallel::Actions::TerminatePhase>>>,
               Parallel::PhaseActions<
                   Phase, Phase::Evolve,
-                  tmpl::list<Actions::RunEventsAndTriggers,
-                             Actions::ChangeSlabSize,
-                             step_actions, Actions::AdvanceTime>>>>>;
+                  tmpl::list<
+                      Actions::RunEventsAndTriggers, Actions::ChangeSlabSize,
+                      tmpl::conditional_t<
+                          local_time_stepping,
+                          Actions::ChangeStepSize<step_choosers>, tmpl::list<>>,
+                      step_actions, Actions::AdvanceTime>>>>>;
 
   static constexpr OptionString help{
       "Evolve a generalized harmonic analytic solution.\n\n"
