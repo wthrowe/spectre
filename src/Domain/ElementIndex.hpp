@@ -20,9 +20,9 @@ struct ElementId;
 struct SegmentId;
 
 namespace ElementIndex_detail {
-constexpr size_t block_id_bits = 7;
-constexpr size_t refinement_bits = 5;
-constexpr size_t max_refinement_level = 20;
+constexpr size_t block_id_bits = 14;
+constexpr size_t refinement_bits = 4;
+constexpr size_t max_refinement_level = 14;
 static_assert(block_id_bits + refinement_bits + max_refinement_level ==
                   8 * sizeof(int),
               "Bit representation requires padding or is too large");
