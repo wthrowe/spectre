@@ -63,9 +63,9 @@ class er;
  */
 class SegmentId {
  public:
-  static constexpr size_t block_id_bits = 7;
-  static constexpr size_t refinement_bits = 5;
-  static constexpr size_t max_refinement_level = 20;
+  static constexpr size_t block_id_bits = 14;
+  static constexpr size_t refinement_bits = 4;
+  static constexpr size_t max_refinement_level = 14;
   static_assert(block_id_bits + refinement_bits + max_refinement_level ==
                     8 * sizeof(int),
                 "Bit representation requires padding or is too large");
