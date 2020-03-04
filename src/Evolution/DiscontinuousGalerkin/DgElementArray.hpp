@@ -4,6 +4,8 @@
 #pragma once
 
 #include <cstddef>
+#include <functional>
+#include <queue>
 #include <vector>
 
 #include "AlgorithmArray.hpp"
@@ -18,6 +20,7 @@
 #include "Parallel/ConstGlobalCache.hpp"
 #include "Parallel/Info.hpp"
 #include "Parallel/ParallelComponentHelpers.hpp"
+#include "Utilities/Numeric.hpp"
 #include "Utilities/TMPL.hpp"
 #include "Utilities/TaggedTuple.hpp"
 
@@ -40,8 +43,27 @@ struct DgElementArray {
 
   using const_global_cache_tags = tmpl::list<domain::Tags::Domain<volume_dim>>;
 
+  struct CostExponentOption {
+    using type = double;
+    static std::string name() noexcept { return "CostExponent"; }
+    static constexpr OptionString help{
+        "Exponent for estimating cost based on linear extents"};
+  };
+
+  struct CostExponent : db::SimpleTag {
+    using type = double;
+    using option_tags = tmpl::list<CostExponentOption>;
+
+    static constexpr bool pass_metavariables = false;
+    static double create_from_options(const double cost_exponent) noexcept {
+      return cost_exponent;
+    }
+  };
+
   using array_allocation_tags =
-      tmpl::list<domain::Tags::InitialRefinementLevels<volume_dim>>;
+      tmpl::list<domain::Tags::InitialRefinementLevels<volume_dim>,
+                 domain::Tags::InitialExtents<volume_dim>,
+                 CostExponent>;
 
   using initialization_tags = Parallel::get_initialization_tags<
       Parallel::get_initialization_actions_list<phase_dependent_action_list>,
@@ -74,16 +96,46 @@ void DgElementArray<Metavariables, PhaseDepActionList>::allocate_array(
   const auto& initial_refinement_levels =
       get<domain::Tags::InitialRefinementLevels<volume_dim>>(
           initialization_items);
-  int which_proc = 0;
+  const auto& initial_extents =
+      get<domain::Tags::InitialExtents<volume_dim>>(initialization_items);
+
+  const int number_of_procs = Parallel::number_of_procs();
+  std::priority_queue<std::pair<double, int>,
+                      std::vector<std::pair<double, int>>,
+                      std::greater<std::pair<double, int>>> proc_loads;
+  for (int i = 0; i < number_of_procs; ++i) {
+    proc_loads.emplace(0.0, i);
+  }
+
+  const double cost_exponent = get<CostExponent>(initialization_items);
+  const auto element_cost =
+      [&cost_exponent](const double linear_size) noexcept {
+    return pow(linear_size, cost_exponent);
+  };
+
+  std::priority_queue<std::pair<double, size_t>> block_costs;
   for (const auto& block : domain.blocks()) {
-    const auto initial_ref_levs = initial_refinement_levels[block.id()];
+    const auto grid_points = initial_extents[block.id()];
+    const double linear_size =
+        pow(alg::accumulate(grid_points, 1.0, std::multiplies<double>{}),
+            1.0 / volume_dim);
+    block_costs.emplace(element_cost(linear_size), block.id());
+  }
+
+  while (not block_costs.empty()) {
+    const auto cost = block_costs.top().first;
+    const auto block_id = block_costs.top().second;
+    block_costs.pop();
+    const auto initial_ref_levs = initial_refinement_levels[block_id];
     const std::vector<ElementId<volume_dim>> element_ids =
-        initial_element_ids(block.id(), initial_ref_levs);
-    const int number_of_procs = Parallel::number_of_procs();
+        initial_element_ids(block_id, initial_ref_levs);
     for (size_t i = 0; i < element_ids.size(); ++i) {
+      auto proc = proc_loads.top();
+      proc_loads.pop();
       dg_element_array(ElementIndex<volume_dim>(element_ids[i]))
-          .insert(global_cache, initialization_items, which_proc);
-      which_proc = which_proc + 1 == number_of_procs ? 0 : which_proc + 1;
+          .insert(global_cache, initialization_items, proc.second);
+      proc.first += cost;
+      proc_loads.push(proc);
     }
   }
   dg_element_array.doneInserting();
