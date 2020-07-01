@@ -42,20 +42,17 @@ things.
 \subsection integral_constant
 
 \par
-Very similar to std::integral_constant, except that "for maximum C++11
-compatibility" all the `constexpr` specifiers have been omitted.
+Very similar to std::integral_constant, except that the `constexpr` specifiers
+on the member functions have been omitted.
 \snippet Test_TMPLDocumentation.cpp tmpl::integral_constant
 
 \par
 Brigand supplies type aliases for constants of some specific types:
 \snippet Test_TMPLDocumentation.cpp tmpl::integral_constant::abbreviations
 
-
-\subsection integral_list
-
-\par
-Shorthand for a \ref list of \ref integral_constant ""s of the same type
-\snippet Test_TMPLDocumentation.cpp tmpl::integral_list
+\remark
+Prefer std::integral_constant, except for the convenience wrapper tmpl::size_t
+or when necessary for type equality comparison.
 
 
 \subsection list
@@ -91,7 +88,7 @@ Brigand defines a few concrete types and type aliases.
 An empty \ref list.
 \snippet Test_TMPLDocumentation.cpp tmpl::empty_sequence
 
-\par
+\remark
 Prefer just writing an empty list.
 
 
@@ -100,6 +97,9 @@ Prefer just writing an empty list.
 \par
 An \ref integral_constant representing `false`.  Similar to std::false_type.
 \snippet Test_TMPLDocumentation.cpp tmpl::false_type
+
+\remark
+Prefer std::false_type.
 
 
 \subsection no_such_type_
@@ -114,6 +114,35 @@ An empty struct returned as the failure case for various searching operations.
 \par
 An \ref integral_constant representing `true`.  Similar to std::true_type.
 \snippet Test_TMPLDocumentation.cpp tmpl::true_type
+
+\remark
+Prefer std::true_type.
+
+
+\section list_constructor Constructor-like functions for lists
+
+\par
+These functions produce \ref list ""s from non-list values.  They are often
+similar to constructors in the STL.
+
+
+\subsection filled_list
+
+\par
+Creates a list containing a given number (passed as an `unsigned int`) of the
+same type.  The head of the list defaults to \ref list.
+\snippet Test_TMPLDocumentation.cpp tmpl::filled_list
+
+
+\subsection integral_list
+
+\par
+Shorthand for a \ref list of \ref integral_constant ""s of the same type
+\snippet Test_TMPLDocumentation.cpp tmpl::integral_list
+
+\remark
+Prefer std::integer_sequence when used for pack expansion.  Prefer this when
+the contents need to be manipulated for more complicated metaprogramming.
 
 
 \section list_query Functions for querying lists
@@ -202,6 +231,10 @@ Prefer \ref push_back or \ref push_front when possible.
 Produces list with the same head but no elements.
 \snippet Test_TMPLDocumentation.cpp tmpl::clear
 
+\remark
+If the head is known, prefer writing it explicitly.  If the head is irrelevant,
+write an empty \ref list.
+
 
 \subsection erase_c
 
@@ -264,6 +297,28 @@ elements, and the second containing the remaining elements.
 \snippet Test_TMPLDocumentation.cpp tmpl::split_at
 
 
+\section math Mathematical functions
+
+\par
+These perform the same operations at their language counterparts, but on \ref
+integral_constant ""s (or anything else with a `value` static member type).
+The results inherit from \ref integral_constant ""s of types noted below.
+
+\par
+These are all lazy metafunctions.
+
+
+\subsection math_bitwise Bitwise operators
+
+\par
+These operations return classes inheriting from \ref integral_constant ""s of
+the same type as their first argument's `value`.  This is *not* generally the
+same type as the language operator, even when the types of the values of both
+arguments are the same.  (The integer promotion and conversion rules are not
+applied.)
+\snippet Test_TMPLDocumentation.cpp math_bitwise
+
+
 \section TODO
 
 \subsection type_from
@@ -323,7 +378,6 @@ elements, and the second containing the remaining elements.
       1 tmpl::insert
       1 tmpl::index_if
       1 tmpl::find
-      1 tmpl::filled_list
       1 tmpl::enumerated_fold
       1 tmpl::count
       1 tmpl::_3

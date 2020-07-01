@@ -14,6 +14,11 @@
 // clang-format off
 namespace {
 
+template <typename T, typename U>
+void assert_same() noexcept {
+  static_assert(std::is_same_v<T, U>);
+}
+
 /// [example_declarations]
 struct Type1;
 struct Type2;
@@ -35,24 +40,22 @@ void integral_constant() noexcept {
 using T = tmpl::integral_constant<int, 3>;
 static_assert(std::is_same_v<T::value_type, int>);
 static_assert(std::is_same_v<T::type, T>);
+static_assert(T::value == 3);
 
 // At runtime only
-CHECK(T::value == 3);
-T t{};
-CHECK(t == 3);
-CHECK(t() == 3);
+CHECK(T{} == 3);
+CHECK(T{}() == 3);
 /// [tmpl::integral_constant]
-}
+//}
 
 /// [tmpl::integral_constant::abbreviations]
 static_assert(std::is_same_v<tmpl::int8_t<3>,
                              tmpl::integral_constant<int8_t, 3>>);
 static_assert(std::is_same_v<tmpl::int16_t<3>,
                              tmpl::integral_constant<int16_t, 3>>);
-static_assert(std::is_same_v<tmpl::int32_t<3>,
-                             tmpl::integral_constant<int32_t, 3>>);
-static_assert(std::is_same_v<tmpl::int64_t<3>,
-                             tmpl::integral_constant<int64_t, 3>>);
+assert_same<tmpl::int32_t<3>, tmpl::integral_constant<int32_t, 3>>();
+assert_same<tmpl::int64_t<3>, tmpl::integral_constant<int64_t, 3>>();
+}
 
 static_assert(std::is_same_v<tmpl::uint8_t<3>,
                              tmpl::integral_constant<uint8_t, 3>>);
@@ -70,13 +73,6 @@ static_assert(std::is_same_v<tmpl::ptrdiff_t<3>,
 static_assert(std::is_same_v<tmpl::bool_<true>,
                              tmpl::integral_constant<bool, true>>);
 /// [tmpl::integral_constant::abbreviations]
-
-/// [tmpl::integral_list]
-static_assert(std::is_same_v<tmpl::integral_list<int, 3, 2, 1>,
-                             tmpl::list<tmpl::integral_constant<int, 3>,
-                                        tmpl::integral_constant<int, 2>,
-                                        tmpl::integral_constant<int, 1>>>);
-/// [tmpl::integral_list]
 
 /// [tmpl::list]
 static_assert(not std::is_same_v<tmpl::list<Type1, Type2>,
@@ -105,6 +101,22 @@ static_assert(std::is_same_v<tmpl::index_of<List1<>, Type1>,
 /// [tmpl::true_type]
 static_assert(std::is_same_v<tmpl::true_type, tmpl::bool_<true>>);
 /// [tmpl::true_type]
+
+// Constructor-like functions for lists
+
+/// [tmpl::filled_list]
+static_assert(std::is_same_v<tmpl::filled_list<Type1, 3, List1>,
+                             List1<Type1, Type1, Type1>>);
+static_assert(std::is_same_v<tmpl::filled_list<Type1, 3>,
+                             tmpl::list<Type1, Type1, Type1>>);
+/// [tmpl::filled_list]
+
+/// [tmpl::integral_list]
+static_assert(std::is_same_v<tmpl::integral_list<int, 3, 2, 1>,
+                             tmpl::list<tmpl::integral_constant<int, 3>,
+                                        tmpl::integral_constant<int, 2>,
+                                        tmpl::integral_constant<int, 1>>>);
+/// [tmpl::integral_list]
 
 // Section: Functions for querying lists
 
@@ -210,6 +222,26 @@ static_assert(
                                 tmpl::integral_constant<unsigned int, 2>>,
                  List1<List1<Type1, Type2>, List1<Type3>>>);
 /// [tmpl::split_at]
+
+// Mathematical functions
+
+/// [math_bitwise]
+static_assert(
+  std::is_same_v<tmpl::complement<tmpl::uint8_t<0b10001111>>::type,
+                                  tmpl::uint8_t<0b01110000>>);
+static_assert(
+  std::is_same_v<tmpl::bitand_<tmpl::uint8_t<0b00111011>,
+                               tmpl::uint8_t<0b01010110>>::type,
+                               tmpl::uint8_t<0b00010010>>);
+static_assert(
+  std::is_same_v<tmpl::bitor_<tmpl::uint8_t<0b01100011>,
+                              tmpl::uint8_t<0b10100111>>::type,
+                              tmpl::uint8_t<0b11100111>>);
+static_assert(
+  std::is_same_v<tmpl::bitxor_<tmpl::uint8_t<0b11000011>,
+                               tmpl::uint8_t<0b00000110>>::type,
+                               tmpl::uint8_t<0b11000101>>);
+/// [math_bitwise]
 
 } // namespace
 // clang-format on
