@@ -537,11 +537,12 @@ Returns the number of elements of a list satisfying a predicate.
 \note
 If the predicate is neither a \ref bind "bind expression" with a single
 argument of `_1` nor a \ref metalambda_lazy "lazy expression" with a single
-argument of `_1` then the `type` of the result of the predicate is used,
-instead of the result itself.  As long as the predicate returns an \ref
-integral_constant or a std::integral_constant this does not matter, as `type`
-is a no-op for those classes.
-FIXME verify?
+argument of `_1`, then a bug causes the `type` of the result of the predicate
+to be used instead of the result itself.  As long as the predicate returns an
+\ref integral_constant or a std::integral_constant this does not matter, as
+`type` is a no-op for those classes.
+\snippet Test_TMPLDocumentation.cpp tmpl::count_if:bug:definitions
+\snippet Test_TMPLDocumentation.cpp tmpl::count_if:bug:asserts
 
 
 \subsubsection front
@@ -906,6 +907,41 @@ of `unsigned int`.
 \snippet Test_TMPLDocumentation.cpp tmpl::count
 
 
+\subsubsection eval_if
+
+\par
+A lazy metafunction that, if the conditional (first) argument has a true
+`value`, evaluates and returns the result of the first lazy metafunction (*not*
+metalambda), otherwise, evaluates and returns the result of the second lazy
+metafunction.
+\snippet Test_TMPLDocumentation.cpp tmpl::eval_if
+
+\par
+This is performs lazy evaluation of conditional branches outside of a
+metalambda.
+
+
+\subsubsection eval_if_c
+
+\par
+The same as \ref eval_if, but takes its first argument as a `bool` instead of a
+type.
+\snippet Test_TMPLDocumentation.cpp tmpl::eval_if_c
+
+
+\subsubsection has_type
+
+\par
+A lazy metafunction that returns its second argument (defaulting to `void`),
+ignoring its first argument.
+\snippet Test_TMPLDocumentation.cpp tmpl::has_type
+
+\par
+This can be used to expand a parameter pack to repetitions of the same type.
+\snippet Test_TMPLDocumentation.cpp tmpl::has_type:pack_expansion
+\snippet Test_TMPLDocumentation.cpp tmpl::has_type:pack_expansion:asserts
+
+
 \subsubsection if_
 
 \par
@@ -915,7 +951,7 @@ member value of the first is true, and otherwise the third.
 
 \warning
 The second and third arguments are both evaluated, independent of which is
-returned.  Use \ref defer "defer" if this is undesirable.
+returned.  Use \ref defer "defer" or \ref eval_if if this is undesirable.
 
 
 \subsubsection if_c
@@ -986,6 +1022,54 @@ the template template parameter prevents manipulation of the parameter list.
 \snippet Test_TMPLDocumentation.cpp tmpl::wrap:lazy
 
 
+\subsection runtime Runtime functionality
+
+\par
+Actual C++ functions.
+
+\par
+The examples in this section use the following definition:
+\snippet Test_TMPLDocumentation.cpp runtime_declarations
+
+
+\subsubsection for_each_args
+
+\par
+Calls the first argument (a functor) on each of the remaining arguments, in
+order.  Returns the functor.
+\snippet Test_TMPLDocumentation.cpp tmpl::for_each_args:defs
+\snippet Test_TMPLDocumentation.cpp tmpl::for_each_args
+
+\note
+The functor must be copyable.  This is a bug.
+
+\par
+
+\note
+This uses a std::reference_wrapper internally, but I don't see a reason for
+that.  If it were removed then this function could be constexpr (before C++20).
+
+
+\subsubsection for_each
+
+\par
+Calls a functor on \ref type_ objects wrapping each type in a list, in order.
+Returns the functor.
+\snippet Test_TMPLDocumentation.cpp tmpl::for_each:defs
+\snippet Test_TMPLDocumentation.cpp tmpl::for_each
+
+\note
+The functor must be copyable.  This is a bug.
+
+\par
+
+\note
+An object of the list template parameter type is constructed, so the list must
+be a complete type.
+
+\see \ref type_from
+
+
 \section oddities Bugs/Oddities
 
 * \ref join has eager and lazy versions that don't agree.
@@ -1017,7 +1101,6 @@ the template template parameter prevents manipulation of the parameter list.
 
 
 ```
-    157 tmpl::for_each
     155 tmpl::conditional_t
      42 tmpl::remove_duplicates
      17 tmpl::list_difference
@@ -1042,39 +1125,39 @@ the template template parameter prevents manipulation of the parameter list.
 
 ```
 ./adapted:
-fusion.hpp
-integral_list.hpp
-list.hpp
-pair.hpp
-tuple.hpp
-variant.hpp
+fusion.hpp        -
+integral_list.hpp -
+list.hpp          -
+pair.hpp          -
+tuple.hpp         -
+variant.hpp       -
 
 ./algorithms:
-all.hpp
-any.hpp
+all.hpp           -
+any.hpp           -
 count.hpp         - Done
-find.hpp
+find.hpp          -
 flatten.hpp       - Done
-fold.hpp
-for_each.hpp
-for_each_args.hpp
+fold.hpp          -
+for_each.hpp      - Done
+for_each_args.hpp - Done
 index_of.hpp      - Done
 is_set.hpp        - Done
-merge.hpp
-none.hpp
-partition.hpp
+merge.hpp         -
+none.hpp          -
+partition.hpp     -
 remove.hpp        - Done
 replace.hpp       - Done
 reverse.hpp       - Done
-select.hpp
-sort.hpp
+select.hpp        -
+sort.hpp          -
 split.hpp         - Done
 split_at.hpp      - Done
 transform.hpp     - Done
 wrap.hpp          - Done
 
 ./functions:
-eval_if.hpp
+eval_if.hpp  - Done
 if.hpp       - Done
 
 ./functions/arithmetic:
@@ -1124,37 +1207,37 @@ sizeof.hpp        - Done
 
 ./sequences:
 append.hpp             - Done
-at.hpp
+at.hpp                 -
 back.hpp               - Done
 clear.hpp              - Done
-contains.hpp
-erase.hpp
+contains.hpp           -
+erase.hpp              -
 filled_list.hpp        - Done
 front.hpp              - Done
-has_key.hpp
-insert.hpp
-keys_as_sequence.hpp
+has_key.hpp            -
+insert.hpp             -
+keys_as_sequence.hpp   -
 list.hpp               - Done
-make_sequence.hpp
-map.hpp
+make_sequence.hpp      -
+map.hpp                -
 pair.hpp               - Done
 range.hpp              - Done
-set.hpp
+set.hpp                -
 size.hpp               - Done
-values_as_sequence.hpp
+values_as_sequence.hpp -
 
 ./types:
 args.hpp              - Done
 bool.hpp              - Done
 empty_base.hpp        - Used in inherit.hpp, figure out after that
-has_type.hpp
-inherit.hpp
-inherit_linearly.hpp
+has_type.hpp          - Done
+inherit.hpp           -
+inherit_linearly.hpp  -
 integer.hpp           - Done
 integral_constant.hpp - Done
 no_such_type.hpp      - Done
 operators.hpp         - Broken and unused
-real.hpp
+real.hpp              -
 type.hpp              - Done
-voidp.hpp
+voidp.hpp             - Not included by main header.  Special case of has_type.
 ```

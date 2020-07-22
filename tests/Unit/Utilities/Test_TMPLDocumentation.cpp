@@ -7,6 +7,9 @@
 #include <cstdint>
 #include <string>
 #include <type_traits>
+#include <typeindex>
+#include <typeinfo>
+#include <vector>
 
 /// [include]
 #include "Utilities/TMPL.hpp"
@@ -207,12 +210,8 @@ using primes =
                       zero<N>>>>>>>>>>,
     tmpl::not_equal_to<tmpl::_1, zero<N>>>;
 /// [metafunctions:primes]
-}  // namespace metafunctions
 
-SPECTRE_TEST_CASE("Unit.Utilities.TMPL.Documentation", "[Unit][Utilities]") {
-{
-using namespace metafunctions;
-
+void run() noexcept {
 /// [metafunctions:agreement]
 assert_same<eager_add_list<double>, eager_add_list2<double>>();
 /// [metafunctions:agreement]
@@ -274,7 +273,29 @@ assert_same<
                       43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97>>();
 /// [metafunctions:primes:asserts]
 }
+}  // namespace metafunctions
 
+namespace compile_time {
+/// [tmpl::count_if:bug:definitions]
+struct TrueFalse {
+  static constexpr bool value = true;
+  using type = std::false_type;
+};
+template <typename Unused>
+struct ReturnTrueFalse {
+  using type = TrueFalse;
+};
+/// [tmpl::count_if:bug:definitions]
+
+/// [tmpl::has_type:pack_expansion]
+template <typename... T>
+bool check_sizes(const T&... containers,
+                 const typename tmpl::has_type<T, size_t>::type... sizes) {
+  return (... && (containers.size() == sizes));
+}
+/// [tmpl::has_type:pack_expansion]
+
+void run() noexcept {
 /// [tmpl::args]
 static_assert(not std::is_same_v<tmpl::_1, tmpl::args<0>>);
 static_assert(not std::is_same_v<tmpl::_2, tmpl::args<1>>);
@@ -427,6 +448,13 @@ assert_same<tmpl::count_if<List1<Type1, Type2, Type1>,
                            std::is_same<tmpl::_1, Type1>>,
             tmpl::integral_constant<size_t, 2>>();
 /// [tmpl::count_if]
+
+/// [tmpl::count_if:bug:asserts]
+assert_same<tmpl::count_if<List1<Type1>, ReturnTrueFalse<void>>,
+            tmpl::integral_constant<size_t, 0>>();
+assert_same<tmpl::count_if<List1<Type1>, ReturnTrueFalse<tmpl::_1>>,
+            tmpl::integral_constant<size_t, 1>>();
+/// [tmpl::count_if:bug:asserts]
 
 /// [tmpl::front]
 assert_same<tmpl::front<List1<Type1, Type2, Type3>>, Type1>();
@@ -761,6 +789,31 @@ assert_same<tmpl::count<Type1, Type2, Type1>,
             tmpl::integral_constant<unsigned int, 3>>();
 /// [tmpl::count]
 
+/// [tmpl::eval_if]
+assert_same<tmpl::eval_if<std::true_type,
+                          tmpl::plus<tmpl::size_t<1>, tmpl::size_t<2>>,
+                          tmpl::plus<Type1, Type2>  // Invalid expression
+                          >::type,
+            tmpl::size_t<3>>();
+/// [tmpl::eval_if]
+
+/// [tmpl::eval_if_c]
+assert_same<tmpl::eval_if_c<true,
+                            tmpl::plus<tmpl::size_t<1>, tmpl::size_t<2>>,
+                            tmpl::plus<Type1, Type2>  // Invalid expression
+                            >::type,
+            tmpl::size_t<3>>();
+/// [tmpl::eval_if_c]
+
+/// [tmpl::has_type]
+assert_same<tmpl::has_type<Type1, Type2>::type, Type2>();
+assert_same<tmpl::has_type<Type1>::type, void>();
+/// [tmpl::has_type]
+
+/// [tmpl::has_type:pack_expansion:asserts]
+CHECK(check_sizes<std::string, std::vector<int>>("Hello", {1, 2, 3}, 5, 3));
+/// [tmpl::has_type:pack_expansion:asserts]
+
 /// [tmpl::if_]
 assert_same<tmpl::if_<std::true_type, Type1, Type2>::type, Type1>();
 /// [tmpl::if_]
@@ -811,5 +864,85 @@ assert_same<tmpl::lazy::wrap<List1<Type1, Type2>, List2>::type,
             List2<Type1, Type2>>();
 /// [tmpl::wrap:lazy]
 }
-} // namespace
+}  // namespace compile_time
+
+namespace runtime {
+/// [runtime_declarations]
+template <typename T>
+struct NonCopyable {
+  NonCopyable(T t = T{}) : value(std::move(t)) {}
+  NonCopyable(const NonCopyable&) = delete;
+  NonCopyable(NonCopyable&&) = default;
+  NonCopyable& operator=(const NonCopyable&) = delete;
+  NonCopyable& operator=(NonCopyable&&) = default;
+
+  T value;
+
+  template <typename... Args>
+  decltype(auto) operator()(Args&&... args) {
+    return value(std::forward<Args>(args)...);
+  }
+};
+/// [runtime_declarations]
+
+namespace example_for_each_args {
+/// [tmpl::for_each_args:defs]
+struct Functor {
+  std::vector<double> record;
+
+  void operator()(NonCopyable<int> x) noexcept {
+    record.push_back(x.value);
+  }
+
+  void operator()(const NonCopyable<double>& x) noexcept {
+    record.push_back(x.value);
+  }
+};
+/// [tmpl::for_each_args:defs]
+}  // namespace example_for_each_args
+
+namespace example_for_each {
+/// [tmpl::for_each:defs]
+struct Functor {
+  std::vector<std::string> record;
+
+  template <typename T>
+  void operator()(T /*t*/) {
+    using type = tmpl::type_from<T>;
+    if (std::is_same_v<type, int>) {
+      record.push_back("int");
+    } else if (std::is_same_v<type, double>) {
+      record.push_back("double");
+    }
+  }
+};
+/// [tmpl::for_each:defs]
+}  // namespace example_for_each
+
+void run() noexcept {
+{
+using example_for_each_args::Functor;
+/// [tmpl::for_each_args]
+const NonCopyable<double> three_point_five{3.5};
+CHECK(tmpl::for_each_args(Functor{}, NonCopyable<int>{2}, three_point_five)
+          .record == std::vector<double>{2.0, 3.5});
+/// [tmpl::for_each_args]
+}
+
+{
+using example_for_each::Functor;
+/// [tmpl::for_each]
+CHECK(tmpl::for_each<tmpl::list<int, double, int>>(Functor{}).record ==
+        std::vector<std::string>{"int", "double", "int"});
+/// [tmpl::for_each]
+}
+}
+}  // namespace runtime
+}  // namespace
 // clang-format on
+
+SPECTRE_TEST_CASE("Unit.Utilities.TMPL.Documentation", "[Unit][Utilities]") {
+  metafunctions::run();
+  compile_time::run();
+  runtime::run();
+}
