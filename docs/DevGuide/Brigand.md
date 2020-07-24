@@ -232,7 +232,7 @@ empty evaluation context, causing unintuitive changes to the evaluation rules.
 There is a bug that prevents `parent` from working in a metaclosure being
 evaluated in a metaclosure context.  In some cases this can be worked around by
 evaluating the metaclosure in the parent of the metaclosure context.
-FIXME add snippet for bug
+\snippet Test_TMPLDocumentation.cpp tmpl::parent:bug
 
 \subsubsection metalambda_constant Constant
 
@@ -397,11 +397,44 @@ functionality.
 Most metafunctions that operate on lists will work on any struct template.
 
 
+\subsubsection map
+
+\par
+A collection of key-value \ref pair ""s with unique keys.  See the section on
+\ref map_operations "operations on maps" for details.
+\snippet Test_TMPLDocumentation.cpp tmpl::map
+
+\par
+The actual type of a map is implementation-defined, but it has the same
+template parameters as a call to `map` that would produce it.
+
+\warning
+Equivalent maps may have different types, depending on the order their keys are
+stored in internally.
+
+
 \subsubsection pair
 
 \par
 A pair of types, with easy access to each type in the pair.
 \snippet Test_TMPLDocumentation.cpp tmpl::pair
+
+
+\subsubsection set
+
+\par
+An unordered collection of distinct types.  Trying to create a `set`
+with duplicate entries is an error (but \ref set_insert "insert" ignores
+duplicate entries).
+\snippet Test_TMPLDocumentation.cpp tmpl::set
+
+\par
+The actual type of a set is implementation-defined, but it has the same
+template parameters as a call to `set` that would produce it.
+
+\warning
+Equivalent sets may have different types, depending on the order their elements
+are stored in internally.
 
 
 \subsubsection type_
@@ -418,6 +451,14 @@ When extracting the type, programmers are encouraged to use \ref type_from.
 
 \par
 Brigand defines a few concrete types and type aliases.
+
+
+\subsubsection empty_base
+
+\par
+An empty struct used by \ref inherit and \ref inherit_linearly.  Primarily for
+internal use.
+\snippet Test_TMPLDocumentation.cpp tmpl::empty_base
 
 
 \subsubsection empty_sequence
@@ -483,6 +524,18 @@ Prefer std::integer_sequence when used for pack expansion.  Prefer this when
 the contents need to be manipulated for more complicated metaprogramming.
 
 
+\subsubsection make_sequence
+
+\par
+Produces a list with a given first element and length (provided as an `unsigned
+int`).  The remaining elements are obtained by repeated applications of a
+\ref metalambdas "metalambda", defaulting to \ref next.  The head of the
+sequence can be specified, and defaults to \ref list.
+\snippet Test_TMPLDocumentation.cpp tmpl::make_sequence
+
+\see \ref range, \ref repeat
+
+
 \subsubsection range
 
 \par
@@ -513,12 +566,61 @@ non-modifying sequence operations in `<algorithm>`.  They are most frequently
 used with \ref list, but similar classes will also work.
 
 
+\subsubsection all
+
+\par
+Checks if a predicate is true for all elements of a list.  The default
+predicate checks that the element's `value` is not equal to zero.
+\snippet Test_TMPLDocumentation.cpp tmpl::all
+
+\note
+The predicate must return the same true value for each element for `all` to
+return true.
+\snippet Test_TMPLDocumentation.cpp tmpl::all:inhomogeneous
+
+\see \ref any, \ref none
+
+
+\subsubsection any
+
+\par
+Checks if a predicate is true for at least one element of a list.  The default
+predicate checks that the element's `value` is not equal to zero.
+\snippet Test_TMPLDocumentation.cpp tmpl::any
+
+\note
+The predicate must return the same false value for each element for `any` to
+return false.
+\snippet Test_TMPLDocumentation.cpp tmpl::any:inhomogeneous
+
+\see \ref all, \ref found, \ref none
+
+\par
+FIXME any/found and none/not_found are equivalent.  Provide guidance.
+
+
+\subsubsection at
+
+\par
+Retrieves a given element of a list, similar to `operator[]` of the STL
+containers.  The index number is supplied as an \ref integral_constant or
+similar type.
+\snippet Test_TMPLDocumentation.cpp tmpl::at
+
+\par
+This operator is \ref map_at "overloaded for maps".
+
+\see \ref at_c
+
+
 \subsubsection at_c
 
 \par
-Retrieves a given element of a list, similar to operator[] of the STL
+Retrieves a given element of a list, similar to `operator[]` of the STL
 containers.  The index number is supplied as an `unsigned int`.
 \snippet Test_TMPLDocumentation.cpp tmpl::at_c
+
+\see \ref at
 
 
 \subsubsection back
@@ -543,6 +645,34 @@ to be used instead of the result itself.  As long as the predicate returns an
 `type` is a no-op for those classes.
 \snippet Test_TMPLDocumentation.cpp tmpl::count_if:bug:definitions
 \snippet Test_TMPLDocumentation.cpp tmpl::count_if:bug:asserts
+
+
+\subsubsection fold
+
+\par
+Performs a
+[left fold](https://en.wikipedia.org/wiki/Fold_(higher-order_function)), i.e.,
+given a list, initial state, and \ref metalambdas "metalambda", updates the
+state by calling the metalambda on the state and the first element, repeats
+with the second, and so on, returning the final state.
+\snippet Test_TMPLDocumentation.cpp tmpl::fold
+
+\par
+Brigand provides `_state` and `_element` aliases to the appropriate \ref args
+"arguments" for use in folds.
+
+\see \ref reverse_fold
+
+
+\subsubsection found
+
+\par
+Returns, as an \ref integral_constant of `bool`, whether a predicate matches
+any element of a list.  The default predicate checks that the element's `value`
+is not equal to zero.
+\snippet Test_TMPLDocumentation.cpp tmpl::found
+
+\see \ref any, \ref find, \ref not_found
 
 
 \subsubsection front
@@ -578,6 +708,32 @@ Checks whether a particular type is contained in a list, returning an
 
 \note
 This is not a Brigand metafunction.  It is implemented in SpECTRE.
+
+
+\subsubsection none
+
+\par
+Checks if a predicate is false for all elements of a list.  The default
+predicate checks that the element's `value` is not equal to zero.
+\snippet Test_TMPLDocumentation.cpp tmpl::none
+
+\note
+The predicate must return the same false value for each element for `none` to
+return true.
+\snippet Test_TMPLDocumentation.cpp tmpl::none:inhomogeneous
+
+\see \ref all, \ref any, \ref not_found
+
+
+\subsubsection not_found
+
+\par
+Returns, as an \ref integral_constant of `bool`, whether a predicate matches
+no elements of a list.  The default predicate checks that the element's `value`
+is not equal to zero.
+\snippet Test_TMPLDocumentation.cpp tmpl::not_found
+
+\see \ref find, \ref found, \ref none
 
 
 \subsubsection size
@@ -622,6 +778,20 @@ If the head is known, prefer writing it explicitly.  If the head is irrelevant,
 write an empty \ref list.
 
 
+\subsubsection erase
+
+\par
+Produces a copy of a list with the element at the given index (passed as an
+\ref integral_constant or similar type) removed.
+\snippet Test_TMPLDocumentation.cpp tmpl::erase
+
+\par
+This operator is overloaded \ref map_erase "for maps" and \ref set_erase
+"for sets".
+
+\see \ref erase_c
+
+
 \subsubsection erase_c
 
 \par
@@ -637,6 +807,18 @@ Removes all types not matching a \ref metalambdas "predicate" from a list.
 \snippet Test_TMPLDocumentation.cpp tmpl::filter
 
 \see \ref remove_if
+
+
+\subsubsection find
+
+\par
+Given a list and a \ref metalambdas "predicate", returns a list containing the
+first element for which the predicate returns true and all subsequent elements.
+The default predicate checks that the element's `value` is not equal to zero.
+Returns an empty list if the predicate returns false for all elements.
+\snippet Test_TMPLDocumentation.cpp tmpl::find
+
+\see \ref found, \ref not_found, \ref reverse_find
 
 
 \subsubsection flatten
@@ -665,6 +847,33 @@ Prefer \ref push_back or \ref push_front when possible.
 This metafunction has a lazy version, but its behavior does not match the eager
 version, as it determines the head of the resulting list differently.
 \snippet Test_TMPLDocumentation.cpp tmpl::join::bug-lazy
+
+
+\subsubsection merge
+
+\par
+Given two sorted lists, returns a sorted list containing the elements of both.
+A comparator metalambda can be provided, defaulting to \ref math_comparison
+"less".
+\snippet Test_TMPLDocumentation.cpp tmpl::merge
+
+\note
+If there are equivalent elements, those from the second list are placed
+earlier.
+\snippet Test_TMPLDocumentation.cpp tmpl::merge:equiv
+
+\see std::merge
+
+
+\subsubsection partition
+
+\par
+Given a list and a \ref metalambdas "predicate", returns a \ref pair containing
+a list of the elements for which the predicate returns true and a list of the
+elements for which the predicate returns false.
+\snippet Test_TMPLDocumentation.cpp tmpl::partition
+
+\see \ref filter, \ref remove_if
 
 
 \subsubsection pop_back
@@ -742,6 +951,47 @@ Reverses the order of types in a list.
 \snippet Test_TMPLDocumentation.cpp tmpl::reverse
 
 
+\subsubsection reverse_find
+
+\par
+Given a list and a \ref metalambdas "predicate", returns a list containing the
+last element for which the predicate returns true and all preceding elements.
+The default predicate checks that the element's `value` is not equal to zero.
+Returns an empty list if the predicate returns false for all elements.
+\snippet Test_TMPLDocumentation.cpp tmpl::reverse_find
+
+\see \ref find
+
+
+\subsubsection reverse_fold
+
+\par
+Performs a
+[right fold](https://en.wikipedia.org/wiki/Fold_(higher-order_function)), i.e.,
+given a list, initial state, and \ref metalambdas "metalambda", updates the
+state by calling the metalambda on the state and the last element, repeats with
+the second to last, and so on, returning the final state.
+\snippet Test_TMPLDocumentation.cpp tmpl::reverse_fold
+
+\par
+Brigand provides `_state` and `_element` aliases to the appropriate \ref args
+"arguments" for use in folds.
+
+\see \ref fold
+
+
+\subsubsection sort
+
+\par
+Sorts a list according to a comparator, which defaults to \ref math_comparison
+"less".
+\snippet Test_TMPLDocumentation.cpp tmpl::sort
+
+\note
+The sort is not stable.
+\snippet Test_TMPLDocumentation.cpp tmpl::sort:equiv
+
+
 \subsubsection split
 
 \par
@@ -766,6 +1016,166 @@ Given a list, calls a \ref metalambdas "metalambda" on each type in the list,
 collecting the results in a new list.  If additional lists are supplied,
 elements from those lists are passed as additional arguments to the metalambda.
 \snippet Test_TMPLDocumentation.cpp tmpl::transform
+
+
+\subsection map_operations Operations on maps
+
+\par
+Brigand's \ref map type can be manipulated by several metafunctions.
+
+\par
+Examples in this section use this map as an example:
+\snippet Test_TMPLDocumentation.cpp example_map
+
+
+\subsubsection map_at at
+
+\par
+Returns the value associated with a key in a \ref map.  Returns \ref
+no_such_type_ if the key is not in the map.
+\snippet Test_TMPLDocumentation.cpp tmpl::at:map
+
+\par
+This operator is \ref at "overloaded for lists".  When called on a \ref map,
+this is the same as \ref lookup.
+
+
+\subsubsection map_erase erase
+
+\par
+Produces a copy of a map with the element with the given key removed.  If the
+key is not in the map, returns the map unchanged.
+\snippet Test_TMPLDocumentation.cpp tmpl::erase:map
+
+\par
+This operator is overloaded \ref erase "for lists" and \ref set_erase
+"for sets".
+
+
+\subsubsection map_has_key has_key
+
+\par
+Returns an \ref integral_constant of `bool` indicating whether a \ref map has a
+given key.
+\snippet Test_TMPLDocumentation.cpp tmpl::has_key:map
+
+\par
+This operator is \ref set_has_key "overloaded for sets".
+
+
+\subsubsection map_insert insert
+
+\par
+Returns a new map containing an additional key-value pair.  If the key is
+already in the map, the map is returned unchanged.
+\snippet Test_TMPLDocumentation.cpp tmpl::insert:map
+
+\par
+This operator is \ref set_insert "overloaded for sets".
+
+\warning
+A bug allows invalid maps with duplicate keys to be constructed using
+`insert`.  The insertion check improperly compares the values, as well as the
+keys, to decide whether to alter the map.  In cases where this may occur, the
+check may be made manually using \ref map_has_key "has_key".
+\snippet Test_TMPLDocumentation.cpp tmpl::insert:map:bug
+
+
+\subsubsection keys_as_sequence
+
+\par
+Returns the keys from a map as a sequence of a specified type, defaulting to
+\ref set.
+\snippet Test_TMPLDocumentation.cpp tmpl::keys_as_sequence
+
+\par
+If the key-value pairs are required, they can be extracted directly from the
+template arguments of the \ref map.
+
+\see \ref values_as_sequence
+
+
+\subsubsection lookup
+
+\par
+Returns the value associated with a key in a \ref map.  Returns \ref
+no_such_type_ if the key is not in the map.
+\snippet Test_TMPLDocumentation.cpp tmpl::lookup
+
+\see \ref map_at "at"
+
+
+\subsubsection lookup_at
+
+\par
+Returns the value associated with a key in a \ref map, wrapped in a \ref type_.
+Returns `type_<no_such_type_>` if the key is not in the map.  This function has
+no eager version, but is still in the `lazy` namespace.
+\snippet Test_TMPLDocumentation.cpp tmpl::lookup_at
+
+\see \ref lookup
+
+
+\subsubsection values_as_sequence
+
+\par
+Returns the values from a map as a sequence of a specified type, defaulting to
+\ref list.
+\snippet Test_TMPLDocumentation.cpp tmpl::values_as_sequence
+
+\par
+If the key-value pairs are required, they can be extracted directly from the
+template arguments of the \ref map.
+
+\see \ref keys_as_sequence
+
+
+\subsection set_operations Operations on sets
+
+\par
+Brigand's \ref set type can be manipulated by several metafunctions.
+
+
+\subsubsection contains
+
+\par
+Returns an \ref integral_constant of `bool` indicating whether a set contains
+a particular element.
+\snippet Test_TMPLDocumentation.cpp tmpl::contains
+
+
+\subsubsection set_erase erase
+
+\par
+Produces a copy of a set with the given element removed.  If the element is not
+in the set, returns the set unchanged.
+\snippet Test_TMPLDocumentation.cpp tmpl::erase:set
+
+\par
+This operator is overloaded \ref erase "for lists" and \ref map_erase
+"for maps".
+
+
+\subsubsection set_has_key has_key
+
+\par
+Returns an \ref integral_constant of `bool` indicating whether a \ref set
+contains a given element.
+\snippet Test_TMPLDocumentation.cpp tmpl::has_key:set
+
+\par
+This operator is \ref map_has_key "overloaded for maps".
+
+
+\subsubsection set_insert insert
+
+\par
+Returns a new set containing an additional element.  If the element is already
+in the set, the set is returned unchanged.
+\snippet Test_TMPLDocumentation.cpp tmpl::insert:set
+
+\par
+This operator is \ref map_insert "overloaded for maps".
 
 
 \subsection math Mathematical functions
@@ -961,12 +1371,73 @@ The same as std::conditional.
 \snippet Test_TMPLDocumentation.cpp tmpl::if_c
 
 
+\subsubsection inherit
+
+\par
+A lazy metafunction that produces a type with all of its template arguments as
+base classes.  All the arguments must be unique.
+\snippet Test_TMPLDocumentation.cpp tmpl::inherit
+
+\remark
+This task can be performed more simply than the algorithm used by Brigand by
+directly using pack expansions:
+\snippet Test_TMPLDocumentation.cpp tmpl::inherit:pack:definitions
+\snippet Test_TMPLDocumentation.cpp tmpl::inherit:pack:asserts
+
+\note
+The \ref empty_base type is used internally as a sentinel.  The result may or
+may not inherit from \ref empty_base, independently of whether it is supplied
+as an argument.
+
+
+\subsubsection inherit_linearly
+
+\par
+Transforms a list into a linked list.  This metafunction takes three arguments:
+the list of types, the node structure, and the root, which defaults to \ref
+empty_base.  The node structure must be a class template (*not* a lazy
+metafunction) instantiated with metalambdas.  The function performs a [left
+fold](https://en.wikipedia.org/wiki/Fold_(higher-order_function)), with the
+root as the initial state and the transform function evaluating the arguments
+to the node structure.
+\snippet Test_TMPLDocumentation.cpp tmpl::inherit_linearly
+
+\remark
+This function handles its function-like argument differently from any other
+function in Brigand.  Prefer \ref fold, which can perform the same task and has
+a more standard interface.
+
+
 \subsubsection is_set
 
 \par
 Tests if all of its arguments are distinct, producing a \ref integral_constant
 "bool_".
 \snippet Test_TMPLDocumentation.cpp tmpl::is_set
+
+\note
+This is unrelated to the Brigand \ref set type.
+
+
+\subsubsection real_
+
+\par
+Represents a floating point number at compile time via its internal memory
+representation.  The value is stored as an \ref integral_constant of the same
+size as the floating point type, and can be extracted at runtime using the
+conversion operator.  Brigand provides the aliases `single_` and `double_` for
+the built-in floating point types.
+\snippet Test_TMPLDocumentation.cpp tmpl::real_
+
+\par
+There are no compile-time mathematical functions provided for floating point
+types.  They are opaque (or sometimes treated as integers) until runtime.
+
+\remark
+Consider whether you really need to represent floating point values at compile
+time.
+
+\see std::ratio
 
 
 \subsubsection repeat
@@ -981,6 +1452,8 @@ integral_constant) number of calls.
 This function has a lazy version, but it cannot be used in a metalambda because
 the template template parameter prevents manipulation of the parameter list.
 \snippet Test_TMPLDocumentation.cpp tmpl::repeat:lazy
+
+\see \ref make_sequence
 
 
 \subsubsection sizeof_
@@ -1025,7 +1498,7 @@ the template template parameter prevents manipulation of the parameter list.
 \subsection runtime Runtime functionality
 
 \par
-Actual C++ functions.
+Brigand provides a few C++ functions that execute at runtime.
 
 \par
 The examples in this section use the following definition:
@@ -1070,6 +1543,84 @@ be a complete type.
 \see \ref type_from
 
 
+\subsubsection select
+
+\par
+Returns its first argument if the template argument's `value` is true,
+and its second argument if it is false.
+\snippet Test_TMPLDocumentation.cpp tmpl::select
+
+
+\subsection external External integration
+
+\par
+Brigand provides metafunctions for interfacing with some types from the
+standard library and Boost.  They usually come in pairs, with `as_X` taking a
+list and `X_wrapper` taking a parameter pack.  This makes `X_wrapper`
+equivalent to the wrapped class.
+
+\remark
+Avoid the `*_wrapper` functions in favor of using the class directly.
+
+
+\subsubsection boost_integration Boost
+
+\par
+Brigand provides functions to produce the `boost::fusion` types `deque`,
+`list`, `set`, and `vector`, as well as `boost::variant`.
+\snippet Test_TMPLDocumentation.cpp boost_integration
+
+\note
+These functions are unavailable if `BRIGAND_NO_BOOST_SUPPORT` is defined, as is
+the case in SpECTRE.
+
+
+\subsubsection stl_integration STL
+
+\par
+Brigand provides functions to produce the STL types std::pair and std::tuple.
+In addition to the usual functions, Brigand provides `pair_wrapper_`, which is
+a lazy form of `pair_wrapper`.  The pair functions all assert that they have
+received two types.
+\snippet Test_TMPLDocumentation.cpp stl_integration
+
+
+\subsubsection make_integral integral_constant
+
+\par
+Brigand provides two functions for converting from std::integral_constant (or a
+similar class with a `value_type` and a `value`) to \ref integral_constant.
+The lazy metafunction `make_integral` performs this conversion.  The
+`as_integral_list` eager metafunction performs this operation on all elements
+of a list.
+\snippet Test_TMPLDocumentation.cpp tmpl::make_integral
+
+\warning
+The standard library std::integer_sequence is not a list of types, and so
+cannot be used as input to `as_integral_list`.
+
+
+\subsubsection as_list list
+
+\par
+Brigand provides two metafunctions for converting types to Brigand sequences.
+The more general function, `as_sequence`, is equivalent to \ref wrap.  The
+specialized version, `as_list`, produces a \ref list.
+\snippet Test_TMPLDocumentation.cpp tmpl::as_list
+
+\remark
+Using `as_list` is often not necessary because most metafunctions operate on
+arbitrary template classes.
+
+
+\subsubsection as_set set
+
+\par
+Brigand provides the standard two metafunctions for converting types to Brigand
+\ref set ""s.
+\snippet Test_TMPLDocumentation.cpp tmpl::as_set
+
+
 \section oddities Bugs/Oddities
 
 * \ref join has eager and lazy versions that don't agree.
@@ -1104,53 +1655,39 @@ be a complete type.
     155 tmpl::conditional_t
      42 tmpl::remove_duplicates
      17 tmpl::list_difference
-     14 tmpl::at
-      8 tmpl::all
-      8 tmpl::_state
-      8 tmpl::_element
-      7 tmpl::fold
-      6 tmpl::make_sequence
-      6 tmpl::erase
-      5 tmpl::sort
-      5 tmpl::found
-      3 tmpl::map
-      3 tmpl::has_key
       2 tmpl::get_source
       2 tmpl::get_destination
       2 tmpl::edge
-      2 tmpl::any
-      1 tmpl::insert
-      1 tmpl::find
 ```
 
 ```
 ./adapted:
-fusion.hpp        -
-integral_list.hpp -
-list.hpp          -
-pair.hpp          -
-tuple.hpp         -
-variant.hpp       -
+fusion.hpp        - Done
+integral_list.hpp - Done
+list.hpp          - Done
+pair.hpp          - Done
+tuple.hpp         - Done
+variant.hpp       - Done
 
 ./algorithms:
-all.hpp           -
-any.hpp           -
+all.hpp           - Done
+any.hpp           - Done
 count.hpp         - Done
-find.hpp          -
+find.hpp          - Done
 flatten.hpp       - Done
-fold.hpp          -
+fold.hpp          - Done
 for_each.hpp      - Done
 for_each_args.hpp - Done
 index_of.hpp      - Done
 is_set.hpp        - Done
-merge.hpp         -
-none.hpp          -
-partition.hpp     -
+merge.hpp         - Done
+none.hpp          - Done
+partition.hpp     - Done
 remove.hpp        - Done
 replace.hpp       - Done
 reverse.hpp       - Done
-select.hpp        -
-sort.hpp          -
+select.hpp        - Done
+sort.hpp          - Done
 split.hpp         - Done
 split_at.hpp      - Done
 transform.hpp     - Done
@@ -1207,37 +1744,37 @@ sizeof.hpp        - Done
 
 ./sequences:
 append.hpp             - Done
-at.hpp                 -
+at.hpp                 - Done
 back.hpp               - Done
 clear.hpp              - Done
-contains.hpp           -
-erase.hpp              -
+contains.hpp           - Done
+erase.hpp              - Done
 filled_list.hpp        - Done
 front.hpp              - Done
-has_key.hpp            -
-insert.hpp             -
-keys_as_sequence.hpp   -
+has_key.hpp            - Done
+insert.hpp             - Done
+keys_as_sequence.hpp   - Done
 list.hpp               - Done
-make_sequence.hpp      -
-map.hpp                -
+make_sequence.hpp      - Done
+map.hpp                - Done
 pair.hpp               - Done
 range.hpp              - Done
-set.hpp                -
+set.hpp                - Done
 size.hpp               - Done
-values_as_sequence.hpp -
+values_as_sequence.hpp - Done
 
 ./types:
 args.hpp              - Done
 bool.hpp              - Done
-empty_base.hpp        - Used in inherit.hpp, figure out after that
+empty_base.hpp        - Done
 has_type.hpp          - Done
-inherit.hpp           -
-inherit_linearly.hpp  -
+inherit.hpp           - Done
+inherit_linearly.hpp  - Done
 integer.hpp           - Done
 integral_constant.hpp - Done
 no_such_type.hpp      - Done
 operators.hpp         - Broken and unused
-real.hpp              -
+real.hpp              - Done
 type.hpp              - Done
 voidp.hpp             - Not included by main header.  Special case of has_type.
 ```

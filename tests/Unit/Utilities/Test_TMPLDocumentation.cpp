@@ -9,11 +9,19 @@
 #include <type_traits>
 #include <typeindex>
 #include <typeinfo>
+#include <utility>
 #include <vector>
 
 /// [include]
 #include "Utilities/TMPL.hpp"
 /// [include]
+
+// These are disabled in TMPL.hpp, but are in the brigand.hpp include
+// if not disabled.  Trying to include any Brigand files before
+// TMPL.hpp has unpredictable results because there may be an extra
+// TMPL.hpp include at the start from the PCH.
+#include <brigand/adapted/fusion.hpp>
+#include <brigand/adapted/variant.hpp>
 
 // We want the code to be nicely formatted for the documentation, not here.
 // clang-format off
@@ -22,6 +30,26 @@ namespace {
 template <typename T, typename U>
 void assert_same() noexcept {
   static_assert(std::is_same_v<T, U>);
+}
+
+template <typename Map, typename Supermap>
+using is_submap =
+    tmpl::all<tmpl::keys_as_sequence<Map, tmpl::list>,
+              std::is_same<tmpl::lazy::lookup<tmpl::pin<Map>, tmpl::_1>,
+                           tmpl::lazy::lookup<tmpl::pin<Supermap>, tmpl::_1>>>;
+
+template <typename T, typename U>
+void assert_maps_same() noexcept {
+  static_assert(is_submap<T, U>::value and is_submap<U, T>::value);
+}
+
+template <typename Set, typename Superset>
+using is_subset =
+    tmpl::all<Set, tmpl::bind<tmpl::contains, tmpl::pin<Superset>, tmpl::_1>>;
+
+template <typename T, typename U>
+void assert_sets_same() noexcept {
+  static_assert(is_subset<T, U>::value and is_subset<U, T>::value);
 }
 
 #define HAS_LAZY_VERSION(name) \
@@ -48,6 +76,11 @@ template <typename... T>
 struct make_list1 {
   using type = List1<T...>;
 };
+
+// Type1 < Type2 < Type3
+using CompareType123 = tmpl::and_<tmpl::or_<std::is_same<tmpl::_1, Type1>,
+                                            std::is_same<tmpl::_2, Type3>>,
+                                  tmpl::not_<std::is_same<tmpl::_1, tmpl::_2>>>;
 /// [example_declarations]
 
 namespace metafunctions {
@@ -228,6 +261,71 @@ assert_same<eager_call_func<eager_add_list<Dummy>>,
             List1<List1<Dummy, int>, List1<Dummy, int>>>();
 /// [metafunctions:eager_call_metafunction_assert]
 
+/// [tmpl::args]
+static_assert(not std::is_same_v<tmpl::_1, tmpl::args<0>>);
+static_assert(not std::is_same_v<tmpl::_2, tmpl::args<1>>);
+static_assert(std::is_same_v<tmpl::_3, tmpl::args<2>>);
+static_assert(std::is_same_v<tmpl::_4, tmpl::args<3>>);
+/// [tmpl::args]
+
+/// [tmpl::args:eval]
+assert_same<tmpl::apply<tmpl::_1, Type1, Type2>, Type1>();
+assert_same<tmpl::apply<tmpl::_2, Type1, Type2>, Type2>();
+assert_same<tmpl::apply<tmpl::args<0>, Type1, Type2>, Type1>();
+/// [tmpl::args:eval]
+
+/// [metalambda_lazy]
+assert_same<tmpl::apply<make_list1<tmpl::_1, tmpl::_2>, Type1, Type2>,
+            List1<Type1, Type2>>();
+/// [metalambda_lazy]
+
+/// [tmpl::bind]
+assert_same<tmpl::apply<tmpl::bind<List1, tmpl::_1, tmpl::_2>, Type1, Type2>,
+            List1<Type1, Type2>>();
+/// [tmpl::bind]
+
+/// [tmpl::pin]
+assert_same<tmpl::apply<tmpl::pin<List1<Type1>>>, List1<Type1>>();
+// Error: List1 is not a lazy metafunction
+// assert_same<tmpl::apply<List1<Type1>>, List1<Type1>>();
+assert_same<tmpl::apply<tmpl::pin<tmpl::_1>, Type1>, tmpl::_1>();
+/// [tmpl::pin]
+
+/// [tmpl::defer]
+assert_same<
+  tmpl::apply<tmpl::apply<tmpl::defer<tmpl::always<tmpl::_1>>,
+                          Type1>,
+              Type2>,
+  Type2>();
+/// [tmpl::defer]
+
+/// [tmpl::parent]
+assert_same<
+  tmpl::apply<tmpl::apply<tmpl::defer<tmpl::always<tmpl::parent<tmpl::_1>>>,
+                          Type1>,
+              Type2>,
+  Type1>();
+/// [tmpl::parent]
+
+{
+/// [tmpl::parent:bug]
+using closure_returning_captured_Type1 =
+  tmpl::apply<tmpl::defer<tmpl::always<tmpl::parent<tmpl::_1>>>, Type1>;
+
+assert_same<tmpl::apply<closure_returning_captured_Type1>, Type1>();
+
+assert_same<
+  tmpl::apply<
+    tmpl::apply<tmpl::defer<tmpl::always<closure_returning_captured_Type1>>,
+                Type2>>,
+  Type2>();  // Should be Type1
+/// [tmpl::parent:bug]
+}
+
+/// [metalambda_constant]
+assert_same<tmpl::apply<Type1>, Type1>();
+/// [metalambda_constant]
+
 /// [metafunctions:evens:asserts]
 assert_same<evens<tmpl::integral_list<int, 1, 1, 2, 3, 5, 8, 13>>,
             tmpl::integral_list<int, 2, 8>>();
@@ -275,79 +373,8 @@ assert_same<
 }
 }  // namespace metafunctions
 
-namespace compile_time {
-/// [tmpl::count_if:bug:definitions]
-struct TrueFalse {
-  static constexpr bool value = true;
-  using type = std::false_type;
-};
-template <typename Unused>
-struct ReturnTrueFalse {
-  using type = TrueFalse;
-};
-/// [tmpl::count_if:bug:definitions]
-
-/// [tmpl::has_type:pack_expansion]
-template <typename... T>
-bool check_sizes(const T&... containers,
-                 const typename tmpl::has_type<T, size_t>::type... sizes) {
-  return (... && (containers.size() == sizes));
-}
-/// [tmpl::has_type:pack_expansion]
-
+namespace containers {
 void run() noexcept {
-/// [tmpl::args]
-static_assert(not std::is_same_v<tmpl::_1, tmpl::args<0>>);
-static_assert(not std::is_same_v<tmpl::_2, tmpl::args<1>>);
-static_assert(std::is_same_v<tmpl::_3, tmpl::args<2>>);
-static_assert(std::is_same_v<tmpl::_4, tmpl::args<3>>);
-/// [tmpl::args]
-
-/// [tmpl::args:eval]
-assert_same<tmpl::apply<tmpl::_1, Type1, Type2>, Type1>();
-assert_same<tmpl::apply<tmpl::_2, Type1, Type2>, Type2>();
-assert_same<tmpl::apply<tmpl::args<0>, Type1, Type2>, Type1>();
-/// [tmpl::args:eval]
-
-/// [metalambda_lazy]
-assert_same<tmpl::apply<make_list1<tmpl::_1, tmpl::_2>, Type1, Type2>,
-            List1<Type1, Type2>>();
-/// [metalambda_lazy]
-
-/// [tmpl::bind]
-assert_same<tmpl::apply<tmpl::bind<List1, tmpl::_1, tmpl::_2>, Type1, Type2>,
-            List1<Type1, Type2>>();
-/// [tmpl::bind]
-
-/// [tmpl::pin]
-assert_same<tmpl::apply<tmpl::pin<List1<Type1>>>, List1<Type1>>();
-// Error: List1 is not a lazy metafunction
-// assert_same<tmpl::apply<List1<Type1>>, List1<Type1>>();
-assert_same<tmpl::apply<tmpl::pin<tmpl::_1>, Type1>, tmpl::_1>();
-/// [tmpl::pin]
-
-/// [tmpl::defer]
-assert_same<
-  tmpl::apply<tmpl::apply<tmpl::defer<tmpl::always<tmpl::_1>>,
-                          Type1>,
-              Type2>,
-  Type2>();
-/// [tmpl::defer]
-
-/// [tmpl::parent]
-assert_same<
-  tmpl::apply<tmpl::apply<tmpl::defer<tmpl::always<tmpl::parent<tmpl::_1>>>,
-                          Type1>,
-              Type2>,
-  Type1>();
-/// [tmpl::parent]
-
-/// [metalambda_constant]
-assert_same<tmpl::apply<Type1>, Type1>();
-/// [metalambda_constant]
-
-// Section: Containers
-
 /// [tmpl::integral_constant]
 using T = tmpl::integral_constant<int, 3>;
 assert_same<T::value_type, int>();
@@ -380,16 +407,33 @@ static_assert(not std::is_same_v<tmpl::list<Type1, Type2>,
                                  tmpl::list<Type2, Type1>>);
 /// [tmpl::list]
 
+/// [tmpl::map]
+assert_same<tmpl::lookup<tmpl::map<tmpl::pair<Type1, int>,
+                                   tmpl::pair<Type2, double>>,
+                         Type1>,
+            int>();
+/// [tmpl::map]
+
 /// [tmpl::pair]
 assert_same<tmpl::pair<Type1, Type2>::first_type, Type1>();
 assert_same<tmpl::pair<Type1, Type2>::second_type, Type2>();
 /// [tmpl::pair]
 
+/// [tmpl::set]
+assert_same<tmpl::contains<tmpl::set<Type1, Type2>, Type1>, tmpl::true_type>();
+/// [tmpl::set]
+
 /// [tmpl::type_]
 assert_same<tmpl::type_<Type1>::type, Type1>();
 /// [tmpl::type_]
+}
+}  // namespace containers
 
-// Section: Constants
+namespace constants {
+void run() noexcept {
+/// [tmpl::empty_base]
+assert_same<tmpl::inherit_linearly<List1<>, List2<>>, tmpl::empty_base>();
+/// [tmpl::empty_base]
 
 /// [tmpl::empty_sequence]
 assert_same<tmpl::empty_sequence, tmpl::list<>>();
@@ -406,9 +450,11 @@ assert_same<tmpl::index_of<List1<>, Type1>, tmpl::no_such_type_>();
 /// [tmpl::true_type]
 assert_same<tmpl::true_type, tmpl::bool_<true>>();
 /// [tmpl::true_type]
+}
+}  // namespace constants
 
-// Constructor-like functions for lists
-
+namespace list_constructors {
+void run() noexcept {
 /// [tmpl::filled_list]
 assert_same<tmpl::filled_list<Type1, 3, List1>, List1<Type1, Type1, Type1>>();
 assert_same<tmpl::filled_list<Type1, 3>, tmpl::list<Type1, Type1, Type1>>();
@@ -421,6 +467,13 @@ assert_same<tmpl::integral_list<int, 3, 2, 1>,
                        tmpl::integral_constant<int, 1>>>();
 /// [tmpl::integral_list]
 
+/// [tmpl::make_sequence]
+assert_same<tmpl::make_sequence<tmpl::size_t<5>, 3>,
+            tmpl::list<tmpl::size_t<5>, tmpl::size_t<6>, tmpl::size_t<7>>>();
+assert_same<tmpl::make_sequence<Type1, 3, make_list1<tmpl::_1>, List2>,
+            List2<Type1, List1<Type1>, List1<List1<Type1>>>>();
+/// [tmpl::make_sequence]
+
 /// [tmpl::range]
 assert_same<tmpl::range<size_t, 4, 7>,
             tmpl::list<tmpl::size_t<4>, tmpl::size_t<5>, tmpl::size_t<6>>>();
@@ -432,8 +485,63 @@ assert_same<tmpl::reverse_range<size_t, 7, 4>,
             tmpl::list<tmpl::size_t<7>, tmpl::size_t<6>, tmpl::size_t<5>>>();
 assert_same<tmpl::reverse_range<size_t, 7, 7>, tmpl::list<>>();
 /// [tmpl::reverse_range]
+}
+}  // namespace list_constructors
 
-// Section: Functions for querying lists
+namespace list_query {
+/// [tmpl::count_if:bug:definitions]
+struct TrueFalse {
+  static constexpr bool value = true;
+  using type = std::false_type;
+};
+template <typename Unused>
+struct ReturnTrueFalse {
+  using type = TrueFalse;
+};
+/// [tmpl::count_if:bug:definitions]
+
+void run() noexcept {
+/// [tmpl::all]
+assert_same<tmpl::all<List1<tmpl::size_t<0>, tmpl::size_t<1>, tmpl::size_t<2>>>,
+            tmpl::false_type>();
+assert_same<tmpl::all<List1<tmpl::size_t<1>, tmpl::size_t<1>, tmpl::size_t<2>>>,
+            tmpl::true_type>();
+assert_same<tmpl::all<List1<tmpl::size_t<0>, tmpl::size_t<1>, tmpl::size_t<2>>,
+                      tmpl::less<tmpl::_1, tmpl::size_t<2>>>,
+            tmpl::false_type>();
+assert_same<tmpl::all<List1<tmpl::size_t<0>, tmpl::size_t<1>, tmpl::size_t<0>>,
+                      tmpl::less<tmpl::_1, tmpl::size_t<2>>>,
+            tmpl::true_type>();
+assert_same<tmpl::all<List1<>>, tmpl::true_type>();
+/// [tmpl::all]
+
+/// [tmpl::all:inhomogeneous]
+assert_same<tmpl::all<List1<std::true_type, tmpl::true_type>, tmpl::_1>,
+            tmpl::false_type>();
+/// [tmpl::all:inhomogeneous]
+
+/// [tmpl::any]
+assert_same<tmpl::any<List1<tmpl::size_t<0>, tmpl::size_t<1>, tmpl::size_t<2>>>,
+            tmpl::true_type>();
+assert_same<tmpl::any<List1<tmpl::size_t<0>, tmpl::size_t<0>, tmpl::size_t<0>>>,
+            tmpl::false_type>();
+assert_same<tmpl::any<List1<tmpl::size_t<0>, tmpl::size_t<1>, tmpl::size_t<2>>,
+                      tmpl::less<tmpl::_1, tmpl::size_t<2>>>,
+            tmpl::true_type>();
+assert_same<tmpl::any<List1<tmpl::size_t<4>, tmpl::size_t<3>, tmpl::size_t<2>>,
+                      tmpl::less<tmpl::_1, tmpl::size_t<2>>>,
+            tmpl::false_type>();
+assert_same<tmpl::any<List1<>>, tmpl::false_type>();
+/// [tmpl::any]
+
+/// [tmpl::any:inhomogeneous]
+assert_same<tmpl::any<List1<std::false_type, tmpl::false_type>, tmpl::_1>,
+            tmpl::true_type>();
+/// [tmpl::any:inhomogeneous]
+
+/// [tmpl::at]
+assert_same<tmpl::at<List1<Type1, Type2, Type3>, tmpl::size_t<0>>, Type1>();
+/// [tmpl::at]
 
 /// [tmpl::at_c]
 assert_same<tmpl::at_c<List1<Type1, Type2, Type3>, 0>, Type1>();
@@ -455,6 +563,30 @@ assert_same<tmpl::count_if<List1<Type1>, ReturnTrueFalse<void>>,
 assert_same<tmpl::count_if<List1<Type1>, ReturnTrueFalse<tmpl::_1>>,
             tmpl::integral_constant<size_t, 1>>();
 /// [tmpl::count_if:bug:asserts]
+
+{
+using lazy_test_arguments =
+  tmpl::list<List2<Type1, Type2>, Type3,
+             make_list1<tmpl::_state, tmpl::_element>>;
+/// [tmpl::fold]
+assert_same<tmpl::fold<List2<Type1, Type2>, Type3,
+                       make_list1<tmpl::_state, tmpl::_element>>,
+            List1<List1<Type3, Type1>, Type2>>();
+HAS_LAZY_VERSION(fold);
+/// [tmpl::fold]
+}
+
+/// [tmpl::found]
+assert_same<
+  tmpl::found<List1<Type1, Type2, Type2, Type3>, std::is_same<tmpl::_1, Type2>>,
+  tmpl::true_type>();
+assert_same<
+  tmpl::found<List1<Type1, Type1, Type1, Type3>, std::is_same<tmpl::_1, Type2>>,
+  tmpl::false_type>();
+assert_same<
+  tmpl::found<List1<tmpl::size_t<0>, tmpl::size_t<1>, tmpl::size_t<2>>>,
+  tmpl::true_type>();
+/// [tmpl::found]
 
 /// [tmpl::front]
 assert_same<tmpl::front<List1<Type1, Type2, Type3>>, Type1>();
@@ -489,16 +621,55 @@ static_assert(tmpl::list_contains_v<List1<Type1, Type2>, Type1>);
 static_assert(not tmpl::list_contains_v<List1<Type2, Type2>, Type1>);
 /// [tmpl::list_contains]
 
+/// [tmpl::none]
+assert_same<
+  tmpl::none<List1<tmpl::size_t<0>, tmpl::size_t<1>, tmpl::size_t<2>>>,
+  tmpl::false_type>();
+assert_same<
+  tmpl::none<List1<tmpl::size_t<0>, tmpl::size_t<0>, tmpl::size_t<0>>>,
+  tmpl::true_type>();
+assert_same<
+  tmpl::none<List1<tmpl::size_t<0>, tmpl::size_t<1>, tmpl::size_t<2>>,
+             tmpl::less<tmpl::_1, tmpl::size_t<2>>>,
+  tmpl::false_type>();
+assert_same<
+  tmpl::none<List1<tmpl::size_t<4>, tmpl::size_t<3>, tmpl::size_t<2>>,
+             tmpl::less<tmpl::_1, tmpl::size_t<2>>>,
+  tmpl::true_type>();
+assert_same<tmpl::none<List1<>>, tmpl::true_type>();
+/// [tmpl::none]
+
+/// [tmpl::none:inhomogeneous]
+assert_same<tmpl::none<List1<std::false_type, tmpl::false_type>, tmpl::_1>,
+            tmpl::false_type>();
+/// [tmpl::none:inhomogeneous]
+
+/// [tmpl::not_found]
+assert_same<
+  tmpl::not_found<List1<Type1, Type2, Type2, Type3>,
+                  std::is_same<tmpl::_1, Type2>>,
+  tmpl::false_type>();
+assert_same<
+  tmpl::not_found<List1<Type1, Type1, Type1, Type3>,
+                  std::is_same<tmpl::_1, Type2>>,
+  tmpl::true_type>();
+assert_same<
+  tmpl::not_found<List1<tmpl::size_t<0>, tmpl::size_t<1>, tmpl::size_t<2>>>,
+  tmpl::false_type>();
+/// [tmpl::not_found]
+
 /// [tmpl::size]
 assert_same<tmpl::size<List1<Type1, Type1>>,
             tmpl::integral_constant<unsigned int, 2>>();
 /// [tmpl::size]
+}
+}  // namespace list_query
 
-// Section: Functions producing lists from other lists
-
+namespace list_from_list {
+void run() noexcept {
 {
 using lazy_test_arguments =
-    tmpl::list<List1<Type1, Type2>, List2<>, List2<Type2>>;
+  tmpl::list<List1<Type1, Type2>, List2<>, List2<Type2>>;
 /// [tmpl::append]
 assert_same<tmpl::append<List1<Type1, Type2>, List2<>, List2<Type2>>,
             List1<Type1, Type2, Type2>>();
@@ -514,6 +685,11 @@ assert_same<tmpl::append<List1<Type1, Type2>, List2<>, Type2>, tmpl::list<>>();
 /// [tmpl::clear]
 assert_same<tmpl::clear<List1<Type1>>, List1<>>();
 /// [tmpl::clear]
+
+/// [tmpl::erase]
+assert_same<tmpl::erase<List1<Type1, Type2, Type3>, tmpl::size_t<1>>,
+            List1<Type1, Type3>>();
+/// [tmpl::erase]
 
 /// [tmpl::erase_c]
 assert_same<tmpl::erase_c<List1<Type1, Type2, Type3>, 1>,
@@ -533,7 +709,24 @@ HAS_LAZY_VERSION(filter);
 
 {
 using lazy_test_arguments =
-    tmpl::list<List1<List1<Type1, List1<Type2>>, List2<List1<Type3>>>>;
+  tmpl::list<List1<Type1, Type2, Type2, Type3>, std::is_same<tmpl::_1, Type2>>;
+/// [tmpl::find]
+assert_same<
+  tmpl::find<List1<Type1, Type2, Type2, Type3>, std::is_same<tmpl::_1, Type2>>,
+  List1<Type2, Type2, Type3>>();
+assert_same<
+  tmpl::find<List1<Type1, Type1, Type1, Type3>, std::is_same<tmpl::_1, Type2>>,
+  List1<>>();
+assert_same<
+  tmpl::find<List1<tmpl::size_t<0>, tmpl::size_t<1>, tmpl::size_t<2>>>,
+  List1<tmpl::size_t<1>, tmpl::size_t<2>>>();
+HAS_LAZY_VERSION(find);
+/// [tmpl::find]
+}
+
+{
+using lazy_test_arguments =
+  tmpl::list<List1<List1<Type1, List1<Type2>>, List2<List1<Type3>>>>;
 /// [tmpl::flatten]
 assert_same<
   tmpl::flatten<List1<List1<Type1, List1<Type2>>, List2<List1<Type3>>>>,
@@ -560,6 +753,31 @@ assert_same<
 assert_same<tmpl::lazy::join<List1<>>::type, List1<>>();
 /// [tmpl::join::bug-lazy]
 
+{
+/// [tmpl::merge]
+assert_same<
+  tmpl::merge<List1<tmpl::size_t<1>, tmpl::size_t<2>, tmpl::size_t<5>>,
+              List2<tmpl::size_t<1>, tmpl::size_t<3>, tmpl::size_t<6>>>,
+  List1<tmpl::size_t<1>, tmpl::size_t<1>, tmpl::size_t<2>, tmpl::size_t<3>,
+        tmpl::size_t<5>, tmpl::size_t<6>>>();
+assert_same<tmpl::merge<List1<Type1, Type2>, List2<Type1, Type3>,
+                        CompareType123>,
+            List1<Type1, Type1, Type2, Type3>>();
+/// [tmpl::merge]
+
+/// [tmpl::merge:equiv]
+assert_same<tmpl::merge<List1<Type1, Type1>, List2<Type2, Type2>,
+                        std::false_type>,
+            List1<Type2, Type2, Type1, Type1>>();
+/// [tmpl::merge:equiv]
+}
+
+/// [tmpl::partition]
+assert_same<tmpl::partition<List1<Type1, Type2, Type1, Type3>,
+                            std::is_same<Type1, tmpl::_1>>,
+            tmpl::pair<List1<Type1, Type1>, List1<Type2, Type3>>>();
+/// [tmpl::partition]
+
 /// [tmpl::pop_back]
 assert_same<tmpl::pop_back<List1<Type1, Type2, Type3>>, List1<Type1, Type2>>();
 assert_same<tmpl::pop_back<List1<Type1, Type2, Type3>,
@@ -569,8 +787,8 @@ assert_same<tmpl::pop_back<List1<Type1, Type2, Type3>,
 
 {
 using lazy_test_arguments =
-    tmpl::list<List1<Type1, Type2, Type3>,
-               tmpl::integral_constant<unsigned int, 2>>;
+  tmpl::list<List1<Type1, Type2, Type3>,
+             tmpl::integral_constant<unsigned int, 2>>;
 /// [tmpl::pop_front]
 assert_same<tmpl::pop_front<List1<Type1, Type2, Type3>>,
             List1<Type2, Type3>>();
@@ -597,7 +815,7 @@ HAS_LAZY_VERSION(push_front);
 
 {
 using lazy_test_arguments =
-    tmpl::list<List1<Type1, Type2, Type1, Type3>, Type1>;
+  tmpl::list<List1<Type1, Type2, Type1, Type3>, Type1>;
 /// [tmpl::remove]
 assert_same<tmpl::remove<List1<Type1, Type2, Type1, Type3>, Type1>,
             List1<Type2, Type3>>();
@@ -654,7 +872,53 @@ HAS_LAZY_VERSION(reverse);
 
 {
 using lazy_test_arguments =
-    tmpl::list<List1<Type1, Type2, Type3, Type2, Type3, Type3, Type1>, Type3>;
+  tmpl::list<List1<Type1, Type2, Type2, Type3>, std::is_same<tmpl::_1, Type2>>;
+/// [tmpl::reverse_find]
+assert_same<
+  tmpl::reverse_find<List1<Type1, Type2, Type2, Type3>,
+                     std::is_same<tmpl::_1, Type2>>,
+  List1<Type1, Type2, Type2>>();
+assert_same<
+  tmpl::reverse_find<List1<Type1, Type1, Type1, Type3>,
+                     std::is_same<tmpl::_1, Type2>>,
+  List1<>>();
+assert_same<
+  tmpl::reverse_find<List1<tmpl::size_t<0>, tmpl::size_t<1>, tmpl::size_t<2>>>,
+  List1<tmpl::size_t<0>, tmpl::size_t<1>, tmpl::size_t<2>>>();
+HAS_LAZY_VERSION(reverse_find);
+/// [tmpl::reverse_find]
+}
+
+{
+using lazy_test_arguments =
+  tmpl::list<List2<Type1, Type2>, Type3,
+             make_list1<tmpl::_state, tmpl::_element>>;
+/// [tmpl::reverse_fold]
+assert_same<tmpl::reverse_fold<List2<Type1, Type2>, Type3,
+                               make_list1<tmpl::_state, tmpl::_element>>,
+            List1<List1<Type3, Type2>, Type1>>();
+HAS_LAZY_VERSION(reverse_fold);
+/// [tmpl::reverse_fold]
+}
+
+/// [tmpl::sort]
+assert_same<tmpl::sort<List1<tmpl::size_t<9>, tmpl::size_t<6>,
+                             tmpl::size_t<7>, tmpl::size_t<0>>>,
+            List1<tmpl::size_t<0>, tmpl::size_t<6>, tmpl::size_t<7>,
+                  tmpl::size_t<9>>>();
+assert_same<tmpl::sort<List1<Type2, Type3, Type3, Type1, Type2, Type3, Type2>,
+                       CompareType123>,
+            List1<Type1, Type2, Type2, Type2, Type3, Type3, Type3>>();
+/// [tmpl::sort]
+
+/// [tmpl::sort:equiv]
+assert_same<tmpl::sort<List1<Type1, Type2, Type3>, std::false_type>,
+            List1<Type3, Type2, Type1>>();
+/// [tmpl::sort:equiv]
+
+{
+using lazy_test_arguments =
+  tmpl::list<List1<Type1, Type2, Type3, Type2, Type3, Type3, Type1>, Type3>;
 /// [tmpl::split]
 assert_same<
   tmpl::split<List1<Type1, Type2, Type3, Type2, Type3, Type3, Type1>, Type3>,
@@ -665,8 +929,8 @@ HAS_LAZY_VERSION(split);
 
 {
 using lazy_test_arguments =
-    tmpl::list<List1<Type1, Type2, Type3>,
-               tmpl::integral_constant<unsigned int, 2>>;
+  tmpl::list<List1<Type1, Type2, Type3>,
+             tmpl::integral_constant<unsigned int, 2>>;
 /// [tmpl::split_at]
 assert_same<tmpl::split_at<List1<Type1, Type2, Type3>,
                            tmpl::integral_constant<unsigned int, 2>>,
@@ -677,8 +941,8 @@ HAS_LAZY_VERSION(split_at);
 
 {
 using lazy_test_arguments =
-    tmpl::list<List2<Type1, Type2, Type3>, List3<Type3, Type2, Type1>,
-               make_list1<tmpl::_1, tmpl::_2>>;
+  tmpl::list<List2<Type1, Type2, Type3>, List3<Type3, Type2, Type1>,
+             make_list1<tmpl::_1, tmpl::_2>>;
 /// [tmpl::transform]
 assert_same<
   tmpl::transform<List2<Type1, Type2, Type3>, List3<Type3, Type2, Type1>,
@@ -687,9 +951,113 @@ assert_same<
 HAS_LAZY_VERSION(transform);
 /// [tmpl::transform]
 }
+}
+}  // namespace list_from_list
 
-// Mathematical functions
+namespace map_functions {
+/// [example_map]
+using example_map =
+  tmpl::map<tmpl::pair<Type1, int>, tmpl::pair<Type2, double>>;
+/// [example_map]
 
+void run() noexcept {
+/// [tmpl::at:map]
+assert_same<tmpl::at<example_map, Type1>, int>();
+assert_same<tmpl::at<example_map, Type3>, tmpl::no_such_type_>();
+/// [tmpl::at:map]
+
+/// [tmpl::erase:map]
+assert_maps_same<tmpl::erase<example_map, Type1>,
+                 tmpl::map<tmpl::pair<Type2, double>>>();
+assert_maps_same<tmpl::erase<example_map, Type3>, example_map>();
+/// [tmpl::erase:map]
+
+/// [tmpl::has_key:map]
+assert_same<tmpl::has_key<example_map, Type2>, tmpl::true_type>();
+assert_same<tmpl::has_key<example_map, Type3>, tmpl::false_type>();
+/// [tmpl::has_key:map]
+
+/// [tmpl::insert:map]
+assert_maps_same<tmpl::insert<example_map, tmpl::pair<Type3, int>>,
+                 tmpl::map<tmpl::pair<Type1, int>, tmpl::pair<Type2, double>,
+                           tmpl::pair<Type3, int>>>();
+assert_maps_same<tmpl::insert<example_map, tmpl::pair<Type1, int>>,
+                 example_map>();
+/// [tmpl::insert:map]
+
+/// [tmpl::insert:map:bug]
+static_assert(
+  tmpl::size<tmpl::insert<example_map, tmpl::pair<Type1, bool>>>::value == 3);
+/// [tmpl::insert:map:bug]
+
+/// [tmpl::keys_as_sequence]
+assert_sets_same<tmpl::keys_as_sequence<example_map>,
+                 tmpl::set<Type1, Type2>>();
+static_assert(std::is_same_v<tmpl::keys_as_sequence<example_map, List1>,
+                             List1<Type1, Type2>> or
+              std::is_same_v<tmpl::keys_as_sequence<example_map, List1>,
+                             List1<Type2, Type1>>);
+/// [tmpl::keys_as_sequence]
+
+{
+using lazy_test_arguments = tmpl::list<example_map, Type1>;
+/// [tmpl::lookup]
+assert_same<tmpl::lookup<example_map, Type1>, int>();
+assert_same<tmpl::lookup<example_map, Type3>, tmpl::no_such_type_>();
+HAS_LAZY_VERSION(lookup);
+/// [tmpl::lookup]
+}
+
+/// [tmpl::lookup_at]
+assert_same<tmpl::lazy::lookup_at<example_map, Type1>::type,
+            tmpl::type_<int>>();
+assert_same<tmpl::lazy::lookup_at<example_map, Type3>::type,
+            tmpl::type_<tmpl::no_such_type_>>();
+/// [tmpl::lookup_at]
+
+/// [tmpl::values_as_sequence]
+static_assert(std::is_same_v<tmpl::values_as_sequence<example_map>,
+                             tmpl::list<int, double>> or
+              std::is_same_v<tmpl::values_as_sequence<example_map>,
+                             tmpl::list<double, int>>);
+static_assert(std::is_same_v<tmpl::values_as_sequence<example_map, List1>,
+                             List1<int, double>> or
+              std::is_same_v<tmpl::values_as_sequence<example_map, List1>,
+                             List1<double, int>>);
+/// [tmpl::values_as_sequence]
+}
+}  // namespace map_functions
+
+namespace set_functions {
+void run() noexcept {
+/// [tmpl::contains]
+assert_same<tmpl::contains<tmpl::set<Type1, Type2>, Type1>, tmpl::true_type>();
+assert_same<tmpl::contains<tmpl::set<Type1, Type2>, Type3>, tmpl::false_type>();
+/// [tmpl::contains]
+
+/// [tmpl::erase:set]
+assert_sets_same<tmpl::erase<tmpl::set<Type1, Type2>, Type1>,
+                 tmpl::set<Type2>>();
+assert_sets_same<tmpl::erase<tmpl::set<Type1, Type2>, Type3>,
+                 tmpl::set<Type1, Type2>>();
+/// [tmpl::erase:set]
+
+/// [tmpl::has_key:set]
+assert_same<tmpl::has_key<tmpl::set<Type1, Type2>, Type2>, tmpl::true_type>();
+assert_same<tmpl::has_key<tmpl::set<Type1, Type2>, Type3>, tmpl::false_type>();
+/// [tmpl::has_key:set]
+
+/// [tmpl::insert:set]
+assert_sets_same<tmpl::insert<tmpl::set<Type1, Type2>, Type3>,
+                 tmpl::set<Type1, Type2, Type3>>();
+assert_sets_same<tmpl::insert<tmpl::set<Type1, Type2>, Type1>,
+                 tmpl::set<Type1, Type2>>();
+/// [tmpl::insert:set]
+}
+}  // namespace set_functions
+
+namespace math_functions {
+void run() noexcept {
 /// [math_arithmetic]
 assert_same<tmpl::plus<tmpl::size_t<10>, tmpl::size_t<3>>::type,
             tmpl::size_t<13>>();
@@ -768,9 +1136,26 @@ assert_same<tmpl::next<tmpl::size_t<10>>::type, tmpl::size_t<11>>();
 /// [tmpl::prev]
 assert_same<tmpl::prev<tmpl::size_t<10>>::type, tmpl::size_t<9>>();
 /// [tmpl::prev]
+}
+}  // namespace math_functions
 
-// Miscellaneous functions
+namespace miscellaneous {
+/// [tmpl::has_type:pack_expansion]
+template <typename... T>
+bool check_sizes(const T&... containers,
+                 const typename tmpl::has_type<T, size_t>::type... sizes) {
+  return (... && (containers.size() == sizes));
+}
+/// [tmpl::has_type:pack_expansion]
 
+/// [tmpl::inherit:pack:definitions]
+template <typename... T>
+struct inherit_pack {
+  using type = struct : T... {};
+};
+/// [tmpl::inherit:pack:definitions]
+
+void run() noexcept {
 /// [tmpl::always]
 assert_same<tmpl::always<Type1>::type, Type1>();
 /// [tmpl::always]
@@ -822,11 +1207,51 @@ assert_same<tmpl::if_<std::true_type, Type1, Type2>::type, Type1>();
 assert_same<tmpl::if_c<true, Type1, Type2>::type, Type1>();
 /// [tmpl::if_c]
 
+/// [tmpl::inherit]
+// tmpl::type_ is used because base classes must be complete types
+static_assert(
+    std::is_base_of_v<tmpl::type_<Type2>,
+                      tmpl::inherit<tmpl::type_<Type1>, tmpl::type_<Type2>,
+                                    tmpl::type_<Type3>>::type>);
+/// [tmpl::inherit]
+
+/// [tmpl::inherit:pack:asserts]
+static_assert(
+    std::is_base_of_v<tmpl::type_<Type2>,
+                      inherit_pack<tmpl::type_<Type1>, tmpl::type_<Type2>,
+                                   tmpl::type_<Type3>>::type>);
+/// [tmpl::inherit:pack:asserts]
+
+{
+using lazy_test_arguments =
+  tmpl::list<List1<Type1, Type2>, List2<tmpl::_1, tmpl::_2, Type3>>;
+/// [tmpl::inherit_linearly]
+assert_same<tmpl::inherit_linearly<List1<Type1, Type2>,
+                                   List2<tmpl::_1, tmpl::_2, Type3>>,
+            List2<List2<tmpl::empty_base, Type1, Type3>, Type2, Type3>>();
+assert_same<tmpl::inherit_linearly<List1<Type1, Type2>,
+                                   List2<tmpl::_1, tmpl::_2, Type3>, Type3>,
+            List2<List2<Type3, Type1, Type3>, Type2, Type3>>();
+HAS_LAZY_VERSION(inherit_linearly);
+/// [tmpl::inherit_linearly]
+}
+
 /// [tmpl::is_set]
 assert_same<tmpl::is_set<Type1, Type2, Type3>, tmpl::true_type>();
 assert_same<tmpl::is_set<Type1, Type2, Type1>, tmpl::false_type>();
 assert_same<tmpl::is_set<>, tmpl::true_type>();
 /// [tmpl::is_set]
+
+{
+/// [tmpl::real_]
+using three_eighths = tmpl::single_<0x3EC00000>;
+using minus_one_hundred_thousand_three = tmpl::double_<0xC0F86A3000000000>;
+CHECK(static_cast<float>(three_eighths{}) == 0.375f);
+CHECK(static_cast<double>(minus_one_hundred_thousand_three{}) == -100003.0);
+assert_same<three_eighths::value_type, float>();
+assert_same<minus_one_hundred_thousand_three::value_type, double>();
+/// [tmpl::real_]
+}
 
 /// [tmpl::repeat]
 assert_same<tmpl::repeat<Wrapper, tmpl::size_t<3>, Type1>,
@@ -864,7 +1289,7 @@ assert_same<tmpl::lazy::wrap<List1<Type1, Type2>, List2>::type,
             List2<Type1, Type2>>();
 /// [tmpl::wrap:lazy]
 }
-}  // namespace compile_time
+}  // namespace miscellaneous
 
 namespace runtime {
 /// [runtime_declarations]
@@ -936,13 +1361,91 @@ CHECK(tmpl::for_each<tmpl::list<int, double, int>>(Functor{}).record ==
         std::vector<std::string>{"int", "double", "int"});
 /// [tmpl::for_each]
 }
+
+{
+/// [tmpl::select]
+const NonCopyable<std::string> hi{"Hi"};
+CHECK(tmpl::select<std::true_type>(NonCopyable<int>{3}, hi).value == 3);
+CHECK(tmpl::select<std::false_type>(NonCopyable<int>{3}, hi).value == "Hi");
+/// [tmpl::select]
+}
 }
 }  // namespace runtime
+
+namespace external {
+void run() noexcept {
+/// [boost_integration]
+assert_same<tmpl::as_fusion_deque<List1<Type1, Type2, Type3>>,
+            boost::fusion::deque<Type1, Type2, Type3>>();
+assert_same<tmpl::as_fusion_list<List1<Type1, Type2, Type3>>,
+            boost::fusion::list<Type1, Type2, Type3>>();
+assert_same<tmpl::as_fusion_set<List1<Type1, Type2, Type3>>,
+            boost::fusion::set<Type1, Type2, Type3>>();
+assert_same<tmpl::as_fusion_vector<List1<Type1, Type2, Type3>>,
+            boost::fusion::vector<Type1, Type2, Type3>>();
+assert_same<tmpl::as_variant<List1<Type1, Type2, Type3>>,
+            boost::variant<Type1, Type2, Type3>>();
+
+assert_same<tmpl::fusion_deque_wrapper<Type1, Type2, Type3>,
+            boost::fusion::deque<Type1, Type2, Type3>>();
+assert_same<tmpl::fusion_list_wrapper<Type1, Type2, Type3>,
+            boost::fusion::list<Type1, Type2, Type3>>();
+assert_same<tmpl::fusion_set_wrapper<Type1, Type2, Type3>,
+            boost::fusion::set<Type1, Type2, Type3>>();
+assert_same<tmpl::fusion_vector_wrapper<Type1, Type2, Type3>,
+            boost::fusion::vector<Type1, Type2, Type3>>();
+assert_same<tmpl::variant_wrapper<Type1, Type2, Type3>,
+            boost::variant<Type1, Type2, Type3>>();
+/// [boost_integration]
+
+/// [stl_integration]
+assert_same<tmpl::as_pair<List1<Type1, Type2>>, std::pair<Type1, Type2>>();
+assert_same<tmpl::as_tuple<List1<Type1, Type2, Type3>>,
+            std::tuple<Type1, Type2, Type3>>();
+
+assert_same<tmpl::pair_wrapper<Type1, Type2>, std::pair<Type1, Type2>>();
+assert_same<tmpl::tuple_wrapper<Type1, Type2, Type3>,
+            std::tuple<Type1, Type2, Type3>>();
+
+assert_same<tmpl::pair_wrapper_<Type1, Type2>::type, std::pair<Type1, Type2>>();
+/// [stl_integration]
+
+/// [tmpl::make_integral]
+assert_same<tmpl::make_integral<std::integral_constant<char, 3>>::type,
+            tmpl::integral_constant<char, 3>>();
+assert_same<tmpl::as_integral_list<List1<std::true_type, std::true_type,
+                                         std::false_type>>,
+            List1<tmpl::true_type, tmpl::true_type, tmpl::false_type>>();
+/// [tmpl::make_integral]
+
+/// [tmpl::as_list]
+assert_same<tmpl::as_sequence<std::pair<Type1, Type2>, List1>,
+            List1<Type1, Type2>>();
+assert_same<tmpl::as_list<std::pair<Type1, Type2>>, tmpl::list<Type1, Type2>>();
+/// [tmpl::as_list]
+
+/// [tmpl::as_set]
+assert_same<tmpl::as_set<std::tuple<Type1, Type2, Type3>>,
+            tmpl::set<Type1, Type2, Type3>>();
+assert_same<tmpl::set_wrapper<Type1, Type2, Type3>,
+            tmpl::set<Type1, Type2, Type3>>();
+/// [tmpl::as_set]
+}
+}  // namespace external
 }  // namespace
 // clang-format on
 
 SPECTRE_TEST_CASE("Unit.Utilities.TMPL.Documentation", "[Unit][Utilities]") {
   metafunctions::run();
-  compile_time::run();
+  containers::run();
+  constants::run();
+  list_constructors::run();
+  list_query::run();
+  list_from_list::run();
+  map_functions::run();
+  set_functions::run();
+  math_functions::run();
+  miscellaneous::run();
   runtime::run();
+  external::run();
 }
