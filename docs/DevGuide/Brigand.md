@@ -588,15 +588,18 @@ Checks if a predicate is true for at least one element of a list.  The default
 predicate checks that the element's `value` is not equal to zero.
 \snippet Test_TMPLDocumentation.cpp tmpl::any
 
+\remark
+The \ref any and \ref none metafunctions perform the same tasks as \ref found
+and \ref not_found, but use different algorithms.  In general, \ref any and
+\ref none are much faster, but \ref found and \ref not_found short-circuit, so
+they may be preferable with short lists and expensive predicates.
+
 \note
 The predicate must return the same false value for each element for `any` to
 return false.
 \snippet Test_TMPLDocumentation.cpp tmpl::any:inhomogeneous
 
 \see \ref all, \ref found, \ref none
-
-\par
-FIXME any/found and none/not_found are equivalent.  Provide guidance.
 
 
 \subsubsection at
@@ -672,6 +675,10 @@ any element of a list.  The default predicate checks that the element's `value`
 is not equal to zero.
 \snippet Test_TMPLDocumentation.cpp tmpl::found
 
+\remark
+This function performs the same operation as \ref any.  See \ref any for
+discussion.
+
 \see \ref any, \ref find, \ref not_found
 
 
@@ -717,6 +724,10 @@ Checks if a predicate is false for all elements of a list.  The default
 predicate checks that the element's `value` is not equal to zero.
 \snippet Test_TMPLDocumentation.cpp tmpl::none
 
+\remark
+This function performs the same operation as \ref not_found.  See \ref any for
+discussion.
+
 \note
 The predicate must return the same false value for each element for `none` to
 return true.
@@ -732,6 +743,10 @@ Returns, as an \ref integral_constant of `bool`, whether a predicate matches
 no elements of a list.  The default predicate checks that the element's `value`
 is not equal to zero.
 \snippet Test_TMPLDocumentation.cpp tmpl::not_found
+
+\remark
+This function performs the same operation as \ref none.  See \ref any for
+discussion.
 
 \see \ref find, \ref found, \ref none
 
