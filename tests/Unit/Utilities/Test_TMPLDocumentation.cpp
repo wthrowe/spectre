@@ -753,6 +753,12 @@ assert_same<
 assert_same<tmpl::lazy::join<List1<>>::type, List1<>>();
 /// [tmpl::join::bug-lazy]
 
+/// [tmpl::list_difference]
+assert_same<tmpl::list_difference<List1<Type1, Type2, Type1, Type2>,
+                                  List2<Type3, Type2>>,
+            List1<Type1, Type1>>();
+/// [tmpl::list_difference]
+
 {
 /// [tmpl::merge]
 assert_same<
@@ -822,6 +828,11 @@ assert_same<tmpl::remove<List1<Type1, Type2, Type1, Type3>, Type1>,
 HAS_LAZY_VERSION(remove);
 /// [tmpl::remove]
 }
+
+/// [tmpl::remove_duplicates]
+assert_same<tmpl::remove_duplicates<List1<Type1, Type2, Type1, Type3, Type2>>,
+            List1<Type1, Type2, Type3>>();
+/// [tmpl::remove_duplicates]
 
 {
 using lazy_test_arguments = tmpl::list<List1<Type1, Type2, Type1, Type3>,
@@ -1173,6 +1184,11 @@ assert_same<tmpl::apply<std::is_convertible<tmpl::_2, tmpl::_1>,
 assert_same<tmpl::count<Type1, Type2, Type1>,
             tmpl::integral_constant<unsigned int, 3>>();
 /// [tmpl::count]
+
+/// [tmpl::conditional_t]
+assert_same<tmpl::conditional_t<true, Type1, Type2>, Type1>();
+assert_same<tmpl::conditional_t<false, Type1, Type2>, Type2>();
+/// [tmpl::conditional_t]
 
 /// [tmpl::eval_if]
 assert_same<tmpl::eval_if<std::true_type,

@@ -864,6 +864,16 @@ version, as it determines the head of the resulting list differently.
 \snippet Test_TMPLDocumentation.cpp tmpl::join::bug-lazy
 
 
+\subsubsection list_difference
+
+\par
+Remove all elements that occur in the second list from the first list.
+\snippet Test_TMPLDocumentation.cpp tmpl::list_difference
+
+\note
+This is not a Brigand metafunction.  It is implemented in SpECTRE.
+
+
 \subsubsection merge
 
 \par
@@ -927,6 +937,16 @@ are pushed as a unit, not one-by-one.
 \par
 Removes all occurrences of a given type from a list.
 \snippet Test_TMPLDocumentation.cpp tmpl::remove
+
+
+\subsubsection remove_duplicates
+
+\par
+Remove duplicates from a list.  The first occurrence of each type is kept.
+\snippet Test_TMPLDocumentation.cpp tmpl::remove_duplicates
+
+\note
+This is not a Brigand metafunction.  It is implemented in SpECTRE.
 
 
 \subsubsection remove_if
@@ -1332,6 +1352,17 @@ of `unsigned int`.
 \snippet Test_TMPLDocumentation.cpp tmpl::count
 
 
+\subsubsection conditional_t
+
+\par
+Returns the second argument if the first is true, otherwise the third.  An
+optimized version of std::conditional_t.
+\snippet Test_TMPLDocumentation.cpp tmpl::conditional_t
+
+\note
+This is not a Brigand metafunction.  It is implemented in SpECTRE.
+
+
 \subsubsection eval_if
 
 \par
@@ -1667,9 +1698,6 @@ Brigand provides the standard two metafunctions for converting types to Brigand
 
 
 ```
-    155 tmpl::conditional_t
-     42 tmpl::remove_duplicates
-     17 tmpl::list_difference
       2 tmpl::get_source
       2 tmpl::get_destination
       2 tmpl::edge
