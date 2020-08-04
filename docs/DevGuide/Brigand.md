@@ -1490,12 +1490,12 @@ type.
 \subsubsection type_from
 
 \par
-Extracts the type from a \ref type_.
+Extracts the `type` from a struct.
 \snippet Test_TMPLDocumentation.cpp tmpl::type_from
 
 \remark
-This function will work on any class with a `type` type alias, but should only
-be used with \ref type_ for clarity.
+This function will work on any class with a `type` type alias, but, when used
+outside of a metafunction, it should only be used with \ref type_ for clarity.
 
 
 \subsubsection wrap
