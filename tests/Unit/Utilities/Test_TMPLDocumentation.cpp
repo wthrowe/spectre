@@ -1155,7 +1155,7 @@ namespace miscellaneous {
 template <typename... T>
 bool check_sizes(const T&... containers,
                  const typename tmpl::has_type<T, size_t>::type... sizes) {
-  return (... && (containers.size() == sizes));
+  return (... and (containers.size() == sizes));
 }
 /// [tmpl::has_type:pack_expansion]
 

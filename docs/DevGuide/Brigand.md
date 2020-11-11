@@ -103,7 +103,7 @@ inherits a `type` alias from the ultimate base class.
 
 \par
 Most of the standard Brigand functions are eager, but many have lazy versions
-in the nested `lazy` namespace.  Thesw are indicated by calls to the
+in the nested `tmpl::lazy` namespace.  These are indicated by calls to the
 `HAS_LAZY_VERSION` macro in the examples below.
 
 
@@ -114,13 +114,13 @@ This use of lazy metafunctions is too limited for general use, however, because
 it requires the definition of a new templated struct for every new function.
 Brigand uses a more general notation, known as metalambdas.  A metalambda is a
 (possibly nested set of) lazy metafunctions with some template arguments
-replaced by the placeholders `_1`, `_2`, etc.  These are the first, second,
-etc., arguments of the metalambda, and will be replaced by the actual arguments
-when the lambda is used.  The lazy nature of the metafunctions prevents them
-from prematurely evaluating to results based on the literal placeholder types.
-The \ref apply function can be used to evaluate a metalambda with specified
-arguments, any many other Brigand functions take metalambdas that are evaluated
-internally.
+replaced by the placeholders `tmpl::_1`, `tmpl::_2`, etc.  These are the first,
+second, etc., arguments of the metalambda, and will be replaced by the actual
+arguments when the lambda is used.  The lazy nature of the metafunctions
+prevents them from prematurely evaluating to results based on the literal
+placeholder types.  The \ref apply function can be used to evaluate a
+metalambda with specified arguments, and many other Brigand functions take
+metalambdas that are evaluated internally.
 
 
 \subsection metalambda_structure Evaluation of metalambdas
@@ -143,20 +143,21 @@ expression, a constant, or a metaclosure.
 \subsubsection args Argument
 
 \par
-An argument is one of the structs `_1`, `_2`, or `args<N>` for `unsigned int`
-N.  The additional aliases `_3`, `_4`, ..., `_9` are provided to `args<2>`,
-`args<3>`, ..., `args<8>`.
+An argument is one of the structs `tmpl::_1`, `tmpl::_2`, or `tmpl::args<N>`
+for `unsigned int` N.  The additional aliases `tmpl::_3`, `tmpl::_4`, ...,
+`tmpl::_9` are provided to `tmpl::args<2>`, `tmpl::args<3>`, ...,
+`tmpl::args<8>`.
 \snippet Test_TMPLDocumentation.cpp tmpl::args
-When evaluated, they give the first (`_1`), second (`_2`), or zero-indexed Nth
-(`args<N>`) element of the context's argument list.
+When evaluated, they give the first (`tmpl::_1`), second (`tmpl::_2`), or
+zero-indexed Nth (`tmpl::args<N>`) element of the context's argument list.
 \snippet Test_TMPLDocumentation.cpp tmpl::args:eval
-Additionally, `_state` and `_element` are aliased to `_1` and `_2`, primarily
-for use with \ref fold.
+Additionally, `tmpl::_state` and `tmpl::_element` are aliased to `tmpl::_1` and
+`tmpl::_2`, primarily for use with \ref fold.
 
 \par
-If there are too few arguments in the argument list, `_1` and `_2` remain
-unevaluated, but `args<N>` (including `args<0>` and `args<1>`) gives an error.
-Do not rely on this behavior.
+Metalambdas must be passed enough arguments to define all argument placeholders
+in their bodies.  Failure to pass enough arguments may error or produce
+unintuitive results.
 
 \subsubsection metalambda_lazy Lazy expression
 
@@ -172,64 +173,64 @@ alias is the result of the full lazy-expression.
 \subsubsection bind Bind expression
 
 \par
-A bind expression is a specialization of `bind`.  It wraps an eager
+A bind expression is a specialization of `tmpl::bind`.  It wraps an eager
 metafunction and its arguments.  When evaluated, the arguments are each
 evaluated as metafunctions, and then the results are passed to the eager
 metafunction.
 \snippet Test_TMPLDocumentation.cpp tmpl::bind
 
 \note
-The `bind` metafunction does not convert an eager metafunction to a lazy one.
-It is handled specially in the evaluation code.
+The `tmpl::bind` metafunction does not convert an eager metafunction to a lazy
+one.  It is handled specially in the evaluation code.
 
 \subsubsection pin Pin expression
 
 \par
-A pin expression is a specialization of `pin`.  Evaluating a pin expression
-gives the argument to `pin`.  This can be used to force a type to be treated as
-a \ref metalambda_constant "constant", even if it would normally be treated as
-a different type of metalambda (usually a \ref metalambda_lazy
-"lazy expression").
+A pin expression is a specialization of `tmpl::pin`.  Evaluating a pin
+expression gives the argument to `tmpl::pin`.  This can be used to force a type
+to be treated as a \ref metalambda_constant "constant", even if it would
+normally be treated as a different type of metalambda (usually a \ref
+metalambda_lazy "lazy expression").
 \snippet Test_TMPLDocumentation.cpp tmpl::pin
 
 \subsubsection defer Defer expression
 
 \par
-A defer expression is a specialization of `defer`.  It does not evaluate its
-argument, but results in a \ref metalambda_metaclosure "metaclosure" containing
-the passed metalambda and the current evaluation context.
+A defer expression is a specialization of `tmpl::defer`.  It does not evaluate
+its argument, but results in a \ref metalambda_metaclosure "metaclosure"
+containing the passed metalambda and the current evaluation context.
 \snippet Test_TMPLDocumentation.cpp tmpl::defer
 
 \par
-The primary purposes for `defer` are constructing metalambdas to pass to other
-metafunctions and preventing "speculative" evaluation of a portion of a
+The primary purposes for `tmpl::defer` are constructing metalambdas to pass to
+other metafunctions and preventing "speculative" evaluation of a portion of a
 metalambda that is not valid for some arguments.  See the examples below, in
 particular \ref multiplication_table, \ref maybe_first, and \ref
 column_with_zeros.
 
 \warning
-The metalambda contained in a `defer` must be a \ref metalambda_lazy
+The metalambda contained in a `tmpl::defer` must be a \ref metalambda_lazy
 "lazy expression" or a \ref bind "bind expression".  This is presumably a bug.
 If another type is needed, it can be wrapped in \ref always.
 
 \subsubsection parent Parent expression
 
 \par
-A parent expression is a specialization of `parent`.  It evaluates its
+A parent expression is a specialization of `tmpl::parent`.  It evaluates its
 argument, replacing the current context with its parent.  This provides access
 to the captured arguments in a metaclosure.
 \snippet Test_TMPLDocumentation.cpp tmpl::parent
 
 \warning
-Do not call `parent` outside of a metaclosure context.  This results in an
-empty evaluation context, causing unintuitive changes to the evaluation rules.
-(Most, but not all, expressions are left unevaluated in such a context.)  Use
-\ref pin "pin" to prevent evaluation.
+Do not call `tmpl::parent` outside of a metaclosure context.  This results in
+an empty evaluation context, causing unintuitive changes to the evaluation
+rules.  (Most, but not all, expressions are left unevaluated in such a
+context.)  Use \ref pin "pin" to prevent evaluation.
 
 \par
 
 \warning
-There is a bug that prevents `parent` from working in a metaclosure being
+There is a bug that prevents `tmpl::parent` from working in a metaclosure being
 evaluated in a metaclosure context.  In some cases this can be worked around by
 evaluating the metaclosure in the parent of the metaclosure context.
 \snippet Test_TMPLDocumentation.cpp tmpl::parent:bug
@@ -444,7 +445,10 @@ A struct templated on a single type `T` containing an alias `type` to `T`.
 \snippet Test_TMPLDocumentation.cpp tmpl::type_
 
 \par
-When extracting the type, programmers are encouraged to use \ref type_from.
+When extracting the type, programmers are encouraged to use \ref type_from to
+make it clear that the `::type` that would otherwise appear is not an
+evaluation of a lazy metafunction.  See \ref always or \ref identity for
+similar functionality that is intended for use as a metafunction.
 
 
 \subsection Constants
@@ -661,8 +665,8 @@ with the second, and so on, returning the final state.
 \snippet Test_TMPLDocumentation.cpp tmpl::fold
 
 \par
-Brigand provides `_state` and `_element` aliases to the appropriate \ref args
-"arguments" for use in folds.
+Brigand provides `tmpl::_state` and `tmpl::_element` aliases to the appropriate
+\ref args "arguments" for use in folds.
 
 \see \ref reverse_fold
 
@@ -1009,8 +1013,8 @@ the second to last, and so on, returning the final state.
 \snippet Test_TMPLDocumentation.cpp tmpl::reverse_fold
 
 \par
-Brigand provides `_state` and `_element` aliases to the appropriate \ref args
-"arguments" for use in folds.
+Brigand provides `tmpl::_state` and `tmpl::_element` aliases to the appropriate
+\ref args "arguments" for use in folds.
 
 \see \ref fold
 
@@ -1145,7 +1149,7 @@ no_such_type_ if the key is not in the map.
 \par
 Returns the value associated with a key in a \ref map, wrapped in a \ref type_.
 Returns `type_<no_such_type_>` if the key is not in the map.  This function has
-no eager version, but is still in the `lazy` namespace.
+no eager version, but is still in the `tmpl::lazy` namespace.
 \snippet Test_TMPLDocumentation.cpp tmpl::lookup_at
 
 \see \ref lookup
