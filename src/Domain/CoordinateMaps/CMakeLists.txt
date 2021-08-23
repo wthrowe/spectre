@@ -30,6 +30,7 @@ spectre_target_sources(
   KerrHorizonConforming.cpp
   Rotation.cpp
   SpecialMobius.cpp
+  SphericalTorus.cpp
   Wedge.cpp
   )
 
@@ -65,6 +66,7 @@ spectre_target_headers(
   ProductMaps.tpp
   Rotation.hpp
   SpecialMobius.hpp
+  SphericalTorus.hpp
   Tags.hpp
   TimeDependentHelpers.hpp
   Wedge.hpp
