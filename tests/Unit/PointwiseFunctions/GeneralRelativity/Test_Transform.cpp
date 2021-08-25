@@ -19,9 +19,30 @@ void test_transform_to_different_frame(const DataType& used_for_size) {
   tnsr::ii<DataType, Dim, DestFrame> (*f)(
       const tnsr::ii<DataType, Dim, SrcFrame>&,
       const ::Jacobian<DataType, Dim, DestFrame, SrcFrame>&) =
-      transform::to_different_frame<Dim, SrcFrame, DestFrame>;
+      transform::to_different_frame;
   pypp::check_with_random_values<1>(f, "Transform", "to_different_frame",
                                     {{{-10., 10.}}}, used_for_size);
+
+  const auto test_transform = [&used_for_size](
+                                  auto transform_type,
+                                  const std::string& suffix) noexcept {
+    pypp::check_with_random_values<1>(
+        +[](const decltype(transform_type)& tensor,
+            const ::Jacobian<DataType, Dim, DestFrame, SrcFrame>&
+                jacobian) noexcept {
+          return transform::to_different_frame(
+              tensor, jacobian, determinant_and_inverse(jacobian).second);
+        },
+        "Transform", "to_different_frame_" + suffix, {{{-10., 10.}}},
+        used_for_size);
+  };
+  test_transform(Scalar<DataType>{}, "Scalar");
+  test_transform(tnsr::I<DataType, Dim, SrcFrame>{}, "I");
+  test_transform(tnsr::i<DataType, Dim, SrcFrame>{}, "i");
+  test_transform(tnsr::iJ<DataType, Dim, SrcFrame>{}, "iJ");
+  test_transform(tnsr::ii<DataType, Dim, SrcFrame>{}, "ii");
+  test_transform(tnsr::II<DataType, Dim, SrcFrame>{}, "II");
+  test_transform(tnsr::ijj<DataType, Dim, SrcFrame>{}, "ijj");
 
   // Transform src->dest and then dest->src and ensure we recover
   // what we started with.
@@ -75,6 +96,9 @@ SPECTRE_TEST_CASE("Unit.PointwiseFunctions.GeneralRelativity.Transform",
   pypp::SetupLocalPythonEnvironment local_python_env(
       "PointwiseFunctions/GeneralRelativity/");
   const DataVector dv(5);
+  test_transform_to_different_frame<1, Frame::Grid, Frame::Inertial>(double{});
+  test_transform_to_different_frame<2, Frame::Grid, Frame::Inertial>(double{});
+  test_transform_to_different_frame<3, Frame::Grid, Frame::Inertial>(double{});
   test_transform_to_different_frame<1, Frame::Grid, Frame::Inertial>(dv);
   test_transform_to_different_frame<2, Frame::Grid, Frame::Inertial>(dv);
   test_transform_to_different_frame<3, Frame::Grid, Frame::Inertial>(dv);
