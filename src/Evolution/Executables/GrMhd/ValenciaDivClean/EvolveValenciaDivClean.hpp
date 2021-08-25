@@ -460,10 +460,10 @@ struct EvolutionMetavars {
               Initialization::Actions::AddSimpleTags<
                   Initialization::subcell::GrTagsForHydro<system, volume_dim>,
                   grmhd::ValenciaDivClean::SetVariablesNeededFixingToFalse>,
-              VariableFixing::Actions::FixVariables<
-                  VariableFixing::FixToAtmosphere<volume_dim>>,
               Actions::MutateApply<
                   grmhd::ValenciaDivClean::subcell::SwapGrTags>,
+              VariableFixing::Actions::FixVariables<
+                  VariableFixing::FixToAtmosphere<volume_dim>>,
               Actions::UpdateConservatives>,
           tmpl::list<>>,
 
