@@ -12,6 +12,7 @@
 #include "Framework/SetupLocalPythonEnvironment.hpp"
 #include "Helpers/NumericalAlgorithms/FiniteDifference/Exact.hpp"
 #include "Helpers/NumericalAlgorithms/FiniteDifference/Python.hpp"
+#include "Helpers/NumericalAlgorithms/FiniteDifference/Roundoff.hpp"
 #include "NumericalAlgorithms/FiniteDifference/AoWeno.hpp"
 
 namespace {
@@ -138,6 +139,9 @@ void test() {
 
   TestHelpers::fd::reconstruction::test_reconstruction_is_exact_if_in_basis<
       Dim>(4, 8, 5, recons_5th_order_only, recons_neighbor_data_5th_order_only);
+  if constexpr (Dim == 1) {
+    TestHelpers::fd::reconstruction::test_positivity_with_roundoff(5, recons);
+  }
 
   test_function_pointers<2, Dim>();
   test_function_pointers<4, Dim>();
