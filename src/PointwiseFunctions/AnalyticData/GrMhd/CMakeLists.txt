@@ -15,6 +15,7 @@ spectre_target_sources(
   MagnetizedFmDisk.cpp
   MagnetizedTovStar.cpp
   OrszagTangVortex.cpp
+  PolarMagnetizedFmDisk.cpp
   RiemannProblem.cpp
   )
 
@@ -30,6 +31,7 @@ spectre_target_headers(
   MagnetizedFmDisk.hpp
   MagnetizedTovStar.hpp
   OrszagTangVortex.hpp
+  PolarMagnetizedFmDisk.hpp
   RiemannProblem.hpp
   )
 

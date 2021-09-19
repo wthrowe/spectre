@@ -6,7 +6,7 @@
 #include <cstddef>
 
 #include "PointwiseFunctions/AnalyticSolutions/GeneralRelativity/Solutions.hpp"
-#include "PointwiseFunctions/Hydro/TagsDeclarations.hpp"
+#include "PointwiseFunctions/Hydro/Tags.hpp"
 
 namespace grmhd {
 /// Base struct for properties common to all GRMHD analytic data classes
