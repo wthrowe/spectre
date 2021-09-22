@@ -100,9 +100,9 @@ Domain<3> Brick::create_domain() const {
   if (is_periodic_in_xyz_[1]) {
     identifications.push_back({{0, 1, 4, 5}, {2, 3, 6, 7}});
   }
-  if (is_periodic_in_xyz_[2]) {
+  //if (is_periodic_in_xyz_[2]) {
     identifications.push_back({{0, 1, 2, 3}, {4, 5, 6, 7}});
-  }
+  //}
 
   std::vector<DirectionMap<
       3, std::unique_ptr<domain::BoundaryConditions::BoundaryCondition>>>
@@ -111,9 +111,17 @@ Domain<3> Brick::create_domain() const {
     DirectionMap<3,
                  std::unique_ptr<domain::BoundaryConditions::BoundaryCondition>>
         boundary_conditions{};
-    for (const auto& direction : Direction<3>::all_directions()) {
-      boundary_conditions[direction] = boundary_condition_->get_clone();
-    }
+    // for (const auto& direction : Direction<3>::all_directions()) {
+    //   boundary_conditions[direction] = boundary_condition_->get_clone();
+    // }
+    boundary_conditions[Direction<3>::upper_xi()] =
+        boundary_condition_->get_clone();
+    boundary_conditions[Direction<3>::lower_xi()] =
+        boundary_condition_->get_clone();
+    boundary_conditions[Direction<3>::upper_eta()] =
+        boundary_condition_->get_clone();
+    boundary_conditions[Direction<3>::lower_eta()] =
+        boundary_condition_->get_clone();
     boundary_conditions_all_blocks.push_back(std::move(boundary_conditions));
   }
 
