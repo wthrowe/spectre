@@ -43,9 +43,21 @@ void test_variable_fixer(
   for (size_t i = 0; i < Dim; ++i) {
     spatial_metric.get(i, i) = 2.0;
   }
+
+  auto ghost_density = density;
+  auto ghost_lorentz_factor_times_spatial_velocity = spatial_velocity;
+  for (size_t i = 0; i < Dim; ++i) {
+    ghost_lorentz_factor_times_spatial_velocity.get(i) *= get(lorentz_factor);
+  }
+  auto ghost_pressure = pressure;
+
   variable_fixer(&density, &specific_internal_energy, &spatial_velocity,
                  &lorentz_factor, &pressure, &specific_enthalpy, spatial_metric,
                  equation_of_state);
+  variable_fixer.fix_ghost_data(&ghost_density,
+                                &ghost_lorentz_factor_times_spatial_velocity,
+                                &ghost_pressure, spatial_metric,
+                                equation_of_state);
 
   Scalar<DataVector> expected_density{DataVector{1.e-12, 2.e-11, 4.e-12}};
   auto expected_pressure =
@@ -73,6 +85,18 @@ void test_variable_fixer(
                         expected_specific_internal_energy);
   CHECK_ITERABLE_APPROX(lorentz_factor, expected_lorentz_factor);
   CHECK_ITERABLE_APPROX(spatial_velocity, expected_spatial_velocity);
+
+  auto expected_lorentz_factor_times_spatial_velocity =
+      expected_spatial_velocity;
+  for (size_t i = 0; i < Dim; ++i) {
+    expected_lorentz_factor_times_spatial_velocity.get(i) *=
+        get(expected_lorentz_factor);
+  }
+
+  CHECK_ITERABLE_APPROX(ghost_density, expected_density);
+  CHECK_ITERABLE_APPROX(ghost_lorentz_factor_times_spatial_velocity,
+                        expected_lorentz_factor_times_spatial_velocity);
+  CHECK_ITERABLE_APPROX(ghost_pressure, expected_pressure);
 }
 
 template <size_t Dim>
@@ -97,9 +121,21 @@ void test_variable_fixer(
   for (size_t i = 0; i < Dim; ++i) {
     spatial_metric.get(i, i) = 2.0;
   }
+
+  auto ghost_density = density;
+  auto ghost_lorentz_factor_times_spatial_velocity = spatial_velocity;
+  for (size_t i = 0; i < Dim; ++i) {
+    ghost_lorentz_factor_times_spatial_velocity.get(i) *= get(lorentz_factor);
+  }
+  auto ghost_pressure = pressure;
+
   variable_fixer(&density, &specific_internal_energy, &spatial_velocity,
                  &lorentz_factor, &pressure, &specific_enthalpy, spatial_metric,
                  equation_of_state);
+  variable_fixer.fix_ghost_data(&ghost_density,
+                                &ghost_lorentz_factor_times_spatial_velocity,
+                                &ghost_pressure, spatial_metric,
+                                equation_of_state);
 
   Scalar<DataVector> expected_density{DataVector{1.e-12, 2.e-11, 4.e-12}};
   Scalar<DataVector> expected_specific_internal_energy{
@@ -128,10 +164,22 @@ void test_variable_fixer(
                         expected_specific_internal_energy);
   CHECK_ITERABLE_APPROX(lorentz_factor, expected_lorentz_factor);
   CHECK_ITERABLE_APPROX(spatial_velocity, expected_spatial_velocity);
+
+  auto expected_lorentz_factor_times_spatial_velocity =
+      expected_spatial_velocity;
+  for (size_t i = 0; i < Dim; ++i) {
+    expected_lorentz_factor_times_spatial_velocity.get(i) *=
+        get(expected_lorentz_factor);
+  }
+
+  CHECK_ITERABLE_APPROX(ghost_density, expected_density);
+  CHECK_ITERABLE_APPROX(ghost_lorentz_factor_times_spatial_velocity,
+                        expected_lorentz_factor_times_spatial_velocity);
+  CHECK_ITERABLE_APPROX(ghost_pressure, expected_pressure);
 }
 
 template <size_t Dim>
-void test_variable_fixer() {
+void test_variable_fixer() {//FIXME approx
   // Test for representative 1-d equation of state
   VariableFixing::FixToAtmosphere<Dim> variable_fixer{1.e-12, 3.e-12, 1.e-11,
                                                       1.e-4};

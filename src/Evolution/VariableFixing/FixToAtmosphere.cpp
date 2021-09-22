@@ -7,6 +7,7 @@
 
 #include "DataStructures/DataVector.hpp"
 #include "DataStructures/Tensor/Tensor.hpp"
+#include "Utilities/ErrorHandling/Assert.hpp"
 #include "Utilities/GenerateInstantiations.hpp"
 
 // IWYU pragma: no_include <array>
@@ -87,13 +88,62 @@ void FixToAtmosphere<Dim>::operator()(
   }
 }
 
+namespace {
+template <typename T0, typename... Ts>
+bool all_same(const T0& t0, const Ts&... ts) {
+  return (... and (t0 == ts));
+}
+
+template <typename T0, typename... Ts>
+std::string all_same_error(const T0& t0, const Ts&... ts) {
+  std::ostringstream ss;
+  ss << " Values: " << t0;
+  (..., (ss << " " << ts));
+  return ss.str();
+}
+}  // namespace
+
+template <size_t Dim>
+template <size_t ThermodynamicDim>
+void FixToAtmosphere<Dim>::fix_ghost_data(
+    gsl::not_null<Scalar<DataVector>*> rest_mass_density,
+    gsl::not_null<tnsr::I<DataVector, Dim, Frame::Inertial>*>
+        lorentz_factor_times_spatial_velocity,
+    gsl::not_null<Scalar<DataVector>*> pressure,
+    const tnsr::ii<DataVector, Dim, Frame::Inertial>& spatial_metric,
+    const EquationsOfState::EquationOfState<true, ThermodynamicDim>&
+        equation_of_state) const {
+  ASSERT(
+      all_same(get(*rest_mass_density).size(),
+               get<0>(*lorentz_factor_times_spatial_velocity).size(),
+               get(*pressure).size(), get<0, 0>(spatial_metric).size()),
+      all_same_error(get(*rest_mass_density).size(),
+                     get<0>(*lorentz_factor_times_spatial_velocity).size(),
+                     get(*pressure).size(), get<0, 0>(spatial_metric).size()));
+  for (size_t i = 0; i < rest_mass_density->get().size(); i++) {
+    if (UNLIKELY(rest_mass_density->get()[i] < density_cutoff_)) {
+      set_density_to_atmosphere(rest_mass_density, {}, pressure, {},
+                                equation_of_state, i);
+      for (size_t d = 0; d < Dim; ++d) {
+        lorentz_factor_times_spatial_velocity->get(d)[i] = 0.0;
+      }
+    } else if (UNLIKELY(rest_mass_density->get()[i] <
+                        transition_density_cutoff_)) {
+      set_to_magnetic_free_transition(rest_mass_density,
+                                      lorentz_factor_times_spatial_velocity,
+                                      spatial_metric, i);
+    }
+  }
+}
+
 template <size_t Dim>
 template <size_t ThermodynamicDim>
 void FixToAtmosphere<Dim>::set_density_to_atmosphere(
     const gsl::not_null<Scalar<DataVector>*> rest_mass_density,
-    const gsl::not_null<Scalar<DataVector>*> specific_internal_energy,
+    const std::optional<gsl::not_null<Scalar<DataVector>*>>
+        specific_internal_energy,
     const gsl::not_null<Scalar<DataVector>*> pressure,
-    const gsl::not_null<Scalar<DataVector>*> specific_enthalpy,
+    const std::optional<gsl::not_null<Scalar<DataVector>*>> specific_enthalpy,
     const EquationsOfState::EquationOfState<true, ThermodynamicDim>&
         equation_of_state,
     const size_t grid_index) const {
@@ -102,22 +152,53 @@ void FixToAtmosphere<Dim>::set_density_to_atmosphere(
   if constexpr (ThermodynamicDim == 1) {
     pressure->get()[grid_index] =
         get(equation_of_state.pressure_from_density(atmosphere_density));
-    specific_internal_energy->get()[grid_index] =
-        get(equation_of_state.specific_internal_energy_from_density(
-            atmosphere_density));
-    specific_enthalpy->get()[grid_index] = get(
-        equation_of_state.specific_enthalpy_from_density(atmosphere_density));
+    if (specific_internal_energy.has_value()) {
+      (*specific_internal_energy)->get()[grid_index] =
+          get(equation_of_state.specific_internal_energy_from_density(
+              atmosphere_density));
+      (*specific_enthalpy)->get()[grid_index] = get(
+          equation_of_state.specific_enthalpy_from_density(atmosphere_density));
+    }
   } else if constexpr (ThermodynamicDim == 2) {
     Scalar<double> atmosphere_energy{0.0};
     pressure->get()[grid_index] =
         get(equation_of_state.pressure_from_density_and_energy(
             atmosphere_density, atmosphere_energy));
-    specific_internal_energy->get()[grid_index] = get(atmosphere_energy);
-    specific_enthalpy->get()[grid_index] =
-        get(equation_of_state.specific_enthalpy_from_density_and_energy(
-            atmosphere_density, atmosphere_energy));
+    if (specific_internal_energy.has_value()) {
+      (*specific_internal_energy)->get()[grid_index] = get(atmosphere_energy);
+      (*specific_enthalpy)->get()[grid_index] =
+          get(equation_of_state.specific_enthalpy_from_density_and_energy(
+              atmosphere_density, atmosphere_energy));
+    }
   }
 }
+
+namespace {
+template <size_t Dim>
+bool cap_magnitude(
+    const gsl::not_null<tnsr::I<DataVector, Dim, Frame::Inertial>*> vector,
+    const tnsr::ii<DataVector, Dim, Frame::Inertial>& spatial_metric,
+    const double maximum_magnitude, const size_t grid_index) {
+  double magnitude = 0.0;
+  for (size_t j = 0; j < Dim; ++j) {
+    magnitude += vector->get(j)[grid_index] * vector->get(j)[grid_index] *
+                 spatial_metric.get(j, j)[grid_index];
+    for (size_t k = j + 1; k < Dim; ++k) {
+      magnitude += 2.0 * vector->get(j)[grid_index] *
+                   vector->get(k)[grid_index] *
+                   spatial_metric.get(j, k)[grid_index];
+    }
+  }
+  magnitude = sqrt(magnitude);
+  const bool needs_fixing = magnitude > maximum_magnitude;
+  if (needs_fixing) {
+    for (size_t j = 0; j < Dim; ++j) {
+      vector->get(j)[grid_index] *= maximum_magnitude / magnitude;
+    }
+  }
+  return needs_fixing;
+}
+}  // namespace
 
 template <size_t Dim>
 void FixToAtmosphere<Dim>::set_to_magnetic_free_transition(
@@ -127,30 +208,33 @@ void FixToAtmosphere<Dim>::set_to_magnetic_free_transition(
     const gsl::not_null<Scalar<DataVector>*> lorentz_factor,
     const tnsr::ii<DataVector, Dim, Frame::Inertial>& spatial_metric,
     const size_t grid_index) const {
-  double magnitude_of_velocity = 0.0;
-  for (size_t j = 0; j < Dim; ++j) {
-    magnitude_of_velocity += spatial_velocity->get(j)[grid_index] *
-                             spatial_velocity->get(j)[grid_index] *
-                             spatial_metric.get(j, j)[grid_index];
-    for (size_t k = j + 1; k < Dim; ++k) {
-      magnitude_of_velocity += 2.0 * spatial_velocity->get(j)[grid_index] *
-                               spatial_velocity->get(k)[grid_index] *
-                               spatial_metric.get(j, k)[grid_index];
-    }
-  }
-  magnitude_of_velocity = sqrt(magnitude_of_velocity);
   const double scale_factor =
       (get(*rest_mass_density)[grid_index] - density_cutoff_) /
       (transition_density_cutoff_ - density_cutoff_);
-  if (const double max_mag_of_velocity = scale_factor * max_velocity_magnitude_;
-      magnitude_of_velocity > max_mag_of_velocity) {
-    for (size_t j = 0; j < Dim; ++j) {
-      spatial_velocity->get(j)[grid_index] *=
-          max_mag_of_velocity / magnitude_of_velocity;
-    }
+  const double max_mag_of_velocity = scale_factor * max_velocity_magnitude_;
+  if (cap_magnitude(spatial_velocity, spatial_metric, max_mag_of_velocity,
+                    grid_index)) {
     get(*lorentz_factor)[grid_index] =
         1.0 / sqrt(1.0 - max_mag_of_velocity * max_mag_of_velocity);
   }
+}
+
+template <size_t Dim>
+void FixToAtmosphere<Dim>::set_to_magnetic_free_transition(
+    const gsl::not_null<Scalar<DataVector>*> rest_mass_density,
+    const gsl::not_null<tnsr::I<DataVector, Dim, Frame::Inertial>*>
+        lorentz_factor_times_spatial_velocity,
+    const tnsr::ii<DataVector, Dim, Frame::Inertial>& spatial_metric,
+    const size_t grid_index) const {
+  const double scale_factor =
+      (get(*rest_mass_density)[grid_index] - density_cutoff_) /
+      (transition_density_cutoff_ - density_cutoff_);
+  const double max_mag_of_velocity = scale_factor * max_velocity_magnitude_;
+  const double max_lorentz_factor_times_velocity =
+      max_mag_of_velocity /
+      sqrt(1.0 - max_mag_of_velocity * max_mag_of_velocity);
+  cap_magnitude(lorentz_factor_times_spatial_velocity, spatial_metric,
+                max_lorentz_factor_times_velocity, grid_index);
 }
 
 template <size_t Dim>
@@ -191,6 +275,14 @@ GENERATE_INSTANTIATIONS(INSTANTIATION, (1, 2, 3))
       const gsl::not_null<Scalar<DataVector>*> lorentz_factor,                \
       const gsl::not_null<Scalar<DataVector>*> pressure,                      \
       const gsl::not_null<Scalar<DataVector>*> specific_enthalpy,             \
+      const tnsr::ii<DataVector, DIM(data), Frame::Inertial>& spatial_metric, \
+      const EquationsOfState::EquationOfState<true, THERMO_DIM(data)>&        \
+          equation_of_state) const;                                           \
+  template void FixToAtmosphere<DIM(data)>::fix_ghost_data(                   \
+      gsl::not_null<Scalar<DataVector>*> rest_mass_density,                   \
+      gsl::not_null<tnsr::I<DataVector, DIM(data), Frame::Inertial>*>         \
+          lorentz_factor_times_spatial_velocity,                              \
+      gsl::not_null<Scalar<DataVector>*> pressure,                            \
       const tnsr::ii<DataVector, DIM(data), Frame::Inertial>& spatial_metric, \
       const EquationsOfState::EquationOfState<true, THERMO_DIM(data)>&        \
           equation_of_state) const;

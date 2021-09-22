@@ -5,6 +5,7 @@
 
 #include <cstddef>
 #include <limits>
+#include <optional>
 
 #include "DataStructures/Tensor/TypeAliases.hpp"
 #include "Options/Options.hpp"
@@ -154,13 +155,24 @@ class FixToAtmosphere {
       const EquationsOfState::EquationOfState<true, ThermodynamicDim>&
           equation_of_state) const;
 
+  template <size_t ThermodynamicDim>
+  void fix_ghost_data(
+      gsl::not_null<Scalar<DataVector>*> rest_mass_density,
+      gsl::not_null<tnsr::I<DataVector, Dim, Frame::Inertial>*>
+          lorentz_factor_times_spatial_velocity,
+      gsl::not_null<Scalar<DataVector>*> pressure,
+      const tnsr::ii<DataVector, Dim, Frame::Inertial>& spatial_metric,
+      const EquationsOfState::EquationOfState<true, ThermodynamicDim>&
+          equation_of_state) const;
+
  private:
   template <size_t ThermodynamicDim>
   void set_density_to_atmosphere(
       gsl::not_null<Scalar<DataVector>*> rest_mass_density,
-      gsl::not_null<Scalar<DataVector>*> specific_internal_energy,
+      std::optional<gsl::not_null<Scalar<DataVector>*>>
+          specific_internal_energy,
       gsl::not_null<Scalar<DataVector>*> pressure,
-      gsl::not_null<Scalar<DataVector>*> specific_enthalpy,
+      std::optional<gsl::not_null<Scalar<DataVector>*>> specific_enthalpy,
       const EquationsOfState::EquationOfState<true, ThermodynamicDim>&
           equation_of_state,
       size_t grid_index) const;
@@ -170,6 +182,13 @@ class FixToAtmosphere {
       gsl::not_null<tnsr::I<DataVector, Dim, Frame::Inertial>*>
           spatial_velocity,
       gsl::not_null<Scalar<DataVector>*> lorentz_factor,
+      const tnsr::ii<DataVector, Dim, Frame::Inertial>& spatial_metric,
+      size_t grid_index) const;
+
+  void set_to_magnetic_free_transition(
+      gsl::not_null<Scalar<DataVector>*> rest_mass_density,
+      gsl::not_null<tnsr::I<DataVector, Dim, Frame::Inertial>*>
+          lorentz_factor_times_spatial_velocity,
       const tnsr::ii<DataVector, Dim, Frame::Inertial>& spatial_metric,
       size_t grid_index) const;
 

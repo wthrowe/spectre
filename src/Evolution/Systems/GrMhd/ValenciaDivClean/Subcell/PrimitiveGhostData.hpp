@@ -5,7 +5,9 @@
 
 #include "DataStructures/VariablesTag.hpp"
 #include "Domain/Tags.hpp"
+#include "Evolution/DgSubcell/Tags/Inactive.hpp"
 #include "Evolution/DgSubcell/Tags/Mesh.hpp"
+#include "PointwiseFunctions/GeneralRelativity/Tags.hpp"
 #include "PointwiseFunctions/Hydro/Tags.hpp"
 #include "Utilities/TMPL.hpp"
 
@@ -15,6 +17,18 @@ template <size_t Dim>
 class Mesh;
 template <typename T>
 class Variables;
+namespace EquationsOfState {
+template <bool IsRelativistic, size_t ThermodynamicDim>
+class EquationOfState;
+}  // namespace EquationsOfState
+namespace Tags {
+template <typename VariableFixerType>
+struct VariableFixer;
+}  // namespace Tags
+namespace VariableFixing {
+template <size_t Dim>
+class FixToAtmosphere;
+}  // namespace VariableFixing
 /// \endcond
 
 namespace grmhd::ValenciaDivClean::subcell {
@@ -81,10 +95,21 @@ class PrimitiveGhostDataToSlice {
   using return_tags = tmpl::list<>;
   using argument_tags =
       tmpl::list<::Tags::Variables<hydro::grmhd_tags<DataVector>>,
-                 domain::Tags::Mesh<3>, evolution::dg::subcell::Tags::Mesh<3>>;
+                 domain::Tags::Mesh<3>, evolution::dg::subcell::Tags::Mesh<3>,
+                 // This needs FD data, but is called when on DG.  Probably
+                 // this breaks in a dynamical background.
+                 evolution::dg::subcell::Tags::Inactive<
+                     gr::Tags::SpatialMetric<3, Frame::Inertial, DataVector>>,
+                 hydro::Tags::EquationOfStateBase,
+                 ::Tags::VariableFixer<VariableFixing::FixToAtmosphere<3>>>;
 
+  template <size_t ThermodynamicDim>
   static Variables<prims_to_reconstruct_tags> apply(
       const Variables<hydro::grmhd_tags<DataVector>>& prims,
-      const Mesh<3>& dg_mesh, const Mesh<3>& subcell_mesh);
+      const Mesh<3>& dg_mesh, const Mesh<3>& subcell_mesh,
+      const tnsr::ii<DataVector, 3>& spatial_metric,
+      const EquationsOfState::EquationOfState<true, ThermodynamicDim>&
+          equation_of_state,
+      const VariableFixing::FixToAtmosphere<3>& fix_to_atmosphere);
 };
 }  // namespace grmhd::ValenciaDivClean::subcell
