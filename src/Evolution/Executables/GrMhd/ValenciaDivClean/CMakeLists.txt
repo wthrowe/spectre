@@ -117,6 +117,12 @@ add_grmhd_executable(
   )
 
 add_grmhd_executable(
+  PolarMagnetizedFmDisk
+  grmhd::AnalyticData::PolarMagnetizedFmDisk
+  "${LIBS_TO_LINK}"
+  )
+
+add_grmhd_executable(
   RiemannProblem
   grmhd::AnalyticData::RiemannProblem
   "${LIBS_TO_LINK}"

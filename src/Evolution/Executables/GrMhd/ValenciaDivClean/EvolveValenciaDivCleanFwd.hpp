@@ -33,6 +33,7 @@ class MagneticRotor;
 class MagnetizedFmDisk;
 class MagnetizedTovStar;
 class OrszagTangVortex;
+class PolarMagnetizedFmDisk;
 class RiemannProblem;
 }  // namespace AnalyticData
 }  // namespace grmhd
