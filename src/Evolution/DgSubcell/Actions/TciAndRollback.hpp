@@ -66,7 +66,7 @@ namespace evolution::dg::subcell::Actions {
  * actions know if a rollback was done because the local mortar data would
  * already be computed.
  */
-template <typename TciMutator>
+template <typename TciMutator, typename BoundaryPrimitiveRecovery>
 struct TciAndRollback {
   template <typename DbTags, typename... InboxTags, typename Metavariables,
             typename ArrayIndex, typename ActionList,
@@ -256,6 +256,9 @@ struct TciAndRollback {
                                          BeginSubcellAfterDgRollback>>::value +
                     1};
       }
+    } else {
+      // External boundary.  Just recover primitives.
+      db::mutate_apply<BoundaryPrimitiveRecovery>(make_not_null(&box));
     }
     // The unlimited DG solver has passed, so we can remove the current neighbor
     // data.
