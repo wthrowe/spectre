@@ -245,6 +245,9 @@ struct EvolutionMetavars {
                         tmpl::append<
                             typename system::variables_tag::tags_list,
                             typename system::primitive_variables_tag::tags_list,
+                            db::wrap_tags_in<
+                                Tags::dt,
+                                typename system::variables_tag::tags_list>,
                             tmpl::list<
                                 evolution::dg::subcell::Tags::TciStatus>>,
                         tmpl::conditional_t<
