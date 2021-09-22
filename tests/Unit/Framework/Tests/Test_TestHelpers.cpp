@@ -140,6 +140,11 @@ SPECTRE_TEST_CASE("Unit.TestHelpers.Derivative", "[Unit]") {
 
     CHECK(numerical_derivative(func, x, 0, delta) == approx(dfunc(x)));
   }
+  {  // Precision test
+    CHECK(numerical_derivative(
+              [](const std::array<double, 1>& /*x*/) { return 1.0; },
+              std::array{1.0}, 0, 1.e-2) == 0.0);
+  }
 }
 
 SPECTRE_TEST_CASE("Unit.TestHelpers.MAKE_GENERATOR", "[Unit]") {
