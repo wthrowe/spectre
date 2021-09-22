@@ -343,11 +343,21 @@ struct EvolutionMetavars {
       Actions::UpdateConservatives>>;
 
   using dg_subcell_step_actions = tmpl::flatten<tmpl::list<
+      // GR: appropriate grid
+      // conserved: appropriate grid, from prim, unfixed
+      // primitive: appropriate grid
       evolution::dg::subcell::Actions::SelectNumericalMethod,
 
       Actions::Label<evolution::dg::subcell::Actions::Labels::BeginDg>,
+      // GR: DG grid
+      // conserved: DG grid, from prim, unfixed!!!!?
+      VariableFixing::Actions::FixVariables<
+          grmhd::ValenciaDivClean::FixConservatives>,
+      // primitive: DG grid
       evolution::dg::Actions::ComputeTimeDerivative<EvolutionMetavars>,
+      // no change in active variables
       evolution::dg::Actions::ApplyBoundaryCorrections<EvolutionMetavars>,
+      // no change in active variables
       tmpl::conditional_t<
           local_time_stepping, tmpl::list<>,
           tmpl::list<Actions::RecordTimeStepperData<>,
@@ -356,44 +366,100 @@ struct EvolutionMetavars {
                              FixConservativesAndComputePrims<
                                  ordered_list_of_primitive_recovery_schemes>>,
                      Actions::UpdateU<>>>,
+      // GR: DG grid
+      // conserved: DG grid, unfixed!!!!!
+      VariableFixing::Actions::FixVariables<
+          grmhd::ValenciaDivClean::FixConservatives>,
+      // primitive: DG grid, outdated
+      //
       // Note: The primitive variables are computed as part of the TCI.
       evolution::dg::subcell::Actions::TciAndRollback<
           grmhd::ValenciaDivClean::subcell::TciOnDgGrid<
               tmpl::front<ordered_list_of_primitive_recovery_schemes>>>,
+      // no change in active variables
+
+      // primitive: DG grid, outdated!!!!!!
+      // Want:
+      // GR: DG grid
+      // conserved: DG grid
+      // primitive: DG grid, from cons, unfixed
       VariableFixing::Actions::FixVariables<
           VariableFixing::FixToAtmosphere<volume_dim>>,
+      // GR: DG grid
+      // conserved: DG grid
+      // primitive: DG grid, from cons
       Actions::UpdateConservatives,
+      // GR: DG grid
+      // conserved: DG grid, from prim, unfixed
+      // primitive: DG grid
       Actions::Goto<evolution::dg::subcell::Actions::Labels::EndOfSolvers>,
 
       Actions::Label<evolution::dg::subcell::Actions::Labels::BeginSubcell>,
+      // GR: subcell grid
+      // conserved: subcell grid, from prim, unfixed
+      // primitive: subcell grid
       evolution::dg::subcell::Actions::SendDataForReconstruction<
           volume_dim,
           grmhd::ValenciaDivClean::subcell::PrimitiveGhostDataOnSubcells>,
+      // no change in active variables
       evolution::dg::subcell::Actions::ReceiveDataForReconstruction<volume_dim>,
       Actions::Label<
           evolution::dg::subcell::Actions::Labels::BeginSubcellAfterDgRollback>,
+      // GR: unknown grid
+      // conserved: subcell grid, unfixed
+      // primitive: unknown grid, outdated
       Actions::MutateApply<grmhd::ValenciaDivClean::subcell::SwapGrTags>,
+      // GR: subcell grid
+      // conserved: subcell grid, unfixed!!!!!
+      VariableFixing::Actions::FixVariables<
+          grmhd::ValenciaDivClean::FixConservatives>,
+      // primitive: unknown grid, outdated
       Actions::MutateApply<grmhd::ValenciaDivClean::subcell::PrimsAfterRollback<
           ordered_list_of_primitive_recovery_schemes>>,
+      // GR: subcell grid
+      // conserved: subcell grid
+      // primitive: subcell grid, from cons, unfixed
       evolution::dg::subcell::fd::Actions::TakeTimeStep<
           grmhd::ValenciaDivClean::subcell::TimeDerivative>,
+      // no change in active variables
       Actions::RecordTimeStepperData<>,
       evolution::Actions::RunEventsAndDenseTriggers<
           grmhd::ValenciaDivClean::subcell::FixConservativesAndComputePrims<
               ordered_list_of_primitive_recovery_schemes>>,
       Actions::UpdateU<>,
+      // GR: subcell grid
+      // conserved: subcell grid, unfixed
+      // primitive: subcell grid, outdated
       Actions::MutateApply<
           grmhd::ValenciaDivClean::subcell::FixConservativesAndComputePrims<
               ordered_list_of_primitive_recovery_schemes>>,
+      // GR: subcell grid
+      // conserved: subcell grid
+      // primitive: subcell grid, from cons, unfixed (why?)
       evolution::dg::subcell::Actions::TciAndSwitchToDg<
           grmhd::ValenciaDivClean::subcell::TciOnFdGrid>,
+      // GR: subcell grid
+      // conserved: appropriate grid
+      // primitive: subcell grid, outdated
       Actions::MutateApply<grmhd::ValenciaDivClean::subcell::SwapGrTags>,
+      // GR: appropriate grid
+      // conserved: appropriate grid
+      // primitive: subcell grid, outdated
       Actions::MutateApply<
           grmhd::ValenciaDivClean::subcell::ResizeAndComputePrims<
               ordered_list_of_primitive_recovery_schemes>>,
+      // GR: appropriate grid
+      // conserved: appropriate grid
+      // primitive: appropriate grid, from cons, unfixed
       VariableFixing::Actions::FixVariables<
           VariableFixing::FixToAtmosphere<volume_dim>>,
+      // GR: appropriate grid
+      // conserved: appropriate grid
+      // primitive: appropriate grid, from cons
       Actions::UpdateConservatives,
+      // GR: appropriate grid
+      // conserved: appropriate grid, from prim, unfixed
+      // primitive: appropriate grid
 
       Actions::Label<evolution::dg::subcell::Actions::Labels::EndOfSolvers>>>;
 
@@ -451,9 +517,18 @@ struct EvolutionMetavars {
       evolution::Initialization::Actions::SetVariables<
           domain::Tags::Coordinates<3, Frame::ElementLogical>>,
       Initialization::Actions::TimeStepperHistory<EvolutionMetavars>,
+      // GR: DG grid
+      // conserved: DG grid, invalid
+      // primitive: DG grid, unfixed
       VariableFixing::Actions::FixVariables<
           VariableFixing::FixToAtmosphere<volume_dim>>,
+      // GR: DG grid
+      // conserved: DG grid, invalid
+      // primitive: DG grid
       Actions::UpdateConservatives,
+      // GR: DG grid
+      // conserved: DG grid, from prim, unfixed
+      // primitive: DG grid
 
       tmpl::conditional_t<
           use_dg_subcell,
@@ -461,16 +536,30 @@ struct EvolutionMetavars {
               evolution::dg::subcell::Actions::Initialize<
                   volume_dim, system,
                   grmhd::ValenciaDivClean::subcell::DgInitialDataTci>,
+              // GR: DG grid
+              // conserved: DG grid, outdated
+              // primitive: appropriate grid, unfixed
               Initialization::Actions::AddSimpleTags<
                   Initialization::subcell::GrTagsForHydro<system, volume_dim>,
                   grmhd::ValenciaDivClean::SetVariablesNeededFixingToFalse>,
+              // no change in active variables
               Actions::MutateApply<
                   grmhd::ValenciaDivClean::subcell::SwapGrTags>,
+              // GR: appropriate grid
+              // conserved: DG grid, outdated
+              // primitive: appropriate grid, unfixed
               VariableFixing::Actions::FixVariables<
                   VariableFixing::FixToAtmosphere<volume_dim>>,
+              // GR: appropriate grid
+              // conserved: DG grid, outdated
+              // primitive: appropriate grid
               Actions::UpdateConservatives>,
           tmpl::list<>>,
+      // GR: appropriate grid
+      // conserved: appropriate grid, from prim, unfixed
+      // primitive: appropriate grid
 
+      // no change in active variables for remainder of phase
       tmpl::conditional_t<
           evolution::is_analytic_solution_v<initial_data>,
           Initialization::Actions::AddComputeTags<
