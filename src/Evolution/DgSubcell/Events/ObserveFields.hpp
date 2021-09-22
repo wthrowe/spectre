@@ -19,6 +19,8 @@
 #include "DataStructures/DataVector.hpp"
 #include "DataStructures/Tensor/TensorData.hpp"
 #include "Domain/CoordinateMaps/CoordinateMap.hpp"
+#include "Domain/CoordinateMaps/CoordinateMap.tpp"
+#include "Domain/CoordinateMaps/SphericalTorus.hpp"
 #include "Domain/CoordinateMaps/Tags.hpp"
 #include "Domain/FunctionsOfTime/FunctionOfTime.hpp"
 #include "Domain/FunctionsOfTime/Tags.hpp"
@@ -130,9 +132,16 @@ class ObserveFields<VolumeDim, ObservationValueTag, tmpl::list<Tensors...>,
   using CoordinatesFloatingPointType =
       typename dg_observe_fields::CoordinatesFloatingPointType;
 
+  struct TorusParameters {
+    using type = Options::Auto<domain::CoordinateMaps::SphericalTorus,
+                               Options::AutoLabel::None>;
+    static constexpr Options::String help =
+        "Parameters for the evolution region.";
+  };
+
   using options =
       tmpl::list<SubfileName, CoordinatesFloatingPointType, FloatingPointTypes,
-                 VariablesToObserve, InterpolateToMesh>;
+                 VariablesToObserve, InterpolateToMesh, TorusParameters>;
 
   static constexpr Options::String help =
       "Observe volume tensor fields.\n"
@@ -146,12 +155,14 @@ class ObserveFields<VolumeDim, ObservationValueTag, tmpl::list<Tensors...>,
 
   ObserveFields() = default;
 
-  ObserveFields(const std::string& subfile_name,
-                FloatingPointType coordinates_floating_point_type,
-                const std::vector<FloatingPointType>& floating_point_types,
-                const std::vector<std::string>& variables_to_observe,
-                std::optional<Mesh<VolumeDim>> interpolation_mesh = {},
-                const Options::Context& context = {});
+  ObserveFields(
+      const std::string& subfile_name,
+      FloatingPointType coordinates_floating_point_type,
+      const std::vector<FloatingPointType>& floating_point_types,
+      const std::vector<std::string>& variables_to_observe,
+      std::optional<Mesh<VolumeDim>> interpolation_mesh = {},
+      std::optional<domain::CoordinateMaps::SphericalTorus> torus_map = {},
+      const Options::Context& context = {});
 
   using coordinates_tag =
       ::domain::Tags::Coordinates<VolumeDim, Frame::Inertial>;
@@ -210,8 +221,8 @@ class ObserveFields<VolumeDim, ObservationValueTag, tmpl::list<Tensors...>,
           }
         };
     if (active_grid == subcell::ActiveGrid::Dg) {
-      const auto dg_inertial_coords = grid_to_inertial_map(
-          dg_grid_coordinates, observation_value, functions_of_time);
+      const auto dg_inertial_coords = observation_coords(grid_to_inertial_map(
+          dg_grid_coordinates, observation_value, functions_of_time));
       set_analytic_soln(dg_mesh, dg_inertial_coords);
       ::dg::Events::ObserveFields<VolumeDim, ObservationValueTag,
                                   tmpl::list<Tensors...>,
@@ -225,8 +236,9 @@ class ObserveFields<VolumeDim, ObservationValueTag, tmpl::list<Tensors...>,
     } else {
       ASSERT(active_grid == subcell::ActiveGrid::Subcell,
              "Active grid must be either Dg or Subcell");
-      const auto subcell_inertial_coords = grid_to_inertial_map(
-          subcell_grid_coordinates, observation_value, functions_of_time);
+      const auto subcell_inertial_coords =
+          observation_coords(grid_to_inertial_map(
+              subcell_grid_coordinates, observation_value, functions_of_time));
       set_analytic_soln(subcell_mesh, subcell_inertial_coords);
       dg_observe_fields::call_operator_impl(
           subfile_path_, variables_to_observe_, interpolation_mesh_,
@@ -266,6 +278,7 @@ class ObserveFields<VolumeDim, ObservationValueTag, tmpl::list<Tensors...>,
     p | subfile_path_;
     p | variables_to_observe_;
     p | interpolation_mesh_;
+    p | torus_map_;
   }
 
   using is_ready_argument_tags = tmpl::list<>;
@@ -280,9 +293,21 @@ class ObserveFields<VolumeDim, ObservationValueTag, tmpl::list<Tensors...>,
   bool needs_evolved_variables() const override { return true; }
 
  private:
+  tnsr::I<DataVector, 3, Frame::Inertial> observation_coords(
+      tnsr::I<DataVector, 3, Frame::Inertial> x) const noexcept {
+    if (torus_map_.has_value()) {
+      return (*torus_map_)(std::move(x));
+    } else {
+      return x;
+    }
+  }
+
   std::string subfile_path_;
   std::unordered_map<std::string, FloatingPointType> variables_to_observe_{};
   std::optional<Mesh<VolumeDim>> interpolation_mesh_{};
+  std::optional<domain::CoordinateMap<Frame::Inertial, Frame::Inertial,
+                                      domain::CoordinateMaps::SphericalTorus>>
+      torus_map_{};
 };
 
 /// \cond
@@ -291,12 +316,14 @@ template <size_t VolumeDim, typename ObservationValueTag, typename... Tensors,
 ObserveFields<VolumeDim, ObservationValueTag, tmpl::list<Tensors...>,
               tmpl::list<AnalyticSolutionTensors...>,
               tmpl::list<NonSolutionTensors...>>::
-    ObserveFields(const std::string& subfile_name,
-                  const FloatingPointType coordinates_floating_point_type,
-                  const std::vector<FloatingPointType>& floating_point_types,
-                  const std::vector<std::string>& variables_to_observe,
-                  std::optional<Mesh<VolumeDim>> interpolation_mesh,
-                  const Options::Context& context)
+    ObserveFields(
+        const std::string& subfile_name,
+        const FloatingPointType coordinates_floating_point_type,
+        const std::vector<FloatingPointType>& floating_point_types,
+        const std::vector<std::string>& variables_to_observe,
+        std::optional<Mesh<VolumeDim>> interpolation_mesh,
+        std::optional<domain::CoordinateMaps::SphericalTorus> torus_map,
+        const Options::Context& context)
     : subfile_path_("/" + subfile_name),
       variables_to_observe_([&context, &floating_point_types,
                              &variables_to_observe]() {
@@ -323,7 +350,12 @@ ObserveFields<VolumeDim, ObservationValueTag, tmpl::list<Tensors...>,
         }
         return result;
       }()),
-      interpolation_mesh_(interpolation_mesh) {
+      interpolation_mesh_(interpolation_mesh),
+      torus_map_(
+          torus_map.has_value()
+              ? std::optional{domain::make_coordinate_map<
+                    Frame::Inertial, Frame::Inertial>(std::move(*torus_map))}
+              : std::nullopt) {
   using ::operator<<;
   const std::unordered_set<std::string> valid_tensors{
       db::tag_name<Tensors>()...};
