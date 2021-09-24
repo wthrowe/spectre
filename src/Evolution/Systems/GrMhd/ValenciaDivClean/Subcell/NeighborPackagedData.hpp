@@ -29,6 +29,7 @@
 #include "Evolution/DgSubcell/NeighborData.hpp"
 #include "Evolution/DgSubcell/Projection.hpp"
 #include "Evolution/DgSubcell/Reconstruction.hpp"
+#include "Evolution/DgSubcell/Tags/Inactive.hpp"
 #include "Evolution/DgSubcell/Tags/Mesh.hpp"
 #include "Evolution/DgSubcell/Tags/NeighborData.hpp"
 #include "Evolution/DgSubcell/Tags/OnSubcellFaces.hpp"
@@ -40,6 +41,7 @@
 #include "Evolution/Systems/GrMhd/ValenciaDivClean/FiniteDifference/Tag.hpp"
 #include "Evolution/Systems/GrMhd/ValenciaDivClean/Subcell/ComputeFluxes.hpp"
 #include "Evolution/Systems/GrMhd/ValenciaDivClean/System.hpp"
+#include "Evolution/VariableFixing/FixToAtmosphere.hpp"
 #include "NumericalAlgorithms/Spectral/Mesh.hpp"
 #include "PointwiseFunctions/GeneralRelativity/Tags.hpp"
 #include "PointwiseFunctions/Hydro/EquationsOfState/EquationOfState.hpp"
@@ -98,9 +100,19 @@ struct NeighborPackagedData {
         db::get<evolution::dg::subcell::Tags::Mesh<3>>(box);
     const Mesh<3>& dg_mesh = db::get<domain::Tags::Mesh<3>>(box);
 
-    const auto volume_prims = evolution::dg::subcell::fd::project(
+    auto volume_prims = evolution::dg::subcell::fd::project(
         db::get<typename System::primitive_variables_tag>(box), dg_mesh,
         subcell_mesh.extents());
+    db::get<::Tags::VariableFixer<VariableFixing::FixToAtmosphere<3>>>(box)(
+        &get<hydro::Tags::RestMassDensity<DataVector>>(volume_prims),
+        &get<hydro::Tags::SpecificInternalEnergy<DataVector>>(volume_prims),
+        &get<hydro::Tags::SpatialVelocity<DataVector, 3>>(volume_prims),
+        &get<hydro::Tags::LorentzFactor<DataVector>>(volume_prims),
+        &get<hydro::Tags::Pressure<DataVector>>(volume_prims),
+        &get<hydro::Tags::SpecificEnthalpy<DataVector>>(volume_prims),
+        get<evolution::dg::subcell::Tags::Inactive<
+            gr::Tags::SpatialMetric<3, Frame::Inertial, DataVector>>>(box),
+        get<hydro::Tags::EquationOfStateBase>(box));
 
     const auto& recons =
         db::get<grmhd::ValenciaDivClean::fd::Tags::Reconstructor>(box);
