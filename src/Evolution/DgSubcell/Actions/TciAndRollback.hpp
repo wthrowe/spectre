@@ -40,6 +40,11 @@
 #include "Utilities/TMPL.hpp"
 #include "Utilities/TaggedTuple.hpp"
 
+namespace hydro::Tags {
+template <typename DataType>
+struct RestMassDensity;
+}  // namespace hydro::Tags
+
 namespace evolution::dg::subcell::Actions {
 /*!
  * \brief Run the troubled-cell indicator on the candidate solution and perform
@@ -258,7 +263,12 @@ struct TciAndRollback {
       }
     } else {
       // External boundary.  Just recover primitives.
-      db::mutate_apply<BoundaryPrimitiveRecovery>(make_not_null(&box));
+      //db::mutate_apply<BoundaryPrimitiveRecovery>(make_not_null(&box));
+      db::mutate<hydro::Tags::RestMassDensity<DataVector>>(
+          make_not_null(&box),
+          [](const gsl::not_null<Scalar<DataVector>*> density) noexcept {
+            get(*density) = 0.0;
+          });
     }
     // The unlimited DG solver has passed, so we can remove the current neighbor
     // data.
