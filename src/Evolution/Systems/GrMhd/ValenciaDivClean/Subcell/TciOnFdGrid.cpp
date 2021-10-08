@@ -15,11 +15,13 @@ namespace grmhd::ValenciaDivClean::subcell {
 bool TciOnFdGrid::apply(const Scalar<DataVector>& tilde_d,
                         const Scalar<DataVector>& tilde_tau,
                         const tnsr::I<DataVector, 3, Frame::Inertial>& tilde_b,
+                        const Scalar<DataVector>& sqrt_det_spatial_metric,
                         const bool vars_needed_fixing, const Mesh<3>& dg_mesh,
                         const TciOptions& tci_options,
                         const double persson_exponent) {
   bool cell_is_troubled =
-      vars_needed_fixing or
+      (vars_needed_fixing and max(get(tilde_d) / get(sqrt_det_spatial_metric)) >
+                                  tci_options.atmosphere_density) or
       min(get(tilde_d)) <
           tci_options.minimum_rest_mass_density_times_lorentz_factor or
       min(get(tilde_tau)) < tci_options.minimum_tilde_tau or

@@ -15,6 +15,7 @@
 #include "Evolution/Systems/GrMhd/ValenciaDivClean/Tags.hpp"
 #include "NumericalAlgorithms/Spectral/Mesh.hpp"
 #include "NumericalAlgorithms/Spectral/Spectral.hpp"
+#include "PointwiseFunctions/GeneralRelativity/Tags.hpp"
 #include "Utilities/Gsl.hpp"
 
 namespace {
@@ -25,7 +26,8 @@ enum class TestThis {
   PerssonTildeTau,
   PerssonTildeB,
   NegativeTildeD,
-  NegativeTildeTau
+  NegativeTildeTau,
+  Atmosphere
 };
 
 void test(const TestThis test_this) {
@@ -37,20 +39,22 @@ void test(const TestThis test_this) {
       test_this == TestThis::PerssonTildeB ? std::optional<double>{1.0e-2}
                                            : std::nullopt};
 
-  auto box = db::create<
-      db::AddSimpleTags<evolution::dg::subcell::Tags::Inactive<
-                            grmhd::ValenciaDivClean::Tags::TildeD>,
-                        evolution::dg::subcell::Tags::Inactive<
-                            grmhd::ValenciaDivClean::Tags::TildeTau>,
-                        evolution::dg::subcell::Tags::Inactive<
-                            grmhd::ValenciaDivClean::Tags::TildeB<>>,
-                        grmhd::ValenciaDivClean::Tags::VariablesNeededFixing,
-                        domain::Tags::Mesh<3>,
-                        grmhd::ValenciaDivClean::subcell::Tags::TciOptions>>(
+  auto box = db::create<db::AddSimpleTags<
+      evolution::dg::subcell::Tags::Inactive<
+          grmhd::ValenciaDivClean::Tags::TildeD>,
+      evolution::dg::subcell::Tags::Inactive<
+          grmhd::ValenciaDivClean::Tags::TildeTau>,
+      evolution::dg::subcell::Tags::Inactive<
+          grmhd::ValenciaDivClean::Tags::TildeB<>>,
+      evolution::dg::subcell::Tags::Inactive<gr::Tags::SqrtDetSpatialMetric<>>,
+      grmhd::ValenciaDivClean::Tags::VariablesNeededFixing,
+      domain::Tags::Mesh<3>,
+      grmhd::ValenciaDivClean::subcell::Tags::TciOptions>>(
       Scalar<DataVector>(mesh.number_of_grid_points(), 1.0),
       Scalar<DataVector>(mesh.number_of_grid_points(), 1.0),
       tnsr::I<DataVector, 3, Frame::Inertial>(mesh.number_of_grid_points(),
                                               1.0),
+      Scalar<DataVector>(mesh.number_of_grid_points(), 1.0),
       test_this == TestThis::NeededFixing, mesh, tci_options);
 
   const size_t point_to_change = mesh.number_of_grid_points() / 2;
@@ -86,12 +90,25 @@ void test(const TestThis test_this) {
         make_not_null(&box), [point_to_change](const auto tilde_tau_ptr) {
           get(*tilde_tau_ptr)[point_to_change] = -1.0e-20;
         });
+  } else if (test_this == TestThis::Atmosphere) {
+    db::mutate<evolution::dg::subcell::Tags::Inactive<
+                   grmhd::ValenciaDivClean::Tags::TildeD>,
+               evolution::dg::subcell::Tags::Inactive<
+                   gr::Tags::SqrtDetSpatialMetric<>>,
+               grmhd::ValenciaDivClean::Tags::VariablesNeededFixing>(
+        make_not_null(&box),
+        [](const auto tilde_d_ptr, const auto sqrt_det_spatial_metric_ptr,
+           const auto variables_needed_fixing_ptr) {
+          get(*tilde_d_ptr) = 1.0e-10;
+          get(*sqrt_det_spatial_metric_ptr) = 20.0;
+          *variables_needed_fixing_ptr = true;
+        });
   }
 
   const bool result =
       db::mutate_apply<grmhd::ValenciaDivClean::subcell::TciOnFdGrid>(
           make_not_null(&box), persson_exponent);
-  if (test_this == TestThis::AllGood) {
+  if (test_this == TestThis::AllGood or test_this == TestThis::Atmosphere) {
     CHECK_FALSE(result);
   } else {
     CHECK(result);
@@ -104,7 +121,8 @@ SPECTRE_TEST_CASE("Unit.Evolution.Systems.ValenciaDivClean.Subcell.TciOnFdGrid",
   for (const TestThis& test_this :
        {TestThis::AllGood, TestThis::NeededFixing, TestThis::PerssonTildeD,
         TestThis::PerssonTildeTau, TestThis::PerssonTildeB,
-        TestThis::NegativeTildeD, TestThis::NegativeTildeTau}) {
+        TestThis::NegativeTildeD, TestThis::NegativeTildeTau,
+        TestThis::Atmosphere}) {
     test(test_this);
   }
 }
