@@ -216,6 +216,7 @@ Matrix reconstruction_matrix_cache_impl_helper(
     const Index<Dim>& subcell_extents) {
   // We currently require all dimensions to have the same number of grid
   // points.
+if constexpr (Dim == 1) {
   const Index<Dim> dg_extents{NumDgGridPoints1d};
   const Matrix& proj_matrix =
       projection_matrix_cache_impl<QuadratureType, NumDgGridPoints1d>(
@@ -295,6 +296,26 @@ Matrix reconstruction_matrix_cache_impl_helper(
   }
 
   return reduced_recons_matrix;
+} else {
+  const Index<Dim> dg_extents{NumDgGridPoints1d};
+  const size_t num_pts = dg_extents.product();
+  const size_t num_subcells = subcell_extents.product();
+  Matrix recons_matrix(num_pts, num_subcells, 1.0);
+  const Matrix recons_matrix_1d = reconstruction_matrix_cache_impl_helper<
+      QuadratureType, NumDgGridPoints1d>(Index<1>(subcell_extents[0]));
+  for (IndexIterator subcell_index(subcell_extents);
+       subcell_index;
+       ++subcell_index) {
+    for (IndexIterator dg_index(dg_extents); dg_index; ++dg_index) {
+      auto& entry = recons_matrix(dg_index.collapsed_index(),
+                                  subcell_index.collapsed_index());
+      for (size_t i = 0; i < Dim; ++i) {
+        entry *= recons_matrix_1d((*dg_index)[i], (*subcell_index)[i]);
+      }
+    }
+  }
+  return recons_matrix;
+}
 }
 
 template <Spectral::Quadrature QuadratureType, size_t NumDgGridPoints,
