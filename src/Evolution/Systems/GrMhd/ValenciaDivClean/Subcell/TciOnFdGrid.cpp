@@ -19,14 +19,17 @@ bool TciOnFdGrid::apply(const Scalar<DataVector>& tilde_d,
                         const bool vars_needed_fixing, const Mesh<3>& dg_mesh,
                         const TciOptions& tci_options,
                         const double persson_exponent) {
+  const bool in_atmosphere = max(get(tilde_d) / get(sqrt_det_spatial_metric)) >
+      tci_options.atmosphere_density;
   bool cell_is_troubled =
-      (vars_needed_fixing and max(get(tilde_d) / get(sqrt_det_spatial_metric)) >
-                                  tci_options.atmosphere_density) or
+      (vars_needed_fixing and in_atmosphere) or
       min(get(tilde_d)) <
           tci_options.minimum_rest_mass_density_times_lorentz_factor or
       min(get(tilde_tau)) < tci_options.minimum_tilde_tau or
+(in_atmosphere and (
       evolution::dg::subcell::persson_tci(tilde_d, dg_mesh, persson_exponent) or
-      evolution::dg::subcell::persson_tci(tilde_tau, dg_mesh, persson_exponent);
+      evolution::dg::subcell::persson_tci(tilde_tau, dg_mesh,
+ persson_exponent)));
   if (tci_options.magnetic_field_cutoff.has_value() and not cell_is_troubled) {
     const Scalar<DataVector> tilde_b_magnitude = magnitude(tilde_b);
     cell_is_troubled = (max(get(tilde_b_magnitude)) >
