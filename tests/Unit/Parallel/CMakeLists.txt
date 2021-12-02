@@ -144,8 +144,15 @@ add_algorithm_test(
   REGEX_TO_MATCH
   "Element 0 received reduction: Counted 2 odd elements.")
 
-add_algorithm_test_with_balancing("AlgorithmParallelWithBalancing"
-  "AlgorithmParallel" "Objects migrating: 14")
+# macOS builds on Apple Silicon use Charm 7.0.0, which has different
+# output in the following test.
+if(APPLE AND "${CMAKE_HOST_SYSTEM_PROCESSOR}" STREQUAL "arm64")
+  add_algorithm_test_with_balancing("AlgorithmParallelWithBalancing"
+    "AlgorithmParallel" "num_objs=14")
+else()
+  add_algorithm_test_with_balancing("AlgorithmParallelWithBalancing"
+    "AlgorithmParallel" "Objects migrating: 14")
+endif()
 
 add_algorithm_test(
   "AlgorithmGlobalCache"
