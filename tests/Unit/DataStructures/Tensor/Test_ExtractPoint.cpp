@@ -7,7 +7,6 @@
 #include "DataStructures/Tensor/ExtractPoint.hpp"
 #include "DataStructures/Tensor/Tensor.hpp"
 
-
 SPECTRE_TEST_CASE("Unit.DataStructures.Tensor.ExtaractPoint",
                   "[DataStructures][Unit]") {
   const Scalar<DataVector> scalar{DataVector{3.0, 4.0, 5.0}};
@@ -34,4 +33,3 @@ SPECTRE_TEST_CASE("Unit.DataStructures.Tensor.ExtaractPoint",
     CHECK(extract_point(tensor, 1) == expected);
   }
 }
-}  // namespace
