@@ -53,6 +53,10 @@
 #include "Utilities/TMPL.hpp"
 #include "Utilities/TypeTraits/IsA.hpp"
 
+//FIXME
+#include "PointwiseFunctions/Hydro/ComovingMagneticField.hpp"
+#include "PointwiseFunctions/Hydro/InversePlasmaBeta.hpp"
+
 /// \cond
 template <size_t Dim>
 class Mesh;
@@ -167,7 +171,9 @@ class ObserveFields<VolumeDim, ObservationValueTag, tmpl::list<Tensors...>,
   using coordinates_tag =
       ::domain::Tags::Coordinates<VolumeDim, Frame::Inertial>;
 
-  using compute_tags_for_observation_box = tmpl::list<>;
+  using compute_tags_for_observation_box =
+      tmpl::list<hydro::Tags::ComovingMagneticFieldSquaredCompute<DataVector>,
+                 hydro::Tags::InversePlasmaBetaCompute<DataVector>>;
 
   using argument_tags =
       tmpl::list<ObservationValueTag, ::domain::Tags::Mesh<VolumeDim>,

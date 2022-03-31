@@ -249,7 +249,8 @@ struct EvolutionMetavars {
                                 Tags::dt,
                                 typename system::variables_tag::tags_list>,
                             tmpl::list<
-                                evolution::dg::subcell::Tags::TciStatus>>,
+                                evolution::dg::subcell::Tags::TciStatus,
+                                hydro::Tags::InversePlasmaBeta<DataVector>>>,
                         tmpl::conditional_t<
                             evolution::is_analytic_solution_v<initial_data>,
                             analytic_variables_tags, tmpl::list<>>>,
