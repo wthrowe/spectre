@@ -29,6 +29,8 @@ SPECTRE_TEST_CASE("Unit.PointwiseFunctions.Hydro.Tags", "[Unit][Hydro]") {
       "EquationOfStateBase");
   TestHelpers::db::test_simple_tag<
       hydro::Tags::EquationOfState<IdealFluid<true>>>("EquationOfState");
+  TestHelpers::db::test_simple_tag<hydro::Tags::InversePlasmaBeta<DataVector>>(
+      "InversePlasmaBeta");
   TestHelpers::db::test_simple_tag<hydro::Tags::LorentzFactor<DataVector>>(
       "LorentzFactor");
   TestHelpers::db::test_simple_tag<

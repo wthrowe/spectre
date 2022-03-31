@@ -58,6 +58,14 @@ struct EquationOfState : EquationOfStateBase, db::SimpleTag {
   using type = EquationOfStateType;
 };
 
+/// The inverse plasma beta \f$\beta^{-1} = b^2 / (2 p)\f$, where
+/// \f$b^2\f$ is the square of the comoving magnetic field amplitude
+/// and \f$p\f$ is the fluid pressure.
+template <typename DataType>
+struct InversePlasmaBeta : db::SimpleTag {
+  using type = Scalar<DataType>;
+};
+
 /// The Lorentz factor \f$W = (1-v^iv_i)^{-1/2}\f$, where \f$v^i\f$ is
 /// the spatial velocity of the fluid.
 template <typename DataType>

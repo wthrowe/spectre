@@ -29,6 +29,8 @@ struct EquationOfStateBase;
 template <typename EquationOfStateType>
 struct EquationOfState;
 template <typename DataType>
+struct InversePlasmaBeta;
+template <typename DataType>
 struct LorentzFactor;
 template <typename DataType>
 struct LorentzFactorSquared;
