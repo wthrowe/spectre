@@ -95,6 +95,26 @@ OrderVector<double> constant_coefficients(const size_t order) {
   }
 }
 
+OrderVector<double> constant_implicit_coefficients(const size_t order) {
+  switch (order) {
+    case 1: return {1.0};
+    case 2: return {0.5, 0.5};
+    case 3: return {2.0 / 3.0, -1.0 / 12.0, 5.0 / 12.0};
+    case 4: return {19.0 / 24.0, -5.0 / 24.0, 1.0 / 24.0, 3.0 / 8.0};
+    case 5: return {323.0 / 360.0, -11.0 / 30.0, 53.0 / 360.0, -19.0 / 720.0,
+          251.0 / 720.0};
+    case 6: return {1427.0 / 1440.0, -133.0 / 240.0, 241.0 / 720.0,
+          -173.0 / 1440.0, 3.0 / 160.0, 95.0 / 288};
+    case 7: return {2713.0 / 2520.0, -15487.0 / 20160.0, 586.0 / 945.0,
+          -6737.0 / 20160.0, 263.0 / 2520.0, -863.0 / 60480.0, 19087.0 / 60480};
+    case 8: return {139849.0 / 120960.0, -4511.0 / 4480.0, 123133.0 / 120960.0,
+          -88547.0 / 120960.0, 1537.0 / 4480.0, -11351.0 / 120960.0,
+          275.0 / 24192.0, 5257.0 / 17280};
+    default:
+      ERROR("Bad order: " << order);
+  }
+}
+
 // Only T=double is used, but this can be used with T=Rational to
 // generate coefficient tables.
 template <typename T>
@@ -145,10 +165,16 @@ OrderVector<T> variable_coefficients(const OrderVector<T>& control_times) {
 
 // Get coefficients for a time step.  Arguments are an iterator
 // pair to past times, oldest to newest, and the time step to take.
+//
+// If the optional `implicit` argument is true, return coefficients
+// for an implicit step.  The coefficient for the implicit term is the
+// last entry in the result vector.  Remember that an nth-order
+// implicit step only requires n-1 past times.
 template <typename Iterator, typename Delta>
 OrderVector<double> get_coefficients(const Iterator& times_begin,
                                      const Iterator& times_end,
-                                     const Delta& step) {
+                                     const Delta& step,
+                                     const bool implicit = false) {
   bool constant_step_size = true;
   OrderVector<double> control_times;
   for (auto t = times_begin; t != times_end; ++t) {
@@ -164,12 +190,20 @@ OrderVector<double> get_coefficients(const Iterator& times_begin,
     control_times.push_back(t->value());
   }
   if (constant_step_size) {
-    return constant_coefficients(control_times.size());
+    if (implicit) {
+      return constant_implicit_coefficients(control_times.size() + 1);
+    } else {
+      return constant_coefficients(control_times.size());
+    }
   }
 
   const double goal_time = control_times.back() + step.value();
   for (auto& t : control_times) {
     t -= goal_time;
+  }
+
+  if (implicit) {
+    control_times.insert(control_times.begin(), 0.0);
   }
 
   return variable_coefficients(control_times);
