@@ -277,6 +277,7 @@ class AdamsBashforth : public LtsTimeStepper {
 
   TIME_STEPPER_DECLARE_OVERLOADS
   LTS_TIME_STEPPER_DECLARE_OVERLOADS
+  TIME_STEPPER_NO_IMEX
 
   size_t order_ = 3;
 };

@@ -85,6 +85,7 @@ class HeunImex : public TimeStepper {
                                  const UntypedHistory<T>& history) const;
 
   TIME_STEPPER_DECLARE_OVERLOADS
+  TIME_STEPPER_NO_IMEX
 };
 
 bool operator==(const HeunImex& lhs, const HeunImex& rhs);

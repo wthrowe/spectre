@@ -117,5 +117,6 @@ class RungeKutta : public TimeStepper {
                                  const UntypedHistory<T>& history) const;
 
   TIME_STEPPER_DECLARE_OVERLOADS
+  TIME_STEPPER_NO_IMEX
 };
 }  // namespace TimeSteppers
