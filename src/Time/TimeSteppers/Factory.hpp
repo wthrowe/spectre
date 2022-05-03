@@ -10,6 +10,7 @@
 #include "Time/TimeSteppers/ClassicalRungeKutta4.hpp"
 #include "Time/TimeSteppers/DormandPrince5.hpp"
 #include "Time/TimeSteppers/Heun.hpp"
+#include "Time/TimeSteppers/HeunImex.hpp"
 #include "Time/TimeSteppers/RungeKutta3.hpp"
 #include "Utilities/TMPL.hpp"
 
@@ -19,7 +20,8 @@ using time_steppers =
     tmpl::list<TimeSteppers::AdamsBashforth, TimeSteppers::Cerk3,
                TimeSteppers::Cerk4, TimeSteppers::Cerk5,
                TimeSteppers::ClassicalRungeKutta4, TimeSteppers::DormandPrince5,
-               TimeSteppers::Heun, TimeSteppers::RungeKutta3>;
+               TimeSteppers::Heun, TimeSteppers::HeunImex,
+               TimeSteppers::RungeKutta3>;
 
 /// Typelist of available LtsTimeSteppers
 using lts_time_steppers = tmpl::list<TimeSteppers::AdamsBashforth>;

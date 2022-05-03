@@ -11,6 +11,7 @@ spectre_target_sources(
   ClassicalRungeKutta4.cpp
   DormandPrince5.cpp
   Heun.cpp
+  HeunImex.cpp
   RungeKutta.cpp
   RungeKutta3.cpp
   )
@@ -27,6 +28,7 @@ spectre_target_headers(
   DormandPrince5.hpp
   Factory.hpp
   Heun.hpp
+  HeunImex.hpp
   LtsTimeStepper.hpp
   RungeKutta.hpp
   RungeKutta3.hpp

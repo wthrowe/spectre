@@ -10,5 +10,6 @@ set(LIBRARY_SOURCES
   TimeSteppers/Test_ClassicalRungeKutta4.cpp
   TimeSteppers/Test_DormandPrince5.cpp
   TimeSteppers/Test_Heun.cpp
+  TimeSteppers/Test_HeunImex.cpp
   TimeSteppers/Test_RungeKutta3.cpp
   PARENT_SCOPE)
