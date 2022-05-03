@@ -76,4 +76,23 @@ void check_dense_output(const TimeStepper& stepper,
                         const size_t history_integration_order);
 
 void check_boundary_dense_output(const LtsTimeStepper& stepper);
+
+namespace imex {
+void check_stability(const TimeStepper& stepper);
+
+void check_convergence_order(const TimeStepper& stepper);
+
+// Not all IMEX time steppers are completely conservative, but that
+// just means more care must be used with them.  They can be used by
+// performing conservation corrections or using them with systems
+// where the implicit and explicit parts are independently
+// conservative.
+void check_conservation(const TimeStepper& stepper);
+
+void check_dense_output(const TimeStepper& stepper);
+
+// As for general conservation, not all IMEX time steppers are
+// conservative for dense output.
+void check_dense_output_conservation(const TimeStepper& stepper);
+}  // namespace imex
 }  // namespace TimeStepperTestUtils

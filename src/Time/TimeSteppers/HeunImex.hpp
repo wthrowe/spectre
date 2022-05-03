@@ -27,7 +27,8 @@ namespace TimeSteppers {
 /*!
  * \ingroup TimeSteppersGroup
  *
- * Heun's method, a second order Runge-Kutta method.
+ * Heun's method, a second order Runge-Kutta method with stiffly
+ * accurate IMEX using the trapezoid rule.
  *
  * The CFL factor/stable step size is 1.0, the same as Euler's method.
  */
@@ -77,15 +78,29 @@ class HeunImex : public TimeStepper {
                      const TimeDelta& time_step) const;
 
   template <typename T>
+  void update_u_implicit_impl(
+      gsl::not_null<T*> u,
+      gsl::not_null<UntypedHistory<T>*> implicit_history,
+      const T& implicit_derivative, const TimeDelta& time_step) const;
+
+  template <typename T>
+  double implicit_weight_impl(const UntypedHistory<T>& implicit_history,
+                              const TimeDelta& time_step) const;
+
+  template <typename T>
   bool dense_update_u_impl(gsl::not_null<T*> u,
                            const UntypedHistory<T>& history, double time) const;
+
+  template <typename T>
+  void dense_update_u_implicit_impl(gsl::not_null<T*> u,
+                                    const UntypedHistory<T>& implicit_history,
+                                    double time) const;
 
   template <typename T>
   bool can_change_step_size_impl(const TimeStepId& time_id,
                                  const UntypedHistory<T>& history) const;
 
   TIME_STEPPER_DECLARE_OVERLOADS
-  TIME_STEPPER_NO_IMEX
 };
 
 bool operator==(const HeunImex& lhs, const HeunImex& rhs);

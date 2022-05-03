@@ -13,6 +13,7 @@
 #include <deque>
 #include <limits>
 #include <type_traits>
+#include <utility>
 
 #include "Time/BoundaryHistory.hpp"
 #include "Time/EvolutionOrdering.hpp"
@@ -587,4 +588,239 @@ void check_boundary_dense_output(const LtsTimeStepper& stepper) {
     }
   }
 }
+
+namespace imex {
+namespace {
+using Vars = std::array<double, 2>;
+
+Vars solution(const double t) { return {exp(-2.0 * t), 1.0 - exp(-2.0 * t)}; }
+
+double solution_error(const double time, const Vars& value) {
+  const auto expected = solution(time);
+  return std::max(abs(value[0] - expected[0]), abs(value[1] - expected[1]));
+}
+
+Vars explicit_derivative(const Vars& u, const double /*time*/ = 0.0) {
+  return {0.0, 2.0 * u[0]};
+}
+
+Vars implicit_derivative(const Vars& u, const double /*time*/ = 0.0) {
+  return {-2.0 * u[0], 0.0};
+}
+
+void implicit_solve(
+    const gsl::not_null<Vars*> y,
+    const gsl::not_null<TimeSteppers::History<Vars>*> implicit_history,
+    const TimeStepper& stepper, const TimeDelta& time_step) {
+  const double reported_weight =
+      stepper.implicit_weight(*implicit_history, time_step);
+  Vars history_term{0.0, 0.0};
+  stepper.update_u_implicit(make_not_null(&history_term), implicit_history,
+                            Vars{0.0, 0.0}, time_step);
+  Vars implicit_term = -history_term;
+  stepper.update_u_implicit(make_not_null(&implicit_term), implicit_history,
+                            Vars{1.0, 0.0}, time_step);
+  CHECK(reported_weight == approx(implicit_term[0]));
+  CHECK(implicit_term[1] == 0.0);
+  const Vars expected_solution{
+      ((*y)[0] + history_term[0]) / (1.0 + 2.0 * reported_weight), (*y)[1]};
+  stepper.update_u_implicit(y, implicit_history,
+                            implicit_derivative(expected_solution), time_step);
+  CHECK_ITERABLE_APPROX(*y, expected_solution);
+}
+
+std::pair<TimeSteppers::History<Vars>, TimeSteppers::History<Vars>> initialize(
+    const TimeStepper& stepper, const Time& time, const TimeDelta& time_step) {
+  TimeSteppers::History<Vars> explicit_history{stepper.order()};
+  initialize_history(time, make_not_null(&explicit_history), solution,
+                     explicit_derivative, time_step,
+                     stepper.number_of_past_steps());
+  TimeSteppers::History<Vars> implicit_history{stepper.order()};
+  initialize_history(time, make_not_null(&implicit_history), solution,
+                     implicit_derivative, time_step,
+                     stepper.number_of_past_steps());
+  return {std::move(explicit_history), std::move(implicit_history)};
+}
+
+void take_step(
+    const gsl::not_null<Time*> time, const gsl::not_null<Vars*> y,
+    const gsl::not_null<TimeSteppers::History<Vars>*> explicit_history,
+    const gsl::not_null<TimeSteppers::History<Vars>*> implicit_history,
+    const TimeStepper& stepper, const TimeDelta& step_size) {
+  TimeStepId time_id(step_size.is_positive(), 0, *time);
+  for (uint64_t substep = 0;
+       substep < stepper.number_of_substeps();
+       ++substep) {
+    CHECK(time_id.substep() == substep);
+    implicit_history->insert(time_id, implicit_derivative(*y));
+    explicit_history->insert(time_id, explicit_derivative(*y));
+    stepper.update_u(y, explicit_history, step_size);
+    time_id = stepper.next_time_id(time_id, step_size);
+    implicit_solve(y, implicit_history, stepper, step_size);
+  }
+  CHECK(time_id.substep_time() - *time == step_size);
+  *time = time_id.substep_time();
+}
+}  // namespace
+
+void check_stability(const TimeStepper& stepper) {
+  const auto slab = Slab::with_duration_from_start(0.0, 2.0);
+  auto time = slab.start();
+  auto time_step = slab.duration();
+  const double final_time = 100.0;
+
+  auto [explicit_history, implicit_history] =
+      initialize(stepper, time, time_step);
+
+  auto y = solution(time.value());
+
+  while (time.value() < final_time) {
+    take_step(&time, &y, &explicit_history, &implicit_history, stepper,
+              time_step);
+    time_step = time_step.with_slab(time.slab());
+    CHECK(abs(y[0]) < 100.0);
+    CHECK(abs(y[1]) < 100.0);
+  }
+}
+
+void check_convergence_order(const TimeStepper& stepper) {
+  const auto do_integral = [&stepper](const int32_t num_steps) {
+    const Slab slab(0., 1.);
+    const TimeDelta time_step = slab.duration() / num_steps;
+
+    Time time = slab.start();
+    auto [explicit_history, implicit_history] =
+        initialize(stepper, time, time_step);
+
+    auto y = solution(time.value());
+    while (time < slab.end()) {
+      take_step(&time, &y, &explicit_history, &implicit_history, stepper,
+                time_step);
+    }
+    return solution_error(time.value(), y);
+  };
+  const int32_t large_steps = 10;
+  const int32_t small_steps = 30;
+  CHECK(convergence_rate(large_steps, small_steps, do_integral) ==
+        approx(stepper.order()).margin(0.4));
+}
+
+void check_conservation(const TimeStepper& stepper) {
+  const auto slab = Slab::with_duration_from_start(0.0, 2.0);
+  auto time = slab.start();
+  auto time_step = slab.duration();
+
+  auto [explicit_history, implicit_history] =
+      initialize(stepper, time, time_step);
+
+  auto y = solution(time.value());
+  const double initial_sum = y[0] + y[1];
+  take_step(&time, &y, &explicit_history, &implicit_history, stepper,
+            time_step);
+  const double final_sum = y[0] + y[1];
+  CHECK(initial_sum == approx(final_sum));
+}
+
+void check_dense_output(const TimeStepper& stepper) {
+  const auto get_dense = [&stepper](TimeDelta time_step,
+                                    const double output_time) {
+    TimeStepId time_step_id(true, 0, time_step.slab().start());
+    auto [explicit_history, implicit_history] =
+        initialize(stepper, time_step_id.step_time(), time_step);
+    auto y = solution(time_step_id.step_time().value());
+
+    for (;;) {
+      implicit_history.insert(time_step_id, implicit_derivative(y));
+      explicit_history.insert(time_step_id, explicit_derivative(y));
+      if ((time_step_id.step_time() + time_step).value() >= output_time) {
+        if (stepper.dense_update_u(make_not_null(&y), explicit_history,
+                                   output_time)) {
+          stepper.dense_update_u_implicit(make_not_null(&y), implicit_history,
+                                          output_time);
+          return y;
+        }
+        REQUIRE(time_step_id.step_time().value() < output_time);
+      }
+      stepper.update_u(make_not_null(&y), &explicit_history, time_step);
+      time_step_id = stepper.next_time_id(time_step_id, time_step);
+      implicit_solve(make_not_null(&y), &implicit_history, stepper, time_step);
+      time_step = time_step.with_slab(time_step_id.step_time().slab());
+    }
+  };
+
+  // Check that the dense output is continuous
+  {
+    const Slab slab(0., 1.);
+    const auto time_step = slab.duration();
+    Time time = slab.start();
+    auto [explicit_history, implicit_history] =
+        initialize(stepper, time, time_step);
+    auto y = solution(time.value());
+    take_step(&time, &y, &explicit_history, &implicit_history, stepper,
+              time_step);
+
+    // Some time steppers special-case the endpoints of the
+    // interval, so check just inside to trigger the main dense
+    // output path.
+    CHECK_ITERABLE_APPROX(get_dense(time_step, 0.0), solution(0.0));
+    CHECK_ITERABLE_APPROX(
+        get_dense(time_step,
+                  std::numeric_limits<double>::epsilon() * time_step.value()),
+        solution(0.0));
+    CHECK_ITERABLE_APPROX(
+        get_dense(time_step,
+                  (1. - std::numeric_limits<double>::epsilon()) * time.value()),
+        y);
+    CHECK_ITERABLE_APPROX(get_dense(time_step, time.value()), y);
+  }
+
+  // Test convergence
+  {
+    const int32_t large_steps = 10;
+    const int32_t small_steps = 30;
+
+    const auto error = [&get_dense](const int32_t steps) {
+      const Slab slab(0., 1.);
+      return solution_error(0.25 * M_PI,
+                            get_dense(slab.duration() / steps, 0.25 * M_PI));
+    };
+    CHECK(convergence_rate(large_steps, small_steps, error) ==
+          approx(stepper.order()).margin(0.4));
+  }
+}
+
+void check_dense_output_conservation(const TimeStepper& stepper) {
+  const double output_time = 0.3;
+  const auto slab = Slab::with_duration_from_start(0.0, 2.0);
+  const auto start_time = slab.start();
+  TimeStepId time_step_id(true, 0, start_time);
+  auto time_step = slab.duration() / 2;
+
+  auto [explicit_history, implicit_history] =
+      initialize(stepper, start_time, time_step);
+
+  auto y = solution(start_time.value());
+  const double initial_sum = y[0] + y[1];
+
+  for (;;) {
+    implicit_history.insert(time_step_id, implicit_derivative(y));
+    explicit_history.insert(time_step_id, explicit_derivative(y));
+    if (stepper.dense_update_u(make_not_null(&y), explicit_history,
+                               output_time)) {
+      stepper.dense_update_u_implicit(make_not_null(&y), implicit_history,
+                                      output_time);
+      const double final_sum = y[0] + y[1];
+      CHECK(initial_sum == approx(final_sum));
+      return;
+    }
+    if (time_step_id.step_time().value() > output_time) {
+      CHECK(false);
+      return;
+    }
+    stepper.update_u(make_not_null(&y), &explicit_history, time_step);
+    time_step_id = stepper.next_time_id(time_step_id, time_step);
+    implicit_solve(make_not_null(&y), &implicit_history, stepper, time_step);
+  }
+}
+}  // namespace imex
 }  // namespace TimeStepperTestUtils

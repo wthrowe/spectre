@@ -96,6 +96,49 @@ bool HeunImex::update_u_impl(const gsl::not_null<T*> u,
 }
 
 template <typename T>
+void HeunImex::update_u_implicit_impl(
+    const gsl::not_null<T*> u,
+    const gsl::not_null<UntypedHistory<T>*> implicit_history,
+    const T& implicit_derivative, const TimeDelta& time_step) const {
+  ASSERT(implicit_history->integration_order() == 2,
+         "Fixed-order stepper cannot run at order "
+         << implicit_history->integration_order());
+  const size_t substep = (implicit_history->end() - 1).time_step_id().substep();
+
+  // Clean up old history
+  if (substep == 0) {
+    implicit_history->mark_unneeded(implicit_history->end() - 1);
+  }
+
+  switch (substep) {
+    case 0: {
+      *u += 0.5 * time_step.value() *
+            (implicit_derivative + *implicit_history->begin().derivative());
+      break;
+    }
+    case 1: {
+      break;
+    }
+    default:
+      ERROR("Bad substep value: " << substep);
+  }
+}
+
+template <typename T>
+double HeunImex::implicit_weight_impl(const UntypedHistory<T>& implicit_history,
+                                  const TimeDelta& time_step) const {
+  const size_t substep = (implicit_history.end() - 1).time_step_id().substep();
+  switch (substep) {
+    case 0:
+      return 0.5 * time_step.value();
+    case 1:
+      return 0.0;
+    default:
+      ERROR("Bad substep value: " << substep);
+  }
+}
+
+template <typename T>
 bool HeunImex::dense_update_u_impl(const gsl::not_null<T*> u,
                                    const UntypedHistory<T>& history,
                                    const double time) const {
@@ -132,6 +175,16 @@ bool HeunImex::dense_update_u_impl(const gsl::not_null<T*> u,
               (0.5 + output_fraction) * *(history.begin() + 1).derivative()) +
          square(output_fraction) * *(history.begin() + 2).derivative());
   return true;
+}
+
+template <typename T>
+void HeunImex::dense_update_u_implicit_impl(
+    const gsl::not_null<T*> u, const UntypedHistory<T>& implicit_history,
+    const double time) const {
+  const bool success = dense_update_u_impl(u, implicit_history, time);
+  ASSERT(success,
+         "Implicit dense output failed.  Implicit and explicit histories are "
+         "inconsistent.");
 }
 
 template <typename T>

@@ -25,6 +25,12 @@ SPECTRE_TEST_CASE("Unit.Time.TimeSteppers.HeunImex", "[Unit][Time]") {
   TimeStepperTestUtils::check_convergence_order(stepper);
   TimeStepperTestUtils::check_dense_output(stepper, 2);
 
+  TimeStepperTestUtils::imex::check_stability(stepper);
+  TimeStepperTestUtils::imex::check_convergence_order(stepper);
+  TimeStepperTestUtils::imex::check_conservation(stepper);
+  TimeStepperTestUtils::imex::check_dense_output(stepper);
+  TimeStepperTestUtils::imex::check_dense_output_conservation(stepper);
+
   CHECK(stepper.order() == 2);
   CHECK(stepper.error_estimate_order() == 1);
 
