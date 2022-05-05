@@ -35,6 +35,7 @@ spectre_target_headers(
   DynamicBuffer.hpp
   DynamicMatrix.hpp
   DynamicVector.hpp
+  ExtractPoint.hpp
   FixedHashMap.hpp
   FloatingPointType.hpp
   GeneralIndexIterator.hpp
