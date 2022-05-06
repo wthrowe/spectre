@@ -161,6 +161,15 @@ static_assert(std::is_same_v<tnsr::iAA<DataVector, 3, Frame::Grid>,
                              TensorMetafunctions::change_all_valences<
                                  tnsr::Iaa<DataVector, 3, Frame::Grid>>>);
 
+// Test concatenate_indices
+static_assert(
+    std::is_same_v<Scalar<double>, TensorMetafunctions::concatenate_indices<
+                                       Scalar<double>, Scalar<double>>>);
+static_assert(std::is_same_v<tnsr::Ijaa<double, 2, Frame::Grid>,
+                             TensorMetafunctions::concatenate_indices<
+                                 tnsr::I<double, 2, Frame::Grid>,
+                                 tnsr::iaa<double, 2, Frame::Grid>>>);
+
 // Test swap_type
 static_assert(
     std::is_same_v<tnsr::ij<double, 3>, TensorMetafunctions::swap_type<

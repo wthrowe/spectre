@@ -6,6 +6,7 @@
 
 #pragma once
 
+#include <algorithm>
 #include <cstddef>
 #include <cstdint>
 #include <type_traits>
@@ -123,6 +124,39 @@ using change_all_valences =
     ::Tensor<typename Tensor::type, typename Tensor::symmetry,
              tmpl::transform<typename Tensor::index_list,
                              tmpl::bind<change_index_up_lo, tmpl::_1>>>;
+
+namespace detail {
+template <typename Tensor1, typename Tensor2>
+struct concatenate_indices {
+ private:
+  static_assert(std::is_same_v<typename Tensor1::type, typename Tensor2::type>);
+
+  template <typename Symmetry1, typename Symmetry2>
+  struct symmetry;
+
+  template <int32_t... Is1, int32_t... Is2>
+  struct symmetry<tmpl::integral_list<int32_t, Is1...>,
+                  tmpl::integral_list<int32_t, Is2...>> {
+    static constexpr int32_t offset_for_sym1 = std::max({0, Is2...});
+    using type =
+        tmpl::integral_list<int32_t, (Is1 + offset_for_sym1)..., Is2...>;
+  };
+
+ public:
+  using type = Tensor<
+      typename Tensor1::type,
+      typename symmetry<typename Tensor1::symmetry,
+                        typename Tensor2::symmetry>::type,
+      tmpl::append<typename Tensor1::index_list, typename Tensor2::index_list>>;
+};
+}  // namespace detail
+
+/// \ingroup TensorGroup
+/// \brief Concatenate the index lists of two Tensors to give the type
+/// of their outer product.
+template <typename Tensor1, typename Tensor2>
+using concatenate_indices =
+    typename detail::concatenate_indices<Tensor1, Tensor2>::type;
 
 /// \ingroup TensorGroup
 /// \brief Swap the data type of a tensor for a new type
