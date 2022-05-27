@@ -13,6 +13,7 @@ set(LIBRARY_SOURCES
   Test_ConstantExpressions.cpp
   Test_ContainerHelpers.cpp
   Test_DereferenceWrapper.cpp
+  Test_DoNotMove.cpp
   Test_EqualWithinRoundoff.cpp
   Test_FileSystem.cpp
   Test_Formaline.cpp
