@@ -47,6 +47,7 @@ set(LIBRARY_SOURCES
   Test_WrapText.cpp
   )
 
+add_subdirectory(Protocols)
 add_subdirectory(TypeTraits)
 
 add_test_library(

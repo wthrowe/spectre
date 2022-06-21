@@ -87,6 +87,7 @@ target_link_libraries(
   )
 
 add_subdirectory(ErrorHandling)
+add_subdirectory(Protocols)
 add_subdirectory(System)
 add_subdirectory(TypeTraits)
 
