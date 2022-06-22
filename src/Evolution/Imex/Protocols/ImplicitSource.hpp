@@ -25,6 +25,10 @@ namespace imex::protocols {
 ///
 /// The `argument_tags` must not include compute items depending on
 /// tensors in the implicit sector.
+///
+/// \dontinclude Test_SolveImplicitSector.cpp
+/// \skip struct source
+/// \until };
 struct ImplicitSource {
   template <typename ConformingType>
   struct test {

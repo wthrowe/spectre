@@ -1,26 +1,24 @@
 # Distributed under the MIT License.
 # See LICENSE.txt for details.
 
-set(LIBRARY Imex)
+set(LIBRARY ImexHelpers)
 
 add_spectre_library(${LIBRARY} INTERFACE)
 
 spectre_target_headers(
   ${LIBRARY}
-  INCLUDE_DIRECTORY ${CMAKE_SOURCE_DIR}/src
+  INCLUDE_DIRECTORY ${CMAKE_SOURCE_DIR}/tests/Unit/
   HEADERS
-  NamespaceDocs.hpp
-  SolveImplicitSector.hpp
+  TestSector.hpp
   )
 
 target_link_libraries(
   ${LIBRARY}
   INTERFACE
   DataStructures
-  RootFinding
-  Time
+  ErrorHandling
+  Framework
+  Imex
+  Spectral
   Utilities
   )
-
-add_subdirectory(Protocols)
-add_subdirectory(Tags)

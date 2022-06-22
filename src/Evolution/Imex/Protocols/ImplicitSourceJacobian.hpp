@@ -27,6 +27,10 @@ namespace imex::protocols {
 ///
 /// The `argument_tags` must not include compute items depending on
 /// tensors in the implicit sector.
+///
+/// \dontinclude Test_SolveImplicitSector.cpp
+/// \skip struct source_jacobian
+/// \until };
 struct ImplicitSourceJacobian {
   template <typename ConformingType>
   struct test {

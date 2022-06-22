@@ -28,6 +28,8 @@ namespace imex::protocols {
 /// * a `tensors` type alias of tags for the variables to be solved for
 /// * a `source` type conforming to protocols::ImplicitSource
 /// * a `source_jacobian` type conforming to protocols::ImplicitSourceJacobian.
+///
+/// \snippet Test_SolveImplicitSector.cpp ImplicitSector
 struct ImplicitSector {
   template <typename ConformingType>
   struct test {

@@ -4,6 +4,7 @@
 set(LIBRARY "Test_Imex")
 
 set(LIBRARY_SOURCES
+  Test_SolveImplicitSector.cpp
   )
 
 add_subdirectory(Tags)
@@ -22,6 +23,8 @@ target_link_libraries(
   DataStructuresHelpers
   Framework
   Imex
+  ImexHelpers
+  Time
   Utilities
   )
 
