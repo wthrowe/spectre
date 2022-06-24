@@ -29,10 +29,12 @@ namespace {
 namespace TriggerLabels {
 struct A {};
 struct B {};
+struct C {};
 }  // namespace TriggerLabels
 
 using TriggerA = TestHelpers::DenseTriggers::BoxTrigger<TriggerLabels::A>;
 using TriggerB = TestHelpers::DenseTriggers::BoxTrigger<TriggerLabels::B>;
+using TriggerC = TestHelpers::DenseTriggers::BoxTrigger<TriggerLabels::C>;
 
 struct AddTwoToTime : db::SimpleTag {
   using type = double;
@@ -133,6 +135,8 @@ using EventA = TestEvent<EventLabels::A>;
 using EventB = TestEvent<EventLabels::B>;
 using EventC = TestEvent<EventLabels::C>;
 
+using TriggeringState = evolution::EventsAndDenseTriggers::TriggeringState;
+
 struct Metavariables {
   using component_list = tmpl::list<>;
   struct factory_creation
@@ -199,7 +203,6 @@ void do_test(const bool time_runs_forward, const bool add_event) {
     EventC::event_ran = false;
   };
 
-  using TriggeringState = evolution::EventsAndDenseTriggers::TriggeringState;
   CHECK(events_and_dense_triggers.next_trigger(box) == -1.0 * time_sign);
   CHECK(events_and_dense_triggers.is_ready(
             box, cache, array_index, component) == TriggeringState::NotReady);
@@ -273,14 +276,132 @@ void do_test(const bool time_runs_forward, const bool add_event) {
   finish_checks(serialize_and_deserialize(events_and_dense_triggers));
   finish_checks(std::move(events_and_dense_triggers));
 }
+
+struct ResetNextCheckMetavariables {
+  using component_list = tmpl::list<>;
+  struct factory_creation
+      : tt::ConformsTo<Options::protocols::FactoryCreation> {
+    using factory_classes = tmpl::map<
+        tmpl::pair<DenseTrigger, tmpl::list<TriggerA, TriggerB, TriggerC>>,
+        tmpl::pair<Event, tmpl::list<EventA, EventB, EventC>>>;
+  };
+};
+
+// This initializes to TriggerA/EventA running at 0.1, B at 0.2, and C
+// at 0.3.  It then resets TriggerToReset to time_to_reset_to, and
+// checks that ExpectedEvents... run in order at expected_times....
+template <typename TriggerToReset, typename... ExpectedEvents>
+void try_reset_next_check(const double time_to_reset_to,
+                          const typename tmpl::has_type<
+                              ExpectedEvents, double>::type... expected_times) {
+  CAPTURE(pretty_type::name<TriggerToReset>());
+  CAPTURE(pretty_type::get_name<tmpl::list<ExpectedEvents...>>());
+  CAPTURE(time_to_reset_to);
+
+  Parallel::GlobalCache<ResetNextCheckMetavariables> cache{};
+  const int array_index = 0;
+  const int* component = nullptr;
+
+  evolution::EventsAndDenseTriggers::ConstructionType
+      events_and_dense_triggers_setup{};
+  events_and_dense_triggers_setup.emplace(
+      std::make_unique<TriggerA>(),
+      make_vector<std::unique_ptr<Event>>(std::make_unique<EventA>()));
+  events_and_dense_triggers_setup.emplace(
+      std::make_unique<TriggerB>(),
+      make_vector<std::unique_ptr<Event>>(std::make_unique<EventB>()));
+  events_and_dense_triggers_setup.emplace(
+      std::make_unique<TriggerC>(),
+      make_vector<std::unique_ptr<Event>>(std::make_unique<EventC>()));
+  evolution::EventsAndDenseTriggers events_and_dense_triggers(
+      std::move(events_and_dense_triggers_setup));
+
+  auto box = db::create<db::AddSimpleTags<
+      Parallel::Tags::MetavariablesImpl<ResetNextCheckMetavariables>,
+      Tags::TimeStepId, Tags::Time, evolution::Tags::PreviousTriggerTime,
+      TriggerA::IsReady, TriggerA::IsTriggered, TriggerA::NextCheck,
+      TriggerB::IsReady, TriggerB::IsTriggered, TriggerB::NextCheck,
+      TriggerC::IsReady, TriggerC::IsTriggered, TriggerC::NextCheck,
+      EventA::IsReady, EventB::IsReady, EventC::IsReady>>(
+      ResetNextCheckMetavariables{},
+      TimeStepId(true, 0, Slab(0.0, 1.0).start()), 0.0, std::optional<double>{},
+      true, false, 0.1, true, false, 0.2, true, false, 0.3, true, true, true);
+
+  EventA::event_ran = false;
+  EventB::event_ran = false;
+  EventC::event_ran = false;
+
+  // Initialize
+  CHECK(events_and_dense_triggers.next_trigger(box) == 0.0);
+  CHECK(events_and_dense_triggers.is_ready(
+            box, cache, array_index, component) == TriggeringState::Ready);
+
+  events_and_dense_triggers.reset_next_check<TriggerToReset>(time_to_reset_to);
+
+  db::mutate<TriggerA::NextCheck, TriggerB::NextCheck, TriggerC::NextCheck,
+             TriggerA::IsTriggered, TriggerB::IsTriggered,
+             TriggerC::IsTriggered>(
+      make_not_null(&box), [](const gsl::not_null<double*> next_check_a,
+                              const gsl::not_null<double*> next_check_b,
+                              const gsl::not_null<double*> next_check_c,
+                              const gsl::not_null<bool*> is_triggered_a,
+                              const gsl::not_null<bool*> is_triggered_b,
+                              const gsl::not_null<bool*> is_triggered_c) {
+        *next_check_a = std::numeric_limits<double>::infinity();
+        *next_check_b = std::numeric_limits<double>::infinity();
+        *next_check_c = std::numeric_limits<double>::infinity();
+        *is_triggered_a = true;
+        *is_triggered_b = true;
+        *is_triggered_c = true;
+      });
+
+  auto check_event = [&](auto event, const double expected_time) {
+    using ExpectedEvent = tmpl::type_from<decltype(event)>;
+    CAPTURE(pretty_type::name<ExpectedEvent>());
+    REQUIRE(events_and_dense_triggers.next_trigger(box) == expected_time);
+    // We don't care about whether the evolved variables are needed
+    // for this test.
+    CHECK(events_and_dense_triggers.is_ready(
+              box, cache, array_index, component) != TriggeringState::NotReady);
+    CHECK(not ExpectedEvent::event_ran);
+    events_and_dense_triggers.run_events(box, cache, array_index, component);
+    CHECK(ExpectedEvent::event_ran);
+  };
+
+  EXPAND_PACK_LEFT_TO_RIGHT(
+      check_event(tmpl::type_<ExpectedEvents>{}, expected_times));
+  CHECK(events_and_dense_triggers.next_trigger(box) ==
+        std::numeric_limits<double>::infinity());
+}
+
+void test_reset_next_check() {
+  // A lot of possible misimplementations of this trigger unspecified
+  // behavior in the STL algorithms, which is hard to definitively
+  // check for.  One thing that is easy to check is if the next
+  // trigger time changes.
+
+  // Move initial event later
+  try_reset_next_check<TriggerA, EventA, EventB, EventC>(0.15, 0.15, 0.2, 0.3);
+  // Move initial event earlier
+  try_reset_next_check<TriggerA, EventA, EventB, EventC>(0.05, 0.05, 0.2, 0.3);
+  // Change the sequence of events
+  try_reset_next_check<TriggerA, EventB, EventA, EventC>(0.25, 0.2, 0.25, 0.3);
+  try_reset_next_check<TriggerA, EventB, EventC, EventA>(0.35, 0.2, 0.3, 0.35);
+  try_reset_next_check<TriggerB, EventB, EventA, EventC>(0.05, 0.05, 0.1, 0.3);
+  try_reset_next_check<TriggerB, EventA, EventC, EventB>(0.35, 0.1, 0.3, 0.35);
+  try_reset_next_check<TriggerC, EventC, EventA, EventB>(0.05, 0.05, 0.1, 0.2);
+  try_reset_next_check<TriggerC, EventA, EventC, EventB>(0.15, 0.1, 0.15, 0.2);
+}
 }  // namespace
 
 SPECTRE_TEST_CASE("Unit.Evolution.EventsAndDenseTriggers",
                   "[Unit][Evolution]") {
   Parallel::register_factory_classes_with_charm<Metavariables>();
+  Parallel::register_factory_classes_with_charm<ResetNextCheckMetavariables>();
 
   do_test(true, false);
   do_test(false, false);
   do_test(true, true);
   do_test(false, true);
+  test_reset_next_check();
 }

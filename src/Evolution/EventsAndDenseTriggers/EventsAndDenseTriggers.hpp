@@ -103,6 +103,17 @@ class EventsAndDenseTriggers {
   template <typename F>
   void for_each_event(F&& f) const;
 
+  /// Reset the next check of all triggers of type \p TriggerType to
+  /// the given time.  This will not force the trigger to fire at the
+  /// given time, but will just change the next time the trigger is
+  /// expected to evaluate itself.
+  ///
+  /// The evolution will likely fail if the passed time is before the
+  /// current simulation time.  Changing the next check for a trigger
+  /// to a later time may confuse triggers that are not expecting it.
+  template <typename TriggerType>
+  void reset_next_check(double time);
+
   // NOLINTNEXTLINE(google-runtime-references)
   void pup(PUP::er& p);
 
@@ -278,6 +289,26 @@ void EventsAndDenseTriggers::for_each_event(F&& f) const {
       f(*event);
     }
   }
+}
+
+template <typename TriggerType>
+void EventsAndDenseTriggers::reset_next_check(const double time) {
+  ASSERT(heap_size_ != -1, "Not initialized");
+  for (auto& record : events_and_triggers_) {
+    const auto& trigger = *record.trigger;
+    if (typeid(trigger) == typeid(TriggerType)) {
+      record.next_check = time;
+    }
+  }
+
+  // We've potentially broken the heap invariant, and also possibly
+  // changed the global next time to check, so reinitialize the whole
+  // storage structure.
+  std::make_heap(events_and_triggers_.begin(), events_and_triggers_.end(),
+                 next_check_after_);
+  heap_size_ =
+      static_cast<Storage::difference_type>(events_and_triggers_.size());
+  populate_active_triggers();
 }
 
 template <typename DbTags>
