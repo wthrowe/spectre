@@ -232,6 +232,12 @@ template <typename T>
 bool AdamsBashforthN::dense_update_u_impl(const gsl::not_null<T*> u,
                                           const UntypedHistory<T>& history,
                                           const double time) const {
+  ASSERT(
+      evolution_less_equal<double>{
+          history.begin().time_step_id().time_runs_forward()}(
+              history.back().value(), time),
+      "Attempting dense output at time " << time
+      << ", but already progressed past " << history.back().value());
   const ApproximateTimeDelta time_step{time - history.back().value()};
   update_u_common(make_not_null(&*make_math_wrapper(u)), history, time_step,
                   history.integration_order());
