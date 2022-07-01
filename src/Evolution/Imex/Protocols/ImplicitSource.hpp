@@ -37,7 +37,8 @@ struct ImplicitSource {
 
     using return_tags = typename ConformingType::return_tags;
     static_assert(
-        tmpl::all<return_tags, tt::is_a<::Tags::Source, tmpl::_1>>::value);
+        tmpl::all<return_tags, tt::is_a<::Tags::Source, tmpl::_1>>::value,
+        "All return tags must be ::Tags::Source<...>");
   };
 };
 }  // namespace imex::protocols
