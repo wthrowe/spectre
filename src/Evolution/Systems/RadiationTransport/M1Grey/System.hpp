@@ -6,13 +6,17 @@
 #include <cstddef>
 
 #include "DataStructures/VariablesTag.hpp"
+#include "Evolution/Imex/Protocols/ImexSystem.hpp"
 #include "Evolution/Systems/RadiationTransport/M1Grey/BoundaryConditions/BoundaryCondition.hpp"
 #include "Evolution/Systems/RadiationTransport/M1Grey/BoundaryCorrections/BoundaryCorrection.hpp"
 #include "Evolution/Systems/RadiationTransport/M1Grey/Characteristics.hpp"
+#include "Evolution/Systems/RadiationTransport/M1Grey/M1Closure.hpp"
+#include "Evolution/Systems/RadiationTransport/M1Grey/M1HydroCoupling.hpp"
 #include "Evolution/Systems/RadiationTransport/M1Grey/Tags.hpp"
 #include "Evolution/Systems/RadiationTransport/M1Grey/TimeDerivativeTerms.hpp"
 #include "PointwiseFunctions/GeneralRelativity/Tags.hpp"
 #include "PointwiseFunctions/Hydro/Tags.hpp"
+#include "Utilities/ProtocolHelpers.hpp"
 #include "Utilities/TMPL.hpp"
 
 /// \ingroup EvolutionSystemsGroup
@@ -29,7 +33,8 @@ template <typename NeutrinoSpeciesList>
 struct System;
 
 template <typename... NeutrinoSpecies>
-struct System<tmpl::list<NeutrinoSpecies...>> {
+struct System<tmpl::list<NeutrinoSpecies...>>
+    : tt::ConformsTo<imex::protocols::ImexSystem> {
   static constexpr bool is_in_flux_conservative_form = true;
   static constexpr bool has_primitive_and_conservative_vars = false;
   static constexpr size_t volume_dim = 3;
@@ -85,6 +90,17 @@ struct System<tmpl::list<NeutrinoSpecies...>> {
 
   using inverse_spatial_metric_tag =
       gr::Tags::InverseSpatialMetric<3, Frame::Inertial, DataVector>;
+
+  template <typename Species>
+  struct ImplicitSector : tt::ConformsTo<imex::protocols::ImplicitSector> {
+    using tensors = tmpl::list<Tags::TildeE<Frame::Inertial, Species>,
+                               Tags::TildeS<Frame::Inertial, Species>>;
+    using source = ComputeM1HydroCoupling<tmpl::list<Species>>;
+    using source_jacobian = ComputeM1HydroCouplingJacobian<Species>;
+    using helper = ComputeM1Closure<tmpl::list<Species>>;
+  };
+
+  using implicit_sectors = tmpl::list<ImplicitSector<NeutrinoSpecies>...>;
 };
 }  // namespace M1Grey
 }  // namespace RadiationTransport

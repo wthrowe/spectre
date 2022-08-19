@@ -38,19 +38,49 @@ void apply(const gsl::not_null<Results*> results, const Args& arguments) {
     });
   });
 }
+
+template <typename T>
+T expand_argument(T arg, const size_t num_points) {
+  if constexpr (tt::is_a_v<Tensor, T>) {
+    if constexpr (std::is_same_v<typename T::type, DataVector>) {
+      for (size_t i = 0; i < arg.size(); ++i) {
+        ASSERT(arg[i].size() == 1, "Must supply one-element DataVectors");
+        arg[i] = DataVector(num_points, arg[i][0]);
+      }
+    }
+  }
+  return arg;
+}
+
+template <typename Sector, typename = std::void_t<>>
+struct get_helperFIXME {
+  struct type {
+    using return_tags = tmpl::list<>;
+    using argument_tags = tmpl::list<>;
+    static void apply() {}
+  };
+};
+
+template <typename Sector>
+struct get_helperFIXME<Sector, std::void_t<typename Sector::helper>> {
+  using type = tmpl::conditional_t<
+      std::is_same_v<typename Sector::helper, void>,
+      get_helperFIXME<void>::type, typename Sector::helper>;
+};
 }  // namespace test_sector_detail
 
 /// Check that an implicit sector conforms to
 /// ::imex::protocols::ImplicitSector and that its `source` and
 /// `source_jacobian` are consistent with each other.
 template <typename Sector, typename... Arguments>
-void test_sector(const tuples::TaggedTuple<Arguments...>& arguments) {
+void test_sector(tuples::TaggedTuple<Arguments...> arguments) {
   const size_t differentiation_points = 5;  // Must be odd
-  const double dx = 1.0e-2;
-  const double deriv_tolerance = 1.0e-5;
+  const double dx = 1.0e-4;
+  const double deriv_tolerance = 1.0e-8;
   static_assert(
       tt::assert_conforms_to_v<Sector, ::imex::protocols::ImplicitSector>);
 
+  test_sector_detail::apply<typename test_sector_detail::get_helperFIXME<Sector>::type>(make_not_null(&arguments), arguments); //FIXME work on a copy?
   auto jacobian = make_with_value<tuples::tagged_tuple_from_typelist<
       typename Sector::source_jacobian::return_tags>>(
       get<tmpl::front<typename Sector::tensors>>(arguments),
@@ -78,33 +108,15 @@ void test_sector(const tuples::TaggedTuple<Arguments...>& arguments) {
          independent_component < independent::type::size();
          ++independent_component) {
       tuples::TaggedTuple<Arguments...> differentiation_arguments{};
-      const auto expand_argument = [&](auto arg_tag) {
-        using ArgTag = decltype(arg_tag);
-        auto& dest = get<ArgTag>(differentiation_arguments);
-        const auto& source = get<ArgTag>(arguments);
-        if constexpr (tt::is_a_v<Tensor, typename ArgTag::type>) {
-          if constexpr (std::is_same_v<typename ArgTag::type::type,
-                                       DataVector>) {
-            for (size_t i = 0; i < dest.size(); ++i) {
-              ASSERT(source[i].size() == 1,
-                     "Must supply one-element DataVectors");
-              dest[i] = DataVector(differentiation_points, source[i][0]);
-            }
-          } else {
-            dest = source;
-          }
-        } else {
-          dest = source;
-        }
-        return 0;
-      };
-      expand_pack(expand_argument(Arguments{})...);
+      expand_pack((get<Arguments>(differentiation_arguments) =
+                   test_sector_detail::expand_argument(get<Arguments>(arguments), differentiation_points))...);
       get<independent>(differentiation_arguments)[independent_component] +=
           dx * spectral_points;
 
       auto values = make_with_value<tuples::tagged_tuple_from_typelist<
           typename Sector::source::return_tags>>(
           differentiation_points, std::numeric_limits<double>::signaling_NaN());
+      test_sector_detail::apply<typename test_sector_detail::get_helperFIXME<Sector>::type>(make_not_null(&differentiation_arguments), differentiation_arguments);
       test_sector_detail::apply<typename Sector::source>(
           make_not_null(&values), differentiation_arguments);
 

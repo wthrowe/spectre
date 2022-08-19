@@ -33,10 +33,29 @@ template <typename ImplicitSector, typename DbTags>
 class ImplicitSolve {
   static_assert(tt::conforms_to_v<ImplicitSector, protocols::ImplicitSector>);
 
+  //FIXME add helper to protocol, rename, make required or void, test
+  // verify doesn't modify input.
+  template <typename LocalSector, typename = std::void_t<>>
+  struct get_helper {
+    struct type {
+      using return_tags = tmpl::list<>;
+      using argument_tags = tmpl::list<>;
+      static void apply() {}
+    };
+  };
+
+  template <typename LocalSector>
+  struct get_helper<LocalSector, std::void_t<typename LocalSector::helper>> {
+    using type = tmpl::conditional_t<std::is_same_v<typename LocalSector::helper, void>, typename get_helper<void>::type, typename LocalSector::helper>;
+  };
+
+  using helper = typename get_helper<ImplicitSector>::type;
+
   using non_sector_argument_list = tmpl::list_difference<
       tmpl::remove_duplicates<tmpl::append<
           typename ImplicitSector::source::argument_tags,
-          typename ImplicitSector::source_jacobian::argument_tags>>,
+          typename ImplicitSector::source_jacobian::argument_tags,
+          typename helper::argument_tags>>,
       typename ImplicitSector::tensors>;
 
   using non_sector_tensor_argument_list =
@@ -81,6 +100,8 @@ class ImplicitSolve {
   std::array<double, dimension> operator()(
       std::array<double, dimension> value) const {
     Vars value_variables(value.data(), value.size());
+    call_helper(value_variables, typename helper::return_tags{},
+                typename helper::argument_tags{});
     const auto source = call_source(
         value_variables, typename ImplicitSector::source::return_tags{},
         typename ImplicitSector::source::argument_tags{});
@@ -94,10 +115,13 @@ class ImplicitSolve {
 
   std::array<std::array<double, dimension>, dimension> jacobian(
       std::array<double, dimension> value) const {
+    const Vars value_variables(value.data(), value.size());
+    call_helper(value_variables, typename helper::return_tags{},
+                typename helper::argument_tags{});
     auto result =
         implicit_weight_ *
         call_jacobian(
-            Vars(value.data(), value.size()),
+            value_variables,
             typename ImplicitSector::source_jacobian::return_tags{},
             typename ImplicitSector::source_jacobian::argument_tags{});
     for (size_t i = 0; i < dimension; ++i) {
@@ -111,11 +135,26 @@ class ImplicitSolve {
   const auto& from_vars_or_box(const Vars& vars) const {
     if constexpr (tmpl::list_contains_v<typename Vars::tags_list, Tag>) {
       return get<Tag>(vars);
+    } else if constexpr (tmpl::list_contains_v<decltype(helper_results_), Tag>) {
+      //FIXME rename func or something?
+      return get<Tag>(helper_results_);
     } else if constexpr (tt::is_a_v<Tensor, typename Tag::type>) {
       return get<Tag>(non_sector_tensor_arguments_);
     } else {
       return get<Tag>(*box_);
     }
+  }
+
+  template <typename... ReturnTags, typename... ArgumentTags>
+  void call_helper(const Vars& implicit_vars,
+                   tmpl::list<ReturnTags...> /*meta*/,
+                   tmpl::list<ArgumentTags...> /*meta*/) const {
+    //FIXME avoid recomputation
+    //FIXME copy from box?  Reuse old value?
+    helper_results_ =
+        make_with_value<decltype(helper_results_)>(size_t{1}, 0.0);
+    helper::apply(make_not_null(&get<ReturnTags>(helper_results_))...,
+                  from_vars_or_box<ArgumentTags>(implicit_vars)...);
   }
 
   template <typename... ReturnTags, typename... ArgumentTags>
@@ -186,6 +225,9 @@ class ImplicitSolve {
 
   double implicit_weight_;
   Variables<non_sector_tensor_argument_list> non_sector_tensor_arguments_;
+  //FIXME more efficient storage, mutable yuck
+  mutable tuples::tagged_tuple_from_typelist<typename helper::return_tags>
+      helper_results_;
 };
 }  // namespace solve_implicit_sector_detail
 
