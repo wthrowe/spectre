@@ -17,6 +17,7 @@ target_link_libraries(
   ${LIBRARY}
   INTERFACE
   DataStructures
+  LinearSolver
   RootFinding
   Time
   Utilities

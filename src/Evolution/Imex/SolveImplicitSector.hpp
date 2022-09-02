@@ -10,11 +10,13 @@
 #include "DataStructures/DataBox/PrefixHelpers.hpp"
 #include "DataStructures/DataBox/Prefixes.hpp"
 #include "DataStructures/ExtractPoint.hpp"
+#include "DataStructures/Matrix.hpp"
 #include "DataStructures/Tags.hpp"
 #include "DataStructures/Tensor/Metafunctions.hpp"
 #include "DataStructures/Variables.hpp"
 #include "Evolution/Imex/Protocols/ImplicitSector.hpp"
 #include "Evolution/Imex/Tags/ImplicitHistory.hpp"
+#include "NumericalAlgorithms/LinearSolver/Lapack.hpp"
 #include "NumericalAlgorithms/RootFinding/GslMultiRoot.hpp"
 #include "Time/History.hpp"
 #include "Time/Tags.hpp"
@@ -269,6 +271,7 @@ void solve_implicit_sector(const gsl::not_null<db::DataBox<DbTags>*> box) {
   auto& implicit_history =
       db::get_mutable_reference<Tags::ImplicitHistory<ImplicitSector>>(box);
 
+  Matrix semi_implicit_jacobian;
   typename ImplicitSolve::History pointwise_history(
       implicit_history.integration_order());
   for (size_t point = 0; point < vars.number_of_grid_points(); ++point) {
@@ -284,12 +287,26 @@ void solve_implicit_sector(const gsl::not_null<db::DataBox<DbTags>*> box) {
     ImplicitVars pointwise_vars(pointwise_array.data(), pointwise_array.size());
     pointwise_vars = do_not_move(extract_point(vars, point));
 
+    if (false) {
     const double tolerance = 1.0e-10;  // FIXME
     const size_t max_iterations = 100;
     pointwise_array = RootFinder::gsl_multiroot(
         ImplicitSolve(&pointwise_history, *box, pointwise_vars, point),
         pointwise_array, RootFinder::StoppingConditions::Residual(tolerance),
         max_iterations);
+    } else {
+      const ImplicitSolve solve(&pointwise_history, *box, pointwise_vars, point);
+      std::array<double, ImplicitVars::number_of_independent_components>
+          implicit_correction_array = solve(pointwise_array);
+      DataVector implicit_correction_dv(implicit_correction_array.data(),
+                                        implicit_correction_array.size());
+      implicit_correction_dv *= -1.0;
+      semi_implicit_jacobian = solve.jacobian(pointwise_array);
+      //FIXME check for errors
+      lapack::general_matrix_linear_solve(&implicit_correction_dv,
+                                          &semi_implicit_jacobian);
+      pointwise_array += implicit_correction_array;
+    }
 
     overwrite_point(make_not_null(&vars), pointwise_vars, point);
   }

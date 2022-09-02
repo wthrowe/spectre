@@ -120,10 +120,35 @@ void Sector::source_jacobian::apply(
   }
 }
 
-}  // namespace
+struct SimpleSector : tt::ConformsTo<imex::protocols::ImplicitSector> {
+  using tensors = tmpl::list<Var1>;
 
-SPECTRE_TEST_CASE("Unit.Evolution.Imex.solve_implicit_sector",
-                  "[Unit][Evolution]") {
+  struct source : tt::ConformsTo<imex::protocols::ImplicitSource>,
+                  tt::ConformsTo<protocols::StaticReturnApplyable> {
+    using return_tags = tmpl::list<::Tags::Source<Var1>>;
+    using argument_tags = tmpl::list<Var1>;
+
+    static void apply(const gsl::not_null<Scalar<DataVector>*> source_var1,
+                      const Scalar<DataVector>& var1) {
+      get(*source_var1) = square(get(var1));
+    }
+  };
+
+  struct source_jacobian
+      : tt::ConformsTo<imex::protocols::ImplicitSourceJacobian>,
+        tt::ConformsTo<protocols::StaticReturnApplyable> {
+    using return_tags =
+        tmpl::list<imex::Tags::Jacobian<Var1, ::Tags::Source<Var1>>>;
+    using argument_tags = tmpl::list<Var1>;
+
+    static void apply(const gsl::not_null<Scalar<DataVector>*> jacobian,
+                      const Scalar<DataVector>& var1) {
+      get(*jacobian) = 2.0 * get(var1);
+    }
+  };
+};
+
+void test_fully_implicit() {
   {
     Scalar<DataVector> var1{};
     get(var1) = DataVector{3.0};
@@ -218,4 +243,87 @@ SPECTRE_TEST_CASE("Unit.Evolution.Imex.solve_implicit_sector",
             expected_var3(ti::I) * expected_var3(ti::J))) /
           (1.0 + 0.5 * dt * non_tensor));
   CHECK_ITERABLE_APPROX(get<Var2>(final_vars), expected_var2);
+}
+
+void test_semi_implicit() {
+  {
+    Scalar<DataVector> var1{};
+    get(var1) = DataVector{3.0};
+    TestHelpers::imex::test_sector<SimpleSector, Var1>({std::move(var1)});
+  }
+
+  // Heun first substep:
+  // y(dt) = y(0) + dt/2 (d/d[y(0)] + d/dt[y(dt)])
+
+  // d/dt[v1] = v1^2
+  // gives exact result
+  // v1(dt) = [E(dt) + dt/2 (v1(0)^2 - E(dt)^2)] / [1 - dt E(dt)]
+  // where E(dt) is the value of v1(dt) only taking account of the
+  // explicit part of the derivative.
+
+  using variables_tag = Tags::Variables<tmpl::list<Var1>>;
+  using implicit_variables_source_tag =
+      Tags::Variables<tmpl::list<::Tags::Source<Var1>>>;
+  using DtImplicitVariables = Variables<tmpl::list<::Tags::dt<Var1>>>;
+
+  const size_t number_of_grid_points = 5;
+  const auto time_step = Slab(3.0, 5.0).duration() / 3;
+
+  MAKE_GENERATOR(gen);
+  // Choose a range to prevent the denominator in the analytic
+  // solution from becoming small.
+  std::uniform_real_distribution<double> dist(-1.0, 1.0);
+  const auto initial_value = make_with_random_values<Scalar<DataVector>>(
+      make_not_null(&gen), make_not_null(&dist), number_of_grid_points);
+  const auto explicit_update = make_with_random_values<Scalar<DataVector>>(
+      make_not_null(&gen), make_not_null(&dist), number_of_grid_points);
+  variables_tag::type initial_vars(number_of_grid_points);
+  get<Var1>(initial_vars) = initial_value;
+  // We overwrite these values below.  This doesn't need to be in the
+  // DataBox for the test, but putting it there lets us use
+  // db::mutate_apply to calculate it.
+  auto source_vars =
+      make_with_random_values<implicit_variables_source_tag::type>(
+          make_not_null(&gen), make_not_null(&dist), number_of_grid_points);
+  auto box = db::create<
+      db::AddSimpleTags<variables_tag, implicit_variables_source_tag,
+                        Tags::TimeStepper<TimeSteppers::HeunImex>,
+                        Tags::TimeStep,
+                        imex::Tags::ImplicitHistory<SimpleSector>>>(
+      initial_vars, std::move(source_vars),
+      std::make_unique<TimeSteppers::HeunImex>(), time_step,
+      imex::Tags::ImplicitHistory<SimpleSector>::type{2});
+  db::mutate_apply<SimpleSector::source>(make_not_null(&box));
+  db::mutate<imex::Tags::ImplicitHistory<SimpleSector>, Var1>(
+      make_not_null(&box),
+      [&explicit_update, &time_step](
+          const gsl::not_null<imex::Tags::ImplicitHistory<SimpleSector>::type*>
+              history,
+          const gsl::not_null<Var1::type*> var1,
+          const implicit_variables_source_tag::type& implicit_vars_source) {
+        history->insert(
+            TimeStepId(true, 0, time_step.slab().start()),
+            implicit_vars_source
+                .reference_with_different_prefixes<DtImplicitVariables>());
+        *var1 = explicit_update;
+      },
+      db::get<implicit_variables_source_tag>(box));
+
+  imex::solve_implicit_sector<SimpleSector>(make_not_null(&box));
+
+  const double dt = time_step.value();
+  const auto final_vars = db::get<variables_tag>(box);
+  const auto expected = tenex::evaluate(
+      (explicit_update() +
+       0.5 * dt * (square(initial_value()) - square(explicit_update()))) /
+      (1.0 - dt * explicit_update()));
+
+  CHECK_ITERABLE_APPROX(get<Var1>(final_vars), expected);
+}
+}  // namespace
+
+SPECTRE_TEST_CASE("Unit.Evolution.Imex.solve_implicit_sector",
+                  "[Unit][Evolution]") {
+  //test_fully_implicit();
+  test_semi_implicit();
 }
