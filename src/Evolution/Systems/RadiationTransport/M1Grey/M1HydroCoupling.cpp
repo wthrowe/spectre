@@ -1,4 +1,4 @@
-#include <iostream>// Distributed under the MIT License.
+// Distributed under the MIT License.
 // See LICENSE.txt for details.
 
 #include "Evolution/Systems/RadiationTransport/M1Grey/M1HydroCoupling.hpp"
@@ -48,8 +48,6 @@ void compute_m1_hydro_coupling_impl(
     const Scalar<DataVector>& lapse,
     const tnsr::ii<DataVector, 3>& spatial_metric,
     const Scalar<DataVector>& sqrt_det_spatial_metric) {
-  // std::cerr.precision(17);
-  // std::cerr << "Coupling: " << comoving_energy_density << "\n";
   Variables<tmpl::list<hydro::Tags::SpatialVelocityOneForm<DataVector, 3>,
                        densitized_eta_minus_kappaJ, kappaT_lapse>>
       temp_tensors(get(lapse).size());
@@ -79,13 +77,11 @@ void compute_m1_hydro_coupling_impl(
 
 namespace {
 namespace LocalTags {
-//FIXME clean up unused
 struct DummySpecies;
 using TildeE = Tags::TildeE<Frame::Inertial, DummySpecies>;
-using TildeHSpatial = Tags::TildeHSpatial<Frame::Inertial, DummySpecies>;
-using TildeJ = Tags::TildeJ<DummySpecies>;
 using TildeS = Tags::TildeS<Frame::Inertial, DummySpecies>;
-using TildeSVector = Tags::TildeSVector<Frame::Inertial>;
+using TildeJ = Tags::TildeJ<DummySpecies>;
+using TildeHSpatial = Tags::TildeHSpatial<Frame::Inertial, DummySpecies>;
 }  // namespace LocalTags
 }  // namespace
 
@@ -94,8 +90,7 @@ void compute_m1_hydro_coupling_jacobian_impl(
     const gsl::not_null<tnsr::i<DataVector, 3>*> deriv_e_source_s,
     const gsl::not_null<tnsr::I<DataVector, 3>*> deriv_s_source_e,
     const gsl::not_null<tnsr::Ij<DataVector, 3>*> deriv_s_source_s,
-    const tnsr::i<DataVector, 3>& tilde_s,
-    const Scalar<DataVector>& tilde_e,
+    const tnsr::i<DataVector, 3>& tilde_s, const Scalar<DataVector>& tilde_e,
     const Scalar<DataVector>& emissivity,
     const Scalar<DataVector>& absorption_opacity,
     const Scalar<DataVector>& scattering_opacity,
@@ -110,287 +105,286 @@ void compute_m1_hydro_coupling_jacobian_impl(
     const tnsr::II<DataVector, 3>& inverse_spatial_metric) {
   const double s_squared_floor = 1.0e-150;
 
-  //FIXME reorder
   Variables<tmpl::list<
-      imex::Tags::Jacobian<LocalTags::TildeE, LocalTags::TildeJ>,
-      imex::Tags::Jacobian<LocalTags::TildeS, LocalTags::TildeJ>,
-      imex::Tags::Jacobian<LocalTags::TildeE, LocalTags::TildeHSpatial>,
-      imex::Tags::Jacobian<LocalTags::TildeS, LocalTags::TildeHSpatial>,
-      LocalTags::TildeSVector,
-      ::Tags::TempScalar<0>,
-      ::Tags::TempScalar<1>,
-      ::Tags::TempScalar<2>,
-      ::Tags::TempScalar<3>,
-      ::Tags::TempScalar<4>,
-      ::Tags::TempScalar<5>,
-      ::Tags::TempScalar<6>,
-      ::Tags::TempScalar<7>,
-      ::Tags::TempScalar<8>,
-      ::Tags::TempScalar<9>,
-      ::Tags::TempScalar<10>,
-      ::Tags::TempScalar<11>,
-      ::Tags::TempScalar<12>,
-      ::Tags::TempScalar<13>,
-      ::Tags::TempScalar<14>,
-      ::Tags::TempScalar<15>,
-      ::Tags::TempScalar<16>,
-      ::Tags::Tempi<0, 3>
->>
+      ::Tags::TempScalar<0>, ::Tags::TempScalar<1>, ::Tags::Tempi<2, 3>,
+      Tags::TildeSVector<Frame::Inertial>, ::Tags::TempI<3, 3>,
+      ::Tags::TempScalar<4>, ::Tags::TempScalar<5>, ::Tags::TempScalar<6>,
+      ::Tags::TempScalar<7>, ::Tags::TempScalar<8>, ::Tags::TempScalar<9>,
+      ::Tags::TempScalar<10>, ::Tags::TempScalar<11>, ::Tags::TempScalar<12>,
+      ::Tags::TempScalar<13>, ::Tags::TempScalar<14>, ::Tags::Tempi<15, 3>,
+      ::Tags::TempScalar<16>, ::Tags::TempScalar<17>, ::Tags::TempScalar<18>,
+      ::Tags::TempScalar<19>, ::Tags::TempScalar<20>, ::Tags::TempScalar<21>,
+      ::Tags::TempScalar<22>, ::Tags::TempScalar<23>, ::Tags::TempScalar<24>,
+      ::Tags::TempScalar<25>, ::Tags::TempI<26, 3>, ::Tags::Tempi<27, 3>,
+      ::Tags::TempIj<28, 3>, ::Tags::TempScalar<29>, ::Tags::TempScalar<30>,
+      ::Tags::TempI<31, 3>,
+      ::imex::Tags::Jacobian<LocalTags::TildeE, LocalTags::TildeJ>,
+      ::imex::Tags::Jacobian<LocalTags::TildeS, LocalTags::TildeJ>,
+      ::imex::Tags::Jacobian<LocalTags::TildeE, LocalTags::TildeHSpatial>,
+      ::imex::Tags::Jacobian<LocalTags::TildeS, LocalTags::TildeHSpatial>,
+      ::Tags::TempScalar<32>, ::Tags::TempScalar<33>, ::Tags::TempScalar<34>,
+      ::Tags::TempScalar<35>>>
       temporaries(get(emissivity).size());
 
-  auto& eddington_factor = get<::Tags::TempScalar<16>>(temporaries);
-  tenex::evaluate(make_not_null(&eddington_factor),
-                  1.0 / 3.0 + 2.0 / 15.0 * square(closure_factor()) * (3.0 + closure_factor() * (-1.0 + 3.0 * closure_factor())));
+  auto& d_thin = get<::Tags::TempScalar<0>>(temporaries);
+  tenex::evaluate(
+      make_not_null(&d_thin),
+      0.2 * square(closure_factor()) *
+          (3.0 + closure_factor() * (-1.0 + 3.0 * closure_factor())));
 
-  auto& d_thick = get<::Tags::TempScalar<15>>(temporaries);
-  tenex::evaluate(make_not_null(&d_thick), 1.5 * (1.0 - eddington_factor()));
+  auto& d_thick = get<::Tags::TempScalar<1>>(temporaries);
+  tenex::evaluate(make_not_null(&d_thick), 1.0 - d_thin());
 
-  auto& d_thin = get<::Tags::TempScalar<14>>(temporaries);
-  tenex::evaluate(make_not_null(&d_thin), 1.0 - d_thick());
-
-  auto& total_opacity = get<::Tags::TempScalar<0>>(temporaries);
-  tenex::evaluate(make_not_null(&total_opacity),
-                  absorption_opacity() + scattering_opacity());
-
-  auto& fluid_velocity_lower = get<::Tags::Tempi<0, 3>>(temporaries);
+  auto& fluid_velocity_lower = get<::Tags::Tempi<2, 3>>(temporaries);
   tenex::evaluate<ti::i>(make_not_null(&fluid_velocity_lower),
                          spatial_metric(ti::i, ti::j) * fluid_velocity(ti::J));
 
-  auto& tilde_s_upper = get<LocalTags::TildeSVector>(temporaries);
-  tenex::evaluate<ti::I>(make_not_null(&tilde_s_upper),
+  auto& s_upper = get<Tags::TildeSVector<Frame::Inertial>>(temporaries);
+  tenex::evaluate<ti::I>(make_not_null(&s_upper),
                          inverse_spatial_metric(ti::I, ti::J) * tilde_s(ti::j));
 
-  auto& inverse_s_norm = get<::Tags::TempScalar<1>>(temporaries);
-  tenex::evaluate(
-      make_not_null(&inverse_s_norm),
-      1.0 / (tilde_s_upper(ti::I) * tilde_s(ti::i) + s_squared_floor));
+  auto& comoving_four_momentum_density_upper =
+      get<::Tags::TempI<3, 3>>(temporaries);
+  tenex::evaluate<ti::I>(
+      make_not_null(&comoving_four_momentum_density_upper),
+      comoving_momentum_density_spatial(ti::j) *
+              inverse_spatial_metric(ti::I, ti::J) +
+          comoving_momentum_density_normal() * fluid_velocity(ti::I));
 
-  auto& fluid_velocity_norm = get<::Tags::TempScalar<2>>(temporaries);
+  auto& inverse_s_norm = get<::Tags::TempScalar<4>>(temporaries);
+  tenex::evaluate(make_not_null(&inverse_s_norm),
+                  1.0 / (s_upper(ti::I) * tilde_s(ti::i) + s_squared_floor));
+
+  auto& fluid_velocity_norm = get<::Tags::TempScalar<5>>(temporaries);
   tenex::evaluate(make_not_null(&fluid_velocity_norm),
                   fluid_velocity(ti::I) * fluid_velocity_lower(ti::i));
 
-  auto& s_dot_fluid_velocity = get<::Tags::TempScalar<3>>(temporaries);
+  auto& s_dot_fluid_velocity = get<::Tags::TempScalar<6>>(temporaries);
   tenex::evaluate(make_not_null(&s_dot_fluid_velocity),
                   tilde_s(ti::i) * fluid_velocity(ti::I));
 
-  auto& denom = get<::Tags::TempScalar<4>>(temporaries);
+  auto& s_dot_fluid_velocity_normalized =
+      get<::Tags::TempScalar<7>>(temporaries);
+  tenex::evaluate(make_not_null(&s_dot_fluid_velocity_normalized),
+                  s_dot_fluid_velocity() * inverse_s_norm());
+
+  auto& s_dot_fluid_velocity_squared_normalized =
+      get<::Tags::TempScalar<8>>(temporaries);
+  tenex::evaluate(make_not_null(&s_dot_fluid_velocity_squared_normalized),
+                  s_dot_fluid_velocity() * s_dot_fluid_velocity_normalized());
+
+  auto& denom = get<::Tags::TempScalar<9>>(temporaries);
   tenex::evaluate(make_not_null(&denom),
                   1.0 / (1.0 + 2.0 * square(fluid_lorentz_factor())));
 
-  auto& deriv_e_h_velocity_coef = get<::Tags::TempScalar<5>>(temporaries);
+  auto& scaled_comoving_energy_density =
+      get<::Tags::TempScalar<10>>(temporaries);
+  tenex::evaluate(make_not_null(&scaled_comoving_energy_density),
+                  square(closure_factor()) * comoving_energy_density());
+
+  auto& h_difference_s_coef = get<::Tags::TempScalar<11>>(temporaries);
   tenex::evaluate(
-      make_not_null(&deriv_e_h_velocity_coef),
-      -cube(fluid_lorentz_factor()) *
-      (d_thin() * (1.0 + square(s_dot_fluid_velocity()) * inverse_s_norm()) +
-       4.0 * d_thick() * denom()));
+      make_not_null(&h_difference_s_coef),
+      fluid_lorentz_factor() * (fluid_velocity_norm() -
+                                tilde_e() * s_dot_fluid_velocity_normalized()));
 
-  auto& deriv_e_h_s_coef = get<::Tags::TempScalar<6>>(temporaries);
+  auto& common_difference_term = get<::Tags::TempScalar<12>>(temporaries);
+  tenex::evaluate(
+      make_not_null(&common_difference_term),
+      denom() *
+          ((2.0 * square(fluid_lorentz_factor()) - 3.0) * tilde_e() -
+           4.0 * square(fluid_lorentz_factor()) * s_dot_fluid_velocity()));
+
+  auto& j_difference = get<::Tags::TempScalar<13>>(temporaries);
+  tenex::evaluate(make_not_null(&j_difference),
+                  square(fluid_lorentz_factor()) *
+                      (fluid_velocity_norm() * common_difference_term() +
+                       tilde_e() * s_dot_fluid_velocity_squared_normalized()));
+
+  // Negated at use site.
+  auto& h_difference_v_coef = get<::Tags::TempScalar<14>>(temporaries);
+  tenex::evaluate(
+      make_not_null(&h_difference_v_coef),
+      fluid_lorentz_factor() *
+          (common_difference_term() + j_difference() + s_dot_fluid_velocity()));
+
+  auto& h_difference = get<::Tags::Tempi<15, 3>>(temporaries);
+  tenex::evaluate<ti::i>(
+      make_not_null(&h_difference),
+      h_difference_s_coef() * tilde_s(ti::i) -
+          h_difference_v_coef() * fluid_velocity_lower(ti::i));
+
+  auto& deriv_e_h_v_coef = get<::Tags::TempScalar<16>>(temporaries);
+  tenex::evaluate(
+      make_not_null(&deriv_e_h_v_coef),
+      square(fluid_lorentz_factor()) *
+          (-4.0 * d_thick() * denom() -
+           d_thin() * (1.0 + s_dot_fluid_velocity_squared_normalized())));
+
+  // Negated at use site.
+  auto& deriv_e_h_s_coef = get<::Tags::TempScalar<17>>(temporaries);
   tenex::evaluate(make_not_null(&deriv_e_h_s_coef),
-                  -d_thin() * fluid_lorentz_factor() * s_dot_fluid_velocity() *
-                      inverse_s_norm());
+                  d_thin() * s_dot_fluid_velocity_normalized());
 
-  auto& deriv_s_h_trace_coef = get<::Tags::TempScalar<7>>(temporaries);
+  auto& deriv_s_h_trace_coef = get<::Tags::TempScalar<18>>(temporaries);
   tenex::evaluate(
       make_not_null(&deriv_s_h_trace_coef),
-      fluid_lorentz_factor() *
-          (1.0 -
-           d_thin() * tilde_e() * s_dot_fluid_velocity() * inverse_s_norm() -
-           d_thick() * fluid_velocity_norm()));
+      (1.0 / fluid_lorentz_factor() + d_thin() * h_difference_s_coef()) /
+          fluid_lorentz_factor());
 
-  auto& deriv_s_j_velocity_coef = get<::Tags::TempScalar<8>>(temporaries);
+  auto& deriv_s_j_v_coef = get<::Tags::TempScalar<19>>(temporaries);
+  tenex::evaluate(make_not_null(&deriv_s_j_v_coef),
+                  -2.0 * fluid_lorentz_factor() *
+                      (deriv_s_h_trace_coef() +
+                       d_thick() * fluid_velocity_norm() * denom()));
+
+  auto& deriv_s_h_vv_coef = get<::Tags::TempScalar<20>>(temporaries);
   tenex::evaluate(
-      make_not_null(&deriv_s_j_velocity_coef),
-      - 2.0 * fluid_lorentz_factor() *
-      (deriv_s_h_trace_coef() +
-       d_thick() * fluid_lorentz_factor() * fluid_velocity_norm() * denom()));
+      make_not_null(&deriv_s_h_vv_coef),
+      2.0 - denom() * d_thick() +
+          2.0 * d_thin() * fluid_lorentz_factor() * h_difference_s_coef());
 
-  auto& deriv_s_h_vv_coef = get<::Tags::TempScalar<9>>(temporaries);
-  tenex::evaluate(make_not_null(&deriv_s_h_vv_coef),
-                  fluid_lorentz_factor() *
-                      (2.0 * fluid_lorentz_factor() * deriv_s_h_trace_coef() -
-                       d_thick() * denom()));
+  // Negated at use site.
+  auto& deriv_s_h_vs_coef = get<::Tags::TempScalar<21>>(temporaries);
+  tenex::evaluate(make_not_null(&deriv_s_h_vs_coef),
+                  d_thin() * tilde_e() * inverse_s_norm());
 
-  auto& deriv_s_h_sv_coef = get<::Tags::TempScalar<10>>(temporaries);
-  tenex::evaluate(
-      make_not_null(&deriv_s_h_sv_coef),
-      -d_thin() * fluid_lorentz_factor() * tilde_e() * inverse_s_norm());
-
-  auto& deriv_s_h_ss_coef = get<::Tags::TempScalar<11>>(temporaries);
+  auto& deriv_s_h_ss_coef = get<::Tags::TempScalar<22>>(temporaries);
   tenex::evaluate(
       make_not_null(&deriv_s_h_ss_coef),
-      -2.0 * s_dot_fluid_velocity() * inverse_s_norm() * deriv_s_h_sv_coef());
+      2.0 * s_dot_fluid_velocity_normalized() * deriv_s_h_vs_coef());
 
-  auto& deriv_s_j_s_coef = get<::Tags::TempScalar<12>>(temporaries);
+  auto& deriv_s_j_s_coef = get<::Tags::TempScalar<23>>(temporaries);
+  tenex::evaluate(make_not_null(&deriv_s_j_s_coef),
+                  -2.0 * fluid_lorentz_factor() *
+                      s_dot_fluid_velocity_squared_normalized() *
+                      deriv_s_h_vs_coef());
+
+  // Negated at use site.
+  auto& deriv_s_h_sv_coef = get<::Tags::TempScalar<24>>(temporaries);
+  tenex::evaluate(make_not_null(&deriv_s_h_sv_coef),
+                  fluid_lorentz_factor() * deriv_s_j_s_coef());
+
+  auto& constant_d_deriv_e_j_over_lorentz_factor =
+      get<::Tags::TempScalar<25>>(temporaries);
   tenex::evaluate(
-      make_not_null(&deriv_s_j_s_coef),
-      -fluid_lorentz_factor() * s_dot_fluid_velocity() * deriv_s_h_ss_coef());
+      make_not_null(&constant_d_deriv_e_j_over_lorentz_factor),
+      fluid_lorentz_factor() *
+          (d_thin() * (1.0 + s_dot_fluid_velocity_squared_normalized()) +
+           3.0 * d_thick() * denom() * (1.0 + fluid_velocity_norm())));
 
-  auto& deriv_s_h_vs_coef = get<::Tags::TempScalar<13>>(temporaries);
-  tenex::evaluate(make_not_null(&deriv_s_h_vs_coef),
-                  -fluid_lorentz_factor() * deriv_s_j_s_coef());
+  auto& constant_d_deriv_s_j_over_lorentz_factor =
+      get<::Tags::TempI<26, 3>>(temporaries);
+  tenex::evaluate<ti::I>(
+      make_not_null(&constant_d_deriv_s_j_over_lorentz_factor),
+      deriv_s_j_v_coef() * fluid_velocity(ti::I) +
+          deriv_s_j_s_coef() * s_upper(ti::I));
+
+  auto& constant_d_deriv_e_h_over_lorentz_factor =
+      get<::Tags::Tempi<27, 3>>(temporaries);
+  tenex::evaluate<ti::i>(
+      make_not_null(&constant_d_deriv_e_h_over_lorentz_factor),
+      deriv_e_h_v_coef() * fluid_velocity_lower(ti::i) -
+          deriv_e_h_s_coef() * tilde_s(ti::i));
+
+  auto& constant_d_deriv_s_h_over_lorentz_factor =
+      get<::Tags::TempIj<28, 3>>(temporaries);
+  tenex::evaluate<ti::I, ti::j>(
+      make_not_null(&constant_d_deriv_s_h_over_lorentz_factor),
+      deriv_s_h_vv_coef() * fluid_velocity(ti::I) *
+              fluid_velocity_lower(ti::j) +
+          deriv_s_h_ss_coef() * s_upper(ti::I) * tilde_s(ti::j) -
+          deriv_s_h_sv_coef() * s_upper(ti::I) * fluid_velocity_lower(ti::j) -
+          deriv_s_h_vs_coef() * fluid_velocity(ti::I) * tilde_s(ti::j));
+  for (size_t i = 0; i < 3; ++i) {
+    constant_d_deriv_s_h_over_lorentz_factor.get(i, i) +=
+        get(deriv_s_h_trace_coef);
+  }
+
+  auto& deriv_dthin_prefactor = get<::Tags::TempScalar<29>>(temporaries);
+  tenex::evaluate(
+      make_not_null(&deriv_dthin_prefactor),
+      1.0 / (scaled_comoving_energy_density() * j_difference() -
+             comoving_four_momentum_density_upper(ti::J) * h_difference(ti::j) +
+             5.0 / 3.0 * square(comoving_energy_density()) /
+                 (2.0 + closure_factor() * (-1.0 + closure_factor() * 4.0))));
+
+  auto& deriv_e_dthin_over_lorentz_factor =
+      get<::Tags::TempScalar<30>>(temporaries);
+  tenex::evaluate(make_not_null(&deriv_e_dthin_over_lorentz_factor),
+                  deriv_dthin_prefactor() *
+                      (comoving_four_momentum_density_upper(ti::J) *
+                           constant_d_deriv_e_h_over_lorentz_factor(ti::j) -
+                       scaled_comoving_energy_density() *
+                           constant_d_deriv_e_j_over_lorentz_factor()));
+  auto& deriv_s_dthin_over_lorentz_factor =
+      get<::Tags::TempI<31, 3>>(temporaries);
+  tenex::evaluate<ti::I>(
+      make_not_null(&deriv_s_dthin_over_lorentz_factor),
+      deriv_dthin_prefactor() *
+          (comoving_four_momentum_density_upper(ti::J) *
+               constant_d_deriv_s_h_over_lorentz_factor(ti::I, ti::j) -
+           scaled_comoving_energy_density() *
+               constant_d_deriv_s_j_over_lorentz_factor(ti::I)));
 
   auto& deriv_e_j =
-      get<imex::Tags::Jacobian<LocalTags::TildeE, LocalTags::TildeJ>>(
+      get<::imex::Tags::Jacobian<LocalTags::TildeE, LocalTags::TildeJ>>(
           temporaries);
   tenex::evaluate(make_not_null(&deriv_e_j),
-                  square(fluid_lorentz_factor()) *
-                      (1.0 + d_thin() * square(s_dot_fluid_velocity()) *
-                                 inverse_s_norm() +
-                       d_thick() * (3.0 - 2.0 * square(fluid_lorentz_factor())) *
-                           fluid_velocity_norm() * denom()));
-
+                  fluid_lorentz_factor() *
+                      (constant_d_deriv_e_j_over_lorentz_factor() +
+                       j_difference() * deriv_e_dthin_over_lorentz_factor()));
   auto& deriv_s_j =
-      get<imex::Tags::Jacobian<LocalTags::TildeS, LocalTags::TildeJ>>(
+      get<::imex::Tags::Jacobian<LocalTags::TildeS, LocalTags::TildeJ>>(
           temporaries);
-  tenex::evaluate<ti::J>(make_not_null(&deriv_s_j),
-                         deriv_s_j_velocity_coef() * fluid_velocity(ti::J) +
-                         deriv_s_j_s_coef() * tilde_s_upper(ti::J));
-
+  tenex::evaluate<ti::I>(
+      make_not_null(&deriv_s_j),
+      fluid_lorentz_factor() *
+          (constant_d_deriv_s_j_over_lorentz_factor(ti::I) +
+           j_difference() * deriv_s_dthin_over_lorentz_factor(ti::I)));
   auto& deriv_e_h =
-      get<imex::Tags::Jacobian<LocalTags::TildeE, LocalTags::TildeHSpatial>>(
+      get<::imex::Tags::Jacobian<LocalTags::TildeE, LocalTags::TildeHSpatial>>(
           temporaries);
   tenex::evaluate<ti::i>(
       make_not_null(&deriv_e_h),
-      deriv_e_h_velocity_coef() * fluid_velocity_lower(ti::i) +
-      deriv_e_h_s_coef() * tilde_s(ti::i));
-
+      fluid_lorentz_factor() *
+          (constant_d_deriv_e_h_over_lorentz_factor(ti::i) +
+           deriv_e_dthin_over_lorentz_factor() * h_difference(ti::i)));
   auto& deriv_s_h =
-      get<imex::Tags::Jacobian<LocalTags::TildeS, LocalTags::TildeHSpatial>>(
+      get<::imex::Tags::Jacobian<LocalTags::TildeS, LocalTags::TildeHSpatial>>(
           temporaries);
-  tenex::evaluate<ti::J, ti::i>(
+  tenex::evaluate<ti::I, ti::j>(
       make_not_null(&deriv_s_h),
-      deriv_s_h_vv_coef() * fluid_velocity_lower(ti::i) *
-          fluid_velocity(ti::J) +
-      deriv_s_h_ss_coef() * tilde_s(ti::i) * tilde_s_upper(ti::J) +
-      deriv_s_h_vs_coef() * fluid_velocity_lower(ti::i) * tilde_s_upper(ti::J) +
-      deriv_s_h_sv_coef() * tilde_s(ti::i) * fluid_velocity(ti::J));
-  for (size_t i = 0; i < 3; ++i) {
-    deriv_s_h.get(i, i) += get(deriv_s_h_trace_coef);
-  }
+      fluid_lorentz_factor() *
+          (constant_d_deriv_s_h_over_lorentz_factor(ti::I, ti::j) +
+           deriv_s_dthin_over_lorentz_factor(ti::I) * h_difference(ti::j)));
 
-  Scalar<DataVector> j_difference{};
-  tenex::evaluate(
-      make_not_null(&j_difference),
-      square(fluid_lorentz_factor()) * fluid_velocity_norm() * denom() *
-      ((2.0 * square(fluid_lorentz_factor()) - 3.0) * tilde_e() -
-       4.0 * square(fluid_lorentz_factor()) * s_dot_fluid_velocity())
-      + square(fluid_lorentz_factor()) * tilde_e() *
-      square(s_dot_fluid_velocity()) * inverse_s_norm()
-                  );
-  //FIXME consider using 4-tensor or avoiding Hn
-  tnsr::i<DataVector, 3> h_spatial_difference{};//FIXME names?
-  Scalar<DataVector> h_normal_difference{};
-  {
-    Scalar<DataVector> s_coef{};
-    tenex::evaluate(
-        make_not_null(&s_coef),
-        fluid_lorentz_factor() *
-        (1.0 - tilde_e() * s_dot_fluid_velocity() * inverse_s_norm()) -
-        1.0 / fluid_lorentz_factor());
-    Scalar<DataVector> n_coef{}; //FIXME why did I call this n_coef?
-    tenex::evaluate(
-        make_not_null(&n_coef),
-        cube(fluid_lorentz_factor()) * denom() *
-        ((2.0 * square(fluid_lorentz_factor()) - 3.0) * tilde_e() -
-         (2.0 * square(fluid_lorentz_factor()) - 1.0) * s_dot_fluid_velocity()));
-    tenex::evaluate<ti::i>(
-        make_not_null(&h_spatial_difference),
-        s_coef() * tilde_s(ti::i) +
-        (s_coef() * square(fluid_lorentz_factor()) * s_dot_fluid_velocity()
-        - n_coef()) * fluid_velocity_lower(ti::i));
-    tenex::evaluate(
-        make_not_null(&h_normal_difference),
-        -s_coef() * square(fluid_lorentz_factor()) * s_dot_fluid_velocity()
-        + n_coef() * fluid_velocity_norm());
-  }
+  auto& deriv_source_e_j_coef = get<::Tags::TempScalar<32>>(temporaries);
+  tenex::evaluate(make_not_null(&deriv_source_e_j_coef),
+                  lapse() * fluid_lorentz_factor() * scattering_opacity());
+  auto& deriv_source_e_v_coef = get<::Tags::TempScalar<33>>(temporaries);
+  tenex::evaluate(make_not_null(&deriv_source_e_v_coef),
+                  lapse() * fluid_lorentz_factor() *
+                      (absorption_opacity() + scattering_opacity()));
+  auto& deriv_source_s_h_coef = get<::Tags::TempScalar<34>>(temporaries);
+  tenex::evaluate(make_not_null(&deriv_source_s_h_coef),
+                  -lapse() * (absorption_opacity() + scattering_opacity()));
+  auto& deriv_source_s_jv_coef = get<::Tags::TempScalar<35>>(temporaries);
+  tenex::evaluate(make_not_null(&deriv_source_s_jv_coef),
+                  -lapse() * fluid_lorentz_factor() * absorption_opacity());
 
-  Scalar<DataVector> deriv_dthin_prefactor{size_t{1}};//FIXME find bug test case
-  tenex::evaluate(
-      make_not_null(&deriv_dthin_prefactor),
-      1.0 /
-      (-comoving_momentum_density_spatial(ti::i) *
-       inverse_spatial_metric(ti::I, ti::J) * h_spatial_difference(ti::j) +
-       comoving_momentum_density_normal() * h_normal_difference() +
-       square(closure_factor()) * comoving_energy_density() * j_difference() +
-       5.0 / 3.0 * square(comoving_energy_density()) /
-       (2.0 + closure_factor() * (-1.0 + closure_factor() * 4.0))));
-
-  // (H1_i gamma^ij H2_j - H1n H2n)
-  // deriv_e_h // OK
-  Scalar<DataVector> deriv_e_hn{}; // FIXME existing coeffs?
-  // 2 W^2 + 1 = W^2 (3 - v^2)
-  tenex::evaluate(
-      make_not_null(&deriv_e_hn),
-      cube(fluid_lorentz_factor()) *
-      (d_thick() * 4.0 * fluid_velocity_norm() * denom()
-      + d_thin() *
-      (fluid_velocity_norm()
-       + square(s_dot_fluid_velocity()) * inverse_s_norm())));
-  Scalar<DataVector> deriv_e_dthin{};
-  tenex::evaluate(
-      make_not_null(&deriv_e_dthin),
-      deriv_dthin_prefactor() *
-      (comoving_momentum_density_spatial(ti::i) *
-       inverse_spatial_metric(ti::I, ti::J) * deriv_e_h(ti::j) -
-       comoving_momentum_density_normal() * deriv_e_hn() -
-       square(closure_factor()) * comoving_energy_density() * deriv_e_j()));
-  Scalar<DataVector> deriv_e_j_fixed{};
-  tenex::evaluate(make_not_null(&deriv_e_j_fixed),
-                  deriv_e_j() + j_difference() * deriv_e_dthin());
-  tnsr::i<DataVector, 3> deriv_e_h_fixed{};
-  tenex::evaluate<ti::i>(
-      make_not_null(&deriv_e_h_fixed),
-      deriv_e_h(ti::i) + h_spatial_difference(ti::i) * deriv_e_dthin());
-
-  tnsr::I<DataVector, 3> deriv_s_hn{}; // FIXME existing coeffs?
-  tenex::evaluate<ti::I>(
-      make_not_null(&deriv_s_hn),
-      fluid_lorentz_factor() * (
-          1.0
-          - 6.0 * d_thick() * square(fluid_lorentz_factor()) * denom()
-          + 2.0 * d_thin() * square(fluid_lorentz_factor()) * (tilde_e() * s_dot_fluid_velocity() * inverse_s_norm() - 1.0)
-       ) * fluid_velocity(ti::I) -
-        2.0 * d_thin() * cube(fluid_lorentz_factor()) * tilde_e() * square(s_dot_fluid_velocity()) * square(inverse_s_norm()) *
-        tilde_s_upper(ti::I));
-  tnsr::I<DataVector, 3> deriv_s_dthin{};
-  tenex::evaluate<ti::K>(
-      make_not_null(&deriv_s_dthin),
-      deriv_dthin_prefactor() *
-      (comoving_momentum_density_spatial(ti::i) *
-       inverse_spatial_metric(ti::I, ti::J) * deriv_s_h(ti::K, ti::j) -
-       comoving_momentum_density_normal() * deriv_s_hn(ti::K) -
-       square(closure_factor()) * comoving_energy_density() *
-       deriv_s_j(ti::K)));
-  tnsr::I<DataVector, 3> deriv_s_j_fixed{};
-  tenex::evaluate<ti::I>(
-      make_not_null(&deriv_s_j_fixed),
-      deriv_s_j(ti::I) + j_difference() * deriv_s_dthin(ti::I));
-  tnsr::Ij<DataVector, 3> deriv_s_h_fixed{};
-  tenex::evaluate<ti::J, ti::i>(
-      make_not_null(&deriv_s_h_fixed),
-      deriv_s_h(ti::J, ti::i) + h_spatial_difference(ti::i) * deriv_s_dthin(ti::J));
-
-  deriv_e_j = deriv_e_j_fixed;//FIXME
-  deriv_e_h = deriv_e_h_fixed;
-  deriv_s_j = deriv_s_j_fixed;
-  deriv_s_h = deriv_s_h_fixed;
-
-  tenex::evaluate(deriv_e_source_e,
-                  -lapse() * fluid_lorentz_factor() *
-                      (total_opacity() - scattering_opacity() * deriv_e_j()));
-  tenex::evaluate<ti::J>(deriv_s_source_e,
-                         lapse() * fluid_lorentz_factor() *
-                             (scattering_opacity() * deriv_s_j(ti::J) +
-                              total_opacity() * fluid_velocity(ti::J)));
+  tenex::evaluate(deriv_e_source_e, deriv_source_e_j_coef() * deriv_e_j() -
+                                        deriv_source_e_v_coef());
+  tenex::evaluate<ti::I>(deriv_s_source_e,
+                         deriv_source_e_j_coef() * deriv_s_j(ti::I) +
+                             deriv_source_e_v_coef() * fluid_velocity(ti::I));
   tenex::evaluate<ti::i>(
       deriv_e_source_s,
-      -lapse() * (total_opacity() * deriv_e_h(ti::i) +
-                  fluid_lorentz_factor() * absorption_opacity() * deriv_e_j() *
-                      fluid_velocity_lower(ti::i)));
-  tenex::evaluate<ti::J, ti::i>(
-      deriv_s_source_s,
-      -lapse() * (total_opacity() * deriv_s_h(ti::J, ti::i) +
-                  fluid_lorentz_factor() * absorption_opacity() *
-                      fluid_velocity_lower(ti::i) * deriv_s_j(ti::J)));
+      deriv_source_s_h_coef() * deriv_e_h(ti::i) +
+          deriv_source_s_jv_coef() * deriv_e_j() * fluid_velocity_lower(ti::i));
+  tenex::evaluate<ti::I, ti::j>(
+      deriv_s_source_s, deriv_source_s_h_coef() * deriv_s_h(ti::I, ti::j) +
+                            deriv_source_s_jv_coef() * deriv_s_j(ti::I) *
+                                fluid_velocity_lower(ti::j));
 }
 }  // namespace RadiationTransport::M1Grey::detail
