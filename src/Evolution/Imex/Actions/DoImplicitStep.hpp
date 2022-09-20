@@ -11,6 +11,7 @@
 #include "DataStructures/DataBox/Prefixes.hpp"
 #include "Evolution/Imex/Protocols/ImexSystem.hpp"
 #include "Evolution/Imex/SolveImplicitSector.hpp"
+#include "Evolution/Imex/Tags/Mode.hpp"
 #include "Parallel/AlgorithmExecution.hpp"
 #include "Time/Tags.hpp"
 #include "Utilities/Gsl.hpp"
@@ -47,6 +48,8 @@ namespace imex::Actions {
 ///   - variables_tag
 ///   - Tags::HistoryEvolvedVariables<variables_tag>
 struct DoImplicitStep {
+  using const_global_cache_tags = tmpl::list<imex::Tags::Mode>;
+
   template <typename DbTags, typename... InboxTags, typename Metavariables,
             typename ArrayIndex, typename ActionList,
             typename ParallelComponent>

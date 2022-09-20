@@ -15,6 +15,7 @@
 #include "DataStructures/Tensor/Metafunctions.hpp"
 #include "DataStructures/Variables.hpp"
 #include "Evolution/Imex/Protocols/ImplicitSector.hpp"
+#include "Evolution/Imex/Mode.hpp"
 #include "Evolution/Imex/Tags/ImplicitHistory.hpp"
 #include "NumericalAlgorithms/LinearSolver/Lapack.hpp"
 #include "NumericalAlgorithms/RootFinding/GslMultiRoot.hpp"
@@ -22,12 +23,19 @@
 #include "Time/Tags.hpp"
 #include "Time/TimeSteppers/TimeStepper.hpp"
 #include "Utilities/DoNotMove.hpp"
+#include "Utilities/ErrorHandling/Error.hpp"
 #include "Utilities/Gsl.hpp"
 #include "Utilities/ProtocolHelpers.hpp"
 #include "Utilities/StdArrayHelpers.hpp"
 #include "Utilities/TMPL.hpp"
 #include "Utilities/TaggedTuple.hpp"
 #include "Utilities/TypeTraits/IsA.hpp"
+
+/// \cond
+namespace imex::Tags {
+struct Mode;
+}  // namespace imex::Tags
+/// \endcond
 
 namespace imex {
 namespace solve_implicit_sector_detail {
@@ -287,25 +295,44 @@ void solve_implicit_sector(const gsl::not_null<db::DataBox<DbTags>*> box) {
     ImplicitVars pointwise_vars(pointwise_array.data(), pointwise_array.size());
     pointwise_vars = do_not_move(extract_point(vars, point));
 
-    if (false) {
-    const double tolerance = 1.0e-10;  // FIXME
-    const size_t max_iterations = 100;
-    pointwise_array = RootFinder::gsl_multiroot(
-        ImplicitSolve(&pointwise_history, *box, pointwise_vars, point),
-        pointwise_array, RootFinder::StoppingConditions::Residual(tolerance),
-        max_iterations);
-    } else {
-      const ImplicitSolve solve(&pointwise_history, *box, pointwise_vars, point);
-      std::array<double, ImplicitVars::number_of_independent_components>
-          implicit_correction_array = solve(pointwise_array);
-      DataVector implicit_correction_dv(implicit_correction_array.data(),
-                                        implicit_correction_array.size());
-      implicit_correction_dv *= -1.0;
-      semi_implicit_jacobian = solve.jacobian(pointwise_array);
-      //FIXME check for errors
-      lapack::general_matrix_linear_solve(&implicit_correction_dv,
-                                          &semi_implicit_jacobian);
-      pointwise_array += implicit_correction_array;
+    switch (db::get<Tags::Mode>(*box)) {
+      case Mode::Implicit:
+        {
+          const double tolerance = 1.0e-10;  // FIXME
+          const size_t max_iterations = 100;
+          pointwise_array = RootFinder::gsl_multiroot(
+              ImplicitSolve(&pointwise_history, *box, pointwise_vars, point),
+              pointwise_array,
+              RootFinder::StoppingConditions::Residual(tolerance),
+              max_iterations);
+          break;
+        }
+      case Mode::SemiImplicit:
+        {
+          const ImplicitSolve solve(&pointwise_history, *box, pointwise_vars,
+                                    point);
+          std::array<double, ImplicitVars::number_of_independent_components>
+              implicit_correction_array = solve(pointwise_array);
+          DataVector implicit_correction_dv(implicit_correction_array.data(),
+                                            implicit_correction_array.size());
+          implicit_correction_dv *= -1.0;
+          semi_implicit_jacobian = solve.jacobian(pointwise_array);
+          //FIXME check for errors
+          lapack::general_matrix_linear_solve(&implicit_correction_dv,
+                                              &semi_implicit_jacobian);
+          pointwise_array += implicit_correction_array;
+          break;
+        }
+      case Mode::Explicit:
+        {
+          // FIXME don't do pointwise
+          db::get<::Tags::TimeStepper<>>(*box).update_u(
+              make_not_null(&pointwise_vars), &pointwise_history,
+              db::get<::Tags::TimeStep>(*box));
+          break;
+        }
+      default:
+        ERROR("Invalid mode");
     }
 
     overwrite_point(make_not_null(&vars), pointwise_vars, point);

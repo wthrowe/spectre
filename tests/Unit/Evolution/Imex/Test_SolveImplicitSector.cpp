@@ -19,6 +19,8 @@
 #include "Evolution/Imex/SolveImplicitSector.hpp"
 #include "Evolution/Imex/Tags/ImplicitHistory.hpp"
 #include "Evolution/Imex/Tags/Jacobian.hpp"
+#include "Evolution/Imex/Tags/Mode.hpp"
+#include "Evolution/Imex/Mode.hpp"
 #include "Framework/TestHelpers.hpp"
 #include "Helpers/DataStructures/MakeWithRandomValues.hpp"
 #include "Helpers/Evolution/Imex/TestSector.hpp"
@@ -203,10 +205,11 @@ void test_fully_implicit() {
   auto box = db::create<
       db::AddSimpleTags<variables_tag, implicit_variables_source_tag, NonTensor,
                         Tags::TimeStepper<TimeSteppers::HeunImex>,
-                        Tags::TimeStep, imex::Tags::ImplicitHistory<Sector>>>(
+                        Tags::TimeStep, imex::Tags::ImplicitHistory<Sector>,
+                        imex::Tags::Mode>>(
       initial_vars, std::move(source_vars), non_tensor,
       std::make_unique<TimeSteppers::HeunImex>(), time_step,
-      imex::Tags::ImplicitHistory<Sector>::type{2});
+      imex::Tags::ImplicitHistory<Sector>::type{2}, imex::Mode::Implicit);
   db::mutate_apply<Sector::source>(make_not_null(&box));
   db::mutate<imex::Tags::ImplicitHistory<Sector>, Var1>(
       make_not_null(&box),
@@ -289,10 +292,12 @@ void test_semi_implicit() {
       db::AddSimpleTags<variables_tag, implicit_variables_source_tag,
                         Tags::TimeStepper<TimeSteppers::HeunImex>,
                         Tags::TimeStep,
-                        imex::Tags::ImplicitHistory<SimpleSector>>>(
+                        imex::Tags::ImplicitHistory<SimpleSector>,
+                        imex::Tags::Mode>>(
       initial_vars, std::move(source_vars),
       std::make_unique<TimeSteppers::HeunImex>(), time_step,
-      imex::Tags::ImplicitHistory<SimpleSector>::type{2});
+      imex::Tags::ImplicitHistory<SimpleSector>::type{2},
+      imex::Mode::SemiImplicit);
   db::mutate_apply<SimpleSector::source>(make_not_null(&box));
   db::mutate<imex::Tags::ImplicitHistory<SimpleSector>, Var1>(
       make_not_null(&box),
@@ -324,6 +329,7 @@ void test_semi_implicit() {
 
 SPECTRE_TEST_CASE("Unit.Evolution.Imex.solve_implicit_sector",
                   "[Unit][Evolution]") {
-  //test_fully_implicit();
+  test_fully_implicit();
   test_semi_implicit();
+  //FIXME test explicit
 }
