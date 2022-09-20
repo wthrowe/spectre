@@ -69,6 +69,7 @@
 #include "ParallelAlgorithms/EventsAndTriggers/Trigger.hpp"
 #include "PointwiseFunctions/AnalyticData/AnalyticData.hpp"
 #include "PointwiseFunctions/AnalyticData/RadiationTransport/M1Grey/HomogeneousSphere.hpp"
+#include "PointwiseFunctions/AnalyticData/RadiationTransport/M1Grey/SphericalGaussian.hpp"
 #include "PointwiseFunctions/AnalyticData/Tags.hpp"
 #include "PointwiseFunctions/AnalyticSolutions/AnalyticSolution.hpp"
 #include "PointwiseFunctions/AnalyticSolutions/RadiationTransport/M1Grey/ConstantM1.hpp"
@@ -309,7 +310,7 @@ struct EvolutionMetavars {
   // line `using initial_data = ...;` and include the header file for the
   // solution.
   using initial_data =
-      RadiationTransport::M1Grey::AnalyticData::HomogeneousCylinder;
+      RadiationTransport::M1Grey::AnalyticData::SphericalGaussian<2>;
   static_assert(
       is_analytic_data_v<initial_data> xor is_analytic_solution_v<initial_data>,
       "initial_data must be either an analytic_data or an analytic_solution");
