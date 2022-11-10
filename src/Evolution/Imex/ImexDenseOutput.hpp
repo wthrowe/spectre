@@ -10,6 +10,14 @@
 #include "Utilities/TMPL.hpp"
 
 /// \cond
+namespace Parallel {
+template <typename Metavariables>
+class GlobalCache;
+}  // namespace Parallel
+namespace db {
+template <typename DbTags>
+class DataBox;
+}  // namespace db
 namespace imex::Tags {
 template <typename ImplicitSector>
 struct ImplicitHistory;
@@ -44,9 +52,21 @@ struct ImexDenseOutput {
                                            history, time);
       return 0;
     };
-    tmpl::as_pack<typename ImexSystem::implicit_sectors>([&](auto... sectors_v) {
-      expand_pack(update_sector(sectors_v, histories)...);
-    });
+    tmpl::as_pack<typename ImexSystem::implicit_sectors>(
+        [&](auto... sectors_v) {
+          expand_pack(update_sector(sectors_v, histories)...);
+        });
+  }
+
+  template <typename DbTagsList, typename... InboxTags, typename Metavariables,
+            typename ArrayIndex, typename ParallelComponent>
+  static bool is_ready(
+      const gsl::not_null<db::DataBox<DbTagsList>*> /*box*/,
+      const gsl::not_null<tuples::TaggedTuple<InboxTags...>*> /*inboxes*/,
+      Parallel::GlobalCache<Metavariables>& /*cache*/,
+      const ArrayIndex& /*array_index*/,
+      const ParallelComponent* const /*component*/) {
+    return true;
   }
 };
 }  // namespace imex
