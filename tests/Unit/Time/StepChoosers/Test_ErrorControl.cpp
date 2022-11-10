@@ -31,7 +31,7 @@
 #include "Time/StepChoosers/StepChooser.hpp"
 #include "Time/Tags.hpp"
 #include "Time/TimeStepId.hpp"
-#include "Time/TimeSteppers/AdamsBashforthN.hpp"
+#include "Time/TimeSteppers/AdamsBashforth.hpp"
 #include "Time/TimeSteppers/TimeStepper.hpp"
 #include "Utilities/Gsl.hpp"
 #include "Utilities/ProtocolHelpers.hpp"
@@ -98,7 +98,7 @@ std::pair<double, bool> get_suggestion(
       db::AddComputeTags<>>(
       Metavariables<true>{}, std::move(history), step_values, error, false,
       std::unique_ptr<TimeStepper>{
-          std::make_unique<TimeSteppers::AdamsBashforthN>(stepper_order)},
+          std::make_unique<TimeSteppers::AdamsBashforth>(stepper_order)},
       *previous_step_error);
 
   const auto& time_stepper = get<Tags::TimeStepper<>>(box);

@@ -18,7 +18,7 @@
 #include "Time/Tags.hpp"  // IWYU pragma: keep
 #include "Time/Time.hpp"
 #include "Time/TimeStepId.hpp"
-#include "Time/TimeSteppers/AdamsBashforthN.hpp"
+#include "Time/TimeSteppers/AdamsBashforth.hpp"
 #include "Time/TimeSteppers/RungeKutta3.hpp"
 #include "Utilities/Gsl.hpp"
 #include "Utilities/TMPL.hpp"
@@ -103,15 +103,15 @@ void check(std::unique_ptr<TimeStepper> time_stepper,
 }  // namespace
 
 SPECTRE_TEST_CASE("Unit.Time.Actions.AdvanceTime", "[Unit][Time][Actions]") {
-  Parallel::register_classes_with_charm<TimeSteppers::AdamsBashforthN,
+  Parallel::register_classes_with_charm<TimeSteppers::AdamsBashforth,
                                         TimeSteppers::RungeKutta3>();
   const Slab slab(0., 1.);
   check(std::make_unique<TimeSteppers::RungeKutta3>(), {0, 1, {1, 2}},
         slab.start(), slab.duration() / 2);
   check(std::make_unique<TimeSteppers::RungeKutta3>(), {0, 1, {1, 2}},
         slab.end(), -slab.duration() / 2);
-  check(std::make_unique<TimeSteppers::AdamsBashforthN>(1), {0}, slab.start(),
+  check(std::make_unique<TimeSteppers::AdamsBashforth>(1), {0}, slab.start(),
         slab.duration() / 2);
-  check(std::make_unique<TimeSteppers::AdamsBashforthN>(1), {0}, slab.end(),
+  check(std::make_unique<TimeSteppers::AdamsBashforth>(1), {0}, slab.end(),
         -slab.duration() / 2);
 }
