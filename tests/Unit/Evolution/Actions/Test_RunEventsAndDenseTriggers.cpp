@@ -265,6 +265,7 @@ struct Component {
 
 template <typename Postprocessors>
 struct Metavariables {
+  static constexpr bool local_time_stepping = false;
   using postprocessors = Postprocessors;
   using system = System;
   using component_list = tmpl::list<Component<Metavariables>>;

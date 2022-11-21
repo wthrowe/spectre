@@ -376,6 +376,9 @@ void AdamsBashforthN::boundary_impl(const gsl::not_null<T*> result,
   // Start and end of the step we are trying to take
   const Time start_time = *(coupling.local_end() - 1);
   const auto time_step = end_time - start_time;
+  if (time_step.value() == 0.0) {
+    return;
+  }
 
   // We define the local_begin and remote_begin variables as the start
   // of the part of the history relevant to this calculation.

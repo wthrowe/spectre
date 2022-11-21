@@ -229,7 +229,8 @@ struct RunEventsAndDenseTriggers {
         case TriggeringState::NotReady:
           return {Parallel::AlgorithmExecution::Retry, std::nullopt};
         case TriggeringState::NeedsEvolvedVariables:
-          if (not already_at_correct_time) {
+          if (Metavariables::local_time_stepping or
+              not already_at_correct_time) {
             bool ready = true;
             tmpl::for_each<Postprocessors>([&](auto postprocessor_v) {
               using postprocessor = tmpl::type_from<decltype(postprocessor_v)>;
@@ -254,16 +255,23 @@ struct RunEventsAndDenseTriggers {
             // no-op.)
             variables_restorer.restore();
             variables_restorer.save();
-            db::mutate<variables_tag>(
+            db::mutate<variables_tag, history_tag>(
                 make_not_null(&box),
                 [&dense_output_succeeded, &next_trigger](
                     gsl::not_null<typename variables_tag::type*> vars,
+                    const gsl::not_null<typename history_tag::type*> history,
                     const TimeStepper& stepper,
-                    const typename history_tag::type& history) {
+                    const typename ::Tags::TimeStep::type& time_step) {
+                  if (Metavariables::local_time_stepping) {
+                    *vars *= -1.0;
+                    stepper.update_u(vars, history, time_step);
+                    *vars *= -1.0;
+                  }
                   dense_output_succeeded =
-                      stepper.dense_update_u(vars, history, next_trigger);
+                      stepper.dense_update_u(vars, *history, next_trigger);
                 },
-                db::get<::Tags::TimeStepper<>>(box), db::get<history_tag>(box));
+                db::get<::Tags::TimeStepper<>>(box),
+                db::get<::Tags::TimeStep>(box));
             if (not dense_output_succeeded) {
               // Need to take another time step
               return {Parallel::AlgorithmExecution::Continue, std::nullopt};
