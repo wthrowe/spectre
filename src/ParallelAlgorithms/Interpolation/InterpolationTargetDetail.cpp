@@ -12,7 +12,7 @@ double get_temporal_id_value(const LinkedMessageId<double>& id) {
   return id.id;
 }
 double get_temporal_id_value(const TimeStepId& time_id) {
-  return time_id.substep_time().value();
+  return time_id.substep_time();
 }
 double evaluate_temporal_id_for_expiration(const double time) { return time; }
 double evaluate_temporal_id_for_expiration(const LinkedMessageId<double>& id) {
