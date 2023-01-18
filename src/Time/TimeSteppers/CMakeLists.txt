@@ -25,6 +25,7 @@ spectre_target_headers(
   DormandPrince5.hpp
   Factory.hpp
   Heun2.hpp
+  ImexTimeStepper.hpp
   LtsTimeStepper.hpp
   Rk3HesthavenSsp.hpp
   Rk3Owren.hpp
