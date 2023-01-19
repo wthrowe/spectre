@@ -58,7 +58,7 @@
 /// private section of the class body, and
 /// IMEX_TIME_STEPPER_DEFINE_OVERLOADS(derived_class), which must be
 /// placed in the cpp file.
-class ImexTimeStepper : public TimeStepper {
+class ImexTimeStepper : public virtual TimeStepper {
  public:
   WRAPPED_PUPable_abstract(ImexTimeStepper);  // NOLINT
 
