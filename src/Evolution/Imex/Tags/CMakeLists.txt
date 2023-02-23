@@ -7,4 +7,5 @@ spectre_target_headers(
   HEADERS
   ImplicitHistory.hpp
   Jacobian.hpp
+  Mode.hpp
   )
