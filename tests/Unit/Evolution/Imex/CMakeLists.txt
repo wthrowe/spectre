@@ -5,6 +5,7 @@ set(LIBRARY "Test_Imex")
 
 set(LIBRARY_SOURCES
   Test_GuessResult.cpp
+  Test_SolveImplicitSector.cpp
   )
 
 add_subdirectory(Tags)
@@ -23,6 +24,7 @@ target_link_libraries(
   DataStructuresHelpers
   Framework
   Imex
+  ImexHelpers
   Utilities
   )
 

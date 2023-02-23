@@ -17,6 +17,7 @@ spectre_target_headers(
   HEADERS
   GuessResult.hpp
   NamespaceDocs.hpp
+  SolveImplicitSector.hpp
   )
 
 target_link_libraries(
