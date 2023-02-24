@@ -14,19 +14,24 @@
 #include "DataStructures/DataBox/Tag.hpp"
 #include "DataStructures/DataVector.hpp"
 #include "DataStructures/ExtractPoint.hpp"
+#include "DataStructures/Matrix.hpp"
 #include "DataStructures/Tensor/Tensor.hpp"
 #include "DataStructures/Variables.hpp"
 #include "DataStructures/VariablesTag.hpp"
 #include "Evolution/Imex/GuessResult.hpp"
+#include "Evolution/Imex/Mode.hpp"
 #include "Evolution/Imex/Protocols/ImplicitSector.hpp"
 #include "Evolution/Imex/Tags/ImplicitHistory.hpp"
 #include "Evolution/Imex/Tags/Jacobian.hpp"
+#include "Evolution/Imex/Tags/Mode.hpp"
+#include "NumericalAlgorithms/LinearSolver/Lapack.hpp"
 #include "NumericalAlgorithms/RootFinding/GslMultiRoot.hpp"
 #include "Time/History.hpp"
 #include "Time/Tags.hpp"
 #include "Time/Time.hpp"
 #include "Time/TimeSteppers/ImexTimeStepper.hpp"
 #include "Utilities/ErrorHandling/Assert.hpp"
+#include "Utilities/ErrorHandling/Error.hpp"
 #include "Utilities/Gsl.hpp"
 #include "Utilities/ProtocolHelpers.hpp"
 #include "Utilities/StdArrayHelpers.hpp"
@@ -387,6 +392,8 @@ void solve_implicit_sector(const gsl::not_null<db::DataBox<DbTags>*> box) {
                                                db::DataBox<DbTags>>
       solver(*box);
 
+  Matrix semi_implicit_jacobian{};
+
   const size_t number_of_grid_points =
       db::get<tmpl::front<typename ImplicitSector::tensors>>(*box)
           .begin()
@@ -408,12 +415,41 @@ void solve_implicit_sector(const gsl::not_null<db::DataBox<DbTags>*> box) {
     if (solver.compute_initial_guess() == GuessResult::ExactSolution) {
       pointwise_vars_array = solver.initial_guess();
     } else {
-      // FIXME where should these be specified?
-      const double tolerance = 1.0e-10;
-      const size_t max_iterations = 100;
-      pointwise_vars_array = RootFinder::gsl_multiroot(
-          solver, solver.initial_guess(),
-          RootFinder::StoppingConditions::Residual(tolerance), max_iterations);
+      switch (db::get<Tags::Mode>(*box)) {
+        case Mode::Implicit: {
+          // FIXME where should these be specified?
+          const double tolerance = 1.0e-10;
+          const size_t max_iterations = 100;
+          pointwise_vars_array = RootFinder::gsl_multiroot(
+              solver, solver.initial_guess(),
+              RootFinder::StoppingConditions::Residual(tolerance),
+              max_iterations);
+          break;
+        }
+        case Mode::SemiImplicit: {
+          const auto initial_guess = solver.initial_guess();
+          auto correction_array = solver(initial_guess);
+          DataVector correction(correction_array.data(),
+                                correction_array.size());
+          correction *= -1.0;
+          semi_implicit_jacobian = solver.jacobian(initial_guess);
+          const int lapack_info =
+              lapack::general_matrix_linear_solve(&correction,
+                                                  &semi_implicit_jacobian);
+          if (lapack_info != 0) {
+            if (lapack_info < 0) {
+              ERROR("LAPACK invalid argument: " << -lapack_info);
+            } else {
+              ERROR("Semi-implicit inversion was singular at\n"
+                    << pointwise_vars);
+            }
+          }
+          pointwise_vars_array = initial_guess + correction_array;
+          break;
+        }
+        default:
+          ERROR("Invalid implicit mode");
+      }
     }
 
     // Write the result into the evolution variables.

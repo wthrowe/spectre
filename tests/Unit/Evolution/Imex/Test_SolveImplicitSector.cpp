@@ -20,10 +20,12 @@
 #include "DataStructures/Variables.hpp"
 #include "DataStructures/VariablesTag.hpp"
 #include "Evolution/Imex/GuessResult.hpp"
+#include "Evolution/Imex/Mode.hpp"
 #include "Evolution/Imex/Protocols/ImplicitSector.hpp"
 #include "Evolution/Imex/SolveImplicitSector.hpp"
 #include "Evolution/Imex/Tags/ImplicitHistory.hpp"
 #include "Evolution/Imex/Tags/Jacobian.hpp"
+#include "Evolution/Imex/Tags/Mode.hpp"
 #include "Framework/TestHelpers.hpp"
 #include "Helpers/DataStructures/MakeWithRandomValues.hpp"
 #include "Helpers/Evolution/Imex/TestSector.hpp"
@@ -32,6 +34,7 @@
 #include "Time/Tags.hpp"
 #include "Time/TimeStepId.hpp"
 #include "Time/TimeSteppers/Heun2.hpp"
+#include "Utilities/ErrorHandling/Error.hpp"
 #include "Utilities/Gsl.hpp"
 #include "Utilities/ProtocolHelpers.hpp"
 #include "Utilities/TMPL.hpp"
@@ -349,21 +352,16 @@ void test_internal_jacobian_ordering() {
 }
 
 template <bool TestWithAnalyticSolution>
-void test_solve_implicit_sector() {
+void test_solve_implicit_sector(const imex::Mode solve_mode) {
   using sector = ImplicitSector<TestWithAnalyticSolution>;
+  // No solve is done with an analytic solution.
+  const bool doing_semi_implicit_solve =
+      solve_mode == imex::Mode::SemiImplicit and not TestWithAnalyticSolution;
   // We handle v1 entirely explicitly and v2, v3 entirely implicitly.
   // The evolution equations for the latter two (coded in `Source`
   // above) are
   // d/dt[v2^ij] = v3^i v3^j - nt v2^ij
   // d/dt[v3^i] = -v1 v3^i
-
-  // The first implicit substep for the Heun stepper is
-  // y(dt) = y(0) + dt/2 (d/d[y(0)] + d/dt[y(dt)])
-
-  // These give the analytic solution for the result of the first substep as
-  // v3^i(dt) = v3^i(0) (1 - dt/2 v1(0)) / (1 + dt/2 v1(dt))
-  // v2^ij(dt) = (v2^ij(0) (1 - dt/2 nt) +
-  //              + dt/2 (v3^i(0) v3^j(0) + v3^i(dt) v3^j(dt))) / (1 + dt/2 nt)
 
   using variables_tag = Tags::Variables<tmpl::list<Var1, Var2, Var3>>;
   using implicit_variables_source_tag =
@@ -385,12 +383,13 @@ void test_solve_implicit_sector() {
                                                           make_not_null(&dist));
   const auto initial_vars = make_with_random_values<variables_tag::type>(
       make_not_null(&gen), make_not_null(&dist), number_of_grid_points);
-  auto box = db::create<db::AddSimpleTags<
-      variables_tag, NonTensor, VariablesFromEvolution,
-      Tags::TimeStepper<TimeSteppers::Heun2>, Tags::TimeStep, history_tag>>(
+  auto box = db::create<
+      db::AddSimpleTags<variables_tag, NonTensor, VariablesFromEvolution,
+                        Tags::TimeStepper<TimeSteppers::Heun2>, Tags::TimeStep,
+                        history_tag, imex::Tags::Mode>>(
       initial_vars, non_tensor, VariablesFromEvolution::type{},
       std::make_unique<TimeSteppers::Heun2>(), time_step,
-      typename history_tag::type{2});
+      typename history_tag::type{2}, solve_mode);
 
   // Perform updates as if taking an explicit step.
   const auto simulate_explicit_step = [&dist, &gen, &initial_vars](
@@ -433,31 +432,107 @@ void test_solve_implicit_sector() {
 
   simulate_explicit_step(make_not_null(&box), initial_time_step_id);
 
+  auto guess = initial_vars;
+  InitialGuess::apply(&get<Var2>(guess), &get<Var3>(guess), {}, {});
+
   imex::solve_implicit_sector<sector>(make_not_null(&box));
 
   const double dt = time_step.value();
   const auto final_vars = db::get<variables_tag>(box);
-  Var3::type expected_var3{};
-  tenex::evaluate<ti::I>(make_not_null(&expected_var3),
-                         (1.0 - 0.5 * dt * get<Var1>(initial_vars)()) /
-                             (1.0 + 0.5 * dt * get<Var1>(final_vars)()) *
-                             get<Var3>(initial_vars)(ti::I));
-  CHECK_ITERABLE_APPROX(get<Var3>(final_vars), expected_var3);
   Var2::type expected_var2{};
-  tenex::evaluate<ti::I, ti::J>(
-      make_not_null(&expected_var2),
-      ((1.0 - 0.5 * dt * non_tensor) * get<Var2>(initial_vars)(ti::I, ti::J) +
-       0.5 * dt *
-           (get<Var3>(initial_vars)(ti::I) * get<Var3>(initial_vars)(ti::J) +
-            expected_var3(ti::I) * expected_var3(ti::J))) /
-          (1.0 + 0.5 * dt * non_tensor));
+  Var3::type expected_var3{};
+  Var2::type expected_var2_final{};
+  if (not doing_semi_implicit_solve) {
+    // The first implicit substep for the Heun stepper is
+    // y(dt) = y(0) + dt/2 (d/d[y(0)] + d/dt[y(dt)])
+
+    // The analytic solution for the result of the first substep is
+    // v3^i(dt) = v3^i(0) (1 - dt/2 v1(0)) / (1 + dt/2 v1(dt))
+    // v2^ij(dt) = (v2^ij(0) (1 - dt/2 nt) +
+    //              + dt/2 (v3^i(0) v3^j(0) + v3^i(dt) v3^j(dt)))
+    //             / (1 + dt/2 nt)
+
+    tenex::evaluate<ti::I>(make_not_null(&expected_var3),
+                           (1.0 - 0.5 * dt * get<Var1>(initial_vars)()) /
+                               (1.0 + 0.5 * dt * get<Var1>(final_vars)()) *
+                               get<Var3>(initial_vars)(ti::I));
+    tenex::evaluate<ti::I, ti::J>(
+        make_not_null(&expected_var2),
+        ((1.0 - 0.5 * dt * non_tensor) * get<Var2>(initial_vars)(ti::I, ti::J) +
+         0.5 * dt *
+             (get<Var3>(initial_vars)(ti::I) * get<Var3>(initial_vars)(ti::J) +
+              expected_var3(ti::I) * expected_var3(ti::J))) /
+            (1.0 + 0.5 * dt * non_tensor));
+
+    // The second implicit substep is simpler, since it isn't actually
+    // implicit, and is in fact the same as the first substep.
+    expected_var2_final = expected_var2;
+  } else {
+    // For a semi-implicit method, we expand the source term around
+    // the initial guess:
+    //
+    // S(y(dt)) = S(guess + (y(dt) - guess))
+    //   ~= S(guess) + J(guess) (y(dt) - guess)
+    //
+    // For Heun's method
+    //
+    // y(dt) = y(0) + dt/2 (d/d[y(0)] + d/dt[y(dt)])
+    //
+    // this gives the equation
+    //
+    // [1 - dt/2 J(guess)] (y(dt) - guess)
+    //     = y(0) - guess + dt/2 (d/d[y(0)] + S(guess))
+    //
+    // with
+    //
+    // S[v2^ij] = v3^i v3^j - nt v2^ij
+    // S[v3^i] = -v1 v3^i
+    // J[v2^ij] : dS[v2^ij]/dv2^kl = -nt delta^i_k delta^j_l
+    //            dS[v2^ij]/dv3^k = v3^i delta^j_k + v3^j delta^i_k
+    // J[v3^i] : dS[v3^i]/dv2^jk = 0
+    //           dS[v3^i]/dv3^j = -v1 delta^i_j
+    //
+    // This is fairly easy to solve as (denoting the guess as g2 and g3):
+    //
+    // v3^i(dt) = (1 - dt/2 v1(0)) / (1 + dt/2 v1(dt)) v3^i(0)
+    //     (solved exactly as the source is linear)
+    //
+    // v2^ij(dt) =
+    //    (1 - dt/2 nt) / (1 + dt/2 nt) v2^ij(0)
+    //    + dt/2 / (1 + dt/2 nt) [
+    //         v3^i(0) v3^j(0) + g3^i v3^j(dt) + v3^i(dt) g3^j - g3^i g3^j]
+
+    tenex::evaluate<ti::I>(make_not_null(&expected_var3),
+                           (1.0 - 0.5 * dt * get<Var1>(initial_vars)()) /
+                               (1.0 + 0.5 * dt * get<Var1>(final_vars)()) *
+                               get<Var3>(initial_vars)(ti::I));
+    tenex::evaluate<ti::I, ti::J>(
+        make_not_null(&expected_var2),
+        ((1.0 - 0.5 * dt * non_tensor) * get<Var2>(initial_vars)(ti::I, ti::J) +
+         0.5 * dt *
+             (get<Var3>(initial_vars)(ti::I) * get<Var3>(initial_vars)(ti::J) +
+              get<Var3>(guess)(ti::I) * expected_var3(ti::J) +
+              expected_var3(ti::I) * get<Var3>(guess)(ti::J) -
+              get<Var3>(guess)(ti::I) * get<Var3>(guess)(ti::J))) /
+            (1.0 + 0.5 * dt * non_tensor));
+
+    // The second substep is explicit, so doesn't do a semi-implicit
+    // solve, but still uses the results from the first substep.  Var3
+    // is again exact.
+    tenex::evaluate<ti::I, ti::J>(
+        make_not_null(&expected_var2_final),
+        (1.0 - 0.5 * dt * non_tensor) * get<Var2>(initial_vars)(ti::I, ti::J) +
+            0.5 * dt *
+                (get<Var3>(initial_vars)(ti::I) *
+                     get<Var3>(initial_vars)(ti::J) +
+                 expected_var3(ti::I) * expected_var3(ti::J) -
+                 non_tensor * expected_var2(ti::I, ti::J)));
+  }
   CHECK_ITERABLE_APPROX(get<Var2>(final_vars), expected_var2);
+  CHECK_ITERABLE_APPROX(get<Var3>(final_vars), expected_var3);
 
   CHECK(db::get<history_tag>(box).size() == 1);
   CHECK(db::get<history_tag>(box).substeps().empty());
-
-  // The second implicit substep is simpler, since it isn't actually
-  // implicit, and is in fact the same as the first substep.
 
   simulate_explicit_step(make_not_null(&box),
                          initial_time_step_id.next_substep(time_step, 1.0));
@@ -465,9 +540,8 @@ void test_solve_implicit_sector() {
   imex::solve_implicit_sector<sector>(make_not_null(&box));
   performing_step_with_no_implicit_term = false;
   CHECK_ITERABLE_APPROX(get<Var2>(db::get<variables_tag>(box)),
-                        get<Var2>(final_vars));
-  CHECK_ITERABLE_APPROX(get<Var3>(db::get<variables_tag>(box)),
-                        get<Var3>(final_vars));
+                        expected_var2_final);
+  CHECK_ITERABLE_APPROX(get<Var3>(db::get<variables_tag>(box)), expected_var3);
 
   CHECK(db::get<history_tag>(box).size() == 1);
   CHECK(db::get<history_tag>(box).substeps().size() == 1);
@@ -487,6 +561,8 @@ SPECTRE_TEST_CASE("Unit.Evolution.Imex.solve_implicit_sector",
   test_test_sector<false>();
   test_test_sector<true>();
   test_internal_jacobian_ordering();
-  test_solve_implicit_sector<false>();
-  test_solve_implicit_sector<true>();
+  test_solve_implicit_sector<false>(imex::Mode::Implicit);
+  test_solve_implicit_sector<true>(imex::Mode::Implicit);
+  test_solve_implicit_sector<false>(imex::Mode::SemiImplicit);
+  test_solve_implicit_sector<true>(imex::Mode::SemiImplicit);
 }

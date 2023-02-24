@@ -29,6 +29,7 @@ target_link_libraries(
   Options
   INTERFACE
   DataStructures
+  LinearSolver
   Time
   Utilities
   )
