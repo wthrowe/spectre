@@ -24,7 +24,10 @@ target_link_libraries(
   PUBLIC
   ErrorHandling
   INTERFACE
+  DataStructures
+  Time
   Utilities
   )
 
 add_subdirectory(Protocols)
+add_subdirectory(Tags)
