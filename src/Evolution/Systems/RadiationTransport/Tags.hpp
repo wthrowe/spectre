@@ -26,9 +26,10 @@ struct HeavyLeptonNeutrinos {
   static constexpr size_t energy_bin = EnergyBin;
 };
 
-template <template <size_t> class U, size_t EnergyBin>
-std::string get_name(const U<EnergyBin>& /*species*/) {
-  return pretty_type::short_name<U<EnergyBin>>() + std::to_string(EnergyBin);
+template <typename Species>
+std::string get_name(const Species& /*species*/) {
+  return pretty_type::short_name<Species>() +
+         std::to_string(Species::energy_bin);
 }
 
 }  // namespace neutrinos
