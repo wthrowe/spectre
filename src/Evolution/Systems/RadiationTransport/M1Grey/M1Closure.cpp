@@ -208,16 +208,8 @@ void compute_closure_impl(
                                  h_sqr_thin_thick * d_thin * d_thick;
             return (square(e_fluid * local_zeta) - h_sqr) / square(e_pt);
           };
-      // To avoid failures in the root find at the boundary of
-      // the allowed domain for zeta, test the edge values first.
-      if (fabs(zeta_j_sqr_minus_h_sqr(0.)) < root_find_tolerance) {
-        get(*closure_factor)[s] = 0.;
-      } else if (fabs(zeta_j_sqr_minus_h_sqr(1.)) < root_find_tolerance) {
-        get(*closure_factor)[s] = 1.;
-      } else {
-        get(*closure_factor)[s] = RootFinder::toms748(
-            zeta_j_sqr_minus_h_sqr, 1.e-15, 1., root_find_tolerance, 1.0e-15);
-      }
+      get(*closure_factor)[s] = RootFinder::toms748(
+          zeta_j_sqr_minus_h_sqr, 0., 1., root_find_tolerance, 1.0e-15);
       const double& zeta = get(*closure_factor)[s];
 
       // Assemble output quantities:
