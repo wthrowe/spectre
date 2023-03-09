@@ -289,10 +289,10 @@ struct EvolutionMetavars {
           tmpl::list<
               evolution::dg::Actions::ApplyBoundaryCorrectionsToTimeDerivative<
                   system, volume_dim>,
-              Actions::RecordTimeStepperData<>,
+              Actions::RecordTimeStepperData,
               evolution::Actions::RunEventsAndDenseTriggers<
                   tmpl::list<typename system::primitive_from_conservative>>,
-              Actions::UpdateU<>>>,
+              Actions::UpdateU>>,
       Limiters::Actions::SendData<EvolutionMetavars>,
       Limiters::Actions::Limit<EvolutionMetavars>,
       // Conservative `UpdatePrimitives` expects system to possess
@@ -331,7 +331,7 @@ struct EvolutionMetavars {
           system, volume_dim>,
       tmpl::conditional_t<
           local_time_stepping, tmpl::list<>,
-          tmpl::list<Actions::RecordTimeStepperData<>, Actions::UpdateU<>>>,
+          tmpl::list<Actions::RecordTimeStepperData, Actions::UpdateU>>,
       Actions::MutateApply<typename system::primitive_from_conservative>,
       // Note: The primitive variables are computed as part of the TCI.
       evolution::dg::subcell::Actions::TciAndRollback<
@@ -350,7 +350,7 @@ struct EvolutionMetavars {
           NewtonianEuler::subcell::PrimsAfterRollback<volume_dim>>,
       evolution::dg::subcell::fd::Actions::TakeTimeStep<
           NewtonianEuler::subcell::TimeDerivative>,
-      Actions::RecordTimeStepperData<>, Actions::UpdateU<>,
+      Actions::RecordTimeStepperData, Actions::UpdateU,
       Actions::MutateApply<typename system::primitive_from_conservative>,
       evolution::dg::subcell::Actions::TciAndSwitchToDg<
           NewtonianEuler::subcell::TciOnFdGrid<volume_dim>>,

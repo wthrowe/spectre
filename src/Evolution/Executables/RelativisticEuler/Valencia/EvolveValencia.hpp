@@ -213,11 +213,11 @@ struct EvolutionMetavars {
           tmpl::list<
               evolution::dg::Actions::ApplyBoundaryCorrectionsToTimeDerivative<
                   system, volume_dim>,
-              Actions::RecordTimeStepperData<>,
+              Actions::RecordTimeStepperData,
               evolution::Actions::RunEventsAndDenseTriggers<
                   tmpl::list<AlwaysReadyPostprocessor<
                       typename system::primitive_from_conservative>>>,
-              Actions::UpdateU<>>>,
+              Actions::UpdateU>>,
       Limiters::Actions::SendData<EvolutionMetavars>,
       Limiters::Actions::Limit<EvolutionMetavars>,
       VariableFixing::Actions::FixVariables<

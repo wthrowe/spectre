@@ -161,16 +161,6 @@ struct CharacteristicEvolution {
           observers::ObserverWriter<Metavariables>,
           typename Metavariables::cce_boundary_component>>;
 
-  using record_time_stepper_data_and_step =
-      tmpl::list<::Actions::RecordTimeStepperData<
-                     typename Metavariables::evolved_coordinates_variables_tag>,
-                 ::Actions::RecordTimeStepperData<::Tags::Variables<
-                     tmpl::list<typename Metavariables::evolved_swsh_tag>>>,
-                 ::Actions::UpdateU<
-                     typename Metavariables::evolved_coordinates_variables_tag>,
-                 ::Actions::UpdateU<::Tags::Variables<
-                     tmpl::list<typename Metavariables::evolved_swsh_tag>>>>;
-
   using self_start_extract_action_list = tmpl::list<
       Actions::RequestBoundaryData<
           typename Metavariables::cce_boundary_component,
@@ -197,7 +187,7 @@ struct CharacteristicEvolution {
       tmpl::transform<typename metavariables::cce_scri_tags,
                       tmpl::bind<::Actions::MutateApply,
                                  tmpl::bind<CalculateScriPlusValue, tmpl::_1>>>,
-      record_time_stepper_data_and_step>;
+      ::Actions::RecordTimeStepperData, ::Actions::UpdateU>;
 
   using extract_action_list = tmpl::list<
       Actions::RequestBoundaryData<
@@ -218,7 +208,8 @@ struct CharacteristicEvolution {
       tmpl::transform<bondi_hypersurface_step_tags,
                       tmpl::bind<hypersurface_computation, tmpl::_1>>,
       Actions::FilterSwshVolumeQuantity<Tags::BondiH>,
-      compute_scri_quantities_and_observe, record_time_stepper_data_and_step,
+      compute_scri_quantities_and_observe, ::Actions::RecordTimeStepperData,
+      ::Actions::UpdateU,
       ::Actions::ChangeStepSize<typename Metavariables::cce_step_choosers>,
       // We cannot know our next step for certain until after we've performed
       // step size selection, as we may need to reject a step.

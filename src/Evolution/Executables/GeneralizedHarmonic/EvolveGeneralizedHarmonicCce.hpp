@@ -120,9 +120,9 @@ struct EvolutionMetavars
           tmpl::list<
               evolution::dg::Actions::ApplyBoundaryCorrectionsToTimeDerivative<
                   system, VolumeDim>,
-              Actions::RecordTimeStepperData<>,
+              Actions::RecordTimeStepperData,
               evolution::Actions::RunEventsAndDenseTriggers<tmpl::list<>>,
-              Actions::UpdateU<>,
+              Actions::UpdateU,
               dg::Actions::Filter<
                   Filters::Exponential<0>,
                   tmpl::list<

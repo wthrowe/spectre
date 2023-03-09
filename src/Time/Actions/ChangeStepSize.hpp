@@ -153,8 +153,7 @@ struct ChangeStepSize {
       const Parallel::GlobalCache<Metavariables>& /*cache*/,
       const ArrayIndex& /*array_index*/, const ActionList /*meta*/,
       const ParallelComponent* const /*meta*/) {
-    static_assert(
-        tmpl::any<ActionList, tt::is_a<Actions::UpdateU, tmpl::_1>>::value,
+    static_assert(tmpl::list_contains_v<ActionList, Actions::UpdateU>,
         "The ChangeStepSize action requires that you also use the UpdateU "
         "action to permit step-unwinding. If you are stepping within "
         "an action that is not UpdateU, consider using the take_step function "
@@ -166,8 +165,7 @@ struct ChangeStepSize {
       return {Parallel::AlgorithmExecution::Continue, std::nullopt};
     } else {
       return {Parallel::AlgorithmExecution::Continue,
-              tmpl::index_if<ActionList,
-                             tt::is_a<Actions::UpdateU, tmpl::_1>>::value};
+              tmpl::index_of<ActionList, Actions::UpdateU>::value};
     }
   }
 };
