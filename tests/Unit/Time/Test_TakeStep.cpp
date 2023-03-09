@@ -69,7 +69,7 @@ struct Metavariables {
   using component_list = tmpl::list<>;
 };
 
-void test_gts() {
+void test_gts(const bool allow_step_rejection) {
   const Slab slab{0.0, 1.00};
   const TimeDelta time_step = slab.duration() / 4;
 
@@ -108,7 +108,9 @@ void test_gts() {
   // update the rhs
   db::mutate<Tags::dt<EvolvedVariable>>(make_not_null(&box), update_rhs,
                                         db::get<EvolvedVariable>(box));
-  take_step<typename Metavariables::system, false>(make_not_null(&box));
+  // allow_step_rejection should have no effect in GTS
+  take_step<typename Metavariables::system, false>(make_not_null(&box),
+                                                   allow_step_rejection);
   // check that the state is as expected
   CHECK(db::get<Tags::TimeStepId>(box).substep_time() == 0.0);
   CHECK(db::get<Tags::Next<Tags::TimeStepId>>(box).substep_time() ==
@@ -120,7 +122,7 @@ void test_gts() {
                         1.0e-2 * initial_values);
 }
 
-void test_lts() {
+void test_lts(const bool allow_step_rejection) {
   const Slab slab{0.0, 1.00};
   const TimeDelta time_step = slab.duration() / 4;
 
@@ -177,7 +179,8 @@ void test_lts() {
   // update the rhs
   db::mutate<Tags::dt<EvolvedVariable>>(make_not_null(&box), update_rhs,
                                          db::get<EvolvedVariable>(box));
-  take_step<typename Metavariables::system, true>(make_not_null(&box));
+  take_step<typename Metavariables::system, true>(make_not_null(&box),
+                                                  allow_step_rejection);
   // check that the state is as expected
   CHECK(db::get<Tags::TimeStepId>(box).substep_time() == 0.0);
   CHECK(db::get<Tags::Next<Tags::TimeStepId>>(box).substep_time() ==
@@ -215,19 +218,28 @@ void test_lts() {
       make_not_null(&box), [](const gsl::not_null<double*> grid_spacing) {
         *grid_spacing = 0.15 / TimeSteppers::AdamsBashforth{5}.stable_step();
       });
-  take_step<typename Metavariables::system, true>(make_not_null(&box));
+  take_step<typename Metavariables::system, true>(make_not_null(&box),
+                                                  allow_step_rejection);
   // check that the state is as expected
   CHECK(db::get<Tags::TimeStepId>(box).substep_time() == approx(0.25));
-  CHECK(db::get<Tags::TimeStep>(box) == TimeDelta{slab, {1, 8}});
   CHECK(db::get<Tags::Next<Tags::TimeStep>>(box) == TimeDelta{slab, {1, 8}});
-  CHECK_ITERABLE_APPROX(db::get<EvolvedVariable>(box),
-                        initial_values * exp(0.00375));
   CHECK_ITERABLE_APPROX(db::get<Tags::dt<EvolvedVariable>>(box),
                         1.0e-2 * initial_values * exp(0.0025));
+  if (allow_step_rejection) {
+    CHECK(db::get<Tags::TimeStep>(box) == TimeDelta{slab, {1, 8}});
+    CHECK_ITERABLE_APPROX(db::get<EvolvedVariable>(box),
+                          initial_values * exp(0.00375));
+  } else {
+    CHECK(db::get<Tags::TimeStep>(box) == TimeDelta{slab, {1, 4}});
+    CHECK_ITERABLE_APPROX(db::get<EvolvedVariable>(box),
+                          initial_values * exp(0.005));
+  }
 }
 }  // namespace
 
 SPECTRE_TEST_CASE("Unit.Time.TakeStep", "[Unit][Time]") {
-  test_gts();
-  test_lts();
+  test_gts(true);
+  test_gts(false);
+  test_lts(true);
+  test_lts(false);
 }

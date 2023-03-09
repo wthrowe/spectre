@@ -45,7 +45,8 @@ struct Next;
 /// used when multiple components need to invoke `ChangeStepSize` with step
 /// choosers that may not be compatible with all components.
 template <typename StepChoosersToUse = AllStepChoosers, typename DbTags>
-bool change_step_size(const gsl::not_null<db::DataBox<DbTags>*> box) {
+bool change_step_size(const gsl::not_null<db::DataBox<DbTags>*> box,
+                      const bool allow_step_rejection) {
   const LtsTimeStepper& time_stepper = db::get<Tags::TimeStepper<>>(*box);
   const auto& step_choosers = db::get<Tags::StepChoosers>(*box);
 
@@ -102,7 +103,7 @@ bool change_step_size(const gsl::not_null<db::DataBox<DbTags>*> box) {
       });
   // if step accepted, just proceed. Otherwise, change Time::Next and jump
   // back to the first instance of `UpdateU`.
-  if (step_accepted) {
+  if (step_accepted or not allow_step_rejection) {
     return true;
   } else {
     db::mutate<Tags::Next<Tags::TimeStepId>, Tags::TimeStep>(
@@ -160,7 +161,7 @@ struct ChangeStepSize {
         "to handle both stepping and step-choosing instead of the "
         "ChangeStepSize action.");
     const bool step_successful =
-        change_step_size<StepChoosersToUse>(make_not_null(&box));
+        change_step_size<StepChoosersToUse>(make_not_null(&box), true);
     if (step_successful) {
       return {Parallel::AlgorithmExecution::Continue, std::nullopt};
     } else {
