@@ -181,6 +181,12 @@ bool receive_boundary_data_global_time_stepping(
   return true;
 }
 
+/// \cond
+template <bool LocalTimeStepping, typename System, size_t VolumeDim,
+          bool DenseOutput, bool LtsPrecompute>
+struct ApplyBoundaryCorrections;
+/// \endcond
+
 /// Receive boundary data for local time-stepping.  Returns true if
 /// all necessary data has been received.
 ///
@@ -309,6 +315,9 @@ bool receive_boundary_data_local_time_stepping(
       },
       db::get<::domain::Tags::Element<volume_dim>>(*box));
 
+  db::apply<ApplyBoundaryCorrections<true, typename Metavariables::system,
+                                     volume_dim, false, true>>(*box);
+
   if (not have_all_intermediate_messages) {
     return false;
   }
@@ -334,11 +343,14 @@ bool receive_boundary_data_local_time_stepping(
 /// at ::Tags::Time instead of performing a full step.  This is only
 /// used for local time-stepping.
 template <bool LocalTimeStepping, typename System, size_t VolumeDim,
-          bool DenseOutput = false>
+          bool DenseOutput = false, bool LtsPrecompute = false>
 struct ApplyBoundaryCorrections {
   static constexpr bool local_time_stepping = LocalTimeStepping;
   static_assert(local_time_stepping or not DenseOutput,
                 "GTS does not use ApplyBoundaryCorrections for dense output.");
+  static_assert(LocalTimeStepping or not LtsPrecompute);
+  static_assert(not(DenseOutput and LtsPrecompute));
+  static constexpr bool mutate_mortar_data = not(DenseOutput or LtsPrecompute);
 
   using system = System;
   static constexpr size_t volume_dim = VolumeDim;
@@ -356,22 +368,32 @@ struct ApplyBoundaryCorrections {
       evolution::dg::Tags::MortarDataHistory<volume_dim, DtVariables>,
       evolution::dg::Tags::MortarData<volume_dim>>;
   using MortarDataType =
-      tmpl::conditional_t<DenseOutput, const typename mortar_data_tag::type,
-                          typename mortar_data_tag::type>;
+      tmpl::conditional_t<mutate_mortar_data, typename mortar_data_tag::type,
+                          const typename mortar_data_tag::type>;
+
+  using mortar_next_temporal_id_tag =
+      evolution::dg::Tags::MortarNextTemporalId<volume_dim>;
 
   using return_tags =
       tmpl::conditional_t<DenseOutput, tmpl::list<tag_to_update>,
                           tmpl::list<tag_to_update, mortar_data_tag>>;
   using argument_tags = tmpl::flatten<tmpl::list<
-      tmpl::conditional_t<DenseOutput, mortar_data_tag, tmpl::list<>>,
+      tmpl::conditional_t<mutate_mortar_data, tmpl::list<>, mortar_data_tag>,
       domain::Tags::Mesh<volume_dim>, Tags::MortarMesh<volume_dim>,
       Tags::MortarSize<volume_dim>, ::dg::Tags::Formulation,
       evolution::dg::Tags::NormalCovectorAndMagnitude<volume_dim>,
       ::Tags::TimeStepper<>, evolution::Tags::BoundaryCorrection<system>,
-      tmpl::conditional_t<DenseOutput, ::Tags::Time, ::Tags::TimeStep>,
-      tmpl::conditional_t<local_time_stepping, tmpl::list<>,
-                          domain::Tags::DetInvJacobian<Frame::ElementLogical,
-                                                       Frame::Inertial>>>>;
+      tmpl::conditional_t<
+          LtsPrecompute, tmpl::list<>,
+          tmpl::conditional_t<DenseOutput, ::Tags::Time, ::Tags::TimeStep>>,
+      tmpl::conditional_t<
+          local_time_stepping, tmpl::list<>,
+          domain::Tags::DetInvJacobian<Frame::ElementLogical, Frame::Inertial>>,
+      tmpl::conditional_t<
+          LtsPrecompute,
+          tmpl::list<::Tags::TimeStepId, ::Tags::Next<::Tags::TimeStepId>,
+                     mortar_next_temporal_id_tag>,
+          tmpl::list<>>>>;
 
   // full step
   static void apply(
@@ -394,7 +416,7 @@ struct ApplyBoundaryCorrections {
                mortar_sizes, dg_formulation, face_normal_covector_and_magnitude,
                time_stepper, boundary_correction, time_step,
                std::numeric_limits<double>::signaling_NaN(),
-               gts_det_inv_jacobian);
+               gts_det_inv_jacobian, {}, {}, {});
   }
 
   // dense output (LTS only)
@@ -415,7 +437,32 @@ struct ApplyBoundaryCorrections {
     apply_impl(vars_to_update, &mortar_data, volume_mesh, mortar_meshes,
                mortar_sizes, dg_formulation, face_normal_covector_and_magnitude,
                time_stepper, boundary_correction, TimeDelta{},
-               dense_output_time, {});
+               dense_output_time, {}, {}, {}, {});
+  }
+
+  // LTS coupling precomputation (db::apply, not db::mutate_apply)
+  static void apply(
+      const MortarDataType& mortar_data, const Mesh<volume_dim>& volume_mesh,
+      const typename Tags::MortarMesh<volume_dim>::type& mortar_meshes,
+      const typename Tags::MortarSize<volume_dim>::type& mortar_sizes,
+      const ::dg::Formulation dg_formulation,
+      const DirectionMap<
+          volume_dim, std::optional<Variables<tmpl::list<
+                          evolution::dg::Tags::MagnitudeOfNormal,
+                          evolution::dg::Tags::NormalCovector<volume_dim>>>>>&
+          face_normal_covector_and_magnitude,
+      const LtsTimeStepper& time_stepper,
+      const typename system::boundary_correction_base& boundary_correction,
+      const TimeStepId& time_step_id, const TimeStepId& next_time_step_id,
+      const typename mortar_next_temporal_id_tag::type&
+          mortar_next_temporal_id) {
+    typename variables_tag::type unused_variables{};
+    apply_impl(make_not_null(&unused_variables), &mortar_data, volume_mesh,
+               mortar_meshes, mortar_sizes, dg_formulation,
+               face_normal_covector_and_magnitude, time_stepper,
+               boundary_correction, TimeDelta{},
+               std::numeric_limits<double>::signaling_NaN(), {}, time_step_id,
+               next_time_step_id, mortar_next_temporal_id);
   }
 
   template <typename DbTagsList, typename... InboxTags, typename Metavariables,
@@ -452,7 +499,10 @@ struct ApplyBoundaryCorrections {
       const TimeStepperType& time_stepper,
       const typename system::boundary_correction_base& boundary_correction,
       const TimeDelta& time_step, const double dense_output_time,
-      const Scalar<DataVector>& gts_det_inv_jacobian) {
+      const Scalar<DataVector>& gts_det_inv_jacobian,
+      const TimeStepId& time_step_id, const TimeStepId& next_time_step_id,
+      const typename mortar_next_temporal_id_tag::type&
+          mortar_next_temporal_id) {
     // Set up helper lambda that will compute and lift the boundary corrections
     ASSERT(
         volume_mesh.quadrature() ==
@@ -484,7 +534,8 @@ struct ApplyBoundaryCorrections {
         &boundary_correction,
         [&dense_output_time, &dg_formulation,
          &face_normal_covector_and_magnitude, &mortar_data, &mortar_meshes,
-         &mortar_sizes, &time_step, &time_stepper, using_gauss_lobatto_points,
+         &mortar_next_temporal_id, &mortar_sizes, &next_time_step_id,
+         &time_step, &time_step_id, &time_stepper, using_gauss_lobatto_points,
          &vars_to_update, &volume_det_jacobian, &volume_det_inv_jacobian,
          &volume_mesh](auto* typed_boundary_correction) {
           // Compute internal boundary quantities on the mortar for sides of
@@ -677,31 +728,49 @@ struct ApplyBoundaryCorrections {
               }
             };
 
+            (void)mortar_next_temporal_id;
+            (void)next_time_step_id;
+            (void)time_step_id;
             if constexpr (local_time_stepping) {
               typename variables_tag::type lgl_lifted_data{};
-              auto& lifted_data = using_gauss_lobatto_points ? lgl_lifted_data
-                                                             : *vars_to_update;
-              if (using_gauss_lobatto_points) {
-                lifted_data.initialize(face_mesh.number_of_grid_points(), 0.0);
+              const gsl::not_null<typename variables_tag::type*> lifted_data =
+                  using_gauss_lobatto_points ? make_not_null(&lgl_lifted_data)
+                                             : vars_to_update;
+              if (not LtsPrecompute and using_gauss_lobatto_points) {
+                lifted_data->initialize(face_mesh.number_of_grid_points(), 0.0);
               }
 
               auto& mortar_data_history = mortar_id_and_data.second;
               if constexpr (DenseOutput) {
                 (void)time_step;
                 time_stepper.boundary_dense_output(
-                    &lifted_data, mortar_data_history, dense_output_time,
+                    lifted_data, mortar_data_history, dense_output_time,
                     compute_correction_coupling);
               } else {
                 (void)dense_output_time;
-                time_stepper.add_boundary_delta(
-                    &lifted_data, make_not_null(&mortar_data_history),
-                    time_step, compute_correction_coupling);
+                if constexpr (LtsPrecompute) {
+                  (void)time_step;
+                  const TimeStepId& next_remote_time =
+                      mortar_next_temporal_id.at(mortar_id);
+                  if (next_remote_time > time_step_id) {
+                    time_stepper.boundary_precompute(
+                        mortar_data_history,
+                        std::min(next_time_step_id, next_remote_time)
+                                .step_time() -
+                            time_step_id.step_time(),
+                        compute_correction_coupling);
+                  }
+                } else {
+                  time_stepper.add_boundary_delta(
+                      lifted_data, make_not_null(&mortar_data_history),
+                      time_step, compute_correction_coupling);
+                }
               }
 
-              if (using_gauss_lobatto_points) {
+              if (not LtsPrecompute and using_gauss_lobatto_points) {
                 // Add the flux contribution to the volume data
                 add_slice_to_data(
-                    vars_to_update, lifted_data, volume_mesh.extents(),
+                    vars_to_update, *lifted_data, volume_mesh.extents(),
                     direction.dimension(),
                     index_to_slice_at(volume_mesh.extents(), direction));
               }
