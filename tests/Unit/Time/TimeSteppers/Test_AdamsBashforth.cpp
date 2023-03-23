@@ -230,6 +230,7 @@ void do_lts_test(const std::array<TimeDelta, 2>& dt) {
   TimeSteppers::AdamsBashforth ab4(4);
 
   TimeSteppers::BoundaryHistory<NCd, NCd, NCd> history{4};
+  TimeSteppers::BoundaryHistory<NCd, NCd, NCd> precompute_history{4};
   {
     const Slab init_slab = slab.advance_towards(-dt[0]);
 
@@ -238,14 +239,25 @@ void do_lts_test(const std::array<TimeDelta, 2>& dt) {
         const Time now = t - step * dt[0].with_slab(init_slab);
         history.local_insert_initial(make_time_id(now),
                                      NCd(quartic_side1(now.value())));
+        precompute_history.local_insert_initial(
+            make_time_id(now), NCd(quartic_side1(now.value())));
       }
       {
         const Time now = t - step * dt[1].with_slab(init_slab);
         history.remote_insert_initial(make_time_id(now),
                                       NCd(quartic_side2(now.value())));
+        precompute_history.remote_insert_initial(
+            make_time_id(now), NCd(quartic_side2(now.value())));
       }
     }
   }
+
+  int coupling_evaluation_count = 0;
+  const auto counting_coupling = [&coupling_evaluation_count](
+                                     const auto& local, const auto& remote) {
+    ++coupling_evaluation_count;
+    return quartic_coupling(local, remote);
+  };
 
   NCd y(quartic_answer(t.value()));
   Time next_check = t + dt[0];
@@ -257,8 +269,12 @@ void do_lts_test(const std::array<TimeDelta, 2>& dt) {
 
     if (side == 0) {
       history.local_insert(make_time_id(t), NCd(quartic_side1(t.value())));
+      precompute_history.local_insert(make_time_id(t),
+                                      NCd(quartic_side1(t.value())));
     } else {
       history.remote_insert(make_time_id(t), NCd(quartic_side2(t.value())));
+      precompute_history.remote_insert(make_time_id(t),
+                                       NCd(quartic_side2(t.value())));
     }
 
     gsl::at(next, side) += gsl::at(dt, side);
@@ -267,8 +283,19 @@ void do_lts_test(const std::array<TimeDelta, 2>& dt) {
 
     ASSERT(not simulation_less(next_check, t), "Screwed up arithmetic");
     if (t == next_check) {
+      coupling_evaluation_count = 0;
       ab4.add_boundary_delta(&y, make_not_null(&history), dt[0],
-                             quartic_coupling);
+                             counting_coupling);
+      coupling_evaluation_count *= -1;
+      ab4.boundary_precompute(precompute_history, dt[0], counting_coupling);
+      CHECK(coupling_evaluation_count == 0);
+      {
+        NCd scratch(0.0);
+        ab4.add_boundary_delta(&scratch, make_not_null(&precompute_history),
+                               dt[0], counting_coupling);
+        CHECK(coupling_evaluation_count == 0);
+      }
+
       CHECK(y() == approx(quartic_answer(t.value())));
       if (t.is_at_slab_boundary()) {
         break;

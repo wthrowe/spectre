@@ -63,6 +63,10 @@ class LtsTimeStepper : public TimeStepper {
           LTS_TIME_STEPPER_WRAPPED_TYPE(data)>& coupling,         \
       const TimeSteppers::BoundaryHistoryCleaner& cleaner,        \
       const TimeDelta& time_step) const = 0;                      \
+  virtual void boundary_precompute_forward(                       \
+      const TimeSteppers::BoundaryHistoryEvaluator<               \
+          LTS_TIME_STEPPER_WRAPPED_TYPE(data)>& coupling,         \
+      const TimeDelta& time_step) const = 0;                      \
   virtual void boundary_dense_output_forward(                     \
       gsl::not_null<LTS_TIME_STEPPER_WRAPPED_TYPE(data)*> result, \
       const TimeSteppers::BoundaryHistoryEvaluator<               \
@@ -109,6 +113,27 @@ class LtsTimeStepper : public TimeStepper {
                                       history->cleaner(), time_step);
   }
 
+  /// \brief Perform all coupling evaluations that would be used for
+  /// `add_boundary_delta` without actually updating anything.
+  ///
+  /// This will populate the cache in the `BoundaryHistory` with the
+  /// needed values.
+  ///
+  /// Derived classes must implement this as a function with signature
+  ///
+  /// ```
+  /// template <typename T>
+  /// void boundary_precompute_impl(
+  ///     const TimeSteppers::BoundaryHistoryEvaluator<T>& coupling,
+  ///     const TimeDelta& time_step) const;
+  /// ```
+  template <typename LocalVars, typename RemoteVars, typename Coupling>
+  void boundary_precompute(
+      const BoundaryHistoryType<LocalVars, RemoteVars, Coupling>& history,
+      const TimeDelta& time_step, const Coupling& coupling) const {
+    return boundary_precompute_forward(history.evaluator(coupling), time_step);
+  }
+
   /// Derived classes must implement this as a function with signature
   ///
   /// ```
@@ -148,6 +173,10 @@ class LtsTimeStepper : public TimeStepper {
           LTS_TIME_STEPPER_WRAPPED_TYPE(data)>& coupling,         \
       const TimeSteppers::BoundaryHistoryCleaner& cleaner,        \
       const TimeDelta& time_step) const override;                 \
+  void boundary_precompute_forward(                               \
+      const TimeSteppers::BoundaryHistoryEvaluator<               \
+          LTS_TIME_STEPPER_WRAPPED_TYPE(data)>& coupling,         \
+      const TimeDelta& time_step) const override;                 \
   void boundary_dense_output_forward(                             \
       gsl::not_null<LTS_TIME_STEPPER_WRAPPED_TYPE(data)*> result, \
       const TimeSteppers::BoundaryHistoryEvaluator<               \
@@ -162,6 +191,12 @@ class LtsTimeStepper : public TimeStepper {
       const TimeSteppers::BoundaryHistoryCleaner& cleaner,                  \
       const TimeDelta& time_step) const {                                   \
     return add_boundary_delta_impl(result, coupling, cleaner, time_step);   \
+  }                                                                         \
+  void LTS_TIME_STEPPER_DERIVED_CLASS(data)::boundary_precompute_forward(   \
+      const TimeSteppers::BoundaryHistoryEvaluator<                         \
+          LTS_TIME_STEPPER_WRAPPED_TYPE(data)>& coupling,                   \
+      const TimeDelta& time_step) const {                                   \
+    return boundary_precompute_impl(coupling, time_step);                   \
   }                                                                         \
   void LTS_TIME_STEPPER_DERIVED_CLASS(data)::boundary_dense_output_forward( \
       const gsl::not_null<LTS_TIME_STEPPER_WRAPPED_TYPE(data)*> result,     \
