@@ -28,8 +28,13 @@ const RungeKutta::ButcherTableau& Rk3PareschiSsp4::butcher_tableau() const {
       // Substep coefficients
       {{0.0},
        {0.0},
-       {0.0, 0.0, 1.0},
+       {0.0, 0.0, 1.0},  // u1 = u0 + du0
        {0.0, 0.0, 1.0 / 4.0, 1.0 / 4.0}},
+      // u2 = u0 + 1/4 du0 + 1/4 du1
+      //    ~ 3/4 u0 + 1/4 (u1 + du1)  // c = 1
+      // u3 = u0 + 1/6 du0 + 1/6 du1 + 2/3 du2
+      //    ~ 1/3 u0 + 2/3 (u2 + du2)  // c = 1
+
       // Result coefficients
       {0.0, 0.0, 1.0 / 6.0, 1.0 / 6.0, 2.0 / 3.0},
       // Coefficients for the embedded method for generating an error measure.
