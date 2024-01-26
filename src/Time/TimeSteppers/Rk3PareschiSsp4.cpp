@@ -43,8 +43,8 @@ const RungeKutta::ButcherTableau& Rk3PareschiSsp4::butcher_tableau() const {
       // (0, 0, x, x, 1 - 2 x) works.
       {0.0, 0.0, 0.0, 0.0, 1.0},
       // Dense output coefficient polynomials
-      {{0.0, 1.0, -1.0},
-       {},
+      {{},
+       {0.0, 1.0, -1.0},
        {0.0, 0.0, 1.0 / 6.0},
        {0.0, 0.0, 1.0 / 6.0},
        {0.0, 0.0, 2.0 / 3.0}}};
