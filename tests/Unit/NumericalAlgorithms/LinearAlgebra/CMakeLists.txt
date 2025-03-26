@@ -4,6 +4,7 @@
 set(LIBRARY "Test_LinearAlgebra")
 
 set(LIBRARY_SOURCES
+  Test_FindEigenvalues.cpp
   Test_FindGeneralizedEigenvalues.cpp
   )
 
