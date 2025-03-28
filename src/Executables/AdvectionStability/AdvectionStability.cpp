@@ -21,6 +21,9 @@
 #include "NumericalAlgorithms/Spectral/DifferentiationMatrix.hpp"
 #include "NumericalAlgorithms/Spectral/Quadrature.hpp"
 #include "Parallel/Printf/Printf.hpp"
+#include "Time/History.hpp"
+#include "Time/TimeSteppers/Factory.hpp"
+#include "Time/TimeSteppers/TimeStepper.hpp"
 #include "Utilities/ErrorHandling/Error.hpp"
 #include "Utilities/Gsl.hpp"
 #include "Utilities/Literals.hpp"
@@ -64,22 +67,71 @@ ComplexDataVector eigenvalues_for_phase(const size_t num_points,
   // dg::lift_boundary_terms_gauss_points(...)
 }
 
-// Matrix time_stepper_matrix(const TimeStepper& stepper) {
-//   Matrix stepper_matrix{};
-// }
+double time_stepper_amplification(
+    const TimeStepper& stepper, const double time_step,
+    const std::complex<double>& deriv_eigenvalue) {
+  ASSERT(stepper.number_of_past_steps() == 0, "Unimplemented");
+  TimeSteppers::History<std::complex<double>> history(
+      variants::get<TimeSteppers::Tags::FixedOrder>(stepper.order()));
+  const Slab slab(0.0, time_step);
+  std::complex<double> value = 1.0;
+  TimeStepId time_step_id(true, 0, slab.start());
+  do {
+    history.insert(time_step_id, value, value * deriv_eigenvalue);
+    stepper.update_u(make_not_null(&value), history, slab.duration());
+    stepper.clean_history(make_not_null(&history));
+    time_step_id = stepper.next_time_id(time_step_id, slab.duration());
+  } while (time_step_id.substep() != 0);
+  return std::abs(value);
+}
+
+double largest_amplification(const TimeStepper& stepper, const double time_step,
+                             const size_t num_points) {
+  const size_t phase_steps = 1000;
+  double max_amplification = 0.0;
+  for (size_t i = 0; i < phase_steps; ++i) {
+    const double phase = 2 * M_PI / phase_steps * i;
+    const auto eigenvalues = eigenvalues_for_phase(num_points, phase);
+    for (const auto& eigenvalue : eigenvalues) {
+      const double amplification = time_stepper_amplification(
+          stepper, time_step, eigenvalue);
+      max_amplification = std::max(amplification, max_amplification);
+    }
+  }
+  return max_amplification;
+}
 }  // namespace
 
 int main(const int argc, char** const argv) {
   //try {
-    const size_t phase_steps = 100;
-    for (size_t i = 0; i < phase_steps; ++i) {
-      const double phase = 2 * M_PI / phase_steps * i;
-      const auto eigenvalues = eigenvalues_for_phase(7, phase);
-      for (const auto& eigenvalue : eigenvalues) {
-        Parallel::printf("%.18g\t%.18g\n", eigenvalue.real(),
-                         eigenvalue.imag());
-      }
-    }
+  // const double time_step = 1.0e-1;
+  // const TimeSteppers::Rk3HesthavenSsp stepper{};
+    // const size_t phase_steps = 100;
+    // for (size_t i = 0; i < phase_steps; ++i) {
+    //   const double phase = 2 * M_PI / phase_steps * i;
+    //   const auto eigenvalues = eigenvalues_for_phase(7, phase);
+    //   for (const auto& eigenvalue : eigenvalues) {
+    //     const double amplification = time_stepper_amplification(
+    //         stepper, time_step, eigenvalue);
+    //     Parallel::printf("%.18g\t%.18g\t%.18g\n", eigenvalue.real(),
+    //                      eigenvalue.imag(), amplification);
+    //   }
+    // }
+
+  //const TimeSteppers::Rk3HesthavenSsp stepper{};
+  const TimeSteppers::DormandPrince5 stepper{};
+  const size_t num_points = 7;
+  const double min_step = 1.0e-2;
+  const double max_step = 1.0;
+  const int samples = 101;
+  for (int sample = 0; sample <= samples; ++sample) {
+    const double sample_fraction = static_cast<double>(sample) / samples;
+    const double time_step = std::pow(min_step, 1.0 - sample_fraction) *
+                             std::pow(max_step, sample_fraction);
+    Parallel::printf("%.18g\t%.18g\n", time_step,
+                     largest_amplification(stepper, time_step, num_points));
+  }
+
   // } catch (const bpo::error& e) {
   //   ERROR_NO_TRACE(e.what());
   // }

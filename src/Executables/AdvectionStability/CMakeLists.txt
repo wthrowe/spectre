@@ -21,5 +21,6 @@ target_link_libraries(
   LinearAlgebra
   Printf
   Spectral
+  Time
   Utilities
   )
