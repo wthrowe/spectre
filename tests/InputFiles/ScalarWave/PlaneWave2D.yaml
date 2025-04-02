@@ -91,6 +91,18 @@ EventsAndTriggersAtSlabs:
   #       Comparison: GreaterThanOrEqualTo
   #       Value: 3
   #   Events:
+  #     - ObserveNorms:
+  #         SubfileName: ErrorsFinal
+  #         TensorsToObserve:
+  #           - Name: Error(Psi)
+  #             NormType: L2Norm
+  #             Components: Sum
+  #           - Name: Error(Phi)
+  #             NormType: L2Norm
+  #             Components: Sum
+  #           - Name: Error(Pi)
+  #             NormType: L2Norm
+  #             Components: Sum
   #     - Completion
 
 EventsAndDenseTriggers:
