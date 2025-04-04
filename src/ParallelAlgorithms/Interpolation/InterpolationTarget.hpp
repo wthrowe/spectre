@@ -264,7 +264,7 @@ struct InterpolationTarget {
     return pretty_type::name<InterpolationTargetTag>();
   }
   using chare_type = ::Parallel::Algorithms::Singleton;
-  static constexpr bool checkpoint_data = false;
+  static constexpr bool checkpoint_data = true;
   using const_global_cache_tags =
       Parallel::get_const_global_cache_tags_from_actions<
           tmpl::flatten<tmpl::list<
