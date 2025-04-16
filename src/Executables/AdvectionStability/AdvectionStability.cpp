@@ -38,10 +38,15 @@ struct DummyField : db::SimpleTag {
   using type = Scalar<DataVector>;
 };
 
+using ComplexMatrix =
+    blaze::DynamicMatrix<std::complex<double>, blaze::columnMajor>;
+
+//using options = tmpl::list<OptionTags::TimeStepper>;
+
 // FIXME name, factor
 ComplexDataVector eigenvalues_for_phase(const size_t num_points,
                                         const double element_phase) {
-  blaze::DynamicMatrix<std::complex<double>, blaze::columnMajor> derivative =
+  ComplexMatrix derivative =
       Spectral::differentiation_matrix<Spectral::Basis::Legendre,
                                        Spectral::Quadrature::GaussLobatto>(
                                            num_points);
@@ -70,19 +75,36 @@ ComplexDataVector eigenvalues_for_phase(const size_t num_points,
 double time_stepper_amplification(
     const TimeStepper& stepper, const double time_step,
     const std::complex<double>& deriv_eigenvalue) {
-  ASSERT(stepper.number_of_past_steps() == 0, "Unimplemented");
-  TimeSteppers::History<std::complex<double>> history(
-      variants::get<TimeSteppers::Tags::FixedOrder>(stepper.order()));
-  const Slab slab(0.0, time_step);
-  std::complex<double> value = 1.0;
-  TimeStepId time_step_id(true, 0, slab.start());
-  do {
-    history.insert(time_step_id, value, value * deriv_eigenvalue);
-    stepper.update_u(make_not_null(&value), history, slab.duration());
-    stepper.clean_history(make_not_null(&history));
-    time_step_id = stepper.next_time_id(time_step_id, slab.duration());
-  } while (time_step_id.substep() != 0);
-  return std::abs(value);
+  const size_t hist_size = stepper.number_of_past_steps() + 1;
+  ComplexMatrix stepper_operator(hist_size, hist_size, 0.0);
+  // History aging entries
+  for (size_t i = 1; i < hist_size; ++i) {
+    stepper_operator(i, i - 1) = 1.0;
+  }
+
+  for (size_t history_entry = 0; history_entry < hist_size; ++history_entry) {
+    const Slab slab(0.0, 20.0 * time_step);
+    const auto step = slab.duration() / 20;
+    TimeSteppers::History<std::complex<double>> history(
+        variants::get<TimeSteppers::Tags::FixedOrder>(stepper.order()));
+    for (size_t i = 0; i < hist_size; ++i) {
+      const std::complex<double> init_value = i == history_entry ? 1.0 : 0.0;
+      history.insert_initial(TimeStepId(true, 0, slab.end() - step * (i + 1)),
+                             init_value, init_value * deriv_eigenvalue);
+    }
+
+    std::complex<double> value = 1.0;
+    TimeStepId time_step_id(true, 0, slab.end() - step);
+    do {
+      stepper.update_u(make_not_null(&value), history, step);
+      stepper.clean_history(make_not_null(&history));
+      time_step_id = stepper.next_time_id(time_step_id, step);
+      history.insert(time_step_id, value, value * deriv_eigenvalue);
+    } while (time_step_id.substep() != 0);
+    stepper_operator(0, history_entry) = value;
+  }
+
+  return max(abs(find_eigenvalues(std::move(stepper_operator))));
 }
 
 double largest_amplification(const TimeStepper& stepper, const double time_step,
@@ -119,11 +141,12 @@ int main(const int argc, char** const argv) {
     // }
 
   //const TimeSteppers::Rk3HesthavenSsp stepper{};
-  const TimeSteppers::DormandPrince5 stepper{};
+  //const TimeSteppers::DormandPrince5 stepper{};
+  const TimeSteppers::AdamsBashforth stepper{2};
   const size_t num_points = 7;
-  const double min_step = 1.0e-2;
+  const double min_step = 1.0e-3;
   const double max_step = 1.0;
-  const int samples = 101;
+  const int samples = 301;
   for (int sample = 0; sample <= samples; ++sample) {
     const double sample_fraction = static_cast<double>(sample) / samples;
     const double time_step = std::pow(min_step, 1.0 - sample_fraction) *
