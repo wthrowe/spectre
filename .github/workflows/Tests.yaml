@@ -1116,7 +1116,7 @@ ${{ matrix.build_type }}-pch-${{ matrix.use_pch || 'ON' }}"
       - name: Build unit tests
         working-directory: build
         run: |
-          make -j${NUM_CORES} unit-tests
+          make -j${NUM_CORES} unit-tests VERBOSE=1
       - name: Build executables
         working-directory: build
         run: |
