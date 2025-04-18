@@ -1112,6 +1112,7 @@ ${{ matrix.build_type }}-pch-${{ matrix.use_pch || 'ON' }}"
             -D CMAKE_INSTALL_PREFIX=../install \
             -D BUILD_DOCS=OFF \
             -D USE_XSIMD=OFF \
+            -D CMAKE_OSX_SYSROOT=macosx \
             $GITHUB_WORKSPACE
       - name: Build unit tests
         working-directory: build
