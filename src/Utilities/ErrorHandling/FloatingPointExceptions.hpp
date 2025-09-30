@@ -6,6 +6,9 @@
 
 #pragma once
 
+#ifndef UTILITIES_ERROR_HANDLING_FLOATING_POINT_EXCEPTIONS_HPP
+#define UTILITIES_ERROR_HANDLING_FLOATING_POINT_EXCEPTIONS_HPP
+
 #include <optional>
 
 /// \cond
@@ -13,7 +16,7 @@
 #ifndef __arm64__
 #define SPECTRE_FPE_CSR 1
 #endif
-#else
+#elif !defined(__aarch64__)
 #define SPECTRE_FPE_FENV 1
 #endif
 /// \endcond
@@ -83,3 +86,5 @@ class ScopedFpeState {
   std::optional<DummyState> original_state_;
 #endif
 };
+
+#endif  // UTILITIES_ERROR_HANDLING_FLOATING_POINT_EXCEPTIONS_HPP
