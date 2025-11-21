@@ -142,11 +142,6 @@ T Option::parse_as() const {
   }
 }
 
-namespace Options_detail {
-template <typename T, typename Metavariables, typename Subgroup>
-struct get_impl;
-}  // namespace Options_detail
-
 /// \ingroup OptionParsingGroup
 /// \brief Class that handles parsing an input file
 ///
@@ -241,8 +236,6 @@ class Parser {
  private:
   template <typename, typename>
   friend class Parser;
-  template <typename, typename, typename>
-  friend struct Options_detail::get_impl;
 
   static_assert(tt::is_a<tmpl::list, OptionList>::value,
                 "The OptionList template parameter to Options must be a "
@@ -508,97 +501,79 @@ std::pair<int, std::vector<size_t>> choose_alternatives(
 }
 }  // namespace Options_detail
 
-namespace Options_detail {
-template <typename Tag, typename Metavariables, typename Subgroup>
-struct get_impl {
-  template <typename OptionList, typename Group>
-  static typename Tag::type apply(const Parser<OptionList, Group>& opts) {
-    static_assert(
-        tmpl::list_contains_v<OptionList, Tag>,
-        "Could not find requested option in the list of options provided. Did "
-        "you forget to add the option tag to the OptionList?");
-    return tuples::get<typename Parser<
-        OptionList, Group>::template SubgroupParser<Subgroup>>(
-               opts.subgroup_parsers_)
-        .template get<Tag, Metavariables>();
-  }
-};
-
-template <typename Tag, typename Metavariables>
-struct get_impl<Tag, Metavariables, Tag> {
-  template <typename OptionList, typename Group>
-  static typename Tag::type apply(const Parser<OptionList, Group>& opts) {
-    static_assert(
-        tmpl::list_contains_v<
-            typename Parser<OptionList, Group>::all_possible_options, Tag>,
-        "Could not find requested option in the list of options provided. Did "
-        "you forget to add the option tag to the OptionList?");
-    const std::string label = pretty_type::name<Tag>();
-
-    const auto supplied_option = opts.parsed_options_.find(label);
-    ASSERT(supplied_option != opts.parsed_options_.end(),
-           "Requested option from alternative that was not supplied.");
-    Option option(supplied_option->second, opts.context_);
-    option.append_context("While parsing option " + label);
-
-    auto t = option.parse_as<typename Tag::type, Metavariables>();
-
-    if constexpr (Options_detail::has_suggested<Tag>::value) {
-      static_assert(
-          std::is_same_v<decltype(Tag::suggested_value()), typename Tag::type>,
-          "Suggested value is not of the same type as the option.");
-
-      // This can be easily relaxed, but using it would require
-      // writing comparison operators for abstract base classes.  If
-      // someone wants this enough to go though the effort of doing
-      // that, it would just require comparing the dereferenced
-      // pointers below to decide whether the suggestion was followed.
-      static_assert(not tt::is_a_v<std::unique_ptr, typename Tag::type>,
-                    "Suggestions are not supported for pointer types.");
-
-      const auto suggested_value = Tag::suggested_value();
-      {
-        Context context;
-        context.append("Checking SUGGESTED value for " +
-                       pretty_type::name<Tag>());
-        opts.template check_lower_bound_on_size<Tag>(suggested_value, context);
-        opts.template check_upper_bound_on_size<Tag>(suggested_value, context);
-        opts.template check_lower_bound<Tag>(suggested_value, context);
-        opts.template check_upper_bound<Tag>(suggested_value, context);
-      }
-
-      if (t != suggested_value) {
-        Parallel::printf_error(
-            "%s, line %d:\n  Specified: %s\n  Suggested: %s\n",
-            label, option.context().line + 1,
-            (MakeString{} << std::boolalpha << t),
-            (MakeString{} << std::boolalpha << suggested_value));
-      }
-    }
-
-    opts.template check_lower_bound_on_size<Tag>(t, option.context());
-    opts.template check_upper_bound_on_size<Tag>(t, option.context());
-    opts.template check_lower_bound<Tag>(t, option.context());
-    opts.template check_upper_bound<Tag>(t, option.context());
-    return t;
-  }
-};
-
-template <typename Metavariables>
-struct get_impl<Tags::InputSource, Metavariables, Tags::InputSource> {
-  template <typename OptionList, typename Group>
-  static Tags::InputSource::type apply(const Parser<OptionList, Group>& opts) {
-    return opts.input_source_;
-  }
-};
-}  // namespace Options_detail
-
 template <typename OptionList, typename Group>
 template <typename Tag, typename Metavariables>
 typename Tag::type Parser<OptionList, Group>::get() const {
-  return Options_detail::get_impl<
-      Tag, Metavariables,
-      typename Options_detail::find_subgroup<Tag, Group>::type>::apply(*this);
+  if constexpr (std::is_same_v<Tag, Tags::InputSource>) {
+    return input_source_;
+  } else {
+    using subgroup = typename Options_detail::find_subgroup<Tag, Group>::type;
+    if constexpr (std::is_same_v<subgroup, Tag>) {
+      // Not in a subgroup
+      static_assert(
+          tmpl::list_contains_v<
+              typename Parser<OptionList, Group>::all_possible_options, Tag>,
+          "Could not find requested option in the list of options provided. "
+          "Did you forget to add the option tag to the OptionList?");
+      const std::string label = pretty_type::name<Tag>();
+
+      const auto supplied_option = parsed_options_.find(label);
+      ASSERT(supplied_option != parsed_options_.end(),
+             "Requested option from alternative that was not supplied.");
+      Option option(supplied_option->second, context_);
+      option.append_context("While parsing option " + label);
+
+      auto t = option.parse_as<typename Tag::type, Metavariables>();
+
+      if constexpr (Options_detail::has_suggested<Tag>::value) {
+        static_assert(std::is_same_v<decltype(Tag::suggested_value()),
+                                     typename Tag::type>,
+                      "Suggested value is not of the same type as the option.");
+
+        // This can be easily relaxed, but using it would require
+        // writing comparison operators for abstract base classes.  If
+        // someone wants this enough to go though the effort of doing
+        // that, it would just require comparing the dereferenced
+        // pointers below to decide whether the suggestion was followed.
+        static_assert(not tt::is_a_v<std::unique_ptr, typename Tag::type>,
+                      "Suggestions are not supported for pointer types.");
+
+        const auto suggested_value = Tag::suggested_value();
+        {
+          Context context;
+          context.append("Checking SUGGESTED value for " +
+                         pretty_type::name<Tag>());
+          check_lower_bound_on_size<Tag>(suggested_value, context);
+          check_upper_bound_on_size<Tag>(suggested_value, context);
+          check_lower_bound<Tag>(suggested_value, context);
+          check_upper_bound<Tag>(suggested_value, context);
+        }
+
+        if (t != suggested_value) {
+          Parallel::printf_error(
+              "%s, line %d:\n  Specified: %s\n  Suggested: %s\n",
+              label, option.context().line + 1,
+              (MakeString{} << std::boolalpha << t),
+              (MakeString{} << std::boolalpha << suggested_value));
+        }
+      }
+
+      check_lower_bound_on_size<Tag>(t, option.context());
+      check_upper_bound_on_size<Tag>(t, option.context());
+      check_lower_bound<Tag>(t, option.context());
+      check_upper_bound<Tag>(t, option.context());
+      return t;
+    } else {
+      static_assert(
+          tmpl::list_contains_v<OptionList, Tag>,
+          "Could not find requested option in the list of options provided. "
+          "Did you forget to add the option tag to the OptionList?");
+      return tuples::get<typename Parser<
+          OptionList, Group>::template SubgroupParser<subgroup>>(
+                 subgroup_parsers_)
+          .template get<Tag, Metavariables>();
+    }
+  }
 }
 
 namespace Options_detail {
