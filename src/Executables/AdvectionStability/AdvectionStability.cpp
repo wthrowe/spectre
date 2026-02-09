@@ -7,6 +7,7 @@
 #include <cmath>
 #include <complex>
 #include <cstddef>
+#include <fstream>
 #include <utility>
 
 #include "DataStructures/DataBox/Tag.hpp"
@@ -128,32 +129,38 @@ int main(const int argc, char** const argv) {
   //try {
   // const double time_step = 1.0e-1;
   // const TimeSteppers::Rk3HesthavenSsp stepper{};
-    // const size_t phase_steps = 100;
-    // for (size_t i = 0; i < phase_steps; ++i) {
-    //   const double phase = 2 * M_PI / phase_steps * i;
-    //   const auto eigenvalues = eigenvalues_for_phase(7, phase);
-    //   for (const auto& eigenvalue : eigenvalues) {
-    //     const double amplification = time_stepper_amplification(
-    //         stepper, time_step, eigenvalue);
-    //     Parallel::printf("%.18g\t%.18g\t%.18g\n", eigenvalue.real(),
-    //                      eigenvalue.imag(), amplification);
-    //   }
-    // }
+  const size_t phase_steps = 100;
+  for (size_t points = 2; points < 20; ++points) {
+    std::ofstream out("eigenvalues_" + std::to_string(points));
+    out.precision(18);
+    for (size_t i = 0; i < phase_steps; ++i) {
+      const double phase = 2 * M_PI / phase_steps * i;
+      const auto eigenvalues = eigenvalues_for_phase(points, phase);
+      for (const auto& eigenvalue : eigenvalues) {
+        out << phase << "\t" << eigenvalue.real() << "\t"
+            << eigenvalue.imag() << "\n";
+        // const double amplification = time_stepper_amplification(
+        //     stepper, time_step, eigenvalue);
+        // Parallel::printf("%.18g\t%.18g\t%.18g\n", eigenvalue.real(),
+        //                  eigenvalue.imag(), amplification);
+      }
+    }
+  }
 
   //const TimeSteppers::Rk3HesthavenSsp stepper{};
   //const TimeSteppers::DormandPrince5 stepper{};
-  const TimeSteppers::AdamsBashforth stepper{2};
-  const size_t num_points = 7;
-  const double min_step = 1.0e-3;
-  const double max_step = 1.0;
-  const int samples = 301;
-  for (int sample = 0; sample <= samples; ++sample) {
-    const double sample_fraction = static_cast<double>(sample) / samples;
-    const double time_step = std::pow(min_step, 1.0 - sample_fraction) *
-                             std::pow(max_step, sample_fraction);
-    Parallel::printf("%.18g\t%.18g\n", time_step,
-                     largest_amplification(stepper, time_step, num_points));
-  }
+  // const TimeSteppers::AdamsBashforth stepper{2};
+  // const size_t num_points = 7;
+  // const double min_step = 1.0e-3;
+  // const double max_step = 1.0;
+  // const int samples = 301;
+  // for (int sample = 0; sample <= samples; ++sample) {
+  //   const double sample_fraction = static_cast<double>(sample) / samples;
+  //   const double time_step = std::pow(min_step, 1.0 - sample_fraction) *
+  //                            std::pow(max_step, sample_fraction);
+  //   Parallel::printf("%.18g\t%.18g\n", time_step,
+  //                    largest_amplification(stepper, time_step, num_points));
+  // }
 
   // } catch (const bpo::error& e) {
   //   ERROR_NO_TRACE(e.what());
