@@ -253,7 +253,8 @@ struct EvolutionMetavars : public ScalarTensorTemplateBase<EvolutionMetavars> {
                          Parallel::Actions::TerminatePhase>>,
           Parallel::PhaseActions<
               Parallel::Phase::ImportInitialData,
-              tmpl::list<ScalarTensor::Actions::SetInitialData,
+              tmpl::list<SetBoundaryInitialData,
+                         ScalarTensor::Actions::SetInitialData,
                          ScalarTensor::Actions::ReceiveNumericInitialData,
                          Parallel::Actions::TerminatePhase>>,
           Parallel::PhaseActions<

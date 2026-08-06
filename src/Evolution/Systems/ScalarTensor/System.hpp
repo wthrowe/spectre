@@ -6,6 +6,8 @@
 #include <cstddef>
 
 #include "DataStructures/VariablesTag.hpp"
+#include "Domain/BoundaryVariables.hpp"
+#include "Domain/BoundaryVariablesTag.hpp"
 #include "Evolution/Systems/CurvedScalarWave/System.hpp"
 #include "Evolution/Systems/GeneralizedHarmonic/System.hpp"
 #include "Evolution/Systems/ScalarTensor/BoundaryConditions/BoundaryCondition.hpp"
@@ -20,6 +22,11 @@
  * \brief Items related to evolving the first-order scalar tensor system.
  */
 namespace ScalarTensor {
+
+struct BoundaryVar : db::SimpleTag {
+  using type = Scalar<DataVector>;
+};
+
 /*!
  * \brief Scalar Tensor system obtained from combining the CurvedScalarWave and
  * gh systems.
@@ -70,9 +77,12 @@ struct System {
   using gh_system = gh::System<3_st>;
   using scalar_system = CurvedScalarWave::System<3_st>;
 
-  using variables_tag = ::Tags::Variables<
+  using volume_vars =
       tmpl::append<typename gh_system::variables_tag::tags_list,
-                   typename scalar_system::variables_tag::tags_list>>;
+                   typename scalar_system::variables_tag::tags_list>;
+  using variables_tag =
+      tmpl::list<::Tags::Variables<volume_vars>,
+                 ::Tags::BoundaryVariables<3, tmpl::list<BoundaryVar>>>;
 
   using flux_variables = tmpl::append<typename gh_system::flux_variables,
                                       typename scalar_system::flux_variables>;

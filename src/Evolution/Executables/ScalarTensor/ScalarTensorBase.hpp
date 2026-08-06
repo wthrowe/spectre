@@ -157,6 +157,91 @@ class CProxy_GlobalCache;
 }  // namespace Parallel
 /// \endcond
 
+struct InitializeVariables {
+  using simple_tags = ScalarTensor::System::variables_tag;
+  using compute_tags = tmpl::list<>;
+
+  template <typename DbTagsList, typename... InboxTags, typename Metavariables,
+            typename ArrayIndex, typename ActionList,
+            typename ParallelComponent>
+  static Parallel::iterable_action_return_t apply(
+      db::DataBox<DbTagsList>& box,
+      const tuples::TaggedTuple<InboxTags...>& /*inboxes*/,
+      const Parallel::GlobalCache<Metavariables>& /*cache*/,
+      const ArrayIndex& /*array_index*/, ActionList /*meta*/,
+      const ParallelComponent* const /*meta*/) {
+    using VolumeVars = tmpl::front<ScalarTensor::System::variables_tag>::type;
+    using BoundaryVars = tmpl::back<ScalarTensor::System::variables_tag>::type;
+    const size_t number_of_grid_points =
+        db::get<domain::Tags::Mesh<3>>(box).number_of_grid_points();
+    VolumeVars volume_vars{number_of_grid_points};
+    BoundaryVars boundary_vars{};
+    if (is_zeroth_element(db::get<domain::Tags::Element<3>>(box).id())) {
+      boundary_vars.initialize({{Direction<3>::upper_xi(), 2}});
+    }
+    Initialization::mutate_assign<simple_tags>(
+        make_not_null(&box), std::move(volume_vars), std::move(boundary_vars));
+
+    return {Parallel::AlgorithmExecution::Continue, std::nullopt};
+  }
+};
+
+struct SetBoundaryInitialData {
+  template <typename DbTagsList, typename... InboxTags, typename Metavariables,
+            typename ArrayIndex, typename ActionList,
+            typename ParallelComponent>
+  static Parallel::iterable_action_return_t apply(
+      db::DataBox<DbTagsList>& box,
+      const tuples::TaggedTuple<InboxTags...>& /*inboxes*/,
+      const Parallel::GlobalCache<Metavariables>& /*cache*/,
+      const ArrayIndex& /*array_index*/, ActionList /*meta*/,
+      const ParallelComponent* const /*meta*/) {
+    using boundary_vars_tag = tmpl::back<ScalarTensor::System::variables_tag>;
+    db::mutate<boundary_vars_tag>(
+        [](const gsl::not_null<typename boundary_vars_tag::type*>
+               boundary_vars) {
+          for (auto& [direction, vars] : boundary_vars->variables()) {
+            get(get<ScalarTensor::BoundaryVar>(vars))[0] = 1.0;
+            get(get<ScalarTensor::BoundaryVar>(vars))[1] = 0.0;
+          }
+        },
+        make_not_null(&box));
+    return {Parallel::AlgorithmExecution::Continue, std::nullopt};
+  }
+};
+
+struct ComputeBoundaryTimeDerivative {
+  template <typename DbTagsList, typename... InboxTags, typename Metavariables,
+            typename ArrayIndex, typename ActionList,
+            typename ParallelComponent>
+  static Parallel::iterable_action_return_t apply(
+      db::DataBox<DbTagsList>& box,
+      const tuples::TaggedTuple<InboxTags...>& /*inboxes*/,
+      const Parallel::GlobalCache<Metavariables>& /*cache*/,
+      const ArrayIndex& /*array_index*/, ActionList /*meta*/,
+      const ParallelComponent* const /*meta*/) {
+    using boundary_vars_tag = tmpl::back<ScalarTensor::System::variables_tag>;
+    using dt_boundary_vars_tag =
+        db::add_tag_prefix<Tags::dt, boundary_vars_tag>;
+    db::mutate<dt_boundary_vars_tag>(
+        [](const gsl::not_null<dt_boundary_vars_tag::type*> dt_boundary_vars,
+           const boundary_vars_tag::type& boundary_vars, const double time) {
+          for (auto& [direction, dt_vars] : dt_boundary_vars->variables()) {
+            const auto& vars = boundary_vars.variables().at(direction);
+            get(get<Tags::dt<ScalarTensor::BoundaryVar>>(dt_vars))[0] =
+                get(get<ScalarTensor::BoundaryVar>(vars))[1];
+            get(get<Tags::dt<ScalarTensor::BoundaryVar>>(dt_vars))[1] =
+                -get(get<ScalarTensor::BoundaryVar>(vars))[0];
+            Parallel::fprintf("boundary_out.dat", "%.18e\t%.18e\n", time,
+                              get(get<ScalarTensor::BoundaryVar>(vars))[0]);
+          }
+        },
+        make_not_null(&box), db::get<boundary_vars_tag>(box),
+        db::get<Tags::Time>(box));
+    return {Parallel::AlgorithmExecution::Continue, std::nullopt};
+  }
+};
+
 template <typename EvolutionMetavarsDerived>
 struct ScalarTensorTemplateBase;
 
@@ -178,7 +263,7 @@ struct ObserverTags {
 
   using system = ScalarTensor::System;
 
-  using variables_tag = typename system::variables_tag;
+  using variables_tag = ::Tags::Variables<system::volume_vars>;
 
   using initial_data_list = gh::ScalarTensor::AnalyticData::all_analytic_data;
 
@@ -345,6 +430,7 @@ struct FactoryCreation : tt::ConformsTo<Options::protocols::FactoryCreation> {
   static constexpr size_t volume_dim = 3_st;
 
   using system = ScalarTensor::System;
+  using volume_variables_tag = Tags::Variables<system::volume_vars>;
 
   using initial_data_list = gh::ScalarTensor::AnalyticData::all_analytic_data;
   using factory_classes = tmpl::map<
@@ -370,11 +456,24 @@ struct FactoryCreation : tt::ConformsTo<Options::protocols::FactoryCreation> {
           tmpl::push_back<initial_data_list, ScalarTensor::NumericInitialData>>,
       tmpl::pair<LtsTimeStepper, TimeSteppers::lts_time_steppers>,
       tmpl::pair<PhaseChange, PhaseControl::factory_creatable_classes>,
-      tmpl::pair<StepChooser<StepChooserUse::LtsStep>,
-                 StepChoosers::standard_step_choosers<system>>,
-      tmpl::pair<StepChooser<StepChooserUse::Slab>,
-                 tmpl::push_back<
-                     StepChoosers::standard_slab_choosers<system>,
+      tmpl::pair<
+          StepChooser<StepChooserUse::LtsStep>,
+          tmpl::list<StepChoosers::Cfl<Frame::Inertial, system>,
+                     StepChoosers::ElementSizeCfl<volume_dim, system>,
+                     StepChoosers::Constant,
+                     StepChoosers::ErrorControl<StepChooserUse::LtsStep,
+                                                volume_variables_tag>,
+                     StepChoosers::LimitIncrease, StepChoosers::Maximum,
+                     StepChoosers::PreventRapidIncrease<volume_variables_tag>>>,
+      tmpl::pair<
+          StepChooser<StepChooserUse::Slab>,
+          tmpl::list<StepChoosers::Cfl<Frame::Inertial, system>,
+                     StepChoosers::ElementSizeCfl<volume_dim, system>,
+                     StepChoosers::Constant,
+                     StepChoosers::ErrorControl<StepChooserUse::Slab,
+                                                volume_variables_tag>,
+                     StepChoosers::LimitIncrease, StepChoosers::Maximum,
+                     StepChoosers::PreventRapidIncrease<volume_variables_tag>,
                      evolution::dg::StepChoosers::FixedLtsRatio<volume_dim>>>,
       tmpl::pair<TimeSequence<double>,
                  TimeSequences::all_time_sequences<double>>,
@@ -383,10 +482,8 @@ struct FactoryCreation : tt::ConformsTo<Options::protocols::FactoryCreation> {
       tmpl::pair<TimeStepper, TimeSteppers::time_steppers>,
       tmpl::pair<Trigger, tmpl::append<Triggers::logical_triggers,
                                        Triggers::time_triggers>>,
-      tmpl::pair<Filters::Filter<volume_dim,
-                                 typename system::variables_tag::tags_list>,
-                 Filters::all_filters<
-                     volume_dim, typename system::variables_tag::tags_list>>>;
+      tmpl::pair<Filters::Filter<volume_dim, system::volume_vars>,
+                 Filters::all_filters<volume_dim, system::volume_vars>>>;
 };
 }  // namespace detail
 
@@ -401,6 +498,8 @@ struct ScalarTensorTemplateBase {
   static constexpr bool local_time_stepping =
       TimeStepperBase::local_time_stepping;
   static constexpr bool use_dg_element_collection = false;
+
+  using volume_variables_tag = Tags::Variables<system::volume_vars>;
 
   // NOLINTNEXTLINE(google-runtime-references)
   void pup(PUP::er& /*p*/) {}
@@ -443,22 +542,24 @@ struct ScalarTensorTemplateBase {
   template <typename ControlSystems>
   using step_actions = tmpl::list<
       evolution::dg::Actions::ComputeTimeDerivative<
-          volume_dim, system, AllStepChoosers, use_dg_element_collection>,
+          volume_dim, system, AllStepChoosers, use_dg_element_collection,
+          volume_variables_tag>,
+      ComputeBoundaryTimeDerivative,
       evolution::dg::Actions::ApplyBoundaryCorrectionsToTimeDerivative<
-          volume_dim, use_dg_element_collection>,
+          volume_dim, use_dg_element_collection, volume_variables_tag>,
       Actions::MutateApply<RecordTimeStepperData<system>>,
       evolution::Actions::RunEventsAndDenseTriggers<tmpl::list<
           ::domain::CheckFunctionsOfTimeAreReadyPostprocessor<volume_dim>,
-          evolution::dg::ApplyLtsDenseBoundaryCorrections<derived_metavars>>>,
+          evolution::dg::ApplyLtsDenseBoundaryCorrections<
+              derived_metavars, volume_variables_tag>>>,
       control_system::Actions::LimitTimeStep<ControlSystems>,
       Actions::MutateApply<UpdateU<system>>,
       evolution::dg::Actions::ApplyLtsBoundaryCorrections<
-          volume_dim, use_dg_element_collection>,
+          volume_dim, use_dg_element_collection, volume_variables_tag>,
       Actions::MutateApply<ChangeTimeStepperOrder<system>>,
       Actions::MutateApply<CleanHistory<system>>,
       Actions::MutateApply<evolution::dg::CleanMortarHistory<volume_dim>>,
-      dg::Actions::SpectralFilter<volume_dim,
-                                  typename system::variables_tag::tags_list>>;
+      dg::Actions::SpectralFilter<volume_dim, system::volume_vars>>;
 
   template <bool UseControlSystems>
   using initialization_actions = tmpl::list<
@@ -467,11 +568,11 @@ struct ScalarTensorTemplateBase {
                                        UseControlSystems, true>,
           evolution::dg::Initialization::Domain<derived_metavars,
                                                 UseControlSystems>>,
-      Initialization::Actions::NonconservativeSystem<system>,
+      InitializeVariables,
       Initialization::Actions::InitializeItems<
           Initialization::TimeStepperHistory<system>>,
       Initialization::Actions::AddComputeTags<::Tags::DerivCompute<
-          typename system::variables_tag, domain::Tags::Mesh<volume_dim>,
+          volume_variables_tag, domain::Tags::Mesh<volume_dim>,
           domain::Tags::InverseJacobian<volume_dim, Frame::ElementLogical,
                                         Frame::Inertial>,
           typename system::gradient_variables>>,
@@ -482,7 +583,7 @@ struct ScalarTensorTemplateBase {
           derived_metavars, volume_dim, equal_rate_regions>,
       evolution::Actions::InitializeRunEventsAndDenseTriggers,
       Initialization::Actions::InitializeItems<
-          evolution::dg::Initialization::SpectralFilters<
-              volume_dim, typename system::variables_tag::tags_list>>,
+          evolution::dg::Initialization::SpectralFilters<volume_dim,
+                                                         system::volume_vars>>,
       Parallel::Actions::TerminatePhase>;
 };

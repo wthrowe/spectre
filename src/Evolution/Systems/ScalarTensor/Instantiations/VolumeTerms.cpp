@@ -13,8 +13,7 @@
 template void
 evolution::dg::Actions::detail::volume_terms<::ScalarTensor::TimeDerivative>(
     const gsl::not_null<Variables<db::wrap_tags_in<
-        ::Tags::dt,
-        typename ::ScalarTensor::System::variables_tag::tags_list>>*>
+        ::Tags::dt, typename ::ScalarTensor::System::volume_vars>>*>
         dt_vars_ptr,
     const gsl::not_null<Variables<db::wrap_tags_in<
         ::Tags::Flux, typename ::ScalarTensor::System::flux_variables,
@@ -34,8 +33,7 @@ evolution::dg::Actions::detail::volume_terms<::ScalarTensor::TimeDerivative>(
                          typename ::ScalarTensor::System::flux_variables,
                          tmpl::size_t<3>, Frame::Inertial>>>*>
         div_fluxes,
-    const Variables<typename ::ScalarTensor::System::variables_tag::tags_list>&
-        evolved_vars,
+    const Variables<typename ::ScalarTensor::System::volume_vars>& evolved_vars,
     const ::dg::Formulation dg_formulation, const Mesh<3>& mesh,
     [[maybe_unused]] const tnsr::I<DataVector, 3, Frame::Inertial>&
         inertial_coordinates,
