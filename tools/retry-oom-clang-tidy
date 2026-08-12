@@ -1,0 +1,15 @@
+#!/bin/bash
+# Distributed under the MIT License.
+# See LICENSE.txt for details.
+
+tools="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+for f in "$@" ; do
+    case "${f}" in
+        -*) ;;
+        *.?pp)
+            check_file=${f}
+            break
+    esac
+done
+export RETRY_OOM_ID=${check_file}
+exec "${tools}"/retry-oom clang-tidy "$@"
