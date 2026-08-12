@@ -1,0 +1,111 @@
+#!/bin/bash
+# Distributed under the MIT License.
+# See LICENSE.txt for details.
+#
+# A script to retry a compile command in serial if it runs out of memory
+
+set -e
+
+statedir=${TMPDIR:-/tmp}/retry-oom-${EUID}
+# Old state files are removed if older than this, in minutes.  Should
+# be longer than any individual job is expected to take.
+staleage=30
+
+die() {
+    echo "$1" >&2
+    exit 1
+}
+
+warn() {
+    echo "$1" >&2
+}
+
+if [ $# -eq 0 ] ; then
+    die "Usage: [RETRY_OOM_ID=override_id] $0 command [args...]"
+fi
+
+find-out() {
+    if [ -n "${RETRY_OOM_ID}" ] ; then
+       echo "${RETRY_OOM_ID}"
+       return
+    fi
+    while [ $# -gt 0 ] ; do
+        if [ "$1" = "-o" ] ; then
+            echo "$2"
+        fi
+        shift
+    done
+}
+out=$(find-out "$@")
+if [ -z "${out}" ] ; then
+    # No -o option and no override: don't know how to wrap this
+    exec "$@"
+fi
+
+# Mangle output name to remove slashes
+file_out=${out//\//___}
+
+# Create the state directory and do some sanity checks
+mkdir -p "${statedir}" || die "Can't create ${statedir}"
+test -d "${statedir}" || die "${statedir} isn't a directory!?"
+test -O "${statedir}" || die "Do not own ${statedir}"
+
+global_working=${statedir}/working
+global_serial=${statedir}/serial
+this_working=${global_working}-${file_out}
+this_serial=${global_serial}-${file_out}
+
+touch "${global_working}"
+touch "${global_serial}"
+
+cleanup() {
+    rm -f "${this_working}" "${this_serial}"
+}
+trap cleanup EXIT
+
+serial_running() { [ "$(stat -c %h "${global_serial}")" -gt 1 ] ; }
+no_runners() { [ "$(stat -c %h "${global_working}")" -eq 1 ] ; }
+only_runner() { [ "$(stat -c %h "${this_working}")" -eq 2 ] ; }
+
+# Clean up stale files
+while read -r -d '' stale ; do
+    warn "Deleting stale state file ${stale}"
+    rm -f "${stale}"
+done < <(find "${statedir}" -mmin +"${staleage}" -print0)
+
+link "${global_working}" "${this_working}"
+
+# If a serial build is working, wait
+if serial_running ; then
+    rm "${this_working}"
+    while serial_running ; do
+        sleep 1
+    done
+    link "${global_working}" "${this_working}"
+fi
+
+set +e
+"$@"
+ret=$?
+set -e
+
+# Killed with signal 9: 128 + 9 = 137
+if [ "${ret}" -ne 137 ] ; then
+    exit "${ret}"
+fi
+
+warn "Killed.  Retrying ${out}"
+
+link "${global_serial}" "${this_serial}"
+while ! only_runner ; do
+    rm "${this_working}"
+    while ! no_runners ; do
+        sleep 1
+        # Make sure our lock doesn't become stale if we have to wait a
+        # long time
+        touch "${this_serial}"
+    done
+    link "${global_working}" "${this_working}"
+done
+
+"$@"
