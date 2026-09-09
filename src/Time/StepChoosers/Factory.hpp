@@ -33,7 +33,7 @@ using common_step_choosers = tmpl::push_back<
     StepChoosers::Constant,
     StepChoosers::ErrorControl<Use, typename System::variables_tag>,
     StepChoosers::LimitIncrease, StepChoosers::Maximum,
-    StepChoosers::PreventRapidIncrease<typename System::variables_tag>>;
+    StepChoosers::PreventRapidIncrease<System>>;
 }  // namespace Factory_detail
 
 template <typename System, bool HasCharSpeedFunctions = true>
