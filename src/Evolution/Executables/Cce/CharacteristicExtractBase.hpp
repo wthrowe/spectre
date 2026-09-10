@@ -9,7 +9,6 @@
 #include "DataStructures/VariablesTag.hpp"
 #include "Evolution/Systems/Cce/BoundaryData.hpp"
 #include "Evolution/Systems/Cce/IntegrandInputSteps.hpp"
-#include "Evolution/Systems/Cce/System.hpp"
 #include "Evolution/Systems/Cce/Tags.hpp"
 #include "NumericalAlgorithms/SpinWeightedSphericalHarmonics/SwshTags.hpp"
 #include "Time/StepChoosers/Constant.hpp"
@@ -19,9 +18,10 @@
 #include "Time/StepChoosers/StepToTimes.hpp"
 #include "Utilities/TMPL.hpp"
 
-template <bool EvolveCcm>
+template <typename System>
 struct CharacteristicExtractDefaults {
-  static constexpr bool evolve_ccm = EvolveCcm;
+  using system = System;
+  static constexpr bool evolve_ccm = system::evolve_ccm;
   using evolved_swsh_tags = tmpl::list<Cce::Tags::BondiJ>;
   using evolved_swsh_dt_tags = tmpl::list<Cce::Tags::BondiH>;
   using evolved_coordinates_variables_tag = Tags::Variables<

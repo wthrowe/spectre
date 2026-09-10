@@ -37,10 +37,10 @@ class er;
 /// \endcond
 
 template <template <typename> class BoundaryComponent>
-struct EvolutionMetavars : CharacteristicExtractDefaults<false> {
-  using system = Cce::KleinGordonSystem<evolve_ccm>;
+struct EvolutionMetavars
+    : CharacteristicExtractDefaults<Cce::KleinGordonSystem<false>> {
   using cce_boundary_component = BoundaryComponent<EvolutionMetavars>;
-  using cce_base = CharacteristicExtractDefaults<false>;
+  using cce_base = CharacteristicExtractDefaults<Cce::KleinGordonSystem<false>>;
 
   using evolved_swsh_tags = tmpl::append<cce_base::evolved_swsh_tags,
                                          tmpl::list<Cce::Tags::KleinGordonPsi>>;

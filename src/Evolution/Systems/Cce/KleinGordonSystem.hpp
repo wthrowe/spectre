@@ -55,6 +55,7 @@ namespace Cce {
  */
 template <bool EvolveCcm>
 struct KleinGordonSystem {
+  static constexpr bool evolve_ccm = EvolveCcm;
   static constexpr size_t volume_dim = 3;
   using variables_tag = tmpl::list<
       ::Tags::Variables<tmpl::list<Tags::BondiJ, Tags::KleinGordonPsi>>,
@@ -68,4 +69,4 @@ struct KleinGordonSystem {
 
   static constexpr bool has_primitive_and_conservative_vars = false;
 };
-} // namespace Cce
+}  // namespace Cce
