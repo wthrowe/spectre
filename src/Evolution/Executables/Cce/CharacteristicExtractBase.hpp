@@ -22,15 +22,7 @@ template <typename System>
 struct CharacteristicExtractDefaults {
   using system = System;
   static constexpr bool evolve_ccm = system::evolve_ccm;
-  using evolved_swsh_tags = tmpl::list<Cce::Tags::BondiJ>;
   using evolved_swsh_dt_tags = tmpl::list<Cce::Tags::BondiH>;
-  using evolved_coordinates_variables_tag = Tags::Variables<
-      tmpl::conditional_t<evolve_ccm,
-                          tmpl::list<Cce::Tags::CauchyCartesianCoords,
-                                     Cce::Tags::PartiallyFlatCartesianCoords,
-                                     Cce::Tags::InertialRetardedTime>,
-                          tmpl::list<Cce::Tags::CauchyCartesianCoords,
-                                     Cce::Tags::InertialRetardedTime>>>;
 
   struct swsh_vars_selector {
     static std::string name() { return "SwshVars"; }
@@ -116,11 +108,12 @@ struct CharacteristicExtractDefaults {
       tmpl::list<StepChoosers::Constant, StepChoosers::LimitIncrease,
                  StepChoosers::Maximum,
                  StepChoosers::ErrorControl<StepChooserUse::LtsStep,
-                                            Tags::Variables<evolved_swsh_tags>,
+                                            typename system::evolved_swsh_tag,
                                             swsh_vars_selector>,
-                 StepChoosers::ErrorControl<StepChooserUse::LtsStep,
-                                            evolved_coordinates_variables_tag,
-                                            coord_vars_selector>>;
+                 StepChoosers::ErrorControl<
+                     StepChooserUse::LtsStep,
+                     typename system::evolved_coordinates_variables_tag,
+                     coord_vars_selector>>;
   using cce_slab_choosers =
       tmpl::list<StepChoosers::Constant, StepChoosers::LimitIncrease,
                  StepChoosers::Maximum, StepChoosers::StepToTimes>;
