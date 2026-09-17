@@ -85,10 +85,12 @@ set_property(
 get_filename_component(CHARM_BINDIR ${CHARM_COMPILER} DIRECTORY)
 # In order to avoid problems when compiling in parallel we manually copy the
 # charmrun script over, rather than having charmc do it for us.
-configure_file(
-    "${CHARM_BINDIR}/charmrun"
-    "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/charmrun" COPYONLY
-)
+if (EXISTS ${CHARM_BINDIR}/charmrun)
+  configure_file(
+      "${CHARM_BINDIR}/charmrun"
+      "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/charmrun" COPYONLY
+  )
+endif()
 
 include(SetupCharmModuleFunctions)
 

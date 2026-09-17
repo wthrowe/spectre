@@ -1,0 +1,11 @@
+--- a/src/Evolution/DiscontinuousGalerkin/Messages/BoundaryMessage.decl.h
++++ b/src/Evolution/DiscontinuousGalerkin/Messages/BoundaryMessage.decl.h
+@@ -38,7 +38,7 @@
+     void operator delete(void*p, size_t){dealloc(p);}
+     static void* alloc(int,size_t, int*, int, GroupDepNum);
+     static void dealloc(void *p);
+-    CMessage_BoundaryMessage <Dim> ();
++    CMessage_BoundaryMessage();
+     static void *pack(BoundaryMessage <Dim>  *p);
+     static BoundaryMessage <Dim> * unpack(void* p);
+     void *operator new(size_t, const int);
